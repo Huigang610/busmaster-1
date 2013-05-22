@@ -27,7 +27,7 @@
 #include "ExecuteManager.h"
 #include "FunctionEditorDoc.h"
 #include "GlobalObj.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 //#include "../Application/GettextBusmaster.h"
 
 #ifdef _DEBUG
@@ -597,17 +597,16 @@ void CSimSysDetView::OnButtonOpenfile()
             CString omStrDefCFileName(STR_EMPTY);
             // Display open dialog box with *.c filter
             // and select the C file by default
-            CHAR szFilters[] = "All Supported Simulation Files (*.cpp;*.c)|*.cpp; *.c|cpp File(s) (*.cpp)|*.cpp|C File(s) (*.c)|*.c||";
-            //CHAR szFilters[] = _T("C Files (*.c)|*.c |C++ Files (*.cpp)|*.cpp||");
+            //CHAR szFilters[] = _("C Files (*.c)|*.c |C++ Files (*.cpp)|*.cpp||");
             CFileDialog fileDlg( TRUE,      // Open File dialog
                                  "cpp",        // Default Extension,
                                  NULL,
                                  OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-                                 szFilters,
+                                 _("All Supported Simulation Files (*.cpp;*.c)|*.cpp; *.c|cpp File(s) (*.cpp)|*.cpp|C File(s) (*.c)|*.c||"),
                                  NULL );
 
             // Set Title
-            fileDlg.m_ofn.lpstrTitle  = "Select BUSMASTER Source Filename...";
+            fileDlg.m_ofn.lpstrTitle  = _("Select BUSMASTER Source Filename...");
 
             if ( IDOK == fileDlg.DoModal() )
             {
@@ -795,82 +794,6 @@ void CSimSysDetView::OnButtonOpenfile()
         }
     }
 }
-//}
-//}
-/******************************************************************************/
-/*  Function Name    :  bCreateNewFile                                        */
-/*                                                                            */
-/*  Input(s)         :   CString omStrFileName                                */
-/*  Output           :  BOOL                                                  */
-/*  Functionality    :  Constructs the new document and updates the source
-                        list.
-/*  Member of        :  CFunctionEditorDoc
-/*  Friend of        :      -                                                 */
-/*                                                                            */
-/*  Author(s)        :  Harika M                                              */
-/*  Date Created     :  21.02.2006                                            */
-/*  Modifications    :  Anish kumar,31.08.06
-                        bug fixed,XXX_Unions.h was not included as header
-/******************************************************************************/
-//BOOL CSimSysDetView::bCreateNewFile( CString omStrFileName )
-//{
-//    BOOL bSuccess = FALSE;
-//    FILE * pCFile = _tfopen( omStrFileName, _T("at"));
-//    CString omStrCFileName = STR_EMPTY;
-//    CString omStr = STR_EMPTY;
-//    if( pCFile != NULL )
-//    {
-//        bSuccess = TRUE;
-//
-//         TCHAR buffer[2500] = BUS_INCLUDE_HDR;
-//         wcscat(buffer ,_T("\n#include <Windows.h>"));
-//         if (CGlobalObj::m_omMsgStructFile.IsEmpty())
-//         {
-//             ASSERT(FALSE);
-//         }
-//         CString omStr;
-//         omStr.Format(STR_INCLUDE_FILE, CGlobalObj::m_omMsgStructFile);
-//       wcscat(buffer ,omStr);
-//       // Get file path of unions.h from app class
-//       // and if valid insert into the header namespace
-//        //COMMENTED BY AK****************
-//      /*CStringArray aomstrDBFiles;
-//      theApp.m_pouMsgSignal->vGetDataBaseNames(&aomstrDBFiles);
-//      int nTotalCount = aomstrDBFiles.GetCount();
-//      for(int nCount = 0 ; nCount < nTotalCount ; nCount++)
-//      {
-//          CString omStrTemp = aomstrDBFiles.GetAt(nCount);
-//          omStr = CSimSysManager::ouGetSimSysManager().omStrGetUnionFilePath(omStrTemp);
-//          if ( !omStr.IsEmpty())
-//          {
-//              omStr.Insert( 0,"#include \"");
-//              omStr += "\"";
-//          }
-//          wcscat(buffer ,omStr);
-//          wcscat(buffer ,"\n");
-//      }*/
-//       wcscat(buffer ,_T("\n/* End FRAME include header */"));
-//         wcscat(buffer ,_T("\n\n\n"));
-//         wcscat(buffer ,BUS_VAR_HDR);
-//         wcscat(buffer ,_T("\n\n"));
-//         wcscat(buffer ,BUS_VAR_FOOTER);
-//         wcscat(buffer ,_T("\n\n\n"));
-//         wcscat(buffer ,BUS_FN_PROTOTYPE_HDR);
-//         wcscat(buffer ,_T("\n"));
-//         wcscat(buffer ,BUS_FN_PROTOTYPE_FOOTER);
-//         wcscat(buffer ,_T("\n\n"));
-//         int tcsLength = _tcslen(buffer);
-//
-//       int numwritten = fwrite( buffer, sizeof( TCHAR ), tcsLength, pCFile );
-//
-//       fclose(pCFile);
-//        pCFile = NULL;
-//    }
-//    else
-//        AfxMessageBox(_T("Error in creating c file"));
-//
-//    return bSuccess;
-//}
 
 /******************************************************************************/
 /*  Function Name    :  bUpdateNodeInfoFile

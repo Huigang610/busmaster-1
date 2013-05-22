@@ -293,7 +293,7 @@ public:
         COPY_DATA_2(&m_enmHWFilterType[0], pbyTemp, sizeof(eHW_FILTER_TYPES));
         COPY_DATA_2(&m_enmHWFilterType[1], pbyTemp, sizeof(eHW_FILTER_TYPES));
 
-        char chTemp[1024] = {'\0'};
+        char chTemp[1024] = "";
         int nSize;
 
         COPY_DATA_2(&nSize, pbyTemp, sizeof(INT));

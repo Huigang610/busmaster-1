@@ -33,7 +33,7 @@
 #include "SignalDefiner/SignalDefiner_Extern.h"
 #include <atlconv.h>
 //#include "GettextBusmaster.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 /////////////////////////////////////////////////////////////////////////////
 // CWaveformSelectionDlg dialog
 
@@ -325,7 +325,7 @@ void CWaveformSelectionDlg::DefineUpdateWave(CListCtrl* pListCtrl, UINT nMsgID,
     if (pListCtrl->GetSelectionMark() != -1)
     {
         CString strSignalDetails;
-        strSignalDetails.Format(_T("0x%x->%s"), nMsgID, strSignalName);
+        strSignalDetails.Format("0x%x->%s", nMsgID, strSignalName);
 
         //BSTR bstrName = (BSTR)strSignalDetails.GetBuffer(MAX_PATH);
         BSTR bstrName(L"");
@@ -386,7 +386,7 @@ void CWaveformSelectionDlg::vInterPretSignalNameMsgID(CString strInterpretData, 
     CString omMsgId;
     char* pcStopStr = NULL;
     int nIndex = -1;
-    nIndex = strInterpretData.Find(_T("->"));
+    nIndex = strInterpretData.Find("->");
     if(nIndex != -1)
     {
         omMsgId = strInterpretData.Left(nIndex);
@@ -394,7 +394,7 @@ void CWaveformSelectionDlg::vInterPretSignalNameMsgID(CString strInterpretData, 
         CString strTemp;
         strTemp= strInterpretData.Right(strInterpretData.GetLength()-(nIndex+2));
         //Now remove the Wave form name.
-        nIndex = strTemp.Find(_T("("));
+        nIndex = strTemp.Find("(");
         if(nIndex!=-1)
         {
             strSigName = strTemp.Left(nIndex-1);

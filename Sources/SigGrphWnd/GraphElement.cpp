@@ -71,14 +71,14 @@ BYTE* CGraphElement::pbyGetConfigData(BYTE* pbyTrgData)
         // Message ID
         COPY_DATA(pbyTemp, &m_nMsgID, sizeof(int));
         // Message Name
-        char MsgName[MAX_PATH] = {_T('\0')};
+        char MsgName[MAX_PATH] = "";
         //Tobias - venkat
         strcpy_s(MsgName, MAX_PATH, m_strMsgName.GetBuffer(MAX_PATH));
         COPY_DATA(pbyTemp, MsgName, (sizeof(char) * MAX_PATH));
         // Frame Format - Standard
         COPY_DATA(pbyTemp, &m_nFrameFormat, sizeof(short));
         // Element Name String
-        char acName[MAX_PATH] = {_T('\0')};
+        char acName[MAX_PATH] = "";
         strcpy_s(acName, MAX_PATH, m_omStrElementName.GetBuffer(MAX_PATH));
         COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
         // Type of the element val
@@ -108,13 +108,13 @@ BYTE* CGraphElement::pbySetConfigData(BYTE* pbyTrgData)
         // Message ID
         COPY_DATA_2(&m_nMsgID, pbyTemp, sizeof(int));
         //Message Name
-        char MsgName[MAX_PATH] = {_T('\0')};
+        char MsgName[MAX_PATH] = "";
         COPY_DATA_2(MsgName, pbyTemp, (sizeof(char) * MAX_PATH));
         m_strMsgName.Format("%s", MsgName);
         // Frame Format - Standard
         COPY_DATA_2(&m_nFrameFormat, pbyTemp, sizeof(short));
         // Element Name String
-        char acName[MAX_PATH] = {_T('\0')};
+        char acName[MAX_PATH] = "";
         COPY_DATA_2(acName, pbyTemp, (sizeof(char) * MAX_PATH));
         m_omStrElementName.Format("%s", acName);
         // Type of the element val

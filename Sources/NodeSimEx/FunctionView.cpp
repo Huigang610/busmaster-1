@@ -220,13 +220,13 @@ void CFunctionView::vSetFunctionToEdit(const CString& omStrFunction)
         {
             //Construct the Function Header
             omStrFnHeader = BUS_FN_HDR;
-            omStrFnHeader.Replace("PLACE_HODLER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
-            omStrFnHeader.Replace( "PLACE_HODLER_FOR_FUNCTIONNAME",
+            omStrFnHeader.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
+            omStrFnHeader.Replace("PLACE_HOLDER_FOR_FUNCTIONNAME",
                                    omStrFunction );
             //Construct the Function Footer
             omStrFnFooter = EDITOR_BUS_FN_FOOTER;
-            omStrFnFooter.Replace(_T("PLACE_HODLER_FOR_BUSNAME"), sBusSpecInfo.m_omBusName);
-            omStrFnFooter.Replace( _T("PLACE_HODLER_FOR_FUNCTIONNAME"),
+            omStrFnFooter.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
+            omStrFnFooter.Replace("PLACE_HOLDER_FOR_FUNCTIONNAME",
                                    omStrFunction );
         }
 

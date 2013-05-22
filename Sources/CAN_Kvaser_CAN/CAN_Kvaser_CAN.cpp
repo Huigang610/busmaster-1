@@ -820,7 +820,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_ListHwInterfaces(INTERFACE_HW_LIST& /*asSelHwInterf
     }
     else
     {
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("Error connecting to driver"));
+        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("Error connecting to driver"));
     }
     return hResult;
 }
@@ -1615,7 +1615,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_StartHardware(void)
         }
         else
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("Could not start the read thread" ));
+            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("Could not start the read thread" ));
         }
     }
 
@@ -2200,7 +2200,7 @@ static int nCreateMultipleHardwareNetwork(UINT unDefaultChannelCnt = 0)
     for (int nCount = 0; nCount < sg_ucNoOfHardware; nCount++)
     {
         sg_aodChannels[nCount].m_nChannel = sg_HardwareIntr[sg_anSelectedItems[nCount]].m_dwIdInterface;
-        _stprintf(sg_aodChannels[nCount].m_strName , _T("Kvaser - %s, Serial Number- %ld, Firmware- %s"),
+        _stprintf(sg_aodChannels[nCount].m_strName , _("Kvaser - %s, Serial Number- %ld, Firmware- %s"),
                   sg_HardwareIntr[sg_anSelectedItems[nCount]].m_acDescription.c_str(),
                   sg_HardwareIntr[sg_anSelectedItems[nCount]].m_dwVendor,
                   sg_HardwareIntr[sg_anSelectedItems[nCount]].m_acDeviceName.c_str());
@@ -2245,7 +2245,7 @@ static int nCreateSingleHardwareNetwork()
     sprintf(chBuffer,"0x%08lx 0x%08lx", dwFirmWare[0], dwFirmWare[1]);
     sg_HardwareIntr[0].m_acDeviceName = chBuffer;
 
-    _stprintf(sg_aodChannels[0].m_strName , _T("%s, Serial Number: %ld, Firmware: %s"),
+    _stprintf(sg_aodChannels[0].m_strName , _("%s, Serial Number: %ld, Firmware: %s"),
               sg_HardwareIntr[0].m_acDescription.c_str(),
               sg_HardwareIntr[0].m_dwVendor,
               sg_HardwareIntr[0].m_acDeviceName.c_str());
@@ -2275,7 +2275,7 @@ static int nGetNoOfConnectedHardware(void)
 
     if (nStatus != canOK )
     {
-        _tcscpy(sg_omErrStr, _T("Problem Finding Device!"));
+        _tcscpy(sg_omErrStr, _("Problem Finding Device!"));
         nChannelCount = -1;
     }
     /* Return the channel count */
@@ -2306,12 +2306,12 @@ static int nInitHwNetwork(UINT unDefaultChannelCnt)
      * Take action based on number of Hardware Available
      */
     char acNo_Of_Hw[MAX_STRING] = {0};
-    _stprintf(acNo_Of_Hw, _T("Number of Kvaser hardwares Available: %d"), nChannelCount);
+    _stprintf(acNo_Of_Hw, _("Number of Kvaser hardwares Available: %d"), nChannelCount);
 
     /* No Hardware found */
     if( nChannelCount == 0 )
     {
-        _stprintf(sg_omErrStr, _T("No Kvaser hardwares Available.\nPlease check if Kvaser drivers are installed."));
+        _stprintf(sg_omErrStr, _("No Kvaser hardwares Available.\nPlease check if Kvaser drivers are installed."));
         nChannelCount = -1;
     }
     /* Available hardware is lesser then the supported channels */
@@ -2450,7 +2450,7 @@ static void vRetrieveAndLog(DWORD /*dwErrorCode*/, char* File, int Line)
 {
     USES_CONVERSION;
 
-    char acErrText[MAX_PATH] = {'\0'};
+    char acErrText[MAX_PATH] = "";
 
     /* Get the error text for the corresponding error code */
     sg_pIlog->vLogAMessage(A2T(File), Line, A2T(acErrText));

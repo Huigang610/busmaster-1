@@ -219,7 +219,7 @@ static int ReadWriteASection(bool bToRead, short SectionID,
         {
             if (bToRead)
             {
-                char acBuffer[LEN_SIG_FILE_START] = {'\0'};
+                char acBuffer[LEN_SIG_FILE_START] = "";
                 nResult = ReadAndValidateString(pFile, acBuffer, DATABASE_SIGNATURE);
                 if (nResult != 0)
                 {
@@ -240,7 +240,7 @@ static int ReadWriteASection(bool bToRead, short SectionID,
         {
             if (bToRead)
             {
-                char acBuffer[LEN_VERSION] = {'\0'};
+                char acBuffer[LEN_VERSION] = "";
                 nResult = ReadAndValidateString(pFile, acBuffer, VERSIONLINE);
                 if(nResult != 0)
                 {
@@ -272,7 +272,7 @@ static int ReadWriteASection(bool bToRead, short SectionID,
                 // If the newer version[1.1] file is opened
                 else
                 {
-                    char acBuffer[LEN_APPLICATION_VERSION] = {'\0'};
+                    char acBuffer[LEN_APPLICATION_VERSION] = "";
 
                     // Reading Application version
                     ReadAndValidateString(pFile, acBuffer, APPLICATION_VERSION);
@@ -299,7 +299,7 @@ static int ReadWriteASection(bool bToRead, short SectionID,
         {
             if (bToRead)
             {
-                char acBuffer[LEN_SIG_PROJ_TABLE] = {'\0'};
+                char acBuffer[LEN_SIG_PROJ_TABLE] = "";
                 nResult = ReadAndValidateString(pFile, acBuffer, PROJECT_TABLE_SIG);
                 if (nResult != 0)
                 {
@@ -476,7 +476,7 @@ static int ReadWriteASection(bool bToRead, short SectionID,
         {
             if (bToRead)
             {
-                char acBuffer[LEN_SIG_FILE_END] = {'\0'};
+                char acBuffer[LEN_SIG_FILE_END] = "";
                 nResult = ReadAndValidateString(pFile, acBuffer, DB_END_SIGNATURE);
                 if (nResult != 0)
                 {

@@ -44,7 +44,7 @@
 #include "DIL_Interface/BaseDIL_CAN_Controller.h"
 //#include "../Application/GettextBusmaster.h"
 
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 
 #define USAGE_EXPORT
 #include "CAN_STUB_Extern.h"
@@ -87,7 +87,7 @@ static CRITICAL_SECTION sg_CSBroker;
 static HRESULT          sg_hResult          = S_FALSE;
 static HANDLE           sg_hNotifyFinish    = NULL;
 static STCAN_MSG*       sg_pouCanTxMsg      = NULL;
-static SYSTEMTIME       sg_CurrSysTime      = {'\0'};
+static SYSTEMTIME       sg_CurrSysTime;
 static LARGE_INTEGER    sg_QueryTickCount;
 static UINT64           sg_TimeStampRef     = 0x0;
 static HWND             sg_hOwnerWnd        = NULL;
@@ -361,7 +361,7 @@ static void ProcessCanMsg(HANDLE hClientHandle, UINT unIndex)
     /* To be noted - there is no validation for any pointer. This is because
     this function assumes them to have been duly validated beforehand and it
     is so by implementation. Efficiency is the motivation behind. */
-    BYTE abyData[SIZE_DAT_P] = {'\0'};
+    BYTE abyData[SIZE_DAT_P] = "";
 
     //if (ReadFile(hClientHandle, &sPipeCanMsg, SIZE_PIPE_CANMSG, &dwBytes, NULL))
     if (ReadFile(hClientHandle, abyData, SIZE_DAT_P, &dwBytes, NULL))
@@ -520,7 +520,7 @@ HRESULT CDIL_CAN_STUB::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger*
 HRESULT CDIL_CAN_STUB::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length)
 {
     HRESULT Result = S_FALSE;
-    char acInitFile[MAX_PATH] = {'\0'};
+    char acInitFile[MAX_PATH] = "";
 
     // Assuming that InitData points to a CHAR array with size MAX_PATH
     //    strcpy_s(acInitFile, MAX_PATH, InitData);
@@ -1305,8 +1305,8 @@ HRESULT Worker_RegisterClient(ISimENG* pISimENG, Base_WrapperErrorLogger* pIlog)
     sg_ushTempClientID = ushClientID;
 
     // Extract the pipe and event name in normal string
-    char acPipeName[64] = {'\0'};
-    char acEventName[32] = {'\0'};
+    char acPipeName[64] = "";
+    char acEventName[32] = "";
     if (BSTR_2_PCHAR(PipeName, acPipeName, 64) == false)
     {
         hResult = S_FALSE;

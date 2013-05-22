@@ -174,7 +174,7 @@ void CWaveformTransmitter::vProcessWaveForm(int CurrItr)
         }
 
         // Assign values to the CAN frame to transmit
-        STCAN_MSG sCurrFrame = {'\0'}; // m_ucEXTENDED & m_ucRTR are zero.
+        STCAN_MSG sCurrFrame; // m_ucEXTENDED & m_ucRTR are zero.
         sCurrFrame.m_unMsgID = ouCurrEntry.m_nMsgID;
         sCurrFrame.m_ucDataLen = (UCHAR) (psCurrMsg->m_unMessageLength);
         sCurrFrame.m_ucChannel = 0x1;

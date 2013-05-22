@@ -27,15 +27,10 @@
 // Starts SGUIPARAMS
 SGUIPARAMS::SGUIPARAMS()
 {
-    m_acTitleName[MAX_PATH - 1]     = _T('\0');
-    m_acMainListName[MAX_PATH - 1]  = _T('\0');
-    m_acUnSelListName[MAX_PATH - 1] = _T('\0');
-    m_acSelListName[MAX_PATH - 1]   = _T('\0');
-
-    _tcsset(m_acTitleName, _T('\0'));
-    _tcsset(m_acMainListName, _T('\0'));
-    _tcsset(m_acUnSelListName, _T('\0'));
-    _tcsset(m_acSelListName, _T('\0'));
+    memset(m_acTitleName, 0, sizeof(m_acTitleName));
+    memset(m_acMainListName, 0, sizeof(m_acMainListName));
+    memset(m_acUnSelListName, 0, sizeof(m_acUnSelListName));
+    memset(m_acSelListName, 0, sizeof(m_acSelListName));
 
     m_pomImageList      = NULL;
     m_unUnSelIconIndex  = 0;

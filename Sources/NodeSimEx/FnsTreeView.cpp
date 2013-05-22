@@ -36,7 +36,7 @@
 #include "EventHandlerDlg.h"    // Dialog class for event handlers
 #include "UtlityDlg.h"          // Dialog class for adding utility func
 #include "FnsTreeView.h"        // Class defintion file
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 //#include "../Application/GettextBusmaster.h"
 
 #ifdef _DEBUG
@@ -2044,13 +2044,13 @@ void CFnsTreeView::vOnNewBusEventHandler()
 
                         // Form the function header
                         CString omStrHdr = BUS_FN_HDR;
-                        omStrHdr.Replace(_T("PLACE_HODLER_FOR_BUSNAME"), sBusSpecInfo.m_omBusName);
-                        omStrHdr.Replace(_T("PLACE_HODLER_FOR_FUNCTIONNAME"), omStrFuncName);
+                        omStrHdr.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
+                        omStrHdr.Replace("PLACE_HOLDER_FOR_FUNCTIONNAME", omStrFuncName);
 
                         // Form the function footer
                         CString omStrFooter = BUS_FN_FOOTER;
-                        omStrFooter.Replace(_T("PLACE_HODLER_FOR_BUSNAME"), sBusSpecInfo.m_omBusName);
-                        omStrFooter.Replace(_T("PLACE_HODLER_FOR_FUNCTIONNAME"), omStrFuncName);
+                        omStrFooter.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
+                        omStrFooter.Replace("PLACE_HOLDER_FOR_FUNCTIONNAME", omStrFuncName);
 
                         pDoc->m_omSourceCodeTextList.AddTail( omStrHdr );
                         // Add fn definition

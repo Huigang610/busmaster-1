@@ -556,7 +556,7 @@ void CSimSysTreeView::vDisplaySimSysMenu()
                                   IDM_SIMSYS_ALLHANDLERS, "Enable All Handlers");
         if (bRetVal == FALSE)
         {
-            MessageBox(_T("Failed to change the text of the String"));
+            MessageBox(_("Failed to change the text of the String"));
 
         }
         ModifyMenu(m_pomSubMenu->GetSafeHmenu(),
@@ -902,7 +902,7 @@ void CSimSysTreeView::vDisplayNodeMenu()
                                   IDM_NODE_KEYHANDLERS, "Disable Key Handlers");
         if (bRetVal == FALSE)
         {
-            MessageBox(_T("Failed to change the text of the String"));
+            MessageBox(_("Failed to change the text of the String"));
 
         }
     }

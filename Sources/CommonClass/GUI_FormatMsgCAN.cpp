@@ -27,7 +27,7 @@
 #include "GUI_FormatMsgCAN.h"
 #include "include/Utils_macro.h"
 #include "Include/CAN_Error_Defs.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 //#include "../Application/GettextBusmaster.h"
 
 struct sERRORMSGINFO
@@ -267,14 +267,14 @@ void CFormatMsgCAN::vFormatCANDataMsg(STCANDATA* pMsgCAN,
     if (RX_FLAG == pMsgCAN->m_ucDataType)
     {
         CurrDataCAN->m_eDirection = DIR_RX;
-        CurrDataCAN->m_acMsgDir[0] = _T('R');
+        CurrDataCAN->m_acMsgDir[0] = 'R';
     }
     else if (TX_FLAG == pMsgCAN->m_ucDataType)
     {
         CurrDataCAN->m_eDirection = DIR_TX;
-        CurrDataCAN->m_acMsgDir[0] = _T('T');
+        CurrDataCAN->m_acMsgDir[0] = 'T';
     }
-    CurrDataCAN->m_acMsgDir[1] = _T('x');
+    CurrDataCAN->m_acMsgDir[1] = 'x';
 
     TYPE_CHANNEL CurrChannel = pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucChannel;  // Assuming default CAN msg
     if (pMsgCAN->m_uDataInfo.m_sCANMsg.m_bCANFD) // Incase of CANFD msg

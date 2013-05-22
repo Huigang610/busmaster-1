@@ -26,7 +26,7 @@
 #include "MsgHandlerDlg.h"
 #include "GlobalObj.h"
 #include "MsgHandlerDlg.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 //#include "../Application/GettextBusmaster.h"
 
 #ifdef _DEBUG
@@ -449,40 +449,6 @@ BOOL CMsgHandlerDlg::OnInitDialog()
         }
     }
 
-    //if ( unNoOfMessages > 0 )
-    {
-
-        //COMMENTED BY AK******************
-        //ouGetMsgSignal().omStrListGetMessageNames(omMessageNames);
-
-        //CMainFrame* pMainFrame = NULL;
-        //pMainFrame             = (CMainFrame*)AfxGetMainWnd();
-        //if(pMainFrame != NULL )
-        //{
-
-        //    CFunctionEditorDoc* pDoc = pMainFrame->CGlobalObj::podGetFunctionEditorDoc();
-        //    if(pDoc != NULL )
-        //    {
-
-        //        CStringArray* pomStrArray = NULL;
-        //        pomStrArray = pDoc->omStrGetMessageHandlerPrototypes();
-        //        if(pomStrArray != NULL )
-        //        {
-        //            POSITION pos = omMessageNames.GetHeadPosition();
-        //            // Insert every message name into the message list box
-        //            CString omStrMsgName = _T("");
-
-        //            while ( pos != NULL )
-        //            {
-        //
-        //                omStrMsgName = omMessageNames.GetNext(pos);
-        //                bAddMessageNameInListBox(pomStrArray,omStrMsgName);
-        //
-        //            }
-        //        }
-        //    }
-        //}
-    }
     return TRUE;  // return TRUE unless you set the focus to a control
     // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -596,10 +562,10 @@ BOOL CMsgHandlerDlg::bValidateUserSelection(CFunctionEditorDoc* pDoc)
                     {
                         UINT unVal = omMsgList.GetAt(pos);
                         m_omStrMsgID.Format("%x", unVal);
-                        omStrText = _T("\"")+ m_omStrMsgID + _T("\"");
+                        omStrText = "\"" + m_omStrMsgID + "\"";
                     }
                     m_omStrSelectedItemText += m_omStrMsgID;
-                    omStrText = "\""+ m_omStrMsgID + "\"";
+                    omStrText = "\"" + m_omStrMsgID + "\"";
                     omStrHandlerType = _(defMSG_ID_TEXT);
                 }
                 else if(unMsgCount > 1)
@@ -616,7 +582,7 @@ BOOL CMsgHandlerDlg::bValidateUserSelection(CFunctionEditorDoc* pDoc)
                     }
                     omStrText.TrimRight("_");
                     m_omStrSelectedItemText += omStrText;
-                    omStrText = _T("\"")+ omStrText + _T("\"");
+                    omStrText = "\"" + omStrText + "\"";
                     omStrHandlerType = _(defMSG_IDLIST_TEXT);
                 }
             }
@@ -696,12 +662,12 @@ BOOL CMsgHandlerDlg::bValidateUserSelection(CFunctionEditorDoc* pDoc)
                                 if (omMsgList.Find(unMsgId, 0) != NULL)
                                 {
                                     omStrMsgPro = _(defMSG_DUPL_MSG_HANDLER);
-                                    omStrMsgPro.Replace( _T(_("TYPE")),
+                                    omStrMsgPro.Replace("TYPE",
                                                          omStrHandlerType );
-                                    omStrMsgPro.Replace( _T(_("MESSAGENAME")),
+                                    omStrMsgPro.Replace("MESSAGENAME",
                                                          omStrText );
 
-                                    omStrMsgPro += _T("In\"") + pMsgArray->GetAt( nCount ) +_T("\" Handler");
+                                    omStrMsgPro += _("In\"") + pMsgArray->GetAt( nCount ) +_("\" Handler");
                                     // Duplicate message hanlder, shout
                                     AfxMessageBox( omStrMsgPro,
                                                    MB_OK|MB_ICONINFORMATION );

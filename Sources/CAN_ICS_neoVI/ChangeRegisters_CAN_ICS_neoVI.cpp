@@ -26,7 +26,7 @@
 #include "ContrConfigPeakUsbDefs.h"
 #include "CAN_ICS_neoVI_Resource.h"
 #include "ChangeRegisters_CAN_ICS_neoVI.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 //#include "../Application/GettextBusmaster.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -54,13 +54,10 @@ CChangeRegisters_CAN_ICS_neoVI::CChangeRegisters_CAN_ICS_neoVI(CWnd* pParent /*=
     , m_omStrSJW("")
 {
     //{{AFX_DATA_INIT(CChangeRegisters_CAN_ICS_neoVI)
-    //m_omStrEditBTR0 = _T("");
-    //m_omStrEditBTR1 = _T("");
     m_omStrEditCNF1 = "";
     m_omStrEditCNF2 = "";
     m_omStrEditCNF3 = "";
     m_omStrComboSampling = "";
-    /*m_omStrEditBaudRate = _T("");*/
     m_omStrcombBaudRate = "";
     m_omStrComboClock = "32";
     m_omStrEditWarningLimit = "";
@@ -797,7 +794,7 @@ void CChangeRegisters_CAN_ICS_neoVI::vValidateBaudRate()
         {
             dBaudRate = 5000;
         }
-        omStrBaudRate.Format(_T("%ld"),/*fTempBaudRate*/(long)dBaudRate);
+        omStrBaudRate.Format("%ld", /*fTempBaudRate*/(long)dBaudRate);
 
         omStrMessage.Format(defBAUD_RATE_MESSAGE,omStrBaudRate);
         omStrPrvBaudRate = m_omStrcombBaudRate;

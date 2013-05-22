@@ -83,7 +83,7 @@ void FilterOut_NonHexChar(char acSource[])
     int Length = (int) strlen(acSource);
     ASSERT(Length < MAX_CHAR);
 
-    char acTmp[MAX_CHAR] = {'\0'};
+    char acTmp[MAX_CHAR] = "";
     char CurrChar = '\0';
 
     // First copy only the permitted characters into the temporary string
@@ -267,7 +267,7 @@ bool bGetSystemErrorString(HRESULT hResult, char acErrStr[256])
 {
     bool bResult = true;
 
-    memset(acErrStr, _T('\0'), _tcslen(acErrStr));
+    memset(acErrStr, '\0', _tcslen(acErrStr));
     LPVOID lpMsgBuf;
     DWORD dwResult = 0;
 

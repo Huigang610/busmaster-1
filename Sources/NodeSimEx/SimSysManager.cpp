@@ -483,7 +483,7 @@ void CSimSysManager::CopySIMDataFromBuffer(xmlNodePtr pDoc, ETYPE_BUS eBus)
     CString omTmp = "";
     for (UINT i = 0; i < UnCount; i++)
     {
-        char acFilename[MAX_PATH] = {'\0'};
+        char acFilename[MAX_PATH] = "";
         COPY_DATA_2(acFilename, tempBuffAddress, sizeof (char) * MAX_PATH);
         omTmp.Format("%s", acFilename);
         //Add the simsys file details
@@ -698,7 +698,7 @@ void CSimSysManager :: CopySIMDataFromBuffer(BYTE* SrcBuffer)
     CString omTmp = "";
     for (UINT i = 0; i < UnCount; i++)
     {
-        char acFilename[MAX_PATH] = {'\0'};
+        char acFilename[MAX_PATH] = "";
         COPY_DATA_2(acFilename, tempBuffAddress, sizeof (char) * MAX_PATH);
         omTmp.Format("%s", acFilename);
         //Add the simsys file details

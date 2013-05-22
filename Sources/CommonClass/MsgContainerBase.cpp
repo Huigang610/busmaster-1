@@ -171,7 +171,7 @@ BOOL CMsgContainerBase:: bStopReadThread()
 BOOL CMsgContainerBase::bCopyStringTocharArr( char acDesStr[], CString omSrc, int MaxDesLen )
 {
     BOOL bReturn = TRUE;
-    memset (acDesStr, _T('\0'), MaxDesLen);
+    memset(acDesStr, '\0', MaxDesLen);
 
     if (MaxDesLen <= omSrc.GetLength())
     {

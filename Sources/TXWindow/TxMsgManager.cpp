@@ -33,7 +33,7 @@
 #include "include/CAN_Error_Defs.h"
 #include "include/XMLDefines.h"
 #include "Utility/XMLUtils.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 //#include "../Application/GettextBusmaster.h"
 
 //CLient Id from the DIL
@@ -898,7 +898,7 @@ UINT CTxMsgManager::s_unSendMsgBlockOnTime(LPVOID pParam )
             }
             else
             {
-                TRACE(_T(_("Tx block stopped\n")));
+                TRACE(_("Tx block stopped\n"));
             }
 
             // Select Next Message

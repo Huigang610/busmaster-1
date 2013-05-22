@@ -24,7 +24,7 @@
 
 #include "DataTypes_StdAfx.h"
 #include "Filter_Datatypes.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 //#include "../Application/GettextBusmaster.h"
 
 const int SIZE_CHAR = sizeof(char);

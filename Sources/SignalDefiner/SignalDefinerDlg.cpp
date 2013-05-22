@@ -26,7 +26,7 @@ CSignalDefinerDlg::CSignalDefinerDlg(CWnd* pParent /*=NULL*/)
 {
     AfxEnableControlContainer();
     m_poDMGraphCtrl = NULL;
-    m_strSignalName = _T("");
+    m_strSignalName = L"";
 }
 
 CSignalDefinerDlg::~CSignalDefinerDlg()
@@ -298,7 +298,7 @@ void CSignalDefinerDlg::vGenerateWave()
             }
             m_dblSamplingTimePeriod = dblFrqStep;
             CString omSamplingPeriod;
-            omSamplingPeriod.Format(_T("%d"),(int)m_dblSamplingTimePeriod);
+            omSamplingPeriod.Format(L"%d", (int)m_dblSamplingTimePeriod);
             SetDlgItemText(IDC_EDIT_SIGNAL_SAMPLING_TIME, omSamplingPeriod);            //This command will call this function continously, hence the above logic.
             nPointCount = ((dblTimePeriod * 1000) + (dblFrqStep / 10)) * (m_nSelCycle+1);
         }

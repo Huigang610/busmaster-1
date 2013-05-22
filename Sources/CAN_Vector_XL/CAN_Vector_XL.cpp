@@ -49,7 +49,7 @@
 #include "HardwareListing.h"
 #include "ChangeRegisters.h"
 #include "../Application/MultiLanguage.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 //#include "../Application/GettextBusmaster.h"
 #define DYNAMIC_XLDRIVER_DLL
 #include "EXTERNAL_INCLUDE/vxlapi.h"
@@ -670,7 +670,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_LoadDriverLibrary(void)
 
     if (hxlDll != NULL)
     {
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T(_("vxlapi.dll already loaded")));
+        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("vxlapi.dll already loaded"));
         hResult = DLL_ALREADY_LOADED;
     }
 
@@ -679,7 +679,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_LoadDriverLibrary(void)
         hxlDll = LoadLibrary("vxlapi.dll");
         if (hxlDll == NULL)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T(_("vxlapi.dll loading failed")));
+            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("vxlapi.dll loading failed"));
             hResult = ERR_LOAD_DRIVER;
         }
         else
@@ -754,7 +754,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_LoadDriverLibrary(void)
             {
                 FreeLibrary(hxlDll);
                 sg_pIlog->vLogAMessage(A2T(__FILE__),
-                                       __LINE__, _T(_("Getting Process address of the APIs failed")));
+                                       __LINE__, _("Getting Process address of the APIs failed"));
                 hResult = ERR_LOAD_DRIVER;
             }
         }
@@ -884,13 +884,13 @@ HRESULT CDIL_CAN_VectorXL::CAN_ListHwInterfaces(INTERFACE_HW_LIST& asSelHwInterf
             ostringstream oss;
             oss << dec << serialNumber;
             asSelHwInterface[i].m_acDescription = oss.str();
-            //_stprintf(asSelHwInterface[i].m_acDescription, _T("%d"), serialNumber);
+            //_stprintf(asSelHwInterface[i].m_acDescription, "%d", serialNumber);
             ostringstream oss1;
             oss1 << "Vector - " << sg_aodChannels[i].m_pXLChannelInfo->name << " SN - " <<serialNumber;
             oss1 << "Channel Index - " <<(int)sg_aodChannels[i].m_pXLChannelInfo->channelIndex;
             sg_ControllerDetails[i].m_omHardwareDesc = oss1.str();
 
-            /*_stprintf(sg_ControllerDetails[i].m_omHardwareDesc, _T("Vector - %s SN - %d Channel Index - %d"),
+            /*_stprintf(sg_ControllerDetails[i].m_omHardwareDesc, _("Vector - %s SN - %d Channel Index - %d"),
                                         sg_aodChannels[i].m_pXLChannelInfo->name,
                                         serialNumber,
                                         sg_aodChannels[i].m_pXLChannelInfo->channelIndex);*/
@@ -901,7 +901,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_ListHwInterfaces(INTERFACE_HW_LIST& asSelHwInterf
     }
     else
     {
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T(_("Error connecting to driver")));
+        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("Error connecting to driver"));
     }
     return hResult;
 }
@@ -1119,7 +1119,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, i
     {
         //pControllerDetails[i].m_omHardwareDesc  = sg_aodChannels[i].m_strName;
         static char chName[MAX_PATH];
-        _stprintf(chName , _T("Vector - %s, Serial Number- %d"),
+        _stprintf(chName , _("Vector - %s, Serial Number- %d"),
                   sg_aodChannels[i].m_pXLChannelInfo->name,
                   sg_aodChannels[i].m_pXLChannelInfo->serialNumber);
         pControllerDetails[i].m_omHardwareDesc = chName;
@@ -1683,7 +1683,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_StartHardware(void)
         }
         else
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T(_("Could not start the read thread") ));
+            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _(_("Could not start the read thread") ));
         }
     }
 
@@ -2252,13 +2252,13 @@ static int nGetNoOfConnectedHardware(void)
         }
         if (!nResult)
         {
-            _tcscpy(sg_omErrStr, _T(_("No available channels found! (e.g. no CANcabs...)\r\n")));
+            _tcscpy(sg_omErrStr, _("No available channels found! (e.g. no CANcabs...)\r\n"));
             xlStatus = XL_ERROR;
         }
     }
     else
     {
-        _tcscpy(sg_omErrStr, _T(_("Problem Finding Device!")));
+        _tcscpy(sg_omErrStr, _("Problem Finding Device!"));
         nResult = -1;
     }
     /* Return the operation result */
@@ -2323,7 +2323,7 @@ static int nCreateMultipleHardwareNetwork(UINT unDefaultChannelCnt = 0)
             }
             sg_HardwareIntr[nChannels].m_dwIdInterface = nCount;
             sg_HardwareIntr[nChannels].m_dwVendor = g_xlDrvConfig.channel[nCount].serialNumber;
-            /*_stprintf(acTempStr, _T("SN: %d, Port ID: %d"), sg_HardwareIntr[nChannels].m_dwVendor,
+            /*_stprintf(acTempStr, _("SN: %d, Port ID: %d"), sg_HardwareIntr[nChannels].m_dwVendor,
                                                                     sg_HardwareIntr[nChannels].m_dwIdInterface);*/
             sg_HardwareIntr[nChannels].m_acDescription = g_xlDrvConfig.channel[nCount].name;
             nChannels++;
@@ -2421,7 +2421,7 @@ static int nInitHwNetwork(UINT unDefaultChannelCnt)
      * Take action based on number of Hardware Available
      */
     char acNo_Of_Hw[MAX_STRING] = {0};
-    _stprintf(acNo_Of_Hw, _T(_("Number of Vector hardwares Available: %d")), nChannelCount);
+    _stprintf(acNo_Of_Hw, _("Number of Vector hardwares Available: %d"), nChannelCount);
 
     /* No Hardware found */
     if( nChannelCount == 0 )
@@ -2611,7 +2611,7 @@ static void vRetrieveAndLog(DWORD /*dwErrorCode*/, char* File, int Line)
 {
     USES_CONVERSION;
 
-    char acErrText[MAX_PATH] = {'\0'};
+    char acErrText[MAX_PATH] = "";
 
     /* Get the error text for the corresponding error code */
     sg_pIlog->vLogAMessage(A2T(File), Line, A2T(acErrText));

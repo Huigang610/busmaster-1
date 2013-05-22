@@ -142,7 +142,7 @@ void CRadixEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
             {
                 CString omBuf;
                 GetWindowText(omBuf);
-                if (omBuf.Find(_T('.')) == -1)
+                if (omBuf.Find('.') == -1)
                 {
                     bSkip = false;
                 }
@@ -176,7 +176,7 @@ void CRadixEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
             {
                 CString omBuf;
                 GetWindowText(omBuf);
-                if (omBuf.Find(_T('.')) == -1)
+                if (omBuf.Find('.') == -1)
                 {
                     bSkip = false;
                 }

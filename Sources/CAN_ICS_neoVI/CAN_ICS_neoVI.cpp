@@ -513,7 +513,7 @@ static void vRetrieveAndLog(DWORD /*dwErrorCode*/, char* File, int Line)
 {
     USES_CONVERSION;
 
-    char acErrText[MAX_PATH] = {'\0'};
+    char acErrText[MAX_PATH] = "";
     // Get the error text for the corresponding error code
     //if ((*pfCAN_GetErrText)(dwErrorCode, acErrText) == CAN_USB_OK)
     {
@@ -1369,7 +1369,7 @@ static int nAddChanneltoHWInterfaceList(int narrNetwordID[], int nCntNtwIDs, int
 {
     int nResult = 0;
     int hObject = NULL;
-    char acTempStr[512] = {'\0'};
+    char acTempStr[512] = "";
     char acFirmware[128] = {"X.X"};
 
     nResult = (*icsneoOpenNeoDevice)(&sg_ndNeoToOpen[nDevID], &hObject, NULL, 1, 0);

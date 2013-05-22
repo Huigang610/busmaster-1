@@ -599,7 +599,7 @@ BOOL CMsgSignal::bAllocateMemory(BOOL nMode)
             if (!m_bAutoServerMode)
             {
                 //Tobias - venkat
-                strcpy_s (s_acTraceStr, 1024, T2A(_(MSG_MEMORY_CONSTRAINT)));
+                strcpy_s (s_acTraceStr, 1024, _(MSG_MEMORY_CONSTRAINT));
                 vWriteTextToTrace();//(WM_WRITE_TO_TRACE, 0, (LPARAM)s_acTraceStr);
             }
             bReturnValue = FALSE;
@@ -1709,7 +1709,7 @@ BOOL CMsgSignal::bFillDataStructureFromDatabaseFile( CString strFileName, eProto
                                                     if (!m_bAutoServerMode)
                                                     {
                                                         //Tobias- venkat
-                                                        strcpy_s(s_acTraceStr, 1024, T2A(_(MSG_MEMORY_CONSTRAINT)));
+                                                        strcpy_s(s_acTraceStr, 1024, _(MSG_MEMORY_CONSTRAINT));
                                                         vWriteTextToTrace();//(WM_WRITE_TO_TRACE, 0, (LPARAM)s_acTraceStr);
                                                     }
 
@@ -2161,7 +2161,7 @@ BOOL CMsgSignal::bFillDataStructureFromDatabaseFile( CString strFileName, eProto
                             {
                                 if (!m_bAutoServerMode)
                                 {
-                                    strcpy_s(s_acTraceStr, 1024, T2A(_(MSG_MEMORY_CONSTRAINT)));
+                                    strcpy_s(s_acTraceStr, 1024, _(MSG_MEMORY_CONSTRAINT));
                                     vWriteTextToTrace();//(WM_WRITE_TO_TRACE, 0, (LPARAM)s_acTraceStr);
                                 }
                                 bReturnValue = FALSE;
@@ -2173,7 +2173,7 @@ BOOL CMsgSignal::bFillDataStructureFromDatabaseFile( CString strFileName, eProto
                         if (!m_bAutoServerMode)
                         {
                             //Tobias- venkat
-                            strcpy_s(s_acTraceStr, 1024, T2A(_(MSG_MEMORY_CONSTRAINT)));
+                            strcpy_s(s_acTraceStr, 1024, _(MSG_MEMORY_CONSTRAINT));
                             vWriteTextToTrace();//(WM_WRITE_TO_TRACE, 0, (LPARAM)s_acTraceStr);
                         }
                         bReturnValue = FALSE;
@@ -2791,7 +2791,7 @@ BOOL CMsgSignal::bDeleteMsg( CString omStrMsgToBeDeleted )
         {
             if (!m_bAutoServerMode)
             {
-                strcpy_s(s_acTraceStr, 1024, T2A(_(MSG_MSG_NOT_FOUND)));
+                strcpy_s(s_acTraceStr, 1024, _(MSG_MSG_NOT_FOUND));
                 vWriteTextToTrace();//(WM_WRITE_TO_TRACE, 0, (LPARAM)s_acTraceStr);
             }
             bReturnValue = FALSE;
@@ -3067,7 +3067,7 @@ BOOL CMsgSignal::bAddSignalToMsg( CString omStrMsgName )
                         {
                             if (!m_bAutoServerMode)
                             {
-                                strcpy_s(s_acTraceStr, 1024,  T2A(_(MSG_MEMORY_CONSTRAINT)));
+                                strcpy_s(s_acTraceStr, 1024, _(MSG_MEMORY_CONSTRAINT));
                                 vWriteTextToTrace();//(WM_WRITE_TO_TRACE, 0, (LPARAM)s_acTraceStr);
                             }
                             bReturnValue = FALSE;
@@ -3095,7 +3095,7 @@ BOOL CMsgSignal::bAddSignalToMsg( CString omStrMsgName )
                 {
                     if (!m_bAutoServerMode)
                     {
-                        strcpy_s(s_acTraceStr, 1024,  T2A(_(MSG_MEMORY_CONSTRAINT)));
+                        strcpy_s(s_acTraceStr, 1024, _(MSG_MEMORY_CONSTRAINT));
                         vWriteTextToTrace();//(WM_WRITE_TO_TRACE, 0, (LPARAM)s_acTraceStr);
                     }
                     bReturnValue = FALSE;
@@ -3106,7 +3106,7 @@ BOOL CMsgSignal::bAddSignalToMsg( CString omStrMsgName )
         {
             if (!m_bAutoServerMode)
             {
-                strcpy_s(s_acTraceStr, 1024, T2A(_(MSG_MSG_NOT_FOUND)));
+                strcpy_s(s_acTraceStr, 1024, _(MSG_MSG_NOT_FOUND));
                 vWriteTextToTrace();//(WM_WRITE_TO_TRACE, 0, (LPARAM)s_acTraceStr);
             }
             bReturnValue = FALSE;

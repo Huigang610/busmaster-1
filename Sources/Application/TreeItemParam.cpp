@@ -21,7 +21,7 @@
 #include "StdAfx.h"
 #include "TreeItemParam.h"
 //#include "GettextBusmaster.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 UINT CTreeItemParam::m_unID = 0x500;
 
 CTreeItemParam::CTreeItemParam(void)
@@ -72,7 +72,7 @@ CTreeItemParam::CTreeItemParam(CWnd* pomParent,
                CLIP_DEFAULT_PRECIS,       // nClipPrecision
                DEFAULT_QUALITY,           // nQuality
                DEFAULT_PITCH | FF_ROMAN,  // nPitchAndFamily
-               _T(_("Courier New"))));
+               "Courier New"));
 
     m_odTreeCtrl.SetFont(&m_omFont, TRUE);
 }
@@ -113,7 +113,7 @@ void CTreeItemParam::vUpdateTreeValues(CStringArray& omStringArray, COLORREF Tex
                    CLIP_DEFAULT_PRECIS,       // nClipPrecision
                    DEFAULT_QUALITY,           // nQuality
                    DEFAULT_PITCH | FF_ROMAN,  // nPitchAndFamily
-                   _T(_("Courier New"))));
+                   "Courier New"));
 
         m_odTreeCtrl.SetFont(&m_omFont, TRUE);
     }

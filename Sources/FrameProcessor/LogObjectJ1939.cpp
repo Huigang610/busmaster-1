@@ -112,7 +112,7 @@ BOOL CLogObjectJ1939::bLogData(const SFORMATTEDATA_J1939& sDataJ1939)
 
     CString omLogText = "";
     char* pTimeData = NULL;
-    char acID[16] = {'\0'};
+    char acID[16] = "";
     char* pPGN = NULL;
     char* pData = NULL;
     char* psSrcNode = NULL;

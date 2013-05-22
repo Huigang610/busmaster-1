@@ -54,7 +54,7 @@
 #include "DIL_Interface/DIL_Interface_extern.h"
 #include "FrameProcessor_J1939.h"
 #include "LogObjectJ1939.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 //#include "../Application/GettextBusmaster.h"
 
 
@@ -181,11 +181,9 @@ void CFrameProcessor_J1939::vRetrieveDataFromBuffer(void)
         {
             CString omBuf;
             omBuf.Format(_("ERR_READ_MEMORY_SHORT  nSize: %d"), nSize);
-            //AfxMessageBox(omBuf);
         }
         else if (Result == EMPTY_APP_BUFFER)
         {
-            //AfxMessageBox(_T("EMPTY_APP_BUFFER"));
         }
 
         if (m_bLogEnabled == TRUE)

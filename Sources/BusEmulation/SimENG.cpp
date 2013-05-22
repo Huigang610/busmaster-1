@@ -398,7 +398,7 @@ STDMETHODIMP CSimENG::RegisterClient(USHORT Bus, USHORT MaxLenFrame,
 
     // From the client identifier we will now generate a pipe & mutex name
     // First generate mutex name
-    char EventName[32] = {'\0'};
+    char EventName[32] = "";
     sprintf_s(EventName, "%X", ushTempID);
     // followed by the pipe name
     char PipeName[64] = BASE_PIPENAME;

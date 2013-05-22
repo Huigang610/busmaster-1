@@ -40,7 +40,7 @@
 #include "BUSMASTER_Interface.h"
 #include "BUSMASTER_Interface.c"
 #include "../Application/MultiLanguage.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 
 //extern DWORD GUI_dwThread_MsgDisp;
 extern BOOL g_bStopSendMultMsg;
@@ -62,7 +62,7 @@ static LONG GetEntitlementID(CString& omEntitlementId)
     LONG Result = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
                                (LPCTSTR) SubKey, 0, KEY_READ, &hCurrKey);
     char ValueName[32] = "Identifier";
-    char Data[128] = {'\0'};
+    char Data[128] = "";
     DWORD Size = 128;
     Result = RegQueryValueEx(hCurrKey, (LPCTSTR) ValueName,
                              NULL, (LPDWORD) NULL, (LPBYTE) Data,
@@ -858,7 +858,6 @@ Corrupt configuration file found");
     if(m_bFromAutomation==FALSE)
     {
         bWriteIntoTraceWnd(m_omConfigErr.GetBuffer(MAX_PATH));
-        //MessageBox(NULL, m_omConfigErr, _T("BUSMASTER"), unMsgboxType);
     }
 }
 
@@ -917,7 +916,7 @@ void CCANMonitorApp::OnFileNew()
 
         while (bStop == FALSE)
         {
-            omStrCFileName.Format("%s%d%s","NewEd", ++unCount, _T(".c"));
+            omStrCFileName.Format("%s%d%s","NewEd", ++unCount, ".c");
 
             // Search for the file name and if it is not present, set
             // the flag to TRUE to break the loop.
@@ -1209,7 +1208,7 @@ BOOL CCANMonitorApp::bInitialiseConfiguration(BOOL bFromCom)
 
                     for (UINT i = 0; i < nCount; i++)
                     {
-                        char acName[MAX_PATH] = {_T('\0')};
+                        char acName[MAX_PATH] = "";
                         CString omDBName = aomNewDatabases.GetAt(i);
                         //Tobias - venkat
                         strcpy_s(acName, MAX_PATH, omDBName.GetBuffer(MAX_PATH));

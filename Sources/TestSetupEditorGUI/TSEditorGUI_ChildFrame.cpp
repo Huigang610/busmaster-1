@@ -30,7 +30,7 @@
 #include "TSEditorGUI_MDIChildBase.h"
 #include "include/XMLDefines.h"
 #include "Utility/XMLUtils.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 //#include "../Application/GettextBusmaster.h"
 #include "Utility\UtilFunctions.h"
 #include <htmlhelp.h>
@@ -1339,9 +1339,9 @@ void CTSEditorChildFrame::vSaveHeaderInfo(INT /*nTestSetupIndex*/)
      // If file doesn't exist, return
      if (_findfirst( ouHeaderInfo.m_sReportFile.m_omPath, &fileinfo)== -1)
      {
-         MessageBox(_T("Invalid Database path"), _T("Error"), MB_OK|MB_ICONERROR);
-         m_odPropertyView->m_omPropertyList.SetItemText(def_TS_ROWNUM_REPORT, 1, _T(""));
-         ouHeaderInfo.m_sReportFile.m_omPath = _T("");
+         MessageBox(_("Invalid Database path"), _("Error"), MB_OK|MB_ICONERROR);
+         m_odPropertyView->m_omPropertyList.SetItemText(def_TS_ROWNUM_REPORT, 1, "");
+         ouHeaderInfo.m_sReportFile.m_omPath = "";
      }*/
     ouHeaderInfo.m_omDatabasePath = omTempListCtrl.GetItemText(def_TS_ROWNUM_DATABASE, 1);
 
@@ -1372,7 +1372,7 @@ void CTSEditorChildFrame::vSaveHeaderInfo(INT /*nTestSetupIndex*/)
     char* pchExten = PathFindExtension(ouHeaderInfo.m_sReportFile.m_omPath);
 
     //omStrTemp = omTempListCtrl.GetItemText(def_TS_ROWNUM_FILEFORMAT, 1);
-    if((strcmp(pchExten, ".HTML") == 0)||(strcmp(pchExten, _T(".html")) == 0))
+    if((strcmp(pchExten, ".HTML") == 0)||(strcmp(pchExten, ".html") == 0))
     {
         ouHeaderInfo.m_sReportFile.m_eType = HTM;
     }

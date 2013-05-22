@@ -84,9 +84,6 @@
 
 #define WM_SAVE_DBJ1939        (WM_USER + 108)
 
-//// To write in to the trace window
-//BOOL gbSendStrToTrace(char*) ;
-
 // Forward reference to Message Child Window
 class CMsgMDIChildWnd;
 

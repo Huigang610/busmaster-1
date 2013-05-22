@@ -192,7 +192,7 @@ bool PROJECTDATA::Read(FILE* pFile)
     Initialise();
 
     bool bResult = false;
-    char Buffer[_MAX_PATH] = {'\0'};
+    char Buffer[_MAX_PATH] = "";
     int n;
 
     // For obvious reason reading takes place in the same order as writing.
@@ -374,7 +374,7 @@ bool SECTIONDATA::Read(FILE* pFile)
     Initialise();
 
     bool bResult = false;
-    char Buffer[_MAX_PATH] = {'\0'};
+    char Buffer[_MAX_PATH] = "";
     int n;
 
     if (fread(&n, sizeof(int), 1, pFile) == 1)

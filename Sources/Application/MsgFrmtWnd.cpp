@@ -1989,7 +1989,7 @@ void CMsgFrmtWnd::vCreateCols()
     CString omTmpColTitle;
     // add columns
 
-    omTmpColTitle = _T("bl");
+    omTmpColTitle = _("bl");
     lvcolumn.iSubItem = 0;
     lvcolumn.pszText = "";
     lvcolumn.cchTextMax = _tcslen(omTmpColTitle.GetBuffer(MAX_PATH));

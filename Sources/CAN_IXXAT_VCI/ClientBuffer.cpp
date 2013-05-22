@@ -40,7 +40,7 @@ CClientBuffer::CClientBuffer()
     dwClientID = 0;
     hClientHandle = NULL;
     hPipeFileHandle = NULL;
-    m_pacClientName = _T("");
+    m_pacClientName = "";
 }
 
 /**

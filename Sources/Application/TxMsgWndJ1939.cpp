@@ -56,7 +56,7 @@
 #include "Application/InterfaceGetter.h"
 #include "TxMsgWndJ1939.h"
 #include ".\txmsgwndj1939.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 
 HANDLE sg_hMsgSent = NULL;
 HANDLE sg_hMsgStopped = NULL;
@@ -826,10 +826,10 @@ void CTxMsgWndJ1939::OnBnClickedClaimAddress()
 void CTxMsgWndJ1939::OnBnClickedRqstAddress()
 {
     CWnd* pWnd = (CWnd*)GetDlgItem(IDC_STATIC_CA);
-    pWnd->SetWindowText(_T(_("Address 0x")));
+    pWnd->SetWindowText(_("Address 0x"));
     m_omCurAddress.SetReadOnly(TRUE);
     pWnd = (CWnd*)GetDlgItem(IDC_STATIC_ECU_NAME);
-    pWnd->SetWindowText(_T(_("Destination 0x")));
+    pWnd->SetWindowText(_("Destination 0x"));
     m_omEcuName.SetReadOnly(FALSE);
     m_omEcuName.vSetValue(ADDRESS_ALL);
 }
@@ -837,10 +837,10 @@ void CTxMsgWndJ1939::OnBnClickedRqstAddress()
 void CTxMsgWndJ1939::OnBnClickedCmdAddress()
 {
     CWnd* pWnd = (CWnd*)GetDlgItem(IDC_STATIC_CA);
-    pWnd->SetWindowText(_T(_("Address 0x")));
+    pWnd->SetWindowText(_("Address 0x"));
     m_omCurAddress.SetReadOnly(FALSE);
     pWnd = (CWnd*)GetDlgItem(IDC_STATIC_ECU_NAME);
-    pWnd->SetWindowText(_T(_("ECU NAME 0x")));
+    pWnd->SetWindowText(_("ECU NAME 0x"));
     m_omEcuName.vSetValue(m_sClientParams.m_unEcuName);
     m_omEcuName.SetReadOnly(FALSE);
 }
@@ -925,17 +925,17 @@ void CTxMsgWndJ1939::vSetTransState(ESTATE_TRANS eTransState)
     {
         case TRANS_STARTED:
         {
-            vSetStatusBarText(_T(_("Transmission started...")));
+            vSetStatusBarText(_("Transmission started..."));
         }
         break;
         case TRANS_TO_BE_STOPPED:
         {
-            vSetStatusBarText(_T(_("Stopping Transmission...")));
+            vSetStatusBarText(_("Stopping Transmission..."));
         }
         break;
         case TRANS_STOPPED:
         {
-            vSetStatusBarText(_T(_("Transmission stopped...")));
+            vSetStatusBarText(_("Transmission stopped..."));
         }
         break;
     }
@@ -955,7 +955,7 @@ void CTxMsgWndJ1939::vProcessTransmission(BOOL bStart)
     m_CS_CyclicTrans.Lock();
 
 
-    CString omWndText = bStart ? _T(_("Stop")) : _T(_("Transmit"));
+    CString omWndText = bStart ? _("Stop") : _("Transmit");
     CButton* pButton = (CButton*)GetDlgItem(IDC_SEND);
     pButton->SetWindowText(omWndText);
     if (bStart == TRUE)
@@ -1089,7 +1089,7 @@ void CTxMsgWndJ1939::OnCbnSelchangeComboPgn()
                 m_omTOEdit.vSetValue((BYTE)unPGN);
                 for (UINT i = 0; i < psMsg->m_unMessageLength; i++)
                 {
-                    m_omMsgDataEditVal += _T("00");
+                    m_omMsgDataEditVal += "00";
                 }
                 CString omText;
                 m_omMsgDataEdit.GetWindowText(omText);

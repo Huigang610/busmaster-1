@@ -921,7 +921,7 @@ static DWORD WINAPI CanRxEvent(LPVOID lpParam)
             {
                 if (VSCAN_Read(sg_VSCanCfg.hCan, &msg, 1, &dwTemp) != VSCAN_ERR_OK)
                 {
-                    sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("VSCAN_Read failed"));
+                    sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("VSCAN_Read failed"));
                     Sleep(100);
                     continue;
                 }
@@ -942,7 +942,7 @@ static DWORD WINAPI CanRxEvent(LPVOID lpParam)
         }
         else
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("WaitForSingleObject failed"));
+            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("WaitForSingleObject failed"));
             Sleep(100);
         }
 
@@ -985,19 +985,19 @@ HRESULT CDIL_CAN_VSCOM::CAN_StartHardware(void)
     {
         if (VSCAN_Ioctl(sg_VSCanCfg.hCan, VSCAN_IOCTL_SET_TIMESTAMP, sg_VSCanCfg.bTimestamps?VSCAN_TIMESTAMP_ON:VSCAN_TIMESTAMP_OFF) != VSCAN_ERR_OK)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("set timestamp ioctl failed"));
+            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("set timestamp ioctl failed"));
             return (S_FALSE);
         }
 
         if (VSCAN_Ioctl(sg_VSCanCfg.hCan, VSCAN_IOCTL_SET_FILTER_MODE, sg_VSCanCfg.bDualFilter?VSCAN_FILTER_MODE_DUAL:VSCAN_FILTER_MODE_SINGLE) != VSCAN_ERR_OK)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("set filter mode ioctl failed"));
+            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("set filter mode ioctl failed"));
             return (S_FALSE);
         }
 
         if (VSCAN_Ioctl(sg_VSCanCfg.hCan, VSCAN_IOCTL_SET_ACC_CODE_MASK, &sg_VSCanCfg.codeMask) != VSCAN_ERR_OK)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("set acceptance code mask ioctl failed"));
+            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("set acceptance code mask ioctl failed"));
             return (S_FALSE);
         }
 
@@ -1005,7 +1005,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_StartHardware(void)
         {
             if (VSCAN_Ioctl(sg_VSCanCfg.hCan, VSCAN_IOCTL_SET_SPEED, (void*)sg_VSCanCfg.vSpeed) != VSCAN_ERR_OK)
             {
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("set speed ioctl failed"));
+                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("set speed ioctl failed"));
                 return (S_FALSE);
             }
         }
@@ -1013,7 +1013,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_StartHardware(void)
         {
             if (VSCAN_Ioctl(sg_VSCanCfg.hCan, VSCAN_IOCTL_SET_BTR, &sg_VSCanCfg.btr) != VSCAN_ERR_OK)
             {
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("set btr ioctl failed"));
+                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("set btr ioctl failed"));
                 return (S_FALSE);
             }
         }
@@ -1021,20 +1021,20 @@ HRESULT CDIL_CAN_VSCOM::CAN_StartHardware(void)
         sg_hEventRecv = CreateEvent(NULL, FALSE, FALSE, NULL);
         if (sg_hEventRecv == NULL)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("could not create the receive event"));
+            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create the receive event"));
             hResult = S_FALSE;
         }
 
         if (VSCAN_SetRcvEvent(sg_VSCanCfg.hCan, sg_hEventRecv) != VSCAN_ERR_OK)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("VSCAN_SetRcvEvent failed"));
+            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("VSCAN_SetRcvEvent failed"));
             hResult = S_FALSE;
         }
 
         sg_hReadThread = CreateThread(NULL, 0, CanRxEvent, NULL, 0, &sg_dwReadThreadId);
         if (sg_hReadThread == NULL)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("could not create the receive thread"));
+            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create the receive thread"));
             hResult = S_FALSE;
         }
 
@@ -1045,7 +1045,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_StartHardware(void)
     else
     {
         //log the error for open port failure
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("error opening \"VScom CAN\" interface"));
+        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("error opening \"VScom CAN\" interface"));
         hResult = ERR_LOAD_HW_INTERFACE;
     }
 
@@ -1156,7 +1156,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sMessage)
             else
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _T("could not write can data into bus"));
+                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not write can data into bus"));
             }
         }
         else

@@ -91,7 +91,7 @@ BYTE* CGraphElement::pbyGetConfigData(BYTE* pbyTrgData, BYTE byVersion)
         COPY_DATA(pbyTemp, &m_nFrameFormat, sizeof(short));
         // Element Name String
         //Tobias - venkat
-        char acName[MAX_PATH] = {'\0'};
+        char acName[MAX_PATH] = "";
         strcpy_s(acName, MAX_PATH, m_omStrElementName.GetBuffer(MAX_PATH));
         COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
         // Type of the element val
@@ -112,7 +112,7 @@ BYTE* CGraphElement::pbyGetConfigData(BYTE* pbyTrgData, BYTE byVersion)
         if(byVersion == 2)
         {
             // Message Name
-            char MsgName[MAX_PATH] = {'\0'};
+            char MsgName[MAX_PATH] = "";
             //Tobias - venkat
             strcpy_s(MsgName,MAX_PATH,  m_strMsgName.GetBuffer(MAX_PATH));
             COPY_DATA(pbyTemp, MsgName, (sizeof(char) * MAX_PATH));
@@ -259,48 +259,6 @@ void CGraphElement::pbyGetConfigData(xmlNodePtr pNodePtr, BYTE byVersion)
         xmlNodePtr pDisplayTypePtr = xmlNewChild(pGrphElmntPtr, NULL, BAD_CAST DEF_DISPLAY_TYPE, BAD_CAST strDisplayType.GetBuffer(strDisplayType.GetLength()));
         xmlAddChild(pGrphElmntPtr, pDisplayTypePtr);
     }
-
-
-    //BYTE* pbyTemp = pbyTrgData;
-    //if (pbyTemp != NULL)
-    //{
-    //    // Save properties one after another
-    //    // Message ID
-    //    COPY_DATA(pbyTemp, &m_nMsgID, sizeof(int));
-    //    // Frame Format - Standard
-    //    COPY_DATA(pbyTemp, &m_nFrameFormat, sizeof(short));
-    //    // Element Name String
-    //    //Tobias - venkat
-    //    char acName[MAX_PATH] = {'\0'};
-    //    strcpy_s(acName, MAX_PATH, m_omStrElementName.GetBuffer(MAX_PATH));
-    //    COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
-    //    // Type of the element val
-    //    COPY_DATA(pbyTemp, &m_nValueType, sizeof(int));
-    //    // Line type of the elemen
-    //    COPY_DATA(pbyTemp, &m_nLineType, sizeof(int));
-    //    // Line Color of the eleme
-    //    COPY_DATA(pbyTemp, &m_nLineColor, sizeof(int));
-    //    // Sample point symbol typ
-    //    COPY_DATA(pbyTemp, &m_nPointType, sizeof(int));
-    //    // Sample point symbol col
-    //    COPY_DATA(pbyTemp, &m_nPointColor, sizeof(int));
-    //    // Visible or Not
-    //    COPY_DATA(pbyTemp, &m_bVisible, sizeof(BOOL));
-    //    // Enabled or not
-    //    COPY_DATA(pbyTemp, &m_bEnabled, sizeof(BOOL));
-
-    //    if(byVersion == 2)
-    //    {
-    //        // Message Name
-    //        char MsgName[MAX_PATH] = {'\0'};
-    //        //Tobias - venkat
-    //        strcpy_s(MsgName,MAX_PATH,  m_strMsgName.GetBuffer(MAX_PATH));
-    //        COPY_DATA(pbyTemp, MsgName, (sizeof(char) * MAX_PATH));
-    //        //Line Display type
-    //        COPY_DATA(pbyTemp, &m_eDisplayType, sizeof(eDISPLAY_TYPE));
-    //    }
-    //}
-    //return pbyTemp;
 }
 
 void CGraphElement::pbySetConfigData(xmlNodePtr pNodePtr, xmlDocPtr xmlConfigFiledoc)
@@ -500,51 +458,6 @@ void CGraphElement::pbySetConfigData(xmlNodePtr pNodePtr, xmlDocPtr xmlConfigFil
             pNodePtr = pNodePtr->next;
         }
     }
-
-
-    //BYTE* pbyTemp = pbyTrgData;
-    //if (pbyTemp != NULL)
-    //{
-    //    // Save properties one after another
-    //    // Message ID
-    //    COPY_DATA_2(&m_nMsgID, pbyTemp, sizeof(int));
-    //    // Frame Format - Standard
-    //    COPY_DATA_2(&m_nFrameFormat, pbyTemp, sizeof(short));
-    //    // Element Name String
-    //    char acName[MAX_PATH] = {_T('\0')};
-    //    COPY_DATA_2(acName, pbyTemp, (sizeof(char) * MAX_PATH));
-    //    m_omStrElementName.Format("%s", acName);
-    //    // Type of the element val
-    //    COPY_DATA_2(&m_nValueType, pbyTemp, sizeof(int));
-    //    // Line type of the elemen
-    //    COPY_DATA_2(&m_nLineType, pbyTemp, sizeof(int));
-    //    // Line Color of the eleme
-    //    COPY_DATA_2(&m_nLineColor, pbyTemp, sizeof(int));
-    //    // Sample point symbol typ
-    //    COPY_DATA_2(&m_nPointType, pbyTemp, sizeof(int));
-    //    // Sample point symbol col
-    //    COPY_DATA_2(&m_nPointColor, pbyTemp, sizeof(int));
-    //    // Visible or Not
-    //    COPY_DATA_2(&m_bVisible, pbyTemp, sizeof(BOOL));
-    //    // Enabled or not
-    //    COPY_DATA_2(&m_bEnabled, pbyTemp, sizeof(BOOL));
-
-    //    if(byVersion == 2)
-    //    {
-    //        //Message Name
-    //        char MsgName[MAX_PATH] = {_T('\0')};
-    //        COPY_DATA_2(MsgName, pbyTemp, (sizeof(char) * MAX_PATH));
-    //        m_strMsgName.Format("%s", MsgName);
-    //        //Line Display type
-    //        COPY_DATA_2(&m_eDisplayType, pbyTemp, sizeof(eDISPLAY_TYPE));
-    //    }
-    //    else if(byVersion == 1)
-    //    {
-    //        m_strMsgName = GetIMsgDB()->omStrGetMessageNameFromMsgCode(m_nMsgID);
-    //        m_eDisplayType = eDISPLAY_NORMAL;
-    //    }
-    //}
-    //return pbyTemp;
 }
 // PTV XML
 BYTE* CGraphElement::pbySetConfigData(BYTE* pbyTrgData, BYTE byVersion)
@@ -558,7 +471,7 @@ BYTE* CGraphElement::pbySetConfigData(BYTE* pbyTrgData, BYTE byVersion)
         // Frame Format - Standard
         COPY_DATA_2(&m_nFrameFormat, pbyTemp, sizeof(short));
         // Element Name String
-        char acName[MAX_PATH] = {_T('\0')};
+        char acName[MAX_PATH] = "";
         COPY_DATA_2(acName, pbyTemp, (sizeof(char) * MAX_PATH));
         m_omStrElementName.Format("%s", acName);
         // Type of the element val
@@ -579,7 +492,7 @@ BYTE* CGraphElement::pbySetConfigData(BYTE* pbyTrgData, BYTE byVersion)
         if(byVersion == 2)
         {
             //Message Name
-            char MsgName[MAX_PATH] = {_T('\0')};
+            char MsgName[MAX_PATH] = "";
             COPY_DATA_2(MsgName, pbyTemp, (sizeof(char) * MAX_PATH));
             m_strMsgName.Format("%s", MsgName);
             //Line Display type

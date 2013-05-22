@@ -51,7 +51,7 @@
 #include "MonitorNode.h"
 #include "TransferLayer.h"
 #include "NetworkMgmt.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 
 
 CMonitorNode::CMonitorNode(int nNodeNo, char* pacNodeName,

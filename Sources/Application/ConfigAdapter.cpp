@@ -129,7 +129,7 @@ static BYTE* pbGetReplayFileConfig(SREPLAYFILE& sReplayFile, BYTE* pbTarget)
     COPY_DATA(pbTemp, &(sReplayFile.m_unCycleTimeDelay), sizeof(sReplayFile.m_unCycleTimeDelay));
     COPY_DATA(pbTemp, &(sReplayFile.m_unMsgTimeDelay), sizeof(sReplayFile.m_unMsgTimeDelay));
     //Tobias-venkat
-    char acName[MAX_PATH] = {'\0'};
+    char acName[MAX_PATH] = "";
     strcpy_s(acName, MAX_PATH, sReplayFile.m_omStrFileName.GetBuffer(MAX_PATH));
     COPY_DATA(pbTemp, acName, sizeof(char) * MAX_PATH);
     return pbTemp;
@@ -229,7 +229,7 @@ BOOL CConfigAdapter::bGetConfigData(BYTE*& lpData, int& nStreamLength, eSECTION_
 
             CString* pomMRU_C_FILE_NAME = NULL;
             m_ouConfigDetails.bGetData(MRU_C_FILE_NAME, (void**)(&pomMRU_C_FILE_NAME));
-            char acName[MAX_PATH] = {_T('0')};
+            char acName[MAX_PATH] = "";
             ASSERT(pomMRU_C_FILE_NAME != NULL);
             strcpy_s(acName, MAX_PATH, pomMRU_C_FILE_NAME->GetBuffer(MAX_PATH));
             delete pomMRU_C_FILE_NAME;
@@ -345,7 +345,7 @@ BOOL CConfigAdapter::bGetConfigData(BYTE*& lpData, int& nStreamLength, eSECTION_
             COPY_DATA(pbyTemp, &nCount, sizeof(UINT));
             while (psTemp != NULL)
             {
-                char acFilePath[MAX_PATH] = {'\0'};
+                char acFilePath[MAX_PATH] = "";
                 strcpy_s(acFilePath, MAX_PATH, psTemp->m_omStrSimSysPath.GetBuffer(MAX_PATH));
                 COPY_DATA(pbyTemp, acFilePath, (sizeof(char) * MAX_PATH));
                 psTemp = psTemp->psNextSimsys;
@@ -471,7 +471,7 @@ BOOL CConfigAdapter::bGetConfigData(BYTE*& lpData, int& nStreamLength, eSECTION_
                 COPY_DATA(pbyTemp, &(psMsgAttrib->m_usMsgCount), sizeof(UINT));
                 for (INT i = 0; i < psMsgAttrib->m_usMsgCount; i++)
                 {
-                    char acName[MAX_PATH] = {_T('\0')};
+                    char acName[MAX_PATH] = "";
                     strcpy_s(acName, MAX_PATH, psMsgAttrib->m_psMsgAttribDetails[i].omStrMsgname);
                     COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
                     COPY_DATA(pbyTemp, &(psMsgAttrib->m_psMsgAttribDetails[i].unMsgID), sizeof(UINT));
@@ -537,7 +537,7 @@ BOOL CConfigAdapter::bGetConfigData(BYTE*& lpData, int& nStreamLength, eSECTION_
             while (psTemp != NULL)
             {
                 COPY_DATA(pbyTemp, &(psTemp->unMsgID), sizeof (UINT));
-                char acName[MAX_PATH] = {_T('\0')};
+                char acName[MAX_PATH] = "";
                 COPY_DATA(pbyTemp, acName, (sizeof (char) * MAX_PATH));
                 UINT unSelCount = psTemp->omCSASignals.GetSize();
                 COPY_DATA(pbyTemp, &unSelCount, sizeof (UINT));
@@ -704,7 +704,7 @@ BOOL CConfigAdapter::bGetConfigData(BYTE*& lpData, int& nStreamLength, eSECTION_
             while (psTempBlock != NULL)
             {
                 CString m_omStrBlockName;
-                char acName[MAX_PATH] = {'\0'};
+                char acName[MAX_PATH] = "";
                 strcpy_s(acName, MAX_PATH, psTempBlock->m_omStrBlockName.GetBuffer(MAX_PATH));
                 COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
                 COPY_DATA(pbyTemp, &(psTempBlock->m_ucTrigger), sizeof(UCHAR));
@@ -777,7 +777,7 @@ BOOL CConfigAdapter::bGetConfigData(BYTE*& lpData, int& nStreamLength, eSECTION_
             for (UINT i =0; i < unCount; i++)
             {
                 CString omName = pomStrDBArray->GetAt(i);
-                char acName[MAX_PATH] = {_T('\0')};
+                char acName[MAX_PATH] = "";
                 strcpy_s(acName, MAX_PATH, omName.GetBuffer(MAX_PATH));
                 COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
             }

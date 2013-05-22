@@ -38,7 +38,7 @@
 #include "ChangeRegisters.h"
 // Definition of CAcceptanceFilterDlg class
 #include "AcceptanceFilterDlg.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 
 // For HI Layer definition
 #ifdef _DEBUG
@@ -880,16 +880,12 @@ void CChangeRegisters:: vCalculateBaudRateNBTR1(CString omStrBtr0)
             m_omEditBTR0.SetWindowText(m_omStrEditBTR0);
             m_omEditBTR0.SetSel(0, -1,FALSE);
             //          if(theApp.m_bFromAutomation == FALSE)
-            AfxMessageBox(_T("Invalid Configuration"),MB_OK|MB_ICONSTOP);
+            AfxMessageBox(_("Invalid Configuration"),MB_OK|MB_ICONSTOP);
         }
         else
         {
-            /*FLOAT  fTempBaudRate;
-            fTempBaudRate = (FLOAT)((INT)(dBaudRate * 100000));
-            fTempBaudRate = fTempBaudRate/100000;
-            omStrBaudRate.Format(_T("%.4f"),fTempBaudRate);*/
             long lBaudRate = (LONG)dBaudRate;
-            omStrBaudRate.Format(_T("%ld"),lBaudRate);
+            omStrBaudRate.Format("%ld",lBaudRate);
             m_omEditBaudRate.SetWindowText(omStrBaudRate);
             m_dEditBaudRate     = dBaudRate;
             m_omStrEditBaudRate = omStrBaudRate;
@@ -907,7 +903,7 @@ void CChangeRegisters:: vCalculateBaudRateNBTR1(CString omStrBtr0)
 
         info.flags = LVFI_PARTIAL|LVFI_STRING;
 
-        omStrLocalBtr0 = _T("0x") + omStrBtr0;
+        omStrLocalBtr0 = "0x" + omStrBtr0;
         info.psz   = omStrLocalBtr0;
 
         INT nItem = m_omListCtrlBitTime.FindItem(&info);
@@ -956,14 +952,14 @@ void CChangeRegisters:: vCalculateBaudRateNBTR1(CString omStrBtr0)
             {
                 m_omEditBTR0.SetWindowText(m_omStrEditBTR0);
                 //              if(theApp.m_bFromAutomation == FALSE)
-                AfxMessageBox(_T(_("Invalid Configuration")),MB_OK|MB_ICONSTOP);
+                AfxMessageBox(_("Invalid Configuration"), MB_OK|MB_ICONSTOP);
             }
         }
         else
         {
             m_omEditBTR0.SetWindowText(m_omStrEditBTR0);
             //        if(theApp.m_bFromAutomation == FALSE)
-            AfxMessageBox(_T(_("Invalid Configuration")),MB_OK|MB_ICONSTOP);
+            AfxMessageBox(_("Invalid Configuration"), MB_OK|MB_ICONSTOP);
         }
     }
 }
@@ -1053,16 +1049,12 @@ void CChangeRegisters:: vCalculateBaudRateNBTR0(CString omStrBtr1)
             m_omEditBTR1.SetWindowText(m_omStrEditBTR1);
             m_omEditBTR1.SetSel(0, -1,FALSE);
             //          if(theApp.m_bFromAutomation == FALSE)
-            AfxMessageBox(_T(_("Invalid Configuration")), MB_OK|MB_ICONSTOP);
+            AfxMessageBox(_("Invalid Configuration"), MB_OK|MB_ICONSTOP);
         }
         else
         {
-            /*FLOAT  fTempBaudRate;
-             fTempBaudRate = (FLOAT)((INT)(dBaudRate * 100000));
-             fTempBaudRate = fTempBaudRate/100000;
-             omStrBaudRate.Format(_T("%.4f"),fTempBaudRate);*/
             long lBaudRate = (LONG)dBaudRate;
-            omStrBaudRate.Format(_T("%ld"),lBaudRate);
+            omStrBaudRate.Format("%ld",lBaudRate);
             m_omEditBaudRate.SetWindowText(omStrBaudRate);
             m_dEditBaudRate     = dBaudRate;
             m_omStrEditBaudRate = omStrBaudRate;
@@ -1096,7 +1088,7 @@ void CChangeRegisters:: vCalculateBaudRateNBTR0(CString omStrBtr1)
 
         info.flags = LVFI_PARTIAL|LVFI_STRING;
 
-        omStrLocalBtr0.Format(_T("0x%0x"), sBtr0Reg.ucBTR0);
+        omStrLocalBtr0.Format("0x%0x", sBtr0Reg.ucBTR0);
 
         info.psz   = omStrLocalBtr0;
 
@@ -1141,7 +1133,7 @@ void CChangeRegisters:: vCalculateBaudRateNBTR0(CString omStrBtr1)
             {
                 m_omEditBTR1.SetWindowText(m_omStrEditBTR1);
                 //                if(theApp.m_bFromAutomation == FALSE)
-                AfxMessageBox(_T(_("Invalid Configuration")),MB_OK|MB_ICONSTOP);
+                AfxMessageBox(_("Invalid Configuration"), MB_OK|MB_ICONSTOP);
             }
         }
     }
@@ -1339,7 +1331,7 @@ void CChangeRegisters::vValidateBaudRate()
         {
             dBaudRate = 5000;
         }
-        omStrBaudRate.Format(_T("%ld"),(long)dBaudRate);
+        omStrBaudRate.Format("%ld",(long)dBaudRate);
 
         omStrMessage.Format(defBAUD_RATE_MESSAGE,omStrBaudRate);
         omStrPrvBaudRate = m_omStrEditBaudRate;
@@ -1913,9 +1905,9 @@ void CChangeRegisters::vUpdateControllerDetails()
 BOOL CChangeRegisters::bSetBaudRateFromCom(int nChannel,BYTE bBTR0,BYTE bBTR1)
 {
     BOOL bReturn = FALSE;
-    CString omStrBtr0(_T(""));
-    CString omStrBtr1(_T(""));
-    CString omStrBaudRate(_T(""));
+    CString omStrBtr0("");
+    CString omStrBtr1("");
+    CString omStrBaudRate("");
     USHORT m_usBTR0BTR1 = 0xC03A;
     UINT unIndex                    = 0;
 
@@ -1924,12 +1916,12 @@ BOOL CChangeRegisters::bSetBaudRateFromCom(int nChannel,BYTE bBTR0,BYTE bBTR1)
 
     //convert all the values in string to  save in file
     //bHexBTR0 = (bBTR0/16)*10 +(bBTR0%10);
-    omStrBtr0.Format(_T("%02X"), bBTR0);
+    omStrBtr0.Format("%02X", bBTR0);
 
-    omStrBtr1.Format(_T("%02X"), bBTR1);
+    omStrBtr1.Format("%02X", bBTR1);
     //calculate baudrate from BTRs
     double dBaudRate = dCalculateBaudRateFromBTRs(omStrBtr0,omStrBtr1);
-    omStrBaudRate.Format(_T("%f"), dBaudRate);
+    omStrBaudRate.Format("%f", dBaudRate);
     m_usBTR0BTR1 = static_cast <USHORT>(((bBTR0 << 8 )| bBTR1) & 0xffff);
     //Save the changes for the channels
     unClock       = (UINT) _tstoi(m_pControllerDetails[ nChannel-1 ].m_omStrClock.c_str());
@@ -2020,29 +2012,29 @@ BOOL CChangeRegisters::bSetFilterFromCom(BOOL  bExtended, DWORD  dBeginMsgId,
         //to convert all acceptance and mask byets into string
         CString omStrTempByte;
         // Create Code
-        omStrTempByte.Format(_T("%02X"),(dTemp & ( dBeginMsgId)));
+        omStrTempByte.Format("%02X",(dTemp & ( dBeginMsgId)));
         m_pControllerDetails[ unIndex ].m_omStrAccCodeByte4[bExtended] = omStrTempByte.GetBuffer(MAX_PATH);
 
-        omStrTempByte.Format(_T("%02X"),(dTemp & ( dBeginMsgId >> nShift)));
+        omStrTempByte.Format("%02X",(dTemp & ( dBeginMsgId >> nShift)));
         m_pControllerDetails[ unIndex ].m_omStrAccCodeByte3[bExtended] = omStrTempByte.GetBuffer(MAX_PATH);
 
-        omStrTempByte.Format(_T("%02X"),(dTemp & ( dBeginMsgId >> nShift * 2)));
+        omStrTempByte.Format("%02X",(dTemp & ( dBeginMsgId >> nShift * 2)));
         m_pControllerDetails[ unIndex ].m_omStrAccCodeByte2[bExtended] = omStrTempByte.GetBuffer(MAX_PATH);
 
-        omStrTempByte.Format(_T("%02X"),(dTemp & ( dBeginMsgId >> nShift * 3)));
+        omStrTempByte.Format("%02X",(dTemp & ( dBeginMsgId >> nShift * 3)));
         m_pControllerDetails[ unIndex ].m_omStrAccCodeByte1[bExtended] = omStrTempByte.GetBuffer(MAX_PATH);
 
         // Create Mask
-        omStrTempByte.Format(_T("%02X"),(dTemp & ( dEndMsgId )));
+        omStrTempByte.Format("%02X",(dTemp & ( dEndMsgId )));
         m_pControllerDetails[ unIndex ].m_omStrAccMaskByte4[bExtended] = omStrTempByte.GetBuffer(MAX_PATH);
 
-        omStrTempByte.Format(_T("%02X"),(dTemp & ( dEndMsgId >> nShift)));
+        omStrTempByte.Format("%02X",(dTemp & ( dEndMsgId >> nShift)));
         m_pControllerDetails[ unIndex ].m_omStrAccMaskByte3[bExtended] = omStrTempByte.GetBuffer(MAX_PATH);
 
-        omStrTempByte.Format(_T("%02X"),(dTemp & ( dEndMsgId >> nShift * 2)));
+        omStrTempByte.Format("%02X",(dTemp & ( dEndMsgId >> nShift * 2)));
         m_pControllerDetails[ unIndex ].m_omStrAccMaskByte2[bExtended] = omStrTempByte.GetBuffer(MAX_PATH);
 
-        omStrTempByte.Format(_T("%02X"),(dTemp & ( dEndMsgId >> nShift * 3)));
+        omStrTempByte.Format("%02X",(dTemp & ( dEndMsgId >> nShift * 3)));
         m_pControllerDetails[ unIndex ].m_omStrAccMaskByte1[bExtended] = omStrTempByte.GetBuffer(MAX_PATH);
 
         m_pControllerDetails[ unIndex ].m_bAccFilterMode = bExtended;

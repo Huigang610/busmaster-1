@@ -32,7 +32,7 @@
 #include "ContrConfigETASBOADefs.h"
 #include "CAN_ETAS_BOA_Resource.h"
 #include "ChangeRegisters_CAN_ETAS_BOA.h"
-#include "Utility\MultiLanguageSupport.h"
+#include "Utility/MultiLanguageSupport.h"
 //#include "../Application/GettextBusmaster.h"
 #ifdef BOA_FD_VERSION
 #include "EXTERNAL_INCLUDE/OCI/ocicanfd.h"
@@ -77,8 +77,6 @@ CChangeRegisters_CAN_ETAS_BOA::CChangeRegisters_CAN_ETAS_BOA(CWnd* pParent /*=NU
     , m_omStrSJW("")
 {
     //{{AFX_DATA_INIT(CChangeRegisters_CAN_ETAS_BOA)
-    //m_omStrEditBTR0 = _T("");
-    //m_omStrEditBTR1 = _T("");
     m_omStrEditCNF1 = "";
     m_omStrEditCNF2 = "";
     m_omStrEditCNF3 = "";
@@ -671,7 +669,7 @@ void CChangeRegisters_CAN_ETAS_BOA::vValidateBaudRate()
         {
             dBaudRate = 5000;
         }
-        omStrBaudRate.Format(_T("%ld"),/*fTempBaudRate*/(long)dBaudRate);
+        omStrBaudRate.Format("%ld", /*fTempBaudRate*/(long)dBaudRate);
 
         omStrMessage.Format(_(defBAUD_RATE_MESSAGE),omStrBaudRate);
         omStrPrvBaudRate = m_omStrEditBaudRate;
