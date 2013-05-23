@@ -1092,7 +1092,7 @@ void CFilterConfigDlg::OnRadioMessageId()
                 {
                     if( omStrIDFrom != STR_EMPTY )
                     {
-                        CString omIdWithMsg = _("");
+                        CString omIdWithMsg = "";
                         omIdWithMsg.Format(_(defSTR_MSG_ID_IN_HEX), psFilter->m_dwMsgIDFrom);
                         ostringstream oss;
                         oss << hex << omIdWithMsg << omStrIDFrom;

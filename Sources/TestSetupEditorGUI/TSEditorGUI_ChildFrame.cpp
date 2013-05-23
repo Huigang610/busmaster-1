@@ -515,7 +515,7 @@ void CTSEditorChildFrame::OnHelpAbouttestsetupeditor()
 {
     CString omStrVersion;
     omStrVersion.LoadString(IDS_TSEDITOR_ABOUT);
-    CString omStrLicence =  omStrVersion + _("\n\nCopyright© 2011, Robert Bosch Engineering and\nBusiness Solutions Ltd.\nAll rights reserved.");
+    CString omStrLicence =  omStrVersion + "\n\nCopyright© 2011, Robert Bosch Engineering and\nBusiness Solutions Ltd.\nAll rights reserved.";
     MessageBox(omStrLicence, NULL, MB_OK|MB_ICONINFORMATION);
 }
 
