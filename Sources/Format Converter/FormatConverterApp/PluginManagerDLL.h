@@ -4,9 +4,9 @@
 
 #include "PluginManagerBase.h"
 
-#define defDLLFILEEXTENSION         _T("*.dll")
-#define defDEFAULTPLUGINFOLDER      _T("\\ConverterPlugins");
-#define defCONVERTERINTERFACE       _T("GetBaseConverter")
+#define defDLLFILEEXTENSION         "*.dll"
+#define defDEFAULTPLUGINFOLDER      "\\ConverterPlugins";
+#define defCONVERTERINTERFACE       "GetBaseConverter"
 
 class CPluginManagerDLL:public CPluginManagerBase
 {

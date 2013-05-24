@@ -37,7 +37,6 @@
 //accessin manager class object
 #include "SimSysManager.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -956,8 +955,9 @@ BOOL CExecuteFunc::bReadDefFile(CStringArray& omErrorArray)
             if (!omInTextFile.good())
             {
                 // Info file open error notification
-                omStrErrorMessage = _("Input file open error : ");
-                omStrErrorMessage +=omStrDefFileName;
+                omStrErrorMessage = _("Input file open error :");
+				omStrErrorMessage += " ";
+                omStrErrorMessage += omStrDefFileName;
                 /*AfxMessageBox(omStrErrorMessage ,
                                   MB_ICONERROR| MB_SYSTEMMODAL|MB_OK,nZERO);*/
                 omErrorArray.Add(omStrErrorMessage);

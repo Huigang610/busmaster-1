@@ -21,7 +21,7 @@
 #include "TSEditorGUI_stdafx.h"
 #include <afxdllx.h>
 #include "../Application/MultiLanguage.h"
-//#include "../Application/GettextBusmaster.h"
+
 #define USAGE_EXPORT
 
 #include "TSEditorGUI_Extern.h"

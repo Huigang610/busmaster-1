@@ -1933,7 +1933,7 @@ void CDMGraphCtrl::PlotElementLines(HDC hDC, CGraphElement* pElement, BOOL bOpti
 	CElementPoint pt;
 	VARIANT_BOOL bXLog, bYLog;
 	POINT oldpt;
-	//Proceed only if it contains atleast 2 points
+	//Proceed only if it contains at least 2 points
 	if ( pElement->m_PointList.GetSize() > 1 )
 	{
 		pt = pElement->m_PointList[0];

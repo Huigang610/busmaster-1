@@ -25,7 +25,6 @@
 #include "DataTypes/DIL_Datatypes.h"
 #include "MsgContainer_J1939.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 const int nBitsIn4Bytes          = 32;
 const int nBitsIn5Bytes          = 40;
@@ -192,13 +191,13 @@ void CMsgContainerJ1939::vRetrieveDataFromBuffer()
         if (Result == ERR_READ_MEMORY_SHORT)
         {
             CString omBuf;
-            omBuf.Format(_("J1939 PSDI - ERR_READ_MEMORY_SHORT  nSize: %d"), nSize);
+            omBuf.Format("J1939 PSDI - ERR_READ_MEMORY_SHORT nSize: %d", nSize);
             ASSERT(!AfxMessageBox(omBuf));
         }
         else if (Result == EMPTY_APP_BUFFER)
         {
             CString omBuf;
-            omBuf.Format(_("J1939 PSDI - EMPTY_APP_BUFFER"));
+            omBuf.Format("J1939 PSDI - EMPTY_APP_BUFFER");
             ASSERT(!AfxMessageBox(omBuf));
         }
         if (Result == CALL_SUCCESS)

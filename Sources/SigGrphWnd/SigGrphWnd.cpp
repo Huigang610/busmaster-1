@@ -32,7 +32,6 @@
 #include "Include/BaseDefs.h"
 #include "../Application/MultiLanguage.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 static AFX_EXTENSION_MODULE SigGrphWndDLL = { NULL, NULL };
 WINDOWPLACEMENT m_sGraphWndPlacement[AVAILABLE_PROTOCOLS];
@@ -179,7 +178,9 @@ USAGEMODE HRESULT SG_CreateGraphWindow( CMDIFrameWnd* pParentWnd,  short eBusTyp
                     m_pomGraphWindows[eBusType]->SetFocus();
 
                     CString strWindowText;
-                    strWindowText = _("Signal Graph - ") + arrStrBusNames[eBusType];
+                    strWindowText = _("Signal Graph -");
+					strWindowText += " ";
+					strWindowText += arrStrBusNames[eBusType];
                     m_pomGraphWindows[eBusType]->SetWindowText(strWindowText);
 
                     m_pomGraphWindows[eBusType]->SetWindowPlacement(&m_sGraphWndPlacement[eBusType]);

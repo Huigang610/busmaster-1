@@ -35,7 +35,7 @@ BOOL gbEnableDisableLog(BOOL) ;
 // To write in to the log file
 BOOL gbWriteToLog(char*) ;
 // To write in to the trace window
-BOOL gbSendStrToTrace(char*) ;
+bool gbSendStrToTrace(const char *);
 // To enable/disable all handlers
 BOOL gbActivateDeactivateHandlers(BOOL,HMODULE);
 // Message Handler Enable API

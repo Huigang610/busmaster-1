@@ -26,7 +26,6 @@
 #include "TestSetupEditorLib_stdafx.h"
 #include "Send_MessageEntity.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 /******************************************************************************
 Function Name  :  CSend_MessageEntity

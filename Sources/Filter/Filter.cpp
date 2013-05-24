@@ -24,7 +24,6 @@
 #include "Filter_resource.h"
 #include "FilterConfigDlg.h"
 #include "MainSubListDlg.h"
-//#include "../Application/GettextBusmaster.h"
 #include "../Application/MultiLanguage.h"
 #include "Utility/MultiLanguageSupport.h"
 
@@ -161,8 +160,8 @@ USAGEMODE HRESULT Filter_ShowSelDlg(CWnd* pParent, CMainEntryList* podMainSubLis
             Name of the list controls */
     strcpy_s(sGuiParams.m_acTitleName, MAX_PATH, _("Filter Selection Dialog"));
     strcpy_s(sGuiParams.m_acMainListName, MAX_PATH, _("Bus"));
-    strcpy_s(sGuiParams.m_acUnSelListName, MAX_PATH, _("Configured Filters"));
-    strcpy_s(sGuiParams.m_acSelListName, MAX_PATH, _("Selected Filters"));
+    strcpy_s(sGuiParams.m_acUnSelListName, MAX_PATH, _("Configured filters"));
+    strcpy_s(sGuiParams.m_acSelListName, MAX_PATH, _("Selected filters"));
     /* Whether to combine main entry Id with sub entry name or not*/
     sGuiParams.m_bCombine = FALSE;
     /* What image to be loaded */

@@ -21,7 +21,7 @@
 #include "TestSetupEditorLib_stdafx.h"
 #include "TestSetupEntity.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
+
 /******************************************************************************
 Function Name  :  CTestSetupEntity
 Input(s)       :
@@ -370,7 +370,7 @@ void CTestSetupEntity::vInitialise(void)
 {
     m_omstrCurrentTSFile = def_EMPTYFILENAME;
     m_omstrDescription = "";
-    m_omstrTestSetupTitle = _("<New Test SetUp>");
+    m_omstrTestSetupTitle = _("<New test setup>");
     vDeleteAllEntities();
     nCreateNewTestSetup();
 }
@@ -504,7 +504,7 @@ HRESULT CTestSetupEntity::ValidateEntity(CString& omStrResult)
 
     if(unCount <=0 )
     {
-        omStrResult += _("No TestCases Are Defined");
+        omStrResult += _("No test cases are defined");
         omStrResult += "\r\n";
         hResult = ERR_VALID_ERROR;
     }

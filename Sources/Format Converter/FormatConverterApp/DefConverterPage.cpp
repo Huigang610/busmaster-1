@@ -11,11 +11,11 @@ IMPLEMENT_DYNAMIC(CDefConverterPage, CPropertyPage)
 
 CDefConverterPage::CDefConverterPage(INT nTabPosition)
     : CPropertyPage(CDefConverterPage::IDD)
-    , m_omStrInputFilePath(_T(""))
-    , m_omStrOutputFilePath(_T(""))
-    , m_omstrConversionComment(_T(""))
-    , m_omstrEditHelp(_T(""))
-    , m_omstrLogFilePath(_T(""))
+    , m_omStrInputFilePath("")
+    , m_omStrOutputFilePath("")
+    , m_omstrConversionComment("")
+    , m_omstrEditHelp("")
+    , m_omstrLogFilePath("")
 {
     m_nTabPosition = nTabPosition;
 }
@@ -247,11 +247,11 @@ void CDefConverterPage::OnBnClickedBtnConvert()
                 m_omstrConversionComment = conversionComment.c_str();
 
                 /* If a log file is created */
-                if ( m_omstrConversionComment.Compare(_T("Conversion completed with warnings.")) == 0 )
+                if ( m_omstrConversionComment.Compare(_("Conversion completed with warnings.")) == 0 )
                 {
                     m_omstrLogFilePath = m_omStrOutputFilePath;
 
-                    m_omstrLogFilePath.Replace(_T(".dbf"), _T(".log"));
+                    m_omstrLogFilePath.Replace(".dbf", ".log");
 
                     GetDlgItem(IDC_BUTTON_VIEW_LOG)->EnableWindow();
                 }
@@ -273,9 +273,9 @@ void CDefConverterPage::OnBnClickedBtnConvert()
 void CDefConverterPage::OnCbnSelchangeComboConversions()
 {
     // TODO: Add your control notification handler code here
-    m_omStrInputFilePath = _T("");
-    m_omStrOutputFilePath = _T("");
-    m_omstrConversionComment = _T("");
+    m_omStrInputFilePath = "";
+    m_omStrOutputFilePath = "";
+    m_omstrConversionComment = "";
     string m_omstrConversionName;
     INT nSelectedItemIndex = GetConverterPos();
 

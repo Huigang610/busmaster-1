@@ -24,7 +24,6 @@
 #include "TestSetupEditorLib_stdafx.h"
 #include "Verify_MessageEntity.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 /******************************************************************************
 Function Name  :  CVerify_MessageEntity

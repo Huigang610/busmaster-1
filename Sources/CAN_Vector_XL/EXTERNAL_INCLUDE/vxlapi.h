@@ -118,7 +118,7 @@ extern "C" {
 #define XL_TRANSCEIVER_TYPE_PB_CAN_1054          0x0103
 #define XL_TRANSCEIVER_TYPE_PB_CAN_251_OPTO      0x0105
 #define XL_TRANSCEIVER_TYPE_PB_CAN_SWC           0x010B
-    // 0x010D not supported, 0x010F, 0x0111, 0x0113 reserved for future use!!
+    // 0x010D not supported, 0x010F, 0x0111, 0x0113 reserved for future use!
 #define XL_TRANSCEIVER_TYPE_PB_CAN_1054_OPTO     0x0115
 #define XL_TRANSCEIVER_TYPE_PB_CAN_SWC_OPTO      0x0117
 #define XL_TRANSCEIVER_TYPE_PB_CAN_TT_OPTO       0x0119
@@ -522,7 +522,7 @@ extern "C" {
         XLeventTag           tag;             // 1
         unsigned char        chanIndex;       // 1
         unsigned short       transId;         // 2
-        unsigned short       portHandle;      // 2 internal use only !!!!
+        unsigned short       portHandle;      // 2 internal use only!
         unsigned short       reserved;        // 2
         XLuint64             timeStamp;       // 8
         union s_xl_tag_data  tagData;         // 32 Bytes
@@ -1987,7 +1987,7 @@ extern "C" {
     --------------------------------------------------------------------------------
     The driver is closed.
     This is used to unload the driver, if no more application is useing it.
-    Does not close the open ports !!!
+    Does not close the open ports!
     */
 
 #ifdef DYNAMIC_XLDRIVER_DLL

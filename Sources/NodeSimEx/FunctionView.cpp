@@ -209,10 +209,10 @@ void CFunctionView::vSetFunctionToEdit(const CString& omStrFunction)
         if( omStrFunction == GLOBAL_VARIABLES )
         {
             omStrFnHeader = BUS_VAR_HDR;
-            omStrFnHeader.Replace("PLACE_HODLER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
+            omStrFnHeader.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
 
             omStrFnFooter = BUS_VAR_FOOTER;
-            omStrFnFooter.Replace("PLACE_HODLER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
+            omStrFnFooter.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
 
             bGlobalVar = TRUE;
         }
@@ -612,15 +612,15 @@ BOOL CFunctionView::UpdateFunctionInDocument()
             if( m_omStrFnName == GLOBAL_VARIABLES )
             {
                 omStrFnFooter = BUS_VAR_FOOTER;
-                omStrFnFooter.Replace("PLACE_HODLER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
+                omStrFnFooter.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
             }
             else
             {
                 // Select function common footer
                 omStrFnFooter = EDITOR_BUS_FN_FOOTER;
                 // Form function specific footer
-                omStrFnFooter.Replace("PLACE_HODLER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
-                omStrFnFooter.Replace( "PLACE_HODLER_FOR_FUNCTIONNAME",
+                omStrFnFooter.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
+                omStrFnFooter.Replace( "PLACE_HOLDER_FOR_FUNCTIONNAME",
                                        m_omStrFnName );
             }
 

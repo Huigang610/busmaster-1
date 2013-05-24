@@ -161,8 +161,8 @@ BOOL CCAPL2CPropertyPage::OnInitDialog()
     // TODO: Add extra initialization here
     CRect omRect;
     m_omDBCList.SetExtendedStyle(m_omDBCList.GetExtendedStyle() | LVS_EX_GRIDLINES|LVS_EX_FULLROWSELECT);
-    m_omDBCList.InsertColumn(0, _T(_("DBC File Path")));
-    m_omDBCList.InsertColumn(1, _T(_("DBF File Path")));
+    m_omDBCList.InsertColumn(0, _("DBC file path"));
+    m_omDBCList.InsertColumn(1, _("DBF file path"));
     m_omDBCList.GetWindowRect( &omRect );
     m_omDBCList.SetColumnWidth( 0, omRect.Width()/2 );
     m_omDBCList.SetColumnWidth( 1, omRect.Width()/2 );
@@ -239,9 +239,9 @@ void CCAPL2CPropertyPage::OnBrowseSource()
     CString omStrPath;
     int nIndex = -1;
     CFileDialog cfd(TRUE,"can","*can",OFN_OVERWRITEPROMPT|OFN_FILEMUSTEXIST|
-                    OFN_PATHMUSTEXIST|OFN_EXTENSIONDIFFERENT,_("CAPL Files(*.can)|*.can||"),this);
+                    OFN_PATHMUSTEXIST|OFN_EXTENSIONDIFFERENT,_("CAPL file(s) (*.can)|*.can||"),this);
 
-    cfd.m_ofn.lpstrTitle = _("Select CAPL (.can) File");
+    cfd.m_ofn.lpstrTitle = _("Select CAPL (.can) file");
 
 
     GetDlgItemText( IDC_EDIT_INPUT,omStrPath );
@@ -289,9 +289,9 @@ void CCAPL2CPropertyPage::OnBrowseSource()
 void CCAPL2CPropertyPage::OnBrowseDest()
 {
     CFileDialog cfd(TRUE,"cpp",NULL,OFN_OVERWRITEPROMPT|
-                    OFN_HIDEREADONLY,_("BUSMASTER  Files(*.cpp)|*.cpp||"),this);
+                    OFN_HIDEREADONLY,_("BUSMASTER file(s) (*.cpp)|*.cpp||"),this);
 
-    cfd.m_ofn.lpstrTitle = _("Select BUSMASTER File");
+    cfd.m_ofn.lpstrTitle = _("Select BUSMASTER file");
 
     CString omStrPath;
     int nIndex;
@@ -403,9 +403,9 @@ void CCAPL2CPropertyPage::OnChangeEditInput()
 void CCAPL2CPropertyPage::OnBrowseCANoeDb()
 {
     CFileDialog omDBCFileBrowser(TRUE,"dbc",NULL,OFN_OVERWRITEPROMPT|OFN_FILEMUSTEXIST|
-                                 OFN_PATHMUSTEXIST|OFN_ALLOWMULTISELECT,_("CANoe Database Files(*.dbc)|*.dbc||"),this);
+                                 OFN_PATHMUSTEXIST|OFN_ALLOWMULTISELECT,_("CANoe database file(s) (*.dbc)|*.dbc||"),this);
 
-    omDBCFileBrowser.m_ofn.lpstrTitle = _("Select CANoe Database File");
+    omDBCFileBrowser.m_ofn.lpstrTitle = _("Select CANoe database file");
 
     CString omStrDBFFile;
     if(omDBCFileBrowser.DoModal()==IDOK)
@@ -422,13 +422,13 @@ void CCAPL2CPropertyPage::OnBrowseCANoeDb()
             if( omstrDBCFile.Find(".dbc",0) != -1)
             {
                 omStrDBFFile = omstrDBCFile.Left( omstrDBCFile.GetLength() - 4);
-                omStrDBFFile += _T(".dbf");
+                omStrDBFFile += ".dbf";
                 m_omDBCList.SetItemText(nIndex, 1, omStrDBFFile);
             }
-            else if( omstrDBCFile.Find(".DBC",0) != -1)
+            else if( omstrDBCFile.Find(".dbc",0) != -1)
             {
                 omStrDBFFile = omstrDBCFile.Left( omstrDBCFile.GetLength() - 4);
-                omStrDBFFile += _T(".dbf");
+                omStrDBFFile += ".dbf";
                 m_omDBCList.SetItemText(nIndex, 1, omStrDBFFile);
             }
             else
@@ -456,9 +456,9 @@ void CCAPL2CPropertyPage::OnBrowseCANoeDb()
 void CCAPL2CPropertyPage::OnBrowseBUSMASTERDb()
 {
     CFileDialog  omStrDBFFileDialog( TRUE,"dbf",NULL,OFN_OVERWRITEPROMPT|
-                                     OFN_PATHMUSTEXIST,_("BUSMASTER Database Files(*.dbf)|*.dbf||"),this);
+                                     OFN_PATHMUSTEXIST,_("BUSMASTER database file(s) (*.dbf)|*.dbf||"),this);
 
-    omStrDBFFileDialog.m_ofn.lpstrTitle = _("Select BUSMASTER Database File");
+    omStrDBFFileDialog.m_ofn.lpstrTitle = _("Select BUSMASTER database file");
 
     POSITION pos = m_omDBCList.GetFirstSelectedItemPosition();
     int nItem = m_omDBCList.GetNextSelectedItem(pos);
@@ -466,8 +466,8 @@ void CCAPL2CPropertyPage::OnBrowseBUSMASTERDb()
     CString omStrPath = m_omDBCList.GetItemText(nItem, 1);
     omStrPath.TrimLeft();
     omStrPath.TrimRight();
-    CString omStrFileName = _T("");
-    if( omStrPath.Find(".dbf",0) != -1)
+    CString omStrFileName = "";
+    if( omStrPath.Find(".dbf", 0) != -1)
     {
         INT nIndex = omStrPath.ReverseFind('\\');
 
@@ -663,7 +663,7 @@ void CCAPL2CPropertyPage::OnConvert()
         }
         ////
 
-        ouWaitIndicator.SetWindowText(_T(_("CAPL Conversion is Going on... Please Wait")));
+        ouWaitIndicator.SetWindowText(_("CAPL conversion is going on... Please wait"));
         CString omStrResult;
         nConvert(omStrCAPLFileName , omStrCFileName ,m_omLogFile, omStrDbcFileArray, m_pouDBC2DBFConverter, omStrResult) ;
 

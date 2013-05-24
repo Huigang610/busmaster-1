@@ -32,7 +32,6 @@
 #include "FFListctrl.h"             // For Flicker Free List class definition
 #include "NumEdit.h"                // For Custom Numeric Edit control Impl
 #include "FlexListCtrl.h"           // Interface file for Flex List Control
-//#include "../Application/GettextBusmaster.h"
 #include "Utility/MultiLanguageSupport.h"
 
 // ID for Combobox

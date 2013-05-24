@@ -185,7 +185,7 @@ void CMsgSgDetView::OnInitialUpdate()
     LF.lfHeight = 10;
     LF.lfWeight = FW_HEAVY;
     LF.lfPitchAndFamily = VARIABLE_PITCH | FF_SWISS;
-    lstrcpy(LF.lfFaceName, _("Ms Sans Serif"));
+    lstrcpy(LF.lfFaceName, "Sans Serif");
     if (!om_tFont.CreateFontIndirect(&LF))
     {
         TRACE(_("MMI: CMainFrame::OnCreate() Could not create font for Combo Box\n"));

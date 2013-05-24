@@ -21,7 +21,6 @@
 #include "StdAfx.h"
 #include "ProjectConfiguration/ProjectConfiguration_extern.h"
 #include "ConfigData.h"
-//#include "GettextBusmaster.h"
 #include "Utility/MultiLanguageSupport.h"
 
 #define DEFAULT_PROJECT_NAME                         "BUSMASTER"
@@ -55,21 +54,21 @@ void CConfigData::vReadConfigFile()
                 GetProjectData(m_strCurrProjName, sTempData);
                 if (sTempData.m_dwAppUniqueId != BUSMASTER_UNIQUE_ID)
                 {
-                    AfxMessageBox (_("The Configuration file is not Compatible"),
+                    AfxMessageBox (_("The configuration file is not compatible"),
                                    MB_OK | MB_ICONERROR);
                     DoDatastorageOperation(CLOSE);
                 }
             }
             else
             {
-                AfxMessageBox (_("The Configuration file is not Valid"),
+                AfxMessageBox (_("The configuration file is not valid"),
                                MB_OK | MB_ICONERROR);
                 DoDatastorageOperation(CLOSE);
             }
         }
         else
         {
-            AfxMessageBox (_("Configuration file changed outside the Application"),
+            AfxMessageBox (_("Configuration file changed outside the application"),
                            MB_OK | MB_ICONERROR);
         }
     }

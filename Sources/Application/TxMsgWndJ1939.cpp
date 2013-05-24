@@ -477,7 +477,7 @@ void CTxMsgWndJ1939::OnBnClickedSend()
             if (m_unDataLength > MAX_DATA_LEN_J1939)
             {
                 CString omInvDLCMsg;
-                omInvDLCMsg.Format(_("Invalid DLC value: %d, Please enter a value between 0 and %d"),
+                omInvDLCMsg.Format(_("Invalid DLC value: %d. Please enter a value between 0 and %d."),
                                    m_unDataLength,  MAX_DATA_LEN_J1939);
                 vSetStatusBarText(omInvDLCMsg);
                 return;
@@ -513,7 +513,7 @@ void CTxMsgWndJ1939::OnBnClickedSend()
             if (m_sMsgToBeSent.m_unPGN > MAX_LMT_FOR_PGN)
             {
                 CString omPGN;
-                omPGN.Format(_("Invalid PGN value: %x, Please enter a value between 0 and 0x%x"),
+                omPGN.Format(_("Invalid PGN value: %x. Please enter a value between 0 and 0x%x."),
                              m_sMsgToBeSent.m_unPGN,  MAX_LMT_FOR_PGN);
                 vSetStatusBarText(omPGN);
                 return;
@@ -706,7 +706,7 @@ void CTxMsgWndJ1939::vInitializeTpfFields(void)
     //Populate PGN combo box
     if ((m_psMsgRoot != NULL) && (m_psMsgRoot->m_psMsg != NULL))
     {
-        // If atleast one database message is present
+        // If at least one database message is present
         m_CS_ConfigData.Lock();
         vPopulatePGNComboBox();
         m_omMsgTypeCombo.SetCurSel(0);

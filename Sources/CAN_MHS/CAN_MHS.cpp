@@ -38,7 +38,6 @@
 #include "mhstcan.h"
 #include "mhsbmcfg.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 #define USAGE_EXPORT
 #include "CAN_MHS_Extern.h"

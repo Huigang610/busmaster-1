@@ -1858,7 +1858,7 @@ BOOL CExecuteManager::bDLLBuildAll(CStringArray* pomStrErrorFiles)
     }
     if((nFailure == 0) || (nFailure != nNodeCount))
     {
-        // if the build is successfull atleast for one.
+        // if the build is successfull at least for one.
 
         // to indicate to the tree view about the new dlls built.
         CSimSysTreeView* psSimSysTree = CSimSysManager::ouGetSimSysManager(m_eBus).podGetSimSysTreeView();
@@ -1930,7 +1930,7 @@ BOOL CExecuteManager::bDllLoadAll(CStringArray* pomStrErrorFiles)
     }
     if((nFailure == 0) || (nFailure != nNodeCount))
     {
-        // if the load is successfull atleast for one dll.
+        // if the load is successfull at least for one dll.
 
         // to indicate to the tree view about the dlls loaded.
         CSimSysTreeView* psSimSysTree = CSimSysManager::ouGetSimSysManager(m_eBus).podGetSimSysTreeView();
@@ -2014,7 +2014,7 @@ BOOL CExecuteManager::bDllUnloadAll(CStringArray* pomStrErrorFiles)
     }
     if((nFailure == 0) || (nFailure != nNodeCount))
     {
-        // if the unload is successfull atleast for one dll.
+        // if the unload is successfull at least for one dll.
 
         // to indicate to the tree view about the dlls unloaded.
         CSimSysTreeView* psSimSysTree = CSimSysManager::ouGetSimSysManager(m_eBus).podGetSimSysTreeView();
@@ -2121,7 +2121,7 @@ BOOL CExecuteManager::bDLLBuildLoadAll(CStringArray* pomStrErrorFiles)
 
     if((nFailure == 0) || (nFailure != nNodeCount))
     {
-        // if the build n load is successfull atleast for one.
+        // if the build n load is successfull at least for one.
 
         // to indicate to the tree view about the dlls loaded.
         CSimSysTreeView* psSimSysTree = CSimSysManager::ouGetSimSysManager(m_eBus).podGetSimSysTreeView();

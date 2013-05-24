@@ -173,7 +173,8 @@ BOOL CMsgSignalDBWnd::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
                                         om_Size,                        //CSize( 350,100 ),                 // Sizeof Pane
                                         pContext);
     }
-    CString omTitle = _("DatabaseEditor - ");
+    CString omTitle = _("Database Editor");
+	omTitle += " - ";
     omTitle += m_sDbParams.m_omBusName;
     SetWindowText(omTitle.GetBuffer(MAX_PATH));
     if (m_sDbParams.m_eBus == J1939)

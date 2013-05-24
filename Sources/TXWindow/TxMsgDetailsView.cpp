@@ -42,7 +42,6 @@
 #include "DataTypes/MsgBufAll_Datatypes.h"
 #include "DIL_Interface/BaseDIL_CAN.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 // Definition for image indices
 #define defIMAGE_DIRTY 2
@@ -1660,7 +1659,7 @@ BOOL CTxMsgDetailsView::bValidateData()
     BOOL bIsValid = FALSE;
     // Selected Message Code
     int nMsgCode = -1;
-    // User has to input atleast msg code and dlc
+    // User has to input at least msg code and dlc
     CString omStr = "";
     UpdateData(TRUE);
     // Get the message ID.

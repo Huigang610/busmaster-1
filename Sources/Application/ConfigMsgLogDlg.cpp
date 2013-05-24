@@ -33,7 +33,6 @@
 #include "InterfaceGetter.h"
 #include "DIL_Interface/BaseDIL_CAN.h"
 #include ".\configmsglogdlg.h"
-//#include "GettextBusmaster.h"
 #include "Utility/MultiLanguageSupport.h"
 
 #define STR_FILTER_DIALOG_FORMAT        "Configure Filter for Log File: %s"
@@ -80,18 +79,18 @@ CConfigMsgLogDlg::CConfigMsgLogDlg(ETYPE_BUS eCurrBus,void* pouBaseLogger, BOOL&
         {
             m_pouFProcCAN = static_cast<CBaseFrameProcessor_CAN*> (pouBaseLogger);
             m_psFilterConfigured = (SFILTERAPPLIED_CAN*) (psFilter);
-            m_strCurrWndText =_("Configure Logging for CAN");
-            m_omControlParam = _("Start on Reception of ID 0x");
-            m_omControlParam2 = _("Stop on Reception of ID 0x");
+            m_strCurrWndText =_("Configure logging for CAN");
+            m_omControlParam = _("Start on reception of ID 0x");
+            m_omControlParam2 = _("Stop on reception of ID 0x");
         }
         break;
         case J1939:
         {
             m_pouLoggerJ1939 = (CBaseFrameProcessor_J1939*) pouBaseLogger;
             m_psJ1939Filter = (SFILTERAPPLIED_J1939*) psFilter;
-            m_strCurrWndText =_("Configure Logging for J1939");
-            m_omControlParam = _("Start on Reception of PGN 0x");
-            m_omControlParam2 = _("Stop on Reception of PGN 0x");
+            m_strCurrWndText =_("Configure logging for J1939");
+            m_omControlParam = _("Start on reception of PGN 0x");
+            m_omControlParam2 = _("Stop on reception of PGN 0x");
         }
         break;
 
@@ -784,7 +783,7 @@ BOOL CConfigMsgLogDlg::OnInitDialog()
         }
     }
 
-    m_omComboChannel.InsertString(0, _("ALL"));
+    m_omComboChannel.InsertString(0, _("All"));
     for (UINT i = 1; i <= m_unChannelCount; i++)
     {
         CString omChannel;
@@ -871,7 +870,8 @@ BOOL CConfigMsgLogDlg::OnInitDialog()
         GetDlgItem(IDC_CBTN_ADDLOG)->EnableWindow(FALSE);
         GetDlgItem(IDC_CHECK_RESET_TIMESTAMP)->EnableWindow(FALSE);
         GetWindowText(m_strCurrWndText);
-        m_strCurrWndText+=_(" - Read Only as Logging is ON");
+		m_strCurrWndText += " ";
+        m_strCurrWndText += _("- Read only as logging is on");
         //SetWindowText(m_strCurrWndText);
         // PTV [1.6.4]
         // If Logging is on

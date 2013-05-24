@@ -24,7 +24,6 @@
 #include "TSEditorGUI_PropertyView.h"
 #include "TSEditorGUI_Definitions.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 #define def_HEIGHT_PROPERTYVIEW     0.65
 #define def_WINDOW_GAP              18          //Looks Good

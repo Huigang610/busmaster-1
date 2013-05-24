@@ -35,8 +35,8 @@ CFormatConverterWnd::~CFormatConverterWnd()
 
 void CFormatConverterWnd::vGettextBusmaster(void)
 {
-    setlocale(LC_ALL,"");
-    bindtextdomain("BUSMASTER", getenv("LOCALDIR") );
+    setlocale(LC_ALL, "");
+    bindtextdomain("BUSMASTER", getenv("LOCALDIR"));
     textdomain("BUSMASTER");
 }
 

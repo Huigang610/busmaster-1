@@ -19,7 +19,7 @@
 #include "GraphExportDlg.h"
 #include "SigGrphWnd_Defines.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
+
 /*******************************************************************************
   Function Name  : CGraphExportDlg
   Description    : Standard default constructor

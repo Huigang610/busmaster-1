@@ -355,7 +355,7 @@ BOOL gbGetProgramVersion(int* /*pnMajorVersion*/, int* /*pnMinorVersion*/)
     Author(s)        :
     Date Created     :
 ******************************************************************************/
-BOOL gbSendStrToTrace(char* pcOutStrTrace)
+bool gbSendStrToTrace(const char * pcOutStrTrace)
 {
     if (NULL != CGlobalObj::sm_pouITraceWndPtr)
     {

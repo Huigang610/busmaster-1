@@ -27,7 +27,6 @@
 #include "FunctionEditorDoc.h"  // Document defintion file
 #include "ExploreMsgSg.h"       // Class defintion file
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

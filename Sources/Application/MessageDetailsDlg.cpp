@@ -211,7 +211,8 @@ void CMessageDetailsDlg::OnOK()
     if ( bRetVal == TRUE &&
             m_omStrMessageCode.IsEmpty())
     {
-        CString omMsg = _(" cannot be empty!");
+        CString omMsg = " ";
+		omMsg += _("cannot be empty!");
         omMsg = m_sDbParams.m_omIdFieldName + omMsg;
         AfxMessageBox(omMsg.GetBuffer(MAX_PATH),
                       MB_OK|MB_ICONINFORMATION);
@@ -308,7 +309,7 @@ void CMessageDetailsDlg::OnOK()
                         if ( AfxMessageBox(
                                     _("You have signals defined for this message for previous message length.\n\
 Reducing message length will delete redundent signals and associated description\n\
-defined for this message.Do you want to delete these signals?\n\n\
+defined for this message. Do you want to delete these signals?\n\n\
 Select \"Yes\" to delete the signal(s) and to accept new message length value.\n\
 Select \"No\" to retain the previous message length."), MB_YESNO) == IDYES)
                         {

@@ -50,7 +50,6 @@
 #include "ChangeRegisters_CAN_ETAS_BOA.h"
 #include "../Application/MultiLanguage.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 #define USAGE_EXPORT
 #include "CAN_ETAS_BOA_Extern.h"
@@ -930,7 +929,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
             if (ErrCode != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add Event filter"));
+                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add event filter"));
             }
         }
 
@@ -943,7 +942,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
             if (ErrCode != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add Error filter"));
+                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add error filter"));
             }
         }
         // Add internal error filter
@@ -955,7 +954,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
             if (ErrCode != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add Error filter"));
+                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add error filter"));
             }
         }
 
@@ -985,7 +984,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
             if (ErrCode != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not remove Event filter"));
+                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not remove event filter"));
             }
         }
 
@@ -998,7 +997,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
             if (ErrCode != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not remove Error filter"));
+                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not remove error filter"));
             }
         }
         if (hResult == S_OK)
@@ -1009,7 +1008,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
             if (ErrCode != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add Error filter"));
+                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add error filter"));
             }
         }
     }
@@ -1039,7 +1038,7 @@ HRESULT ManageQueue(BYTE byCode, UINT nChannel)
         else
         {
             hResult = S_FALSE;
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create Rx Queue"));
+            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create rx queue"));
         }
         //Create CAN Tx queue
         if (hResult == S_OK)
@@ -1051,7 +1050,7 @@ HRESULT ManageQueue(BYTE byCode, UINT nChannel)
             if (Err != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create TX Queue"));
+                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create tx queue"));
             }
         }
     }
@@ -1066,7 +1065,7 @@ HRESULT ManageQueue(BYTE byCode, UINT nChannel)
         else
         {
             hResult = S_FALSE;
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create Rx Queue"));
+            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create rx queue"));
         }
         //Create CAN Tx queue
         if (hResult == S_OK)
@@ -1075,7 +1074,7 @@ HRESULT ManageQueue(BYTE byCode, UINT nChannel)
             if (Err != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create TX Queue"));
+                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create tx queue"));
             }
         }
     }
@@ -1750,7 +1749,8 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_LoadDriverLibrary(void)
                 hResult = S_FALSE;
                 string acErr;
                 acErr.append(acLIB_OCI);
-                acErr.append(" failed to load");
+				acErr.append(" ");
+                acErr.append(_("failed to load"));
                 sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, acErr);
                 sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("Please have a look at: https://github.com/rbei-etas/busmaster/wiki/Hardware-support"));
             }
@@ -1762,9 +1762,10 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_LoadDriverLibrary(void)
     }
     else
     {
-        string acErr;
+		string acErr;
         acErr.append(acLIB_CSL);
-        acErr.append(_(" failed to load"));
+		acErr.append(" ");
+        acErr.append(_("failed to load"));
         sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, acErr);
         sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("Please have a look at: https://github.com/rbei-etas/busmaster/wiki/Hardware-support"));
     }
@@ -2146,7 +2147,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_SelectHwInterface(const INTERFACE_HW_LIST& asSelH
                 else
                 {
                     hResult = ERR_LOAD_HW_INTERFACE;
-                    sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could create Rx Queue"));
+                    sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create rx queue"));
                 }
 
             }
@@ -2564,7 +2565,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTx
             }
             else
             {
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not write can data into bus"));
+                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not write CAN data onto bus"));
             }
         }
         else

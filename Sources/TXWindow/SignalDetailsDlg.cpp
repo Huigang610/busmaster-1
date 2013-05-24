@@ -28,7 +28,6 @@
 #include "Utility/Utility_Structs.h"
 #include "include/Basedefs.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 enum eMODES
 {
@@ -647,7 +646,7 @@ void CSignalDetailsDlg::OnOK()
                 }
                 else
                 {
-                    AfxMessageBox(_("Insufficient Memory available"), MB_OK|MB_ICONINFORMATION);
+                    AfxMessageBox(_("Insufficient memory available"), MB_OK|MB_ICONINFORMATION);
                 }
             }
         }

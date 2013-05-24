@@ -35,7 +35,6 @@
 #include "TxMsgListView.h"      // For CTxMsgListView class definition
 #include "TxMsgChildFrame.h"    // For Tx Child Window definition
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 // For Glodal Application Object
 //extern CCANMonitorApp theApp;

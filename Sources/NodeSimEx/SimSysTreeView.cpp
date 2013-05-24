@@ -43,7 +43,7 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
-#define defSIMSYSCONFIGFILTER   "BUSMASTER Simulated system Configuration files(*.sim)|*.sim||"
+#define defSIMSYSCONFIGFILTER   "BUSMASTER simulated system configuration file(s) (*.sim)|*.sim||"
 #define defSIMSYSCONFEXT        "sim"
 #define defDLGFLAGS             OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_PATHMUSTEXIST
 
@@ -556,8 +556,7 @@ void CSimSysTreeView::vDisplaySimSysMenu()
                                   IDM_SIMSYS_ALLHANDLERS, "Enable All Handlers");
         if (bRetVal == FALSE)
         {
-            MessageBox(_("Failed to change the text of the String"));
-
+            MessageBox(_("Failed to change the string"));
         }
         ModifyMenu(m_pomSubMenu->GetSafeHmenu(),
                    IDM_SIMSYS_ALLKEYHANDLERS, MF_BYCOMMAND | MF_STRING,
@@ -902,8 +901,7 @@ void CSimSysTreeView::vDisplayNodeMenu()
                                   IDM_NODE_KEYHANDLERS, "Disable Key Handlers");
         if (bRetVal == FALSE)
         {
-            MessageBox(_("Failed to change the text of the String"));
-
+            MessageBox(_("Failed to change the string"));
         }
     }
     else
@@ -1384,7 +1382,7 @@ void CSimSysTreeView::OnDeleteAllSimsys()
     }
     else
     {
-        AfxMessageBox("Unload all the dlls and try again!!");
+        AfxMessageBox("Unload all the dlls and try again!");
     }
 }
 /******************************************************************************/
@@ -1422,7 +1420,7 @@ void CSimSysTreeView::OnDeleteNode()
         BOOL bIsDllLoaded = pNode->m_bIsDllLoaded;
         if(bIsDllLoaded)
         {
-            AfxMessageBox("Unload the dll and try again!!");
+            AfxMessageBox("Unload the dll and try again!");
         }
         else
         {
@@ -2324,7 +2322,7 @@ void CSimSysTreeView::OnSimsysBuildall()
 
     if((nFailure == 0) || (nFailure != nNodeCount))
     {
-        // if the build is successfull atleast for one.
+        // if the build is successfull at least for one.
 
         bPopulateTree();
     }
@@ -2374,7 +2372,7 @@ void CSimSysTreeView::OnDeleteAllNodes()
     BOOL bIsDelValid = pSimSysNodeInfo->bIsUnLoadAllValid(omStrSimSysName);
     if(bIsDelValid)
     {
-        AfxMessageBox("Unload all the dlls and try again!!");
+        AfxMessageBox("Unload all the dlls and try again!");
     }
     else
     {
@@ -2433,7 +2431,7 @@ void CSimSysTreeView::OnDeleteSimulatedsystem()
     BOOL bIsDllsLoaded = pSimSysNodeInfo->bIsUnLoadAllValid(omStrSelecetedText);
     if(bIsDllsLoaded)
     {
-        AfxMessageBox("Unload all the dlls and try again!!");
+        AfxMessageBox("Unload all the dlls and try again!");
     }
     else
     {
@@ -2597,7 +2595,7 @@ void CSimSysTreeView::OnSimsysLoadall()
 
     if((nFailure == 0) || (nFailure != nNodeCount))
     {
-        // if the load is successfull atleast for one dll.
+        // if the load is successfull at least for one dll.
 
         bPopulateTree();
     }
@@ -2786,7 +2784,7 @@ void CSimSysTreeView::OnSimsysUnloadall()
     }
     if((nFailure == 0) || (nFailure != nNodeCount))
     {
-        // if the unload is successfull atleast for one dll.
+        // if the unload is successfull at least for one dll.
         bPopulateTree();
     }
     if(nFailure > 0)  // if the load is not successfull

@@ -47,8 +47,8 @@ CLogAscConverter::~CLogAscConverter(void)
 
 HRESULT CLogAscConverter::GettextBusmaster(void)
 {
-    setlocale(LC_ALL,"");
-    bindtextdomain("BUSMASTER", getenv("LOCALDIR") );
+    setlocale(LC_ALL, "");
+    bindtextdomain("BUSMASTER", getenv("LOCALDIR"));
     textdomain("BUSMASTER");
     return S_OK;
 }
@@ -127,7 +127,7 @@ HRESULT CLogAscConverter::GetErrorStatus(HRESULT hResult, string& omstrStatus)
 HRESULT CLogAscConverter::GetInputFileFilters(string& pchInputDefFilters, string& pchInputFilters)
 {
     pchInputDefFilters = "log";
-    pchInputFilters = _("BUSMASTER Log File(s) (*.log)|*.log||");
+    pchInputFilters = _("BUSMASTER log file(s) (*.log)|*.log||");
     return S_OK;
 }
 
@@ -158,7 +158,7 @@ HRESULT CLogAscConverter::GetLastConversionStatus(HRESULT& hResult, string& omst
 HRESULT CLogAscConverter::GetOutputFileFilters(string& pchOutputDefFilters, string& pchOutputFilters)
 {
     pchOutputDefFilters = "asc";
-    pchOutputFilters = _("CANoe Log File(s) (*.asc)|*.asc||");
+    pchOutputFilters = _("CANoe log file(s) (*.asc)|*.asc||");
     return S_OK;
 }
 
@@ -175,11 +175,11 @@ HRESULT CLogAscConverter::ConvertFile(string& chInputFile, string& chOutputFile)
     HRESULT hResult = S_OK;
     FILE* fpInputFile = NULL;
     FILE* fpOutputFile = NULL;
-    fopen_s(&fpInputFile, chInputFile.c_str(), _T("r"));
+    fopen_s(&fpInputFile, chInputFile.c_str(), "r");
 
     if(NULL != fpInputFile)
     {
-        fopen_s(&fpOutputFile, chOutputFile.c_str(), _T("w"));
+        fopen_s(&fpOutputFile, chOutputFile.c_str(), "w");
 
         if(NULL != fpOutputFile)
         {

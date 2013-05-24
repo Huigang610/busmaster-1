@@ -328,7 +328,7 @@ typedef CList<int,int>      defomIntegerList;
 #define DATABASE_PROTOCOL_VER   "[PROTOCOL] J1939"
 #define DATABASE_INV_SELECT     "J1939 Database files are not supported."
 
-#define defREPLY_IN_PROGRESS    "Replay is in progress!!\nPlease stop it for next session."
+#define defREPLY_IN_PROGRESS    "Replay is in progress!\nPlease stop it for next session."
 #define MSG_MEMORY_CONSTRAINT   "Insufficient Memory available"
 #define MSG_MSG_NOT_FOUND       "Selected message not found"
 #define SG_DELETE_CONFMN        "You are about to delete a signal.\n\nAre you sure you want to delete?"
@@ -426,11 +426,8 @@ This operation will convert the message code from 11 to 29 bits.\nDo you want to
 #define defSTR_SECTION_USB               "USB"
 #define defSTR_DRIVER_INFO               "Driver Version"
 
-#define defMSG_TIMER_START_FAILED  "Unable to start timer \"%s\" due to \
-system resource problem !!"
-#define defERROR_MSG_MAX_TIMER     "Maximum number of timer functions \
-supported are %d, you have %d timer functions. The last %d timer \
-function(s) is(are) ignored during initialisation."
+#define defMSG_TIMER_START_FAILED  "Unable to start timer \"%s\" due to system resource problem!"
+#define defERROR_MSG_MAX_TIMER     "Maximum number of timer functions supported are %d, you have %d timer functions. The last %d timer function(s) is(are) ignored during initialisation."
 #define defNUMBER_OF_TIMER        100
 #define defTIMER_HEADER_NAME    "Timer Handler Name"
 #define defSIZE_OF_IMAGE          25
@@ -479,10 +476,10 @@ Signal's byte order is set to Intel(Little-Endian) by default."
 
 
 #define CANMON_FN_HDR           "/* Start BUSMASTER generated function - \
-PLACE_HODLER_FOR_FUNCTIONNAME */"
+PLACE_HOLDER_FOR_FUNCTIONNAME */"
 
 #define CANMON_FN_FOOTER        "}/* End BUSMASTER generated function - \
-PLACE_HODLER_FOR_FUNCTIONNAME */"
+PLACE_HOLDER_FOR_FUNCTIONNAME */"
 
 #define CANMON_FN_PARTIAL_HDR   "/* Start BUSMASTER generated function - "
 
@@ -783,13 +780,13 @@ details since message length\nfor the selected message is zero!"
 #define defSTR_LOG_FILE_EXTENSION   "log"
 // Logging
 #define defLOGDLG_CAPTION           "Select Message Log File..."
-#define defLOGDLG_FILTER            "Message Log File(s)(*.log)|*.log||"
+#define defLOGDLG_FILTER            "Message log file(s) (*.log)|*.log||"
 #define ENTRY_LOGFILE               "MessageLogFile"
 #define defMSG_NAME                 "Message Name"
 #define defMSG_ID                   "Message ID"
 #define ENTRY_REPLAYFILE            "MessageReplayFile"
 #define def_DEFAULT_LOGFILENAME     "BUSMASTERLogFile.log"
-#define defNO_DATABASE_MSG_NAME     "The message \"%s\" is not defined  in database !!"
+#define defNO_DATABASE_MSG_NAME     "The message \"%s\" is not defined  in database!"
 
 // Use these hashdefines to check the return value if u are
 // tx'ing messages
@@ -1003,7 +1000,7 @@ and then restart the application."
 #define defFNS_INIT_FORMAT       "%s %s %s"
 #define defFNS_INIT_SIG_FORMAT   "%s\n\n%s.%s"
 #define defCHAR_EQUALS           '='
-#define defSIG_WATCH_DELETE_ERROR   "Error deleting Signal Watch List!!"
+#define defSIG_WATCH_DELETE_ERROR   "Error deleting Signal Watch List!"
 #define defIMPORT_WARNING   "Dissociation will clear Signal Watch List.\nDo you want to Clear the List?"
 
 #define defSTR_FORMAT_DISPLAY_DEC    "%-60s   [%16I64d]"
@@ -1020,13 +1017,6 @@ and then restart the application."
 #define defCOLOR_WHITE           RGB(255,255,255)
 #define defSTR_MSG_SIG_SEPERATER " -> "
 //#define defSTR_FORMAT_SW_LIST    "%s%s%s"
-
-//#define defSTR_SW_DELETE_ERROR   _("Error while deleting temporary list!!!")
-//#define defSTR_SW_DELETE_SIG_ERROR  _("Error while deleting Signal %s from Message %s !!!")
-//#define defSTR_SW_DELETE_SIG_MSGID_ERROR _("Error while deleting Signal %s from Message ID: %x !!!")
-//#define defSTR_SW_PARSE_ERROR    _("Parse Error in %s ")
-//#define defSTR_SW_SIGNAL_DETAIL_ERROR   _("Signal Not Found in the Database!!\nPlease remove the Signal")
-//#define defSTR_SW_SIGNAL_GENERIC_ERROR  _("Error showing Signal Details!!")
 
 #define defSTR_CLOSE_MENU_TEXT  "&Close"
 #define defSTR_SIGNAL_NAME      "Name"
@@ -1045,7 +1035,7 @@ and then restart the application."
 #define defSTR_ERROR_IN_TIMER_PROG "Exception occured in Timer Handler \"%s\""
 
 #define defSTR_ERROR_IN_MSG_HANDLER "Exception in Message Handler Execution\nPlease Unload the DLL"
-#define defSTR_THREAD_DEL_ERROR     "Exception while deleting Message Handler Thread!!"
+#define defSTR_THREAD_DEL_ERROR     "Exception while deleting Message Handler Thread!"
 
 #define defSTR_HEX_MODE "Name/ ID (in Hex)"
 #define defSTR_DEC_MODE "Name/ ID (in Dec)"
@@ -1129,8 +1119,6 @@ const int LENGTH_DATASTRING = 33;
 
 // These are all not required as it is already defined as defSTR_PHYSICAL_COLUMN
 // and defSTR_RAW_COLUMN
-//#define defSTR_SIGNAL_RAW_VALUE     _("Raw Value")
-//#define defSTR_SIGNAL_PHY_VALUE     _("Physical Value")
 #define defSTR_SIGNAL_UNIT          "Unit"
 #define def_SIG_NAME_COLUMN         0
 #define def_RAW_VALUE_COLUMN        1
@@ -1173,7 +1161,7 @@ const int LENGTH_DATASTRING = 33;
 #define defSTR_DIR_CREATE_FAILED        "Directory creation Failed. Please check the path: \"%s\""
 
 #define defSTR_INVALID_SIGNAL_DEFINITION    "%s has invalid signal definition"
-#define defSTR_DATABASE_CHECK_WARN          "Please check the database file!!"
+#define defSTR_DATABASE_CHECK_WARN          "Please check the database file!"
 
 
 
@@ -1375,7 +1363,7 @@ transmission is ON.\nDo you want to ignore the changes ?"
 
 #define defSTR_ENABLE             "Enable"
 #define defSTR_DISABLE            "Disable"
-#define defSTR_ELEMENT_NOT_FOUND    "Element not found in the list. Please remove dead elements!!"
+#define defSTR_ELEMENT_NOT_FOUND    "Element not found in the list. Please remove dead elements!"
 
 #define defMAX_ELEMENTS_COUNT       10
 #define defSTR_MAX_ELEMENTS_EXCEEDED_MSG    "Only 10 graph elements are supported. Please delete existing element to add new element"
@@ -1411,13 +1399,6 @@ transmission is ON.\nDo you want to ignore the changes ?"
 #define defDEFAULT_LINE_WIDTH           1
 #define defSELECTED_LINE_WIDTH          2
 
-// Color Picker
-//#define defSTR_DEFAULT_TEXT         _("Automatic")
-//#define defSTR_CUSTOM_TEXT          _("More Colours...")
-
-// Color Popup
-//#define defCOLOR_BOX_SIZE           18
-
 // Configuration
 #define defIMPORT_WARNING_GRAPH   "Dissociation will clear Graph element List for all buses.\nDo you want to Clear the List?"
 // Default values
@@ -1452,18 +1433,16 @@ transmission is ON.\nDo you want to ignore the changes ?"
 #define defSTR_BAUD_RATE_FORMAT     "Channel %-2d -> %s kbps"
 
 #define defSTR_EXPORT_DIALOG_CAPTION    "Select Export Filename..."
-//#define defSTR_CSV_FORMAT_SPECIFIER _("Comma Separated Values format (*.csv)|*.csv||")
-//#define defSTR_EXPORT_CREATE_SUCCESS _("CSV report successfully generated and saved at %s")
 #define defSTR_CSV_FILE_PATH_EMPTY      "Please enter valid CSV report file path"
 
 #define defSTR_REPORT_DIALOG_CAPTION    "Select Report Filename..."
-#define defSTR_HTML_FORMAT_SPECIFIER "HTML Report Format (*.html)|*.html||"
+#define defSTR_HTML_FORMAT_SPECIFIER "HTML report file(s) (*.html)|*.html||"
 #define defSTR_HTML_FORMAT           "html"
 #define defSTR_REPORT_CREATE_SUCCESS "HTML report successfully generated and saved at %s"
 #define defSTR_HTML_FILE_PATH_EMPTY      "Please enter valid HTML report file path"
 
 #define defSTR_BITMAP_DIALOG_CAPTION    "Select Picture Filename..."
-#define defSTR_BMP_FORMAT_SPECIFIER "Bitmap Picture Format (*.bmp)|*.bmp||"
+#define defSTR_BMP_FORMAT_SPECIFIER "Bitmap(s) (*.bmp)|*.bmp||"
 #define defSTR_BMP_FORMAT           "bmp"
 #define defSTR_bmp_FILE_PATH_EMPTY      "Please enter valid bitmap file path"
 
@@ -1532,7 +1511,7 @@ transmission is ON.\nDo you want to ignore the changes ?"
 #define defSTR_BUSOFF_STATE                 "Bus Off"
 #define defSTR_UNKNOWN_STATE                "Unknown"
 
-#define defSTR_CONTROL_NOT_REGISTERED_MSG  "Graph component is not installed properly. Please reinstall the application!!"
+#define defSTR_CONTROL_NOT_REGISTERED_MSG  "Graph component is not installed properly. Please reinstall the application!"
 
 /* - Hardware Interface Layer - */
 #define defSTR_MISSING_HARDWARE "Required number of hardware are not present\nRequired: %2d    Available: %2d"
@@ -1565,18 +1544,18 @@ transmission is ON.\nDo you want to ignore the changes ?"
 
 #define defSTR_CHANNEL_HEADING             "Channels"
 
-#define defSTR_NOT_SELECTED                "Not Selected !!"
-#define defSTR_NOT_IMPORTED                "Not Imported !!"
-#define defSTR_DLL_NOT_LOADED              "No Functions DLL loaded !!"
+#define defSTR_NOT_SELECTED                "Not Selected!"
+#define defSTR_NOT_IMPORTED                "Not Imported!"
+#define defSTR_DLL_NOT_LOADED              "No Functions DLL loaded!"
 
 #define defSTR_CHANNEL_ITEM_FORMAT         "Channel %-2d at %-9s Kbps"
 #define defSTR_CHANNEL_NOT_PRESENT         " (Not Active)"
 // Error strings
-#define defSTR_ERROR_GETTTING_BAUDRATE     "Error in getting Baudrate information !!"
-#define defSTR_ERROR_GETTTING_LOGINFO      "Error in getting Log file name !!"
-#define defSTR_ERROR_GETTTING_REPLAYINFO   "Error in getting Replay file name !!"
-#define defSTR_ERROR_GETTTING_DB_INFO      "Error in getting Active Database file name !!"
-#define defSTR_ERROR_GETTTING_DLL_INFO     "Error in getting Functions DLL loaded name !!"
+#define defSTR_ERROR_GETTTING_BAUDRATE     "Error in getting Baudrate information!"
+#define defSTR_ERROR_GETTTING_LOGINFO      "Error in getting Log file name!"
+#define defSTR_ERROR_GETTTING_REPLAYINFO   "Error in getting Replay file name!"
+#define defSTR_ERROR_GETTTING_DB_INFO      "Error in getting Active Database file name!"
+#define defSTR_ERROR_GETTTING_DLL_INFO     "Error in getting Functions DLL loaded name!"
 
 #define defVERSION_ICON_INDEX               0
 #define defCHANNEL_ICON_INDEX               1

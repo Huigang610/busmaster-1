@@ -181,7 +181,7 @@ public:
     INT m_nSendMsgJ1939LogCnt;
     CWaveformTransmitter m_ouWaveTransmitter;
     USHORT vCheckValidLogFiles(USHORT iCount);
-    BOOL bIsAtleastOneLoggingBlockEnabled(USHORT LogBlocks);
+    BOOL bIsAtLeastOneLoggingBlockEnabled(USHORT LogBlocks);
 
     //Get Message Window Thread
     inline CMsgWndThread* pGetMessageWndThread()

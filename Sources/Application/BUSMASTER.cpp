@@ -210,12 +210,12 @@ BOOL CCANMonitorApp::InitInstance()
     // Initialize OLE libraries
     if (!AfxOleInit())
     {
-        AfxMessageBox(_("Fail to Intilaize OLE"));
+        AfxMessageBox(_("Failed to initialize OLE"));
         return FALSE;
     }
     //CoInitializeEx(NULL, COINIT_MULTITHREADED );
 
-    CBusmasterDump dump(_("BUSMASTER"));
+    CBusmasterDump dump("BUSMASTER");
     // END CHANGES MADE FOR AUTOMATION
     // Enable OLE/ActiveX objects support
     AfxEnableControlContainer();
@@ -321,8 +321,8 @@ BOOL CCANMonitorApp::InitInstance()
     if(m_pouMsgSgInactive == NULL )
     {
         if(m_bFromAutomation==FALSE)
-            MessageBox(NULL,_(MSG_MEMORY_CONSTRAINT),
-                       _("BUSMASTER"), MB_OK|MB_ICONINFORMATION);
+            MessageBox(NULL, _(MSG_MEMORY_CONSTRAINT),
+                       "BUSMASTER", MB_OK|MB_ICONINFORMATION);
 
         ::PostQuitMessage(0);
     }
@@ -439,15 +439,10 @@ void CCANMonitorApp::WinHelp(DWORD dwData, UINT nCmd)
 
 int CCANMonitorApp::ExitInstance()
 {
-    if(g_hLibIntl)                  //free the multi language support library, intl.dll
-    {
-        FreeLibrary(g_hLibIntl);
-    }
     if (ghLangInst)
     {
         FreeLibrary( ghLangInst );
     }
-
 
     if (m_pouMsgSignal != NULL )
     {
@@ -684,10 +679,10 @@ void CCANMonitorApp::OnFileOpen()
                          "c",       // Default Extension,
                          m_omMRU_C_FileName,
                          OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-                         _("C File(s)(*.c)|*.c||"),
+                         _("C file(s) (*.c)|*.c||"),
                          NULL );
     // Set Title
-    fileDlg.m_ofn.lpstrTitle  = _("Select BUSMASTER Source Filename...");
+    fileDlg.m_ofn.lpstrTitle  = _("Select BUSMASTER source filename...");
 
     if ( IDOK == fileDlg.DoModal() )
     {
@@ -732,8 +727,8 @@ void CCANMonitorApp::OnFileOpen()
         }
         else
         {
-            MessageBox(NULL,_("Specified filename not found!"),
-                       _("BUSMASTER"),MB_OK|MB_ICONINFORMATION);
+            MessageBox(NULL, _("Specified filename not found!"),
+                       "BUSMASTER",MB_OK|MB_ICONINFORMATION);
         }
     }
 }
@@ -751,15 +746,22 @@ void CCANMonitorApp::vDisplayConfigErrMsgbox(UINT unErrorCode,
 
     if ( bOperation == defCONFIG_FILE_LOADING )
     {
-        omStrSuffixMessage = _(" while loading.\nOperation unsuccessful.");
+        omStrSuffixMessage = " ";
+		omStrSuffixMessage += _("while loading");
+		omStrSuffixMessage += ".\n";
+		omStrSuffixMessage += _("Operation unsuccessful.");
     }
     else if ( bOperation == defCONFIG_FILE_SAVING )
     {
-        omStrSuffixMessage = _(" while saving.\nOperation unsuccessful.");
+        omStrSuffixMessage = " ";
+		omStrSuffixMessage += _("while saving");
+		omStrSuffixMessage += ".\n";
+		omStrSuffixMessage += _("Operation unsuccessful.");
     }
     else
     {
-        omStrSuffixMessage = _(".\nOperation unsuccessful.");
+		omStrSuffixMessage += ".\n";
+        omStrSuffixMessage = _("Operation unsuccessful.");
     }
 
     // Get actual error message
@@ -833,9 +835,7 @@ void CCANMonitorApp::vDisplayConfigErrMsgbox(UINT unErrorCode,
 
         case defCONFIG_FILE_CORRUPT:
         {
-            m_omConfigErr = _("An attempt\
- to edit the file has been made from outside the application.\n\
-Corrupt configuration file found");
+            m_omConfigErr = _("An attempt to edit the file has been made from outside the application.\nCorrupt configuration file found");
         }
         break;
 
@@ -1165,13 +1165,15 @@ BOOL CCANMonitorApp::bInitialiseConfiguration(BOOL bFromCom)
 
                         if (_findfirst(omStrDatabase.GetBuffer(MAX_PATH) ,&fileinfo) == -1L)
                         {
-                            CString omStrMsg = _("Database File: ");
+                            CString omStrMsg = _("Database file:");
+							omStrMsg += " ";
                             omStrMsg += omStrDatabase;
-                            omStrMsg += _(" not found!");
+							omStrMsg += " ";
+                            omStrMsg += _("not found!");
 
                             if(bFromCom==FALSE)
                             {
-                                MessageBox(NULL,omStrMsg,_("BUSMASTER"),MB_OK|MB_ICONERROR);
+                                MessageBox(NULL, omStrMsg, "BUSMASTER", MB_OK|MB_ICONERROR);
                             }
 
                             // Remove the file name from configuration file.
@@ -1233,7 +1235,7 @@ BOOL CCANMonitorApp::bInitialiseConfiguration(BOOL bFromCom)
                 // Display a message and quit the application
                 MessageBox(NULL,
                            _(MSG_MEMORY_CONSTRAINT),
-                           _("BUSMASTER"),
+                           "BUSMASTER",
                            MB_OK|MB_ICONINFORMATION);
 
             bReturn = FALSE;
@@ -1283,7 +1285,7 @@ BOOL CCANMonitorApp::bGetDefaultValue(eCONFIGDETAILS /*eParam*/,
  * Since this function is asynchronous, caller should not immediately
  * deallocate the omText.
  */
-BOOL CCANMonitorApp::bWriteIntoTraceWnd(char* omText)
+bool CCANMonitorApp::bWriteIntoTraceWnd(const char * omText)
 {
     BOOL bResult = FALSE;
     CMainFrame* pMainFrame = static_cast<CMainFrame*> (m_pMainWnd);

@@ -114,7 +114,7 @@ void CValueDescriptionDlg::OnClickedOk()
     // Validate data
     if ( m_omStrDescriptor.IsEmpty() == TRUE )
     {
-        AfxMessageBox(_("Signal Description cannot be emtpy!"),MB_OK);
+        AfxMessageBox(_("Signal description cannot be emtpy!"),MB_OK);
         GetDlgItem(IDC_EDIT_VALUE_DESC)->SetFocus();
         bRetValue = FALSE;
     }
@@ -146,7 +146,7 @@ void CValueDescriptionDlg::OnClickedOk()
                             m_nIndex,
                             m_bMode))
                     {
-                        AfxMessageBox(_("Signal Descriptor already exists!"),MB_OK);
+                        AfxMessageBox(_("Signal description already exists!"),MB_OK);
                         GetDlgItem(IDC_EDIT_VALUE_DESC)->SetFocus();
                         bRetValue = FALSE;
                     }
@@ -164,7 +164,7 @@ void CValueDescriptionDlg::OnClickedOk()
                                 m_nIndex,
                                 m_bMode))
                         {
-                            AfxMessageBox(_("Signal Value already exists!"), MB_OK);
+                            AfxMessageBox(_("Signal value already exists!"), MB_OK);
                             GetDlgItem(IDC_EDIT_VAL )->SetFocus();
                             bRetValue = FALSE;
                         }
@@ -300,7 +300,7 @@ BOOL CValueDescriptionDlg::OnInitDialog()
 
     }
     CString strRange;
-    strRange.Format(_("(Decimal range %s To %s)"), strMinVal, strMaxVal);
+    strRange.Format(_("(Decimal range %s to %s)"), strMinVal, strMaxVal);
 
     GetDlgItem(IDC_STAT_RANGE)->SetWindowText(strRange);
 

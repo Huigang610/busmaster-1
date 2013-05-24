@@ -24,7 +24,6 @@
 #include "TSExecutorBase.h"
 #include "include/XMLDefines.h"
 #include "Utility/XMLUtils.h"
-//#include "../Application/GettextBusmaster.h"
 #include <Shlwapi.h>
 #include "Utility\UtilFunctions.h"
 #include "Utility/MultiLanguageSupport.h"
@@ -1224,13 +1223,13 @@ BOOL CTSExecutorLIB::bExecuteTestCase(CBaseEntityTA* pTCEntity, CResultTc& ouTes
         {
             case SEND:
             {
-                m_ompResultDisplayWnd->SetItemText(nCurrentRow, 1, _("Sending Messages Started"));
+                m_ompResultDisplayWnd->SetItemText(nCurrentRow, 1, _("Sending messages started"));
                 g_podTSExecutor->TSX_SendMessage(pEntity);
             }
             break;
             case VERIFY:
             {
-                m_ompResultDisplayWnd->SetItemText(nCurrentRow, 1, _("Verifying Started"));
+                m_ompResultDisplayWnd->SetItemText(nCurrentRow, 1, _("Verifying started"));
                 CResultVerify ouVerifyResult;
                 if(g_podTSExecutor->TSX_VerifyMessage(pEntity, ouVerifyResult) == S_FALSE)
                 {
@@ -1251,7 +1250,7 @@ BOOL CTSExecutorLIB::bExecuteTestCase(CBaseEntityTA* pTCEntity, CResultTc& ouTes
             break;
             case VERIFYRESPONSE:
             {
-                m_ompResultDisplayWnd->SetItemText(nCurrentRow, 1, _("VerifyRequest Started"));
+                m_ompResultDisplayWnd->SetItemText(nCurrentRow, 1, _("VerifyRequest started"));
                 CResultVerify ouVerifyResult;
                 if(g_podTSExecutor->TSX_VerifyResponse(pEntity, ouVerifyResult) == S_FALSE)
                 {

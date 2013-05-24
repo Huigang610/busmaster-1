@@ -27,7 +27,6 @@
 #include "MsgReplayWnd.h"
 #include <locale.h>
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 // Definition of CSplFileDlg class
 //#include "Utility/SplFileDlg.h"
 // For replay manager class declaration
@@ -555,7 +554,7 @@ void CMsgReplayWnd::SetWindowFont()
     LF.lfOutPrecision = OUT_CHARACTER_PRECIS;
     LF.lfClipPrecision = CLIP_CHARACTER_PRECIS;
     LF.lfPitchAndFamily  = FIXED_PITCH | FF_SWISS;
-    lstrcpy(LF.lfFaceName, _("Courier"));
+    lstrcpy(LF.lfFaceName, "Courier");
 
     LF.lfWeight = FW_NORMAL;
     if (m_omNewFont.CreateFontIndirect(&LF) == TRUE)

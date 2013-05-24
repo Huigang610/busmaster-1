@@ -172,7 +172,7 @@ BOOL CALLBACK EnumChildProc( HWND hwnd, LPARAM lParam )
                             if ( g_bReqUserConfirmation )
                             {
                                 g_bReqUserConfirmation = false;
-                                INT nSelection = ::MessageBox( hwnd, _("Simulation files have been modified. Do You Want to save the Changes?"), _("Modified"), MB_YESNO | MB_ICONQUESTION);
+                                INT nSelection = ::MessageBox( hwnd, _("Simulation files have been modified. Do you want to save the changes?"), _("Modified"), MB_YESNO | MB_ICONQUESTION);
 
                                 switch(nSelection)
                                 {

@@ -1,6 +1,5 @@
 #pragma once
 #include "FormatConverter_stdafx.h"
-//#include "GettextBusmaster.h"
 #include "../../Utility/MultiLanguageSupport.h"
 
 

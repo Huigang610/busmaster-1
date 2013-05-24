@@ -25,7 +25,6 @@
 #include "DataTypes_StdAfx.h"
 #include "Filter_Datatypes.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 const int SIZE_CHAR = sizeof(char);
 
@@ -134,11 +133,11 @@ void tagFilterName::pbGetConfigData(xmlNodePtr pFilterTag) const
     // Getting the Filter Type
     if(m_bFilterType == 1)
     {
-        omstrFilterType = _("PASS");
+        omstrFilterType = "PASS";
     }
     else
     {
-        omstrFilterType = _("STOP");
+        omstrFilterType = "STOP";
     }
 
 
@@ -213,7 +212,7 @@ INT tagFilterName::nSetXMLConfigData(xmlNodePtr pFilter)
     m_bFilterType = FALSE;
     while (pTempFilter != NULL)
     {
-        if ((!xmlStrcmp(pTempFilter->name, (const xmlChar*)_("Name"))))
+        if ((!xmlStrcmp(pTempFilter->name, (const xmlChar*) "Name")))
         {
             char* pcTemp = (char*)xmlNodeListGetString(pTempFilter->doc, pTempFilter->xmlChildrenNode, 1);
             if(pcTemp != NULL)
@@ -221,7 +220,7 @@ INT tagFilterName::nSetXMLConfigData(xmlNodePtr pFilter)
                 strcpy_s(m_acFilterName, 128, pcTemp);
             }
         }
-        if ((!xmlStrcmp(pTempFilter->name, (const xmlChar*)_("Type"))))
+        if ((!xmlStrcmp(pTempFilter->name, (const xmlChar*) "Type")))
         {
             m_bFilterType = nFilterType((char*)xmlNodeListGetString(pTempFilter->doc, pTempFilter->xmlChildrenNode, 1));
         }
@@ -239,7 +238,7 @@ INT tagFilterName::nSetXMLConfigData(xmlNodePtr pFilter)
 BOOL tagFilterName::nFilterType(string strFilteType)
 {
     m_bFilterType = FALSE;
-    if(strFilteType == _("PASS"))
+    if(strFilteType == "PASS")
     {
         m_bFilterType = TRUE;
     }
@@ -372,15 +371,15 @@ void tagSFILTER::pbGetConfigData(xmlNodePtr pxmlNodePtr) const
 
     omcStpId = omStpId;
 
-    CString omstrDir = _("ALL");
+    CString omstrDir = "ALL";
 
     if(m_eDrctn == DIR_RX)
     {
-        omstrDir = _("Rx");
+        omstrDir = "Rx";
     }
     else if(m_eDrctn == DIR_TX)
     {
-        omstrDir = _("Tx");
+        omstrDir = "Tx";
     }
 
 
@@ -435,11 +434,11 @@ BYTE* tagSFILTER::pbSetConfigData(BYTE* pbTarget)
 eDirection tagSFILTER::eGetMsgDirection(string strDirection)
 {
     eDirection eDir = DIR_ALL;
-    if(strDirection == _("Tx"))
+    if(strDirection == "Tx")
     {
         eDir = DIR_TX;
     }
-    if(strDirection == _("Rx"))
+    if(strDirection == "Rx")
     {
         eDir = DIR_RX;
     }
@@ -719,36 +718,36 @@ void SFILTER_CAN::pbGetConfigData(xmlNodePtr pNodePtr) const
 
     if(m_byIDType == TYPE_ID_CAN_EXTENDED)
     {
-        omstrIdType = _("EXT");
+        omstrIdType = "EXT";
     }
     else if(m_byIDType == TYPE_ID_CAN_ALL)
     {
-        omstrIdType = _("ALL");
+        omstrIdType = "ALL";
     }
     else if(m_byIDType == TYPE_ID_CAN_NONE)
     {
-        omstrIdType = _("NONE");
+        omstrIdType = "NONE";
     }
     else
     {
-        omstrIdType = _("STD");
+        omstrIdType = "STD";
     }
 
     if(m_byMsgType == TYPE_MSG_CAN_RTR)
     {
-        omstrMsgType = _("RTR");
+        omstrMsgType = "RTR";
     }
     else if(m_byMsgType == TYPE_MSG_CAN_ALL)
     {
-        omstrMsgType = _("ALL");
+        omstrMsgType = "ALL";
     }
     else if(m_byMsgType == TYPE_MSG_CAN_NONE)
     {
-        omstrMsgType = _("NONE");
+        omstrMsgType = "NONE";
     }
     else
     {
-        omstrMsgType = _("NONRTR");
+        omstrMsgType = "NONRTR";
     }
     xmlNodePtr pIdTypePtr = xmlNewChild(pFltrMsgPtr, NULL, BAD_CAST DEF_IDTYPE, BAD_CAST omstrIdType.GetBuffer(omstrIdType.GetLength()));
     xmlAddChild(pFltrMsgPtr, pIdTypePtr);
@@ -762,25 +761,11 @@ void SFILTER_CAN::pbGetConfigData(xmlNodePtr pNodePtr) const
 
     xmlNodePtr pChnlPtr = xmlNewChild(pFltrMsgPtr, NULL, BAD_CAST DEF_CHANNEL, BAD_CAST omStrChannel.GetBuffer(omStrChannel.GetLength()));
     xmlAddChild(pFltrMsgPtr, pChnlPtr);
-
-    /* COPY_DATA(pbTStream, &m_byIDType, sizeof(m_byIDType));
-     COPY_DATA(pbTStream, &m_byMsgType, sizeof(m_byMsgType));
-     COPY_DATA(pbTStream, &m_eChannel, sizeof(m_eChannel));*/
-
-    //return pbTStream;
 }
+
 void SFILTER_CAN::pbSetConfigData(xmlNodePtr xmlNodePtr)
 {
     vClear();
-
-    /*BYTE* pbTStream = pbTarget;
-
-    pbTStream = this->SFILTER::pbSetConfigData(pbTStream);
-    COPY_DATA_2(&m_byIDType, pbTStream, sizeof(m_byIDType));
-    COPY_DATA_2(&m_byMsgType, pbTStream, sizeof(m_byMsgType));
-    COPY_DATA_2(&m_eChannel, pbTStream, sizeof(m_eChannel));*/
-
-    /*  return pbTStream;*/
 }
 // PTV XML
 /******************************************************************************
@@ -815,11 +800,11 @@ BYTE* SFILTER_CAN::pbSetConfigData(BYTE* pbTarget)
 INT SFILTER_CAN::nGetIDType(string strIDType)
 {
     int nId = TYPE_ID_CAN_ALL;
-    if(strIDType == _("STD"))
+    if(strIDType == "STD")
     {
         nId = TYPE_ID_CAN_STANDARD;
     }
-    if(strIDType == _("EXT"))
+    if(strIDType == "EXT")
     {
         nId = TYPE_ID_CAN_EXTENDED;
     }
@@ -828,11 +813,11 @@ INT SFILTER_CAN::nGetIDType(string strIDType)
 INT SFILTER_CAN::nGetMsgType(string strMsgType)
 {
     int nId = TYPE_MSG_CAN_ALL;
-    if(strMsgType == _("RTR"))
+    if(strMsgType == "RTR")
     {
         nId = TYPE_MSG_CAN_RTR;
     }
-    if(strMsgType == _("NONRTR"))
+    if(strMsgType == "NONRTR")
     {
         nId = TYPE_MSG_CAN_NON_RTR;
     }

@@ -63,7 +63,7 @@ HRESULT CPluginManagerDLL::LoadConverter(CString& strFileName)
     ConverterInfo.m_hModule = LoadLibrary(strFileName);
     if ( !ConverterInfo.m_hModule )
     {
-        MessageBox(NULL, strFileName, _T("Plugin Loading Error"), MB_OK);
+        MessageBox(NULL, strFileName, _("Plugin loading error"), MB_OK);
     }
     else
     {

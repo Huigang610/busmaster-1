@@ -46,7 +46,7 @@ extern BOOL g_bStopSendMultMsg;
 extern HWND g_hMainGUI;
 
 extern long lThreadCount;
-extern BOOL gbSendStrToTrace(CHAR* pcOutStrTrace);
+extern bool gbSendStrToTrace(const char * pcOutStrTrace);
 extern BOOL g_bReadDllMsg;
 extern  CRITICAL_SECTION g_CritSectNodeBufferRead;
 

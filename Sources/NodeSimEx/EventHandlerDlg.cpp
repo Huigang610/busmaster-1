@@ -98,13 +98,13 @@ void CEventHandlerDlg::vAddEventHandlerFunction(const CString& omStrFuncName, co
 
     // Form the function header
     CString omStrHdr = BUS_FN_HDR;
-    omStrHdr.Replace("PLACE_HODLER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
-    omStrHdr.Replace("PLACE_HODLER_FOR_FUNCTIONNAME", omStrFuncName);
+    omStrHdr.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
+    omStrHdr.Replace("PLACE_HOLDER_FOR_FUNCTIONNAME", omStrFuncName);
 
     // Form the function footer
     CString omStrFooter = BUS_FN_FOOTER;
-    omStrFooter.Replace("PLACE_HODLER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
-    omStrFooter.Replace("PLACE_HODLER_FOR_FUNCTIONNAME", omStrFuncName);
+    omStrFooter.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
+    omStrFooter.Replace("PLACE_HOLDER_FOR_FUNCTIONNAME", omStrFuncName);
 
     m_pDoc->m_omSourceCodeTextList.AddTail( omStrHdr ); //Function header
     m_pDoc->m_omSourceCodeTextList.AddTail(omStrFuncPrototype );// Function definition

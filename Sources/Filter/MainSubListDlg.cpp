@@ -28,7 +28,7 @@
 #include "FilterWatchDefs.h"
 #include "MainSubListDlg.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
+
 // Critical Section for Signal Watch
 extern UINT unGetMainEntryIDFromName(CString omMsgName);
 /////////////////////////////////////////////////////////////////////////////
@@ -1037,7 +1037,7 @@ void CMainSubListDlg::OnRClickSelSubEntryList(NMHDR* /*pNMHDR*/, LRESULT* pResul
     vEnableDisableButtons();
 
     GetCursorPos(&point);
-    // Popup only if there is atleast one entry in the list
+    // Popup only if there is at least one entry in the list
     if( m_omListCtrlSignalWatch.GetItemCount() > 0)
     {
         if (omCtxMenu.LoadMenu(IDM_MENU_SIGNAL_WATCH))

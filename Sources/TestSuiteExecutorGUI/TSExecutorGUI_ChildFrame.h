@@ -29,7 +29,7 @@
 #include "TestSetupEditorLib/DataBaseMsgList.h"
 #include "Utility/XMLUtils.h"
 
-#define szFilter    "TestSetup Files (*.xml)|*.xml||"
+#define szFilter    "Test setup file(s) (*.xml)|*.xml||"
 
 
 class CTSExecutorChildFrame : public CMDIChildWnd

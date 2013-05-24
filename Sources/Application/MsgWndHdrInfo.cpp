@@ -20,7 +20,6 @@
  */
 #include "StdAfx.h"
 #include "MsgWndHdrInfo.h"
-//#include "GettextBusmaster.h"
 #include "Utility/MultiLanguageSupport.h"
 
 const int nInitialColCount = 7;

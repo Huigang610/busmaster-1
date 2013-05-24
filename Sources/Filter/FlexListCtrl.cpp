@@ -33,7 +33,6 @@
 #include "Utility/NumEdit.h"                // For Custom Numeric Edit control Impl
 #include "FlexListCtrl.h"           // Interface file for Flex List Control
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 // ID for Combobox
 #define IDC_CONTROL 0x12345
 

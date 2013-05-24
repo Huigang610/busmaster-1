@@ -321,8 +321,8 @@ void CKeyValue::OnCbtnKeyApply()
             {
                 omFunc += defGENERIC_KEY_HANDLER_TEXT;
             }
-            omSelectedText.Replace("PLACE_HODLER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
-            omSelectedText.Replace( "PLACE_HODLER_FOR_FUNCTIONNAME",
+            omSelectedText.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
+            omSelectedText.Replace( "PLACE_HOLDER_FOR_FUNCTIONNAME",
                                     omFunc );
             m_pDoc->m_omSourceCodeTextList.AddTail( omSelectedText );
             // Form the function prototype
@@ -356,8 +356,8 @@ void CKeyValue::OnCbtnKeyApply()
 
                 // Form the function footer
                 omSelectedText = BUS_FN_FOOTER;
-                omSelectedText.Replace("PLACE_HODLER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
-                omSelectedText.Replace( "PLACE_HODLER_FOR_FUNCTIONNAME",
+                omSelectedText.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
+                omSelectedText.Replace( "PLACE_HOLDER_FOR_FUNCTIONNAME",
                                         omFunc );
 
                 m_pDoc->m_omSourceCodeTextList.AddTail( omSelectedText );

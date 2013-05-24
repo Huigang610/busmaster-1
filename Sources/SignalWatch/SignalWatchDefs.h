@@ -43,12 +43,12 @@
 #define defSTR_MSG_SIG_SEPERATER " -> "
 #define defSTR_FORMAT_SW_LIST    "%s%s%s"
 #define defSIZE_OF_IMAGE         25
-#define defSTR_SW_DELETE_ERROR   "Error while deleting temporary list!!!"
-#define defSTR_SW_DELETE_SIG_ERROR  "Error while deleting Signal %s from Message %s !!!"
-#define defSTR_SW_DELETE_SIG_MSGID_ERROR "Error while deleting Signal %s from Message ID: %x !!!"
-#define defSTR_SW_PARSE_ERROR    "Parse Error in %s "
-#define defSTR_SW_SIGNAL_DETAIL_ERROR   "Signal Not Found in the Database!!\nPlease remove the Signal"
-#define defSTR_SW_SIGNAL_GENERIC_ERROR  "Error showing Signal Details!!"
+#define defSTR_SW_DELETE_ERROR   "Error while deleting temporary list!"
+#define defSTR_SW_DELETE_SIG_ERROR  "Error while deleting signal %s from message %s!"
+#define defSTR_SW_DELETE_SIG_MSGID_ERROR "Error while deleting signal %s from message ID: %x!"
+#define defSTR_SW_PARSE_ERROR    "Parse Error in %s"
+#define defSTR_SW_SIGNAL_DETAIL_ERROR   "Signal not found in the database!\nPlease remove the signal"
+#define defSTR_SW_SIGNAL_GENERIC_ERROR  "Error showing signal details!"
 #define defSTR_MSG_ID_IN_HEX          "[0x%x]"
 #define defMSGID_EXTENDED       'x'
 #define defMSGID_NAME_DELIMITER  "["

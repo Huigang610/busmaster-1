@@ -37,7 +37,6 @@
 #include "ParameterVal.h"
 #include "ValueTable.h"
 
-//#include "../FormatConverterApp/GettextBusmaster.h"
 #include "../../Utility/MultiLanguageSupport.h"
 
 using namespace std;

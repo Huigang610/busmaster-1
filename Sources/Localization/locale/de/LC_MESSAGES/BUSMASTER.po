@@ -1,0 +1,2991 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: BUSMASTER\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-24 19:25+0200\n"
+"PO-Revision-Date: 2013-05-24 19:28+0100\n"
+"Last-Translator: Tobias Lorenz <tobias.lorenz@etas.com>\n"
+"Language-Team:  <tobias.lorenz@etas.com>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+
+#: d:\busmaster\sources\application\application.cpp:239
+msgid "The function vInitializeCOMReadBuffer() failed."
+msgstr "Die Funktion vInitializeCOMReadBuffer() ist fehlgeschlagen."
+
+#: d:\busmaster\sources\application\busmaster.cpp:213
+msgid "Failed to initialize OLE"
+msgstr "Fehlschlag OLE zu initialisieren"
+
+#: d:\busmaster\sources\application\busmaster.cpp:682
+msgid "C file(s) (*.c)|*.c||"
+msgstr "C-Datei(en) (*.c)|*.c||"
+
+#: d:\busmaster\sources\application\busmaster.cpp:685
+#: d:\busmaster\sources\nodesimex\simsysdetview.cpp:607
+msgid "Select BUSMASTER source filename..."
+msgstr "Wähle BUSMASTER Quelldateiname..."
+
+#: d:\busmaster\sources\application\busmaster.cpp:730
+msgid "Specified filename not found!"
+msgstr "Angegebener Dateiname nicht gefunden!"
+
+#: d:\busmaster\sources\application\busmaster.cpp:750
+msgid "while loading"
+msgstr "während des Ladens"
+
+#: d:\busmaster\sources\application\busmaster.cpp:752
+#: d:\busmaster\sources\application\busmaster.cpp:759
+#: d:\busmaster\sources\application\busmaster.cpp:764
+msgid "Operation unsuccessful."
+msgstr "Operation nicht erfolgreich."
+
+#: d:\busmaster\sources\application\busmaster.cpp:757
+msgid "while saving"
+msgstr "während des Speicherns"
+
+#: d:\busmaster\sources\application\busmaster.cpp:772
+msgid "File error occured"
+msgstr "Dateifehler aufgetreten"
+
+#: d:\busmaster\sources\application\busmaster.cpp:778
+msgid "Configuration file not found"
+msgstr "Konfigurationsdatei nicht gefunden"
+
+#: d:\busmaster\sources\application\busmaster.cpp:784
+msgid "Unable to open configuration file"
+msgstr "Öffnen der Konfigurationsdatei nicht möglich"
+
+#: d:\busmaster\sources\application\busmaster.cpp:790
+msgid "Unable to read configuration file"
+msgstr "Lesen der Konfigurationsdatei nicht möglich"
+
+#: d:\busmaster\sources\application\busmaster.cpp:796
+msgid "Unable to write into configuration file"
+msgstr "Schreiben der Konfigurationsdatei nicht möglich"
+
+#: d:\busmaster\sources\application\busmaster.cpp:802
+msgid "Unable to close configuration file successfully"
+msgstr "Erfolgreiches Schließen der Konfigurationsdatei nicht möglich"
+
+#: d:\busmaster\sources\application\busmaster.cpp:808
+msgid "Invalid configuration file extension found"
+msgstr "Unzulässige Konfigurationsdateiendung gefunden"
+
+#: d:\busmaster\sources\application\busmaster.cpp:814
+msgid "Configuration file path not found"
+msgstr "Konfigurationsdateipfad nicht gefunden"
+
+#: d:\busmaster\sources\application\busmaster.cpp:820
+msgid "Configuration file access was denied"
+msgstr "Konfigurationsdateizugriff wurde verweigert"
+
+#: d:\busmaster\sources\application\busmaster.cpp:826
+msgid "Invalid file handle obtained"
+msgstr "Ungültigen Datei-Handle erhalten"
+
+#: d:\busmaster\sources\application\busmaster.cpp:832
+msgid "Specified drive not found"
+msgstr "Spezifisches Laufwerk nicht gefunden"
+
+#: d:\busmaster\sources\application\busmaster.cpp:838
+msgid ""
+"An attempt to edit the file has been made from outside the application.\n"
+"Corrupt configuration file found"
+msgstr ""
+"Ein Versuch die Datei außerhalb der Anwendung zu modifizieren wurde "
+"durchgeführt.\n"
+"Beschädigte Konfigurationsdatei gefunden"
+
+#: d:\busmaster\sources\application\busmaster.cpp:844
+msgid "Corrupt configuration file header found"
+msgstr "Beschädigter Konfigurationsdateikopf gefunden"
+
+#: d:\busmaster\sources\application\busmaster.cpp:850
+msgid "Unknown error encountered"
+msgstr "Unbekannter Fehler festgestellt"
+
+#: d:\busmaster\sources\application\busmaster.cpp:1168
+#: d:\busmaster\sources\application\mainfrm.cpp:1590
+#: d:\busmaster\sources\application\mainfrm.cpp:17275
+msgid "Database file:"
+msgstr "Datenbankdatei:"
+
+#: d:\busmaster\sources\application\busmaster.cpp:1172
+#: d:\busmaster\sources\application\mainfrm.cpp:1611
+#: d:\busmaster\sources\application\mainfrm.cpp:17295
+msgid "not found!"
+msgstr "nicht gefunden!"
+
+#: d:\busmaster\sources\application\busmasterdump.cpp:65
+msgid "Unhandled exception in BUSMASTER. Would you like to save a dump file?"
+msgstr ""
+"Unbehandlete Ausnahme in BUSMASTER. Wollen sie eine Dump-Datei speichern?"
+
+#: d:\busmaster\sources\application\busmasterdump.cpp:84
+msgid "Saved dump file to"
+msgstr "Abspeichern der Dump-Datei nach"
+
+#: d:\busmaster\sources\application\busmasterdump.cpp:91
+msgid "Failed to save dump file to"
+msgstr "Speichern der Dump-Datei fehlgeschlagen nach"
+
+#: d:\busmaster\sources\application\busmasterdump.cpp:101
+msgid "Failed to create dump file"
+msgstr "Erzeugen der Dump-Datei fehlgeschlagen"
+
+#: d:\busmaster\sources\application\configdata.cpp:57
+msgid "The configuration file is not compatible"
+msgstr "Die Konfigurationsdatei ist nicht kompatibel"
+
+#: d:\busmaster\sources\application\configdata.cpp:64
+msgid "The configuration file is not valid"
+msgstr "Die Konfigurationsdatei ist nicht gültig"
+
+#: d:\busmaster\sources\application\configdata.cpp:71
+msgid "Configuration file changed outside the application"
+msgstr "Konfigurationsdatei außerhalb der Anwendung geändert"
+
+#: d:\busmaster\sources\application\configdetails.cpp:1281
+msgid "Error while updating data"
+msgstr "Fehler beim Aktualisieren der Daten"
+
+#: d:\busmaster\sources\application\configdetails.cpp:4636
+msgid "Error while loading Signal Watch list!"
+msgstr "Fehler beim Laden der Signalbeobachtungsliste!!"
+
+#: d:\busmaster\sources\application\configdetails.cpp:4753
+msgid "Error while saving simulated system list!"
+msgstr "Fehler beim Speichern der Simulationssystemliste!!"
+
+#: d:\busmaster\sources\application\configdetails.cpp:4803
+msgid "Error while loading simulated system list!"
+msgstr "Fehler beim Laden der Simulationssystemliste!!"
+
+#: d:\busmaster\sources\application\configmsglogdlg.cpp:82
+msgid "Configure logging for CAN"
+msgstr "Konfiguration der CAN-Aufzeichnung"
+
+#: d:\busmaster\sources\application\configmsglogdlg.cpp:83
+msgid "Start on reception of ID 0x"
+msgstr "Start des Empfangs bei ID 0x"
+
+#: d:\busmaster\sources\application\configmsglogdlg.cpp:84
+msgid "Stop on reception of ID 0x"
+msgstr "Stopp des Empfangs bei ID 0x"
+
+#: d:\busmaster\sources\application\configmsglogdlg.cpp:91
+msgid "Configure logging for J1939"
+msgstr "Konfiguration der J1939-Aufzeichnung"
+
+#: d:\busmaster\sources\application\configmsglogdlg.cpp:92
+msgid "Start on reception of PGN 0x"
+msgstr "Start des Empfangs bei PGN 0x"
+
+#: d:\busmaster\sources\application\configmsglogdlg.cpp:93
+msgid "Stop on reception of PGN 0x"
+msgstr "Stop des Empfangs bei PGN0x"
+
+#: d:\busmaster\sources\application\configmsglogdlg.cpp:786
+#: d:\busmaster\sources\txwindow\txmsgblocksview.cpp:287
+#: d:\busmaster\sources\txwindow\txmsgblocksview.cpp:1029
+#: d:\busmaster\sources\txwindow\txmsgblocksview.cpp:1192
+#: d:\busmaster\sources\txwindow\txmsgblocksview.cpp:1843
+msgid "All"
+msgstr "Alle"
+
+#: d:\busmaster\sources\application\configmsglogdlg.cpp:874
+msgid "- Read only as logging is on"
+msgstr "- Nur lesen, da Aufzeichnung an ist"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:149
+msgid "BUSMASTER configuration file(s) (*.cfx)|*.cfx||"
+msgstr "BUSMASTER Konfigurationsdatei(en) (*.cfx)|*.cfx||"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:852
+msgid "Node Simulation"
+msgstr "Knotensimulation"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:853
+msgid "Message Window"
+msgstr "Nachrichtenfenster"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:854
+msgid "Main"
+msgstr "Haupt"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:855
+msgid "Configure"
+msgstr "Konfiguriere"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:857
+msgid "CAN Database"
+msgstr "CAN-Datenbank"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:888
+msgid "Failed to create status bar\n"
+msgstr "Erzeugen der Statusleiste fehlgeschlagen\n"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:1090
+msgid "Failed to create toolbar\n"
+msgstr "Erzeugen der Werkzeugleiste fehlgeschlagen\n"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:1193
+#: d:\busmaster\sources\application\mainfrm.cpp:17042
+#: d:\busmaster\sources\application\mainfrm.cpp:17100
+msgid ""
+"Are you sure you want to close the \n"
+"database that is already open?"
+msgstr ""
+"Sind sie sicher, dass sie die Datenbank schließen wollen,\n"
+"die bereits geöffnet ist?"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:1214
+#: d:\busmaster\sources\application\mainfrm.cpp:1575
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:735
+msgid "BUSMASTER CAN database file(s) (*.dbf)|*.dbf||"
+msgstr "BUSMASTER CAN Datenbankdatei(en) (*.dbf)|*.dbf||"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:1218
+msgid "Select BUSMASTER database filename..."
+msgstr "Wähle BUSMASTER Datenbankdateiname..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:1255
+#: d:\busmaster\sources\application\mainfrm.cpp:17154
+msgid ""
+"Specified database file is not found.\n"
+"Operation unsuccessful."
+msgstr ""
+"Angegebene Datenbankdatei nicht gefunden.\n"
+"Operation nicht erfolgreich."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:1274
+#: d:\busmaster\sources\application\mainfrm.cpp:2158
+#: d:\busmaster\sources\application\mainfrm.cpp:17074
+#: d:\busmaster\sources\application\mainfrm.cpp:17172
+#: d:\busmaster\sources\application\msgsignaldbwnd.cpp:176
+msgid "Database Editor"
+msgstr "Datenbankeditor"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:1280
+#: d:\busmaster\sources\application\mainfrm.cpp:2163
+#: d:\busmaster\sources\application\mainfrm.cpp:17078
+msgid "Create BUSMASTER database window failed!"
+msgstr "Erzeugung des BUSMASTER Datenbankfensters fehlgeschlagen!"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:1385
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:158
+msgid "Do you want to save changes to the database file?"
+msgstr "Wollen sie die Änderungen in die Datenbankdatei speichern?"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:1579
+#: d:\busmaster\sources\application\mainfrm.cpp:17264
+msgid "Select active database filename..."
+msgstr "Wähle aktiven Datenbankdateinamen..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:2096
+msgid "New database file name..."
+msgstr "Neuer Datenbankdateiname..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:2205
+msgid "BUSMASTER CAN database file(s) (*.dbf) |*.dbf||"
+msgstr "BUSMASTER CAN Datenbankdatei(en) (*.dbf)|*.dbf||"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:2209
+msgid "Save as..."
+msgstr "Speichern unter..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:2324
+#, c-format
+msgid ""
+"File \"%s\" has been modified which is currently being loaded.\n"
+"Do you want to re-import it to reflect the changes?"
+msgstr ""
+"Die Datei \"%s\" wurden modifiziert, die gerade geladen ist.\n"
+"Wollen sie sie reimportieren, um Änderungen zu übernehmen?"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:2369
+msgid "Configure Message Display - CAN"
+msgstr "Konfiguration der CAN-Aufzeichnung"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:2574
+#: d:\busmaster\sources\application\mainfrm.cpp:17411
+#: d:\busmaster\sources\application\mainfrm.cpp:17436
+msgid "The following file(s) are either not properly build or loaded:"
+msgstr ""
+"Die folgenden Datei(en) wurden entweder nicht ordentlich erzeugt oder "
+"geladen:"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:2718
+msgid "The following file(s) are not properly build:"
+msgstr "Die folgenden Datei(en) wurden nicht ordentlich erzeugt:"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:2856
+#: d:\busmaster\sources\application\mainfrm.cpp:17362
+msgid "The following file(s) are not properly loaded:"
+msgstr "Die folgenden Datei(en) wurden nicht ordentlich geladen:"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:3059
+#: d:\busmaster\sources\application\mainfrm.cpp:3091
+#: d:\busmaster\sources\application\mainfrm.cpp:17386
+msgid "The following file(s) are not properly unloaded:"
+msgstr "Die folgenden Datei(en) wurden nicht ordentlich entladen:"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:4540
+#: d:\busmaster\sources\application\mainfrm.cpp:4581
+msgid ""
+"You have made changes to the configuration.\n"
+"Do you want to save it?"
+msgstr ""
+"Sie haben Änderungen an der Konfiguration vorgenommen.\n"
+"Wollen sie diese speichern?"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:4552
+msgid "Save Configuration File"
+msgstr "Speichere Konfigurationsdatei"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:6939
+msgid "Default configuration loaded"
+msgstr "Ungültige Standardkonfiguration"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:6944
+#: d:\busmaster\sources\application\mainfrm.cpp:6950
+#, c-format
+msgid "Config file: %s"
+msgstr "Konfigurationsdatei: %s"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:7576
+msgid "Trying to connect the hardware... Please wait"
+msgstr "Versuche die Hardware zu verbinden... Bitte warten"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:7580
+msgid "Connected..."
+msgstr "Verbunden..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:7585
+msgid "Failed to connect the hardware..."
+msgstr "Verbindung der Hardware fehlgeschlagen..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:7586
+msgid "Failed to start the hardware"
+msgstr "Starten der Hardware fehlgeschlagen"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:7936
+msgid "Load"
+msgstr "Laden"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:7937
+msgid "Load configuration filename..."
+msgstr "Lade Konfigurationsdateiname..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:8005
+msgid "Open"
+msgstr "Öffnen"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:8007
+msgid "New configuration filename..."
+msgstr "Neuer Konfigurationsdateiname..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:8112
+msgid "Save configuration file"
+msgstr "Speichere Konfigurationsdatei"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:8172
+msgid "Save configuration filename..."
+msgstr "Speichere Konfigurationsdateiname..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:11204
+#: d:\busmaster\sources\application\mainfrm.cpp:11268
+#: d:\busmaster\sources\format
+#: converter\formatconverterapp\formatconverterapp.cpp:90
+msgid "BUSMASTER Format Conversions"
+msgstr "BUSMASTER Formatkonvertierer"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:11472
+msgid "registering client failed"
+msgstr "Registrierung des Klienten fehlgeschlagen"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:11479
+msgid "Selecting hardware interface failed"
+msgstr "Auswählen der Hardwareschnittstelle fehlgeschlagen"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:11488
+msgid "Hardware selection cancelled. Retaining previous hardware settings.."
+msgstr ""
+"Hardwareselektion fehlgeschlagen. Behalte vorherige Hardwareeinstellungen..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:11495
+msgid "Listing hardware interfaces failed"
+msgstr "Auflisten der Hardwareschnittstellen fehlgeschlagen"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:11505
+msgid "Driver selection failed"
+msgstr "Treiberselektion fehlgeschlagen"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:11591
+#, c-format
+msgid "%s - %s - %.3f Kbps (Allowed channels: %d)"
+msgstr "%s - %s - %.3f Kbps (Gültige Kanäle: %d)"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:12195
+#: d:\busmaster\sources\application\mainfrm.cpp:12209
+#: d:\busmaster\sources\application\mainfrm.cpp:12222
+#: d:\busmaster\sources\application\mainfrm.cpp:12237
+#: d:\busmaster\sources\application\mainfrm.cpp:12252
+#: d:\busmaster\sources\application\mainfrm.cpp:12267
+#: d:\busmaster\sources\application\mainfrm.cpp:12305
+#: d:\busmaster\sources\application\mainfrm.cpp:12316
+#: d:\busmaster\sources\application\mainfrm.cpp:12331
+#: d:\busmaster\sources\application\mainfrm.cpp:13116
+#: d:\busmaster\sources\application\mainfrm.cpp:13133
+#: d:\busmaster\sources\application\mainfrm.cpp:13152
+#: d:\busmaster\sources\application\mainfrm.cpp:13171
+#: d:\busmaster\sources\application\mainfrm.cpp:13191
+#: d:\busmaster\sources\application\mainfrm.cpp:13212
+#: d:\busmaster\sources\application\mainfrm.cpp:13251
+#: d:\busmaster\sources\application\mainfrm.cpp:13270
+#: d:\busmaster\sources\application\mainfrm.cpp:13288
+msgid "True"
+msgstr "Richtig"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:12199
+#: d:\busmaster\sources\application\mainfrm.cpp:12213
+#: d:\busmaster\sources\application\mainfrm.cpp:12226
+#: d:\busmaster\sources\application\mainfrm.cpp:12241
+#: d:\busmaster\sources\application\mainfrm.cpp:12256
+#: d:\busmaster\sources\application\mainfrm.cpp:12271
+#: d:\busmaster\sources\application\mainfrm.cpp:12301
+#: d:\busmaster\sources\application\mainfrm.cpp:12320
+#: d:\busmaster\sources\application\mainfrm.cpp:12335
+#: d:\busmaster\sources\application\mainfrm.cpp:13112
+#: d:\busmaster\sources\application\mainfrm.cpp:13129
+#: d:\busmaster\sources\application\mainfrm.cpp:13148
+#: d:\busmaster\sources\application\mainfrm.cpp:13167
+#: d:\busmaster\sources\application\mainfrm.cpp:13186
+#: d:\busmaster\sources\application\mainfrm.cpp:13207
+#: d:\busmaster\sources\application\mainfrm.cpp:13255
+#: d:\busmaster\sources\application\mainfrm.cpp:13274
+#: d:\busmaster\sources\application\mainfrm.cpp:13292
+msgid "False"
+msgstr "Falsch"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:12282
+#: d:\busmaster\sources\application\mainfrm.cpp:13228
+msgid "System"
+msgstr "System"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:12286
+#: d:\busmaster\sources\application\mainfrm.cpp:13232
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:763
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:773
+msgid "Absolute"
+msgstr "Absolut"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:12290
+#: d:\busmaster\sources\application\mainfrm.cpp:13236
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:764
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:769
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1351
+msgid "Relative"
+msgstr "Relativ"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:14700
+msgid "English"
+msgstr "Englisch"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16195
+msgid "CreatePopupMenu for driver selection failed"
+msgstr "CreatePopupMenu für Treiberselektion fehlgeschlagen"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16200
+msgid "New CMenu() failed"
+msgstr "Neues CMenu() fehlgeschlagen"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16207
+msgid "&Hardware"
+msgstr "&Hardware"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16211
+msgid "GetSubMenu(\"&Hardware\") failed"
+msgstr "GetSubMenu(\"&Hardware\") fehlgeschlagen"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16218
+msgid "&Hardware Interface"
+msgstr "&Hardwareschnittstelle"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16223
+msgid "Could not create DIL menu items"
+msgstr "Konnte die DIL-Menueinträge nicht erzeugen"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16463
+msgid "The function vInitializeGraphWndReadBuffer() failed."
+msgstr "Die Funktion vInitializeGraphWndReadBuffer() ist fehlgeschlagen."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16592
+msgid "&Activate"
+msgstr "&Aktivieren"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16596
+msgid "Deac&tivate"
+msgstr "Deak&tivieren"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16625
+msgid "DIL.J1939 network started..."
+msgstr "DIL.J1939-Netzwerk gestartet..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16646
+msgid "Network startup failed. Select a valid hardware interface."
+msgstr ""
+"Hochfahren des Netzwerks fehlgeschlagen. Wähle eine gültige "
+"Hardwareschnittstelle."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16658
+msgid "DIL.J1939 network stopped..."
+msgstr "DIL.J1939-Netzwerk gestopped..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16689
+msgid "&Go Offline"
+msgstr "&Gehe offline"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16693
+msgid "&Go Online"
+msgstr "&Gehe online"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16794
+msgid "Querying DIL.J1939 ..."
+msgstr "Abfragen DIL.J1939 ..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16797
+msgid "DIL.J1939 query successful..."
+msgstr "DIL.J1939-Abfrage erfolgreich..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16805
+msgid "DIL.J1939 initialisation successful..."
+msgstr "DIL.J1939-Initialisierung erfolgreich..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16830
+msgid "DIL.J1939 initialisation failed..."
+msgstr "DIL.J1939-Initialisierung fehlgeschlagen..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16835
+msgid "DIL.J1939 client registration successful..."
+msgstr "DIL.J1939-Klientenregistierung fehlgeschlagen..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16839
+msgid "J1939 logger query successful..."
+msgstr "J1939-Aufzeichnerabfrage fehlgeschlagen..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16853
+msgid "J1939 logger successfully initialised..."
+msgstr "J1939-Aufzeichner erfolgreich initialisiert..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16858
+msgid "J1939 logger initialisation failed..."
+msgstr "J1939-Aufzeichnerinitialisierung fehlgeschlagen..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16863
+msgid "J1939 logger query failed..."
+msgstr "J1939-Aufzeichnerabfrage fehlgeschlagen..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16868
+msgid "DIL.J1939 client registration failed..."
+msgstr "DIL.J1939-Klientenregistrierung fehlgeschlagen..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16873
+msgid "Query of DIL.J1939 failed..."
+msgstr "Abfrage der DIL.J1939 fehlgeschlagen..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16887
+msgid "Stopping J1939 logging..."
+msgstr "Stoppe J1939-Aufzeichnung..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16890
+msgid "Stopping J1939 logging failed..."
+msgstr "Stoppen der J1939-Aufzeichnung fehlgeschlagen..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16907
+msgid "Going offline..."
+msgstr "Gehe offline..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16910
+msgid "Going offline failed..."
+msgstr "Offlinegehen fehlgeschlagen..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16914
+msgid "Uninitialising DIL.J1939..."
+msgstr "Deinitialisiere DIL.J1939..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16922
+msgid "Uninitialising DIL.J1939 failed..."
+msgstr "Deinitialisierung der DIL.J1939 fehlgeschlagen..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:16927
+msgid "Done..."
+msgstr "Fertig..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:17116
+#: d:\busmaster\sources\application\mainfrm.cpp:17260
+msgid "BUSMASTER J1939 database file(s) (*.dbf)|*.dbf||"
+msgstr "BUSMASTER J1939 Datenbankdatei(en) (*.dbf)|*.dbf||"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:17119
+msgid "Select J1939 database filename..."
+msgstr "Wähle J1939 Datenbankdateiname..."
+
+#: d:\busmaster\sources\application\mainfrm.cpp:17178
+msgid "Create J1939 database window failed!"
+msgstr "Erzeugung des J1939 Datenbankfensters fehlgeschlagen!"
+
+#: d:\busmaster\sources\application\mainfrm.cpp:17618
+msgid "Configure Message Display - J1939"
+msgstr "Konfiguriere Nachrichtenfenster - J1939"
+
+#: d:\busmaster\sources\application\messagedetailsdlg.cpp:183
+#, c-format
+msgid "Please enter integer between 0 and %d"
+msgstr "Bitte Integer zwischen 0 und %d eingeben"
+
+#: d:\busmaster\sources\application\messagedetailsdlg.cpp:193
+msgid "Message Name cannot be empty!"
+msgstr "Nachrichtsname kann nicht leer sein!"
+
+#: d:\busmaster\sources\application\messagedetailsdlg.cpp:215
+msgid "cannot be empty!"
+msgstr "kann nicht leer sein!"
+
+#: d:\busmaster\sources\application\messagedetailsdlg.cpp:239
+#: d:\busmaster\sources\application\messagedetailsdlg.cpp:258
+#: d:\busmaster\sources\application\messagedetailsdlg.cpp:270
+msgid "Invalid message ID!"
+msgstr "Ungültige Nachrichten-ID!"
+
+#: d:\busmaster\sources\application\messagedetailsdlg.cpp:310
+msgid ""
+"You have signals defined for this message for previous message length.\n"
+"Reducing message length will delete redundent signals and associated "
+"description\n"
+"defined for this message. Do you want to delete these signals?\n"
+"\n"
+"Select \"Yes\" to delete the signal(s) and to accept new message length "
+"value.\n"
+"Select \"No\" to retain the previous message length."
+msgstr ""
+"Sie haben Signale für diese Nachricht für die vorherige Nachrichtenlänge "
+"definiert.\n"
+"Reduzierung der Nachrichtenlänge wird redundante Signale oder darauf "
+"bezogene Beschreibungen\n"
+"für diese Nachricht löschen. Wollen sie diese Signale löschen?\n"
+"\n"
+"Selektieren sie \"Ja\", um die Signal(e) zu löschen und den neuen "
+"Nachrichtenlängenwert zu akzeptieren.\n"
+"Selektieren sie \"Nein\", um die vorherige Nachrichtenlänge beizubehalten."
+
+#: d:\busmaster\sources\application\messagedetailsdlg.cpp:319
+msgid "Could not delete the signals..."
+msgstr "Kann die Signale nicht löschen..."
+
+#: d:\busmaster\sources\application\messagedetailsdlg.cpp:349
+msgid "Duplicate message name found!"
+msgstr "Duplizierter Nachrichtenname gefunden!"
+
+#: d:\busmaster\sources\application\messagedetailsdlg.cpp:391
+msgid "Duplicate message code found!"
+msgstr "Duplizierter Nachrichtenkode gefunden!"
+
+#: d:\busmaster\sources\application\messagedetailsdlg.cpp:466
+#: d:\busmaster\sources\application\msgsgdetview.cpp:846
+#: d:\busmaster\sources\application\msgsgdetview.cpp:1001
+#: d:\busmaster\sources\application\msgsgdetview.cpp:1070
+#: d:\busmaster\sources\application\msgsgdetview.cpp:2350
+msgid "Could not update the changes..!"
+msgstr "Kann die Änderungen nicht aktualisieren..!"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:382
+msgid "Not able to create the list control."
+msgstr "Es ist nicht möglich die Listenkontrolle zu erzeugen."
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1650
+msgid "Unable to Allocate Memory."
+msgstr "Speicherallokation nicht möglich."
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1858
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1906
+msgid "Time"
+msgstr "Zeit"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1860
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1923
+msgid "Tx/Rx"
+msgstr "Tx/Rx"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1862
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1908
+#: d:\busmaster\sources\can_ixxat_vci\hardwarelisting.cpp:42
+#: d:\busmaster\sources\can_kvaser_can\hardwarelisting.cpp:41
+#: d:\busmaster\sources\can_kvaser_can\contrconfigpeakusbdefs.h:38
+#: d:\busmaster\sources\can_vector_xl\hardwarelisting.cpp:42
+#: d:\busmaster\sources\can_vector_xl\contrconfigpeakusbdefs.h:38
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:270
+msgid "Channel"
+msgstr "Kanal"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1864
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1916
+#: d:\busmaster\sources\application\msgsgdetview.cpp:231
+#: d:\busmaster\sources\siggrphwnd\graphbottomview.cpp:257
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:104
+msgid "Type"
+msgstr "Typ"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1865
+msgid "ID"
+msgstr "ID"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1867
+msgid "Message"
+msgstr "Nachricht"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1869
+msgid "Msg Type"
+msgstr "Nachr.-Typ"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1870
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1925
+msgid "DLC"
+msgstr "DLC"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1872
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1927
+msgid "Data Byte(s)"
+msgstr "Datenbyte(s)"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1910
+msgid "CAN ID"
+msgstr "CAN ID"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1912
+msgid "PGN"
+msgstr "PGN"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1914
+msgid "PGN Name"
+msgstr "PGN-Name"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1918
+msgid "Src"
+msgstr "Quelle"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1920
+msgid "Dest"
+msgstr "Ziel"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:1922
+msgid "Priority"
+msgstr "Priorität"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:2010
+msgid "bl"
+msgstr "bl"
+
+#: d:\busmaster\sources\application\msgfrmtwnd.cpp:2343
+#, c-format
+msgid "Error code: %X"
+msgstr "Fehlerkode: %X"
+
+#: d:\busmaster\sources\application\msgidattr.cpp:130
+#: d:\busmaster\sources\filter\filterconfigdlg.cpp:1410
+msgid "Invalid message ID"
+msgstr "Ungültige Nachrichten-ID"
+
+#: d:\busmaster\sources\application\msgidattr.cpp:142
+msgid "Duplicate message ID"
+msgstr "Doppelte Nachrichten-ID"
+
+#: d:\busmaster\sources\application\msgidattr.cpp:166
+msgid "Invalid message string"
+msgstr "Ungültige Nachrichtenzeichenkette"
+
+#: d:\busmaster\sources\application\msgidattr.cpp:229
+msgid "Add Message Display Attributes"
+msgstr "Hinzufügen von Nachrichtenanzeigeattributen"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:191
+msgid "MMI: CMainFrame::OnCreate() Could not create font for Combo Box\n"
+msgstr ""
+"MMI: CMainFrame::OnCreate() konnte Schriftart für Kombinationsbox nicht "
+"erzeugen\n"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:206
+#: d:\busmaster\sources\nodesimex\simsysdetview.cpp:962
+msgid "Name"
+msgstr "Name"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:212
+msgid "Byte Index"
+msgstr "Byteindex"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:219
+msgid "Bit No"
+msgstr "Bit-Nr"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:225
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:3403
+msgid "Length"
+msgstr "Länge"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:237
+msgid "Max Val"
+msgstr "Max.-Wert"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:243
+msgid "Min Val"
+msgstr "Min.-Wert"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:249
+msgid "Offset"
+msgstr "Versatz"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:255
+msgid "Scale Fac"
+msgstr "Skalierungsfak."
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:261
+msgid "Unit"
+msgstr "Einheit"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:266
+msgid "Byte Order"
+msgstr "Bytereihenfolge"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:277
+msgid "Signal Description"
+msgstr "Signalbeschreibung"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:283
+msgid "Signal Value"
+msgstr "Signalwert"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:340
+#: d:\busmaster\sources\can_kvaser_can\contrconfigpeakusbdefs.h:57
+#: d:\busmaster\sources\can_vector_xl\contrconfigpeakusbdefs.h:57
+msgid "Extended"
+msgstr "Erweitert"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:344
+#: d:\busmaster\sources\can_kvaser_can\contrconfigpeakusbdefs.h:56
+#: d:\busmaster\sources\can_vector_xl\contrconfigpeakusbdefs.h:56
+msgid "Standard"
+msgstr "Standard"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:828
+msgid "Duplicate message name!"
+msgstr "Duplizierter Nachrichtenname!"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:965
+msgid "Duplicate message id!"
+msgstr "Duplizierte Nachrichten-ID!"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:986
+msgid "Invalid Hexadecimal Number!"
+msgstr "Ungültige Hexadezimalnummer!"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:1511
+msgid ""
+"Changing Signal Range will delete invalid signal description(s)\n"
+"Do you want to continue?"
+msgstr ""
+"Änderung des Signalbereichs wird ungültige Signalbeschreibung(en) löschen\n"
+"Wollen sie fortfahren?"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:1648
+msgid "Double click on the list item to select the signal details dialog"
+msgstr ""
+"Doppelklicken auf den Listeneintrag um den Signaldetailsdialog zu selektieren"
+
+#: d:\busmaster\sources\application\msgsgdetview.cpp:2142
+msgid "No signal description selected!"
+msgstr "Keine Signalbeschreibung selektiert!"
+
+#: d:\busmaster\sources\application\msgsgtreeview.cpp:570
+msgid "Could not delete seleceted message!"
+msgstr "Kann die selektierte Datei nicht löschen!"
+
+#: d:\busmaster\sources\application\msgsignal.cpp:395
+#: d:\busmaster\sources\testsetupeditorlib\databasemsglist.cpp:804
+msgid "Database filename is empty."
+msgstr "Datenbankdateiname ist leer."
+
+#: d:\busmaster\sources\application\msgsignal.cpp:410
+#: d:\busmaster\sources\application\msgsignal.cpp:426
+#: d:\busmaster\sources\testsetupeditorlib\databasemsglist.cpp:824
+msgid "Invalid database filename"
+msgstr "Ungültiger Datenbankdateiname"
+
+#: d:\busmaster\sources\application\msgsignal.cpp:1186
+msgid "created successfully."
+msgstr "erfolgreich erzeugt."
+
+#: d:\busmaster\sources\application\msgsignal.cpp:1419
+msgid "is not created for CAN. Please load CAN related DBF file."
+msgstr ""
+"ist nicht für CAN erzeugt. Bitte laden sie eine auf CAN bezogene DBF-Datei."
+
+#: d:\busmaster\sources\application\msgsignal.cpp:1430
+msgid "is not created for J1939. Please load J1939 related DBF file."
+msgstr ""
+"ist nicht für J1939 erzeugt. Bitte laden sie eine auf J1939 bezogene DBF-"
+"Datei."
+
+#: d:\busmaster\sources\application\msgsignal.cpp:1536
+#: d:\busmaster\sources\application\msgsignal.cpp:1560
+#: d:\busmaster\sources\application\msgsignal.cpp:1596
+#: d:\busmaster\sources\application\msgsignal.cpp:1619
+#: d:\busmaster\sources\application\msgsignal.cpp:1643
+#: d:\busmaster\sources\application\msgsignal.cpp:1656
+#: d:\busmaster\sources\application\msgsignal.cpp:1677
+#: d:\busmaster\sources\application\msgsignal.cpp:1745
+#: d:\busmaster\sources\application\msgsignal.cpp:1767
+#: d:\busmaster\sources\application\msgsignal.cpp:1788
+#: d:\busmaster\sources\application\msgsignal.cpp:1812
+#: d:\busmaster\sources\application\msgsignal.cpp:1837
+#: d:\busmaster\sources\application\msgsignal.cpp:1867
+#: d:\busmaster\sources\application\msgsignal.cpp:1898
+#: d:\busmaster\sources\application\msgsignal.cpp:1930
+#: d:\busmaster\sources\application\msgsignal.cpp:1956
+#: d:\busmaster\sources\application\msgsignal.cpp:1982
+#: d:\busmaster\sources\application\msgsignal.cpp:2073
+#: d:\busmaster\sources\testsetupeditorlib\databasemsglist.cpp:210
+#: d:\busmaster\sources\testsetupeditorlib\databasemsglist.cpp:231
+#: d:\busmaster\sources\testsetupeditorlib\databasemsglist.cpp:252
+#: d:\busmaster\sources\testsetupeditorlib\databasemsglist.cpp:271
+#: d:\busmaster\sources\testsetupeditorlib\databasemsglist.cpp:291
+#: d:\busmaster\sources\testsetupeditorlib\databasemsglist.cpp:299
+#: d:\busmaster\sources\testsetupeditorlib\databasemsglist.cpp:316
+msgid "Database file corrupted"
+msgstr "Datenbankdatei beschädigt"
+
+#: d:\busmaster\sources\application\msgsignal.cpp:2192
+#: d:\busmaster\sources\application\msgsignal.cpp:2593
+#: d:\busmaster\sources\testsetupeditorlib\databasemsglist.cpp:758
+#, c-format
+msgid "Error in opening %s database file"
+msgstr "Fehler beim Öffnen der Datenbankdatei %s"
+
+#: d:\busmaster\sources\application\msgsignal.cpp:2234
+msgid "is an invalid DBF file."
+msgstr "ist eine ungültige DBF-Datei."
+
+#: d:\busmaster\sources\application\msgsignal.cpp:2238
+msgid ""
+"is not created for CAN. Since one of the message length exceeds 8 bytes."
+msgstr ""
+"wurde nicht für CAN generiert, da eine der Nachrichtenlängen 8 Bytes "
+"überschreitet."
+
+#: d:\busmaster\sources\application\msgsignal.cpp:2922
+#: d:\busmaster\sources\application\msgsignal.cpp:3369
+#: d:\busmaster\sources\application\msgsignal.cpp:3466
+#: d:\busmaster\sources\application\msgsignal.cpp:3562
+#: d:\busmaster\sources\application\msgsignal.cpp:3693
+msgid "Insufficient Data"
+msgstr "Unzureichende Daten"
+
+#: d:\busmaster\sources\application\msgsignal.cpp:2963
+msgid "Invalid message code"
+msgstr "Ungültiger Nachrichtenkode"
+
+#: d:\busmaster\sources\application\msgsignaldbwnd.cpp:375
+#, c-format
+msgid ""
+"File  \"%s\"  has been modified which is currently being loaded.\n"
+"Do you want to re-import it to reflect the changes?"
+msgstr ""
+"Datei  \"%s\"  wurde modifiziert, die gerade geladen wurde.\n"
+"Wollen sie reimportieren, um die Änderungen zu übernehmen?"
+
+#: d:\busmaster\sources\application\notificwnd.cpp:127
+#: d:\busmaster\sources\replay\msgreplaywnd.cpp:567
+msgid "Font creation unsuccessful"
+msgstr "Zeichensatzerzeugung nicht erfolgreich"
+
+#: d:\busmaster\sources\application\notificwnd.cpp:256
+msgid "Trace Window"
+msgstr "Verfolgungsfenster"
+
+#: d:\busmaster\sources\application\ppagemessage.cpp:121
+msgid "Message ID"
+msgstr "Nachrichts-ID"
+
+#: d:\busmaster\sources\application\ppagemessage.cpp:122
+msgid "Message Text"
+msgstr "Nachrichtstext"
+
+#: d:\busmaster\sources\application\rxmsglist.cpp:1104
+msgid "Failed to create memory for sortable column."
+msgstr "Erzeugen des Speichers für sortierbare Spalte fehlgeschlagen."
+
+#: d:\busmaster\sources\application\signaldetailsdlg.cpp:726
+msgid "Minimum value field can't be empty!"
+msgstr "Minimumwertfeld darf nicht leer sein!"
+
+#: d:\busmaster\sources\application\signaldetailsdlg.cpp:734
+msgid "Maximum value field can't be empty!"
+msgstr "Maximumwertfeld darf nicht leer sein!"
+
+#: d:\busmaster\sources\application\signaldetailsdlg.cpp:748
+msgid "Factor value field can't be empty!"
+msgstr "Faktorwertfeld darf nicht leer sein!"
+
+#: d:\busmaster\sources\application\signaldetailsdlg.cpp:756
+msgid "Maximum and minimum values cannot be equal"
+msgstr "Maximum- und Minimumwerte dürfen nicht gleich sein"
+
+#: d:\busmaster\sources\application\txmsgwndj1939.cpp:480
+#, c-format
+msgid "Invalid DLC value: %d. Please enter a value between 0 and %d."
+msgstr ""
+"Ungültiger DLC-Wert: %d. Bitte geben sie einen Wert zwischen 0 und %d ein."
+
+#: d:\busmaster\sources\application\txmsgwndj1939.cpp:516
+#, c-format
+msgid "Invalid PGN value: %x. Please enter a value between 0 and 0x%x."
+msgstr ""
+"Ungültiger PGN-Wert: %x. Bitte geben sie einen Wert zwischen 0 und 0x%x ein."
+
+#: d:\busmaster\sources\application\txmsgwndj1939.cpp:818
+#: d:\busmaster\sources\application\txmsgwndj1939.cpp:829
+#: d:\busmaster\sources\application\txmsgwndj1939.cpp:840
+msgid "Address 0x"
+msgstr "Adresse 0x"
+
+#: d:\busmaster\sources\application\txmsgwndj1939.cpp:821
+#: d:\busmaster\sources\application\txmsgwndj1939.cpp:843
+msgid "ECU NAME 0x"
+msgstr "ECU NAME 0x"
+
+#: d:\busmaster\sources\application\txmsgwndj1939.cpp:832
+msgid "Destination 0x"
+msgstr "Ziel 0x"
+
+#: d:\busmaster\sources\application\txmsgwndj1939.cpp:928
+msgid "Transmission started..."
+msgstr "Übertragung gestartet..."
+
+#: d:\busmaster\sources\application\txmsgwndj1939.cpp:933
+msgid "Stopping Transmission..."
+msgstr "Stoppe Übertragung..."
+
+#: d:\busmaster\sources\application\txmsgwndj1939.cpp:938
+msgid "Transmission stopped..."
+msgstr "Übertragung gestoppt..."
+
+#: d:\busmaster\sources\application\txmsgwndj1939.cpp:958
+msgid "Stop"
+msgstr "Stopp"
+
+#: d:\busmaster\sources\application\txmsgwndj1939.cpp:958
+msgid "Transmit"
+msgstr "Übertragen"
+
+#: d:\busmaster\sources\application\valuedescriptiondlg.cpp:117
+msgid "Signal description cannot be emtpy!"
+msgstr "Signalbeschreibung darf nicht leer sein!"
+
+#: d:\busmaster\sources\application\valuedescriptiondlg.cpp:126
+msgid "Signal value cannot be emtpy!"
+msgstr "Signalwert darf nicht leer sein!"
+
+#: d:\busmaster\sources\application\valuedescriptiondlg.cpp:149
+msgid "Signal description already exists!"
+msgstr "Signalbeschreibung existiert bereits!"
+
+#: d:\busmaster\sources\application\valuedescriptiondlg.cpp:167
+msgid "Signal value already exists!"
+msgstr "Signalwert existiert bereits!"
+
+#: d:\busmaster\sources\application\valuedescriptiondlg.cpp:228
+msgid "Could not update..."
+msgstr "Aktualisierung nicht möglich..."
+
+#: d:\busmaster\sources\application\valuedescriptiondlg.cpp:303
+#, c-format
+msgid "(Decimal range %s to %s)"
+msgstr "(Dezimalbereich %s bis %s)"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:919
+msgid "could not add frame filter"
+msgstr "Konnte Rahmenfilter nicht hinzufügen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:932
+msgid "could not add event filter"
+msgstr "Konnte Ereignisfilter nicht hinzufügen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:945
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:957
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:1011
+msgid "could not add error filter"
+msgstr "Konnte Fehlerfilter nicht hinzufügen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:975
+msgid "could not remove frame filter"
+msgstr "Konnte Rahmenfilter nicht entfernen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:987
+msgid "could not remove event filter"
+msgstr "Konnte Ereignisfilter nicht entfernen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:1000
+msgid "could not remove error filter"
+msgstr "Konnte Fehlerfilter nicht entfernen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:1041
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:1068
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2150
+msgid "could not create rx queue"
+msgstr "Konnte Empfangswarteschlange nicht erzeugen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:1053
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:1077
+msgid "could not create tx queue"
+msgstr "Konnte Sendewarteschlange nicht erzeugen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:1740
+msgid "could not get OCI function pointers"
+msgstr "Konnte die OCI-Funktionszeiger nicht ermitteln"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:1753
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:1768
+msgid "failed to load"
+msgstr "Laden fehlgeschlagen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:1755
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:1770
+msgid ""
+"Please have a look at: https://github.com/rbei-etas/busmaster/wiki/Hardware-"
+"support"
+msgstr ""
+"Bitte schauen sie auf: https://github.com/rbei-etas/busmaster/wiki/Hardware-"
+"support"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:1760
+msgid "could not get CSI function pointers"
+msgstr "Konnte die CSI-Funktionszeiger nicht ermitteln"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2138
+msgid "could not get timer resolution"
+msgstr "Konnte Uhrauflösung nicht ermitteln"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2144
+msgid "could not add filters"
+msgstr "Konnte Filter nicht hinzufügen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2157
+msgid "could not open controller"
+msgstr "Konnte Kontroller nicht öffnen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2163
+msgid "could not create controller"
+msgstr "Konnte Kontroller nicht erzeugen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2199
+msgid "could not destroy controller"
+msgstr "Konnte Kontroller nicht zerstören"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2205
+msgid "could not close controller"
+msgstr "Konnte Kontroller nicht schließen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2211
+msgid "could not destroy the queue"
+msgstr "Konnte die Warteschlange nicht zerstören"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2217
+msgid "could not remove the filter"
+msgstr "Konnte den Filter nicht entfernen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2380
+msgid "could not configure the controller"
+msgstr "Konnte den Kontroller nicht konfigurieren"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2415
+#: d:\busmaster\sources\can_mhs\can_mhs.cpp:890
+msgid "could not start the controller in running mode"
+msgstr "Konnte den Kontroller im laufenden Modus nicht starten"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2422
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2491
+msgid "could not get controller mode"
+msgstr "Konnte den Kontrollermodus nicht ermitteln"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2480
+msgid "could not stop the controller in suspended mode"
+msgstr "Konnte den Kontroller im pausierten Modus nicht stoppen"
+
+#: d:\busmaster\sources\can_etas_boa\can_etas_boa.cpp:2568
+msgid "could not write CAN data onto bus"
+msgstr "Konnte CAN-Daten nicht auf den Bus schreiben"
+
+#: d:\busmaster\sources\can_etas_boa\hardwarelisting.cpp:433
+#: d:\busmaster\sources\can_ics_neovi\hardwarelisting.cpp:438
+#: d:\busmaster\sources\can_ixxat_vci\hardwarelisting.cpp:438
+#: d:\busmaster\sources\can_kvaser_can\hardwarelisting.cpp:436
+#: d:\busmaster\sources\can_vector_xl\hardwarelisting.cpp:438
+msgid "Please select at least one hardware"
+msgstr "Bitte wählen sie mindestens eine Hardware"
+
+#: d:\busmaster\sources\can_etas_boa\hardwarelisting.cpp:474
+#: d:\busmaster\sources\can_ics_neovi\hardwarelisting.cpp:479
+#: d:\busmaster\sources\can_ixxat_vci\hardwarelisting.cpp:479
+#: d:\busmaster\sources\can_kvaser_can\hardwarelisting.cpp:477
+#: d:\busmaster\sources\can_vector_xl\hardwarelisting.cpp:479
+#, c-format
+msgid "Please select at most %d hardwares"
+msgstr "Bitte wählen sie höchstens %d Hardware"
+
+#: d:\busmaster\sources\can_ixxat_vci\cancontrollerconfigdlg.cpp:196
+#: d:\busmaster\sources\can_ixxat_vci\cancontrollerconfigdlg.cpp:201
+msgid "User defined"
+msgstr "Benutzerdefiniert"
+
+#: d:\busmaster\sources\can_ixxat_vci\dil_can_ixxat_vci.cpp:1189
+msgid "Too many IXXAT CAN controllers found. Abort filling hardware list!"
+msgstr ""
+"Zu viele IXXAT-CAN-Kontroller gefunden. Breche füllen der Hardwareliste ab!"
+
+#: d:\busmaster\sources\can_ixxat_vci\hardwarelisting.cpp:45
+#: d:\busmaster\sources\can_kvaser_can\hardwarelisting.cpp:44
+#: d:\busmaster\sources\can_vector_xl\hardwarelisting.cpp:45
+msgid "Hardware"
+msgstr "Hardware"
+
+#: d:\busmaster\sources\can_ixxat_vci\hardwarelisting.cpp:55
+#: d:\busmaster\sources\can_kvaser_can\hardwarelisting.cpp:54
+#: d:\busmaster\sources\can_vector_xl\hardwarelisting.cpp:55
+msgid ""
+"Required number of hardware are not configured.\n"
+"Application will use default channel association with hardware"
+msgstr ""
+"Erforderliche Anzahl an Hardware nicht konfiguriert.\n"
+"Applikation wird standardmäßige Kanalassoziation mit Hardware nutzen"
+
+#: d:\busmaster\sources\can_ixxat_vci\hardwarelisting.cpp:40
+#: d:\busmaster\sources\can_kvaser_can\hardwarelisting.cpp:39
+#: d:\busmaster\sources\can_vector_xl\hardwarelisting.cpp:40
+#, c-format
+msgid ""
+"Required number of hardware are not present\n"
+"Required: %2d    Available: %2d"
+msgstr ""
+"Erforderliche Anzahl an Hardware ist nicht präsent\n"
+"Erforderlich: %2d    Verfügbar: %2d"
+
+#: d:\busmaster\sources\can_kvaser_can\can_kvaser_can.cpp:823
+#: d:\busmaster\sources\can_vector_xl\can_vector_xl.cpp:904
+msgid "Error connecting to driver"
+msgstr "Fehler beim Verbinden zum Treiber"
+
+#: d:\busmaster\sources\can_kvaser_can\can_kvaser_can.cpp:1618
+#: d:\busmaster\sources\can_vector_xl\can_vector_xl.cpp:1686
+msgid "Could not start the read thread"
+msgstr "Konnte den Lese-Thread nicht starten"
+
+#: d:\busmaster\sources\can_kvaser_can\can_kvaser_can.cpp:2203
+#, c-format
+msgid "Kvaser - %s, Serial Number- %ld, Firmware- %s"
+msgstr "Kvaser - %s, Seriennummer- %ld, Firmware- %s"
+
+#: d:\busmaster\sources\can_kvaser_can\can_kvaser_can.cpp:2248
+#, c-format
+msgid "%s, Serial Number: %ld, Firmware: %s"
+msgstr "%s, Seriennummer: %ld, Firmware: %s"
+
+#: d:\busmaster\sources\can_kvaser_can\can_kvaser_can.cpp:2278
+msgid "Problem Finding Device!"
+msgstr "Problem das Gerät zu finden!"
+
+#: d:\busmaster\sources\can_kvaser_can\can_kvaser_can.cpp:2309
+#, c-format
+msgid "Number of Kvaser hardware available: %d"
+msgstr "Anzahl verfügbarer Kvaser-Hardware: %d"
+
+#: d:\busmaster\sources\can_kvaser_can\can_kvaser_can.cpp:2314
+msgid ""
+"No Kvaser hardware available.\n"
+"Please check if Kvaser drivers are installed."
+msgstr ""
+"Keine Kvaser-Hardware verfügbar.\n"
+"Bitte prüfen ob Kvaser-Treiber installiert sind."
+
+#: d:\busmaster\sources\can_kvaser_can\changeregisters.cpp:882
+#: d:\busmaster\sources\can_kvaser_can\changeregisters.cpp:954
+#: d:\busmaster\sources\can_kvaser_can\changeregisters.cpp:961
+#: d:\busmaster\sources\can_kvaser_can\changeregisters.cpp:1051
+#: d:\busmaster\sources\can_kvaser_can\changeregisters.cpp:1135
+#: d:\busmaster\sources\can_vector_xl\changeregisters.cpp:883
+#: d:\busmaster\sources\can_vector_xl\changeregisters.cpp:955
+#: d:\busmaster\sources\can_vector_xl\changeregisters.cpp:962
+#: d:\busmaster\sources\can_vector_xl\changeregisters.cpp:1052
+#: d:\busmaster\sources\can_vector_xl\changeregisters.cpp:1136
+msgid "Invalid Configuration"
+msgstr "Ungültige Konfiguration"
+
+#: d:\busmaster\sources\can_kvaser_can\changeregdefines.h:82
+#: d:\busmaster\sources\can_vector_xl\changeregdefines.h:82
+#, c-format
+msgid "The Warning limit \"%s\" is beyond the limit %d - %d"
+msgstr "Die Warnungsgrenze \"%s\" ist außerhalb der Grenze %d - %d"
+
+#: d:\busmaster\sources\can_mhs\can_mhs.cpp:897
+msgid "error opening \"Tiny-CAN\" interface"
+msgstr "Fehler beim Öffnen der \"Tiny-CAN\"-Schnittstelle"
+
+#: d:\busmaster\sources\can_mhs\can_mhs.cpp:983
+#: d:\busmaster\sources\can_vscom\can_vscom.cpp:1159
+msgid "could not write can data into bus"
+msgstr "Konnte CAN-Daten nicht auf den Bus schreiben"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:305
+msgid "System error message retrieval operation failed"
+msgstr "Systemfehlernachrichtenabrufoperation fehlgeschlagen"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:507
+msgid "Null argument value(s) in SetAppParams"
+msgstr "Null Argumentenwert(e) in SetAppParams"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:512
+msgid "Improper current state to call SetAppParams"
+msgstr "Ungeeigneter aktueller Status um SetAppParams aufzurufen"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:615
+msgid "Unregister failed"
+msgstr "Deregistrierung fehlgeschlagen"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:793
+msgid "CAN_STUB_SetConfigData called at improper state"
+msgstr "CAN_STUB_SetConfigData bei ungeeignetem Zustand aufgerufen"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:971
+msgid "Simulation"
+msgstr "Simulation"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:972
+msgid "A simulation engine to create a virtual bus system"
+msgstr "Eine Simulationsmaschine um ein virtuelles Bussystem zu erzeugen"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:1160
+msgid "CAN_STUB_Connect called at STATE_PRIMORDIAL"
+msgstr "CAN_STUB_Connect wurde bei STATE_PRIMORDIAL aufgerufen"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:1166
+msgid "CAN_STUB_Connect called at improper state"
+msgstr "CAN_STUB_Connect wurde bei ungeeignetem Zustand aufgerufen"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:1186
+msgid "Unable to start the reading thread"
+msgstr "Konnte den Lese-Thread nicht starten"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:1199
+msgid "CAN_STUB_DeselectHwInterface called at STATE_PRIMORDIAL"
+msgstr "CAN_STUB_DeselectHwInterface wurde bei STATE_PRIMORDIAL aufgerufen"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:1205
+msgid "CAN_STUB_DeselectHwInterface called at improper state"
+msgstr "CAN_STUB_DeselectHwInterface wurde bei ungeeignetem Zustand aufgerufen"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:1244
+msgid "CAN_STUB_StopHardware called at improper state"
+msgstr "CAN_STUB_StopHardware wurde bei ungeeignetem Zustand aufgerufen"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:1267
+msgid "CAN_STUB_StartHardware called at improper state"
+msgstr "CAN_STUB_StartHardware wurde bei ungeeignetem Zustand aufgerufen"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:1299
+msgid "Unable to register to the simulation engine"
+msgstr "Registrierung der Simulationsmaschine nicht möglich"
+
+#: d:\busmaster\sources\can_stub\can_stub.cpp:1323
+msgid "Can't convert from BSTR to ASCII string"
+msgstr "Konnte die Zeichenkette nicht von BSTR nach ASCII konvertieren"
+
+#: d:\busmaster\sources\can_vector_xl\can_vector_xl.cpp:673
+msgid "vxlapi.dll already loaded"
+msgstr "vxlapi.dll bereits geladen"
+
+#: d:\busmaster\sources\can_vector_xl\can_vector_xl.cpp:682
+msgid "vxlapi.dll loading failed"
+msgstr "Laden der vxlapi.dll fehlgeschlagen"
+
+#: d:\busmaster\sources\can_vector_xl\can_vector_xl.cpp:757
+msgid "Getting Process address of the APIs failed"
+msgstr "Ermittlung der Prozessadresse der APIs fehlgeschlagen"
+
+#: d:\busmaster\sources\can_vector_xl\can_vector_xl.cpp:1122
+#, c-format
+msgid "Vector XL - %s, Serial number - %d"
+msgstr "Vector XL - %s, Seriennummer - %d"
+
+#: d:\busmaster\sources\can_vector_xl\can_vector_xl.cpp:2255
+msgid "No available channels found! (e.g. no CANcabs...)"
+msgstr "Keine verfügbaren Kanäle gefunden! (e.g. no CANcabs...)"
+
+#: d:\busmaster\sources\can_vector_xl\can_vector_xl.cpp:2262
+msgid "Problem finding device!"
+msgstr "Problem das Gerät zu finden!"
+
+#: d:\busmaster\sources\can_vector_xl\can_vector_xl.cpp:2425
+#, c-format
+msgid "Number of Vector hardware available: %d"
+msgstr "Anzahl verfügbarer Vector Hardware: %d"
+
+#: d:\busmaster\sources\can_vscom\can_vscom.cpp:924
+msgid "VSCAN_Read failed"
+msgstr "VSCAN_Read fehlgeschlagen"
+
+#: d:\busmaster\sources\can_vscom\can_vscom.cpp:945
+msgid "WaitForSingleObject failed"
+msgstr "WaitForSingleObject fehlgeschlagen"
+
+#: d:\busmaster\sources\can_vscom\can_vscom.cpp:988
+msgid "set timestamp ioctl failed"
+msgstr "setzen des timestamp ioctl fehlgeschlagen"
+
+#: d:\busmaster\sources\can_vscom\can_vscom.cpp:994
+msgid "set filter mode ioctl failed"
+msgstr "setzen des filter mode ioctl fehlgeschlagen"
+
+#: d:\busmaster\sources\can_vscom\can_vscom.cpp:1000
+msgid "set acceptance code mask ioctl failed"
+msgstr "setzen des acceptance code mask ioctl fehlgeschlagen"
+
+#: d:\busmaster\sources\can_vscom\can_vscom.cpp:1008
+msgid "set speed ioctl failed"
+msgstr "setzen des speed ioctl fehlgeschlagen"
+
+#: d:\busmaster\sources\can_vscom\can_vscom.cpp:1016
+msgid "set btr ioctl failed"
+msgstr "setzen des btr ioctl fehlgeschlagen"
+
+#: d:\busmaster\sources\can_vscom\can_vscom.cpp:1024
+msgid "could not create the receive event"
+msgstr "konnte das Empfangsereignis nicht erzeugen"
+
+#: d:\busmaster\sources\can_vscom\can_vscom.cpp:1030
+msgid "VSCAN_SetRcvEvent failed"
+msgstr "VSCAN_SetRcvEvent fehlgeschlagen"
+
+#: d:\busmaster\sources\can_vscom\can_vscom.cpp:1037
+msgid "could not create the receive thread"
+msgstr "konnte den Empfangs-Thread nicht erzeugen"
+
+#: d:\busmaster\sources\can_vscom\can_vscom.cpp:1048
+msgid "error opening \"VScom CAN\" interface"
+msgstr "Fehler beim Öffnen der \"VScom CAN\"-Schnittstelle"
+
+#: d:\busmaster\sources\commonclass\gui_formatmsgcan.cpp:326
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:691
+msgid "Description"
+msgstr "Beschreibung"
+
+#: d:\busmaster\sources\commonclass\gui_formatmsgcan.cpp:355
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:436
+#: converter\formatconverterapp\defconverterpage.cpp:267
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:225
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:252
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:948
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:958
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1479
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1512
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorgui_childframe.cpp:299
+msgid "Error"
+msgstr "Fehlre"
+
+#: d:\busmaster\sources\dil_interface\dil_can.cpp:245
+#: d:\busmaster\sources\dil_interface\dil_can.cpp:270
+msgid "Load library failed..."
+msgstr "Laden der Bibliothek fehlgeschlagen..."
+
+#: d:\busmaster\sources\dil_interface\dil_can.cpp:252
+msgid "Load library successful..."
+msgstr "Laden der Bibliothek erfolgreich..."
+
+#: d:\busmaster\sources\dil_j1939\monitornode.cpp:195
+#: d:\busmaster\sources\dil_j1939\nodeconmanager.cpp:1305
+msgid "SENT REQUEST TO SEND\n"
+msgstr "Sendeanforderung zum Senden\n"
+
+#: d:\busmaster\sources\dil_j1939\monitornode.cpp:213
+msgid "SENT LONG\n"
+msgstr "Sende lang\n"
+
+#: d:\busmaster\sources\dil_j1939\networkmgmt.cpp:648
+#: d:\busmaster\sources\dil_j1939\networkmgmt.cpp:688
+msgid "Going to call bDeleteEventHandle\n"
+msgstr "Werde bDeleteEventHandle aufzurufen\n"
+
+#: d:\busmaster\sources\dil_j1939\networkmgmt.cpp:650
+#: d:\busmaster\sources\dil_j1939\networkmgmt.cpp:690
+msgid "Called bDeleteEventHandle\n"
+msgstr "Habe bDeleteEventHandle aufgerufen\n"
+
+#: d:\busmaster\sources\dil_j1939\readcanmsg.cpp:209
+#, c-format
+msgid "Abandoned... %X %d\n"
+msgstr "Aufgegeben... %X %d\n"
+
+#: d:\busmaster\sources\filter\filter.cpp:161
+msgid "Filter Selection Dialog"
+msgstr "Filterselektionsdialog"
+
+#: d:\busmaster\sources\filter\filter.cpp:162
+msgid "Bus"
+msgstr "Bus"
+
+#: d:\busmaster\sources\filter\filter.cpp:163
+msgid "Configured filters"
+msgstr "Konfigurierte Filter"
+
+#: d:\busmaster\sources\filter\filter.cpp:164
+msgid "Selected filters"
+msgstr "Ausgewählte Filter"
+
+#: d:\busmaster\sources\filter\filterconfigdlg.cpp:756
+msgid "Filter name cannot be empty"
+msgstr "Dateiname kann nicht leer sein"
+
+#: d:\busmaster\sources\filter\filterconfigdlg.cpp:772
+msgid "Name already exists"
+msgstr "Name existiert bereits"
+
+#: d:\busmaster\sources\filter\filterconfigdlg.cpp:1318
+msgid "Message ID exceeds extended ID range"
+msgstr "Nachrichten-ID übersteigt Extended-ID-Bereich"
+
+#: d:\busmaster\sources\filter\filterconfigdlg.cpp:1329
+msgid "Message ID exceeds standard ID range"
+msgstr "Nachrichten-ID übersteigt Standard-ID-Bereich"
+
+#: d:\busmaster\sources\filter\filterconfigdlg.cpp:1429
+msgid "Start range message ID exceeds extended ID range"
+msgstr "Startbereichsnachrichten-ID übersteigt Extended-ID-Bereich"
+
+#: d:\busmaster\sources\filter\filterconfigdlg.cpp:1440
+msgid "Start range message ID exceeds standard ID range"
+msgstr "Startbereichsnachrichten-ID übersteigt Standard-ID-Bereich"
+
+#: d:\busmaster\sources\filter\filterconfigdlg.cpp:1456
+msgid "End range message ID exceeds extended ID range"
+msgstr "Endbereichsnachrichten-ID übersteigt Extended-ID-Bereich"
+
+#: d:\busmaster\sources\filter\filterconfigdlg.cpp:1467
+msgid "End range message ID exceeds standard ID range"
+msgstr "Endbereichsnachrichten-ID übersteigt Standard-ID-Bereich"
+
+#: d:\busmaster\sources\filter\filterconfigdlg.cpp:1475
+msgid "Start range ID is greater than or equal to end range ID"
+msgstr "Startbereichs-ID ist größer oder gleich der Endbereichs-ID"
+
+#: d:\busmaster\sources\filter\filterconfigdlg.cpp:1776
+msgid "Do you want to delete all filters from the list?"
+msgstr "Wollen sie alle Filter von der Liste löschen?"
+
+#: d:\busmaster\sources\filter\filterconfigdlg.cpp:1971
+msgid "Unable to create memory for new filter"
+msgstr "Erzeugung des Speichers für neuen Filter nicht möglich"
+
+#: d:\busmaster\sources\filter\filterconfigdlg.cpp:1976
+msgid "Unable to find unique name for the filter!"
+msgstr ""
+"Es ist nicht möglich einen einzigartigen Namen für den Filter zu finden!"
+
+#: d:\busmaster\sources\format
+#: converter\asclogconverter\asclogconverter.cpp:65
+msgid "Converts the CANoe CAN log file(.asc) to BUSMASTER CAN log file(.log)"
+msgstr ""
+"Konvertiert die CANoe CAN Aufzeichnungsdatei (.asc) zu BUSMASTER CAN "
+"Aufzeichnungsdatei (.log)"
+
+#: d:\busmaster\sources\format
+#: converter\asclogconverter\asclogconverter.cpp:78
+msgid "ASC TO LOG Conversion"
+msgstr "ASC-nach-LOG-Konvertierung"
+
+#: d:\busmaster\sources\format
+#: converter\asclogconverter\asclogconverter.cpp:95
+#: converter\dbc2dbfconverter\dbc2dbfconverter.cpp:120
+#: converter\dbf2dbcconverter\dbf2dbcconverter.cpp:98
+#: converter\j1939dbc2dbfconverter\j1939dbc2dbfconverter.cpp:121
+#: converter\logascconverter\logascconverter.cpp:103
+msgid "Conversion success"
+msgstr "Konvertierung erfolgreich"
+
+#: d:\busmaster\sources\format
+#: converter\asclogconverter\asclogconverter.cpp:99
+#: converter\dbc2dbfconverter\dbc2dbfconverter.cpp:124
+#: converter\dbf2dbcconverter\dbf2dbcconverter.cpp:102
+#: converter\j1939dbc2dbfconverter\j1939dbc2dbfconverter.cpp:125
+#: converter\logascconverter\logascconverter.cpp:107
+msgid "Conversion failed"
+msgstr "Konvertierung fehlgeschlagen"
+
+#: d:\busmaster\sources\format
+#: converter\asclogconverter\asclogconverter.cpp:103
+#: converter\dbc2dbfconverter\dbc2dbfconverter.cpp:128
+#: converter\dbc2dbfconverterlibrary\dbfsignal.cpp:818
+#: converter\dbf2dbcconverter\converter.cpp:200
+#: converter\dbf2dbcconverter\dbf2dbcconverter.cpp:106
+#: converter\j1939dbc2dbfconverter\j1939dbc2dbfconverter.cpp:129
+#: converter\logascconverter\logascconverter.cpp:111
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: d:\busmaster\sources\format
+#: converter\asclogconverter\asclogconverter.cpp:122
+#: converter\logascconverter\logascconverter.cpp:161
+msgid "CANoe log file(s) (*.asc)|*.asc||"
+msgstr "CANoe Aufzeichnugsdatei(en) (*.asc)|*.asc||"
+
+#: d:\busmaster\sources\format
+#: converter\asclogconverter\asclogconverter.cpp:153
+#: converter\logascconverter\logascconverter.cpp:130
+msgid "BUSMASTER log file(s) (*.log)|*.log||"
+msgstr "BUSMASTER Aufzeichnungsdatei(en) (*.log)|*.log||"
+
+#: d:\busmaster\sources\format
+#: converter\asclogconverter\asclogconverter.cpp:187
+#: converter\logascconverter\logascconverter.cpp:193
+msgid "Conversion Completed Successfully"
+msgstr "Konvertierung erfolgreich abgeschlossen"
+
+#: d:\busmaster\sources\format
+#: converter\asclogconverter\asclogconverter.cpp:193
+#: converter\logascconverter\logascconverter.cpp:95
+#: converter\logascconverter\logascconverter.cpp:213
+msgid "Output File path is not found"
+msgstr "Ausgabedateipfad wird nicht gefunden"
+
+#: d:\busmaster\sources\format
+#: converter\asclogconverter\asclogconverter.cpp:199
+#: converter\logascconverter\logascconverter.cpp:99
+#: converter\logascconverter\logascconverter.cpp:219
+msgid "Input File path is not found"
+msgstr "Eingabedateipfad wird nicht gefunden"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:164
+msgid "DBC file path"
+msgstr "DBC-Dateipfad"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:165
+msgid "DBF file path"
+msgstr "DBF-Dateipfad"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:242
+msgid "CAPL file(s) (*.can)|*.can||"
+msgstr "CAPL-Datei(en) (*.can)|*.can||"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:244
+msgid "Select CAPL (.can) file"
+msgstr "Selektiere CAPL (.can)-Datei"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:252
+#: converter\capl2cconverter\capl2cpropertypage.cpp:304
+#: converter\capl2cconverter\capl2cpropertypage.cpp:507
+#: converter\logtoexcelconverter\defines.h:120
+msgid "Files"
+msgstr "Dateien"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:252
+#: converter\capl2cconverter\capl2cpropertypage.cpp:304
+msgid "CAPL file"
+msgstr "CAPL-Datei"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:292
+msgid "BUSMASTER file(s) (*.cpp)|*.cpp||"
+msgstr "BUSMASTER-Datei(en) (*.cpp)|*.cpp||"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:294
+msgid "Select BUSMASTER file"
+msgstr "Selektiere BUSMASTER-Datei"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:406
+#: converter\dbc2dbfconverter\dbc2dbfconverter.cpp:137
+#: converter\dbf2dbcconverter\dbf2dbcconverter.cpp:156
+#: converter\j1939dbc2dbfconverter\j1939dbc2dbfconverter.cpp:138
+msgid "CANoe database file(s) (*.dbc)|*.dbc||"
+msgstr "CANoe-Datenbankdatei(en) (*.dbc)|*.dbc||"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:408
+msgid "Select CANoe database file"
+msgstr "Selektierte CANoe-Datenbankdatei"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:436
+msgid "Invalid CANoe Database File"
+msgstr "Ungültige CANoe-Datenbankdatei"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:459
+#: converter\dbc2dbfconverter\dbc2dbfconverter.cpp:159
+#: converter\dbf2dbcconverter\dbf2dbcconverter.cpp:125
+#: converter\j1939dbc2dbfconverter\j1939dbc2dbfconverter.cpp:160
+msgid "BUSMASTER database file(s) (*.dbf)|*.dbf||"
+msgstr "BUSMASTER Datenbankdatei(en) (*.dbf)|*.dbf||"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:461
+msgid "Select BUSMASTER database file"
+msgstr "Selektierte BUSMASTER Datenbankdatei"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:508
+msgid "CAPL File"
+msgstr "CAPL-Datei"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:644
+msgid "Loading The CANoe Database Files... Please Wait"
+msgstr "Laden der CANoe Datenbankdateien... Bitte warten"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:666
+msgid "CAPL conversion is going on... Please wait"
+msgstr "CAPL-Konvertierung läuft... Bitte warten"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:674
+msgid "Database Conversion is Going on... Please Wait"
+msgstr "Datenbankkonvertierung läuft... Bitte warten"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\capl2cpropertypage.cpp:683
+msgid "Conversion Completed"
+msgstr "Konvertierung abgeschlossen"
+
+#: d:\busmaster\sources\format
+#: converter\capl2cconverter\envvarhandlerdlg.cpp:141
+msgid "No Key is avilable"
+msgstr "Kein Schlüssel ist verfügbar"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:28
+msgid "/* This file is generated by BUSMASTER */"
+msgstr "/* Diese Datei wurde von BUSMASTER generiert */"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:175
+msgid "Invalid Output File"
+msgstr "Ungültige Ausgabedatei"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:176
+msgid "This file does not exist"
+msgstr "Diese Datei existiert nicht"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:176
+#: converter\capl2cconverter\conststring.h:177
+#: converter\capl2cconverter\conststring.h:181
+#: converter\capl2cconverter\conststring.h:182
+#: converter\capl2cconverter\conststring.h:183
+#: converter\capl2cconverter\conststring.h:185
+#: converter\capl2cconverter\conststring.h:186
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:945
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:957
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1475
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1508
+msgid "Warning"
+msgstr "Warnung"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:177
+msgid "Output file is in read mode"
+msgstr "Ausgabedatei ist im Lesemodus"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:178
+#, c-format
+msgid "Input File : %s\n"
+msgstr "Eingabedatei : %s\n"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:179
+#, c-format
+msgid "Output File : %s\n"
+msgstr "Ausgabedatei : %s\n"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:180
+msgid "Percentage of File Converted ="
+msgstr "Prozent der Datei konvertiert ="
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:181
+msgid "Log file is in read mode"
+msgstr "Aufzeichnungsdatei ist im Lesemodus"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:182
+msgid "Invalid input file"
+msgstr "Ungültige Eingabedatei"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:183
+msgid "Default combination will be used for rest of the keys"
+msgstr "Standardkombination wird für den Rest der Schlüssel verwendet"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:184
+#, c-format
+msgid "(Unsupported Key Handler) :%s has not been converted"
+msgstr "(Nicht unterstützter Tastenbehandler) :%s wurde nicht konvertiert"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:185
+msgid ""
+"Load DBC Converter is Failed.\n"
+"Conversion will continue with out using Database Files"
+msgstr ""
+"Laden des DBC-Konvertierers fehlgeschlagen.\n"
+"Konvertierung wird ohne Nutzung der Datenbankdateien fortgesetzt"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:186
+msgid ""
+"No DBC Files are Added.If the CAPL File have any DBC messages converted file "
+"cpp may not compile.\n"
+"\n"
+"Do you want to continue?"
+msgstr ""
+"Keine DBC-Dateien wurde hinzugefügt. Wenn die CAPL-Datei konvertierte DBC-"
+"Nachrichten hat, wird die C++-Datei nicht kompiliert.\n"
+"\n"
+"Wollen sie fortsetzen?"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:187
+#, c-format
+msgid ""
+"Environment handler : @ Line No. %d has been replaced with Key Handler\n"
+msgstr ""
+"Umgebungsbehandler : @ Zeilennr. %d wurde durch Tastenbehandler ersetzt\n"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:188
+#, c-format
+msgid "Unsupported Key : @ Line No. %d has not been changed.\n"
+msgstr "Nicht unterstützte Taste : @ Zeilennr. %d wurde nicht geändert.\n"
+
+#: d:\busmaster\sources\format converter\capl2cconverter\conststring.h:189
+#, c-format
+msgid "(Unsupported Key Handler) :'%s' has been replaced with '%c'"
+msgstr "(Nicht unterstützter Tastenbehandler) :'%s' wurde durch '%c' ersetzt"
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverter\dbc2dbfconverter.cpp:90
+msgid "Converts the CANoe Database(.dbc) file to BUSMASTER Database(.dbf) file"
+msgstr ""
+"Konvertiert die CANoe-Datenbankdatei (.dbc) in BUSMASTER-Datenbankdatei (."
+"dbf)"
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverter\dbc2dbfconverter.cpp:103
+msgid "DBC TO DBF Conversion"
+msgstr "DBC-nach-DBF-Konvertierung"
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverterlibrary\dbfconverter.cpp:1023
+#: converter\dbc2dbfconverterlibrary\dbfconverter.cpp:1062
+msgid " : Match not Found in Param List\n"
+msgstr " : Übereinstimmung in Parameterliste nicht gefunden\n"
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverterlibrary\dbfconverter.cpp:1491
+msgid "\tDescription:Default Value tag(BA_DEF_DEF_) doesn;t exist "
+msgstr ""
+"\tBeschreibung:Standardwertkennzeichnung (BA_DEF_DEF_) existiert nicht "
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverterlibrary\dbfconverter.cpp:1492
+#: converter\dbc2dbfconverterlibrary\dbfconverter.cpp:1500
+msgid "\t Action Taken : Reset to default value"
+msgstr "\t Durchgeführte Maßnahme : Rücksetzen zum Standardwert"
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverterlibrary\dbfconverter.cpp:1499
+msgid "\tDescription: Invalid Data Ranges"
+msgstr "\tBeschreibung: Ungültige Datenbereiche"
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverterlibrary\dbfsignal.cpp:794
+#: converter\dbf2dbcconverter\signal.cpp:376
+msgid "No error"
+msgstr "Kein Fehler"
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverterlibrary\dbfsignal.cpp:798
+msgid "Data format mismatch"
+msgstr "Datenformat unpassend"
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverterlibrary\dbfsignal.cpp:802
+#: converter\dbf2dbcconverter\signal.cpp:380
+msgid "Invalid signal length"
+msgstr "Ungültige Signallänge"
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverterlibrary\dbfsignal.cpp:806
+#: converter\dbf2dbcconverter\signal.cpp:384
+msgid "Invalid start bit"
+msgstr "Ungültiges Startbit"
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverterlibrary\dbfsignal.cpp:810
+msgid "Invalid signal type"
+msgstr "Ungültiger Signaltyp"
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverterlibrary\dbfsignal.cpp:814
+msgid "Invalid Max or Min value."
+msgstr "Ungültiger Max. oder Min.-Wert."
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverterlibrary\dbfsignal.cpp:834
+msgid "Value Set to default"
+msgstr "Wert auf Standard gesetzt"
+
+#: d:\busmaster\sources\format
+#: converter\dbc2dbfconverterlibrary\dbfsignal.cpp:838
+msgid "Signal Discarded"
+msgstr "Signal abgelehnt"
+
+#: d:\busmaster\sources\format converter\dbf2dbcconverter\converter.cpp:176
+msgid "Conversion completed."
+msgstr "Konvertierung abgeschlossen."
+
+#: d:\busmaster\sources\format converter\dbf2dbcconverter\converter.cpp:180
+#: converter\formatconverterapp\defconverterpage.cpp:250
+msgid "Conversion completed with warnings."
+msgstr "Konvertierung mit Warnungen abgeschlossen."
+
+#: d:\busmaster\sources\format converter\dbf2dbcconverter\converter.cpp:184
+msgid "Conversion aborted. Error opening input file."
+msgstr "Konvertierung abgebrochen. Fehler beim Öffnen der Eingabedatei."
+
+#: d:\busmaster\sources\format converter\dbf2dbcconverter\converter.cpp:188
+msgid "Conversion aborted. Error creating output file."
+msgstr "Konvertierung abgebrochen. Fehler beim Erzeugen der Ausgabedatei."
+
+#: d:\busmaster\sources\format converter\dbf2dbcconverter\converter.cpp:192
+msgid "Conversion aborted. Error with input file format."
+msgstr "Konvertierung abgebrochen. Fehler mit dem Eingabedateiformat."
+
+#: d:\busmaster\sources\format converter\dbf2dbcconverter\converter.cpp:196
+msgid "Conversion aborted. Error creating log file."
+msgstr ""
+"Konvertierung abgebrochen. Fehler beim Erzeugen der Aufzeichnungsdatei."
+
+#: d:\busmaster\sources\format converter\dbf2dbcconverter\converter.cpp:511
+msgid "VERSION \"\""
+msgstr "Version \"\""
+
+#: d:\busmaster\sources\format converter\dbf2dbcconverter\converter.cpp:719
+msgid "Conversion Error Log"
+msgstr "Konvertierungsfehleraufzeichnung"
+
+#: d:\busmaster\sources\format converter\dbf2dbcconverter\converter.cpp:745
+msgid "\tSignal Discarded SIG_NAME: "
+msgstr "\tSignal abgelehnt SIG_NAME: "
+
+#: d:\busmaster\sources\format converter\dbf2dbcconverter\converter.cpp:746
+msgid ", Reason: "
+msgstr ", Grund:"
+
+#: d:\busmaster\sources\format
+#: converter\dbf2dbcconverter\dbf2dbcconverter.cpp:68
+msgid "Converts the BUSMASTER Database(.dbf) file to CANoe Database(.dbc) file"
+msgstr ""
+"Konvertiert BUSMASTER-Datenbankdatei (.dbf) in CANoe-Datenbankdatei (.dbc)"
+
+#: d:\busmaster\sources\format
+#: converter\dbf2dbcconverter\dbf2dbcconverter.cpp:81
+msgid "DBF TO DBC Conversion"
+msgstr "DBF-nach-DBC-Konvertierer"
+
+#: d:\busmaster\sources\format
+#: converter\formatconverterapp\defconverterpage.cpp:267
+msgid "Invalid Input/Output Files"
+msgstr "Ungültige Eingabe-/Ausgabedateien"
+
+#: d:\busmaster\sources\format
+#: converter\formatconverterapp\formatconverterwnd.cpp:73
+msgid "Close"
+msgstr "Schließen"
+
+#: d:\busmaster\sources\format
+#: converter\formatconverterapp\multilanguage.cpp:373
+msgid "Identifier\tThree-letter Abbrev. lang. Name\n"
+msgstr "Identifizierer\tDrei-Buchstaben abgekürzter Sprach.-Name\n"
+
+#: d:\busmaster\sources\format
+#: converter\formatconverterapp\pluginmanagerdll.cpp:66
+msgid "Plugin loading error"
+msgstr "Plugin-Ladefehler"
+
+#: d:\busmaster\sources\format
+#: converter\j1939dbc2dbfconverter\j1939dbc2dbfconverter.cpp:91
+msgid ""
+"Converts the CANoe J1939 Database(.dbc) file to BUSMASTER J1939 Database(."
+"dbf) file"
+msgstr ""
+"Konvertiert die CANoe-J1939-Datenbankdatei (.dbc) in BUSMASTER-J1939-"
+"Datenbankdatei (.dbf)"
+
+#: d:\busmaster\sources\format
+#: converter\j1939dbc2dbfconverter\j1939dbc2dbfconverter.cpp:104
+msgid "J1939 DBC TO DBF Conversion"
+msgstr "J1939-DBC-nach-DBF-Konvertierer"
+
+#: d:\busmaster\sources\format
+#: converter\logascconverter\logascconverter.cpp:65
+msgid "Converts the BUSMASTER CAN log file(.log) to CANoe CAN log file(.asc)"
+msgstr ""
+"Konvertiert BUSMASTER-CAN-Aufzeichnungsdatei (.log) in CANoe-CAN-"
+"Aufzeichnungsdatei (.asc)"
+
+#: d:\busmaster\sources\format
+#: converter\logascconverter\logascconverter.cpp:78
+msgid "LOG TO ASC Conversion"
+msgstr "LOG-nach-ASC-Konvertierer"
+
+#: d:\busmaster\sources\format
+#: converter\logascconverter\logascconverter.cpp:189
+msgid ""
+"Conversion May not be work with CANoe since the input file is logged in "
+"system mode"
+msgstr ""
+"Konvertierung funktioniert in CANoe möglicherweise nicht, weil die "
+"Eingabedatei im Systemmodus aufgezeichnet ist"
+
+#: d:\busmaster\sources\format converter\logascconverter\utility.cpp:56
+msgid "Sun"
+msgstr "Son"
+
+#: d:\busmaster\sources\format converter\logascconverter\utility.cpp:60
+msgid "Mon"
+msgstr "Mon"
+
+#: d:\busmaster\sources\format converter\logascconverter\utility.cpp:64
+msgid "Tue"
+msgstr "Die"
+
+#: d:\busmaster\sources\format converter\logascconverter\utility.cpp:68
+msgid "Wed"
+msgstr "Mit"
+
+#: d:\busmaster\sources\format converter\logascconverter\utility.cpp:72
+msgid "Thu"
+msgstr "Don"
+
+#: d:\busmaster\sources\format converter\logascconverter\utility.cpp:76
+msgid "Fri"
+msgstr "Fre"
+
+#: d:\busmaster\sources\format converter\logascconverter\utility.cpp:80
+msgid "Sat"
+msgstr "Sam"
+
+#: d:\busmaster\sources\format
+#: converter\logtoexcelconverter\exportlogfiledlg.cpp:487
+msgid "Export Log File - "
+msgstr "Exportiere Aufzeichnungsdatei - "
+
+#: d:\busmaster\sources\format
+#: converter\logtoexcelconverter\logtoexcel.cpp:274
+msgid ""
+"<FONT COLOR =\"GREEN\"><CENTER><B>BUSMASTER - Exported Log File Report</B></"
+"CENTER>"
+msgstr ""
+"<FONT COLOR =\"GREEN\"><CENTER><B>BUSMASTER - Exportierter "
+"Aufzeichnungsdateibericht</B></CENTER>"
+
+#: d:\busmaster\sources\format
+#: converter\logtoexcelconverter\logtoexcel.cpp:364
+msgid "Invalid Error"
+msgstr "Ungültiger Fehler"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:119
+msgid "Do you want to close the application?"
+msgstr "Wollen sie die Applikation schließen?"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:123
+msgid "MRU list"
+msgstr "MRU-Liste"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:124
+msgid "MRU file1"
+msgstr "MRU-Datei1"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:125
+msgid "MRU file2"
+msgstr "MRU-Datei2"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:126
+msgid "MRU file3"
+msgstr "MRU-Datei3"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:127
+msgid "MRU file4"
+msgstr "MRU-Datei4"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:128
+msgid "MRU file5"
+msgstr "MRU-Datei5"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:129
+msgid "Empty"
+msgstr "Leer"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:130
+msgid "&File"
+msgstr "&Datei"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:135
+msgid "Select rule file"
+msgstr "Selektiere Rollendatei"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:136
+msgid "Successfully converted text file to Excel file!"
+msgstr "Textdatei erfolgreich zu Excel-Datei konvertiert!"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:137
+msgid ""
+"The log file selected doesn't match the bus type selection. Please check."
+msgstr ""
+"Die ausgewählte Aufzeichnungsdatei passt nicht zur Bustypselektion. Bitte "
+"prüfen."
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:139
+msgid "Could not convert!"
+msgstr "Konnte nicht konvertieren!"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:140
+msgid "Error in opening input files"
+msgstr "Fehler beim Öffnen der Eingabedateien"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:141
+msgid "No fields selected!"
+msgstr "Keine Felder selektiert!"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:142
+msgid "Enter log file details!"
+msgstr "Eingeben der Aufzeichnungsdateidetails!"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:143
+msgid "Enter CSV file details!"
+msgstr "Eingeben der CSV-Dateidetails!"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:144
+msgid "Enter log and CSV file details!"
+msgstr "Eingeben der Aufzeichnungs- und CSV-Dateidetails!"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:145
+msgid "Log file doesn't exist!"
+msgstr "Aufzeichnungsdatei existiert nicht!"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:146
+msgid "CSV file doesn't exist!"
+msgstr "CSV-Datei existiert nicht!"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:157
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:119
+#: d:\busmaster\sources\txwindow\signaldetailsdlg.cpp:649
+msgid "Insufficient memory available"
+msgstr "Ungenügender Speicher verfügbar"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\defines.h:159
+msgid "There is no active database. Please import database"
+msgstr "Es gibt keine aktive Datenbank. Bitte importieren sie eine Datenbank"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\logtoexcel.h:67
+msgid "Select export file"
+msgstr "Wähle Exportdatei"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\logtoexcel.h:68
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:36
+msgid "Comma Separated Values file(s) (*.csv)|*.csv||"
+msgstr "CSV-Datei(en) (*.csv)|*.csv||"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\logtoexcel.h:71
+msgid "Excel file(s) (*.xls)|*.xls||"
+msgstr "Excel-Datei(en) (*.xls)|*.xls||"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\logtoexcel.h:74
+msgid "Select log file"
+msgstr "Selektiere Aufzeichnungsdatei"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\logtoexcel.h:77
+msgid "Please enter log file and export file names"
+msgstr "Bitte Aufzeichnungsdatei und Exportdateinamen eingeben"
+
+#: d:\busmaster\sources\format converter\logtoexcelconverter\logtoexcel.h:80
+msgid ""
+"BUSMASTER generated report\n"
+"\n"
+msgstr ""
+"BUSMASTER-generierte Berichte\n"
+"\n"
+
+#: d:\busmaster\sources\nodesimex\definetimerhandler.cpp:239
+msgid "Timer name should not be empty"
+msgstr "Uhrenname darf nicht leer sen"
+
+#: d:\busmaster\sources\nodesimex\definetimerhandler.cpp:239
+#: d:\busmaster\sources\nodesimex\definetimerhandler.cpp:253
+msgid "Invalid timer name"
+msgstr "Ungültiger Uhrenname"
+
+#: d:\busmaster\sources\nodesimex\definetimerhandler.cpp:253
+msgid "Timer name should not contain spaces/special characters."
+msgstr "Uhrenname darf keine Leer-/Spezialzeichen beinhalten."
+
+#: d:\busmaster\sources\nodesimex\executefunc.cpp:958
+msgid "Input file open error :"
+msgstr "Eingabedateiöffnungsfehler :"
+
+#: d:\busmaster\sources\nodesimex\executefunc.cpp:1748
+msgid "Connect"
+msgstr "Verbinden"
+
+#: d:\busmaster\sources\nodesimex\executefunc.cpp:1752
+msgid "Disconnect"
+msgstr "Verbindungsabbau"
+
+#: d:\busmaster\sources\nodesimex\globalobj.cpp:175
+msgid "Simulation files have been modified. Do you want to save the changes?"
+msgstr ""
+"Simulationsdateien wurden modifiziert. Wollen sie die Änderungen speichern?"
+
+#: d:\busmaster\sources\nodesimex\globalobj.cpp:175
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:565
+msgid "Modified"
+msgstr "Modifiziert"
+
+#: d:\busmaster\sources\nodesimex\msghandlerdlg.cpp:623
+msgid "message"
+msgstr "Nachricht"
+
+#: d:\busmaster\sources\nodesimex\msghandlerdlg.cpp:669
+msgid "In\""
+msgstr "In \""
+
+#: d:\busmaster\sources\nodesimex\msghandlerdlg.cpp:669
+msgid "\" handler"
+msgstr "\" Behandler"
+
+#: d:\busmaster\sources\nodesimex\nodedetailsdlg.cpp:377
+msgid "Select the DLL"
+msgstr "Wähle die DLL"
+
+#: d:\busmaster\sources\nodesimex\simsysdetview.cpp:603
+msgid ""
+"All supported simulation file(s) (*.cpp;*.c)|*.cpp; *.c|C++ file(s) (*.cpp)|"
+"*.cpp|C file(s) (*.c)|*.c||"
+msgstr ""
+"Alle unterstützten Simulationsdatei(en) (*.cpp;*.c)|*.cpp; *.c|C++-Datei(en) "
+"(*.cpp)|*.cpp|C-Datei(en) (*.c)|*.c||"
+
+#: d:\busmaster\sources\nodesimex\simsysdetview.cpp:947
+msgid "MMI: CMainFrame::OnCreate() could not create font for combo box\n"
+msgstr ""
+"MMI: CMainFrame::OnCreate() konnte Schriftart der Kombinationsbox nicht "
+"erzeugen\n"
+
+#: d:\busmaster\sources\nodesimex\simsysdetview.cpp:968
+msgid "Handler Count"
+msgstr "Behandleranzahl"
+
+#: d:\busmaster\sources\nodesimex\simsysdetview.cpp:975
+msgid "Status"
+msgstr "Status"
+
+#: d:\busmaster\sources\nodesimex\simsysdetview.cpp:1028
+msgid "Handler Description"
+msgstr "Behandlerbeschreibung"
+
+#: d:\busmaster\sources\nodesimex\simsystreeview.cpp:559
+#: d:\busmaster\sources\nodesimex\simsystreeview.cpp:904
+msgid "Failed to change the string"
+msgstr "Änderung der Zeichenkette fehlgeschlagen"
+
+#: d:\busmaster\sources\siggrphwnd\graphbottomview.cpp:243
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:102
+msgid "Category"
+msgstr "Kategorie"
+
+#: d:\busmaster\sources\siggrphwnd\graphbottomview.cpp:250
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:103
+msgid "Element"
+msgstr "Element"
+
+#: d:\busmaster\sources\siggrphwnd\graphbottomview.cpp:264
+msgid "Cursor1"
+msgstr "Zeiger1"
+
+#: d:\busmaster\sources\siggrphwnd\graphbottomview.cpp:271
+msgid "Cursor2"
+msgstr "Zeiger2"
+
+#: d:\busmaster\sources\siggrphwnd\graphbottomview.cpp:278
+msgid "Difference"
+msgstr "Differenz"
+
+#: d:\busmaster\sources\siggrphwnd\graphbottomview.cpp:867
+msgid "Signal Graph - CAN"
+msgstr "Signalgrafik - CAN"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd.cpp:181
+msgid "Signal Graph -"
+msgstr "Signalgrafik -"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:33
+#, c-format
+msgid "Channel %-2d -> %s kbps"
+msgstr "Kanal %-2d -> %s kbps"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:35
+msgid "Select export filename..."
+msgstr "Wähle Exportdateiname..."
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:38
+#, c-format
+msgid "CSV report successfully generated and saved at %s"
+msgstr "CSV-Bericht erfolgreich generiert und als %s abgespeichert"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:39
+msgid "Please enter valid CSV report file path"
+msgstr "Bitte gültigen CSV-Berichtsdateipfad eingeben"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:41
+msgid "Select report filename..."
+msgstr "Wähle Berichtsdateiname..."
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:42
+msgid "HTML report file(s) (*.html)|*.html||"
+msgstr "HTML Berichtsdatei(en) (*.html)|*.html||"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:44
+#, c-format
+msgid "HTML report successfully generated and saved at %s"
+msgstr "HTML-Berich erfolgreich generiert und als %s abgespeichert"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:45
+msgid "Please enter valid HTML report file path"
+msgstr "Bitte gültigen HTML Berichtdateipfad eingeben"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:47
+msgid "Select picture filename..."
+msgstr "Wähle Bilddateiname..."
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:48
+msgid "Bitmap(s) (*.bmp)|*.bmp||"
+msgstr "Bitmap(s) (*.bmp)|*.bmp||"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:50
+msgid "Please enter valid bitmap file path"
+msgstr "Bitte gültigen Bitmap-Dateipfad eingeben"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:62
+msgid ""
+"Dissociation will clear Graph element List for all buses.\n"
+"Do you want to Clear the List?"
+msgstr ""
+"Entfernen der Beziehung wird Grafikelementliste für alle Busse leeren.\n"
+"Wollen sie die Liste leeren?"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:118
+msgid "Invalid main frame pointer"
+msgstr "Ungültiger Hauptrahmenzeiger"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:120
+msgid "Signal Graph"
+msgstr "Signal Grafik"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:122
+msgid "Database messages"
+msgstr "Datenbanknachrichten"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:123
+msgid "Statistics"
+msgstr "Statistiken"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:124
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1116
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1127
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1208
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1219
+msgid "Raw"
+msgstr "Roh"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:125
+msgid "Physical"
+msgstr "Physikalisch"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:127
+msgid "Show"
+msgstr "einblenden"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:128
+msgid "Hide"
+msgstr "ausblenden"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:130
+msgid "Enable"
+msgstr "Einschalten"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:131
+msgid "Disable"
+msgstr "Abschalten"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:132
+msgid "Element not found in the list. Please remove dead elements!"
+msgstr ""
+"Element wurde in der Liste nicht gefunden. Bitte entfernen sie tote Elemente!"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:135
+msgid ""
+"Only 10 graph elements are supported. Please delete existing element to add "
+"new element"
+msgstr ""
+"Nur 10 Grafikelemente werden unterstützt. Bitte löschen sie existierende "
+"Elemente um neue Elemente hinzuzufügen."
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:137
+msgid "Please enter valid range value"
+msgstr "Bitte gültigen Wertebereich eingeben"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:140
+msgid "Show grid"
+msgstr "Gitter einblenden"
+
+#: d:\busmaster\sources\siggrphwnd\siggrphwnd_defines.h:141
+msgid "Hide grid"
+msgstr "Gitter ausblenden"
+
+#: d:\busmaster\sources\testsetupeditorgui\treeviewex.cpp:999
+msgid "New test case"
+msgstr "Neuer Testfall"
+
+#: d:\busmaster\sources\testsetupeditorgui\treeviewex.cpp:1005
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2135
+msgid "Send"
+msgstr "Senden"
+
+#: d:\busmaster\sources\testsetupeditorgui\treeviewex.cpp:1006
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2143
+msgid "Verify"
+msgstr "Prüfen"
+
+#: d:\busmaster\sources\testsetupeditorgui\treeviewex.cpp:1007
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:439
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2151
+msgid "Wait"
+msgstr "Warten"
+
+#: d:\busmaster\sources\testsetupeditorgui\treeviewex.cpp:1008
+msgid "Verify Response"
+msgstr "Antwort prüfen"
+
+#: d:\busmaster\sources\testsetupeditorgui\treeviewex.cpp:1010
+msgid "New"
+msgstr "Neu"
+
+#: d:\busmaster\sources\testsetupeditorgui\treeviewex.cpp:1011
+#: d:\busmaster\sources\testsetupeditorgui\treeviewex.cpp:1015
+#: d:\busmaster\sources\testsuiteexecutorgui\treeviewex.cpp:681
+msgid "Delete"
+msgstr "Löschen"
+
+#: d:\busmaster\sources\testsetupeditorgui\treeviewex.cpp:1029
+#: d:\busmaster\sources\testsuiteexecutorgui\treeviewex.cpp:693
+msgid "Collapse all"
+msgstr "Alle zuklappen"
+
+#: d:\busmaster\sources\testsetupeditorgui\treeviewex.cpp:1030
+#: d:\busmaster\sources\testsuiteexecutorgui\treeviewex.cpp:694
+msgid "Expand all"
+msgstr "Alle aufklappen"
+
+#: d:\busmaster\sources\testsetupeditorgui\treeviewex.cpp:1032
+msgid "Background color"
+msgstr "Hintergrundfarbe"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui.cpp:145
+msgid "Test Setup Editor"
+msgstr "Testsetupeditor"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:225
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:252
+msgid "Invalid test setup file"
+msgstr "Ungültige Testsetupdatei"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:456
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2159
+msgid "Replay"
+msgstr "Abspielen"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:494
+msgid "Select a test setup file"
+msgstr "Wähle eine Testsetupdatei"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:565
+msgid ""
+"Current list is modified.\n"
+"Do you want to save the changes?"
+msgstr ""
+"Aktuelle Liste ist modifiziert.\n"
+"Wollen sie die Änderungen speichern?"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:686
+msgid "Title"
+msgstr "Titel"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:703
+msgid "Bus type"
+msgstr "Bustyp"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:736
+msgid "Database path"
+msgstr "Datenbankpfad"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:747
+msgid "Text file(s) (*.txt)|*.txt|HTML file(s) (*.html)|*.html||"
+msgstr "Textdatei(en) (*.txt)|*.txt|HTML-Datei(en) (*.html)|*.html||"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:753
+msgid "Report file path"
+msgstr "Berichtdateipfad"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:765
+msgid "Time mode"
+msgstr "Zeitmodus"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:828
+msgid "Test case ID"
+msgstr "Testfall-ID"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:833
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorgui_childframe.cpp:196
+msgid "Test case name"
+msgstr "Testfallname"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:839
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:850
+msgid "Continue"
+msgstr "Fortsetzen"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:840
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:846
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1406
+msgid "Exit"
+msgstr "Verlassen"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:842
+msgid "Exception handler"
+msgstr "Ausnahmebehandler"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:886
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:935
+msgid "Message count"
+msgstr "Nachrichtenzähler"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:903
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:985
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1848
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1866
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1928
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1947
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2010
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2029
+msgid "[Add message]"
+msgstr "[Nachricht hinzufügen]"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:952
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:959
+msgid "Fatal"
+msgstr "Fatal"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:955
+msgid "Failure classification"
+msgstr "Fehlerklassifikation"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1006
+msgid "Wait until"
+msgstr "Warte bis"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1044
+msgid "Purpose"
+msgstr "Absicht"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1049
+msgid "Delay (in msec)"
+msgstr "Verzögerung (in msek)"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1078
+msgid "File path"
+msgstr "Dateipfad"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1120
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1128
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1212
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1220
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1549
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1616
+msgid "Eng."
+msgstr "Ing."
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1124
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1216
+msgid "Signal unit type"
+msgstr "Signaleinheitentyp"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1788
+msgid ""
+"Database path is changed. All old messages of test setup file will be "
+"deleted.\n"
+"Do you want to continue?"
+msgstr ""
+"Datenbankpfad wurde geändert. Alle alten Nachrichten des Testsetups werden "
+"gelöscht.\n"
+"Wollen sie fortfahren?"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:1788
+msgid "Database path changed"
+msgstr "Datenbankpfad geändert"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2127
+msgid "Untitled test case"
+msgstr "Unbenannter Testfall"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2168
+msgid "Verify response"
+msgstr "Antwort prüfen"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2365
+#, c-format
+msgid ""
+"The file '%s' has been modified.\n"
+"Do you want to save?"
+msgstr ""
+"Die Datei '%s' wurde geändert.\n"
+"Wollen sie speichern?"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2366
+msgid "BUSMASTER Test Setup Editor"
+msgstr "BUSMASTER Test Setup Editor"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2462
+msgid "Test Automation Editor"
+msgstr "Testautomatisierungseditor"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2627
+msgid "Wrong item selected"
+msgstr "Falscher Eintrag selektiert"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2949
+msgid "Found some errors\\warnings"
+msgstr "Es wurden einige Fehler gefunden\\Warnungen"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2949
+msgid "Validation failed"
+msgstr "Validation fehlgeschlagen"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2953
+msgid "No errors\\warnings are found"
+msgstr "Keine Fehler\\Warnungen wurden gefunden"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:2953
+msgid "Validation success"
+msgstr "Validierung erfolgreich"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:3403
+msgid "Signal"
+msgstr "Signal"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:3403
+msgid "Byte"
+msgstr "Byte"
+
+#: d:\busmaster\sources\testsetupeditorgui\tseditorgui_childframe.cpp:3403
+msgid "Start Bit"
+msgstr "Startbit"
+
+#: d:\busmaster\sources\testsetupeditorlib\sendentity.cpp:218
+msgid "Warning: Has no send messages"
+msgstr "Warnung: Es hat keine Sendebotschaften"
+
+#: d:\busmaster\sources\testsetupeditorlib\testsetupentity.cpp:373
+msgid "<New test setup>"
+msgstr "<Neues Testsetup>"
+
+#: d:\busmaster\sources\testsetupeditorlib\testsetupentity.cpp:507
+msgid "No test cases are defined"
+msgstr "Es sind keine Testfälle definiert"
+
+#: d:\busmaster\sources\testsetupeditorlib\testsetupentity.cpp:726
+msgid "Unable to create XML parser object"
+msgstr "Erzeugen des XML-Parser-Objekts nicht möglich"
+
+#: d:\busmaster\sources\testsetupeditorlib\testsetupheader.cpp:70
+msgid "Engineer name"
+msgstr "Ingenieursname"
+
+#: d:\busmaster\sources\testsetupeditorlib\testsetupheader.cpp:71
+msgid "Engineer role"
+msgstr "Ingenieursrolle"
+
+#: d:\busmaster\sources\testsetupeditorlib\testsetupheader.cpp:72
+msgid "Module name"
+msgstr "Modulname"
+
+#: d:\busmaster\sources\testsetupeditorlib\testsetupheader.cpp:74
+msgid "Version"
+msgstr "Version"
+
+#: d:\busmaster\sources\testsetupeditorlib\testsetupheader.cpp:97
+msgid "No database file is included"
+msgstr "Keine Datenbankdatei ist enthalten"
+
+#: d:\busmaster\sources\testsetupeditorlib\testsetupheader.cpp:104
+msgid "Incorrect database file path"
+msgstr "Inkorrekter Datenbankdateiname"
+
+#: d:\busmaster\sources\testsetupeditorlib\verifyresponse.cpp:331
+msgid "Error: Has no verify messages"
+msgstr "Fehler: Hat keine Überprüfungsnachrichten"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\treeviewex.cpp:665
+msgid "Add..."
+msgstr "Hinzufügen..."
+
+#: d:\busmaster\sources\testsuiteexecutorgui\treeviewex.cpp:669
+#: d:\busmaster\sources\testsuiteexecutorgui\treeviewex.cpp:673
+msgid "Execute"
+msgstr "Ausführen"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\treeviewex.cpp:682
+msgid "Reload file"
+msgstr "Datei erneut laden"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutioncan.cpp:66
+msgid "In VerifyCurrentMessage - Before EnterCriticalSection\n"
+msgstr "In VerifyCurrentMessage - Vor EnterCriticalSection\n"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutioncan.cpp:68
+msgid "In VerifyCurrentMessage - After EnterCriticalSection\n"
+msgstr "In VerifyCurrentMessage - Nach EnterCriticalSection\n"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutioncan.cpp:362
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutioncan.cpp:452
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutioncan.cpp:497
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:300
+msgid "Success"
+msgstr "Erfolgreich"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutioncan.cpp:377
+#, c-format
+msgid "Success count %d"
+msgstr "Erfolgszähler %d"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutioncan.cpp:381
+msgid "No message was received"
+msgstr "Keine Nachricht wurde empfangen"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutioncan.cpp:446
+msgid "Verifying message"
+msgstr "Prüfe Nachricht"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutioncan.cpp:455
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutioncan.cpp:511
+msgid "Fail"
+msgstr "Fehlschlag"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutioncan.cpp:547
+msgid "Sending message"
+msgstr "Sende Nachricht"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorgui.cpp:144
+msgid "Test Suite Executor"
+msgstr "Testsuiteausführer"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorgui_childframe.cpp:197
+msgid "Execution step"
+msgstr "Ausführungsschritt"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorgui_childframe.cpp:198
+msgid "Result"
+msgstr "Resultat"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorgui_childframe.cpp:298
+#, c-format
+msgid "%s is invalid"
+msgstr "%s ist ungültig"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorlib.cpp:1226
+msgid "Sending messages started"
+msgstr "Senden der Nachrichten gestartet"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorlib.cpp:1232
+msgid "Verifying started"
+msgstr "Prüfung gestartet"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorlib.cpp:1246
+#, c-format
+msgid "Waiting %d msec for %s"
+msgstr "Warte für %d msec auf %s"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorlib.cpp:1253
+msgid "VerifyRequest started"
+msgstr "Prüfanfrage gestartet"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:235
+msgid "BUSMASTER Version:"
+msgstr "BUSMASTER Version:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:239
+msgid "Report file for:"
+msgstr "Berichtdatei für::"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:244
+msgid "Test Setup File Information:"
+msgstr "Test Setup Dateiinformation:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:247
+msgid "Title:"
+msgstr "Titel:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:251
+msgid "Module name:"
+msgstr "Modulname:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:255
+msgid "Version:"
+msgstr "Version:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:259
+msgid "Database information:"
+msgstr "Datenbankinformation:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:264
+msgid "Engineer Information:"
+msgstr "Ingenieursinformation:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:267
+msgid "Name:"
+msgstr "Name:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:271
+msgid "Designation:"
+msgstr "Bezeichnung:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:275
+msgid "Results:"
+msgstr "Resultate:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:284
+msgid ""
+"\n"
+"Test case:"
+msgstr ""
+"\n"
+"Testfall:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:291
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:298
+msgid "Result:"
+msgstr "Resultat:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:293
+msgid "Failed"
+msgstr "Fehlgeschlagen"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:303
+msgid "Start time:"
+msgstr "Startzeit:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:306
+msgid "End time:"
+msgstr "Endzeit:"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:319
+#, c-format
+msgid ""
+"\n"
+"\tVerify - %d (Severity - %s)"
+msgstr ""
+"\n"
+"\tPrüfe - %d (Schwere - %s)"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:325
+msgid "No message is verified"
+msgstr "Keine Nachricht ist verifiziert"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:396
+msgid "Sunday"
+msgstr "Sonntag"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:400
+msgid "Monday"
+msgstr "Montag"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:404
+msgid "Tuesday"
+msgstr "Dienstag"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:408
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:412
+msgid "Thursday"
+msgstr "Donnerstag"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:416
+msgid "Friday"
+msgstr "Freitag"
+
+#: d:\busmaster\sources\testsuiteexecutorgui\tsexecutorresult.cpp:420
+msgid "Saturday"
+msgstr "Samstag"
+
+#: d:\busmaster\sources\txwindow\txmsgblocksview.cpp:288
+#: d:\busmaster\sources\txwindow\txmsgblocksview.cpp:289
+#: d:\busmaster\sources\txwindow\txmsgblocksview.cpp:1033
+#: d:\busmaster\sources\txwindow\txmsgblocksview.cpp:1109
+msgid "Single"
+msgstr "Einzel"
+
+#: d:\busmaster\sources\txwindow\txmsgblocksview.cpp:1019
+#: d:\busmaster\sources\txwindow\txmsgblocksview.cpp:2318
+msgid "Cyclic trigger on event"
+msgstr "Zyklische Auslösung beim Ereignis"
+
+#: d:\busmaster\sources\txwindow\txmsgblocksview.cpp:1023
+#: d:\busmaster\sources\txwindow\txmsgblocksview.cpp:2303
+msgid "Monoshot trigger on event"
+msgstr "Einfache Auslösung beim Ereignis"
+
+#: d:\busmaster\sources\txwindow\txmsgmanager.cpp:900
+msgid "Tx block stopped\n"
+msgstr "Tx-Block gestoppt\n"
+
+#~ msgid "CANoe Database Files(*.dbc)|*.dbc||"
+#~ msgstr "CANoe-Datenbankdatei(en) (*.dbc)|*.dbc||"
+
+#~ msgid "BUSMASTER Database Files(*.dbf)|*.dbf||"
+#~ msgstr "BUSMASTER Datenbankdatei(en) (*.dbf)|*.dbf||"
+
+#~ msgid "BUSMASTER Database File(s) (*.dbf)|*.dbf||"
+#~ msgstr "BUSMASTER Datenbankdatei(en) (*.dbf)|*.dbf||"

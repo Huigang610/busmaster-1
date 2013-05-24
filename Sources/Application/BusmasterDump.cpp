@@ -1,7 +1,6 @@
 
 #include "stdafx.h"
 #include "BusmasterDump.h"
-//#include "GettextBusmaster.h"
 #include "Utility/MultiLanguageSupport.h"
 
 string CBusmasterDump::m_strAppName;
@@ -82,12 +81,16 @@ LONG CBusmasterDump::ExceptionFilter( struct _EXCEPTION_POINTERS* pExceptionInfo
                     BOOL bRetValue = pDump( GetCurrentProcess(), GetCurrentProcessId(), hFile, MiniDumpNormal, &ExInfo, NULL, NULL );
                     if (bRetValue)
                     {
-                        strDumpMsg = _("Saved dump file to ") + strDumpPath;
+                        strDumpMsg = _("Saved dump file to");
+                        strDumpMsg += " ";
+                        strDumpMsg += strDumpPath;
                         lRetval = EXCEPTION_EXECUTE_HANDLER;
                     }
                     else
                     {
-                        strDumpMsg = _("Failed to save dump file to ") + strDumpPath;
+                        strDumpMsg = _("Failed to save dump file to");
+                        strDumpMsg += " ";
+                        strDumpMsg += strDumpPath;
                     }
 
                     strResult = strDumpMsg;
@@ -95,7 +98,9 @@ LONG CBusmasterDump::ExceptionFilter( struct _EXCEPTION_POINTERS* pExceptionInfo
                 }
                 else
                 {
-                    strDumpMsg = _("Failed to create dump file ") + strDumpPath;
+                    strDumpMsg = _("Failed to create dump file");
+                    strDumpMsg += " ";
+                    strDumpMsg += strDumpPath;
                     strResult = strDumpMsg;
                 }
             }

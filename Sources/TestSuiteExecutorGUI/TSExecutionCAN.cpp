@@ -24,8 +24,6 @@
 #include "Include/Can_Error_Defs.h"
 #include "DIL_Interface/DIL_Interface_Extern.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
-
 
 /******************************************************************************
 Function Name  :  ReadTSXDataBuffer
@@ -65,9 +63,9 @@ int ReadTSXDataBuffer(CTSExecutionCAN* pTSXCan)
 }
 HRESULT VerifyCurrentMessage(STCANDATA& sCanData, CTSExecutionCAN* pTSXCan)
 {
-    AfxTrace(_("In VERIFY - Before Enter\n"));
+    AfxTrace(_("In VerifyCurrentMessage - Before EnterCriticalSection\n"));
     EnterCriticalSection(&(pTSXCan->m_omCritSecTS));
-    AfxTrace(_("In VERIFY - After Enter\n"));
+    AfxTrace(_("In VerifyCurrentMessage - After EnterCriticalSection\n"));
 
     if(pTSXCan->m_bTimeOver == TRUE || pTSXCan->m_pCurrentVerify == NULL)
     {
@@ -361,7 +359,7 @@ HRESULT CTSExecutionCAN::TSX_VerifyResponse(CBaseEntityTA* pEntity, CResultVerif
     HRESULT hResultTC;
     if(hResult == WAIT_OBJECT_0)
     {
-        CString strResult(_("SUCCESS"));
+        CString strResult(_("Success"));
         TSX_DisplayResult(strResult);
         hResultTC = S_OK;
     }
@@ -376,11 +374,11 @@ HRESULT CTSExecutionCAN::TSX_VerifyResponse(CBaseEntityTA* pEntity, CResultVerif
         CString omStrCount;
         if(m_LastCanMsg != -1)
         {
-            omStrCount.Format(_("SUCCESS COUNT %d"), m_MsgVerifiedList.GetCount());
+            omStrCount.Format(_("Success count %d"), m_MsgVerifiedList.GetCount());
         }
         else
         {
-            omStrCount.Format(_("No Message  has Recieved"));
+            omStrCount.Format(_("No message was received"));
         }
         hResultTC = S_FALSE;
         TSX_DisplayResult(omStrCount);
@@ -445,14 +443,16 @@ HRESULT CTSExecutionCAN::TSX_VerifyMessage(CBaseEntityTA* pEntity, CResultVerify
         m_ouMsgInterpret.vSetMessageList(sMsgEntry);
         m_ouMsgInterpret.bInterpretMsgs(ouVerifyData.m_dwMessageID, pucData, ouSignalInfo);
 
-        CString strVerDisplay = _("Verifying Message ")+ouVerifyData.m_omMessageName;
+        CString strVerDisplay = _("Verifying message");
+		strVerDisplay += " ";
+		strVerDisplay += ouVerifyData.m_omMessageName;
         TSX_DisplayMessage(strVerDisplay);
         //Verify The Signals
         CMessageResult ouMsgResult;
-        omResult = _("SUCCESS");
+        omResult = _("Success");
         if( bVerifyCanMessage(ouVerifyData, ouSignalInfo, ouMsgResult) == FALSE)
         {
-            omResult = _("FAIL");
+            omResult = _("Fail");
             hResult = S_FALSE;
         }
         ouVerifyResult.m_MessageResultList.AddTail(ouMsgResult);
@@ -494,7 +494,7 @@ BOOL CTSExecutionCAN::bVerifyCanMessage(CVerify_MessageData& ouVerifyData, CSign
             CSignalResult ouSignalResult;
             ouSignalResult.m_omSignal = ouSignal.m_omStrSignalName;
             ouSignalResult.m_omSignalCondition = omStrCondition;
-            ouSignalResult.m_omResult = _("SUCCESS");
+            ouSignalResult.m_omResult = _("Success");
             BOOL bRetVal;
             if(ouVerifyData.m_eSignalUnitType == RAW)
             {
@@ -508,7 +508,7 @@ BOOL CTSExecutionCAN::bVerifyCanMessage(CVerify_MessageData& ouVerifyData, CSign
             }
             if(bRetVal != TRUE)
             {
-                ouSignalResult.m_omResult = _("FAIL");
+                ouSignalResult.m_omResult = _("Fail");
                 //if One signal failed total message and total Testcase will be failed
                 bResult = FALSE;
             }
@@ -544,7 +544,9 @@ HRESULT CTSExecutionCAN::TSX_SendMessage(CBaseEntityTA* pEntity)
         pSendEntity->GetEntityData(SEND_MESSAGE, &ouSendData);
         sMESSAGE* pMsg = pEntity->m_ouDataBaseManager.unGetMsg(ouSendData.m_dwMessageID);
         bMakeCanMessage(pMsg, ouSendData, aucData, stCanData);
-        CString strSendDisplay = _("Sending Message ")+ouSendData.m_omMessageName;
+        CString strSendDisplay = _("Sending message");
+		strSendDisplay += " ";
+		strSendDisplay += ouSendData.m_omMessageName;
         TSX_DisplayMessage(strSendDisplay);
         m_pouDIL_CAN->DILC_SendMsg(m_dwClientId, stCanData);
     }

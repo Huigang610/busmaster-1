@@ -36,7 +36,6 @@
 #include "TxMsgChildFrame.h"    // For Parent window class declaration
 #include "TxWindow_resource.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 // Global App object declaration
 //extern CCANMonitorApp theApp;
@@ -1017,11 +1016,11 @@ VOID CTxMsgBlocksView::vDisplayMsgBlockDetails(SMSGBLOCKLIST* psMsgBlock)
         }
         if (psMsgBlock->m_bType == TRUE)
         {
-            SetDlgItemText(IDC_GROUPBOX_TRIGGER, _("Trigger (Cyclic) on event"));
+            SetDlgItemText(IDC_GROUPBOX_TRIGGER, _("Cyclic trigger on event"));
         }
         else
         {
-            SetDlgItemText(IDC_GROUPBOX_TRIGGER, _("Trigger (Monoshot) on event"));
+            SetDlgItemText(IDC_GROUPBOX_TRIGGER, _("Monoshot trigger on event"));
         }
         //m_omButtonTriggerType.SetCheck(!psMsgBlock->m_bType);
 
@@ -1403,7 +1402,7 @@ void CTxMsgBlocksView::OnChkbOnTimeTrigger()
                 psMsgCurrentBlock->m_ucTrigger |= defTIME_TRIGGER;
             }
             // Add "|" only if key is enabled
-            // This check we cannot prevent!!
+            // This check we cannot prevent!
             if( IS_KEY_TRIGGERED (  psMsgCurrentBlock->m_ucTrigger ) )
             {
                 omStrCurrent += defSTR_MSG_BLOCK_TRIGGER_SEPRATOR;
@@ -1495,7 +1494,7 @@ void CTxMsgBlocksView::OnChkbOnKeyTrigger()
         {
             omStrCurrent = m_omStrTimeIntervalVal + defMESSAGE_TRIG_MS;
             // Add "|" only if key is enabled
-            // This check we cannot prevent!!
+            // This check we cannot prevent!
             /*if (psMsgCurrentBlock != NULL)
             {
                 psMsgCurrentBlock->m_ucTrigger |= defTIME_TRIGGER;
@@ -2301,7 +2300,7 @@ BOOL CTxMsgBlocksView::bDisplayPopMenu(CListCtrl& omList,UINT nIDResource )
 }
 void CTxMsgBlocksView::OnBnClickedRadiomonoshot()
 {
-    SetDlgItemText(IDC_GROUPBOX_TRIGGER, _("Trigger (Monoshot) on event"));
+    SetDlgItemText(IDC_GROUPBOX_TRIGGER, _("Monoshot trigger on event"));
     OnChkbTriggerType();
     //update the global list for storing the changed data
     PSMSGBLOCKLIST psMsgCurrentBlock = NULL;
@@ -2316,7 +2315,7 @@ void CTxMsgBlocksView::OnBnClickedRadiomonoshot()
 
 void CTxMsgBlocksView::OnBnClickedRadiocyclic()
 {
-    SetDlgItemText(IDC_GROUPBOX_TRIGGER, _("Trigger (Cyclic) on event"));
+    SetDlgItemText(IDC_GROUPBOX_TRIGGER, _("Cyclic trigger on event"));
     OnChkbTriggerType();
     //update the global list for storing the changed data
     PSMSGBLOCKLIST psMsgCurrentBlock = NULL;

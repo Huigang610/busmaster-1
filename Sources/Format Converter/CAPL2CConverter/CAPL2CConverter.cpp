@@ -13,8 +13,8 @@ CCAPL2CConverter::CCAPL2CConverter(void)
 
 HRESULT CCAPL2CConverter::GettextBusmaster(void)
 {
-    setlocale(LC_ALL,"");
-    bindtextdomain("BUSMASTER", getenv("LOCALDIR") );
+    setlocale(LC_ALL, "");
+    bindtextdomain("BUSMASTER", getenv("LOCALDIR"));
     textdomain("BUSMASTER");
     return S_OK;
 }
@@ -24,7 +24,7 @@ HRESULT CCAPL2CConverter::GetHelpText(string& pchHelpText)
 {
     /*if(pchHelpText != NULL)
     {
-        _tcscpy(pchHelpText, _T("Converts the CANoe CAPL(.can) file to BUSMASTER Node Simulation(.c) file"));
+        _tcscpy(pchHelpText, _("Converts the CANoe CAPL file (.can) to BUSMASTER node simulation file (.c)"));
         return S_OK;
     }*/
     return S_FALSE;
@@ -33,7 +33,7 @@ HRESULT CCAPL2CConverter::GetConverterName(string& strConverterName)
 {
     /*if(strConverterName != NULL)
     {
-        strcpy(strConverterName, _T("CAPL TO C Conversion"));
+        strcpy(strConverterName, _("CAPL to C conversion"));
     }*/
     return S_FALSE;
 }
@@ -42,19 +42,19 @@ HRESULT CCAPL2CConverter::GetErrorStatus(HRESULT hResult, string& omstrStatus)
     /*switch( hResult )
     {
         case ERR_OUTPUT_FILE_NOTFOUND:
-            m_omstrConversionStatus = _T("Output File path is not found");
+            m_omstrConversionStatus = _("Output file path is not found");
             break;
         case ERR_INPUT_FILE_NOTFOUND:
-            m_omstrConversionStatus = _T("Input File path is not found");
+            m_omstrConversionStatus = _("Input file path is not found");
             break;
         case S_OK:
-            m_omstrConversionStatus = _T("Conversion success");
+            m_omstrConversionStatus = _("Conversion success");
             break;
         case S_FALSE:
-            m_omstrConversionStatus = _T("Conversion failed");
+            m_omstrConversionStatus = _("Conversion failed");
             break;
         default:
-            m_omstrConversionStatus = _T("Unknown Error");
+            m_omstrConversionStatus = _("Unknown error");
             break;
     }*/
     return S_FALSE;
@@ -64,7 +64,7 @@ HRESULT CCAPL2CConverter::GetInputFileFilters(string& pchInputDefFilters, string
     /*HRESULT hResult = S_FALSE;
     if(NULL != pchInputDefFilters)
     {
-        _tcscpy(pchInputDefFilters, _T("dbc"));
+        _tcscpy(pchInputDefFilters, "dbc");
         hResult = S_OK;
     }
     else
@@ -73,7 +73,7 @@ HRESULT CCAPL2CConverter::GetInputFileFilters(string& pchInputDefFilters, string
     }
     if(NULL != pchInputFilters)
     {
-        _tcscpy(pchInputFilters, _T("CANoe Database File(s) (*.dbc)|*.dbc||"));
+        _tcscpy(pchInputFilters, _("CANoe database file(s) (*.dbc)|*.dbc||"));
         hResult = S_OK;
     }*/
     return S_FALSE;
@@ -90,7 +90,7 @@ HRESULT CCAPL2CConverter::GetOutputFileFilters(string& pchOutputDefFilters, stri
     /*HRESULT hResult = S_FALSE;
     if(NULL != pchOutputDefFilters)
     {
-        _tcscpy(pchOutputDefFilters, _T("dbf"));
+        _tcscpy(pchOutputDefFilters, "dbf");
         hResult = S_OK;
     }
     else
@@ -99,7 +99,7 @@ HRESULT CCAPL2CConverter::GetOutputFileFilters(string& pchOutputDefFilters, stri
     }
     if(NULL != pchOutputFilters)
     {
-        _tcscpy(pchOutputFilters, _T("BUSMASTER Database File(s) (*.dbf)|*.dbf||"));
+        _tcscpy(pchOutputFilters, _("BUSMASTER database file(s) (*.dbf)|*.dbf||"));
         hResult = S_OK;
     }*/
     return S_FALSE;

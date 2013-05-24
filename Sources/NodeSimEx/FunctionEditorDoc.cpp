@@ -138,7 +138,7 @@ BOOL CFunctionEditorDoc::bCreateNewDocument(CString& omStrFileName )
         strcat(buffer, "\n\n");
 
         CString omStr = BUS_INCLUDE_HDR;
-        omStr.Replace("PLACE_HODLER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
+        omStr.Replace("PLACE_HOLDER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
         strcat(buffer ,/*T2A*/(omStr.GetBuffer(MAX_PATH)));
         strcat(buffer, "\n#include <Windows.h>");
         if (m_sBusSpecInfo.m_omHeaderFileName.IsEmpty())
@@ -166,31 +166,31 @@ BOOL CFunctionEditorDoc::bCreateNewDocument(CString& omStrFileName )
         }
         strcat(buffer, "\n");
         omStr = BUS_INCLUDE_FOOTER;
-        omStr.Replace("PLACE_HODLER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
+        omStr.Replace("PLACE_HOLDER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
         strcat(buffer, /*T2A*/(omStr));
 
         strcat(buffer, "\n\n\n");
 
         omStr = BUS_VAR_HDR;
-        omStr.Replace("PLACE_HODLER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
+        omStr.Replace("PLACE_HOLDER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
         strcat(buffer, /*T2A*/(omStr));
 
         strcat(buffer, "\n\n");
 
         omStr = BUS_VAR_FOOTER;
-        omStr.Replace("PLACE_HODLER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
+        omStr.Replace("PLACE_HOLDER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
         strcat(buffer, /*T2A*/(omStr));
 
         strcat(buffer, "\n\n\n");
 
         omStr = BUS_FN_PROTOTYPE_HDR;
-        omStr.Replace("PLACE_HODLER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
+        omStr.Replace("PLACE_HOLDER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
         strcat(buffer, /*T2A*/(omStr));
 
         strcat(buffer, "\n");
 
         omStr = BUS_FN_PROTOTYPE_FOOTER;
-        omStr.Replace("PLACE_HODLER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
+        omStr.Replace("PLACE_HOLDER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
         strcat(buffer, /*T2A*/(omStr));
 
         strcat(buffer, "\n\n");
@@ -408,7 +408,7 @@ void CFunctionEditorDoc::Serialize(CArchive& ar)
 
                     BOOL bInsideLoop = TRUE;
                     CString omTemp = BUS_VAR_HDR;
-                    omTemp.Replace("PLACE_HODLER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
+                    omTemp.Replace("PLACE_HOLDER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
                     if (omTextLine == omTemp )
                     {
                         while ( bInsideLoop )
@@ -425,7 +425,7 @@ void CFunctionEditorDoc::Serialize(CArchive& ar)
                             m_omSourceCodeTextList.AddTail(omTextLine);
                             m_dwSourceCodeLineNo++;
                             omTemp = BUS_VAR_FOOTER;
-                            omTemp.Replace("PLACE_HODLER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
+                            omTemp.Replace("PLACE_HOLDER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
                             if ( omTextLine == omTemp )
                             {
                                 bInsideLoop = FALSE;
@@ -449,7 +449,7 @@ void CFunctionEditorDoc::Serialize(CArchive& ar)
                         }
                     }
                     omTemp = FRAME_FN_PARTIAL_HDR;
-                    omTemp.Replace("PLACE_HODLER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
+                    omTemp.Replace("PLACE_HOLDER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
                     if ( omTextLine.Find( omTemp ) != -1 )
                     {
                         ReadString((LPSTR)pbyFileData, (COMMANUINT)FileLength, acFileLine, nIndex);
@@ -812,7 +812,7 @@ void CFunctionEditorDoc::vUpdateDEFFile(CString omStrFileName)
         // Trim it and get function name
         omStrFunction.TrimLeft();
         omStrFunction.TrimRight();
-        int nIndex = omStrFunction.Find( " ");
+        int nIndex = omStrFunction.Find(" ");
         if ( nIndex != -1 )
         {
             omStrFunction =
@@ -1051,7 +1051,7 @@ BOOL CFunctionEditorDoc::OnSaveDocument(LPCTSTR lpszPathName)
     CString omTemp = BUS_VAR_HDR;
     if (m_sBusSpecInfo.m_omBusName.IsEmpty())
     {
-        // initialise default values atleast
+        // initialise default values at least
         m_sBusSpecInfo.m_omBusName = "BUSMASTER";
         m_sBusSpecInfo.m_omHeaderFileName = CGlobalObj::ouGetObj(m_sBusSpecInfo.m_eBus).m_omMsgStructFile;
     }
@@ -1096,13 +1096,13 @@ BOOL CFunctionEditorDoc::OnSaveDocument(LPCTSTR lpszPathName)
         }
     }
     /* PTV[1.6.4] */
-    omTemp.Replace("PLACE_HODLER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
+    omTemp.Replace("PLACE_HOLDER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
     POSITION posStartGvar = m_omSourceCodeTextList.Find( omTemp  );
 
     if (NULL != posStartGvar)
     {
         omTemp = BUS_VAR_FOOTER;
-        omTemp.Replace("PLACE_HODLER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
+        omTemp.Replace("PLACE_HOLDER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
         POSITION posEndGvar = m_omSourceCodeTextList.Find( omTemp  );
 
         m_omSourceCodeTextList.GetNext( posStartGvar );

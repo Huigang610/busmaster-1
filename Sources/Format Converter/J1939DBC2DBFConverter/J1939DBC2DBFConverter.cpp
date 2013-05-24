@@ -4,12 +4,6 @@
 #include "J1939DBC2DBFConverter_stdafx.h"
 #include <afxdllx.h>
 #include "J1939DBC2DBFConverter.h"
-//#include <locale.h>
-//
-//#include <libintl.h>
-//
-//#define _(string) gettext (string)
-
 
 #ifdef _MANAGED
 #error Please read instructions in DBC2DBFConverter.cpp to compile with /clr
@@ -80,8 +74,8 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 
 HRESULT CJ1939DBC2DBFConverter::GettextBusmaster(void)
 {
-    setlocale(LC_ALL,"");
-    bindtextdomain("BUSMASTER", getenv("LOCALDIR") );
+    setlocale(LC_ALL, "");
+    bindtextdomain("BUSMASTER", getenv("LOCALDIR"));
     textdomain("BUSMASTER");
     return S_OK;
 }
@@ -141,7 +135,7 @@ HRESULT CJ1939DBC2DBFConverter::GetErrorStatus(HRESULT hResult, string& omstrSta
 HRESULT CJ1939DBC2DBFConverter::GetInputFileFilters(string& pchInputDefFilters, string& pchInputFilters)
 {
     pchInputDefFilters = "dbc";
-    pchInputFilters = _("CANoe Database File(s) (*.dbc)|*.dbc||");
+    pchInputFilters = _("CANoe database file(s) (*.dbc)|*.dbc||");
     return S_OK;
 }
 HRESULT CJ1939DBC2DBFConverter::GetLastConversionStatus(HRESULT& hResult, string& omstrStatus)
@@ -163,7 +157,7 @@ HRESULT CJ1939DBC2DBFConverter::GetLastConversionStatus(HRESULT& hResult, string
 HRESULT CJ1939DBC2DBFConverter::GetOutputFileFilters(string& pchOutputDefFilters, string& pchOutputFilters)
 {
     pchOutputDefFilters = "dbf";
-    pchOutputFilters = _("BUSMASTER Database File(s) (*.dbf)|*.dbf||");
+    pchOutputFilters = _("BUSMASTER database file(s) (*.dbf)|*.dbf||");
     return S_OK;
 }
 

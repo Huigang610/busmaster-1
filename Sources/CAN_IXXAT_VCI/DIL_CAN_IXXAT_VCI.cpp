@@ -329,7 +329,7 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_SelectHwInterface(const INTERFACE_HW_LIST& sSelH
             m_arrIxxatCanChannels[i].Selected(TRUE);
         }
 #ifdef _IXXAT_DEBUG
-        LogMessage( TRUE, _("------> Selected CAN controller: %s - %s (%s)\n")
+        LogMessage( TRUE, "------> Selected CAN controller: %s - %s (%s)\n"
                     , sSelHwInterface[0].m_acDeviceName.c_str()
                     , sSelHwInterface[0].m_acNameInterface.c_str()
                     , sSelHwInterface[0].m_acDescription.c_str() );
@@ -941,7 +941,7 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT
 HRESULT CDIL_CAN_IXXAT_VCI::CAN_ManageMsgBuf(BYTE byAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, _("------> CDIL_CAN_IXXAT_VCI::CAN_ManageMsgBuf  - Action: %u  ClientID: %u\n"), byAction, ClientID);
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_ManageMsgBuf  - Action: %u  ClientID: %u\n", byAction, ClientID);
 #endif
     HRESULT hResult = S_FALSE;
     if (pBufObj)

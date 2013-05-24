@@ -37,5 +37,5 @@ public:
     ~CAppServices_Impl();      // Destructor
 
     // Functions
-    BOOL bWriteToTrace(char* pcTraceStr);
+    bool bWriteToTrace(const char * pcTraceStr);
 };

@@ -32,20 +32,20 @@
 
 #define defSTR_BAUD_RATE_FORMAT     _("Channel %-2d -> %s kbps")
 
-#define defSTR_EXPORT_DIALOG_CAPTION    _("Select Export Filename...")
-#define defSTR_CSV_FORMAT_SPECIFIER _("Comma Separated Values format (*.csv)|*.csv||")
+#define defSTR_EXPORT_DIALOG_CAPTION    _("Select export filename...")
+#define defSTR_CSV_FORMAT_SPECIFIER _("Comma Separated Values file(s) (*.csv)|*.csv||")
 #define defSTR_CSV_FORMAT           "csv"
 #define defSTR_EXPORT_CREATE_SUCCESS _("CSV report successfully generated and saved at %s")
 #define defSTR_CSV_FILE_PATH_EMPTY      _("Please enter valid CSV report file path")
 
-#define defSTR_REPORT_DIALOG_CAPTION    _("Select Report Filename...")
-#define defSTR_HTML_FORMAT_SPECIFIER _("HTML Report Format (*.html)|*.html||")
+#define defSTR_REPORT_DIALOG_CAPTION    _("Select report filename...")
+#define defSTR_HTML_FORMAT_SPECIFIER _("HTML report file(s) (*.html)|*.html||")
 #define defSTR_HTML_FORMAT           "html"
 #define defSTR_REPORT_CREATE_SUCCESS _("HTML report successfully generated and saved at %s")
 #define defSTR_HTML_FILE_PATH_EMPTY      _("Please enter valid HTML report file path")
 
-#define defSTR_BITMAP_DIALOG_CAPTION    _("Select Picture Filename...")
-#define defSTR_BMP_FORMAT_SPECIFIER _("Bitmap Picture Format (*.bmp)|*.bmp||")
+#define defSTR_BITMAP_DIALOG_CAPTION    _("Select picture filename...")
+#define defSTR_BMP_FORMAT_SPECIFIER _("Bitmap(s) (*.bmp)|*.bmp||")
 #define defSTR_BMP_FORMAT           "bmp"
 #define defSTR_bmp_FILE_PATH_EMPTY      _("Please enter valid bitmap file path")
 #define defSPACE_STR            " "
@@ -116,10 +116,10 @@
 #define defELEMENT_SELECTION_TYPE_WIDTH         65
 
 #define desSTR_INVALID_MAINFRAME_POINTER    _("Invalid main frame pointer")
-#define MSG_MEMORY_CONSTRAINT   _("Insufficient Memory available")
+#define MSG_MEMORY_CONSTRAINT   _("Insufficient memory available")
 #define defSTR_GRAPH_WINDOW_NAME            _("Signal Graph")
 
-#define defSTR_DB_MSG_NAME      _("Database Messages")
+#define defSTR_DB_MSG_NAME      _("Database messages")
 #define defSTR_STATISTICS_NAME  _("Statistics")
 #define defSTR_RAW_VALUE        _("Raw")
 #define defSTR_PHY_VALUE        _("Physical")
@@ -129,7 +129,7 @@
 
 #define defSTR_ENABLE             _("Enable")
 #define defSTR_DISABLE            _("Disable")
-#define defSTR_ELEMENT_NOT_FOUND    _("Element not found in the list. Please remove dead elements!!")
+#define defSTR_ELEMENT_NOT_FOUND    _("Element not found in the list. Please remove dead elements!")
 
 #define defMAX_ELEMENTS_COUNT       10
 #define defSTR_MAX_ELEMENTS_EXCEEDED_MSG    _("Only 10 graph elements are supported. Please delete existing element to add new element")
@@ -137,8 +137,8 @@
 #define defSTR_INVALID_RANGE        _("Please enter valid range value")
 
 
-#define defSTR_SHOW_GRID        _("Show Grid")
-#define defSTR_HIDE_GRID        _("Hide Grid")
+#define defSTR_SHOW_GRID        _("Show grid")
+#define defSTR_HIDE_GRID        _("Hide grid")
 #define defUPDATE_TIMER_ID      100
 
 #define defDEFAULT_XRANGE_MAX   10

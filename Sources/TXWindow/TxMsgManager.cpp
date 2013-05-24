@@ -34,7 +34,6 @@
 #include "include/XMLDefines.h"
 #include "Utility/XMLUtils.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 //CLient Id from the DIL
 static DWORD g_dwClientID = 0;
@@ -997,7 +996,7 @@ UINT CTxMsgManager::s_unSendMsgBlockOnKey(LPVOID pParam )
         psIntialTxMsgList = psTxMsgList;
         // Take the first node of Tx block
         //PSTXCANMSGLIST psTxMsgList = psTxMsg->m_psTxCANMsgList;
-        // If All Messages option is enabled search for atleast one message
+        // If All Messages option is enabled search for at least one message
         // with send option enabled. If not then quit
         BOOL bMsgFound = FALSE;
         if( psTxMsg->m_bSendAllMessages == TRUE )

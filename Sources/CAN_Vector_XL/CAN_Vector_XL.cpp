@@ -50,7 +50,7 @@
 #include "ChangeRegisters.h"
 #include "../Application/MultiLanguage.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
+
 #define DYNAMIC_XLDRIVER_DLL
 #include "EXTERNAL_INCLUDE/vxlapi.h"
 
@@ -1119,7 +1119,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, i
     {
         //pControllerDetails[i].m_omHardwareDesc  = sg_aodChannels[i].m_strName;
         static char chName[MAX_PATH];
-        _stprintf(chName , _("Vector - %s, Serial Number- %d"),
+        _stprintf(chName , _("Vector XL - %s, Serial number - %d"),
                   sg_aodChannels[i].m_pXLChannelInfo->name,
                   sg_aodChannels[i].m_pXLChannelInfo->serialNumber);
         pControllerDetails[i].m_omHardwareDesc = chName;
@@ -2259,7 +2259,7 @@ static int nGetNoOfConnectedHardware(void)
     }
     else
     {
-        _tcscpy(sg_omErrStr, _("Problem Finding Device!"));
+        _tcscpy(sg_omErrStr, _("Problem finding device!"));
         nResult = -1;
     }
     /* Return the operation result */
@@ -2422,7 +2422,7 @@ static int nInitHwNetwork(UINT unDefaultChannelCnt)
      * Take action based on number of Hardware Available
      */
     char acNo_Of_Hw[MAX_STRING] = {0};
-    _stprintf(acNo_Of_Hw, _("Number of Vector hardwares Available: %d"), nChannelCount);
+    _stprintf(acNo_Of_Hw, _("Number of Vector hardware available: %d"), nChannelCount);
 
     /* No Hardware found */
     if( nChannelCount == 0 )

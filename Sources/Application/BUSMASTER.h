@@ -29,7 +29,6 @@
 #include "Flags.h"      // For CFlags
 #include "Struct.h" // Added by ClassView
 #include "ConfigDetails.h"  // Added by ClassView, reqd for CConfigDetails obj
-//#include "GettextBusmaster.h"
 #include "Utility/MultiLanguageSupport.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -122,5 +121,5 @@ protected:
     //CConfigDetails m_oConfigDetails;
 public:
     INT COM_nSaveConfiguration(CString omStrCfgFilename);
-    BOOL bWriteIntoTraceWnd(char* omText);
+    bool bWriteIntoTraceWnd(const char * omText);
 };

@@ -28,7 +28,6 @@
 #include "FunctionEditorDoc.h"
 #include "GlobalObj.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -195,7 +194,7 @@ void CSimSysDetView::OnButtonBuild()
             CString strErrMsg = "The file is not properly built.";
             if (m_psNodeInfo->m_bIsDllLoaded == TRUE)
             {
-                strErrMsg += " Please unload the dll and try again!!";
+                strErrMsg += " Please unload the dll and try again!";
             }
             AfxMessageBox(strErrMsg);
         }
@@ -584,7 +583,7 @@ void CSimSysDetView::OnButtonOpenfile()
     int nReturnVal = IDYES;
     if( m_psNodeInfo->m_bIsDllLoaded)
     {
-        AfxMessageBox("Unload the dll and try again!!");
+        AfxMessageBox("Unload the dll and try again!");
     }
     else
     {
@@ -597,16 +596,15 @@ void CSimSysDetView::OnButtonOpenfile()
             CString omStrDefCFileName(STR_EMPTY);
             // Display open dialog box with *.c filter
             // and select the C file by default
-            //CHAR szFilters[] = _("C Files (*.c)|*.c |C++ Files (*.cpp)|*.cpp||");
             CFileDialog fileDlg( TRUE,      // Open File dialog
                                  "cpp",        // Default Extension,
                                  NULL,
                                  OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-                                 _("All Supported Simulation Files (*.cpp;*.c)|*.cpp; *.c|cpp File(s) (*.cpp)|*.cpp|C File(s) (*.c)|*.c||"),
+                                 _("All supported simulation file(s) (*.cpp;*.c)|*.cpp; *.c|C++ file(s) (*.cpp)|*.cpp|C file(s) (*.c)|*.c||"),
                                  NULL );
 
             // Set Title
-            fileDlg.m_ofn.lpstrTitle  = _("Select BUSMASTER Source Filename...");
+            fileDlg.m_ofn.lpstrTitle  = _("Select BUSMASTER source filename...");
 
             if ( IDOK == fileDlg.DoModal() )
             {
@@ -702,7 +700,7 @@ void CSimSysDetView::OnButtonOpenfile()
                             CString omTemp1 = BUS_INCLUDE_HDR;
                             // Preparing the header to be searched for in .c file
                             // to get the Protocol name
-                            omTemp1.Replace("PLACE_HODLER_FOR_BUSNAME", omstrBusName);
+                            omTemp1.Replace("PLACE_HOLDER_FOR_BUSNAME", omstrBusName);
 
                             nIndex = -1;
 
@@ -943,10 +941,10 @@ void CSimSysDetView::OnInitialUpdate()
     LF.lfHeight = 10;
     LF.lfWeight = FW_HEAVY;
     LF.lfPitchAndFamily = VARIABLE_PITCH | FF_SWISS;
-    _tcscpy(LF.lfFaceName, _("Ms Sans Serif"));
+    _tcscpy(LF.lfFaceName, "Sans Serif");
     if (!om_tFont.CreateFontIndirect(&LF))
     {
-        TRACE(_("MMI: CMainFrame::OnCreate() Could not create font for Combo Box\n"));
+        TRACE(_("MMI: CMainFrame::OnCreate() could not create font for combo box\n"));
     }
 
     // Insert column header in the signal details list control

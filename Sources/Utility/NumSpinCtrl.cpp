@@ -127,7 +127,7 @@ void CNumSpinCtrl::vSetValueForBuddy (double dVal)
             }
             else
             {
-                // For hex double should not be used. Use __int64 member!!
+                // For hex double should not be used. Use __int64 member!
                 ASSERT( FALSE );
             }
         }

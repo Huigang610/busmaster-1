@@ -85,9 +85,9 @@ BOOL CFormatConverterApp::InitInstance()
     // Change the registry key under which our settings are stored
     // TODO: You should modify this string to be something appropriate
     // such as the name of your company or organization
-    SetRegistryKey(_T("Local AppWizard-Generated Applications"));
+    SetRegistryKey("Local AppWizard-Generated Applications");
 
-    CFormatConverterWnd dlg(_T(_("BUSMASTER Format Conversions")));
+    CFormatConverterWnd dlg(_("BUSMASTER Format Conversions"));
     dlg.m_psh.dwFlags &= ~PSH_HASHELP;
     dlg.m_psh.dwFlags &= ~PSH_NOAPPLYNOW;
     dlg.LoadConverters();

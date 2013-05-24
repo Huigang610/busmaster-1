@@ -27,7 +27,6 @@
 #include "include/XMLDefines.h"
 #include "Utility/XMLUtils.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 //TODO::Move To definitions
 #define def_INDEX_TESTSUITEIMAGE    0
@@ -194,8 +193,8 @@ BOOL CTSExecutorChildFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/, CCreateConte
 
     CListCtrl& omPropertyList = m_odResultView->GetListCtrl();
     omPropertyList.SetExtendedStyle(omPropertyList.GetExtendedStyle() |LVS_REPORT | LVS_EX_GRIDLINES|LVS_EX_FULLROWSELECT);
-    omPropertyList.InsertColumn(0, _("TestCase Name"), LVCFMT_LEFT, 100, -1);
-    omPropertyList.InsertColumn(1, _("Execution Step"), LVCFMT_LEFT, 150, -1);
+    omPropertyList.InsertColumn(0, _("Test case name"), LVCFMT_LEFT, 100, -1);
+    omPropertyList.InsertColumn(1, _("Execution step"), LVCFMT_LEFT, 150, -1);
     omPropertyList.InsertColumn(2, _("Result"), LVCFMT_LEFT, 100, -1);
 
     m_pomImageList = new CImageList();
@@ -296,7 +295,7 @@ HRESULT CTSExecutorChildFrame::OnAddTestSetup(WPARAM wparam, LPARAM lparam)
             else
             {
                 CString omStrInfo;
-                omStrInfo.Format(_("The %s is Invalid File"), omstrTestSetup.GetBuffer(MAX_PATH));
+                omStrInfo.Format(_("%s is invalid"), omstrTestSetup.GetBuffer(MAX_PATH));
                 MessageBox(omStrInfo, _("Error"), MB_OK|MB_ICONERROR);
             }
 

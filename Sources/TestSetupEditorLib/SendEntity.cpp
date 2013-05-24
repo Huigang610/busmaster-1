@@ -25,7 +25,6 @@
 #include "TestSetupEditorLib_stdafx.h"
 #include "SendEntity.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 
 /******************************************************************************
@@ -216,7 +215,7 @@ HRESULT CSendEntity::ValidateEntity(CString& omStrResult)
     GetSubEntryCount(unSendMessageCount);
     if(unSendMessageCount <= 0)
     {
-        omStrResult += _("Warning: Has No Send Messages");
+        omStrResult += _("Warning: Has no send messages");
 		omStrResult += "\r\n";
         return ERR_VALID_WARNING;               //CS026
     }

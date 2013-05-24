@@ -26,6 +26,9 @@
 #include <atltime.h>
 #include <string.h>
 
+/* Project includes */
+#include "../../Utility/MultiLanguageSupport.h"
+
 extern "C" int nGetDayFromDate(char* pchDate, char* pchMonth, char* chWeekDay)
 {
     if(pchDate == NULL || chWeekDay == NULL || pchMonth == NULL)
@@ -50,31 +53,31 @@ extern "C" int nGetDayFromDate(char* pchDate, char* pchMonth, char* chWeekDay)
     switch(nDay)
     {
         case 1:
-            strcpy(chWeekDay, _T("Sun"));
+            strcpy(chWeekDay, _("Sun"));
             break;
 
         case 2:
-            strcpy(chWeekDay, _T("Mon"));
+            strcpy(chWeekDay, _("Mon"));
             break;
 
         case 3:
-            strcpy(chWeekDay, _T("Tue"));
+            strcpy(chWeekDay, _("Tue"));
             break;
 
         case 4:
-            strcpy(chWeekDay, _T("Wed"));
+            strcpy(chWeekDay, _("Wed"));
             break;
 
         case 5:
-            strcpy(chWeekDay, _T("Thu"));
+            strcpy(chWeekDay, _("Thu"));
             break;
 
         case 6:
-            strcpy(chWeekDay, _T("Fri"));
+            strcpy(chWeekDay, _("Fri"));
             break;
 
         case 7:
-            strcpy(chWeekDay, _T("Sat"));
+            strcpy(chWeekDay, _("Sat"));
             break;
     }
 

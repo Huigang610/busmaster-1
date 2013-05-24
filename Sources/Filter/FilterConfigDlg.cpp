@@ -29,7 +29,7 @@
 /* C++ includes */
 #include <sstream>
 #include <string>
-//#include "../Application/GettextBusmaster.h"
+
 /* Project includes */
 #include "Filter_resource.h"
 #include "Include/CanUsbDefs.h"
@@ -769,7 +769,7 @@ void CFilterConfigDlg::vUpdateFromFilterName(int nItem, int nSubItem)
                                   m_psFilterApplied->m_ushTotal,omStrNewName.GetBuffer(MAX_PATH));
             if(psTemp != NULL)
             {
-                AfxMessageBox(_("Name already exist"));
+                AfxMessageBox(_("Name already exists"));
                 // Restore the name
                 m_bUpdating = TRUE;
                 m_omLstcFilterList.SetItemText( nItem, nSubItem,
@@ -1407,7 +1407,7 @@ BOOL CFilterConfigDlg::bGetFilterData(SFILTER_CAN& sFilter)
         }
         else
         {
-            vSetStatusText(_("Invalid Message ID"));
+            vSetStatusText(_("Invalid message ID"));
         }
     }
     else
@@ -1472,7 +1472,7 @@ BOOL CFilterConfigDlg::bGetFilterData(SFILTER_CAN& sFilter)
         if( bDataValid == TRUE && unMsgIDFrom >= unMsgIDTo )
         {
             bDataValid = FALSE;
-            vSetStatusText(_("Start Range ID is greater than or equal to End Range ID"));
+            vSetStatusText(_("Start range ID is greater than or equal to end range ID"));
         }
         // Copy data if data is valid
         if( bDataValid == TRUE )
@@ -1968,12 +1968,12 @@ void CFilterConfigDlg::OnBtnAdd()
         }
         else
         {
-            AfxMessageBox(_("Unable to create memory for new Filter"));
+            AfxMessageBox(_("Unable to create memory for new filter"));
         }
     }
     else
     {
-        AfxMessageBox(_("Unable to find unique name for the filter!!"));
+        AfxMessageBox(_("Unable to find unique name for the filter!"));
     }
 }
 

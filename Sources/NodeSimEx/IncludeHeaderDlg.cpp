@@ -202,7 +202,7 @@ void CIncludeHeaderDlg::OnBrowse()
         STR_EMPTY,  //initial file name
         OFN_FILEMUSTEXIST| OFN_HIDEREADONLY|
         OFN_PATHMUSTEXIST,
-        "C Header Files(*.h)|*.h||",
+        "C header file(s) (*.h)|*.h||",
         NULL
     );
     // Set caption text

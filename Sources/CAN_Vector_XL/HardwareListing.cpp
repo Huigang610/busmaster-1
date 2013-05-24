@@ -28,7 +28,6 @@
 #include "HardwareListing.h"
 #include ".\hardwarelisting.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -436,7 +435,7 @@ void CHardwareListing::OnOK()
     m_nNoOfHwSelected = m_omSelectedHwList.GetItemCount();
     if (m_nNoOfHwSelected < 1)
     {
-        AfxMessageBox(_("Please select atleast one hardware"));
+        AfxMessageBox(_("Please select at least one hardware"));
         return;
     }
     // Number of hardware will be used
@@ -473,11 +472,11 @@ void CHardwareListing::OnOK()
     }
     // This is invalid case. There could be some problem in list
     // control manipulation because the selected item count exceeds the
-    // number of hardware available!!!!!
+    // number of hardware available!
     else
     {
         CString omErr;
-        omErr.Format(_("Please select atmost %d hardwares"),  CHANNEL_ALLOWED);
+        omErr.Format(_("Please select at most %d hardwares"),  CHANNEL_ALLOWED);
         AfxMessageBox(omErr);
         return;
     }

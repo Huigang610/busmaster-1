@@ -2306,12 +2306,12 @@ static int nInitHwNetwork(UINT unDefaultChannelCnt)
      * Take action based on number of Hardware Available
      */
     char acNo_Of_Hw[MAX_STRING] = {0};
-    _stprintf(acNo_Of_Hw, _("Number of Kvaser hardwares Available: %d"), nChannelCount);
+    _stprintf(acNo_Of_Hw, _("Number of Kvaser hardware available: %d"), nChannelCount);
 
     /* No Hardware found */
     if( nChannelCount == 0 )
     {
-        _stprintf(sg_omErrStr, _("No Kvaser hardwares Available.\nPlease check if Kvaser drivers are installed."));
+        _stprintf(sg_omErrStr, _("No Kvaser hardware available.\nPlease check if Kvaser drivers are installed."));
         nChannelCount = -1;
     }
     /* Available hardware is lesser then the supported channels */

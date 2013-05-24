@@ -32,7 +32,6 @@
 #include "Filter/Filter_extern.h"
 #include <locale.h>
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 #define defREPLAY_FILE_IMAGE_INDEX          3
 #define defREPLAY_FILE_COL_WIDTH_PROPOTION  0.95

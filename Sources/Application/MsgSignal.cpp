@@ -224,7 +224,7 @@ CString CMsgSignal::bWriteDBHeader(CString omStrActiveDataBase)
             // call for MessageBox is used.
             if (m_bAutoServerMode == FALSE)
             {
-                ::MessageBox(NULL,acErrorMsg,_("BUSMASTER") ,MB_ICONERROR|MB_OK);
+                ::MessageBox(NULL, acErrorMsg, "BUSMASTER", MB_ICONERROR|MB_OK);
             }
         }
         else
@@ -361,7 +361,7 @@ CString CMsgSignal::bWriteDBHeader(CString omStrActiveDataBase)
             // union.h file  open error notification
             if (m_bAutoServerMode == FALSE)
             {
-                ::MessageBox(NULL,acErrorMsg,_("BUSMASTER") ,MB_ICONERROR|MB_OK);
+                ::MessageBox(NULL, acErrorMsg, "BUSMASTER", MB_ICONERROR|MB_OK);
             }
         }
         // Close opened file
@@ -1182,7 +1182,8 @@ BOOL CMsgSignal::bCreateDataBase(CString omStrFilename)
 
             bRetVal = TRUE;
 
-            omStrFilename += _(" created successfully.");
+			omStrFilename += " ";
+            omStrFilename += _("created successfully.");
 
             if (!m_bAutoServerMode)
             {
@@ -1415,7 +1416,7 @@ BOOL CMsgSignal::bFillDataStructureFromDatabaseFile( CString strFileName, eProto
                                 // If the loaded file is not CAN database file
                                 if(omstrDatabaseProtocol != DATABASE_PROTOCOL_CAN)
                                 {
-                                    strcpy(s_acTraceStr, strFileName + _(" is not created for CAN. Please load CAN related dbf file."));
+                                    strcpy(s_acTraceStr, strFileName + " " + _("is not created for CAN. Please load CAN related DBF file."));
                                     vWriteTextToTrace();//(WM_WRITE_TO_TRACE, 0, (LPARAM)s_acTraceStr);
                                     return FALSE;
                                 }
@@ -1426,7 +1427,7 @@ BOOL CMsgSignal::bFillDataStructureFromDatabaseFile( CString strFileName, eProto
                                 // If the loaded file is not J1939 database file
                                 if(omstrDatabaseProtocol != DATABASE_PROTOCOL_J1939)
                                 {
-                                    strcpy(s_acTraceStr, strFileName + _(" is not created for J1939. Please load J1939 related dbf file."));
+                                    strcpy(s_acTraceStr, strFileName + " " + _("is not created for J1939. Please load J1939 related DBF file."));
                                     vWriteTextToTrace();//(WM_WRITE_TO_TRACE, 0, (LPARAM)s_acTraceStr);
                                     return FALSE;
                                 }
@@ -2227,13 +2228,14 @@ BOOL CMsgSignal::bFillDataStructureFromDatabaseFile( CString strFileName, eProto
     {
         // Delete occupied memory
         bDeAllocateMemory(strFileName);
+		strFileName += " ";
         if(bIsMessageLengthExceeds == FALSE)
         {
-            strFileName += _(" Is Invalid DBF File");
+            strFileName += _("is an invalid DBF file.");
         }
         else
         {
-            strFileName += _(" is not created for CAN. Since one of the message length exceeds 8 bytes.");
+            strFileName += _("is not created for CAN. Since one of the message length exceeds 8 bytes.");
         }
         //Tobias- venkat
         strcpy_s(s_acTraceStr, 1024, strFileName);

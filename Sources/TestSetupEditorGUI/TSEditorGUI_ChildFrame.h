@@ -27,7 +27,7 @@
 #include "TreeViewEx.h"
 
 // CTSEditorChildFrame frame with splitter
-#define szFilter    "TestSetup Files (*.xml)|*.xml||"
+#define szFilter    "Test setup file(s) (*.xml)|*.xml||"
 class CTSEditorChildFrame : public CMDIChildWnd
 {
     DECLARE_DYNCREATE(CTSEditorChildFrame)

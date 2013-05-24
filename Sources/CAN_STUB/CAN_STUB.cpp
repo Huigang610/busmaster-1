@@ -42,8 +42,6 @@
 #include "Utility/Utility_Thread.h"
 #include "Utility/Utility.h"
 #include "DIL_Interface/BaseDIL_CAN_Controller.h"
-//#include "../Application/GettextBusmaster.h"
-
 #include "Utility/MultiLanguageSupport.h"
 
 #define USAGE_EXPORT
@@ -304,7 +302,7 @@ static void GetSystemErrorString()
                    NULL );
     if (dwResult <= 0)
     {
-        sg_acErrStr = _("system error message retrieval operation failed");
+        sg_acErrStr = _("System error message retrieval operation failed");
     }
     else
     {
@@ -1298,7 +1296,7 @@ HRESULT Worker_RegisterClient(ISimENG* pISimENG, Base_WrapperErrorLogger* pIlog)
     if (hResult != S_OK)
     {
         pIlog->vLogAMessage(__FILE__, __LINE__,
-                            (_("unable to register to the simulation engine")));
+                            (_("Unable to register to the simulation engine")));
         return S_FALSE;
     }
 

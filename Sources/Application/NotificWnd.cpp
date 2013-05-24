@@ -114,7 +114,7 @@ VOID CNotificWnd::vSetWindowFont()
     LF.lfOutPrecision = OUT_CHARACTER_PRECIS;
     LF.lfClipPrecision = CLIP_CHARACTER_PRECIS;
     LF.lfPitchAndFamily  = FIXED_PITCH | FF_SWISS;
-    strcpy_s(LF.lfFaceName, LF_FACESIZE, _("Tahoma"));
+    strcpy_s(LF.lfFaceName, LF_FACESIZE, "Tahoma");
     LF.lfWeight = FW_NORMAL;
 
     if (m_omNewFont.CreateFontIndirect(&LF) == TRUE)

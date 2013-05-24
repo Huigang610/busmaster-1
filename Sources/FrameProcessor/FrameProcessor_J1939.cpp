@@ -55,7 +55,6 @@
 #include "FrameProcessor_J1939.h"
 #include "LogObjectJ1939.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 
 USHORT CFrameProcessor_J1939::ushCalculateStrLen(bool bForHex, USHORT ushLength)
@@ -162,7 +161,7 @@ void CFrameProcessor_J1939::CreateTimeModeMapping(SYSTEMTIME& CurrSysTime,
 {
     if (NULL != m_pouDIL_J1939)
     {
-        //WON'T COMPILE !!
+        //WON'T COMPILE!
         m_pouDIL_J1939->DILIJ_GetTimeModeMapping(CurrSysTime, unAbsTime);
     }
 }
@@ -180,7 +179,7 @@ void CFrameProcessor_J1939::vRetrieveDataFromBuffer(void)
         if (Result == ERR_READ_MEMORY_SHORT)
         {
             CString omBuf;
-            omBuf.Format(_("ERR_READ_MEMORY_SHORT  nSize: %d"), nSize);
+            omBuf.Format("ERR_READ_MEMORY_SHORT  nSize: %d", nSize);
         }
         else if (Result == EMPTY_APP_BUFFER)
         {

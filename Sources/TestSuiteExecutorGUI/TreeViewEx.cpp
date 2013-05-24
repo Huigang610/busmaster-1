@@ -30,8 +30,6 @@
 #include <afxtempl.h>
 #include "TSExecutorGUI_resource.h"
 #include "TSExecutorGUI_ChildFrame.h"
-//#include "../Application/GettextBusmaster.h"
-//#include "TreeViewEx.h"
 #include "Utility/MultiLanguageSupport.h"
 
 
@@ -681,7 +679,7 @@ void CTreeViewEx::OnNMRclick(NMHDR* /*pNMHDR*/, LRESULT* pResult)
             if(omTempTreeCtrl.GetItemData(hParentItem) == def_ID_TESTSUITE)
             {
                 VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_TESTSETUP_DELETE, _("Delete")));
-                VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_TESTSETUP_MODIFY, _("Reload File")));
+                VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_TESTSETUP_MODIFY, _("Reload file")));
             }
         }
         omContextMenu.TrackPopupMenu(TPM_LEFTALIGN, point.x, point.y, this);
@@ -692,8 +690,8 @@ void CTreeViewEx::OnNMRclick(NMHDR* /*pNMHDR*/, LRESULT* pResult)
     {
         CMenu omContextMenu;
         VERIFY(omContextMenu.CreatePopupMenu());
-        VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_COLLAPSE_ALL, _("Collapse All")));
-        VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_EXPAND_ALL, _("Expand All")));
+        VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_COLLAPSE_ALL, _("Collapse all")));
+        VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_EXPAND_ALL, _("Expand all")));
         omContextMenu.TrackPopupMenu(TPM_LEFTALIGN, point.x, point.y, this);
         *pResult = 0;
     }

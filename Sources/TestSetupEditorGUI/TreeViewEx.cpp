@@ -25,7 +25,6 @@
 #include "TSEditorGUI_ChildFrame.h"
 #include "TSEditorGUI_Definitions.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 IMPLEMENT_DYNCREATE(CTreeViewEx, CTreeView)
 
@@ -997,7 +996,7 @@ void CTreeViewEx::OnNMRclick(NMHDR* /*pNMHDR*/, LRESULT* pResult)
         VERIFY(omContextMenu.CreatePopupMenu());
         if(eEnityType == TEST_SETUP)
         {
-            VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_ADD_TESTCASE, _("New Test Case")));
+            VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_ADD_TESTCASE, _("New test case")));
         }
         else if(eEnityType == TEST_CASE)
         {
@@ -1006,7 +1005,7 @@ void CTreeViewEx::OnNMRclick(NMHDR* /*pNMHDR*/, LRESULT* pResult)
             omSubMenu.AppendMenu(MF_STRING, IDM_ADD_SEND, _("Send"));
             omSubMenu.AppendMenu(MF_STRING, IDM_ADD_VERIFY, _("Verify"));
             omSubMenu.AppendMenu(MF_STRING, IDM_ADD_WAIT, _("Wait"));
-            omSubMenu.AppendMenu(MF_STRING, IDM_ADD_VERIFYRESPONSE, _("verfiyResponse"));
+            omSubMenu.AppendMenu(MF_STRING, IDM_ADD_VERIFYRESPONSE, _("Verify Response"));
             //omSubMenu.AppendMenu(MF_STRING, IDM_ADD_REPLAY, _("Replay"));
             omContextMenu.AppendMenu(MF_POPUP, (UINT_PTR)omSubMenu.m_hMenu, _("New"));
             omContextMenu.AppendMenu(MF_STRING, IDM_DELETE, _("Delete"));
@@ -1027,10 +1026,10 @@ void CTreeViewEx::OnNMRclick(NMHDR* /*pNMHDR*/, LRESULT* pResult)
     {
         CMenu omContextMenu;
         VERIFY(omContextMenu.CreatePopupMenu());
-        VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_COLLAPSE_ALL, _("Collapse All")));
-        VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_EXPAND_ALL, _("Expand All")));
+        VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_COLLAPSE_ALL, _("Collapse all")));
+        VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_EXPAND_ALL, _("Expand all")));
         VERIFY(omContextMenu.AppendMenu(MF_SEPARATOR));
-        VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_SETTINGS_CLR, _("Background Color")));
+        VERIFY(omContextMenu.AppendMenu(MF_STRING, IDM_SETTINGS_CLR, _("Background color")));
         omContextMenu.TrackPopupMenu(TPM_LEFTALIGN, point.x, point.y, this);
         *pResult = 0;
     }

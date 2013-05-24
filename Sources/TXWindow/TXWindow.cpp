@@ -24,7 +24,6 @@
 #include "TxWindow_stdafx.h"
 #include <afxdllx.h>
 #include "../Application/MultiLanguage.h"
-//#include "../Application/GettextBusmaster.h"
 #define USAGE_EXPORT
 #include "TxWnd_Extern.h"
 #include "TxMsgManager.h"

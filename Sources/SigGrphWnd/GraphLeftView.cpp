@@ -25,7 +25,6 @@
 #include "GraphBottomView.h"
 #include ".\graphleftview.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 // Local definitions
 #define defFROM_LINE_COLOR        0

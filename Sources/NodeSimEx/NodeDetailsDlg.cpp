@@ -371,10 +371,10 @@ void CNodeDetailsDlg::OnBrowse()
                             "",  //initial file name
                             OFN_FILEMUSTEXIST| OFN_HIDEREADONLY|
                             OFN_PATHMUSTEXIST,
-                            "Dll Files(*.dll)|*.dll||",
+                            "DLL file(s) (*.dll)|*.dll||",
                             NULL );
         // Set caption text
-        om_Dlg.m_ofn.lpstrTitle = "Select the Dll";
+        om_Dlg.m_ofn.lpstrTitle = _("Select the DLL");
 
         if ( om_Dlg.DoModal() == IDOK )
         {

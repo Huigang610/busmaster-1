@@ -1855,15 +1855,22 @@ void CMsgFrmtWnd::vSetDefaultHeaders()
             sHdrCtrlPos.m_byDataPos     = 7;
 
             //Set the col string
-            somArrColTitle[sHdrCtrlPos.m_byTimePos]     = _("Time              ");
-            somArrColTitle[sHdrCtrlPos.m_byRxTxPos]     = _("Tx/Rx          ");
-            somArrColTitle[sHdrCtrlPos.m_byChannel]     = _("Channel        ");
+            somArrColTitle[sHdrCtrlPos.m_byTimePos]     = _("Time");
+            somArrColTitle[sHdrCtrlPos.m_byTimePos]     += "              ";
+            somArrColTitle[sHdrCtrlPos.m_byRxTxPos]     = _("Tx/Rx");
+            somArrColTitle[sHdrCtrlPos.m_byRxTxPos]     += "          ";
+            somArrColTitle[sHdrCtrlPos.m_byChannel]     = _("Channel");
+            somArrColTitle[sHdrCtrlPos.m_byChannel]     += "        ";
             somArrColTitle[sHdrCtrlPos.m_byMsgTypePos]  = _("Type");
-            somArrColTitle[sHdrCtrlPos.m_byIDPos]       = _("ID            ");
-            somArrColTitle[sHdrCtrlPos.m_byCodeNamePos] = _("Message       ");
+            somArrColTitle[sHdrCtrlPos.m_byIDPos]       = _("ID");
+            somArrColTitle[sHdrCtrlPos.m_byIDPos]       += "            ";
+            somArrColTitle[sHdrCtrlPos.m_byCodeNamePos] = _("Message");
+            somArrColTitle[sHdrCtrlPos.m_byCodeNamePos] += "       ";
             somArrColTitle[sHdrCtrlPos.m_byMsgTypePos]  = _("Msg Type");
-            somArrColTitle[sHdrCtrlPos.m_byDLCPos]      = _("DLC ");
-            somArrColTitle[sHdrCtrlPos.m_byDataPos]     = _("Data Byte(s)                                     ");
+            somArrColTitle[sHdrCtrlPos.m_byDLCPos]      = _("DLC");
+            somArrColTitle[sHdrCtrlPos.m_byDLCPos]      += " ";
+            somArrColTitle[sHdrCtrlPos.m_byDataPos]     = _("Data Byte(s)");
+            somArrColTitle[sHdrCtrlPos.m_byDataPos]     += "                                     ";
 
             m_MsgHdrInfo.vInitializeColDetails(sHdrCtrlPos, somArrColTitle, nColCount);
 
@@ -1896,18 +1903,29 @@ void CMsgFrmtWnd::vSetDefaultHeaders()
             sHdrCtrlPos.m_byDataPos     = 11;
 
             //Set the col string
-            somArrColTitle[sHdrCtrlPos.m_byTimePos]     = _("Time             ");
-            somArrColTitle[sHdrCtrlPos.m_byChannel]     = _("Channel    ");
-            somArrColTitle[sHdrCtrlPos.m_byIDPos]       = _("CAN ID      ");
-            somArrColTitle[sHdrCtrlPos.m_byPGNPos]      = _("PGN        ");
-            somArrColTitle[sHdrCtrlPos.m_byCodeNamePos] = _("PGN Name   ");
-            somArrColTitle[sHdrCtrlPos.m_byMsgTypePos]  = _("Type       ");
-            somArrColTitle[sHdrCtrlPos.m_bySrcPos]      = _("Src    ");
-            somArrColTitle[sHdrCtrlPos.m_byDestPos]     = _("Dest       ");
+            somArrColTitle[sHdrCtrlPos.m_byTimePos]     = _("Time");
+            somArrColTitle[sHdrCtrlPos.m_byTimePos]     += "             ";
+            somArrColTitle[sHdrCtrlPos.m_byChannel]     = _("Channel");
+            somArrColTitle[sHdrCtrlPos.m_byChannel]     += "    ";
+            somArrColTitle[sHdrCtrlPos.m_byIDPos]       = _("CAN ID");
+            somArrColTitle[sHdrCtrlPos.m_byIDPos]       += "      ";
+            somArrColTitle[sHdrCtrlPos.m_byPGNPos]      = _("PGN");
+            somArrColTitle[sHdrCtrlPos.m_byPGNPos]      += "        ";
+            somArrColTitle[sHdrCtrlPos.m_byCodeNamePos] = _("PGN Name");
+            somArrColTitle[sHdrCtrlPos.m_byCodeNamePos] += "   ";
+            somArrColTitle[sHdrCtrlPos.m_byMsgTypePos]  = _("Type");
+            somArrColTitle[sHdrCtrlPos.m_byMsgTypePos]  += "       ";
+            somArrColTitle[sHdrCtrlPos.m_bySrcPos]      = _("Src");
+            somArrColTitle[sHdrCtrlPos.m_bySrcPos]      += "    ";
+            somArrColTitle[sHdrCtrlPos.m_byDestPos]     = _("Dest");
+            somArrColTitle[sHdrCtrlPos.m_byDestPos]     += "       ";
             somArrColTitle[sHdrCtrlPos.m_byPriorityPos] = _("Priority");
-            somArrColTitle[sHdrCtrlPos.m_byRxTxPos]     = _("Tx/Rx    ");
-            somArrColTitle[sHdrCtrlPos.m_byDLCPos]      = _("DLC ");
-            somArrColTitle[sHdrCtrlPos.m_byDataPos]     = _("Data Byte(s)                                     ");
+            somArrColTitle[sHdrCtrlPos.m_byRxTxPos]     = _("Tx/Rx");
+            somArrColTitle[sHdrCtrlPos.m_byRxTxPos]     += "    ";
+            somArrColTitle[sHdrCtrlPos.m_byDLCPos]      = _("DLC");
+            somArrColTitle[sHdrCtrlPos.m_byDLCPos]      += " ";
+            somArrColTitle[sHdrCtrlPos.m_byDataPos]     = _("Data Byte(s)");
+            somArrColTitle[sHdrCtrlPos.m_byDataPos]     += "                                     ";
 
             m_MsgHdrInfo.vInitializeColDetails(sHdrCtrlPos, somArrColTitle, nColCount);
 

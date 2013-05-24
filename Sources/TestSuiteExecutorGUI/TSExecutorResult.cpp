@@ -23,7 +23,6 @@
 #include "TSExecutorResult.h"
 #include "TSExecutorGUI_resource.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 #define defMAX_CHAR_PER_LINE        80
 
@@ -232,23 +231,48 @@ INT CResultGenerator::nGenerateTextReport(CStdioFile& omReportFile)
 {
 
     //BUSMASTER Version
-    omReportFile.WriteString(_("\n\t\t\t\tBUSMASTER Version:: BUSMASTER ") + m_omStrVersion);
-    omReportFile.WriteString(_("\n\t\t\t\tReport File For:: "));
+	omReportFile.WriteString("\n\t\t\t\t");
+	omReportFile.WriteString(_("BUSMASTER Version:"));
+	omReportFile.WriteString(" BUSMASTER ");
+	omReportFile.WriteString(m_omStrVersion);
+    omReportFile.WriteString("\n\t\t\t\t");
+	omReportFile.WriteString(_("Report file for:"));
+	omReportFile.WriteString(" ");
     omReportFile.WriteString(m_omStrTestSetupFile);
 
-    omReportFile.WriteString(_("\n\nTestSetup File Information:"));
-    omReportFile.WriteString("\n---------------------------\n\t");
-    omReportFile.WriteString(_("\n\tTitle: ")+ m_omStrTestSetupFile);
-    omReportFile.WriteString(_("\n\tModule Name:")+m_ouHeaderInfo.m_sModuleName.m_omValue);
-    omReportFile.WriteString(_("\n\tVersion: ")+m_ouHeaderInfo.m_sVersion.m_omValue);
-    omReportFile.WriteString(_("\n\tDatabase Information:")+m_ouHeaderInfo.m_omDatabasePath);
+    omReportFile.WriteString("\n\n");
+    omReportFile.WriteString(_("Test Setup File Information:"));
+    omReportFile.WriteString("\n----------------------------\n\t");
+    omReportFile.WriteString("\n\t");
+    omReportFile.WriteString(_("Title:"));
+    omReportFile.WriteString(" ");
+    omReportFile.WriteString(m_omStrTestSetupFile);
+    omReportFile.WriteString("\n\t");
+    omReportFile.WriteString(_("Module name:"));
+    omReportFile.WriteString(" ");
+    omReportFile.WriteString(m_ouHeaderInfo.m_sModuleName.m_omValue);
+    omReportFile.WriteString("\n\t");
+    omReportFile.WriteString(_("Version:"));
+    omReportFile.WriteString(" ");
+    omReportFile.WriteString(m_ouHeaderInfo.m_sVersion.m_omValue);
+    omReportFile.WriteString("\n\t");
+    omReportFile.WriteString(_("Database information:"));
+    omReportFile.WriteString(" ");
+    omReportFile.WriteString(m_ouHeaderInfo.m_omDatabasePath);
     omReportFile.WriteString("\n\n");
 
-    omReportFile.WriteString(_("Engineer Info:"));
-    omReportFile.WriteString("\n--------------");
-    omReportFile.WriteString(_("\n\tName: ")+m_ouHeaderInfo.m_sEngineerInfo1.m_omValue);
-    omReportFile.WriteString(_("\n\tDesignation: ")+m_ouHeaderInfo.m_sEngineerInfo2.m_omValue);
-    omReportFile.WriteString(_("\nResults:"));
+    omReportFile.WriteString(_("Engineer Information:"));
+    omReportFile.WriteString("\n---------------------");
+    omReportFile.WriteString("\n\t");
+    omReportFile.WriteString(_("Name:"));
+    omReportFile.WriteString(" ");
+    omReportFile.WriteString(m_ouHeaderInfo.m_sEngineerInfo1.m_omValue);
+    omReportFile.WriteString("\n\t");
+    omReportFile.WriteString(_("Designation:"));
+    omReportFile.WriteString(" ");
+    omReportFile.WriteString(m_ouHeaderInfo.m_sEngineerInfo2.m_omValue);
+    omReportFile.WriteString("\n");
+    omReportFile.WriteString(_("Results:"));
     omReportFile.WriteString("\n-------");
     omReportFile.WriteString("\n");
 
@@ -257,18 +281,30 @@ INT CResultGenerator::nGenerateTextReport(CStdioFile& omReportFile)
     {
         POSITION pos = m_odTcResultList.FindIndex(nTcIndex);
         CResultTc& ouResultTc = m_odTcResultList.GetAt(pos);
-        omReportFile.WriteString(_("\nTestCase:  ")+ouResultTc.m_omTestCase);
+        omReportFile.WriteString(_("\nTest case:"));
+		omReportFile.WriteString(" ");
+        omReportFile.WriteString(ouResultTc.m_omTestCase);
 
         if(ouResultTc.m_eResult == ERRORS)
         {
-            omReportFile.WriteString(_("\nResult:\tFAILED"));
+            omReportFile.WriteString("\n");
+            omReportFile.WriteString(_("Result:"));
+            omReportFile.WriteString("\t");
+            omReportFile.WriteString(_("Failed"));
         }
         else
         {
-            omReportFile.WriteString(_("\nResult:\tSUCCESS"));
+            omReportFile.WriteString("\n");
+            omReportFile.WriteString(_("Result:"));
+            omReportFile.WriteString("\t");
+            omReportFile.WriteString(_("Success"));
         }
-        omReportFile.WriteString(_("\nStratTime:")+SysTimeToString(ouResultTc.m_sStartTime));
-        omReportFile.WriteString(_("\nEndTime:")+SysTimeToString(ouResultTc.m_sEndTime));
+        omReportFile.WriteString("\n");
+        omReportFile.WriteString(_("Start time:"));
+        omReportFile.WriteString(SysTimeToString(ouResultTc.m_sStartTime));
+        omReportFile.WriteString("\n");
+        omReportFile.WriteString(_("End time:"));
+        omReportFile.WriteString(SysTimeToString(ouResultTc.m_sEndTime));
         //omReportFile.WriteString("\n");
         INT nVerifyCount = (INT)ouResultTc.m_ouVerifyList.GetCount();
         for(INT nVerifyIndex = 0; nVerifyIndex <nVerifyCount; nVerifyIndex++)
@@ -285,8 +321,8 @@ INT CResultGenerator::nGenerateTextReport(CStdioFile& omReportFile)
 
             if(nMsgCount == 0)
             {
-                CString omStrTemp(_("No Message is Verified"));
-                omReportFile.WriteString("\n\t\t" + omStrTemp);
+                omReportFile.WriteString("\n\t\t");
+                omReportFile.WriteString(_("No message is verified"));
             }
             else
             {
@@ -294,7 +330,8 @@ INT CResultGenerator::nGenerateTextReport(CStdioFile& omReportFile)
                 {
                     POSITION pos = ouVerify.m_MessageResultList.FindIndex(nMsgIndex);
                     CMessageResult& ouMsgResult = ouVerify.m_MessageResultList.GetAt(pos);
-                    omReportFile.WriteString("\n\t\t" + ouMsgResult.m_omMessage + ":");
+                    omReportFile.WriteString("\n\t\t");
+                    omReportFile.WriteString(ouMsgResult.m_omMessage + ":");
                     INT nSignalCount = (INT)ouMsgResult.m_SignalResultList.GetCount();
 
                     for(INT nSignalIndex=0; nSignalIndex<nSignalCount; nSignalIndex++)
@@ -319,17 +356,17 @@ void CResultGenerator::vGetVerifySeverity(eERROR_ATTRIBUTE eError, CString& omSt
     switch(eError)
     {
         case SUCCESS:
-            omStrError = "SUCCESS";
+            omStrError = "Success";
             break;
         case WARNING:
-            omStrError = "WARNING";
+            omStrError = "Warning";
             break;
         case ERRORS:
-            omStrError = "ERRORS";
+            omStrError = "Errors";
             break;
         default:
         case FATAL:
-            omStrError = "FATAL";
+            omStrError = "Fatal";
             break;
     }
 

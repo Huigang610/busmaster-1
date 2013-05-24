@@ -40,9 +40,9 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-#define DefDUPNODEINSYS    "The node in the simulated system you are trying to add is already present!!"
-#define DefDUPCFILEINSYS   "The C file in the simulated system you are trying to add is already present!!"
-#define DefDUPDLLINSYS     "The dll in the simulated system you are trying to add is already present!!"
+#define DefDUPNODEINSYS    "The node in the simulated system you are trying to add is already present!"
+#define DefDUPCFILEINSYS   "The C file in the simulated system you are trying to add is already present!"
+#define DefDUPDLLINSYS     "The DLL in the simulated system you are trying to add is already present!"
 const USHORT MCNET_DATA_MAX = 1000;
 
 BOOL bIsTransitionInState( UINT unChannel, BYTE byRxError, BYTE byTxError, eERROR_STATE* eErrState)
@@ -1175,7 +1175,7 @@ BOOL CSimSysNodeInfo::bReturnAllHandlersStatus(CString& omStrSimSysName)
         {
             if(pTempNode->m_sNodeInfo.m_bIsAllHandlersEnabled == TRUE)
             {
-                // if all the handlers are enabled of atleast 1 node
+                // if all the handlers are enabled of at least 1 node
                 // bIsEnabled = TRUE;
                 nNoOfEnabledHan++;
             }

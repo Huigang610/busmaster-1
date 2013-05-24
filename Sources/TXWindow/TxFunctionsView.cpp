@@ -34,7 +34,6 @@
 #include "TxFunctionsView.h"    // For Tx Function View class declaration
 #include "TxMsgChildFrame.h"    // For Parent Window class declaration
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 IMPLEMENT_DYNCREATE(CTxFunctionsView, CFormView)
 

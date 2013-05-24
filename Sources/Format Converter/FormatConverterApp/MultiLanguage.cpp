@@ -148,7 +148,7 @@ LANGID CMultiLanguage::DetectUILanguage()
     PFNGETSYSTEMDEFAULTUILANGUAGE pfnGetSystemDefaultUILanguage;
     HINSTANCE hKernel32;
 
-    hKernel32 = ::GetModuleHandle(_T("kernel32.dll"));
+    hKernel32 = ::GetModuleHandle("kernel32.dll");
     ASSERT(hKernel32 != NULL);
     pfnGetUserDefaultUILanguage = (PFNGETUSERDEFAULTUILANGUAGE)::GetProcAddress(
                                       hKernel32, "GetUserDefaultUILanguage");
@@ -157,7 +157,7 @@ LANGID CMultiLanguage::DetectUILanguage()
         // First, try the user's UI language
         langid = pfnGetUserDefaultUILanguage();
         AddLangId( langid );
-        TRACE(_T("CMultiLanguage::DetectUILanguage() 1st/2nd = %04X\n"), langid );
+        TRACE("CMultiLanguage::DetectUILanguage() 1st/2nd = %04X\n", langid);
 
         // Then, try the system's default UI language
         pfnGetSystemDefaultUILanguage = (PFNGETSYSTEMDEFAULTUILANGUAGE)::GetProcAddress(
@@ -166,7 +166,7 @@ LANGID CMultiLanguage::DetectUILanguage()
 
         langid = pfnGetSystemDefaultUILanguage();
         AddLangId( langid );
-        TRACE(_T("CMultiLanguage::DetectUILanguage() 3rd/4th = %04X\n"), langid );
+        TRACE("CMultiLanguage::DetectUILanguage() 3rd/4th = %04X\n", langid);
     }
     else
     {
@@ -176,7 +176,7 @@ LANGID CMultiLanguage::DetectUILanguage()
             // We're on Windows 9x, so look in the registry for the UI language
             HKEY hKey = NULL;
             LONG nResult = ::RegOpenKeyEx(HKEY_CURRENT_USER,
-                                          _T( "Control Panel\\Desktop\\ResourceLocale" ), 0, KEY_READ, &hKey);
+                                          "Control Panel\\Desktop\\ResourceLocale", 0, KEY_READ, &hKey);
             if (nResult == ERROR_SUCCESS)
             {
                 DWORD dwType;
@@ -187,13 +187,13 @@ LANGID CMultiLanguage::DetectUILanguage()
                 if ((nResult == ERROR_SUCCESS) && (dwType == REG_SZ))
                 {
                     DWORD dwLangID;
-                    int nFields = _stscanf( szValue, _T( "%x" ), &dwLangID );
+                    int nFields = _stscanf(szValue, "%x", &dwLangID);
                     if( nFields == 1 )
                     {
                         langid = LANGID( dwLangID );
                         AddLangId( langid );
-                        TRACE(_T("CMultiLanguage::DetectUILanguage() 9X1st/2nd = %04X\n"),
-                              langid );
+                        TRACE("CMultiLanguage::DetectUILanguage() 9X1st/2nd = %04X\n",
+                              langid);
                     }
                 }
                 ::RegCloseKey(hKey);
@@ -203,7 +203,7 @@ LANGID CMultiLanguage::DetectUILanguage()
         {
             // We're on NT 4.  The UI language is the same as the language of the
             // version resource in ntdll.dll
-            HMODULE hNTDLL = ::GetModuleHandle( _T( "ntdll.dll" ) );
+            HMODULE hNTDLL = ::GetModuleHandle("ntdll.dll");
             if (hNTDLL != NULL)
             {
                 langid = 0;
@@ -212,8 +212,8 @@ LANGID CMultiLanguage::DetectUILanguage()
                 if (langid != 0)
                 {
                     AddLangId( langid );
-                    TRACE(_T("CMultiLanguage::DetectUILanguage() NT1st/2nd = %04X\n"),
-                          langid );
+                    TRACE("CMultiLanguage::DetectUILanguage() NT1st/2nd = %04X\n",
+                          langid);
                 }
             }
         }
@@ -279,7 +279,7 @@ HINSTANCE CMultiLanguage::LoadLangResourceDLL(LPCTSTR szModuleName, LANGID langU
         lcid = alcid[iLocale];
         if (lcid == LOCALE_SYSTEM_DEFAULT)
         {
-            lstrcpy(szLangCode, _T("LOC"));
+            lstrcpy(szLangCode, "LOC");
         }
         else
         {
@@ -296,7 +296,7 @@ HINSTANCE CMultiLanguage::LoadLangResourceDLL(LPCTSTR szModuleName, LANGID langU
             // append "ENU.DLL" to moduleName
             lstrcpyn(szResDLLName, szModuleName, nNoExtension);
             lstrcat(szResDLLName, szLangCode);
-            lstrcat(szResDLLName, _T(".DLL"));
+            lstrcat(szResDLLName, ".DLL");
         }
         else
         {
@@ -323,12 +323,12 @@ LANGID CMultiLanguage::DetectLangID()
 
     langid = GetUserDefaultLangID();    // WinNT3.1/95 and later
     AddLangId( langid );
-    TRACE(_T("CMultiLanguage::GetUserDefaultLangID() 1st/2nd = %0X\n"),
+    TRACE("CMultiLanguage::GetUserDefaultLangID() 1st/2nd = %0X\n",
           langid );
 
     LANGID langSysid = GetSystemDefaultLangID();    // WinNT3.1/95 and later
     AddLangId( langSysid );
-    TRACE(_T("CMultiLanguage::GetSystemDefaultLangID() 3rd/4th = %0X\n"),
+    TRACE("CMultiLanguage::GetSystemDefaultLangID() 3rd/4th = %0X\n",
           langid );
 
     return langid;
@@ -370,7 +370,7 @@ int CMultiLanguage::PrintThreeLetterLanguageCodeList( void )
     TCHAR   szLangCode[4];
     TCHAR   szLangCodeMain[4];
 
-    TRACE(_T("Identifier\tThree-letter Abbrev. lang. Name\n"));
+    TRACE(_("Identifier\tThree-letter Abbrev. lang. Name\n"));
     for ( int i=0; i< sizeof(id)/sizeof(id[0]); i++ )
     {
         lcid = MAKELCID( id[i], SORT_DEFAULT );
@@ -378,11 +378,11 @@ int CMultiLanguage::PrintThreeLetterLanguageCodeList( void )
         int nPrimaryLang = PRIMARYLANGID(langid);
         int nSubLang = SUBLANGID(langid);
         lcidMain = MAKELCID(MAKELANGID(nPrimaryLang, SUBLANG_NEUTRAL), SORT_DEFAULT);
-        lstrcpy(szLangCode, _T("==="));
-        lstrcpy(szLangCodeMain, _T("==="));
+        lstrcpy(szLangCode, "===");
+        lstrcpy(szLangCodeMain, "===");
         nResult = ::GetLocaleInfo(lcid, LOCALE_SABBREVLANGNAME, szLangCode, 4);
         nResult = ::GetLocaleInfo(lcidMain, LOCALE_SABBREVLANGNAME, szLangCodeMain, 4);
-        TRACE(_T("0x%04X,\t%s,\t%s\n"), lcid, szLangCode, szLangCodeMain );
+        TRACE("0x%04X,\t%s,\t%s\n", lcid, szLangCode, szLangCodeMain );
     }
     return 0;
 }

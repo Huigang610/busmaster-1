@@ -1,4 +1,3 @@
-#pragma once
 #include <afxdtctl.h>       // MFC support for Internet Explorer 4 Common Controls
 #ifndef _AFX_NO_AFXCMN_SUPPORT
 #include <afxcmn.h>         // MFC support for Windows Common Controls
@@ -11,19 +10,24 @@
 #include <IO.H>             // i/0 header definitions
 #include <stdlib.h>         // standard library definitions
 #include <windows.h>
-#import <msxml6.dll>
-
 #include <WinDef.h>
 #include <locale.h>
+
 #include "MultiLanguageSupport.h"
 
-//Getting the function pointer for multilanguage support
-char* chGetText(char* __msgid)
+typedef char* (*PSGETTEXT)(const char* __msgid);
+static PSGETTEXT g_pfGetText;
+
+typedef char* (*PSTEXTDOMAIN)(const char* __domainname);
+static PSTEXTDOMAIN g_pfTextDomain;
+
+typedef char* (*PSBINDTEXTDOMAIN)(const char* __domainname, const char* __dirname);
+static PSBINDTEXTDOMAIN g_pfBindTextDomain;
+
+char * chGetText(char * __msgid)
 {
     if(g_pfGetText == NULL)
     {
-
-        //hLibIntl = GetModuleHandle("intl.dll");
         if (NULL == g_hLibIntl)
         {
             g_hLibIntl = LoadLibrary("intl.dll");
@@ -38,11 +42,11 @@ char* chGetText(char* __msgid)
     }
     else
     {
-        return __msgid;
+        return (char *) __msgid;
     }
 }
 
-char* textdomain(const char* __domainname)
+char * textdomain(const char * __domainname)
 {
     if(g_pfTextDomain == NULL)
     {
@@ -63,7 +67,7 @@ char* textdomain(const char* __domainname)
     }
 }
 
-char* bindtextdomain(const char* __domainname, const char* __dirname)
+char * bindtextdomain(const char * __domainname, const char * __dirname)
 {
     if(g_pfBindTextDomain == NULL)
     {

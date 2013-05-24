@@ -39,7 +39,6 @@
 // Definition of CAcceptanceFilterDlg class
 #include "AcceptanceFilterDlg.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 // For HI Layer definition
 #ifdef _DEBUG

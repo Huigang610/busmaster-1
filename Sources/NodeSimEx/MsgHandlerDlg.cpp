@@ -27,7 +27,6 @@
 #include "GlobalObj.h"
 #include "MsgHandlerDlg.h"
 #include "Utility/MultiLanguageSupport.h"
-//#include "../Application/GettextBusmaster.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -180,11 +179,11 @@ void CMsgHandlerDlg::OnCbtnMsgHandlerApply()
             CString omSelectedText = "";
 
             omSelectedText = BUS_FN_HDR; // Start comment section: init
-            omSelectedText.Replace("PLACE_HODLER_FOR_BUSNAME",
+            omSelectedText.Replace("PLACE_HOLDER_FOR_BUSNAME",
                                    sBusSpecInfo.m_omBusName); // Replace the bus name
 
             omFunc += m_omStrSelectedItemText;
-            omSelectedText.Replace( "PLACE_HODLER_FOR_FUNCTIONNAME",
+            omSelectedText.Replace( "PLACE_HOLDER_FOR_FUNCTIONNAME",
                                     omFunc );
             pDoc->m_omSourceCodeTextList.AddTail( omSelectedText );
             // Form the function prototype
@@ -248,8 +247,8 @@ void CMsgHandlerDlg::OnCbtnMsgHandlerApply()
 
                 // Form the function footer
                 omSelectedText = BUS_FN_FOOTER;
-                omSelectedText.Replace("PLACE_HODLER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
-                omSelectedText.Replace( "PLACE_HODLER_FOR_FUNCTIONNAME",
+                omSelectedText.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
+                omSelectedText.Replace( "PLACE_HOLDER_FOR_FUNCTIONNAME",
                                         omFunc );
 
                 pDoc->m_omSourceCodeTextList.AddTail( omSelectedText );
@@ -667,8 +666,8 @@ BOOL CMsgHandlerDlg::bValidateUserSelection(CFunctionEditorDoc* pDoc)
                                     omStrMsgPro.Replace("MESSAGENAME",
                                                          omStrText );
 
-                                    omStrMsgPro += _("In\"") + pMsgArray->GetAt( nCount ) +_("\" Handler");
-                                    // Duplicate message hanlder, shout
+                                    omStrMsgPro += _("In\"") + pMsgArray->GetAt( nCount ) +_("\" handler");
+                                    // Duplicate message handler, shout
                                     AfxMessageBox( omStrMsgPro,
                                                    MB_OK|MB_ICONINFORMATION );
                                     nCount = (COMMANINT)pMsgArray->GetSize();

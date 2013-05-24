@@ -3067,7 +3067,7 @@ BOOL CConfigDetails::bLoadStoreMsgFilterDetails(CArchive& roCfgArchive)
         {
             //CFilterManager::ouGetFilterManager().vInitFilterList();
             // Get Message Filter Details
-            // Get Array length. This is always 1 or 0!! Hardcoded value as of now
+            // Get Array length. This is always 1 or 0! Hardcoded value as of now
             UINT unUnknownIDArraySize;
             roCfgArchive >> unUnknownIDArraySize;
             // Read Unknown msg ID only if it is present
@@ -4633,7 +4633,7 @@ BOOL CConfigDetails::bLoadStoreSignalWatchList(CArchive& roCfgArchive)
                 // Exception occuered
                 if (theApp.m_bFromAutomation == FALSE)
                 {
-                    AfxMessageBox(_("Error while loading Signal Watch List!!"),
+                    AfxMessageBox(_("Error while loading Signal Watch list!"),
                                   MB_ICONSTOP);
                 }
                 bSuccess = FALSE;
@@ -4750,7 +4750,7 @@ BOOL CConfigDetails::bLoadStoreSimSysList(CArchive& roCfgArchive)
             // Exception occuered
             if (theApp.m_bFromAutomation == FALSE)
             {
-                AfxMessageBox(_("Error while saving Simulated system List!!"),MB_ICONSTOP);
+                AfxMessageBox(_("Error while saving simulated system list!"),MB_ICONSTOP);
             }
             bSuccess = FALSE;
         }
@@ -4800,7 +4800,7 @@ BOOL CConfigDetails::bLoadStoreSimSysList(CArchive& roCfgArchive)
                     // Exception occuered
                     if (theApp.m_bFromAutomation == FALSE)
                     {
-                        AfxMessageBox(_("Error while loading Simulated system List!!"),
+                        AfxMessageBox(_("Error while loading simulated system list!"),
                                       MB_ICONSTOP);
                     }
                     bSuccess = FALSE;

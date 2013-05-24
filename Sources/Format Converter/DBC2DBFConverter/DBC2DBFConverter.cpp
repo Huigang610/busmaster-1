@@ -78,8 +78,8 @@ CDBC2DBFConverter::CDBC2DBFConverter(void)
 
 HRESULT CDBC2DBFConverter::GettextBusmaster(void)
 {
-    setlocale(LC_ALL,"");
-    bindtextdomain("BUSMASTER", getenv("LOCALDIR") );
+    setlocale(LC_ALL, "");
+    bindtextdomain("BUSMASTER", getenv("LOCALDIR"));
     textdomain("BUSMASTER");
     return S_OK;
 }
@@ -134,7 +134,7 @@ HRESULT CDBC2DBFConverter::GetErrorStatus(HRESULT hResult, string& omstrStatus)
 HRESULT CDBC2DBFConverter::GetInputFileFilters(string& pchInputDefFilters, string& pchInputFilters)
 {
     pchInputDefFilters = "dbc";
-    pchInputFilters = _("CANoe Database File(s) (*.dbc)|*.dbc||");
+    pchInputFilters = _("CANoe database file(s) (*.dbc)|*.dbc||");
     return S_OK;
 }
 HRESULT CDBC2DBFConverter::GetLastConversionStatus(HRESULT& hResult, string& omstrStatus)
@@ -156,7 +156,7 @@ HRESULT CDBC2DBFConverter::GetLastConversionStatus(HRESULT& hResult, string& oms
 HRESULT CDBC2DBFConverter::GetOutputFileFilters(string& pchOutputDefFilters, string& pchOutputFilters)
 {
     pchOutputDefFilters = "dbf";
-    pchOutputFilters = _("BUSMASTER Database File(s) (*.dbf)|*.dbf||");
+    pchOutputFilters = _("BUSMASTER database file(s) (*.dbf)|*.dbf||");
     return S_OK;
 }
 

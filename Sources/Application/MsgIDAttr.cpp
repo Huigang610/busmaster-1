@@ -127,7 +127,7 @@ void CMsgIDAttr::OnOK()
     int nResult = 0;
     if (m_odCanIDVal.LineLength() == 0)
     {
-        AfxMessageBox(_("Invalid Message ID"));
+        AfxMessageBox(_("Invalid message ID"));
         GotoDlgCtrl(GetDlgItem(IDC_EDIT_CANID_VAL));
         nResult = -1;
 
@@ -139,7 +139,7 @@ void CMsgIDAttr::OnOK()
             nResult = CMessageAttrib::ouGetHandle(m_eBusType).nValidateNewID(m_nID);
             if (nResult < 0)
             {
-                AfxMessageBox(_("Duplicate Message ID"));
+                AfxMessageBox(_("Duplicate message ID"));
                 GotoDlgCtrl(GetDlgItem(IDC_EDIT_CANID_VAL));
             }
         }

@@ -41,10 +41,10 @@
 
 #define  defHEX_STRING                "0x"
 #define  defEMPTY_STRING              ""
-#define  defBAUD_RATE_MESSAGE         "Nearest Valid Baud Rate is %s kBit/s. Do You want to change it ?"
-#define  defVALIDATION_MSG_BAUD_RATE  "Not a valid Decimal Numerals or out of range. !!! \n\nEnter only positive Decimal Numerals upto 1000kbps."
-#define  defVALIDATION_MESSAGE        "Not a valid value. !!! \n\nEnter only Hexadecimal Value."
-#define  defERRORMSG_INSERT           "Error In Inserting SubItems"
+#define  defBAUD_RATE_MESSAGE         "Nearest valid baud rate is %s kBit/s. Do you want to change it?"
+#define  defVALIDATION_MSG_BAUD_RATE  "Not a valid decimal numerals or out of range! \n\nEnter only positive decimal numerals up to 1000kbps."
+#define  defVALIDATION_MESSAGE        "Not a valid value! \n\nEnter only hexadecimal value."
+#define  defERRORMSG_INSERT           "Error in inserting subitems"
 
 #define  defBRT0_COLUNM_POS              1
 #define  defBRT1_COLUNM_POS              2
@@ -79,7 +79,7 @@
 #define  defHEXADECIMAL                   16
 #define  defWARNING_LIMIT_MIN             1
 #define  defWARNING_LIMIT_MAX             127
-#define defWARNINGLIMIT_MSG "The Warning limit \"%s\" is beyond the limit %d - %d"
+#define defWARNINGLIMIT_MSG "The warning limit \"%s\" is beyond the limit %d - %d"
 // Allowed valid decimal values in NBT and BRP product
 #define  defVALID_DECIMAL_VALUE          0.004
 // Maximum size of Column Headers Displayed in list box
