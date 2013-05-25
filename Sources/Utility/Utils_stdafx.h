@@ -52,10 +52,3 @@
 #include <afxtempl.h>
 #include <afxcmn.h>
 #include <afxdlgs.h>
-
-
-/*#import <msxml6.dll>
-using namespace MSXML2;*/
-
-// TODO: reference additional headers your program requires here
-
