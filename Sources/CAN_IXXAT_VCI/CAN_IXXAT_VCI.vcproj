@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="CAN_IXXAT_VCI"
 	ProjectGUID="{F920F538-A4B0-4EB6-81FC-6011E9C1806F}"
 	RootNamespace="CAN_IXXAT_VCI"
@@ -137,7 +137,7 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderThrough="CAN_IXXAT_VCI_StdAfx.h"
+				PrecompiledHeaderThrough=""
 				WarningLevel="3"
 				DebugInformationFormat="0"
 			/>

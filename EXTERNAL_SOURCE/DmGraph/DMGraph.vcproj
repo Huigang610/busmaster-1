@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="DMGraph"
 	ProjectGUID="{9D8AF453-01BC-44C9-9753-568BCEA38D4E}"
 	RootNamespace="DMGraph"
@@ -160,7 +160,7 @@
 				TreatWChar_tAsBuiltInType="true"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderThrough=""
-				PrecompiledHeaderFile=".\ReleaseUMinSize/DMGraph.pch"
+				PrecompiledHeaderFile=""
 				AssemblerListingLocation=".\ReleaseUMinSize/"
 				ObjectFile=".\ReleaseUMinSize/"
 				ProgramDataBaseFileName=".\ReleaseUMinSize/"
