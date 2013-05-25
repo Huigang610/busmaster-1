@@ -122,7 +122,7 @@ CodeTag        :  CS011
 ******************************************************************************/
 HRESULT CTestSetupEntity::DeleteSubEntry(CBaseEntityTA* pouSubEntryObj)
 {
-    HRESULT hResult = ERR_WRONG_ID;;
+    HRESULT hResult = ERR_WRONG_ID;
     INT nCount = (INT)m_odTestCaseEntityList.GetCount();
     for(int i = 0; i < nCount; i++)
     {

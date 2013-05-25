@@ -34,7 +34,7 @@ enum {OPEN = 0x1, SAVE = 0x2, CLOSE = 0x4};
 
 enum {FILEMODE = 0, DATABASEMODE};
 
-typedef list<string> LISTSTR;;
+typedef list<string> LISTSTR;
 
 class FILESTORAGEINFO
 {

@@ -265,7 +265,7 @@ void CSignalDefinerDlg::vGenerateWave()
 
     SIGNAL_TYPE enSignalType = (SIGNAL_TYPE)(m_ctrSignalType.GetCurSel());
     int nPointCount;
-    double dblFrqStep, dblTimePeriod, dblSamplingPoint;;
+    double dblFrqStep, dblTimePeriod, dblSamplingPoint;
 
     /*Setting the Frequency Resolution to nResolution*/
     dblFrqStep = m_dblSamplingTimePeriod;

@@ -174,7 +174,7 @@ void CMsgHandlerDlg::OnCbtnMsgHandlerApply()
         bValidateSelection = bValidateUserSelection(pDoc);
         if (bValidateSelection == TRUE)
         {
-            CString omFunc = CGlobalObj::omGetBusSpecMsgHndlrName(m_eBus);;
+            CString omFunc = CGlobalObj::omGetBusSpecMsgHndlrName(m_eBus);
             // Add to function editor
             CString omSelectedText = "";
 

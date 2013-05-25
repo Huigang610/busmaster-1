@@ -492,7 +492,7 @@ void CTxMsgChildFrame::vSetTxMsgViewPointers( ETXMSGVIEWTYPE eViewIdentity,
         break;
         case eTxMsgMessageListView: // Message List View
         {
-            m_pomTxMsgListView = static_cast<CTxMsgListView*>( pomWnd );;
+            m_pomTxMsgListView = static_cast<CTxMsgListView*>( pomWnd );
         }
         break;
         case eTxMsgMessageDetailsView: // Message Details View

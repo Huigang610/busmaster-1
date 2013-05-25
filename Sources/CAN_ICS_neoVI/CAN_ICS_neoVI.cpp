@@ -2893,7 +2893,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLog
     //Query Tick Count
     sg_QueryTickCount.QuadPart = 0;
     //INITIALISE_ARRAY(sg_acErrStr);
-    sg_acErrStr = "";;
+    sg_acErrStr = "";
     CAN_ManageMsgBuf(MSGBUF_CLEAR, NULL, NULL);
 
     return S_OK;

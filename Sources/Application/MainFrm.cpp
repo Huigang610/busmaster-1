@@ -6303,7 +6303,7 @@ USHORT CMainFrame::vCheckValidLogFiles(USHORT LogBlocks)
             if ( !FilePathExists(omLogFilePath) )//file path not found
             {
                 sg_pouFrameProcCAN->FPC_RemoveLoggingBlock(i--); //remove the old log data
-                LogBlocks = sg_pouFrameProcCAN->FPC_GetLoggingBlockCount();; //refresh the log count
+                LogBlocks = sg_pouFrameProcCAN->FPC_GetLoggingBlockCount(); //refresh the log count
             }
         }
     }
@@ -8297,7 +8297,7 @@ void CMainFrame::OnUpdateMruList (CCmdUI* pCmdUI)
     {
         // Check whether Tx msg window is present or not
         //BOOL bSendMsgDialog = ( m_pomTxMsgChildWindow != NULL );
-        BOOL bSendMsgDialog = FALSE;;
+        BOOL bSendMsgDialog = FALSE;
 
         if(m_objTxHandler.hConfigWindowShown() == S_OK)
         {
@@ -8430,7 +8430,7 @@ void CMainFrame::OnUpdateConfigLoad(CCmdUI* pCmdUI)
         BOOL bEnable = FALSE;
         // Check whether Tx msg window is visible or not
         //BOOL bSendMsgDialog = (m_pomTxMsgChildWindow != NULL );
-        BOOL bSendMsgDialog = FALSE;;
+        BOOL bSendMsgDialog = FALSE;
 
         if(m_objTxHandler.hConfigWindowShown() == S_OK)
         {
@@ -8460,7 +8460,7 @@ void CMainFrame::OnUpdateConfigNew(CCmdUI* pCmdUI)
     {
         BOOL bEnable = FALSE;
         //BOOL bSendMsgDialog = (m_pomTxMsgChildWindow != NULL );
-        BOOL bSendMsgDialog = FALSE;;
+        BOOL bSendMsgDialog = FALSE;
 
         if(m_objTxHandler.hConfigWindowShown() == S_OK)
         {

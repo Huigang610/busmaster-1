@@ -1197,7 +1197,7 @@ BOOL CMsgSignal::bCreateDataBase(CString omStrFilename)
     {
         if(pomE != NULL )
         {
-            LPTSTR lpszError = "";;
+            LPTSTR lpszError = "";
             // Get error
             pomE->GetErrorMessage( lpszError, 255);
             if (!m_bAutoServerMode)
@@ -4608,7 +4608,7 @@ BOOL CMsgSignal::bSortSignalStartBitAscend(UINT* punSigStartBit, UINT unCount)
                                        const INT nIndex)
 {
     BOOL bReturn    = FALSE;
-    UINT unSigCount = unSigCount = m_psMessages[nIndex].m_unNumberOfSignals;;
+    UINT unSigCount = unSigCount = m_psMessages[nIndex].m_unNumberOfSignals;
     sSIGNALS *pSg = m_psMessages[nIndex].m_psSignals;
     UINT unStartBit = 0;
     UINT unUnused   = 0;
@@ -4808,7 +4808,7 @@ BOOL CMsgSignal::bFormSigNameAndLength(UINT* punLength,
                                        const INT nIndex)
 {
     BOOL bReturn    = FALSE;
-    UINT unSigCount = unSigCount = m_psMessages[nIndex].m_unNumberOfSignals;;
+    UINT unSigCount = unSigCount = m_psMessages[nIndex].m_unNumberOfSignals;
     sSIGNALS* pSg = m_psMessages[nIndex].m_psSignals;
     UINT unStartBit = 0;
     UINT unUnused   = 0;

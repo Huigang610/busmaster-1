@@ -806,7 +806,7 @@ void CMsgContainerCAN::vGetUpdatedCurrDataPtrArray(SMSGWNDHDRCOL& sHdrColStruct,
 ******************************************************************************/
 BOOL CMsgContainerCAN::bGetDilInterFace()
 {
-    BOOL bFound = FALSE;;
+    BOOL bFound = FALSE;
     DIL_GetInterface(CAN, (void**)&m_pouDIL_CAN_Interface);
     if (NULL != m_pouDIL_CAN_Interface)
     {

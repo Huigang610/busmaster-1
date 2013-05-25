@@ -810,7 +810,7 @@ void CMsgContainerJ1939::vGetUpdatedCurrDataPtrArray(SMSGWNDHDRCOL& sHdrColStruc
 ******************************************************************************/
 BOOL CMsgContainerJ1939::bGetDilInterFace()
 {
-    BOOL bFound = FALSE;;
+    BOOL bFound = FALSE;
     DIL_GetInterface(J1939, (void**) &m_pouDIL_J1939);
     if (NULL != m_pouDIL_J1939)
     {

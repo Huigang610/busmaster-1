@@ -1416,7 +1416,7 @@ BOOL CTxWndDataStore::bGetMultiMsgInfo(PSMSGBLOCKLIST psDestMsgBlockList)
                         }
                         else
                         {
-                            psDestTxMsgList->m_psNextMsgDetails = NULL;;
+                            psDestTxMsgList->m_psNextMsgDetails = NULL;
                         }
                     }
                 }
