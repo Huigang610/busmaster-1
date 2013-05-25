@@ -325,7 +325,7 @@ public:
         COPY_DATA_2(chTemp, pbyTemp, sizeof(char)*nSize);
         chTemp[nSize] = '\0';
         m_omStrBaudrate = chTemp;
-        float fBaudRate = atof(m_omStrBaudrate.c_str());
+        double fBaudRate = atof(m_omStrBaudrate.c_str());
         fBaudRate *=  1000;   //convert from Kbps to bps
         std::stringstream ss;
         ss << fBaudRate;
@@ -446,9 +446,9 @@ public:
         chTemp[nSize] = '\0';
         m_omHardwareDesc = chTemp;
     }
-    void GetControllerConfigSize(int& nSize)
+
+    void GetControllerConfigSize(size_t& nSize)
     {
-        int nStrSize;
         nSize = 34 * sizeof(int);
         nSize += 2 * sizeof(eHW_FILTER_TYPES);
         nSize += m_omStrCNF1.length();
@@ -484,7 +484,7 @@ public:
 
     void SaveConfigDataToXML(xmlNodePtr pNodePtr)
     {
-        float fBaudRate = atof(m_omStrBaudrate.c_str());
+        double fBaudRate = atof(m_omStrBaudrate.c_str());
         // if( m_omHardwareDesc.find("Vector") == -1)      //if its not VECTOR then convert to Kbps
         {
             fBaudRate = fBaudRate/1000;    //convert to Kbps before saving to XML
@@ -643,9 +643,9 @@ public:
 
         xmlNewChild(pNodePtr, NULL, BAD_CAST "Location", BAD_CAST strLocation);
     }
-    void GetControllerConfigData(BYTE*& pbyTemp, int& nSize)
+    void GetControllerConfigData(BYTE*& pbyTemp, size_t& nSize)
     {
-        INT nIntSize = sizeof(INT);
+        size_t nIntSize = sizeof(INT);
         COPY_DATA(pbyTemp, &m_nItemUnderFocus, sizeof(INT));
         nSize += nIntSize;
         COPY_DATA(pbyTemp, &m_nBTR0BTR1,  sizeof(INT));
@@ -667,7 +667,7 @@ public:
         COPY_DATA(pbyTemp, &m_bHWTimestamps,  sizeof(INT));
         nSize += nIntSize;
 
-        int nStrSize;
+        size_t nStrSize;
 
         nStrSize = m_omStrCNF1.length();
         COPY_DATA(pbyTemp, &nStrSize,  sizeof(INT));

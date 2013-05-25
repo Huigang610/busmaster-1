@@ -578,7 +578,7 @@ BOOL CConfigAdapter::bGetConfigData(BYTE*& lpData, int& nStreamLength, eSECTION_
             {
                 for(int i=0; i < defNO_OF_CHANNELS; i++)
                 {
-                    int nSize = 0;
+                    size_t nSize = 0;
                     psContrlDets[i].GetControllerConfigSize(nSize);
                     unSize += nSize;
                 }
@@ -599,7 +599,7 @@ BOOL CConfigAdapter::bGetConfigData(BYTE*& lpData, int& nStreamLength, eSECTION_
                 //COPY_DATA(pbyTemp, psContrlDets, unSize);
                 for(int i=0; i < defNO_OF_CHANNELS; i++)
                 {
-                    int nSize = 0;
+                    size_t nSize = 0;
                     psContrlDets[i].GetControllerConfigData(pbyTemp, nSize);
                 }
 
