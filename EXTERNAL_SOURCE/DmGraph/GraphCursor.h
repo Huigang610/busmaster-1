@@ -15,8 +15,8 @@
 // MODIFICATIONS
 //		01-Dec-2011 MSamoila major re-design of old CGraphCursor
 //
-#ifndef __GRAPH__CURSOR__H__
-#define __GRAPH__CURSOR__H__
+
+#pragma once
 
 #include "ElementPoint.h"
 #include "GraphItem.h"
@@ -75,8 +75,3 @@ public:
 public:
 	STDMETHOD(put_CursorID)(SHORT newVal);
 };
-
-
-
-
-#endif // __GRAPH__CURSOR__H__

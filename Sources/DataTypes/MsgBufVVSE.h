@@ -22,9 +22,7 @@
  * Defines a variant of circular queue class in VSE.
  */
 
-
-#if !defined MSGBUFVVSE_H__INCLUDED_
-#define MSGBUFVVSE_H__INCLUDED_
+#pragma once
 
 #include "BaseMsgBufAll.h"
 
@@ -89,4 +87,3 @@ public:
     HRESULT ReadEntry(int& nType, BYTE* pbyMsg, int& nSize, int nEntry, BOOL bSetNextIndexStartPos);
 };
 
-#endif // MSGBUFVVSE_H__INCLUDED_

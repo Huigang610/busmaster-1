@@ -16,12 +16,7 @@
 //		01-Dec-2011 MSamoila major re-design of old ColourPicker
 //
 
-#ifndef __COL_PICKER_BTN__H__
-#define __COL_PICKER_BTN__H__
-
-#if _MSC_VER >= 1000
 #pragma once
-#endif // _MSC_VER >= 1000
 
 //sent to the parent when color was changed
 //wParam: COLORREF
@@ -61,6 +56,3 @@ public:
 private:
 	COLORREF m_col;
 };
-
-
-#endif // __COL_PICKER_BTN__H__

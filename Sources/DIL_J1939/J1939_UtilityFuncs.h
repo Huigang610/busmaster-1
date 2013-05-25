@@ -18,9 +18,8 @@
   Modified By   :
   Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
  ******************************************************************************/
-#if !defined J1939_UTILITYFUNCS_H__INCLUDED_
-#define J1939_UTILITYFUNCS_H__INCLUDED_
 
+#pragma once
 
 #include "Include/BaseDefs.h"
 #include "Datatypes/J1939_DataTypes.h"
@@ -371,5 +370,3 @@ static EJ1939_MSG_TYPE eGetMsgType(UINT32 unExtId,BYTE* pbyData)
     }
     return eType;
 }
-
-#endif //J1939_UTILITYFUNCS_H__INCLUDED_

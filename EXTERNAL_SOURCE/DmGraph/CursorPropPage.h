@@ -16,8 +16,7 @@
 //		01-Dec-2011 MSamoila major re-design of old CCursorPropPage
 //
 
-#ifndef __CURSORPROPPAGE_H_
-#define __CURSORPROPPAGE_H_
+#pragma once
 
 #include "resource.h"       // main symbols
 #include "ColPickerBtn.h"
@@ -114,5 +113,3 @@ private:
 	}
 	void UpdateControls(IDMGraphCtrl* pGraphCtrl);
 };
-
-#endif //__CURSORPROPPAGE_H_

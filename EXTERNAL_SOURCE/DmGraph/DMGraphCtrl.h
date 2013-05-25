@@ -16,8 +16,7 @@
 //		01-Dec-2011 MSamoila major re-design of old CNTGraphCtrl
 //
 
-#ifndef __DMGRAPHCTRL_H_
-#define __DMGRAPHCTRL_H_
+#pragma once
 
 #include "resource.h"       // main symbols
 #include <atlctl.h>
@@ -349,5 +348,3 @@ private:
 	CGraphAxis*				m_pAxis[2]; //the X and Y axis
 	LRESULT OnRButtonDblClk(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/);
 };
-
-#endif //__DMGRAPHCTRL_H_

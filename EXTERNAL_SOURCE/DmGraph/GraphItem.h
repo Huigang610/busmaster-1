@@ -15,8 +15,8 @@
 // MODIFICATIONS
 //		01-Dec-2011 MSamoila created
 //
-#ifndef __GRAPH_ITEM__H__
-#define __GRAPH_ITEM__H__
+
+#pragma once
 
 class CDMGraphCtrl;
 
@@ -44,5 +44,3 @@ protected:
 	int				m_nID;
 	CDMGraphCtrl*	m_pCtrl;
 };
-
-#endif // __GRAPH_ITEM__H__

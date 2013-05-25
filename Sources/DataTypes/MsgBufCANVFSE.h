@@ -22,9 +22,7 @@
  * Defines and implements the template class for circular queue
  */
 
-
-#if !defined MSGBUFCANVFSE_H__INCLUDED_
-#define MSGBUFCANVFSE_H__INCLUDED_
+#pragma once
 
 #include "include/Error.h"
 #include "BaseMsgBufAll.h"
@@ -428,5 +426,3 @@ nGetMapIndexAtID(int nIndex,__int64& nMapIndex)
         }
     }
 }
-
-#endif //MSGBUFCANVFSE_H__INCLUDED_

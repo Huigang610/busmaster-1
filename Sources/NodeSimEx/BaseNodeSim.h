@@ -19,8 +19,7 @@
  * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 
-#if !defined BASENODESIM_H__INCLUDED_
-#define BASENODESIM_H__INCLUDED_
+#pragma once
 
 #include "Utility/XMLUtils.h"
 #include "NodeSimEx_Struct.h"
@@ -71,4 +70,3 @@ public:
     virtual void NS_SetJ1939ActivationStatus(bool bActivated) =0;
     //INTERFACE FUNCTIONS ENDS
 };
-#endif //BASENODESIM_H__INCLUDED_

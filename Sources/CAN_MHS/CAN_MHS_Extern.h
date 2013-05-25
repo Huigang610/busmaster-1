@@ -21,9 +21,8 @@
  *
  * Exports API functions for Vector XL CAN Hardware interface
  */
-#ifndef __CAN_MHS_EXTERN_H__
-#define __CAN_MHS_EXTERN_H__
 
+#pragma once
 
 #if defined USAGEMODE
 #undef USAGEMODE
@@ -35,7 +34,6 @@
 #define USAGEMODE   __declspec(dllimport)
 #endif
 
-
 #ifdef __cplusplus
 extern "C" {  // only need to export C interface if used by C++ source code
 #endif
@@ -45,6 +43,4 @@ extern "C" {  // only need to export C interface if used by C++ source code
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

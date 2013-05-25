@@ -16,9 +16,6 @@
 //		01-Dec-2011 MSamoila created
 //
 
-#ifndef __RECT_TRACKER_H__
-#define __RECT_TRACKER_H__
-
 #pragma once
 
 class CRectTracker
@@ -138,5 +135,3 @@ class CRectTracker
 
         BOOL IsValidPos( KLinePos const& Pos );		
 };
-
-#endif

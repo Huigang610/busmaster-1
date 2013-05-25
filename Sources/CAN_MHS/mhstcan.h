@@ -1,5 +1,4 @@
-#ifndef __MHSTCAN_H__
-#define __MHSTCAN_H__
+#pragma once
 
 #include "can_types.h"
 
@@ -141,6 +140,4 @@ extern "C" {
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

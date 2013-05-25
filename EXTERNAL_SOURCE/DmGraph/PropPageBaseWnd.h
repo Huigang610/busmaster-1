@@ -16,13 +16,7 @@
 //		01-Dec-2011 MSamoila created
 //
 
-
-#if !defined(AFX_PROPPAGEBASEWND_H__72038DCC_2019_40FA_B5CD_5A9D4F15156F__INCLUDED_)
-#define AFX_PROPPAGEBASEWND_H__72038DCC_2019_40FA_B5CD_5A9D4F15156F__INCLUDED_
-
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
 
 class CPropPageBaseWnd : public CWindow  
 {
@@ -32,5 +26,3 @@ public:
 	HRESULT DeleteItem(IDMGraphCollection* pGraphCollection);
 	HRESULT RemoveSelection(IDMGraphCollection* pGraphCollection);
 };
-
-#endif // !defined(AFX_PROPPAGEBASEWND_H__72038DCC_2019_40FA_B5CD_5A9D4F15156F__INCLUDED_)

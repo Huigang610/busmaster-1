@@ -1,5 +1,4 @@
-#ifndef __CAN_SETUP_H__
-#define __CAN_SETUP_H__
+#pragma once
 
 #include "mhs_types.h"
 
@@ -11,6 +10,4 @@ extern "C" {
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

@@ -15,8 +15,8 @@
 // MODIFICATIONS
 //		01-Dec-2011 MSamoila created from old CElementPoint
 //
-#ifndef __ELEMENT_POINT__H__
-#define __ELEMENT_POINT__H__
+
+#pragma once
 
 ///////////////////////////////////////////////////////////
 // Declaration of the CElementPoint class.
@@ -41,5 +41,3 @@ public:
       *this = pt;
    }
 };
-
-#endif //__ELEMENT_POINT__H__

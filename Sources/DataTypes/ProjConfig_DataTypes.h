@@ -22,10 +22,7 @@
  * Definition file for project configuration data types.
  */
 
-
-#if !defined PROJCONFIG_DATATYPES__H_INCLUDED_
-#define PROJCONFIG_DATATYPES__H_INCLUDED_
-
+#pragma once
 
 using namespace std;
 
@@ -113,6 +110,3 @@ public:
     // currently pointing to a section. Advances the file pointer afterwards.
     bool Read(FILE* pFile);
 };
-
-
-#endif // PROJCONFIG_DATATYPES__H_INCLUDED_

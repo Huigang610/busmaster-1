@@ -15,8 +15,8 @@
 // MODIFICATIONS
 //		01-Dec-2011 MSamoila major re-design of old CGraphAnnotation
 //
-#ifndef __GRAPH_ANNO__H__
-#define __GRAPH_ANNO__H__
+
+#pragma once
 
 #include "ElementPoint.h"
 #include "GraphItem.h"
@@ -69,5 +69,3 @@ public:
 	BOOL			m_bVisible;
 	CElementPoint	place;
 };
-
-#endif // __GRAPH_ANNO__H__

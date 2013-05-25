@@ -16,8 +16,8 @@
 //		23-Jan-2012 Arunkumar Karri: Added LoicalCoordinate(..) API
 //		01-Dec-2011 MSamoila major re-design of old CGraphElement
 //
-#ifndef __GRAPH_ELEMENT__H__
-#define __GRAPH_ELEMENT__H__
+
+#pragma once
 
 #include "ElementPoint.h"
 #include "GraphItem.h"
@@ -87,7 +87,3 @@ END_COM_MAP()
 
 	CRITICAL_SECTION m_CritSectionForPlot; 
 };
-
-
-
-#endif // __GRAPH_ELEMENT__H__

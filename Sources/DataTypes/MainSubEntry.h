@@ -18,8 +18,8 @@
  * \author    Ratnadip Choudhury
  * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
-#if !defined MAINSUBENTRY_H__INCLUDED_
-#define MAINSUBENTRY_H__INCLUDED_
+
+#pragma once
 
 struct SGUIPARAMS
 {
@@ -67,4 +67,3 @@ typedef struct tagMainEntry
 
 typedef CList<SMAINENTRY, SMAINENTRY&> CMainEntryList;
 
-#endif // MAINSUBENTRY_H__INCLUDED_

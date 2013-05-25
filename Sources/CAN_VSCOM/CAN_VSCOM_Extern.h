@@ -20,9 +20,8 @@
  * \copyright Copyright (c) 2012, ETAS GmbH. All rights reserved.
  *
  */
-#ifndef __CAN_VSCOM_EXTERN_H__
-#define __CAN_VSCOM_EXTERN_H__
 
+#pragma once
 
 #if defined USAGEMODE
 #undef USAGEMODE
@@ -44,6 +43,4 @@ extern "C" {  // only need to export C interface if used by C++ source code
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

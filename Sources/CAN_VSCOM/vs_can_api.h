@@ -12,9 +12,8 @@
  *
  * Copyright (c) 2011 by VScom
  */
-#ifndef _VS_CAN_API_H_
-#define _VS_CAN_API_H_
 
+#pragma once
 
 #ifdef WIN32
 #include <windows.h>
@@ -209,6 +208,4 @@ extern "C" {
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

@@ -16,8 +16,7 @@
 //		01-Dec-2011 MSamoila created
 //
 
-#ifndef __ABOUT__H_
-#define __ABOUT__H_
+#pragma once
 
 #include "resource.h"
 #include "DmGraphVer.h"
@@ -74,5 +73,3 @@ END_MSG_MAP()
 	}
 
 };
-
-#endif // __ABOUT__H_

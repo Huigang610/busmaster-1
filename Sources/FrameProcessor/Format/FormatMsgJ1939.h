@@ -17,8 +17,7 @@
   Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
 ******************************************************************************/
 
-#ifndef FORMAT_MSG_J1939_H_INCLUDED
-#define FORMAT_MSG_J1939_H_INCLUDED
+#pragma once
 
 #include "Datatypes/J1939_Datatypes.h"
 #include "FormatMsgCommon.h"
@@ -41,5 +40,3 @@ public:
                              SFORMATTEDATA_J1939* CurrDataJ1939,
                              BYTE bExprnFlag_Log);
 };
-
-#endif//FORMAT_MSG_J1939_H_INCLUDED

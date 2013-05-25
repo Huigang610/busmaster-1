@@ -21,12 +21,9 @@
  *
  * This file contain the definition of CMsgHandlerDlg class
  */
-#if !defined(AFX_MSGHANDLERDLG_H__38C4D235_3752_11D7_80A0_0010B599CE39__INCLUDED_)
-#define AFX_MSGHANDLERDLG_H__38C4D235_3752_11D7_80A0_0010B599CE39__INCLUDED_
 
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // MsgHandlerDlg.h : header file
 //
 
@@ -104,5 +101,3 @@ private:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_MSGHANDLERDLG_H__38C4D235_3752_11D7_80A0_0010B599CE39__INCLUDED_)

@@ -21,8 +21,8 @@
  *
  * Base class for CDIL_CAN class.
  */
-#if !defined BASEDIL_CAN_H__INCLUDED_
-#define BASEDIL_CAN_H__INCLUDED_
+
+#pragma once
 
 #include "DataTypes/DIL_DataTypes.h"
 #include "DataTypes/MsgBufAll_DataTypes.h"
@@ -165,5 +165,3 @@ public:
      */
     virtual HRESULT  DILC_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam) = 0;
 };
-
-#endif // BASEDIL_CAN_H__INCLUDED_

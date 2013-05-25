@@ -21,12 +21,9 @@
  *
  * This header file contains the defintion of class
  */
-#if !defined(AFX_SIMSYSDETVIEW_H__009CBAA8_59D7_4E52_86CF_B51B2C8A14F8__INCLUDED_)
-#define AFX_SIMSYSDETVIEW_H__009CBAA8_59D7_4E52_86CF_B51B2C8A14F8__INCLUDED_
 
-#if _MSC_VER > 1000
 #pragma once
-#endif // _MSC_VER > 1000
+
 // SimSysDetView.h : header file
 //
 #include "Utility/RadixEdit.h"
@@ -138,5 +135,3 @@ public:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_SIMSYSDETVIEW_H__009CBAA8_59D7_4E52_86CF_B51B2C8A14F8__INCLUDED_)

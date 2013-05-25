@@ -16,8 +16,7 @@
 //		01-Dec-2011 MSamoila major re-design of old CFormatPropPage
 //
 
-#ifndef __FORMATPROPPAGE_H_
-#define __FORMATPROPPAGE_H_
+#pragma once
 
 #include "resource.h"       // main symbols
 
@@ -97,5 +96,3 @@ private:
 	void UpdateControls(IDMGraphCtrl* pGraphCtrl);
 	void SetAxisTimeFormat(VARIANT_BOOL b);
 };
-
-#endif //__FORMATPROPPAGE_H_

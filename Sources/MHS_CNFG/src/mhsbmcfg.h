@@ -1,5 +1,4 @@
-#ifndef __MHS_BM_CFG_H__
-#define __MHS_BM_CFG_H__
+#pragma once
 
 #include "global.h"
 #include "mhs_types.h"
@@ -12,6 +11,4 @@ extern "C" {
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

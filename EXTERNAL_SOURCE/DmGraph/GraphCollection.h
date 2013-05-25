@@ -15,8 +15,8 @@
 // MODIFICATIONS
 //		01-Dec-2011 MSamoila created
 //
-#ifndef __GRAPH_COLLECTION__H__
-#define __GRAPH_COLLECTION__H__
+
+#pragma once
 
 #include "GraphItem.h"
 
@@ -158,5 +158,3 @@ END_COM_MAP()
 
 	long				m_nSelectedIdx;
 };
-
-#endif // __GRAPH_COLLECTION__H__

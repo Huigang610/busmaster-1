@@ -16,9 +16,7 @@
 //		01-Dec-2011 MSamoila created by the wizard
 //
 
-#ifndef _DMGRAPHCP_H_
-#define _DMGRAPHCP_H_
-
+#pragma once
 
 template <class T>
 class CProxy_IDMGraphCtrlEvents : public IConnectionPointImpl<T, &DIID__IDMGraphCtrlEvents, CComDynamicUnkArray>
@@ -94,4 +92,3 @@ public:
 	
 	}
 };
-#endif

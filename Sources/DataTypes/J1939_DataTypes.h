@@ -50,8 +50,9 @@
   Modified By   :
   Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
 ******************************************************************************/
-#if !defined STRUCT_J1939_H__INCLUDED_
-#define STRUCT_J1939_H__INCLUDED_
+
+#pragma once
+
 #include "Utility/MultiLanguageSupport.h"
 #pragma once
 #include <locale.h>
@@ -293,5 +294,3 @@ typedef struct tagFormattedData_J1939
 void GetMessageTypeStr(EJ1939_MSG_TYPE eType, char acResult[LEN_STR_TYPE_J1939]);
 
 const int MAX_MSG_LEN_J1939 = sizeof (STJ1939_MSG_PROPERTIES) + sizeof (UINT) + MAX_DATA_LEN_J1939;
-
-#endif // STRUCT_J1939_H__INCLUDED_

@@ -15,8 +15,8 @@
 // MODIFICATIONS
 //		01-Dec-2011 MSamoila created
 //
-#ifndef __GRAPH_AXIS__H__
-#define __GRAPH_AXIS__H__
+
+#pragma once
 
 #include "GraphItem.h"
 
@@ -73,5 +73,3 @@ public:
 
 	VARIANT_BOOL		m_bShowGrid;
 };
-
-#endif // __GRAPH_AXIS__H__

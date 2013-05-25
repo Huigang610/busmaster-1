@@ -16,8 +16,7 @@
 //		01-Dec-2011 MSamoila major re-design of old CElementPropPage
 //
 
-#ifndef __ELEMENTPROPPAGE_H_
-#define __ELEMENTPROPPAGE_H_
+#pragma once
 
 #include "resource.h"       // main symbols
 #include "ColPickerBtn.h"
@@ -122,5 +121,3 @@ private:
 	HRESULT GetCurrentElement(IDMGraphCtrl* pGraphCtrl, IDMGraphElement** ppGraphElement);
 	void UpdateControls(IDMGraphCtrl* pGraphCtrl);
 };
-
-#endif //__ELEMENTPROPPAGE_H_

@@ -49,8 +49,7 @@
   Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
 ******************************************************************************/
 
-#if !defined NETWORKMGMT_H__INCLUDED
-#define NETWORKMGMT_H__INCLUDED
+#pragma once
 
 #include "NodeConManager.h"
 #include "DIL_J1939_Extern.h"
@@ -141,5 +140,3 @@ public:
     HRESULT GoOnline(BOOL bStart);
     BOOL bIsOnline(void);
 };
-
-#endif //NETWORKMGMT_H__INCLUDED

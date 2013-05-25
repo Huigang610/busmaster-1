@@ -21,6 +21,7 @@
  *
  * Exports API functions for Vector CAN Hardware interface
  */
+
 #pragma once
 
 #ifndef __AFXWIN_H__

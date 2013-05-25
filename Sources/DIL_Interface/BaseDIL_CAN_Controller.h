@@ -22,8 +22,7 @@
  * Base class for CAN controller classes.
  */
 
-#if !defined BASEDIL_CAN_CONTROLLER_H__INCLUDED_
-#define BASEDIL_CAN_CONTROLLER_H__INCLUDED_
+#pragma once
 
 class CBaseDIL_CAN_Controller
 {
@@ -53,5 +52,3 @@ public:
     virtual HRESULT CAN_LoadDriverLibrary(void) = 0;
     virtual HRESULT CAN_UnloadDriverLibrary(void) = 0;
 };
-
-#endif // BASEDIL_CAN_CONTROLLER_H__INCLUDED_

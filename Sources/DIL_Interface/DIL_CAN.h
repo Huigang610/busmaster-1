@@ -21,8 +21,8 @@
  *
  * Definition file for CDIL_CAN class.
  */
-#if !defined DIL_CAN_H__INCLUDED_
-#define DIL_CAN_H__INCLUDED_
+
+#pragma once
 
 #include "DataTypes/Base_WrapperErrorLogger.h"
 #include "DataTypes/MsgBufAll_DataTypes.h"
@@ -200,5 +200,3 @@ private:
     HRESULT (*m_pfGetControllerParams)(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
     HRESULT (*m_pfGetErrorCount)(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
 };
-
-#endif // DIL_CAN_H__INCLUDED_

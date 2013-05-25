@@ -22,8 +22,7 @@
  * Definition file for log data types.
  */
 
-#if !defined LOG_DATATYPES_H__INCLUDED_
-#define LOG_DATATYPES_H__INCLUDED_
+#pragma once
 
 #include "include/BaseDefs.h"
 
@@ -77,5 +76,3 @@ typedef struct tagLogInfo
     //~MVN
 
 } SLOGINFO,*PSLOGINFO;
-
-#endif // LOG_DATATYPES_H__INCLUDED_

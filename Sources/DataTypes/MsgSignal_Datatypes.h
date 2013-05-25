@@ -22,8 +22,7 @@
  * Definition file for signal watch data types.
  */
 
-#if !defined MSGSIGNAL_H__INCLUDED_
-#define MSGSIGNAL_H__INCLUDED_
+#pragma once
 
 #include "Include/BaseDefs.h"
 //DB params
@@ -215,4 +214,3 @@ typedef struct tagSMSGENTRY
 
 
 } SMSGENTRY;
-#endif //MSGSIGNAL_H__INCLUDED_
