@@ -311,7 +311,6 @@ public:
     HRESULT CAN_StopHardware(void);
     HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
     HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-    HRESULT CAN_GetLastErrorString(string& acErrorStr);
     HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
     HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
     HRESULT CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
@@ -320,7 +319,6 @@ public:
     HRESULT CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
     HRESULT CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
     HRESULT CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
-    HRESULT CAN_GetCntrlStatus(const HANDLE& hEvent, UINT& unCntrlStatus);
     HRESULT CAN_LoadDriverLibrary(void);
     HRESULT CAN_UnloadDriverLibrary(void);
 };
@@ -1690,19 +1688,6 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, c
 /**
  * \return S_OK for success, S_FALSE for failure
  *
- * Returns the controller status. hEvent will be registered
- * and will be set whenever there is change in the controller
- * status.
- */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_GetCntrlStatus(const HANDLE& /*hEvent*/, UINT& unCntrlStatus)
-{
-    unCntrlStatus = defCONTROLLER_ACTIVE; //Temporary solution. TODO
-    return S_OK;
-}
-
-/**
- * \return S_OK for success, S_FALSE for failure
- *
  * Loads BOA related libraries. Updates BOA API pointers
  */
 HRESULT CDIL_CAN_ETAS_BOA::CAN_LoadDriverLibrary(void)
@@ -2578,15 +2563,6 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTx
         hResult = ERR_NO_CLIENT_EXIST;
     }
     return hResult;
-}
-
-
-/**
- * Gets last occured error and puts inside acErrorStr.
- */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_GetLastErrorString(string& /*acErrorStr*/)
-{
-    return WARN_DUMMY_API;
 }
 
 /**

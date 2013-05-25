@@ -271,10 +271,7 @@ public:
     HRESULT CAN_StartHardware(void);
     HRESULT CAN_StopHardware(void);
     HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
-    HRESULT CAN_GetTxMsgBuffer(BYTE*& pouFlxTxMsgBuffer);
     HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-    HRESULT CAN_GetBusConfigInfo(BYTE* BusInfo);
-    HRESULT CAN_GetLastErrorString(string& acErrorStr);
     HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
     //MVN
     HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
@@ -285,7 +282,6 @@ public:
     HRESULT CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
     HRESULT CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
     HRESULT CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
-    HRESULT CAN_GetCntrlStatus(const HANDLE& hEvent, UINT& unCntrlStatus);
     HRESULT CAN_LoadDriverLibrary(void);
     HRESULT CAN_UnloadDriverLibrary(void);
 };
@@ -641,20 +637,6 @@ HRESULT CDIL_CAN_VectorXL::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, c
     }
 
     return hResult;
-}
-
-/**
-* \brief         Returns the controller status.hEvent will be registered
-*                and will be set whenever there is change in the controller status.
-* \param[in]     hEvent, is the handle of the event
-* \param[in]    unCntrlStatus, indicates contoller status
-* \return        S_OK for success, S_FALSE for failure
-* \authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
-HRESULT CDIL_CAN_VectorXL::CAN_GetCntrlStatus(const HANDLE& /*hEvent*/, UINT& /*unCntrlStatus*/)
-{
-    return S_OK;
 }
 
 /**
@@ -1871,18 +1853,6 @@ HRESULT CDIL_CAN_VectorXL::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
 }
 
 /**
-* \brief         Gets the Tx queue configured.
-* \param[out]    pouFlxTxMsgBuffer, is BYTE*
-* \return        S_OK for success, S_FALSE for failure
-* \authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
-HRESULT CDIL_CAN_VectorXL::CAN_GetTxMsgBuffer(BYTE*& /*pouFlxTxMsgBuffer*/)
-{
-    return S_OK;
-}
-
-/**
 * \brief         This will send a CAN message to the driver. In case of USB
 *                this will write the message in to the driver buffer and will
 *                return. In case if parallel port mode this will write the
@@ -1979,33 +1949,6 @@ HRESULT CDIL_CAN_VectorXL::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sMessa
     }
 
     return hResult;
-}
-
-/**
-* \brief         Gets bus config info.
-* \param[out]    BusInfo, is BYTE
-* \return        S_OK for success, S_FALSE for failure
-* \authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
-HRESULT CDIL_CAN_VectorXL::CAN_GetBusConfigInfo(BYTE* /*BusInfo*/)
-{
-    return S_OK;
-}
-
-
-/**
-* \brief         Gets last occured error and puts inside acErrorStr.
-* \param[out]    acErrorStr, is CHAR contains error string
-* \param[in]     nLength, is INT
-* \return        S_OK for success, S_FALSE for failure
-* \authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
-HRESULT CDIL_CAN_VectorXL::CAN_GetLastErrorString(string& acErrorStr)
-{
-    acErrorStr = sg_acErrStr;
-    return S_OK;
 }
 
 /**

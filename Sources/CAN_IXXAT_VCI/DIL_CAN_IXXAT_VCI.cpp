@@ -568,27 +568,6 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
 
 /**
  * @brief
- *  Should fill the transmit queue to the parameter.
- *  Empty function.
- *
- * @param [in,out]  pouFlxTxMsgBuffer
- *  If non-null, buffer for transmit message buffer.
- *
- * @return
- *   Always E_NOTIMPL.
- *
- */
-//HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetTxMsgBuffer(BYTE*& pouFlxTxMsgBuffer)
-//{
-//#ifdef _IXXAT_DEBUG
-//  LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_GetTxMsgBuffer\n");
-//#endif
-//  return  E_NOTIMPL;
-//}
-
-
-/**
- * @brief
  *  Transmit a single CAN message.
  *
  * @param dwClientID
@@ -615,99 +594,6 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanT
         hResult = m_arrIxxatCanChannels[sCanTxMsg.m_ucChannel-1].SendMessage(dwClientID, sCanTxMsg);
     }
     return hResult;
-}
-
-/**
- * @brief
- *  Fill the given struct with the device information.
- *
- * @todo
- *  no sample what to do here, so return not implemented.
- *
- * @param [in,out]  BoardInfo
- *  Structure to fill with information describing the board.
- *
- * @return
- *  Always E_NOTIMPL;
- *
- */
-//HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetBoardInfo(s_BOARDINFO& BoardInfo)
-//{
-//#ifdef _IXXAT_DEBUG
-//  LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_GetBoardInfo\n");
-//#endif
-//  return  E_NOTIMPL;
-//}
-
-/**
- * @brief
- *  Fill the given struct with the CAN configuration information.
- *  TODO: no sample what to do here, so return not implemented.
- *
- * @param [in,out]  BusInfo
- *  Structure to fill with information describing the CAN configuration.
- *
- * @return
- *  Always E_NOTIMPL;
- *
- */
-//HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetBusConfigInfo(BYTE* BusInfo)
-//{
-//#ifdef _IXXAT_DEBUG
-//  LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_GetBusConfigInfo\n");
-//#endif
-//  return  E_NOTIMPL;
-//}
-
-/**
- * @brief
- *  Get version information about the CAN.
- *  TODO: no sample what to do here, so return not implemented.
- *
- * @param [in,out]  sVerInfo
- *  Structure to be filled here with CAN information.
- *
- * @return
- *  Always E_NOTIMPL
- *
- */
-//HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetVersionInfo(VERSIONINFO& sVerInfo)
-//{
-//#ifdef _IXXAT_DEBUG
-//  LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_GetVersionInfo\n");
-//#endif
-//  return  E_NOTIMPL;
-//}
-
-/**
- * @brief
- *  Fill the given string with the last error code.
- *  Can get last error string.
- *  TODO: no sample what to do here, so return not implemented.
- *
- * @param [in,out]  acErrorStr
- *  If non-null, the string where the data should be copied to.
- * @param nLength
- *  The max. length of the string.
- *
- * @return
- *  Always E_NOTIMPL
- *
- */
-//HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetLastErrorString(CHAR* acErrorStr, int nLength)
-//{
-//#ifdef _IXXAT_DEBUG
-//  LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_GetLastErrorString\n");
-//#endif
-//  return  E_NOTIMPL;
-//}
-
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetLastErrorString(string& acErrorStr)
-{
-#ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_GetLastErrorString\n");
-#endif
-    return  E_NOTIMPL;
 }
 
 /**
@@ -982,29 +868,6 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_ManageMsgBuf(BYTE byAction, DWORD ClientID, CBas
         }
     }
     return hResult;
-}
-
-
-/**
- * @brief
- *  Write the current CAN controller status to the given parameter.
- *  TODO: no sample what to do here.
- *
- * @param hEvent
- *  The event.
- * @param [out]  unCntrlStatus
- *  The variable to write the controller status into.
- *
- * @return
- *  Always E_NOTIMPL.
- *
- */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetCntrlStatus(const HANDLE& hEvent, UINT& unCntrlStatus)
-{
-#ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_GetCntrlStatus\n");
-#endif
-    return E_NOTIMPL;
 }
 
 /**

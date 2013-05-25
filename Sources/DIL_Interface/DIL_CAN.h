@@ -164,33 +164,18 @@ public:
     HRESULT DILC_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
 
     /**
-     * Call to get descriptive string of the last error occurred
-     */
-    HRESULT DILC_GetLastErrorString(string& acErrorStr);
-
-    /**
-     * Call to set PASS/STOP filter
-     */
-    /**
-     * Call to get controller status. Caller has to give the handle of a
-     * event which will set whenever the controller changes the state.
-     * #define defCONTROLLER_ACTIVE                   1
-     * #define defCONTROLLER_PASSIVE                  2
-     * #define defCONTROLLER_BUSOFF                   3
-     */
-    HRESULT DILC_GetCntrlStatus(const HANDLE& hEvent, UINT& unCntrlStatus);
-
-    /**
      * Call to get Controller parameters. Value will be returned stored in lParam
      * Possible values for ECONTR_PARAM are ...
      */
     HRESULT DILC_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
-    /**
+
+	/**
      *
      *
      */
     virtual HRESULT DILC_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
-    /**
+
+	/**
      * Call to Get Error Counts
      */
     HRESULT  DILC_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
@@ -209,13 +194,9 @@ private:
     HRESULT (*m_pfSetConfigData)(PCHAR pInitData, int Length);
     HRESULT (*m_pfStartHardware)(void);
     HRESULT (*m_pfStopHardware)(void);
-    HRESULT (*m_pfGetTxMsgBuffer)(BYTE*& pouTxMsgBuffer);
     HRESULT (*m_pfSendMsg)(DWORD dwClientID, const STCAN_MSG& pouFlxTxMsg);
-    HRESULT (*m_pfGetBusConfigInfo)(BYTE* BusInfo);
-    HRESULT (*m_pfGetLastErrorString)(CHAR* acErrorStr, int nLength);
     HRESULT (*m_pfManageMsgBuf)(BYTE, DWORD ClientID, CBaseCANBufFSE*);
     HRESULT (*m_pfRegisterClient)(BOOL bRegister, DWORD&, char*);
-    HRESULT (*m_pfGetCntrlStatus)(const HANDLE& hEvent, UINT& unCntrlStatus);
     HRESULT (*m_pfGetControllerParams)(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
     HRESULT (*m_pfGetErrorCount)(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
 };

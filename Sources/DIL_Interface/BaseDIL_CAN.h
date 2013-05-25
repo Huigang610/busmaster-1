@@ -151,20 +151,6 @@ public:
     virtual HRESULT DILC_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg) = 0;
 
     /**
-    * Call to get descriptive string of the last error occurred
-     */
-    virtual HRESULT DILC_GetLastErrorString(string& acErrorStr) = 0;
-
-    /**
-     * Call to get controller status. Caller has to give the handle of a
-     * event which will set whenever the controller changes the state.
-     * #define defCONTROLLER_ACTIVE                   1
-     * #define defCONTROLLER_PASSIVE                  2
-     * #define defCONTROLLER_BUSOFF                   3
-     */
-    virtual HRESULT DILC_GetCntrlStatus(const HANDLE& hEvent, UINT& unCntrlStatus) = 0;
-
-    /**
      * Call to get Controller parameters. Value will be returned stored in lParam
      * Possible values for ECONTR_PARAM are ...
      */

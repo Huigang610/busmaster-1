@@ -165,10 +165,7 @@ public:
     HRESULT CAN_StartHardware(void);
     HRESULT CAN_StopHardware(void);
     HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
-    HRESULT CAN_GetTxMsgBuffer(BYTE*& pouFlxTxMsgBuffer);
     HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-    HRESULT CAN_GetBusConfigInfo(BYTE* BusInfo);
-    HRESULT CAN_GetLastErrorString(string& acErrorStr);
     HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
     HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
     HRESULT CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
@@ -177,7 +174,6 @@ public:
     HRESULT CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
     HRESULT CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
     HRESULT CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
-    HRESULT CAN_GetCntrlStatus(const HANDLE& hEvent, UINT& unCntrlStatus);
     HRESULT CAN_LoadDriverLibrary(void);
     HRESULT CAN_UnloadDriverLibrary(void);
 };
@@ -409,23 +405,6 @@ HRESULT CDIL_CAN_VSCOM::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char
         }
     }
     return(hResult);
-}
-
-
-/**
- * \return S_OK for success, S_FALSE for failure
- *
- * Returns the controller status. hEvent will be registered
- * and will be set whenever there is change in the controller
- * status.
- */
-HRESULT CDIL_CAN_VSCOM::CAN_GetCntrlStatus(const HANDLE& hEvent, UINT& unCntrlStatus)
-{
-    (void)unCntrlStatus;
-    (void)hEvent;
-
-    //unCntrlStatus = defCONTROLLER_ACTIVE; //Temporary solution. TODO
-    return(S_OK);
 }
 
 /**
@@ -1094,18 +1073,6 @@ HRESULT CDIL_CAN_VSCOM::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
     return(S_OK);
 }
 
-
-/**
-* \brief         Gets the Tx queue configured.
-* \param[out]    pouFlxTxMsgBuffer, is BYTE*
-* \return        S_OK for success, S_FALSE for failure
-*/
-HRESULT CDIL_CAN_VSCOM::CAN_GetTxMsgBuffer(BYTE*& /*pouFlxTxMsgBuffer*/)
-{
-    return(S_OK);
-}
-
-
 /**
 * \brief         Sends STCAN_MSG structure from the client dwClientID.
 * \param[in]     dwClientID is the client ID
@@ -1170,33 +1137,6 @@ HRESULT CDIL_CAN_VSCOM::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sMessage)
     }
     return(hResult);
 }
-
-
-
-
-/**
-* \brief         Gets bus config info.
-* \param[out]    BusInfo, is BYTE
-* \return        S_OK for success, S_FALSE for failure
-*/
-HRESULT CDIL_CAN_VSCOM::CAN_GetBusConfigInfo(BYTE* /*BusInfo*/)
-{
-    return(S_OK);
-}
-
-
-
-/**
-* \brief         Gets last occured error and puts inside acErrorStr.
-* \param[out]    acErrorStr, is CHAR contains error string
-* \param[in]     nLength, is INT
-* \return        S_OK for success, S_FALSE for failure
-*/
-HRESULT CDIL_CAN_VSCOM::CAN_GetLastErrorString(string& acErrorStr)
-{
-    return WARN_DUMMY_API;
-}
-
 
 /**
 * \brief         Gets the controller parametes of the channel based on the request.

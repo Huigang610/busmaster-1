@@ -212,10 +212,7 @@ public:
     HRESULT CAN_StartHardware(void);
     HRESULT CAN_StopHardware(void);
     HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
-    HRESULT CAN_GetTxMsgBuffer(BYTE*& pouFlxTxMsgBuffer);
     HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-    HRESULT CAN_GetBusConfigInfo(BYTE* BusInfo);
-    HRESULT CAN_GetLastErrorString(string& acErrorStr);
     HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
     HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
     HRESULT CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
@@ -224,7 +221,6 @@ public:
     HRESULT CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
     HRESULT CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
     HRESULT CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
-    HRESULT CAN_GetCntrlStatus(const HANDLE& hEvent, UINT& unCntrlStatus);
     HRESULT CAN_LoadDriverLibrary(void);
     HRESULT CAN_UnloadDriverLibrary(void);
 };
@@ -845,40 +841,6 @@ HRESULT CDIL_CAN_STUB::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg)
     return hResult;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_GetCntrlStatus(const HANDLE& /*hEvent*/, UINT& unCntrlStatus)
-{
-    HRESULT hResult = S_OK;
-    //EnterCriticalSection(&sg_CSBroker);
-    switch (GetCurrState())
-    {
-        case STATE_CONNECTED:
-        {
-            unCntrlStatus = NORMAL_ACTIVE;
-        }
-        break;
-        case STATE_INITIALISED:
-        {
-            unCntrlStatus = INITIALISED;
-        }
-        break;
-        case STATE_REGISTERED:
-        {
-            unCntrlStatus = RESET_STATE;
-        }
-        break;
-        case STATE_PRIMORDIAL:
-        case STATE_RESET:
-        default:
-        {
-            hResult = S_FALSE;
-        }
-        break;
-    }
-    //LeaveCriticalSection(&sg_CSBroker);
-
-    return hResult;
-}
-
 HRESULT CDIL_CAN_STUB::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
 {
     memcpy(&CurrSysTime, &sg_CurrSysTime, sizeof(SYSTEMTIME));
@@ -887,13 +849,6 @@ HRESULT CDIL_CAN_STUB::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& T
     {
         *QueryTickCount = sg_QueryTickCount;
     }
-    return S_OK;
-}
-
-
-HRESULT CDIL_CAN_STUB::CAN_GetLastErrorString(string& acErrorStr)
-{
-    acErrorStr = sg_acErrStr;
     return S_OK;
 }
 

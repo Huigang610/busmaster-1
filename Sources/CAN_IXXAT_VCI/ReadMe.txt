@@ -18,24 +18,5 @@ Only the configuration for the first CAN controller can changed.
 No Mask/Value filter available.
 
 
-CDIL_CAN_IXXAT_VCI::CAN_GetTxMsgBuffer
-Not implemented.
-
-
-CDIL_CAN_IXXAT_VCI::CAN_GetBoardInfo
-Not implemented. No sample what to do, and never called.
-
-CDIL_CAN_IXXAT_VCI::CAN_GetBusConfigInfo
-Not implemented. No sample what to do, and never called.
-
-CDIL_CAN_IXXAT_VCI::CAN_GetVersionInfo
-Not implemented. No sample what to do, and never called.
-
-CDIL_CAN_IXXAT_VCI::CAN_GetLastErrorString
-Not implemented. No sample what to do, and never called.
-
 CDIL_CAN_IXXAT_VCI::CAN_GetControllerParams
-Check if this is correct. Only copied from another DLL.
-
-CDIL_CAN_IXXAT_VCI::CAN_GetCntrlStatus
 Check if this is correct. Only copied from another DLL.

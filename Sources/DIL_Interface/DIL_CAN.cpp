@@ -510,35 +510,6 @@ HRESULT CDIL_CAN::DILC_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg)
     return m_pBaseDILCAN_Controller->CAN_SendMsg(dwClientID, sCanTxMsg);
 }
 
-
-
-
-
-/**
- * \brief     Get last error as string
- * \req       RSI_14_019 - DILC_GetLastErrorString
- * \req       RS_23_21 - In case of any error, a function returns the associated string of the last error
- *
- * Call to get descriptive string of the last error occurred
- */
-HRESULT CDIL_CAN::DILC_GetLastErrorString(string& acErrorStr)
-{
-    return m_pBaseDILCAN_Controller->CAN_GetLastErrorString(acErrorStr);
-}
-
-/**
- * \brief     Get controller status
- * \req       RSI_14_021 - DILC_GetControllreStatus
- * \req       RS_23_24 - Getter for controller status by callback mechanism
- *
- * Call to get controller status. Caller has to give the handle of a
- * event which will set whenever the controller changes the state.
- */
-HRESULT CDIL_CAN::DILC_GetCntrlStatus(const HANDLE& hEvent, UINT& unCntrlStatus)
-{
-    return m_pBaseDILCAN_Controller->CAN_GetCntrlStatus(hEvent, unCntrlStatus);
-}
-
 /**
  * \brief     Get controller parameters
  * \req       RSI_14_022 - DILC_GetControllerParams

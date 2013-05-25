@@ -101,26 +101,12 @@ HRESULT CDIL_CAN_DUMMY::CAN_SendMsg(DWORD /*dwClientID*/, const STCAN_MSG& /*sCa
     return WARN_DUMMY_API;
 }
 
-
-
-
-
-HRESULT CDIL_CAN_DUMMY::CAN_GetLastErrorString(string& /*acErrorStr*/)
-{
-    return WARN_DUMMY_API;
-}
-
 HRESULT CDIL_CAN_DUMMY::CAN_ManageMsgBuf(BYTE /*bAction*/, DWORD /*ClientID*/, CBaseCANBufFSE* /*pBufObj*/)
 {
     return WARN_DUMMY_API;
 }
 
 HRESULT CDIL_CAN_DUMMY::CAN_RegisterClient(BOOL /*bRegister*/, DWORD& /*ClientID*/, char* /*pacClientName*/)
-{
-    return WARN_DUMMY_API;
-}
-
-HRESULT CDIL_CAN_DUMMY::CAN_GetCntrlStatus(const HANDLE& /*hEvent*/, UINT& /*unCntrlStatus*/)
 {
     return WARN_DUMMY_API;
 }

@@ -340,10 +340,7 @@ public:
     HRESULT CAN_StartHardware(void);
     HRESULT CAN_StopHardware(void);
     HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
-    HRESULT CAN_GetTxMsgBuffer(BYTE*& pouFlxTxMsgBuffer);
     HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-    HRESULT CAN_GetBusConfigInfo(BYTE* BusInfo);
-    HRESULT CAN_GetLastErrorString(string& acErrorStr);
     HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
 
     //MVN
@@ -356,7 +353,6 @@ public:
     HRESULT CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
     HRESULT CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
     HRESULT CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
-    HRESULT CAN_GetCntrlStatus(const HANDLE& hEvent, UINT& unCntrlStatus);
     HRESULT CAN_LoadDriverLibrary(void);
     HRESULT CAN_UnloadDriverLibrary(void);
 };
@@ -584,20 +580,6 @@ HRESULT CDIL_CAN_Kvaser::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, cha
     }
 
     return hResult;
-}
-
-/**
-* \brief         Returns the controller status.hEvent will be registered
-*                and will be set whenever there is change in the controller status.
-* \param[in]     hEvent, is the handle of the event
-* \param[in]    unCntrlStatus, indicates contoller status
-* \return        S_OK for success, S_FALSE for failure
-* \authors       Arunkumar Karri
-* \date          12.10.2011 Created
-*/
-HRESULT CDIL_CAN_Kvaser::CAN_GetCntrlStatus(const HANDLE& /*hEvent*/, UINT& /*unCntrlStatus*/)
-{
-    return WARN_DUMMY_API;
 }
 
 /**
@@ -1656,18 +1638,6 @@ HRESULT CDIL_CAN_Kvaser::CAN_StopHardware(void)
 }
 
 /**
-* \brief         Gets the Tx queue configured.
-* \param[out]    pouFlxTxMsgBuffer, is BYTE*
-* \return        S_OK for success, S_FALSE for failure
-* \authors       Arunkumar Karri
-* \date          12.10.2011 Created
-*/
-HRESULT CDIL_CAN_Kvaser::CAN_GetTxMsgBuffer(BYTE*& /*pouFlxTxMsgBuffer*/)
-{
-    return WARN_DUMMY_API;
-}
-
-/**
 * \brief         This will send a CAN message to the driver.
 * \param[in]     sMessage Message to Transmit
 * \return        Operation Result. 0 incase of no errors. Failure Error codes otherwise.
@@ -1753,35 +1723,6 @@ HRESULT CDIL_CAN_Kvaser::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMs
 
     return hResult;
 }
-
-
-/**
-* \brief         Gets bus config info.
-* \param[out]    BusInfo, is BYTE
-* \return        S_OK for success, S_FALSE for failure
-* \authors       Arunkumar Karri
-* \date          12.10.2011 Created
-*/
-HRESULT CDIL_CAN_Kvaser::CAN_GetBusConfigInfo(BYTE* /*BusInfo*/)
-{
-    return WARN_DUMMY_API;
-}
-
-
-/**
-* \brief         Gets last occured error and puts inside acErrorStr.
-* \param[out]    acErrorStr, is CHAR contains error string
-* \param[in]     nLength, is INT
-* \return        S_OK for success, S_FALSE for failure
-* \authors       Arunkumar Karri
-* \date          12.10.2011 Created
-*/
-HRESULT CDIL_CAN_Kvaser::CAN_GetLastErrorString(string& /*acErrorStr*/)
-{
-    return WARN_DUMMY_API;
-}
-
-
 
 /**
 * \brief         This function will check all hardware connectivity by switching to channel ON.

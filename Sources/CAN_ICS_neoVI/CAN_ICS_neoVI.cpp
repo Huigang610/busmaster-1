@@ -443,10 +443,7 @@ public:
     HRESULT CAN_StartHardware(void);
     HRESULT CAN_StopHardware(void);
     HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
-    HRESULT CAN_GetTxMsgBuffer(BYTE*& pouFlxTxMsgBuffer);
     HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-    HRESULT CAN_GetBusConfigInfo(BYTE* BusInfo);
-    HRESULT CAN_GetLastErrorString(string& acErrorStr);
     HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
     //MVN
     HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
@@ -457,7 +454,6 @@ public:
     HRESULT CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
     HRESULT CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
     HRESULT CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
-    HRESULT CAN_GetCntrlStatus(const HANDLE& hEvent, UINT& unCntrlStatus);
     HRESULT CAN_LoadDriverLibrary(void);
     HRESULT CAN_UnloadDriverLibrary(void);
 };
@@ -2772,14 +2768,6 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
 }
 
 /**
- * Function to get Tx Msg Buffers configured from chi file
- */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_GetTxMsgBuffer(BYTE*& /*pouFlxTxMsgBuffer*/)
-{
-    return S_OK;
-}
-
-/**
  * \param[in] sMessage Message to Transmit
  * \return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
  *
@@ -2863,18 +2851,6 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sMessa
         hResult = ERR_NO_CLIENT_EXIST;
     }
     return hResult;
-}
-
-
-
-
-/**
- * Function to retreive error string of last occurred error
- */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_GetLastErrorString(string& acErrorStr)
-{
-    acErrorStr = sg_acErrStr;
-    return S_OK;
 }
 
 /**
@@ -3136,18 +3112,6 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_UnloadDriverLibrary(void)
     return S_OK;
 }
 
-
-
-
-HRESULT CDIL_CAN_ICSNeoVI::CAN_GetCntrlStatus(const HANDLE& hEvent, UINT& unCntrlStatus)
-{
-    if (hEvent != NULL)
-    {
-        sg_hCntrlStateChangeEvent = hEvent;
-    }
-    unCntrlStatus = static_cast<UINT>(sg_ucControllerMode);
-    return S_OK;
-}
 HRESULT CDIL_CAN_ICSNeoVI::CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam)
 {
     switch(eContrparam)
