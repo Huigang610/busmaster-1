@@ -116,14 +116,11 @@ public:
 
     // Set configuration data
     BYTE* SetConfigData(BYTE* pvDataStream, BYTE bytLogVersion);
-    //MVN
     INT nSetConfigData(xmlNodePtr pNode);
-    //~MVN
     // Get configuration data
     BYTE* GetConfigData(BYTE* pvDataStream) const;
-    // PTV XML
     BOOL GetConfigData(xmlNodePtr pxmlNodePtr) const;
-    // PTV XML
+
     // To get the total buffer size
     UINT unGetBufSize(void) const;
 

@@ -23,12 +23,12 @@
  */
 
 #pragma once
-//MVN
+
 //libxml file includes
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
-//~MVN
+
 /* C++ includes */
 #include <string>
 #include <sstream>
@@ -277,11 +277,11 @@ public:
         m_bytRxCompatibility            = 3;    //OCI_CANFD_RX_USE_RXFD_MESSAGE_PADDING
         m_bytTxCompatibility            = 1;    //OCI_CANFD_TX_USE_DBR
     }
-    //MVN
-    void LoadControllerConfigData(xmlNodePtr& pNodePtr)
+
+    void LoadControllerConfigData(xmlNodePtr& /*pNodePtr*/)
     {
     }
-    //~MVN
+
     void LoadControllerConfigData(BYTE*& pbyTemp)
     {
         COPY_DATA_2(&m_nItemUnderFocus, pbyTemp, sizeof(INT));

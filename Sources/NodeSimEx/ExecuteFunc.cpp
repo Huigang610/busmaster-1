@@ -1398,7 +1398,6 @@ BOOL CExecuteFunc::bInitTimerStruct(CStringArray& omErrorArray)
                     if(pomException != NULL)
                     {
                         char acErrorMsg[defSIZE_OF_ERROR_BUFFER];
-                        // PTV CPP
                         //acErrorMsg[defSIZE_OF_ERROR_BUFFER];
                         // Get the exception error message
                         pomException->GetErrorMessage(
@@ -1500,9 +1499,6 @@ BOOL CExecuteFunc::bInitErrorStruct(CStringArray& omErrorArray)
                     if(pomException != NULL )
                     {
                         char acErrorMsg[defSIZE_OF_ERROR_BUFFER];
-
-                        // PTV CPP
-                        //acErrorMsg[defSIZE_OF_ERROR_BUFFER];
                         CString omStrErrorMessage ="";
                         // Get the exception error message
                         pomException->GetErrorMessage(acErrorMsg,
@@ -1590,9 +1586,6 @@ BOOL CExecuteFunc::bInitEventStructJ1939(CStringArray& omErrorArray)
                     if(pomException != NULL )
                     {
                         char acErrorMsg[defSIZE_OF_ERROR_BUFFER];
-
-                        // PTV CPP
-                        //acErrorMsg[defSIZE_OF_ERROR_BUFFER];
                         CString omStrErrorMessage ="";
                         // Get the exception error message
                         pomException->GetErrorMessage(acErrorMsg,

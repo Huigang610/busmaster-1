@@ -319,7 +319,6 @@ HRESULT CSignalWatch_J1939::SW_SetConfigData(const void* pbyConfigData)
     return S_OK;
 }
 
-// PTV XML
 HRESULT CSignalWatch_J1939::SW_GetConfigData(xmlNodePtr pNodePtr)
 {
     // Setting signal watch window placement and column width
@@ -413,9 +412,7 @@ HRESULT CSignalWatch_J1939::SW_GetConfigData(xmlNodePtr pNodePtr)
     }
     return S_OK;
 }
-// PTV XML
 
-//MVN
 HRESULT CSignalWatch_J1939::SW_SetConfigData(xmlNodePtr pNode)
 {
     INT nRetValue  = S_OK;
@@ -454,7 +451,7 @@ HRESULT CSignalWatch_J1939::SW_SetConfigData(xmlNodePtr pNode)
     }
     return S_OK;
 }
-//~MVN
+
 HRESULT CSignalWatch_J1939::SW_ClearSigWatchWnd(void)
 {
     if (m_pouSigWnd != NULL)

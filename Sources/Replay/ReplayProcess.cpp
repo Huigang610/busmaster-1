@@ -833,8 +833,6 @@ BOOL CReplayProcess::bStopReplayThread()
     return bIsThreadKilled;
 }
 
-
-//venkat
 BOOL CReplayProcess::bMessageTobeBlocked( SFRAMEINFO_BASIC_CAN& sBasicCanInfo )
 {
     BOOL bReturn = TRUE;

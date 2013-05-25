@@ -171,7 +171,6 @@ BYTE* tagFilterName::pbSetConfigData(BYTE* pbTarget)
     return pbTStream;
 }
 
-// PTV XML
 void tagFilterName::pbSetConfigData(xmlNodePtr pNodePtr, xmlDocPtr xmlConfigFiledoc)
 {
     pNodePtr = pNodePtr->xmlChildrenNode;
@@ -194,8 +193,6 @@ void tagFilterName::pbSetConfigData(xmlNodePtr pNodePtr, xmlDocPtr xmlConfigFile
         pNodePtr = pNodePtr->next;
     }
 
-    // PTV TODO
-
     /*BYTE* pbTStream = pbTarget;
 
     COPY_DATA_2(m_acFilterName, pbTStream, LENGTH_FILTERNAME * SIZE_CHAR);
@@ -203,7 +200,7 @@ void tagFilterName::pbSetConfigData(xmlNodePtr pNodePtr, xmlDocPtr xmlConfigFile
 
     return pbTStream;*/
 }
-// PTV XML
+
 INT tagFilterName::nSetXMLConfigData(xmlNodePtr pFilter)
 {
     INT nRetVal = S_OK;
@@ -353,7 +350,6 @@ BYTE* tagSFILTER::pbGetConfigData(BYTE* pbTarget) const
     return pbTStream;
 }
 
-// PTV XML
 void tagSFILTER::pbGetConfigData(xmlNodePtr pxmlNodePtr) const
 {
 
@@ -401,7 +397,7 @@ void tagSFILTER::pbGetConfigData(xmlNodePtr pxmlNodePtr) const
 
     return pbTStream;*/
 }
-// PTV XML
+
 /******************************************************************************
   Function Name    :  pbSetConfigData
   Input(s)         :  pbSource - The source buffer to retrieve filtering data.
@@ -705,7 +701,6 @@ BYTE* SFILTER_CAN::pbGetConfigData(BYTE* pbTarget) const
     return pbTStream;
 }
 
-// PTV XML
 void SFILTER_CAN::pbGetConfigData(xmlNodePtr pNodePtr) const
 {
     xmlNodePtr pFltrMsgPtr = xmlNewNode(NULL, BAD_CAST DEF_FILTER_MESSAGE);
@@ -767,7 +762,6 @@ void SFILTER_CAN::pbSetConfigData(xmlNodePtr xmlNodePtr)
 {
     vClear();
 }
-// PTV XML
 
 /******************************************************************************
   Function Name    :  pbSetConfigData
@@ -1065,7 +1059,6 @@ BYTE* SFILTER_FLEXRAY::pbGetConfigData(BYTE* pbTarget) const
     return pbTStream;
 }
 
-// PTV XML
 void SFILTER_FLEXRAY::pbGetConfigData(xmlNodePtr pNodePtr) const
 {
     this->SFILTER::pbGetConfigData(pNodePtr);
@@ -1073,7 +1066,7 @@ void SFILTER_FLEXRAY::pbGetConfigData(xmlNodePtr pNodePtr) const
 
     //return pbTStream;
 }
-// PTV XML
+
 /******************************************************************************
   Function Name    :  pbSetConfigData
   Input(s)         :  pbSource - The source buffer to retrieve filtering data.
@@ -1451,14 +1444,13 @@ BYTE* SFILTER_J1939::pbGetConfigData(BYTE* pbTarget) const
     return pbTStream;
 }
 
-// PTV XML
 void SFILTER_J1939::pbGetConfigData(xmlNodePtr pNodePtr) const
 {
     //BYTE* pbTStream = pbTarget;
     this->SFILTER::pbGetConfigData(pNodePtr);
     //return pbTStream;
 }
-// PTV XML
+
 /******************************************************************************
   Function Name    :  pbSetConfigData
   Input(s)         :  pbSource - The source buffer to retrieve filtering data.
@@ -1907,7 +1899,6 @@ void tagFilterSet::pbGetConfigData(xmlNodePtr pNodePtr) const
     //return pbTStream;
 }
 
-// PTV XML
 /******************************************************************************
   Function Name    :  pbSetConfigData
   Input(s)         :  pbSource - The source buffer to retrieve filtering data.
@@ -2030,7 +2021,7 @@ void tagFilterSet::pbSetConfigData(xmlNodePtr pNodePtr, xmlDocPtr pxmlDocPtr,boo
         }
     }
 }
-// PTV XML
+
 /******************************************************************************
   Function Name    :  pbSetConfigData
   Input(s)         :  pbSource - The source buffer to retrieve filtering data.

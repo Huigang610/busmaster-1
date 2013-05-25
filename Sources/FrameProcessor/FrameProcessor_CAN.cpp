@@ -136,7 +136,6 @@ void CFrameProcessor_CAN::vRetrieveDataFromBuffer(void)
                     CLogObjectCAN* pouLogObjCon = static_cast<CLogObjectCAN*> (pouLogObjBase);
                     BOOL bIsDataLog = pouLogObjCon->bLogData(CurrDataCAN);
 
-                    // PTV [1.6.4]
                     if(bIsDataLog == TRUE)
                     {
                         //m_bIsThreadBlocked = FALSE;
@@ -331,7 +330,6 @@ BOOL CFrameProcessor_CAN::FPC_IsLoggingON(void)
     return IsLoggingON();
 }
 
-// PTV [1.6.4]
 BOOL CFrameProcessor_CAN::FPC_IsDataLogged(void)
 {
     return IsDataLogged();
@@ -346,7 +344,7 @@ void CFrameProcessor_CAN::FPC_DisableDataLogFlag(void)
 {
     DisableDataLogFlag();
 }
-// PTV [1.6.4] END
+
 // Query function - current filtering status
 BOOL CFrameProcessor_CAN::FPC_IsFilterON(void)
 {

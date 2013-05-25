@@ -78,7 +78,6 @@ CTreeItemParam::CTreeItemParam(CWnd* pomParent,
 
 void CTreeItemParam::vUpdateTreeValues(CStringArray& omStringArray, COLORREF TextColour)
 {
-    // PTV [1.6.6]
     CString omCurrStr;
     int nCount = omStringArray.GetSize();
     if(nCount != m_aomItemHandle.GetSize())
@@ -131,7 +130,6 @@ void CTreeItemParam::vUpdateTreeValues(CStringArray& omStringArray, COLORREF Tex
     for (int i = 0; i < nCount; i++)
     {
         omCurrStr = omStringArray.ElementAt(i);
-        // PTV [1.6.6]
         ItemHandle = NULL;
 
         if(m_aomItemHandle.GetSize() > i)

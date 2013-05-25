@@ -916,8 +916,6 @@ void CListCtrlEx::vSetMapColumnCount(int nColumn)
     m_omUserProg.RemoveAll();
 }
 
-//Added by venkat
-
 /******************************************************************************
 Function Name  :  pomBrowserIem
 Input(s)       :

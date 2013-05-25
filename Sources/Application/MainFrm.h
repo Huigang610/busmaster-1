@@ -23,12 +23,11 @@
  */
 
 #pragma once
-//MVN
+
 //libxml file includes
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>
 #include <libxml/xpath.h>
-//~MVN
 
 #include "Flags.h"                  // Definition of CFlags class
 #include "SectionNames.h"           // Different section names and section ID
@@ -76,8 +75,6 @@
 #include "SigGrphWndHandler.h"
 #include "DataTypes/MsgBufVSE.h"
 #include "ConfigData.h"
-
-//venkat
 #include "TSExecutorHandler.h"
 #include "TSEditorHandler.h"
 #include "Utility/XMLUtils.h"
@@ -144,7 +141,6 @@ public:
     // Pointer to UI Thread
     //CGraphUIThread*     m_pomGraphThread;
 
-    //venkat
     TSEditorHandler m_objTSEditorHandler;
     TSExecutorHandler m_objTSExecutorHandler;
 
@@ -172,7 +168,6 @@ protected:
 public:
 
     void vGettextBusmaster();
-    // PTV [1.6.4]
     HICON m_hLogIcon1, m_hLogIcon2, m_hLogOffIcon;
     BOOL m_bIconSetFlag;
     BOOL m_bJ1939IconSetFlag;
@@ -306,9 +301,7 @@ public:
     CWnd* IsWindowCreated();
     void vCloseFormatconverters();
     void vProcessKeyPress(MSG* pMsg);
-    //MVN
     BOOL bParseSignalWatchXMLconfig(ETYPE_BUS eBus, CMainEntryList& odMainEntryList);
-    //~MVN
     void OnHex_DecButon();
 
     /* API to modify icon for a particular item in toolbar */
@@ -449,10 +442,8 @@ protected:
     afx_msg void OnUpdateCfgnReplay(CCmdUI* pCmdUI);
     afx_msg void OnConfigureSimulatedsystems();
     afx_msg void OnUpdateDllLoadAll(CCmdUI* pCmdUI);
-    //venkat
     afx_msg void OnAutomationTSEditor();
     afx_msg void OnAutomationTSExecutor();
-
     afx_msg void OnConfigChannelSelection();
     afx_msg void OnUpdateConfigChannelSelection(CCmdUI* pCmdUI);
 
@@ -569,7 +560,6 @@ private:
     eERROR_STATE m_eCurrErrorState[ defNO_OF_CHANNELS ];
     // Timer to update status bar
     UINT_PTR m_unTimerSB;
-    // PTV [1.6.4]
     UINT_PTR m_unTimerSBLog;
     UINT_PTR m_unJ1939TimerSBLog;
     // Transmission and reception error counters
@@ -617,7 +607,6 @@ private:
     void vSetCurrentSessionData(eSECTION_ID eSecId, BYTE* pbyConfigData, UINT nSize);
     INT LoadConfiguration(void);
     INT SaveConfiguration(void);
-    //MVN
     int nLoadXMLConfiguration(std::string& m_strCfxFile);
     int nLoadXMLConfiguration();
 
@@ -644,9 +633,7 @@ private:
     INT nGetControllerID(std::string ptext);
     void LoadControllerConfigData(SCONTROLLER_DETAILS& sController, xmlNodePtr& pNodePtr);
     std::string m_omStrCurrentConfigFile;
-    //~MVN
 
-    // PTV
     CString vGetControllerName(UINT nDriverId);
 
     void vSetFileStorageInfo(CString omCfgFileName);
@@ -668,9 +655,8 @@ private:
     BOOL m_abLogOnConnect[BUS_TOTAL];
 
     xmlNodePtr m_pCopyBusStsticsNode;
-    // PTV XML
     void vSetGlobalConfiguration(xmlNodePtr& pNodePtr);
-    // PTV XML
+
 public:
     void vPopulateJ1939PGNList();
     INT ReadGraphDataBuffer(BOOL bCalcTime);
@@ -790,8 +776,6 @@ public:
 
     void ApplyLogFilter();
     void ApplyReplayFilter();
-    //MVN
     xmlDocPtr m_xmlConfigFiledoc;
     BOOL m_bIsXmlConfig;
-    //~MVN
 };

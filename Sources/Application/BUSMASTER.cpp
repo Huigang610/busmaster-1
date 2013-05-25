@@ -641,7 +641,6 @@ void CCANMonitorApp::vSetFileStorageInfo(CString oCfgFilename)
     USES_CONVERSION;
     DATASTORAGEINFO stempDataInfo;
     FILESTORAGEINFO FileStoreInfo;
-    //Tobias - venkat
     strcpy_s(FileStoreInfo.m_FilePath, MAX_PATH, oCfgFilename.GetBuffer(MAX_PATH));
     stempDataInfo.FSInfo = &FileStoreInfo;
     stempDataInfo.m_Datastore = FILEMODE;
@@ -1212,7 +1211,6 @@ BOOL CCANMonitorApp::bInitialiseConfiguration(BOOL bFromCom)
                     {
                         char acName[MAX_PATH] = "";
                         CString omDBName = aomNewDatabases.GetAt(i);
-                        //Tobias - venkat
                         strcpy_s(acName, MAX_PATH, omDBName.GetBuffer(MAX_PATH));
                         COPY_DATA(pbyTemp, acName, sizeof(char) * MAX_PATH);
                     }

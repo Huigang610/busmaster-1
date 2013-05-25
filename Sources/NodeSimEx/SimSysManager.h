@@ -83,17 +83,12 @@ public:
     bool bGetConfigData(xmlNodePtr pNodePtr);
     void vLoadSimSysWndConfig();
     void CopySIMDataFromBuffer(BYTE* SrcBuffer);
-    //MVN
     void vLoadSimSysWndConfig(xmlDocPtr, ETYPE_BUS eBus);
     void CopySIMDataFromBuffer(xmlDocPtr, ETYPE_BUS eBus);
-
     void CopySIMDataFromBuffer(xmlNodePtr, ETYPE_BUS eBus);
-
     void vSetConfigData(xmlNodePtr pNode);
     xmlNodePtr m_CopyJ1939SimNode;
-    //~MVN
     BOOL bIsConfigChanged();
-
     void vApplicationClosing();
     void vSaveAllSimSys();
     void vInitailizeSimSysInfo();

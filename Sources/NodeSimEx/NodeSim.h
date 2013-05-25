@@ -62,10 +62,8 @@ public:
     void NS_GetSimSysConfigData(BYTE*& pDesBuffer, int& nBuffSize);
     bool NS_GetSimSysConfigData(xmlNodePtr& pNodePtr);
     void NS_SetSimSysConfigData(BYTE* pSrcBuffer, int nBuffSize);
-    //MVN
     void NS_SetSimSysConfigData(xmlDocPtr pXmlDoc);
     void NS_SetSimSysConfigData(xmlNodePtr pXmlNodePtr);
-    //~MVN
     BOOL NS_IsSimSysConfigChanged();
     int NS_nOnBusConnected( bool bConnected);
     void NS_SetJ1939ActivationStatus(bool bActivated);

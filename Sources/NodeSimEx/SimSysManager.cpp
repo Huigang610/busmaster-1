@@ -354,7 +354,7 @@ void CSimSysManager::SaveSIMDataIntoBuffer(BYTE* DesBuffer)
     }
 
 }
-//MVN
+
 void CSimSysManager::vLoadSimSysWndConfig(xmlDocPtr pDoc, ETYPE_BUS eBus)
 {
     //First initialize all data
@@ -598,7 +598,7 @@ void CSimSysManager::vSetConfigData(xmlNodePtr pNode)
         }
     }
 }
-//~MVN
+
 /******************************************************************************
     Function Name    :  vLoadSimSysWndConfig
     Input(s)         :  -

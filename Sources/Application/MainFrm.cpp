@@ -25,11 +25,8 @@
 #include "include/Struct_CAN.h"
 #include "Include/CAN_Error_Defs.h"
 #include "BUSMASTER.h"        // App class definition file
-#include "Utility\UtilFunctions.h"
-
-// PTV XML
+#include "Utility/UtilFunctions.h"
 #include "include/XMLDefines.h"
-// PTV XML
 //#include "MsgMDIChildWnd.h"     // Message window class defintion file
 #include "MainFrm.h"            // Main frame class defintion file
 //#include "FunctionEditorDoc.h"  // Document class defintion file
@@ -151,10 +148,8 @@ SMSGENTRY* CTxMsgWndJ1939::m_psMsgRoot = NULL;
 #define defDLGFLAGS             OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_PATHMUSTEXIST
 #define defDEFAULTDLLFILENAME   "*.dll"
 #define TIMER_REFRESH_MAINGUI   0x100
-// PTV [1.6.4]
 #define TIMER_REFRESH_LOG_STATUS 0x101
 #define TIMER_REFRESH_J1939_LOG_STATUS 0x102
-// PTV [1.6.4] END
 #define STSBAR_REFRESH_TIME_PERIOD      1000  // in milliseconds
 #define STSBAR_REFRESH_TIME_PERIOD_LOG  1000  // in milliseconds
 #define PROFILE_CAN_MONITOR                   "RBEI_ECF2_CAN_Monitor"
@@ -383,8 +378,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
     //ON_UPDATE_COMMAND_UI_RANGE(ID_SHOWMESSAGEWINDOW_CAN,ID_SHOWMESSAGEWINDOW_J1939, OnUpdateShowHideMessageWindow)
     ON_COMMAND(ID_TB_CANDATABASE, OnToolbarCandatabase)
     ON_UPDATE_COMMAND_UI(ID_TB_CANDATABASE, OnUpdateToolbarCanDatabase)
-
-    //venkat
     ON_COMMAND(ID_TESTAUTOMATION_EDITOR, OnAutomationTSEditor)
     ON_COMMAND(ID_TESTAUTOMATION_EXECUTOR, OnAutomationTSExecutor)
     ON_COMMAND(ID_UTILITY_FILE_CONVERTER, OnFileConverter)
@@ -459,17 +452,13 @@ CMainFrame::CMainFrame()
         m_pomMsgSgDetViews[i]       = NULL;
         m_pomMsgSgTreeViews[i]      = NULL;
     }
-
     m_podMsgWndThread               = NULL;
-
     m_bIsNewDatabase                = FALSE;
     m_hModuleHandle                 = NULL;
-    // PTV [1.6.4]
     m_bIconSetFlag = 0;
     m_bJ1939IconSetFlag = 0;
     m_nSendMsgLogCnt = 0;
     m_nSendMsgJ1939LogCnt = 0;
-    // PTV [1.6.4]
 
     INITIALISE_ARRAY(m_psSignalWatchList);
     m_unReplayTimeDelay             = 50;
@@ -508,7 +497,6 @@ CMainFrame::CMainFrame()
     m_unWarningLimit  = 96;
     m_podUIThread = NULL;
     m_omStrSavedConfigFile = STR_EMPTY;
-    // PTV [1.6.4]
     m_unTimerSBLog = NULL;
     m_unJ1939TimerSBLog = NULL;
 
@@ -539,7 +527,6 @@ CMainFrame::CMainFrame()
     m_sNotificWndPlacement.rcNormalPosition.top = -1;
 
     // Create message manager
-    //venkat
     //Initialize HW Interface
     //INITIALISE_ARRAY(m_asINTERFACE_HW);
     //Initialize CONTROLLER DETAILS
@@ -574,15 +561,10 @@ CMainFrame::CMainFrame()
     {
         m_abLogOnConnect[i] = FALSE;
     }
-    //venkat
     m_objTSEditorHandler.vLoadTSEditor_DLL();
     m_objTSExecutorHandler.vLoadTSExecutor_DLL();
-
-
-    //MVN
     m_xmlConfigFiledoc = NULL;
     m_bIsXmlConfig = TRUE;
-    //~MVN
 
     // language support
     vGettextBusmaster();
@@ -908,24 +890,16 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_wndStatusBar.SetPaneInfo( INDEX_CHANNELS, IDS_CHANNELS,
                                 SBPS_NOBORDERS, 320);
     m_wndStatusBar.SetPaneInfo(0, ID_SEPARATOR, SBPS_NOBORDERS, 340);
-
-    // PTV [1.6.4]
     // For Can Logging status
     m_wndStatusBar.SetPaneInfo( INDEX_CAN_LOG_ICON, ID_LOG_RECORD_CAN_ICON,
                                 SBPS_NOBORDERS, 100);
-
-    // PTV [1.6.4]
     // For J1939 Logging status
     m_wndStatusBar.SetPaneInfo( INDEX_J1939_LOG_ICON, ID_LOG_RECORD_J1939_ICON,
                                 SBPS_NOBORDERS, 110);
-
     m_wndStatusBar.SetPaneInfo(0, ID_SEPARATOR, SBPS_NOBORDERS, 340);
-    // PTV [1.6.4]
-
     m_wndStatusBar.SetPaneInfo( INDEX_DB_NAME, ID_ACTIVE_DATABASE_NAME,
                                 SBPS_STRETCH, 50);
 
-    // PTV [1.6.4]
     m_hLogIcon1 = (HICON)::LoadImage(AfxGetInstanceHandle(),
                                      MAKEINTRESOURCE(IDI_ICON_LOG_ON),
                                      IMAGE_ICON, 16, 16, LR_SHARED);
@@ -942,7 +916,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_bJ1939IconSetFlag = 1;
     m_wndStatusBar.GetStatusBarCtrl().SetIcon(INDEX_CAN_LOG_ICON, m_hLogOffIcon);
     m_wndStatusBar.GetStatusBarCtrl().SetIcon(INDEX_J1939_LOG_ICON, m_hLogOffIcon);
-    // PTV [1.6.4] END
+
     // Set number of channels supported
     CString omStrChannels;
     omStrChannels.Format( _(defSTR_CHANNELS_SUPPORTED),
@@ -1648,8 +1622,6 @@ DWORD CMainFrame::dLoadJ1939DBFile(CString omStrActiveDataBase,BOOL bFrmCom)
     }
     if (m_pouMsgSigJ1939 != NULL)
     {
-
-        //MVN::Construct File Path
         if (TRUE == PathIsRelative(omStrActiveDataBase))
         {
             std::string omStrBasePath;
@@ -1660,7 +1632,6 @@ DWORD CMainFrame::dLoadJ1939DBFile(CString omStrActiveDataBase,BOOL bFrmCom)
             PathCombine(chAbsPath, omStrBasePath.c_str(), omStrActiveDataBase.GetBuffer(MAX_PATH));
             omStrActiveDataBase = chAbsPath;
         }
-        //~MVN::Construct File Path
 
         //Check for same DB path......
         CStringArray aomOldDatabases;
@@ -1744,7 +1715,6 @@ DWORD CMainFrame::dLoadDataBaseFile(CString omStrActiveDataBase,BOOL /*bFrmCom*/
     theApp.m_pouMsgSignal->vGetDataBaseNames(&aomOldDatabases);
     int nFileCount = aomOldDatabases.GetSize();
     BOOL bFilePresent = FALSE;
-    //MVN::Construct File Path
     if (TRUE == PathIsRelative(omStrActiveDataBase))
     {
         std::string omStrBasePath;
@@ -1755,7 +1725,6 @@ DWORD CMainFrame::dLoadDataBaseFile(CString omStrActiveDataBase,BOOL /*bFrmCom*/
         PathCombine(chAbsPath, omStrBasePath.c_str(), omStrActiveDataBase.GetBuffer(MAX_PATH));
         omStrActiveDataBase = chAbsPath;
     }
-    //~MVN::Construct File Path
     for(int nCount = 0; (nCount < nFileCount)&&(!bFilePresent); nCount++)
     {
         CString omstrFileName = aomOldDatabases.GetAt(nCount);
@@ -1805,7 +1774,7 @@ DWORD CMainFrame::dLoadDataBaseFile(CString omStrActiveDataBase,BOOL /*bFrmCom*/
 
                 // User can open the active DB
                 theApp.pouGetFlagsPtr()->vSetFlagStatus(SELECTDATABASEFILE, TRUE );
-                //venkat update signal watch
+                // update signal watch
                 vUpdateSWList();
             }
 
@@ -3611,7 +3580,6 @@ void CMainFrame::OnLogEnable()
     }
     bLogON = bLogON ? FALSE : TRUE;
 
-    // PTV [1.6.4]
     if(bLogON == FALSE)
     {
         if (NULL != sg_pouFrameProcCAN)
@@ -3619,12 +3587,9 @@ void CMainFrame::OnLogEnable()
             sg_pouFrameProcCAN->FPC_DisableDataLogFlag();
         }
     }
-    // PTV [1.6.4]
 
     // Set the status of logging
-    // PTV[1.6.4]
     BOOL bIsConnected = FALSE;
-    // PTV[1.6.4]
     CFlags* pouFlags = NULL;
     pouFlags = theApp.pouGetFlagsPtr();
     if (NULL != pouFlags)
@@ -3633,7 +3598,6 @@ void CMainFrame::OnLogEnable()
         bIsConnected = pouFlags->nGetFlagStatus(CONNECTED);
     }
 
-    // PTV[1.6.5]
     // If Connected and Log is enabled
     if(bLogON == TRUE && bIsConnected == TRUE)
     {
@@ -3649,7 +3613,6 @@ void CMainFrame::OnLogEnable()
             }
         }
     }
-    // PTV[1.6.5]
     // If not connected or log is disabled
     else
     {
@@ -3744,7 +3707,6 @@ void CMainFrame::OnSendMessage()
         theApp.pouGetFlagsPtr()->vSetFlagStatus( SENDMESG, FALSE );
         // ReSet the tool bar button to pressed state
         omRefToolBarCtrl.PressButton(IDR_TOOL_SENDMSG, FALSE);
-        // PTV [1.6.4]
         // Disabling Data logging Flag
         if (NULL != sg_pouFrameProcCAN)
         {
@@ -4600,7 +4562,6 @@ void CMainFrame::OnClose()
     }
 
     // Writing in to Registry
-    // PTV [1.6.4] 6
     theApp.WriteProfileString(SECTION,
                               defCONFIGFILENAME,
                               oCfgFilename);
@@ -4618,7 +4579,6 @@ void CMainFrame::OnClose()
     {
         ::KillTimer(NULL, m_unTimerSB);
     }
-    // PTV [1.6.4]
     if(m_unTimerSBLog != 0)
     {
         ::KillTimer(NULL, m_unTimerSBLog);
@@ -4635,7 +4595,6 @@ void CMainFrame::OnClose()
         //m_wndStatusBar.SetPaneText(INDEX_LOG_RECORD, "CAN");
         m_wndStatusBar.GetStatusBarCtrl().SetIcon(INDEX_J1939_LOG_ICON, m_hLogOffIcon);
     }
-    // PTV [1.6.4]
     if(m_podUIThread != NULL)
     {
         m_podUIThread->PostThreadMessage(WM_QUIT,0,0);
@@ -7319,7 +7278,6 @@ void CMainFrame::vUpdateGraphData(const STCANDATA& sCanData)
 
                     sInterpretList.unMsgID = sCanData.m_uDataInfo.m_sCANMsg.m_unMsgID;
                     sInterpretList.m_nTimeStamp = sCanData.m_lTickCount.QuadPart;
-                    //Tobias - venkat
                     strcpy_s(sInterpretList.m_acSigName,64, odElement.m_omStrElementName.GetBuffer(64));
                     switch( odElement.m_nValueType )
                     {
@@ -7542,7 +7500,6 @@ void CMainFrame::OnFileConnect()
         }
         else
         {
-            // PTV [1.6.4]
             if (NULL != sg_pouFrameProcCAN)
             {
                 sg_pouFrameProcCAN->FPC_DisableDataLogFlag();
@@ -7551,7 +7508,6 @@ void CMainFrame::OnFileConnect()
             {
                 sg_pouIJ1939Logger->FPJ1_DisableJ1939DataLogFlag();
             }
-            // PTV [1.6.4]
             //Stop Graph Interpret Thread
             bStopGraphReadThread();
             ::SendMessage(m_podMsgWndThread->hGetHandleMsgWnd(CAN), WM_NOTIFICATION_FROM_OTHER,
@@ -7612,7 +7568,6 @@ void CMainFrame::OnFileConnect()
             {
                 vStartStopLogging(bConnected);
             }
-            // PTV [1.6.6]
             else if(bLogIsON == TRUE && bConnected == TRUE)
             {
                 vStartStopLogging(bLogIsON);
@@ -7634,7 +7589,6 @@ void CMainFrame::OnFileConnect()
             }
             else
             {
-                // PTV [1.6.6]
                 if (NULL != sg_pouIJ1939Logger)
                 {
                     if(sg_pouIJ1939Logger->FPJ1_IsLoggingON() == TRUE)
@@ -7650,9 +7604,7 @@ void CMainFrame::OnFileConnect()
             // Post Connect Activities
             if( bConnected == TRUE )
             {
-                // PTV[1.6.4]
                 // If Connect and Log both are enabled
-
                 BOOL bLogON = FALSE;
                 CFlags* pFlag = theApp.pouGetFlagsPtr();
                 if(pFlag != NULL)
@@ -7678,7 +7630,6 @@ void CMainFrame::OnFileConnect()
                 {
                     m_unJ1939TimerSBLog = SetTimer(TIMER_REFRESH_J1939_LOG_STATUS, STSBAR_REFRESH_TIME_PERIOD_LOG, NULL);
                 }
-                // PTV[1.6.4]
 
                 vREP_HandleConnectionStatusChange( TRUE );
                 //send connection statud to replay window
@@ -7687,7 +7638,6 @@ void CMainFrame::OnFileConnect()
                 vREP_EnableFilters(bReplayFilterStatus);
             }
             // On Disconnect Kill the timer
-            // PTV[1.6.4]
             else
             {
                 if(m_unTimerSBLog != NULL)
@@ -7708,12 +7658,10 @@ void CMainFrame::OnFileConnect()
                 //  m_wndStatusBar.GetStatusBarCtrl().SetIcon(INDEX_J1939_LOG_ICON, m_hLogIcon1);
                 //}
             }
-            // PTV[1.6.4]
 
             // Enable / disable signal transmission block
             m_ouWaveTransmitter.bUpdateBlock(bConnected);
 
-            //venkat
             m_objTSExecutorHandler.vStartStopReadThread(CAN, bConnected);
             m_objTSExecutorHandler.vBusConnected(bConnected);
 
@@ -8008,9 +7956,7 @@ void CMainFrame::OnNewConfigFile()
 
     if(oCfgFileDlg.DoModal() == IDOK)
     {
-        // PTV [1.6.5] 23
         CConfigData::ouGetConfigDetailsObject().vCloseConfigFile();
-        // PTV [1.6.5] 23
 
         // get the name of the selected file
         CString oCfgFilename = oCfgFileDlg.GetPathName();
@@ -8134,12 +8080,10 @@ void CMainFrame::OnSaveConfigFile()
         {
             vPushConfigFilenameDown(omStrCfgFilename);
 
-            // PTV [1.6.4] 6
             theApp.WriteProfileString(_(SECTION),
                                       defCONFIGFILENAME,
                                       omStrCfgFilename);
             m_omStrSavedConfigFile = omStrCfgFilename;
-            // PTV [1.6.4] 6
         }
     }
 }
@@ -10437,7 +10381,7 @@ void CMainFrame::vSetControllerParameters()
 {
     CFlags* podFlag = NULL;
     podFlag   = theApp.pouGetFlagsPtr();
-    UCHAR ucControllerMode = defMODE_SIMULATE;  //venkat
+    UCHAR ucControllerMode = defMODE_SIMULATE;
     // Get the Controller mode
     LONG lParam = 0;
     if (g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, HW_MODE) == S_OK)
@@ -11458,7 +11402,7 @@ HRESULT CMainFrame::IntializeDIL(UINT unDefaultChannelCnt)
                         vInitializeGraphWndReadBuffer();
                         //re initialize statistics module
                         vInitializeBusStatCAN();
-                        //venkat - Initialize Read Thread of TSExecutor.
+                        // Initialize Read Thread of TSExecutor.
                         m_objTSExecutorHandler.vDoInitailization(CAN);
 
                         /* Updates the number of channels selected */
@@ -11577,9 +11521,8 @@ void CMainFrame::vUpdateHWStatusInfo(void)
             {
                 m_asControllerDetails->m_omStrBaudrate = "500";
             }
-            // PTV
+
             // Added Shortcut key for the hardwared device, Removing '&'
-            //venkat
             CString strDriverName = m_ouList[i].m_acName.c_str();
             strDriverName.Replace("&", "");
 
@@ -11978,7 +11921,6 @@ INT CMainFrame::nLoadConfigFile(CString omConfigFileName)
     {
         CConfigData::ouGetConfigDetailsObject().vCloseConfigFile();
         vSetFileStorageInfo(omConfigFileName);
-        //MVN
         std::string strCfxFile = (LPCSTR)omConfigFileName;
         nRetValue = nLoadXMLConfiguration(strCfxFile);
         if (nRetValue == S_OK )         //1. Try to Load as a XML file
@@ -11990,7 +11932,6 @@ INT CMainFrame::nLoadConfigFile(CString omConfigFileName)
             ApplyMessagewindowOverwrite();
             nRetValue = S_OK;
         }
-        //~MVN
         else                            //2. Load as a Binary File
         {
             CConfigData::ouGetConfigDetailsObject().vCloseConfigFile();
@@ -12068,7 +12009,6 @@ INT CMainFrame::LoadConfiguration(void)
     return nReturn;
 }
 
-//MVN
 int CMainFrame::nLoadXMLConfiguration(std::string& m_strCfxFile)
 {
     int nRetValue = S_FALSE;
@@ -12614,7 +12554,6 @@ void CMainFrame::vGetCurrentSessionData(eSECTION_ID eSecId, BYTE*& pbyConfigData
 
                 //COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
                 UINT unSelCount = sMainEntry.m_odSelEntryList.GetCount();
-                //MVN only if any signal is selected
                 if( unSelCount > 0 )
                 {
                     char acName[MAX_PATH] = "";
@@ -12705,7 +12644,6 @@ void CMainFrame::vGetCurrentSessionData(eSECTION_ID eSecId, BYTE*& pbyConfigData
                 SMAINENTRY& sMainEntry = odMainEntryList.GetNext(pos);
 
                 UINT unSelCount = sMainEntry.m_odSelEntryList.GetCount();
-                //MVN only if any signal is selected
                 if( unSelCount > 0)
                 {
                     // Adding Message
@@ -13064,7 +13002,6 @@ void CMainFrame::vGetCurrentSessionData(eSECTION_ID eSecId, BYTE*& pbyConfigData
 
         }
         break;
-        //venkat
         case TEST_SETUP_EDITOR_SECTION_ID:
         {
             xmlNodePtr pNodeTSEditor = NULL;
@@ -14657,7 +14594,6 @@ INT CMainFrame::nGetControllerID(std::string strDriverName)
     }
     return nDriverID;
 }
-//~MVN
 
 CString CMainFrame::vGetControllerName(UINT nDriverId)
 {
@@ -14669,9 +14605,8 @@ CString CMainFrame::vGetControllerName(UINT nDriverId)
             {
                 m_asControllerDetails->m_omStrBaudrate = "500";
             }
-            // PTV
+
             // Added Shortcut key for the hardwared device, Removing '&'
-            //venkat
             CString strDriverName = m_ouList[i].m_acName.c_str();
             strDriverName.Replace("&", "");
 
@@ -15348,7 +15283,6 @@ void CMainFrame::vSetCurrentSessionData(eSECTION_ID eSecId, BYTE* pbyConfigData,
                 //HRESULT hResult =
                 g_pouDIL_CAN_Interface->DILC_SetConfigData(m_asControllerDetails,
                         sizeof(SCONTROLLER_DETAILS) * defNO_OF_CHANNELS);
-                //venkat
                 /*g_pouDIL_CAN_Interface->DILC_SetConfigData(m_asControllerDetails,
                         sizeof(SCONTROLLER_DETAILS) * defNO_OF_CHANNELS);*/
                 //Set default settings
@@ -15515,7 +15449,7 @@ void CMainFrame::vSetCurrentSessionData(eSECTION_ID eSecId, BYTE* pbyConfigData,
                     {
                         //No need to check return value. Error message will be displayed
                         // in trace window
-                        //venkat:dLoadDataBaseFile will associate the database file if.
+                        //dLoadDataBaseFile will associate the database file if.
                         //it is valid.
                         dLoadDataBaseFile(omDBNames.GetAt(i), TRUE);
                     }
@@ -15558,7 +15492,6 @@ void CMainFrame::vSetCurrentSessionData(eSECTION_ID eSecId, BYTE* pbyConfigData,
             }
         }
         break;
-        //venkat
         case TEST_SETUP_EDITOR_SECTION_ID:
         {
             m_objTSEditorHandler.vSetConfigurationData(pbyConfigData, nSize);
@@ -15579,531 +15512,6 @@ void CMainFrame::vSetCurrentSessionData(eSECTION_ID eSecId, BYTE* pbyConfigData,
 
 void CMainFrame::vGetCurrentSessionData(eSECTION_ID eSecId, BYTE*& pbyConfigData, UINT& nSize)
 {
-    switch (eSecId)
-    {
-            //case MAINFRAME_SECTION_ID:
-            //{
-            //    nSize += sizeof(BYTE); //Configuration version
-            //    nSize += (sizeof(char) * MAX_PATH) + sizeof(STOOLBARINFO) + sizeof(WINDOWPLACEMENT) + sizeof (BOOL) * BUS_TOTAL;
-            //    pbyConfigData = new BYTE[nSize];
-
-
-            //    if (pbyConfigData != NULL)
-            //    {
-            //        BYTE* pbyTemp = pbyConfigData;
-
-            //        BYTE byVersion = 0x2;
-            //        COPY_DATA(pbyTemp, &byVersion, sizeof(BYTE));
-
-            //        char acName[MAX_PATH] = "";
-            //        strcpy_s(acName, MAX_PATH, m_omMRU_C_Filename.GetBuffer(MAX_PATH));
-            //        COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
-
-
-            //        theApp.pouGetFlagsPtr()->vGetToolbarButtonStatus(&m_sToolBarInfo);
-            //        COPY_DATA(pbyTemp, &m_sToolBarInfo, sizeof(STOOLBARINFO));
-
-            //        if (m_podUIThread != NULL)
-            //        {
-            //            m_podUIThread->vUpdateWndCo_Ords(m_sNotificWndPlacement, FALSE);
-            //        }
-
-            //        COPY_DATA(pbyTemp, &m_sNotificWndPlacement, sizeof(WINDOWPLACEMENT));
-            //        COPY_DATA(pbyTemp, m_abLogOnConnect, sizeof (BOOL) * BUS_TOTAL)
-            //    }
-
-            //}
-            //break;
-            //case LOG_SECTION_J1939_ID:
-            //{
-            //    if (GetIJ1939Logger() != NULL)
-            //    {
-            //        GetIJ1939Logger()->FPJ1_GetConfigData(&pbyConfigData, nSize);
-            //    }
-            //}
-            //break;
-            //case LOG_SECTION_ID:
-            //{
-            //    if (sg_pouFrameProcCAN != NULL)
-            //    {
-            //        sg_pouFrameProcCAN->FPC_GetConfigData(&pbyConfigData, nSize);
-            //    }
-            //}
-            //break;
-            //case SIMSYS_SECTION_ID:
-            //{
-            //    int nConfigSize = 0;
-            //    GetICANNodeSim()->NS_GetSimSysConfigData(pbyConfigData, nConfigSize);
-            //    nSize = nConfigSize;
-            //}
-            //break;
-            //case SIMSYS_SECTION_J1939_ID:
-            //{
-            //    int nConfigSize = 0;
-            //    GetIJ1939NodeSim()->NS_GetSimSysConfigData(pbyConfigData, nConfigSize);
-            //    nSize = nConfigSize;
-            //}
-            //break;
-            //case REPLAY_SECTION_ID:
-            //{
-            //    int nCfgSize = 0;
-            //   // vREP_GetReplayConfigData(pbyConfigData, nCfgSize);
-            //    nSize = nCfgSize;
-            //}
-            //break;
-            //case MSGWND_SECTION_ID:
-            //{
-            //    //FIRST CALC SIZE
-            //    nSize += sizeof(BYTE); // Configuration version
-
-            //    nSize += sizeof (UINT);// To store count of MsgAttribs
-            //    SMESSAGE_ATTRIB sMsgAttrib;
-            //    sMsgAttrib.m_psMsgAttribDetails = NULL;
-            //    sMsgAttrib.m_usMsgCount = 0;
-            //    CMessageAttrib::ouGetHandle(CAN).vGetMessageAttribData(sMsgAttrib);
-            //    UINT nCount = sMsgAttrib.m_usMsgCount;
-            //    //Count             To store Msg Name         MsgId        Msg Color
-            //    nSize += (nCount * ((sizeof (char) * MAX_PATH) + sizeof(UINT) + sizeof (COLORREF)));
-            //    //Msg Buffer size
-            //    nSize += (sizeof (INT) * defDISPLAY_CONFIG_PARAM);
-            //    //Msg Filter size
-            //    SFILTERAPPLIED_CAN sMsgWndFilter;
-            //    ::SendMessage(m_podMsgWndThread->hGetHandleMsgWnd(CAN), WM_GET_FILTER_DETAILS, (WPARAM)&sMsgWndFilter, NULL);
-            //    nSize += sMsgWndFilter.unGetSize();
-            //    //MsgFormat window config data
-
-            //    UINT unMsgFrmtWndCfgSize = 0;
-            //    ASSERT(m_podMsgWndThread != NULL);
-
-            //    if(m_podMsgWndThread->hGetHandleMsgWnd(CAN))
-            //    {
-            //        ::SendMessage(m_podMsgWndThread->hGetHandleMsgWnd(CAN),
-            //                      WM_NOTIFICATION_FROM_OTHER, eWINID_MSG_WND_GET_CONFIG_SIZE, (LPARAM)&unMsgFrmtWndCfgSize);
-            //        nSize += unMsgFrmtWndCfgSize;
-            //    }
-            //    //CALC SIZE ENDS
-
-            //    pbyConfigData = new BYTE[nSize];
-            //    if (pbyConfigData != NULL)
-            //    {
-            //        BYTE* pbyTemp = pbyConfigData;
-
-            //        BYTE byVersion = 0x1;
-            //        COPY_DATA(pbyTemp, &byVersion, sizeof(BYTE));
-
-            //        //Msg Attributes
-            //        UINT unTempMsgCount = sMsgAttrib.m_usMsgCount;
-            //        COPY_DATA(pbyTemp, &unTempMsgCount, sizeof(UINT));
-            //        for (UINT i = 0; i < sMsgAttrib.m_usMsgCount; i++)
-            //        {
-            //            char acName[MAX_PATH] = "";
-
-            //            strcpy_s(acName, MAX_PATH, sMsgAttrib.m_psMsgAttribDetails[i].omStrMsgname.GetBuffer(MAX_PATH));
-            //            COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
-
-            //            COPY_DATA(pbyTemp, &(sMsgAttrib.m_psMsgAttribDetails[i].unMsgID), sizeof(UINT));
-            //            COPY_DATA(pbyTemp, &(sMsgAttrib.m_psMsgAttribDetails[i].sColor), sizeof(COLORREF));
-            //        }
-
-            //        //Msg buffer size
-            //        COPY_DATA(pbyTemp, m_anMsgBuffSize, sizeof(UINT) * defDISPLAY_CONFIG_PARAM);
-
-            //        //Msg Filter
-            //        //bool bResult = false;
-            //        pbyTemp = sMsgWndFilter.pbGetConfigData(pbyTemp);
-
-            //        if(m_podMsgWndThread->hGetHandleMsgWnd(CAN))
-            //        {
-            //            ::SendMessage(m_podMsgWndThread->hGetHandleMsgWnd(CAN),
-            //                          WM_NOTIFICATION_FROM_OTHER,
-            //                          eWINID_MSG_WND_GET_CONFIG_DATA,
-            //                          (LPARAM)pbyTemp);
-            //        }
-            //    }
-            //    DELETE_ARRAY(sMsgAttrib.m_psMsgAttribDetails);
-            //}
-            //break;
-            //case MSGWND_SECTION_J1939_ID:
-            //{
-            //    //FIRST CALC SIZE
-            //    nSize += sizeof(BYTE); // Configuration version
-
-            //    nSize += sizeof (UINT);// To store count of MsgAttribs
-            //    SMESSAGE_ATTRIB sMsgAttrib;
-            //    sMsgAttrib.m_psMsgAttribDetails = NULL;
-            //    sMsgAttrib.m_usMsgCount = 0;
-            //    CMessageAttrib::ouGetHandle(J1939).vGetMessageAttribData(sMsgAttrib);
-            //    UINT nCount = sMsgAttrib.m_usMsgCount;
-            //    //Count             To store Msg Name         MsgId        Msg Color
-            //    nSize += (nCount * ((sizeof (char) * MAX_PATH) + sizeof(UINT) + sizeof (COLORREF)));
-            //    //MsgFormat window config data
-            //    UINT unMsgFrmtWndCfgSize = 0;
-            //    ASSERT(m_podMsgWndThread != NULL);
-
-            //    if(m_podMsgWndThread->hGetHandleMsgWnd(J1939))
-            //    {
-            //        ::SendMessage(m_podMsgWndThread->hGetHandleMsgWnd(J1939),
-            //                      WM_NOTIFICATION_FROM_OTHER, eWINID_MSG_WND_GET_CONFIG_SIZE, (LPARAM)&unMsgFrmtWndCfgSize);
-            //        nSize += unMsgFrmtWndCfgSize;
-            //    }
-            //    //CALC SIZE ENDS
-
-            //    pbyConfigData = new BYTE[nSize];
-            //    if (pbyConfigData != NULL)
-            //    {
-            //        BYTE* pbyTemp = pbyConfigData;
-
-            //        //Version
-            //        BYTE byVersion = 0x1;
-            //        COPY_DATA(pbyTemp, &byVersion, sizeof(BYTE));
-
-            //        //Msg Attributes
-            //        UINT unTempMsgCount = sMsgAttrib.m_usMsgCount;
-            //        COPY_DATA(pbyTemp, &unTempMsgCount, sizeof(UINT));
-
-            //        for (UINT i = 0; i < sMsgAttrib.m_usMsgCount; i++)
-            //        {
-            //            char acName[MAX_PATH] = "";
-
-            //            strcpy_s(acName, MAX_PATH, sMsgAttrib.m_psMsgAttribDetails[i].omStrMsgname.GetBuffer(MAX_CHAR));
-            //            COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
-            //            COPY_DATA(pbyTemp, &(sMsgAttrib.m_psMsgAttribDetails[i].unMsgID), sizeof(UINT));
-            //            COPY_DATA(pbyTemp, &(sMsgAttrib.m_psMsgAttribDetails[i].sColor), sizeof(COLORREF));
-            //        }
-
-            //        //Msg Format Data
-            //        if(m_podMsgWndThread->hGetHandleMsgWnd(J1939))
-            //        {
-            //            ::SendMessage(m_podMsgWndThread->hGetHandleMsgWnd(J1939),
-            //                          WM_NOTIFICATION_FROM_OTHER,
-            //                          eWINID_MSG_WND_GET_CONFIG_DATA,
-            //                          (LPARAM)pbyTemp);
-            //        }
-            //    }
-            //    DELETE_ARRAY(sMsgAttrib.m_psMsgAttribDetails);
-            //}
-            //break;
-            //case SIGWATCH_SECTION_J1939_ID:
-            //{
-            //    CMainEntryList odMainEntryList;
-            //    vPopulateMainEntryList(&odMainEntryList, m_psSignalWatchList[J1939], m_pouMsgSigJ1939);
-
-            //    //CALCULATE SIZE REQUIRED
-            //    nSize += sizeof(BYTE); //Configuration version
-
-            //    POSITION pos = odMainEntryList.GetHeadPosition();
-            //    nSize += sizeof (UINT); //To store the count of main entry
-            //    while (pos)
-            //    {
-            //        nSize += sizeof (UINT);
-            //        nSize += (sizeof (char) * MAX_PATH);
-            //        SMAINENTRY& sMainEntry = odMainEntryList.GetNext(pos);
-            //        nSize += (sizeof (char) * MAX_PATH);//To store number of selected entries
-
-            //        for (UINT nSelIndex = 0; nSelIndex < (UINT)sMainEntry.m_odSelEntryList.GetCount(); nSelIndex++)
-            //        {
-            //            nSize += sizeof (UINT);
-            //            nSize += (sizeof (char) * MAX_PATH);
-            //        }
-            //    }
-            //    //BYTE* pbySWWndPlacement = NULL;
-            //    //UINT unSWSize = 0;
-            //    nSize += sg_pouSWInterface[J1939]->SW_GetConfigSize();
-            //    //ALLOCATE MEMORY
-            //    pbyConfigData = new BYTE[nSize];
-            //    BYTE* pbyTemp = pbyConfigData;
-
-            //    //UPDATE THE DATA NOW
-            //    BYTE byVersion = 0x1;
-            //    COPY_DATA(pbyTemp, &byVersion, sizeof(BYTE));
-
-            //    pos = odMainEntryList.GetHeadPosition();
-            //    UINT nMainCount = odMainEntryList.GetCount();
-
-            //    COPY_DATA(pbyTemp, &nMainCount, sizeof(UINT));
-
-            //    while (pos)
-            //    {
-            //        SMAINENTRY& sMainEntry = odMainEntryList.GetNext(pos);
-            //        COPY_DATA(pbyTemp, &(sMainEntry.m_unMainEntryID), sizeof(UINT));
-            //        char acName[MAX_PATH] = "";
-            //        strcpy_s(acName, MAX_PATH, sMainEntry.m_omMainEntryName.GetBuffer(MAX_CHAR));
-            //        COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
-            //        UINT unSelCount = sMainEntry.m_odSelEntryList.GetCount();
-            //        COPY_DATA(pbyTemp, &unSelCount, sizeof(UINT));
-            //        POSITION SelPos = sMainEntry.m_odSelEntryList.GetHeadPosition();
-            //        while (SelPos != NULL)
-            //        {
-            //            SSUBENTRY sSubEntry = sMainEntry.m_odSelEntryList.GetNext(SelPos);
-            //            COPY_DATA(pbyTemp, &(sSubEntry.m_unSubEntryID), sizeof(UINT));
-            //            strcpy_s(acName, MAX_PATH, sSubEntry.m_omSubEntryName.GetBuffer(MAX_CHAR));
-            //            COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
-            //        }
-            //    }
-
-            //    if (sg_pouSWInterface[J1939] != NULL)
-            //    {
-            //        UINT nSWSize = 0;
-            //        sg_pouSWInterface[J1939]->SW_GetConfigData((void*)pbyTemp);
-            //        pbyTemp += nSWSize;
-            //    }
-            //}
-            //break;
-            //case SIGWATCH_SECTION_ID:
-            //{
-            //    CMainEntryList odMainEntryList;
-            //    vPopulateMainEntryList(&odMainEntryList, m_psSignalWatchList[CAN], theApp.m_pouMsgSignal);
-
-            //    //CALCULATE SIZE REQUIRED
-            //    nSize += sizeof(BYTE); //Configuration version
-
-            //    POSITION pos = odMainEntryList.GetHeadPosition();
-            //    nSize += sizeof (UINT); //To store the count of main entry
-            //    while (pos)
-            //    {
-            //        nSize += sizeof (UINT);
-            //        nSize += (sizeof (char) * MAX_PATH);
-            //        SMAINENTRY& sMainEntry = odMainEntryList.GetNext(pos);
-            //        nSize += (sizeof (char) * MAX_PATH);//To store number of selected entries
-
-            //        for (UINT nSelIndex = 0; nSelIndex < (UINT)sMainEntry.m_odSelEntryList.GetCount(); nSelIndex++)
-            //        {
-            //            nSize += sizeof (UINT);
-            //            nSize += (sizeof (char) * MAX_PATH);
-            //        }
-            //    }
-            //    //BYTE* pbySWWndPlacement = NULL;
-            //    //UINT unSWSize = 0;
-            //    nSize += sg_pouSWInterface[CAN]->SW_GetConfigSize();
-            //    //ALLOCATE MEMORY
-            //    pbyConfigData = new BYTE[nSize];
-            //    BYTE* pbyTemp = pbyConfigData;
-
-            //    //UPDATE THE DATA NOW
-            //    BYTE byVersion = 0x1;
-            //    COPY_DATA(pbyTemp, &byVersion, sizeof(BYTE));
-
-            //    pos = odMainEntryList.GetHeadPosition();
-            //    UINT nMainCount = odMainEntryList.GetCount();
-
-            //    COPY_DATA(pbyTemp, &nMainCount, sizeof(UINT));
-
-            //    while (pos)
-            //    {
-            //        SMAINENTRY& sMainEntry = odMainEntryList.GetNext(pos);
-            //        COPY_DATA(pbyTemp, &(sMainEntry.m_unMainEntryID), sizeof(UINT));
-            //        char acName[MAX_PATH] = "";
-            //        strcpy_s(acName, MAX_PATH, sMainEntry.m_omMainEntryName.GetBuffer(MAX_PATH));
-            //        COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
-
-            //        UINT unSelCount = sMainEntry.m_odSelEntryList.GetCount();
-            //        COPY_DATA(pbyTemp, &unSelCount, sizeof(UINT));
-            //        POSITION SelPos = sMainEntry.m_odSelEntryList.GetHeadPosition();
-            //        while (SelPos != NULL)
-            //        {
-            //            SSUBENTRY& sSubEntry = sMainEntry.m_odSelEntryList.GetNext(SelPos);
-            //            COPY_DATA(pbyTemp, &(sSubEntry.m_unSubEntryID), sizeof(UINT));
-            //            strcpy_s(acName, MAX_PATH, sSubEntry.m_omSubEntryName.GetBuffer(MAX_PATH));
-            //            COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
-            //        }
-            //    }
-
-            //    if (sg_pouSWInterface[CAN] != NULL)
-            //    {
-            //        UINT nSWSize = 0;
-            //        sg_pouSWInterface[CAN]->SW_GetConfigData((void*)pbyTemp);
-            //        pbyTemp += nSWSize;
-            //    }
-            //}
-            //break;
-            //case DIL_SECTION_ID:
-            //{
-            //    nSize = sizeof(BYTE);//configuration version
-            //    nSize += sizeof(DWORD);// Driver Id
-            //    nSize += sizeof(BYTE); // Controller mode
-
-            //    //nSize += sizeof(SCONTROLLER_DETAILS) * CHANNEL_ALLOWED;
-            //    for(int i = 0; i < CHANNEL_ALLOWED; i++)
-            //    {
-            //        int nTemp = 0;
-            //        m_asControllerDetails[i].GetControllerConfigSize(nTemp);
-            //        nSize += nTemp;
-            //    }
-
-            //    pbyConfigData = new BYTE[nSize];
-
-            //    if (pbyConfigData != NULL)
-            //    {
-            //        BYTE* pbyTemp = pbyConfigData;
-
-            //        BYTE byVersion = DIL_CFX_CURRENT_VERSION;
-            //        COPY_DATA(pbyTemp, &byVersion, sizeof(BYTE));
-            //        COPY_DATA(pbyTemp, &m_dwDriverId, sizeof(DWORD));
-            //        COPY_DATA(pbyTemp, &m_byControllerMode, sizeof(BYTE));
-            //        //COPY_DATA(pbyTemp, m_asControllerDetails, (sizeof(SCONTROLLER_DETAILS) * CHANNEL_ALLOWED));
-            //        for(int i = 0; i < CHANNEL_ALLOWED; i++)
-            //        {
-            //            INT nsize = 0;
-            //            m_asControllerDetails[i].GetControllerConfigData(pbyTemp, nsize);
-            //        }
-            //    }
-            //}
-            //break;
-            //case GRAPH_SECTION_ID:
-            //{
-            //    BYTE byVersion = 0x2;
-            //    nSize = sizeof(BYTE);//configuration version
-
-            //    for(int nBUSID=0; nBUSID<AVAILABLE_PROTOCOLS; nBUSID++)
-            //    {
-            //        nSize += m_odGraphList[nBUSID].unGetConfigSize(byVersion);
-            //        nSize += sizeof(WINDOWPLACEMENT)+ sizeof(SGRAPHSPLITTERDATA);
-            //    }
-
-            //    pbyConfigData = new BYTE[nSize];
-
-            //    if (pbyConfigData != NULL)
-            //    {
-            //        BYTE* pbyTemp = pbyConfigData;
-
-            //        COPY_DATA(pbyTemp, &byVersion, sizeof(BYTE));
-
-            //        for(int nBUSID=0; nBUSID<AVAILABLE_PROTOCOLS; nBUSID++)
-            //        {
-            //            pbyTemp = m_odGraphList[nBUSID].pbyGetConfigData(pbyTemp, byVersion);
-            //            m_objSigGrphHandler.GetWindowSplitterPos((SHORT)nBUSID, m_sGraphWndPlacement[nBUSID],
-            //                    m_sGraphSplitterPos[nBUSID]);
-            //            COPY_DATA(pbyTemp, &m_sGraphWndPlacement[nBUSID], sizeof(WINDOWPLACEMENT));
-            //            COPY_DATA(pbyTemp, &m_sGraphSplitterPos[nBUSID], sizeof(SGRAPHSPLITTERDATA));
-            //        }
-            //    }
-            //}
-            //break;
-            //case TXWND_SECTION_ID:
-            //{
-            //    int nCfgSize = 0;
-            //    m_objTxHandler.vGetTxWndConfigData(pbyConfigData, nCfgSize);
-            //    nSize = nCfgSize;
-            //}
-            //break;
-            //case FILTER_SECTION_ID:
-            //{
-            //    nSize = m_sFilterAppliedCAN.unGetSize();
-            //    pbyConfigData = new BYTE[nSize];
-
-            //    if (pbyConfigData != NULL)
-            //    {
-            //        BYTE* pbyTemp = pbyConfigData;
-            //        //bool bResult = false;
-            //        pbyTemp = m_sFilterAppliedCAN.pbGetConfigData(pbyTemp);
-            //    }
-            //}
-            //break;
-            //case DATABASE_SECTION_J1939_ID:
-            //{
-            //    nSize += sizeof(BYTE);//configuration version
-
-            //    CStringArray omDbNames;
-            //    if (m_pouMsgSigJ1939 != NULL)
-            //    {
-            //        m_pouMsgSigJ1939->vGetDataBaseNames(&omDbNames);
-            //    }
-
-            //    nSize += sizeof(UINT) + ((sizeof(char) * MAX_PATH) * omDbNames.GetSize());
-            //    pbyConfigData = new BYTE[nSize];
-
-            //    if (pbyConfigData != NULL)
-            //    {
-            //        BYTE* pbyTemp = pbyConfigData;
-
-            //        BYTE byVersion = 0x1;
-            //        COPY_DATA(pbyTemp, &byVersion, sizeof(BYTE));
-            //        //CAN DB NAMES
-            //        UINT unCount = omDbNames.GetSize();
-            //        COPY_DATA(pbyTemp, &unCount,  sizeof (UINT));
-            //        for (UINT i = 0; i < unCount; i++)
-            //        {
-            //            CString omDbName = omDbNames.GetAt(i);
-            //            char acName[MAX_PATH] = "";
-            //            strcpy_s(acName, MAX_PATH, omDbName.GetBuffer(MAX_CHAR));
-            //            COPY_DATA(pbyTemp, acName, (sizeof (char) * MAX_PATH));
-            //        }
-            //    }
-            //}
-            //break;
-            //case DATABASE_SECTION_ID:
-            //{
-            //    nSize += sizeof(BYTE);//configuration version
-
-            //    CStringArray omDbNames;
-            //    if (theApp.m_pouMsgSignal != NULL)
-            //    {
-            //        theApp.m_pouMsgSignal->vGetDataBaseNames(&omDbNames);
-            //    }
-
-            //    nSize += sizeof(UINT) + ((sizeof(char) * MAX_PATH) * omDbNames.GetSize());
-            //    pbyConfigData = new BYTE[nSize];
-
-            //    if (pbyConfigData != NULL)
-            //    {
-            //        BYTE* pbyTemp = pbyConfigData;
-
-            //        BYTE byVersion = 0x1;
-            //        COPY_DATA(pbyTemp, &byVersion, sizeof(BYTE));
-            //        //CAN DB NAMES
-            //        UINT unCount = omDbNames.GetSize();
-            //        COPY_DATA(pbyTemp, &unCount,  sizeof (UINT));
-            //        for (UINT i = 0; i < unCount; i++)
-            //        {
-            //            CString omDbName = omDbNames.GetAt(i);
-            //            char acName[MAX_PATH] = "";
-            //            strcpy_s(acName, MAX_PATH, omDbName.GetBuffer(MAX_PATH));
-            //            COPY_DATA(pbyTemp, acName, (sizeof (char) * MAX_PATH));
-            //        }
-            //    }
-            //}
-            //break;
-            //case WAVEFORMDATA_SECTION_ID:
-            //{
-            //    m_objWaveformDataHandler.GetConfigData(&pbyConfigData, nSize);
-            //}
-            //break;
-            //case BUS_STATISTICS_SECTION_ID:
-            //{
-            //    if(m_bIsStatWndCreated)
-            //    {
-            //        nSize += m_podBusStatistics->nGetBusStatsDlgConfigSize();
-            //        pbyConfigData = new BYTE[nSize];
-
-            //        if (pbyConfigData != NULL)
-            //        {
-            //            BYTE* pbyTemp = pbyConfigData;
-            //            m_podBusStatistics->GetConfigData(pbyTemp);
-            //        }
-            //    }
-            //    else
-            //    {
-            //        CBusStatisticsDlg::vGetDataFromStore(&pbyConfigData, nSize);
-            //    }
-            //}
-            //break;
-            ////venkat
-            //case TEST_SETUP_EDITOR_SECTION_ID:
-            //{
-            //    m_objTSEditorHandler.vGetConfigurationData(pbyConfigData, nSize);
-            //}
-            //break;
-            //case TEST_SUITE_EXECUTOR_SECTION_ID:
-            //{
-            //    m_objTSExecutorHandler.vGetConfigurationData(pbyConfigData, nSize);
-            //}
-            //break;
-            //default:
-            //{
-            //    ASSERT(FALSE);
-            //}
-            //break;
-    }
 }
 
 void CMainFrame::OnSelectDriver(UINT nID)
@@ -16175,7 +15583,7 @@ BOOL CMainFrame::bUpdatePopupMenuDIL(void)
     if (m_pDILSubMenu == NULL)
     {
         /* Create a new popup Menu */
-        if (bResult == ((m_pDILSubMenu = new CMenu()) != NULL))     //venkat
+        if (bResult == ((m_pDILSubMenu = new CMenu()) != NULL))
         {
             if ((bResult = m_pDILSubMenu->CreatePopupMenu()) == TRUE)
             {
@@ -16210,7 +15618,6 @@ BOOL CMainFrame::bUpdatePopupMenuDIL(void)
         {
             theApp.bWriteIntoTraceWnd(_("GetSubMenu(\"&Hardware\") failed"));
         }
-        /*  PTV[1.6.4] */
         // Added shortcut key
 
         if(pConfigMenu != NULL)
@@ -16334,7 +15741,7 @@ void CMainFrame::OnStartSignalTransmission(void)
         m_ouWaveTransmitter.vStopSignalTransmission();
         // update flag.
         theApp.pouGetFlagsPtr()->vSetFlagStatus( SEND_SIGNAL_MSG, FALSE );
-        // PTV [1.6.4]
+
         // Disabling Data logging Flag
         if (NULL != sg_pouFrameProcCAN)
         {
@@ -16657,7 +16064,6 @@ void CMainFrame::OnActionJ1939Online()
         {
             theApp.bWriteIntoTraceWnd(_("DIL.J1939 network stopped..."));
         }
-        // PTV [1.6.4]
         if(NULL != sg_pouIJ1939Logger)
         {
             sg_pouIJ1939Logger->FPJ1_DisableJ1939DataLogFlag();
@@ -16732,7 +16138,6 @@ void CMainFrame::vJ1939StartStopLogging()
         {
             vSetAssociatedDatabaseFiles(J1939); // Update the db file names associated
             vSetBaudRateInfo(J1939);                // Update the baud rate details
-            // PTV [1.6.4]
             m_unJ1939TimerSBLog = SetTimer(TIMER_REFRESH_J1939_LOG_STATUS, STSBAR_REFRESH_TIME_PERIOD_LOG, NULL);
         }
         sg_pouIJ1939Logger->FPJ1_EnableLogging(bEnable);
@@ -16912,11 +16317,9 @@ HRESULT CMainFrame::DeselectJ1939Interfaces(void)
             }
         }
         theApp.bWriteIntoTraceWnd(_("Uninitialising DIL.J1939..."));
-        /* PTV[1.6.4] */
         // On Disassociate of J1939 Unload all the Simulated systems
         CStringArray omStrBuildFiles;
         GetIJ1939NodeSim()->NS_DllUnloadAll(&omStrBuildFiles);
-        /* PTV[1.6.4] */
         if (sg_pouIJ1939DIL->DILIJ_Uninitialise() != S_OK)
         {
             theApp.bWriteIntoTraceWnd(_("Uninitialising DIL.J1939 failed..."));
@@ -17667,7 +17070,6 @@ void CMainFrame::OnUpdateToolbarCanDatabase(CCmdUI* pCmdUI)
     pCmdUI->SetCheck(bIsToolbarVisible(m_wndToolbarCANDB));
 }
 
-//venkat
 void CMainFrame::OnAutomationTSEditor(void)
 {
     m_objTSEditorHandler.vShowTSEditorWindow((void*)this);

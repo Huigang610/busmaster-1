@@ -223,9 +223,7 @@ public:
     BOOL bDeAllocateMemoryInactive();
     // Return the array of DB file
     void vGetDataBaseNames(CStringArray* pastrDBnames);
-    //MVN
     void vGetRelativeDataBaseNames(std::string& omStrBasePath, CStringArray* pastrDBnames);
-    //~MVN
     void vSetDataBaseNames(const CStringArray* pastrDBnames);
     void bAddDbNameEntry(const CString& omDbFileName);
     // Validate dupliacte start bit value

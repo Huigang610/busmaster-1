@@ -90,7 +90,6 @@ BYTE* CGraphElement::pbyGetConfigData(BYTE* pbyTrgData, BYTE byVersion)
         // Frame Format - Standard
         COPY_DATA(pbyTemp, &m_nFrameFormat, sizeof(short));
         // Element Name String
-        //Tobias - venkat
         char acName[MAX_PATH] = "";
         strcpy_s(acName, MAX_PATH, m_omStrElementName.GetBuffer(MAX_PATH));
         COPY_DATA(pbyTemp, acName, (sizeof(char) * MAX_PATH));
@@ -113,7 +112,6 @@ BYTE* CGraphElement::pbyGetConfigData(BYTE* pbyTrgData, BYTE byVersion)
         {
             // Message Name
             char MsgName[MAX_PATH] = "";
-            //Tobias - venkat
             strcpy_s(MsgName,MAX_PATH,  m_strMsgName.GetBuffer(MAX_PATH));
             COPY_DATA(pbyTemp, MsgName, (sizeof(char) * MAX_PATH));
             //Line Display type
@@ -123,7 +121,6 @@ BYTE* CGraphElement::pbyGetConfigData(BYTE* pbyTrgData, BYTE byVersion)
     return pbyTemp;
 }
 
-// PTV XML
 void CGraphElement::pbyGetConfigData(xmlNodePtr pNodePtr, BYTE byVersion)
 {
     // Writing Graph element in to xml
@@ -459,7 +456,7 @@ void CGraphElement::pbySetConfigData(xmlNodePtr pNodePtr, xmlDocPtr xmlConfigFil
         }
     }
 }
-// PTV XML
+
 BYTE* CGraphElement::pbySetConfigData(BYTE* pbyTrgData, BYTE byVersion)
 {
     BYTE* pbyTemp = pbyTrgData;

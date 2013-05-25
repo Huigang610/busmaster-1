@@ -51,7 +51,6 @@ public:
 
 static ENTRY_DIL sg_ListDIL[] =
 {
-    /* PTV[1.6.4] */
     // Added Short cut keys
     /* simulation should be the first entry... */
     {DRIVER_CAN_STUB,       "&Simulation"       },

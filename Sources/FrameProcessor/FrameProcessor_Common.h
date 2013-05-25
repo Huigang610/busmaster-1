@@ -58,7 +58,6 @@ protected:
     CLogObjArray        m_omLogObjectArray;
     CLogObjArray        m_omLogListTmp;
     SYSTEMTIME          m_LogSysTime;
-    // PTV [1.6.4]
     BOOL                m_bIsDataLogged;
     BOOL                m_bIsJ1939DataLogged;
 
@@ -83,7 +82,6 @@ public:
     HRESULT EnableFilter(USHORT ushBlk, BOOL bEnable);
     BOOL IsClientBufferON(void);
     BOOL IsLoggingON(void);
-    // PTV [1.6.4]
     BOOL IsDataLogged(void);
 
     void vCloseLogFile();
@@ -91,7 +89,6 @@ public:
     BOOL IsThreadBlocked(void);
     void DisableDataLogFlag(void);
     void DisableJ1939DataLogFlag(void);
-    // PTV [1.6.4]
     BOOL IsFilterON(void);
     HRESULT LogString(CString& omStr);
     HRESULT AddLoggingBlock(const SLOGINFO& sLogObject);
@@ -102,14 +99,9 @@ public:
     HRESULT SetLoggingBlock(USHORT ushBlk, const SLOGINFO& sLogObject);
     HRESULT GetConfigData(BYTE** ppvConfigData, UINT& unLength);
     HRESULT SetConfigData(BYTE* pvDataStream, const CString& omStrVersion);
-    //MVN
     HRESULT SetConfigData( xmlDocPtr pDoc, ETYPE_BUS eBus);
     void vAddLogFile( CLogObjArray& omLogListTmp, CBaseLogObject*& pouBaseLogObj);
-    //~MVN
-
-    // PTV XML
     HRESULT GetConfigData(xmlNodePtr pxmlNodePtr);
-    // PTV XML
     HRESULT Reset(void);
     HRESULT Confirm(void);
     HRESULT StartEditingSession(void);

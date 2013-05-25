@@ -444,9 +444,7 @@ public:
     HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
     HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
     HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
-    //MVN
     HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
-    //~MVN
     HRESULT CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
 
     // Specific function set
@@ -1389,12 +1387,8 @@ static int nAddChanneltoHWInterfaceList(int narrNetwordID[], int nCntNtwIDs, int
         sg_HardwareIntr[nChannels].m_dwVendor = sg_ndNeoToOpen[nDevID].SerialNumber;
         sg_HardwareIntr[nChannels].m_bytNetworkID = narrNetwordID[i];
         sg_HardwareIntr[nChannels].m_acDeviceName = acFirmware;
-
-        //Tobias - venkat
         _stprintf_s(acTempStr, 512, "%d", sg_ndNeoToOpen[nDevID].DeviceType);
         sg_HardwareIntr[nChannels].m_acNameInterface = acTempStr;
-
-
         _stprintf(acTempStr, "SN: %d, Port ID: %d-CAN%d", sg_HardwareIntr[nChannels].m_dwVendor,
                   sg_HardwareIntr[nChannels].m_dwIdInterface, narrNetwordID[i]);
         sg_HardwareIntr[nChannels].m_acDescription = acTempStr;
@@ -3212,7 +3206,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_GetControllerParams(LONG& lParam, UINT nChannel, 
                 }
             }
             break;
-            //MVN
+            
             case CNTR_STATUS:
             {
                 char pGetFireParms[] = "can1/Mode";
@@ -3229,7 +3223,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_GetControllerParams(LONG& lParam, UINT nChannel, 
                     lParam = defMODE_ACTIVE;
                 }
             }
-            //~MVN
+            
             default:
             {
                 hResult = S_FALSE;

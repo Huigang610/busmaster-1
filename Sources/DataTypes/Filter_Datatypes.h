@@ -83,11 +83,10 @@ typedef struct tagFilterName
 
     // Called to get the filter object's data into a stream buffer.
     BYTE* pbGetConfigData(BYTE* pbTarget) const;
-
-    // XML PTV
     void pbGetConfigData(xmlNodePtr pxmlNodePtr) const;
+
     void pbSetConfigData(xmlNodePtr pNodePtr, xmlDocPtr pDocPtr);
-    // XML PTV
+
     // Called to retrieve a filter object's data from a byte stream and
     // initialise the current filter object with the retrieved data.
     BYTE* pbSetConfigData(BYTE* pbTarget);
@@ -123,10 +122,8 @@ typedef struct tagSFILTER
 
     // Called to get the filter object's data into a stream buffer.
     virtual BYTE* pbGetConfigData(BYTE* pbTarget) const;
-
-    // PTV XML
     virtual void pbGetConfigData(xmlNodePtr pxmlNodePtr) const;
-    // PTV XML
+
     // Called to retrieve a filter object's data from a byte stream and
     // initialise the current filter object with the retrieved data.
     virtual BYTE* pbSetConfigData(BYTE* pbTarget);
@@ -159,19 +156,16 @@ struct SFILTER_CAN : public SFILTER
 
     // Called to get the filter object's data into a stream buffer.
     BYTE* pbGetConfigData(BYTE* pbTarget) const;
-
-    // PTV XML
     void pbGetConfigData(xmlNodePtr pNodePtr) const;
+
     void pbSetConfigData(xmlNodePtr pNodePtr);
-    // PTV XML
+
     // Called to retrieve a filter object's data from a byte stream and
     // initialise the current filter object with the retrieved data.
     BYTE* pbSetConfigData(BYTE* pbTarget);
-    //MVN
     INT nSetXMLConfigData(xmlNodePtr pNodePtr);
     INT nGetIDType(std::string strIDType);
     INT nGetMsgType(std::string strMsgType);
-    //~MVN
 };
 typedef SFILTER_CAN* PSFILTER_CAN;
 
@@ -198,9 +192,7 @@ struct SFILTER_FLEXRAY : public SFILTER
 
     // Called to get the filter object's data into a stream buffer.
     BYTE* pbGetConfigData(BYTE* pbTarget) const;
-    // XML PTV
     void pbGetConfigData(xmlNodePtr pNodePtr) const;
-    // XML PTV
 
     // Called to retrieve a filter object's data from a byte stream and
     // initialise the current filter object with the retrieved data.
@@ -229,10 +221,8 @@ struct SFILTER_MCNET : public SFILTER
 
     // Called to get the filter object's data into a stream buffer.
     BYTE* pbGetConfigData(BYTE* pbTarget) const;
-
-    // PTV XML
     void pbGetConfigData(xmlNodePtr pxmlNodePtr) const;
-    // PTV XML
+
     // Called to retrieve a filter object's data from a byte stream and
     // initialise the current filter object with the retrieved data.
     BYTE* pbSetConfigData(BYTE* pbTarget);
@@ -260,9 +250,7 @@ struct SFILTER_J1939 : public SFILTER
 
     // Called to get the filter object's data into a stream buffer.
     BYTE* pbGetConfigData(BYTE* pbTarget) const;
-    // PTV XML
     void pbGetConfigData(xmlNodePtr pNodePtr) const;
-    // PTV XML
 
     // Called to retrieve a filter object's data from a byte stream and
     // initialise the current filter object with the retrieved data.
@@ -293,12 +281,10 @@ typedef struct tagFilterSet
 
     // Called to get the filter block set's data into a stream buffer.
     BYTE* pbGetConfigData(BYTE* pbTarget) const;
-
-    // XML PTV
     void pbGetConfigData(xmlNodePtr pNodePtr) const;
 
     void pbSetConfigData(xmlNodePtr pNodePtr, xmlDocPtr pDocPtr, bool& Result);
-    // XML PTV
+
     // Called to retrieve a filter block set's data from a byte stream and
     // initialise the current filter object with the retrieved data.
     BYTE* pbSetConfigData(BYTE* pbTarget, bool& Result);
@@ -334,26 +320,18 @@ struct SFILTERAPPLIED
 
     // Called to get the filter object's data into a stream buffer.
     BYTE* pbGetConfigData(BYTE* pbTarget) const;
-
-    // PTV XML
     void pbGetConfigData(xmlNodePtr pNodePtr) const;
     void pbGetConfigFilterData(xmlNodePtr pNodePtr) const;
-    // PTV XML
+
     // Called to retrieve a filter object's data from a byte stream and
     // initialise the current filter object with the retrieved data.
     BYTE* pbSetConfigData(BYTE* pbTarget, bool& Result);
-
-    // PTV XML
     void pbSetConfigData(SFILTERAPPLIED& pFilterAppliedCAN, xmlNodeSetPtr pNodeSet,xmlDocPtr pdocptr, bool& Result);
-    // PTV XML
 
     int nGetFiltersFromName(PSFILTERSET& sFilterDest, CStringArray& omStrNames);
-
-    //MVN
     int nSetXMLConfigData(xmlDocPtr& pDocPtr);
     int nGetFiltersFromName(SFILTERAPPLIED& sFilterDest, CStringArray& omStrNames);
     int GetFilterNameIndex(std::string strName);
-    //~MVN
 };
 
 /******************************************************************************
@@ -750,9 +728,6 @@ BYTE* SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbSetConfigData(BYTE* pbSource, bool
     return pbSStream;
 }
 
-//MVN
-
-// PTV XML
 template <typename SFRAMEINFO_BASIC_BUS>
 void SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbSetConfigData(SFILTERAPPLIED& pFilterAppliedCAN, xmlNodeSetPtr pNodeSetPtr,xmlDocPtr pdocptr, bool& Result)
 {
@@ -825,7 +800,7 @@ void SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbSetConfigData(SFILTERAPPLIED& pFilt
         vClear();
     }*/
 }
-// PTV XML
+
 template <typename SFRAMEINFO_BASIC_BUS>
 int SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::nGetFiltersFromName(SFILTERAPPLIED& sFilterDest, CStringArray& omStrFilters)
 {
@@ -930,7 +905,7 @@ int SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::nSetXMLConfigData(xmlDocPtr& pDocPtr)
 
     return nRetval;
 }
-//~MVN
+
 // For CAN
 typedef SFILTERAPPLIED<tagSFRAMEINFO_BASIC_CAN> SFILTERAPPLIED_CAN;
 

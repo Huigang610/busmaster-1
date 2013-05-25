@@ -269,9 +269,7 @@ public:
     HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
     HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
     HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
-    //MVN
     HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
-    //~MVN
     HRESULT CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
 
     // Specific function set
@@ -1871,7 +1869,6 @@ static int nWriteMessage(STCAN_MSG sMessage, DWORD dwClientID)
             (sMessage.m_ucChannel <= sg_nNoOfChannels))
     {
         static XLevent       xlEvent;
-        // PTV CPP
         XLstatus             xlStatus = 0;
         unsigned int         messageCount = 1;
 
@@ -2059,7 +2056,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_GetControllerParams(LONG& lParam, UINT nChannel, 
 
     return hResult;
 }
-//MVN
+
 HRESULT CDIL_CAN_VectorXL::CAN_SetControllerParams(INT nValue, ECONTR_PARAM eContrparam)
 {
     switch(eContrparam)
@@ -2102,7 +2099,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_SetControllerParams(INT nValue, ECONTR_PARAM eCon
     }
     return S_OK;
 }
-//~MVN
+
 /**
 * \brief         Gets the error counter for corresponding channel.
 * \param[out]    sErrorCnt, is SERROR_CNT structure

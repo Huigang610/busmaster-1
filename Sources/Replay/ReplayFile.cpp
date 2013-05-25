@@ -195,7 +195,6 @@ BYTE* CReplayFile::pbySaveConfig(BYTE* pDesBuffer)
     pDesBuffer += sizeof(m_bInteractive);
     //Save file name size
     char acName[MAX_PATH] = "";
-    //Tobias- venkat
     strcpy_s(acName, MAX_PATH, m_omStrFileName.GetBuffer(MAX_PATH));
     memcpy(pDesBuffer, acName, sizeof(char) * MAX_PATH);
     pDesBuffer += sizeof(char) * MAX_PATH;

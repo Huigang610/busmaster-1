@@ -1055,7 +1055,6 @@ BOOL CFunctionEditorDoc::OnSaveDocument(LPCTSTR lpszPathName)
         m_sBusSpecInfo.m_omBusName = "BUSMASTER";
         m_sBusSpecInfo.m_omHeaderFileName = CGlobalObj::ouGetObj(m_sBusSpecInfo.m_eBus).m_omMsgStructFile;
     }
-    /* PTV[1.6.4] */
     else
     {
         /* Adding Protocol and Application version information */
@@ -1095,7 +1094,6 @@ BOOL CFunctionEditorDoc::OnSaveDocument(LPCTSTR lpszPathName)
             m_omSourceCodeTextList.AddHead(omstrCopyWriteInformation);
         }
     }
-    /* PTV[1.6.4] */
     omTemp.Replace("PLACE_HOLDER_FOR_BUSNAME", m_sBusSpecInfo.m_omBusName);
     POSITION posStartGvar = m_omSourceCodeTextList.Find( omTemp  );
 

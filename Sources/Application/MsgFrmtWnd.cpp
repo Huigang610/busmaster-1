@@ -1553,13 +1553,11 @@ LRESULT CMsgFrmtWnd::vUpdateFormattedMsgStruct(WPARAM wParam, LPARAM /*lParam*/)
                 //Handle Error Msg display
                 vFormatCurrErrorEntry((USHORT)nMsgCode, 0);
                 m_pouMsgContainerIntrf->vSetCurrMsgName(sg_omColmStr);
-                // PTV [1.6.6]
                 //m_pouMsgContainerIntrf->vSetMsgLength(strGetMsgLengthFromMessageCode(nMsgCode));
             }
             else
             {
                 m_pouMsgContainerIntrf->vSetCurrMsgName(strGetMsgNameOrCode(nMsgCode));
-                // PTV [1.6.6]
                 // m_pouMsgContainerIntrf->vSetMsgLength(strGetMsgLengthFromMessageCode(nMsgCode));
             }
         }
@@ -1586,14 +1584,10 @@ LRESULT CMsgFrmtWnd::vUpdateFormattedMsgStruct(WPARAM wParam, LPARAM /*lParam*/)
                         //Handle Error Msg display
                         vFormatCurrErrorEntry((USHORT)nMsgCode, 0);
                         m_pouMsgContainerIntrf->vSetCurrMsgName(sg_omColmStr);
-                        // PTV [1.6.6]
-                        //m_pouMsgContainerIntrf->vSetMsgLength(strGetMsgLengthFromMessageCode(nMsgCode));
                     }
                     else
                     {
                         m_pouMsgContainerIntrf->vSetCurrMsgName(strGetMsgNameOrCode(nMsgCode));
-                        // PTV [1.6.6]
-                        //m_pouMsgContainerIntrf->vSetMsgLength(strGetMsgLengthFromMessageCode(nMsgCode));
                     }
 
                     if (hResult == S_OK)
@@ -2789,7 +2783,7 @@ void CMsgFrmtWnd::vExpandMsgEntry( SMSGDISPMAPENTRY& sEntry,
     // String to format interpretted data
 
     __int64 nMsgKey = m_omMgsIndexVec[nMsgIndex];
-    COLORREF rgbTreeItem = RGB(0,0,0);      //venkat
+    COLORREF rgbTreeItem = RGB(0,0,0);
     if (nMsgKey != nInvalidKey)
     {
         PSDI_GetInterface(m_eBusType, (void**)&m_pouMsgContainerIntrf);
@@ -3294,7 +3288,7 @@ void CMsgFrmtWnd::vUpdateAllTreeWnd()
         {
             if (sTemp.m_opTreeWndParam != NULL)
             {
-                COLORREF rgbTreeItem = RGB(0,0,0);//venkat
+                COLORREF rgbTreeItem = RGB(0,0,0);
                 if (n64Temp != nInvalidKey)
                 {
                     PSDI_GetInterface(m_eBusType, (void**)&m_pouMsgContainerIntrf);
@@ -3326,7 +3320,6 @@ void CMsgFrmtWnd::vUpdateAllTreeWnd()
                 // String to format interpretted data
 
                 sTemp.m_opTreeWndParam->vUpdateTreeValues(omSigStrArray, rgbTreeItem);
-                // PTV [1.6.6]
                 CRect omTreeRect;
                 vGetTreeRect(i, SigInfoArray.GetSize(), omTreeRect);
 
@@ -3354,7 +3347,7 @@ void CMsgFrmtWnd::vUpdateMsgTreeWnd(__int64 nMapIndex)
     {
         if (sTemp.m_opTreeWndParam != NULL /*&& sTemp.m_opTreeWndParam->bVerifyTreeCtrl()*/)
         {
-            COLORREF rgbTreeItem = RGB(0,0,0);  //venkat
+            COLORREF rgbTreeItem = RGB(0,0,0);
             if (nMapIndex != nInvalidKey)
             {
                 PSDI_GetInterface(m_eBusType, (void**)&m_pouMsgContainerIntrf);
@@ -3601,7 +3594,6 @@ HRESULT CMsgFrmtWnd::GetConfigData(BYTE* pvDataStream)
     }
 
     //Storing Hex/Dec Display.
-    //Venkat
     bool bHexDec = IS_NUM_HEX_SET(m_bExprnFlag_Disp) > 0 ? true: false;
     COPY_DATA(pByteTrgt, &bHexDec, sizeof(bool));
 
@@ -3639,7 +3631,6 @@ HRESULT CMsgFrmtWnd::GetConfigData(BYTE* pvDataStream)
     return S_OK;
 }
 
-// PTV XML
 HRESULT CMsgFrmtWnd::SetConfigDataJ1939(xmlDocPtr pDocPtr)
 {
     xmlNodeSetPtr pColMsgWnd = NULL;
@@ -5051,7 +5042,6 @@ bool CMsgFrmtWnd::GetConfigData(xmlNodePtr pxmlNodePtr)
     return TRUE;
 }
 
-// PTV XML
 /*******************************************************************************
   Function Name  : SetConfigData
   Input(s)       : pvDataStream
@@ -5585,7 +5575,6 @@ LRESULT CMsgFrmtWnd::OnToggleInterpretStatusAllEntries (WPARAM wParam, LPARAM /*
                 m_omMsgDispMap[n64Temp] = sEntry;
             }
         }
-        // PTV [1.6.6]
         m_lstMsg.vShowHideBlankcolumn(m_bInterPretMsg);
     }
     else //If DB is dissociated
@@ -5629,7 +5618,6 @@ LRESULT CMsgFrmtWnd::OnToggleInterpretStatusAllEntries (WPARAM wParam, LPARAM /*
             }
         }
 
-        // PTV [1.6.6]
         m_lstMsg.vShowHideBlankcolumn(m_bInterPretMsg);
     }
     m_lstMsg.Invalidate();

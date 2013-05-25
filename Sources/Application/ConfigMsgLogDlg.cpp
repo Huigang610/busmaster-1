@@ -641,7 +641,6 @@ void CConfigMsgLogDlg::OnBnClickedCbtnAddlog(void)
     SLOGINFO sLogStruct;
     //Select All CAN channels
     sLogStruct.m_ChannelSelected = CAN_CHANNEL_ALL;
-    //Tobias - venkat
     strcpy_s(sLogStruct.m_sLogFileName, _MAX_PATH, omFilePathNewLog.GetBuffer(_MAX_PATH));
     AddLoggingBlock(sLogStruct);
 
@@ -873,20 +872,15 @@ BOOL CConfigMsgLogDlg::OnInitDialog()
         m_strCurrWndText += " ";
         m_strCurrWndText += _("- Read only as logging is on");
         //SetWindowText(m_strCurrWndText);
-        // PTV [1.6.4]
         // If Logging is on
         GetDlgItem(IDOK)->EnableWindow(FALSE);
-        // PTV [1.6.4]
         SetWindowText("");
         m_unDispUpdateTimerId = SetTimer(600, 600, NULL);
     }
     else
     {
-        // PTV [1.6.4]
         // If Logging is on
         GetDlgItem(IDOK)->EnableWindow(TRUE);
-
-        // PTV [1.6.4]
     }
 
     // Hide or show the Filters button in the dialog based on the protocol

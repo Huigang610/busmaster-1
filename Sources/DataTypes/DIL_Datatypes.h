@@ -108,7 +108,6 @@ typedef enum TXMODE
 
 class INTERFACE_HW
 {
-    //Tobias - venkat
 public:
     unsigned long  m_dwIdInterface;
     unsigned long  m_dwVendor;

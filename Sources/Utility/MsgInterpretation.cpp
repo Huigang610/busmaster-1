@@ -1032,7 +1032,6 @@ BOOL CMsgInterpretation::bInterpretMsgs(EFORMAT /*eNumFormat*/,
             UINT unSigLen = psCurrSignal->m_unSignalLength;
             //Calculate the character width required to represent the raw value.
             //1 character means 1 nibble
-            //venkat
             /*UINT unWidth = (unSigLen % 4 == 0) ? (unSigLen/4) : (unSigLen/4 + 1);
             //calculate extra FFs incase of a negative number.
             double dblVal = 16;
@@ -1465,7 +1464,6 @@ void CMsgInterpretationJ1939::vCopy(CMsgInterpretationJ1939* pDest) const
 
 
 /* IMPLEMENTATION CLASS CMsgInterpretationJ1939 ENDS */
-//venkat
 BOOL CMsgInterpretation::bInterpretMsgs(UINT unMsgCode,
                                         const UCHAR* ucData,
                                         CSignalInfoArray& omSignalInfo )

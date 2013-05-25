@@ -360,7 +360,6 @@ BOOL CFnsTreeView::bPopulateTree()
         }
         omTree.SetItemImage(hDLL,10,10);
         omTree.Expand( hDLL, TVE_EXPAND );
-        // venkatanarayana
         //Get Bus Event Handlers
         CStringArray* pomBusEvArray =
             pDoc->pomStrGetBusEventHandlerPrototypes();
@@ -380,7 +379,6 @@ BOOL CFnsTreeView::bPopulateTree()
         }
         omTree.SetItemImage(hBus,11,11);
         omTree.Expand( hBus, TVE_EXPAND );
-        //~venkatanarayana
 
         // Get Utility func array from the doc
         CStringArray* pUtilArray =
@@ -1068,7 +1066,6 @@ void CFnsTreeView::OnDeleteHandle()
             }
 
         }
-        //~venkatanarayana
         if ( bReturnVal != FALSE)
         {
             // Update all views
@@ -1672,7 +1669,6 @@ void CFnsTreeView::vOnNewKeyHandler()
 
     if ( pcCharacter != NULL )
     {
-        // PTV CPP moved line to down
         pcCharacter[1] = '\0';
         CFunctionEditorDoc* pDoc   = (CFunctionEditorDoc*)CView::GetDocument();
         CFnsTreeView* pFnsTreeView = CGlobalObj::ouGetObj(m_eBus).podGetFuncsTreeViewPtr();

@@ -1,5 +1,5 @@
-//MVN
 #pragma once
+
 //libxml file includes
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>
@@ -770,5 +770,3 @@ public:
         return nRetVal;
     }
 };
-
-//~MVN

@@ -373,7 +373,6 @@ void CLogObjectCAN::Der_SetChannelBaudRateDetails
     m_pasControllerDetails = new SCONTROLLER_DETAILS [nNumChannels];
     for (int nIdx = 0; nIdx < nNumChannels; nIdx++)
     {
-        //venkat
         m_pasControllerDetails[nIdx] = controllerDetails[nIdx];
         //memcpy(m_pasControllerDetails + nIdx, controllerDetails + nIdx, sizeof(SCONTROLLER_DETAILS));
     }

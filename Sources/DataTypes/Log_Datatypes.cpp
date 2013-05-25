@@ -323,7 +323,6 @@ BYTE* tagLogInfo::pbSetConfigData(BYTE* pbSource, BYTE bytLogVersion)
 
     return pbSStream;
 }
-//MVN
 
 INT tagLogInfo::nSetConfigData(xmlNodePtr pNodePtr)
 {
@@ -485,5 +484,3 @@ INT tagLogInfo::nSetConfigData(xmlNodePtr pNodePtr)
 
     return nRetValue;
 }
-//~MVN
-/* tagLogInfo --- ENDS */
