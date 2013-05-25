@@ -30,6 +30,7 @@
 #include "DataTypes/DIL_Datatypes.h"
 #include "Include/CanUsbDefs.h"
 #include <map>
+
 /////////////////////////////////////////////////////////////////////////////
 // CHardwareListing dialog
 class CHardwareListing : public CDialog
@@ -113,9 +114,9 @@ public:
 
     } HARDWARE_CONTAINER, *PHARDWARE_CONTAINER;
 
-    typedef pair <int, PHARDWARE_CONTAINER> Int_Pair;
-    map <int, PHARDWARE_CONTAINER>::iterator m_pIter;
-    map <int, PHARDWARE_CONTAINER> mHardwareListMap;
+    typedef std::pair<int, PHARDWARE_CONTAINER> Int_Pair;
+    std::map<int, PHARDWARE_CONTAINER>::iterator m_pIter;
+    std::map<int, PHARDWARE_CONTAINER> mHardwareListMap;
 
     //Hardware container object
     PHARDWARE_CONTAINER m_pouHardwareContainer;

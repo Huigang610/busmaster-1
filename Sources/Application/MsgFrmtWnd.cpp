@@ -5203,7 +5203,7 @@ HRESULT CMsgFrmtWnd::SetConfigData(xmlNodePtr pNode)
     xmlNodePtr pCopyNodeptr = NULL;
     xmlNodePtr pChildNode = NULL;
     int nIndividualCol = -1;
-    string   strVar;
+    std::string strVar;
 
     pCopyNodeptr = pNode;
     //get the column count

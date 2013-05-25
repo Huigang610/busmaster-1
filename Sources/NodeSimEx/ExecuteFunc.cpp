@@ -44,8 +44,6 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-using namespace std;
-
 extern UINT unKeyHandlerProc(LPVOID);
 extern UINT unErrorHandlerProc(LPVOID);
 extern UINT unEventHandlerProc(LPVOID);
@@ -931,7 +929,7 @@ VOID CExecuteFunc::vExecuteOnBusEventHandler(eBUSEVEHANDLER eBusEventHandler)
 BOOL CExecuteFunc::bReadDefFile(CStringArray& omErrorArray)
 {
     BOOL bReturn = FALSE;
-    ifstream    omInTextFile;
+    std::ifstream omInTextFile;
     CString     omStrErrorMessage;
     CString     omStrLine;
     CString     omStrTemp;
@@ -951,7 +949,7 @@ BOOL CExecuteFunc::bReadDefFile(CStringArray& omErrorArray)
     {
         TRY
         {
-            omInTextFile.open(/*T2A*/(omStrDefFileName.GetBuffer(MAX_PATH)), ios::in  );
+            omInTextFile.open(/*T2A*/(omStrDefFileName.GetBuffer(MAX_PATH)), std::ios::in);
             if (!omInTextFile.good())
             {
                 // Info file open error notification

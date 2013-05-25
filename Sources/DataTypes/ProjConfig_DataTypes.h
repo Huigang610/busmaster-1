@@ -24,14 +24,14 @@
 
 #pragma once
 
-using namespace std;
-
+#include <list>
+#include <string>
 
 enum {OPEN = 0x1, SAVE = 0x2, CLOSE = 0x4};
 
 enum {FILEMODE = 0, DATABASEMODE};
 
-typedef list<string> LISTSTR;
+typedef std::list<std::string> LISTSTR;
 
 class FILESTORAGEINFO
 {
@@ -62,8 +62,8 @@ class PROJECTDATA
 {
 public:
     // DATA MEMBERS
-    string m_ProjectName;   // The necessary and sufficient information for a
-    string m_Language;      // project entry is name (signature and hence it
+	std::string m_ProjectName;   // The necessary and sufficient information for a
+    std::string m_Language;      // project entry is name (signature and hence it
     SYSTEMTIME m_ProjSysTime;// has to be unique), the language (expressed in
     float m_fAppVersion;    // ISO 639-3 code), time and date of last saving,
     DWORD m_dwAppUniqueId;  // application version and unique identifier.
@@ -90,7 +90,7 @@ public:
 class SECTIONDATA
 {
 public:
-    string m_omSectionName; // The necessary and sufficient information for a
+    std::string m_omSectionName; // The necessary and sufficient information for a
     int m_nBLOBLen;         // section are the section name and the data in
     BYTE* m_bBLOB;          // byte stream that it should contain.
 

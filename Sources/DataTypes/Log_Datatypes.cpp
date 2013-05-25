@@ -250,9 +250,9 @@ BOOL tagLogInfo::pbGetConfigData(xmlNodePtr pxmlNodePtr) const
     xmlNodePtr pChnlPtr = xmlNewChild(pxmlNodePtr, NULL, BAD_CAST DEF_CHANNEL, BAD_CAST omChannel);
     xmlAddChild(pxmlNodePtr, pChnlPtr);
 
-    string omPath;
+    std::string omPath;
     char configPath[MAX_PATH];
-    string omStrConfigFolder;
+    std::string omStrConfigFolder;
     AfxGetMainWnd()->SendMessage(MSG_GET_CONFIGPATH, (WPARAM)configPath, 0);
     CUtilFunctions::nGetBaseFolder(configPath, omStrConfigFolder );
     CUtilFunctions::MakeRelativePath(omStrConfigFolder.c_str(), (char*)m_sLogFileName, omPath);
@@ -414,8 +414,8 @@ INT tagLogInfo::nSetConfigData(xmlNodePtr pNodePtr)
                 {
                     if(PathIsRelative((char*)key) == TRUE)
                     {
-                        string omStrConfigFolder;
-                        string omPath;
+                        std::string omStrConfigFolder;
+                        std::string omPath;
                         char configPath[MAX_PATH];
                         AfxGetMainWnd()->SendMessage(MSG_GET_CONFIGPATH, (WPARAM)configPath, 0);
                         CUtilFunctions::nGetBaseFolder(configPath, omStrConfigFolder );

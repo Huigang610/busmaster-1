@@ -3072,7 +3072,7 @@ bool CTSEditorChildFrame::GetConfigurationData(xmlNodePtr& pxmlNodePtr)
     if(m_omCurrentTSFile.IsEmpty() == FALSE && m_omCurrentTSFile != def_EMPTYFILENAME)
     {
 
-        string omPath, omStrConfigFolder;
+        std::string omPath, omStrConfigFolder;
         char configPath[MAX_PATH];
         AfxGetMainWnd()->SendMessage(MSG_GET_CONFIGPATH, (WPARAM)configPath, 0);
         CUtilFunctions::nGetBaseFolder(configPath, omStrConfigFolder );
@@ -3238,8 +3238,8 @@ HRESULT CTSEditorChildFrame::SetConfigurationData(xmlNodePtr pXmlNode)
                 {
                     if(PathIsRelative((char*)pText) == TRUE)
                     {
-                        string omStrConfigFolder;
-                        string omPath;
+                        std::string omStrConfigFolder;
+                        std::string omPath;
                         char configPath[MAX_PATH];
                         AfxGetMainWnd()->SendMessage(MSG_GET_CONFIGPATH, (WPARAM)configPath, 0);
                         CUtilFunctions::nGetBaseFolder(configPath, omStrConfigFolder );

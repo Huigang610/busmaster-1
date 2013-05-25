@@ -38,11 +38,9 @@
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
 
-#include <windows.h>
+//#include <windows.h>
 
 /* C++ includes */
 #include <list>
 #include <map>
 #include <string>
-
-using namespace std;

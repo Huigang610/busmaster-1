@@ -40,7 +40,7 @@
 
 //C++ Includes
 #include <sstream>
-using namespace std;
+
 /*
    Internal note
    --------------------------------------------
@@ -1010,8 +1010,8 @@ int CDIL_CAN_IXXAT_VCI::VciDeviceInfoAddToArray(int iStartPosArray, VCIDEVICEINF
                     sSelHwInterface[iStartPosArray].m_acDeviceName = pVciDevInfo->Description; // the name of the device
 
 
-                    ostringstream oss;
-                    oss<<"CAN "<<i;
+                    std::ostringstream oss;
+                    oss << "CAN " <<i;
                     sSelHwInterface[iStartPosArray].m_acNameInterface = oss.str();
 
                     // if the cantype.h from IXXAT was enhanced then add the new hardware descriptions here

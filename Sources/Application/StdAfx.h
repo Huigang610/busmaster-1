@@ -64,8 +64,6 @@
 #include <queue>
 #include <locale.h>
 
-using namespace std;
-
 const float PI = (float) 3.14159265358979323846;
 
 #include "include/BaseDefs.h"

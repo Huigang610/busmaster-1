@@ -960,7 +960,7 @@ void CMsgSignal::vGetDataBaseNames(CStringArray* pastrDBnames)
         pastrDBnames->Append(m_omDatabaseNames);
     }
 }
-void CMsgSignal::vGetRelativeDataBaseNames(string& omStrBasePath, CStringArray* pastrDBnames)
+void CMsgSignal::vGetRelativeDataBaseNames(std::string& omStrBasePath, CStringArray* pastrDBnames)
 {
     if(pastrDBnames != NULL)
     {
@@ -968,7 +968,7 @@ void CMsgSignal::vGetRelativeDataBaseNames(string& omStrBasePath, CStringArray* 
         for ( int i = 0, n = m_omDatabaseNames.GetSize(); i < n; i++)
         {
             CString omStrTemp = m_omDatabaseNames.GetAt(i);
-            string omStrRelativePath;
+            std::string omStrRelativePath;
             CUtilFunctions::MakeRelativePath(omStrBasePath.c_str(), omStrTemp.GetBuffer(MAX_PATH), omStrRelativePath);
             pastrDBnames->Add(omStrRelativePath.c_str());
         }

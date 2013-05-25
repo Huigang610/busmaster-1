@@ -47,13 +47,8 @@
 #define USAGE_EXPORT
 #include "CAN_STUB_Extern.h"
 
-using namespace std;
-
-// CCAN_STUBApp
-
 BEGIN_MESSAGE_MAP(CCAN_STUBApp, CWinApp)
 END_MESSAGE_MAP()
-
 
 /**
  * CCAN_STUBApp construction
@@ -139,7 +134,7 @@ public:
     HANDLE hClientHandle;
     HANDLE hPipeFileHandle;
     CBaseCANBufFSE* pClientBuf[MAX_BUFF_ALLOWED];
-    string pacClientName;
+	std::string pacClientName;
     UINT unBufCount;
     SCLIENTBUFMAP()
     {
@@ -161,7 +156,7 @@ typedef SCLIENTBUFMAP* PSCLIENTBUFMAP;
  * global client count
  */
 UINT sg_unClientCnt = 0;
-static vector<SCLIENTBUFMAP> sg_asClientToBufMap(MAX_CLIENT_ALLOWED);
+static std::vector<SCLIENTBUFMAP> sg_asClientToBufMap(MAX_CLIENT_ALLOWED);
 // Forward declarations
 
 /**
@@ -180,7 +175,7 @@ static HANDLE sg_hTmpPipeHandle = NULL;
 /**
  * Buffer for the driver operation related error messages
  */
-static string sg_acErrStr;
+static std::string sg_acErrStr;
 
 /**
  * Starts code for the state machine
@@ -552,7 +547,7 @@ HRESULT CDIL_CAN_STUB::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& 
     return Result;
 }
 
-static BOOL bClientExist(string pcClientName, INT& Index)
+static BOOL bClientExist(std::string pcClientName, INT& Index)
 {
     for (UINT i = 0; i < sg_unClientCnt; i++)
     {

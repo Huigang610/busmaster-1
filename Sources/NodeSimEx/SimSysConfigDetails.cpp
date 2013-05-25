@@ -441,7 +441,7 @@ BOOL CSimSysConfigDetails:: bLoadStoreSimSysInfo (CArchive& roSimCfgArchive,
                         roSimCfgArchive >> psCurrentNodeList->m_sNodeInfo .m_omStrNodeName;
 
                         /* Get base path based on simulation file location */
-                        string omStrBasePath;
+                        std::string omStrBasePath;
                         CUtilFunctions::nGetBaseFolder(psSimsysInfo->m_omStrSimSysName.GetBuffer(MAX_PATH), omStrBasePath);
 
                         /* Get absolute paths */
@@ -489,7 +489,7 @@ BOOL CSimSysConfigDetails:: bLoadStoreSimSysInfo (CArchive& roSimCfgArchive,
                 while(psCurrentNodeList != NULL)
                 {
                     /* Get base path based on simulation file location */
-                    string omStrBasePath;
+                    std::string omStrBasePath;
                     CUtilFunctions::nGetBaseFolder(psSimsysInfo->m_omStrSimSysName.GetBuffer(MAX_PATH), omStrBasePath);
 
                     /* Get relative paths */
@@ -519,17 +519,17 @@ BOOL CSimSysConfigDetails:: bLoadStoreSimSysInfo (CArchive& roSimCfgArchive,
 * \authors       Arunkumar Karri
 * \date          01.02.2013 Created
 */
-void CSimSysConfigDetails::vGetRelativePath(string& omStrBasePath, CString& strFileName)
+void CSimSysConfigDetails::vGetRelativePath(std::string& omStrBasePath, CString& strFileName)
 {
     if ( !strFileName.IsEmpty() )
     {
-        string omStrRelativePath;
+        std::string omStrRelativePath;
         CUtilFunctions::MakeRelativePath(omStrBasePath.c_str(), strFileName.GetBuffer(MAX_PATH), omStrRelativePath);
         strFileName = omStrRelativePath.c_str();
     }
 }
 
-void CSimSysConfigDetails::vGetAbsolutePath(string& omStrBasePath, CString& strFileName)
+void CSimSysConfigDetails::vGetAbsolutePath(std::string& omStrBasePath, CString& strFileName)
 {
     if ( !strFileName.IsEmpty() )
     {

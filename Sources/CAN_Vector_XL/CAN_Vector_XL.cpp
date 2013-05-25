@@ -57,12 +57,8 @@
 #define USAGE_EXPORT
 #include "CAN_Vector_XL_Extern.h"
 
-using namespace std;
-// CCAN_Vector_XL
-
 BEGIN_MESSAGE_MAP(CCAN_Vector_XL, CWinApp)
 END_MESSAGE_MAP()
-
 
 /**
  * CCAN_Vector_XL construction
@@ -204,7 +200,7 @@ static XLOPENDRIVER            xlDllOpenDriver = NULL;
 static int nInitHwNetwork(UINT unDefaultChannelCnt = 0);
 static BOOL bRemoveClient(DWORD dwClientId);
 static DWORD dwGetAvailableClientSlot();
-static BOOL bClientExist(string pcClientName, INT& Index);
+static BOOL bClientExist(std::string pcClientName, INT& Index);
 static BOOL bClientIdExist(const DWORD& dwClientId);
 static BOOL bGetClientObj(DWORD dwClientID, UINT& unClientIndex);
 static void vRetrieveAndLog(DWORD /*dwErrorCode*/, char* File, int Line);
@@ -229,7 +225,7 @@ static INTERFACE_HW sg_HardwareIntr[defNO_OF_CHANNELS];
 
 // TZM specific Global variables
 #define CAN_MAX_ERRSTR 256
-string sg_acErrStr = "";
+std::string sg_acErrStr = "";
 static UINT sg_unClientCnt = 0;
 #define MAX_CLIENT_ALLOWED 16
 static SCLIENTBUFMAP sg_asClientToBufMap[MAX_CLIENT_ALLOWED];
@@ -863,11 +859,11 @@ HRESULT CDIL_CAN_VectorXL::CAN_ListHwInterfaces(INTERFACE_HW_LIST& asSelHwInterf
         {
             asSelHwInterface[i].m_dwIdInterface = i;
             unsigned int serialNumber = sg_aodChannels[i].m_pXLChannelInfo->serialNumber;
-            ostringstream oss;
-            oss << dec << serialNumber;
+            std::ostringstream oss;
+            oss << std::dec << serialNumber;
             asSelHwInterface[i].m_acDescription = oss.str();
             //_stprintf(asSelHwInterface[i].m_acDescription, "%d", serialNumber);
-            ostringstream oss1;
+            std::ostringstream oss1;
             oss1 << "Vector - " << sg_aodChannels[i].m_pXLChannelInfo->name << " SN - " <<serialNumber;
             oss1 << "Channel Index - " <<(int)sg_aodChannels[i].m_pXLChannelInfo->channelIndex;
             sg_ControllerDetails[i].m_omHardwareDesc = oss1.str();
@@ -2400,7 +2396,7 @@ static int nInitHwNetwork(UINT unDefaultChannelCnt)
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-static BOOL bClientExist(string pcClientName, INT& Index)
+static BOOL bClientExist(std::string pcClientName, INT& Index)
 {
     for (UINT i = 0; i < sg_unClientCnt; i++)
     {

@@ -31,8 +31,8 @@
 
 #define NOTIFIC_WND_CONFIG_SECTION_NAME "NotificWndProperty"
 #define TIMER_INVALID       0x0
-using namespace std;
-typedef queue<CString> CStringQueue;
+
+typedef std::queue<CString> CStringQueue;
 static CStringQueue sg_odStringQueue;
 
 extern CCANMonitorApp theApp;

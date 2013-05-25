@@ -27,7 +27,6 @@
 #include "AfxTempl.h"
 #include "DataTypes/McNet_Datatypes.h"
 #import <msxml6.dll>
-using namespace MSXML2;
 
 const DWORD LCN_INVALID_VALUE = (DWORD)-1;
 const DWORD CANID_INVALID_VALUE = (DWORD)-1;

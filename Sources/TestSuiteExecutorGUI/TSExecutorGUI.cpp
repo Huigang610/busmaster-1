@@ -86,7 +86,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
         // detected above, take first available language,
         // or you can specify another language as second parameter to
         // LoadLangResourceDLL. And try that first.
-        shLangInst = CMultiLanguage::LoadLangResourceDLL( szModuleFileName );
+        shLangInst = CMultiLanguage::LoadLangResourceDLL(szModuleFileName);
         if (shLangInst)
         {
             TestSuiteExecutor.hResource = shLangInst;

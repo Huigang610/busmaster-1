@@ -98,13 +98,12 @@ int CConfigData::GetConfigDatastorage(DATASTORAGEINFO* StorageInfo)
     return GetDatastorageConfig(StorageInfo);
 }
 
-void CConfigData::vSetCurrProjName(string strCurrProjName)
+void CConfigData::vSetCurrProjName(std::string strCurrProjName)
 {
     m_strCurrProjName = strCurrProjName;
 }
 
-
-string CConfigData::GetCurrProjName()
+std::string CConfigData::GetCurrProjName()
 {
     return m_strCurrProjName;
 }
@@ -121,7 +120,7 @@ BOOL CConfigData::bGetCurrProjInfo(PROJECTDATA* ProjData)
     return GetProjectData(m_strCurrProjName, *ProjData);
 }
 
-BOOL CConfigData::bSetData(LPVOID lpVoid, int nStreamLength, string strSectionName)
+BOOL CConfigData::bSetData(LPVOID lpVoid, int nStreamLength, std::string strSectionName)
 {
     BOOL bRetVal = TRUE;
 
@@ -145,7 +144,7 @@ BOOL CConfigData::bSetData(LPVOID lpVoid, int nStreamLength, string strSectionNa
     return bRetVal;
 }
 
-BOOL CConfigData::bGetData(void*& lpData, int& nStreamLength, string strSectionName)
+BOOL CConfigData::bGetData(void*& lpData, int& nStreamLength, std::string strSectionName)
 {
     BOOL bRetVal = FALSE;
 
@@ -175,4 +174,3 @@ BOOL CConfigData::bGetData(void*& lpData, int& nStreamLength, string strSectionN
     }
     return bRetVal;
 }
-

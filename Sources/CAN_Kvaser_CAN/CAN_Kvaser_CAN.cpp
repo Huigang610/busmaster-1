@@ -288,7 +288,7 @@ typedef struct tagClientBufMap
 
 /* TZM specific Global variables */
 #define CAN_MAX_ERRSTR 256
-string sg_acErrStr = "";
+std::string sg_acErrStr = "";
 static UINT sg_unClientCnt = 0;
 #define MAX_CLIENT_ALLOWED 16
 static SCLIENTBUFMAP sg_asClientToBufMap[MAX_CLIENT_ALLOWED];
@@ -301,7 +301,7 @@ static Base_WrapperErrorLogger* sg_pIlog   = NULL;
 static int nInitHwNetwork(UINT unDefaultChannelCnt = 0);
 static BOOL bRemoveClient(DWORD dwClientId);
 static DWORD dwGetAvailableClientSlot();
-static BOOL bClientExist(string pcClientName, INT& Index);
+static BOOL bClientExist(std::string pcClientName, INT& Index);
 static BOOL bClientIdExist(const DWORD& dwClientId);
 static BOOL bGetClientObj(DWORD dwClientID, UINT& unClientIndex);
 static void vRetrieveAndLog(DWORD /*dwErrorCode*/, char* File, int Line);
@@ -2461,7 +2461,7 @@ static BOOL bRemoveClientBuffer(CBaseCANBufFSE* RootBufferArray[MAX_BUFF_ALLOWED
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-static BOOL bClientExist(string pcClientName, INT& Index)
+static BOOL bClientExist(std::string pcClientName, INT& Index)
 {
     for (UINT i = 0; i < sg_unClientCnt; i++)
     {

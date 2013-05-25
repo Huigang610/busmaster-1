@@ -218,7 +218,7 @@ bool CSimSysManager::bGetConfigData(xmlNodePtr pNodePtr)
     {
         CString omTmp = pSimSysInfo->m_omStrSimSysName;
 
-        string omPath, omStrConfigFolder;
+        std::string omPath, omStrConfigFolder;
         char configPath[MAX_PATH];
         AfxGetMainWnd()->SendMessage(MSG_GET_CONFIGPATH, (WPARAM)configPath, 0);
         CUtilFunctions::nGetBaseFolder(configPath, omStrConfigFolder );
@@ -453,8 +453,8 @@ void CSimSysManager::CopySIMDataFromBuffer(xmlNodePtr pDoc, ETYPE_BUS eBus)
                         CString omStrFileName;
                         if(PathIsRelative((char*)key) == TRUE)
                         {
-                            string omStrConfigFolder;
-                            string omPath;
+                            std::string omStrConfigFolder;
+                            std::string omPath;
                             char configPath[MAX_PATH];
                             AfxGetMainWnd()->SendMessage(MSG_GET_CONFIGPATH, (WPARAM)configPath, 0);
                             CUtilFunctions::nGetBaseFolder(configPath, omStrConfigFolder );
@@ -561,8 +561,8 @@ void CSimSysManager::vSetConfigData(xmlNodePtr pNode)
                     CString omStrFileName;
                     if(PathIsRelative((char*)key) == TRUE)
                     {
-                        string omStrConfigFolder;
-                        string omPath;
+                        std::string omStrConfigFolder;
+                        std::string omPath;
                         char configPath[MAX_PATH];
                         AfxGetMainWnd()->SendMessage(MSG_GET_CONFIGPATH, (WPARAM)configPath, 0);
                         CUtilFunctions::nGetBaseFolder(configPath, omStrConfigFolder );

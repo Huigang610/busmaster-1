@@ -214,7 +214,7 @@ BOOL CReplayFile::pbySaveConfig(xmlNodePtr pxmlNodePtr)         //replay is the 
 
     //<Log_File_Path>path</Log_File_Path>
 
-    string omPath, omStrConfigFolder;
+    std::string omPath, omStrConfigFolder;
     char configPath[MAX_PATH];
     AfxGetMainWnd()->SendMessage(10000, (WPARAM)configPath, 0);
     CUtilFunctions::nGetBaseFolder(configPath, omStrConfigFolder );
@@ -360,8 +360,8 @@ int CReplayFile::nLoadXMLConfig(xmlNodePtr pNodePtr)
             {
                 if(PathIsRelative((char*)key) == TRUE)
                 {
-                    string omStrConfigFolder;
-                    string omPath;
+                    std::string omStrConfigFolder;
+                    std::string omPath;
                     char configPath[MAX_PATH];
                     AfxGetMainWnd()->SendMessage(MSG_GET_CONFIGPATH, (WPARAM)configPath, 0);
                     CUtilFunctions::nGetBaseFolder(configPath, omStrConfigFolder );

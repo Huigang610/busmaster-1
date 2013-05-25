@@ -46,8 +46,7 @@ class ENTRY_DIL
 {
 public:
     DWORD           m_dwDIL;
-    string          m_acDIL;
-
+    std::string          m_acDIL;
 };
 
 static ENTRY_DIL sg_ListDIL[] =

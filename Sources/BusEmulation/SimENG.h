@@ -28,9 +28,9 @@
 // CSimENG
 
 class ATL_NO_VTABLE CSimENG :
-    public CComObjectRootEx<CComSingleThreadModel>,
-    public CComCoClass<CSimENG, &CLSID_SimENG>,
-    public IDispatchImpl<ISimENG, &IID_ISimENG, &LIBID_BusEmulationLib, /*wMajor =*/ 1, /*wMinor =*/ 0>
+    public ATL::CComObjectRootEx<ATL::CComSingleThreadModel>,
+    public ATL::CComCoClass<CSimENG, &CLSID_SimENG>,
+    public ATL::IDispatchImpl<ISimENG, &IID_ISimENG, &LIBID_BusEmulationLib, /*wMajor =*/ 1, /*wMinor =*/ 0>
 {
 public:
     CSimENG();

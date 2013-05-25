@@ -90,9 +90,3 @@
 //#define COMMANINT   INT_PTR
 //#define COMMANUINT  UINT_PTR
 //#define COMMANDWORD DWORD_PTR
-
-
-using namespace std;
-
-
-

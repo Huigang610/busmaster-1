@@ -618,7 +618,7 @@ private:
     INT LoadConfiguration(void);
     INT SaveConfiguration(void);
     //MVN
-    int nLoadXMLConfiguration(string& m_strCfxFile);
+    int nLoadXMLConfiguration(std::string& m_strCfxFile);
     int nLoadXMLConfiguration();
 
     //Gets the data of a toolbar from XML file node and creates toolbar
@@ -641,9 +641,9 @@ private:
     INT vSaveXMLConfiguration();
     INT vSaveXMLConfiguration(const char* filename);
 
-    INT nGetControllerID(string ptext);
+    INT nGetControllerID(std::string ptext);
     void LoadControllerConfigData(SCONTROLLER_DETAILS& sController, xmlNodePtr& pNodePtr);
-    string m_omStrCurrentConfigFile;
+    std::string m_omStrCurrentConfigFile;
     //~MVN
 
     // PTV

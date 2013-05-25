@@ -93,7 +93,7 @@ typedef struct tagFilterName
     BYTE* pbSetConfigData(BYTE* pbTarget);
 
     INT nSetXMLConfigData(xmlNodePtr pFilter);
-    BOOL nFilterType(string strFilteType);
+    BOOL nFilterType(std::string strFilteType);
 
 } SFILTERNAME, *PSFILTERNAME;
 
@@ -132,7 +132,7 @@ typedef struct tagSFILTER
     virtual BYTE* pbSetConfigData(BYTE* pbTarget);
 
     INT nSetXMLConfigData(xmlNodePtr pNodePtr);
-    eDirection eGetMsgDirection(string strDirection);
+    eDirection eGetMsgDirection(std::string strDirection);
 } SFILTER, *PSFILTER;
 
 struct SFILTER_CAN : public SFILTER
@@ -169,8 +169,8 @@ struct SFILTER_CAN : public SFILTER
     BYTE* pbSetConfigData(BYTE* pbTarget);
     //MVN
     INT nSetXMLConfigData(xmlNodePtr pNodePtr);
-    INT nGetIDType(string strIDType);
-    INT nGetMsgType(string strMsgType);
+    INT nGetIDType(std::string strIDType);
+    INT nGetMsgType(std::string strMsgType);
     //~MVN
 };
 typedef SFILTER_CAN* PSFILTER_CAN;
@@ -352,7 +352,7 @@ struct SFILTERAPPLIED
     //MVN
     int nSetXMLConfigData(xmlDocPtr& pDocPtr);
     int nGetFiltersFromName(SFILTERAPPLIED& sFilterDest, CStringArray& omStrNames);
-    int GetFilterNameIndex(string strName);
+    int GetFilterNameIndex(std::string strName);
     //~MVN
 };
 
@@ -857,7 +857,7 @@ int SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::nGetFiltersFromName(SFILTERAPPLIED& sF
     return S_OK;
 }
 template <typename SFRAMEINFO_BASIC_BUS>
-int SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::GetFilterNameIndex(string strName)
+int SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::GetFilterNameIndex(std::string strName)
 {
     int nIndex = -1;
     for(int i =0 ; i < m_ushTotal; i++)

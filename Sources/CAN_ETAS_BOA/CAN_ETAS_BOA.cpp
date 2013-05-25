@@ -54,8 +54,6 @@
 #define USAGE_EXPORT
 #include "CAN_ETAS_BOA_Extern.h"
 
-using namespace std;
-
 BEGIN_MESSAGE_MAP(CCAN_ETAS_BOA, CWinApp)
 END_MESSAGE_MAP()
 
@@ -156,7 +154,7 @@ class SCLIENTBUFMAP
 public:
     DWORD m_dwClientID;
     CBaseCANBufFSE* m_pClientBuf[MAX_BUFF_ALLOWED];
-    string m_acClientName;
+    std::string m_acClientName;
     UINT m_unBufCount;
     SCLIENTBUFMAP()
     {
@@ -174,7 +172,7 @@ public:
 /**
  * Array of clients
  */
-static vector<SCLIENTBUFMAP> sg_asClientToBufMap(MAX_CLIENT_ALLOWED);
+static std::vector<SCLIENTBUFMAP> sg_asClientToBufMap(MAX_CLIENT_ALLOWED);
 
 const INT MAX_MAP_SIZE = 3000;
 
@@ -190,14 +188,14 @@ typedef struct tagAckMap
     }
 } SACK_MAP;
 
-typedef list<SACK_MAP> CACK_MAP_LIST;
+typedef std::list<SACK_MAP> CACK_MAP_LIST;
 static CACK_MAP_LIST sg_asAckMapBuf;
 static  CRITICAL_SECTION sg_CritSectForAckBuf;       // To make it thread safe
 
 /**
  * Channel instances
  */
-static vector<SCHANNEL> sg_asChannel(defNO_OF_CHANNELS);
+static std::vector<SCHANNEL> sg_asChannel(defNO_OF_CHANNELS);
 
 /**
  * Number of current channel selected
@@ -404,7 +402,7 @@ static BOOL bRemoveClientBuffer(CBaseCANBufFSE* RootBufferArray[MAX_BUFF_ALLOWED
 /**
  * Gets the CSI API function pointer from the cslproxy.dll
  */
-BOOL bGetBOAInstallationPath(string& pcPath)
+BOOL bGetBOAInstallationPath(std::string& pcPath)
 {
     USES_CONVERSION;
 
@@ -694,7 +692,7 @@ static BOOL bGetClientObj(DWORD dwClientID, UINT& unClientIndex)
  *
  * Checks for the existance of the client with the name pcClientName.
  */
-static BOOL bClientExist(string pcClientName, INT& Index)
+static BOOL bClientExist(std::string pcClientName, INT& Index)
 {
     for (UINT i = 0; i < sg_asClientToBufMap.size(); i++)
     {
@@ -1693,11 +1691,11 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, c
 HRESULT CDIL_CAN_ETAS_BOA::CAN_LoadDriverLibrary(void)
 {
     HRESULT hResult = S_FALSE;
-    string acPath;
+    std::string acPath;
     /* Get BOA installation path from the registery */
     bGetBOAInstallationPath(acPath);
     /* Load cslproxy.dll library */
-    string acLIB_CSL = "";
+    std::string acLIB_CSL = "";
     acLIB_CSL.append(acPath);
     acLIB_CSL.append("\\");
     acLIB_CSL.append(LIB_CSL_NAME);
@@ -1711,7 +1709,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_LoadDriverLibrary(void)
         /* Load the OCI library to use CAN controller */
         if (hResult == S_OK)
         {
-            string acLIB_OCI;
+            std::string acLIB_OCI;
             acLIB_OCI.append(acPath);
             acLIB_OCI.append("\\");
             acLIB_OCI.append(LIB_OCI_NAME);
@@ -1732,7 +1730,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_LoadDriverLibrary(void)
             else
             {
                 hResult = S_FALSE;
-                string acErr;
+                std::string acErr;
                 acErr.append(acLIB_OCI);
                 acErr.append(" ");
                 acErr.append(_("failed to load"));
@@ -1747,7 +1745,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_LoadDriverLibrary(void)
     }
     else
     {
-        string acErr;
+        std::string acErr;
         acErr.append(acLIB_CSL);
         acErr.append(" ");
         acErr.append(_("failed to load"));

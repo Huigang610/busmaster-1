@@ -31,7 +31,7 @@ class CConfigData : public CComputeCheckSum
 {
 private:
     CString m_omStrCurrFileName;
-    string m_strCurrProjName;
+    std::string m_strCurrProjName;
     static CConfigData m_ouConfigDetails;
     CConfigData(void);
 public:
@@ -45,11 +45,11 @@ public:
     void vSaveConfigFile();
     void vCloseConfigFile();
 
-    void vSetCurrProjName(string strCurrProjName);
-    string GetCurrProjName();
+    void vSetCurrProjName(std::string strCurrProjName);
+    std::string GetCurrProjName();
     BOOL bSetCurrProjInfo(PROJECTDATA* ProjData);
     BOOL bGetCurrProjInfo(PROJECTDATA* ProjData);
 
-    BOOL bSetData(LPVOID lpVoid, int nStreamLength, string strSectionName);
-    BOOL bGetData(void*& lpData,int& nStreamLength, string strSectionName);
+    BOOL bSetData(LPVOID lpVoid, int nStreamLength, std::string strSectionName);
+    BOOL bGetData(void*& lpData, int& nStreamLength, std::string strSectionName);
 };

@@ -46,7 +46,6 @@
 #include <sstream>
 #include <string>
 #include <vector>
-using namespace std;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -253,7 +252,7 @@ const int SIZE_CHAR     = sizeof(char);
 // TZM specific Global variables
 #define CAN_MAX_ERRSTR 256
 #define MAX_CLIENT_ALLOWED 16
-string sg_acErrStr = "";
+std::string sg_acErrStr = "";
 static UINT sg_unClientCnt = 0;
 static SCLIENTBUFMAP sg_asClientToBufMap[MAX_CLIENT_ALLOWED];
 static UINT sg_unCntrlrInitialised = 0;
@@ -2225,8 +2224,8 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_ListHwInterfaces(INTERFACE_HW_LIST& asSelHwInterf
             for (UINT i = 0; i < sg_ucNoOfHardware; i++)
             {
                 asSelHwInterface[i].m_dwIdInterface = (DWORD)sg_ndNeoToOpen[i].Handle;
-                ostringstream oss;
-                oss << dec << sg_ndNeoToOpen[i].SerialNumber;
+                std::ostringstream oss;
+                oss << std::dec << sg_ndNeoToOpen[i].SerialNumber;
                 asSelHwInterface[i].m_acDescription = oss.str();
                 asSelHwInterface[i].m_bytNetworkID = m_bytNetworkIDs[i];
                 hResult = S_OK;
@@ -2692,7 +2691,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_StopHardware(void)
     return hResult;
 }
 
-static BOOL bClientExist(string pcClientName, INT& Index)
+static BOOL bClientExist(std::string pcClientName, INT& Index)
 {
     for (UINT i = 0; i < sg_unClientCnt; i++)
     {

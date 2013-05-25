@@ -224,7 +224,7 @@ public:
     // Return the array of DB file
     void vGetDataBaseNames(CStringArray* pastrDBnames);
     //MVN
-    void vGetRelativeDataBaseNames(string& omStrBasePath, CStringArray* pastrDBnames);
+    void vGetRelativeDataBaseNames(std::string& omStrBasePath, CStringArray* pastrDBnames);
     //~MVN
     void vSetDataBaseNames(const CStringArray* pastrDBnames);
     void bAddDbNameEntry(const CString& omDbFileName);

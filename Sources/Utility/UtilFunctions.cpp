@@ -126,7 +126,7 @@ void CUtilFunctions::s_vExtendSignBit( __int64& n64Val, int nSize)
         }
     }
 }
-INT CUtilFunctions::nGetBaseFolder(const char* omConfigFileName, string& omStrConfigFolder)
+INT CUtilFunctions::nGetBaseFolder(const char* omConfigFileName, std::string& omStrConfigFolder)
 {
     char pchFilePath[MAX_PATH];
     char* pchTemp = pchFilePath;
@@ -150,7 +150,7 @@ INT CUtilFunctions::nGetBaseFolder(const char* omConfigFileName, string& omStrCo
     return S_OK;
 }
 
-void CUtilFunctions::MakeRelativePath(const char* pchCurrentDir, char* pchAbsFileName, string& omStrRelativeParh)
+void CUtilFunctions::MakeRelativePath(const char* pchCurrentDir, char* pchAbsFileName, std::string& omStrRelativeParh)
 {
     int nCurrentDirectoryLength = strlen(pchCurrentDir);
     int nAbsoluteFileLen = strlen(pchAbsFileName);

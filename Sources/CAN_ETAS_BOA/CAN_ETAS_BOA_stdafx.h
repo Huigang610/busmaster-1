@@ -89,10 +89,7 @@
 #include <algorithm>
 #include <include/struct_can.h>
 #include <locale.h>
-
 #include <string>
-using namespace std;
-typedef std::string TString;
 
 /*To enable CANFD - uncomment the BOA_FD_VERSION define*/
 //#define BOA_FD_VERSION

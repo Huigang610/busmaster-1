@@ -33,7 +33,6 @@
 #include <string>
 #include <sstream>
 
-using namespace std;
 const int MAX_STRING = 256;
 /**
  * This structure is used for sending/reciving messages to/from the CAN network
@@ -167,27 +166,27 @@ public:
     int     m_nItemUnderFocus;                   // item number under focus
     int     m_nBTR0BTR1;                         // packed value of bit timing register 0
     // and bit timing register 1
-    string  m_omStrCNF1;                         // bit timing register 1 information
-    string  m_omStrCNF2;                         // bit timing register 2 information
-    string  m_omStrCNF3;                         // bit timing register 3 information
-    string  m_omStrBTR0;                         // bit timing register 0 information
-    string  m_omStrBTR1;                         // bit timing register 1 information
-    string  m_omStrBaudrate;                     // baudrate information
-    string  m_omStrClock;                        // clock information
-    string  m_omStrSamplePercentage;             // sampling information
-    string  m_omStrSampling;                     // sampling information
-    string  m_omStrWarningLimit;                 // Warning limit of CAN Controller
-    string  m_omStrPropagationDelay;             // Propagation Delay
-    string  m_omStrSjw;
-    string  m_omStrAccCodeByte1[CAN_MSG_IDS];    // acceptance code byte1 information
-    string  m_omStrAccCodeByte2[CAN_MSG_IDS];    // acceptance code byte2 information
-    string  m_omStrAccCodeByte3[CAN_MSG_IDS];    // acceptance code byte3 information
-    string  m_omStrAccCodeByte4[CAN_MSG_IDS];    // acceptance code byte4 information
-    string  m_omStrAccMaskByte1[CAN_MSG_IDS];    // acceptance mask byte1 information
-    string  m_omStrAccMaskByte2[CAN_MSG_IDS];    // acceptance mask byte2 information
-    string  m_omStrAccMaskByte3[CAN_MSG_IDS];    // acceptance mask byte3 information
-    string  m_omStrAccMaskByte4[CAN_MSG_IDS];    // acceptance mask byte4 information
-    string  m_omHardwareDesc;                    // Hw description which user can
+    std::string  m_omStrCNF1;                         // bit timing register 1 information
+    std::string  m_omStrCNF2;                         // bit timing register 2 information
+    std::string  m_omStrCNF3;                         // bit timing register 3 information
+    std::string  m_omStrBTR0;                         // bit timing register 0 information
+    std::string  m_omStrBTR1;                         // bit timing register 1 information
+    std::string  m_omStrBaudrate;                     // baudrate information
+    std::string  m_omStrClock;                        // clock information
+    std::string  m_omStrSamplePercentage;             // sampling information
+    std::string  m_omStrSampling;                     // sampling information
+    std::string  m_omStrWarningLimit;                 // Warning limit of CAN Controller
+    std::string  m_omStrPropagationDelay;             // Propagation Delay
+    std::string  m_omStrSjw;
+    std::string  m_omStrAccCodeByte1[CAN_MSG_IDS];    // acceptance code byte1 information
+    std::string  m_omStrAccCodeByte2[CAN_MSG_IDS];    // acceptance code byte2 information
+    std::string  m_omStrAccCodeByte3[CAN_MSG_IDS];    // acceptance code byte3 information
+    std::string  m_omStrAccCodeByte4[CAN_MSG_IDS];    // acceptance code byte4 information
+    std::string  m_omStrAccMaskByte1[CAN_MSG_IDS];    // acceptance mask byte1 information
+    std::string  m_omStrAccMaskByte2[CAN_MSG_IDS];    // acceptance mask byte2 information
+    std::string  m_omStrAccMaskByte3[CAN_MSG_IDS];    // acceptance mask byte3 information
+    std::string  m_omStrAccMaskByte4[CAN_MSG_IDS];    // acceptance mask byte4 information
+    std::string  m_omHardwareDesc;                    // Hw description which user can
     // differentiate between the channels
     int     m_bAccFilterMode;                    // acceptance filter mode(0: single, 1: Dual)
     int     m_ucControllerMode;                  // Controller mode (1: Active, 2: Passive)
@@ -205,7 +204,7 @@ public:
 
     int     m_bDebug;                            // debug mode for channel driver
     int     m_bPassiveMode;                      // passive mode (no bus interaction, acknowledge, etc.)
-    string  m_omStrLocation;                     // location (serial port, ip-address, ...)
+    std::string  m_omStrLocation;                     // location (serial port, ip-address, ...)
     int     m_bHWTimestamps;                     // timestamps from the controllers hardware
 
     //Filter type: 1. Accept All 2. Reject All 3. Manual setting
@@ -491,7 +490,7 @@ public:
         }
         std::stringstream ss;
         ss << fBaudRate;
-        string omStrBaudrate = ss.str();
+        std::string omStrBaudrate = ss.str();
         const char* strBaudRate = omStrBaudrate.c_str();
         const char* strCNF1 = m_omStrCNF1.c_str();
         const char* strCNF2 = m_omStrCNF2.c_str();
@@ -580,62 +579,62 @@ public:
         strVar = m_omHardwareDesc.c_str();
         xmlNewChild(pNodePtr, NULL, BAD_CAST "HardwareDesc", BAD_CAST strVar);
 
-        stringstream stream;
+        std::stringstream stream;
         stream << m_nItemUnderFocus;
-        string          strData;
+        std::string strData;
         strData = stream.str();
         strVar = strData.c_str();
         xmlNewChild(pNodePtr, NULL, BAD_CAST "ItemUnderFocus", BAD_CAST strVar);
 
-        stringstream stream1;
+        std::stringstream stream1;
         stream1 << m_nBTR0BTR1;
         strData = stream1.str();
         strVar = strData.c_str();
         xmlNewChild(pNodePtr, NULL, BAD_CAST "BTR0BTR1", BAD_CAST strVar);
 
-        stringstream stream2;
+        std::stringstream stream2;
         stream2 << m_bAccFilterMode;
         strData = stream2.str();
         strVar = strData.c_str();
         xmlNewChild(pNodePtr, NULL, BAD_CAST "AccFilterMode", BAD_CAST strVar);
 
-        stringstream stream3;
+        std::stringstream stream3;
         stream3 << m_ucControllerMode;
         strData = stream3.str();
         strVar = strData.c_str();
         xmlNewChild(pNodePtr, NULL, BAD_CAST "ControllerMode", BAD_CAST strVar);
 
-        stringstream stream4;
+        std::stringstream stream4;
         stream4 << m_bSelfReception;
         strData = stream4.str();
         strVar = strData.c_str();
         xmlNewChild(pNodePtr, NULL, BAD_CAST "SelfReception", BAD_CAST strVar);
 
-        stringstream stream5;
+        std::stringstream stream5;
         stream5 << (int)m_enmHWFilterType[0];
         strData = stream5.str();
         strVar = strData.c_str();
         xmlNewChild(pNodePtr, NULL, BAD_CAST "HWFilterType_0", BAD_CAST strVar);
 
-        stringstream stream6;
+        std::stringstream stream6;
         stream6 << (int)m_enmHWFilterType[1];
         strData = stream6.str();
         strVar = strData.c_str();
         xmlNewChild(pNodePtr, NULL, BAD_CAST "HWFilterType_1", BAD_CAST strVar);
 
-        stringstream stream7;
+        std::stringstream stream7;
         stream7 << m_bDebug;
         strData = stream7.str();
         strVar = strData.c_str();
         xmlNewChild(pNodePtr, NULL, BAD_CAST "Debug", BAD_CAST strVar);
 
-        stringstream stream8;
+        std::stringstream stream8;
         stream8 << m_bPassiveMode;
         strData = stream8.str();
         strVar = strData.c_str();
         xmlNewChild(pNodePtr, NULL, BAD_CAST "PassiveMode", BAD_CAST strVar);
 
-        stringstream stream9;
+        std::stringstream stream9;
         stream9 << m_bHWTimestamps;
         strData = stream9.str();
         strVar = strData.c_str();

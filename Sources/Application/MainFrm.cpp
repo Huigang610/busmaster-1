@@ -1652,7 +1652,7 @@ DWORD CMainFrame::dLoadJ1939DBFile(CString omStrActiveDataBase,BOOL bFrmCom)
         //MVN::Construct File Path
         if (TRUE == PathIsRelative(omStrActiveDataBase))
         {
-            string omStrBasePath;
+            std::string omStrBasePath;
             CString omConfigFileName;
             vGetLoadedCfgFileName(omConfigFileName);
             CUtilFunctions::nGetBaseFolder(omConfigFileName.GetBuffer(MAX_PATH), omStrBasePath);
@@ -1747,7 +1747,7 @@ DWORD CMainFrame::dLoadDataBaseFile(CString omStrActiveDataBase,BOOL /*bFrmCom*/
     //MVN::Construct File Path
     if (TRUE == PathIsRelative(omStrActiveDataBase))
     {
-        string omStrBasePath;
+        std::string omStrBasePath;
         CString omConfigFileName;
         vGetLoadedCfgFileName(omConfigFileName);
         CUtilFunctions::nGetBaseFolder(omConfigFileName.GetBuffer(MAX_PATH), omStrBasePath);
@@ -11979,7 +11979,7 @@ INT CMainFrame::nLoadConfigFile(CString omConfigFileName)
         CConfigData::ouGetConfigDetailsObject().vCloseConfigFile();
         vSetFileStorageInfo(omConfigFileName);
         //MVN
-        string strCfxFile = (LPCSTR)omConfigFileName;
+        std::string strCfxFile = (LPCSTR)omConfigFileName;
         nRetValue = nLoadXMLConfiguration(strCfxFile);
         if (nRetValue == S_OK )         //1. Try to Load as a XML file
         {
@@ -12069,7 +12069,7 @@ INT CMainFrame::LoadConfiguration(void)
 }
 
 //MVN
-int CMainFrame::nLoadXMLConfiguration(string& m_strCfxFile)
+int CMainFrame::nLoadXMLConfiguration(std::string& m_strCfxFile)
 {
     int nRetValue = S_FALSE;
 
@@ -12970,7 +12970,7 @@ void CMainFrame::vGetCurrentSessionData(eSECTION_ID eSecId, BYTE*& pbyConfigData
             CStringArray omDbNames;
             if (m_pouMsgSigJ1939 != NULL)
             {
-                string omStrBasePath;
+                std::string omStrBasePath;
                 CString omConfigFileName;
                 vGetLoadedCfgFileName(omConfigFileName);
                 CUtilFunctions::nGetBaseFolder(omConfigFileName.GetBuffer(MAX_PATH), omStrBasePath);
@@ -13004,7 +13004,7 @@ void CMainFrame::vGetCurrentSessionData(eSECTION_ID eSecId, BYTE*& pbyConfigData
             CStringArray omDbNames;
             if (theApp.m_pouMsgSignal != NULL)
             {
-                string omStrBasePath;
+                std::string omStrBasePath;
                 CString omConfigFileName;
                 vGetLoadedCfgFileName(omConfigFileName);
                 CUtilFunctions::nGetBaseFolder(omConfigFileName.GetBuffer(MAX_PATH), omStrBasePath);
@@ -14414,7 +14414,7 @@ void CMainFrame::LoadControllerConfigData(SCONTROLLER_DETAILS& sController, xmlN
     }
 
     pNodePtr = pNodePtr->xmlChildrenNode;
-    string strVar;
+    std::string strVar;
     UINT unTemp = 0;
     float fBaudRate = 0.00;
     //sController.LoadControllerConfigData(pNodePtr);
@@ -14616,7 +14616,7 @@ void CMainFrame::LoadControllerConfigData(SCONTROLLER_DETAILS& sController, xmlN
         pNodePtr = pNodePtr->next;
     }
 }
-INT CMainFrame::nGetControllerID(string strDriverName)
+INT CMainFrame::nGetControllerID(std::string strDriverName)
 {
     INT nDriverID = -1;
     if(strDriverName == "ETAS BOA")

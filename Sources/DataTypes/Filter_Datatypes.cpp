@@ -235,7 +235,7 @@ INT tagFilterName::nSetXMLConfigData(xmlNodePtr pFilter)
     return nRetVal;
 }
 
-BOOL tagFilterName::nFilterType(string strFilteType)
+BOOL tagFilterName::nFilterType(std::string strFilteType)
 {
     m_bFilterType = FALSE;
     if(strFilteType == "PASS")
@@ -431,7 +431,7 @@ BYTE* tagSFILTER::pbSetConfigData(BYTE* pbTarget)
 
     return pbTStream;
 }
-eDirection tagSFILTER::eGetMsgDirection(string strDirection)
+eDirection tagSFILTER::eGetMsgDirection(std::string strDirection)
 {
     eDirection eDir = DIR_ALL;
     if(strDirection == "Tx")
@@ -768,6 +768,7 @@ void SFILTER_CAN::pbSetConfigData(xmlNodePtr xmlNodePtr)
     vClear();
 }
 // PTV XML
+
 /******************************************************************************
   Function Name    :  pbSetConfigData
   Input(s)         :  pbSource - The source buffer to retrieve filtering data.
@@ -797,7 +798,8 @@ BYTE* SFILTER_CAN::pbSetConfigData(BYTE* pbTarget)
 
     return pbTStream;
 }
-INT SFILTER_CAN::nGetIDType(string strIDType)
+
+INT SFILTER_CAN::nGetIDType(std::string strIDType)
 {
     int nId = TYPE_ID_CAN_ALL;
     if(strIDType == "STD")
@@ -810,7 +812,8 @@ INT SFILTER_CAN::nGetIDType(string strIDType)
     }
     return nId;
 }
-INT SFILTER_CAN::nGetMsgType(string strMsgType)
+
+INT SFILTER_CAN::nGetMsgType(std::string strMsgType)
 {
     int nId = TYPE_MSG_CAN_ALL;
     if(strMsgType == "RTR")
@@ -833,7 +836,7 @@ INT SFILTER_CAN::nSetXMLConfigData(xmlNodePtr pNodePtr)
     //<IDType>NONRTR</IDType>
     //<MsgType>EXT</MsgType>
     //<Channel>2</Channel>
-    string strTemp;
+    std::string strTemp;
     m_byMsgType = TYPE_MSG_CAN_ALL;
     m_byIDType = TYPE_ID_CAN_ALL;
     m_eChannel = 0;

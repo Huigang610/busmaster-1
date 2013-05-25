@@ -559,8 +559,8 @@ void CFilterConfigDlg::vFormatDisplayString(
 
         if( omStr != STR_EMPTY )
         {
-            ostringstream oss;
-            oss << hex << sFilter.m_dwMsgIDFrom;
+            std::ostringstream oss;
+            oss << std::hex << sFilter.m_dwMsgIDFrom;
             oss << " [" << omStr << "]";
             sFilterDisplyInfo.m_omStrMsgIDFrom = oss.str();
             // Update Image Index
@@ -568,8 +568,8 @@ void CFilterConfigDlg::vFormatDisplayString(
         }
         else
         {
-            ostringstream oss;
-            oss << hex << sFilter.m_dwMsgIDFrom;
+            std::ostringstream oss;
+            oss << std::hex << sFilter.m_dwMsgIDFrom;
             sFilterDisplyInfo.m_omStrMsgIDFrom = oss.str();
         }
     }
@@ -577,11 +577,11 @@ void CFilterConfigDlg::vFormatDisplayString(
     {
         // Range of messages
         // Format ID FRom
-        ostringstream oss1;
-        oss1 << hex << sFilter.m_dwMsgIDFrom;
+        std::ostringstream oss1;
+        oss1 << std::hex << sFilter.m_dwMsgIDFrom;
         sFilterDisplyInfo.m_omStrMsgIDFrom = oss1.str();
-        ostringstream oss2;
-        oss2 << hex << sFilter.m_dwMsgIDTo;
+        std::ostringstream oss2;
+        oss2 << std::hex << sFilter.m_dwMsgIDTo;
         sFilterDisplyInfo.m_omStrMsgIDTo = oss2.str();
         // Update Image Index
         sFilterDisplyInfo.m_nImageIndex = defFILTER_IMAGE_INDEX_ID_RANGE;
@@ -650,8 +650,8 @@ void CFilterConfigDlg::vFormatDisplayString(
     else
     {
         // Format Channel ID String Say 1,2,...
-        ostringstream oss;
-        oss << dec << sFilter.m_eChannel;
+        std::ostringstream oss;
+        oss << std::dec << sFilter.m_eChannel;
         sFilterDisplyInfo.m_omStrMsgChannel = oss.str();
     }
 }
@@ -1094,8 +1094,8 @@ void CFilterConfigDlg::OnRadioMessageId()
                     {
                         CString omIdWithMsg = "";
                         omIdWithMsg.Format(_(defSTR_MSG_ID_IN_HEX), psFilter->m_dwMsgIDFrom);
-                        ostringstream oss;
-                        oss << hex << omIdWithMsg << omStrIDFrom;
+                        std::ostringstream oss;
+                        oss << std::hex << omIdWithMsg << omStrIDFrom;
 
                         omStrIDFrom = (CString)oss.str().c_str();
                     }

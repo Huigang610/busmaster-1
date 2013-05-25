@@ -10,16 +10,16 @@
 #include <map>
 #include <list>
 #include <include\XMLDefines.h>
-using namespace std;
+
 struct columnInfo
 {
-    string strId;
+    std::string strId;
     int nOrder;
     int nWidth;
     bool isVisble;
 };
-typedef map<string, columnInfo> ColumnInfoMap;
-typedef list<string> stringList;
+typedef std::map<std::string, columnInfo> ColumnInfoMap;
+typedef std::list<std::string> stringList;
 
 enum eLineType
 {
@@ -35,7 +35,7 @@ enum eLineType
     Stick = 9
 };
 
-using namespace std;
+
 class xmlUtils
 {
 public:
@@ -105,7 +105,7 @@ public:
         }
         return pXpathNodePtr;
     }
-    static bool GetDataFrmNode(xmlNodePtr pNodePtr, char* cstrNodeName, string& strData)
+    static bool GetDataFrmNode(xmlNodePtr pNodePtr, char* cstrNodeName, std::string& strData)
     {
         xmlChar* xmlNodeName = (xmlChar* )cstrNodeName;
 
@@ -313,9 +313,9 @@ public:
         }
     }
 
-    static string nGetWindowVisibilityInString(int nShowCmd)
+    static std::string nGetWindowVisibilityInString(int nShowCmd)
     {
-        string strShowCmd = "";
+        std::string strShowCmd = "";
         if( nShowCmd == -1)
         {
             return strShowCmd;
@@ -426,8 +426,8 @@ public:
 
     static int CreateXMLNodeFrmWindowsPlacement(xmlNodePtr pNodePtr, WINDOWPLACEMENT& wndPlacement)
     {
-        const char* omcVarChar ;
-        string      strVar;
+        const char* omcVarChar;
+        std::string strVar;
 
         //visibility
         strVar = nGetWindowVisibilityInString(wndPlacement.showCmd);
@@ -491,7 +491,7 @@ public:
             return nShowCmd;
         }
 
-        string strTemp = pchVisibility;
+        std::string strTemp = pchVisibility;
 
         if(strTemp == "HIDE")
         {
@@ -544,7 +544,7 @@ public:
         BOOL bRetValue = TRUE;
         if ( NULL != pchBoolValue )
         {
-            string strTemp = pchBoolValue;
+            std::string strTemp = pchBoolValue;
 
             if(strTemp == "FALSE" || strTemp == "0")
             {
@@ -558,7 +558,7 @@ public:
         eDirection bRetValue = DIR_ALL;
         if ( NULL != pchBoolValue )
         {
-            string strTemp = pchBoolValue;
+            std::string strTemp = pchBoolValue;
             if(strTemp == "TX")
             {
                 bRetValue = DIR_TX;
@@ -570,7 +570,7 @@ public:
         }
         return bRetValue;
     }
-    static eTimerMode eGetTimerMode(string strName)
+    static eTimerMode eGetTimerMode(std::string strName)
     {
         eTimerMode eMode = TIME_MODE_SYSTEM;
         if(strName == "RELATIVE")
@@ -583,7 +583,7 @@ public:
         }
         return eMode;
     }
-    static eFormat eGetNumericMode(string strName)
+    static eFormat eGetNumericMode(std::string strName)
     {
         eFormat eMode = DEC;
         if(strName == "HEX")
@@ -592,7 +592,7 @@ public:
         }
         return eMode;
     }
-    static eWAVEFORMTYPE eGetWaveType(string strName)
+    static eWAVEFORMTYPE eGetWaveType(std::string strName)
     {
         eWAVEFORMTYPE eWaveType = eWave_NONE;
         if(strName == "SINE")
@@ -769,10 +769,6 @@ public:
         delete[] npOrder;
         return nRetVal;
     }
-    /*static int nGetRGBColor(int nValue, COLORREF& colorRef)
-    {
-        RGB(
-    }*/
 };
 
 //~MVN

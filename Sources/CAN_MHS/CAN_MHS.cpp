@@ -221,7 +221,7 @@ static BOOL bIsBufferExists(const SCLIENTBUFMAP& sClientObj, const CBaseCANBufFS
 static BOOL bRemoveClientBuffer(CBaseCANBufFSE* RootBufferArray[MAX_BUFF_ALLOWED], UINT& unCount, CBaseCANBufFSE* BufferToRemove);
 static BOOL bGetClientObj(DWORD dwClientID, UINT& unClientIndex);
 static BOOL bGetClientObj(DWORD dwClientID, UINT& unClientIndex);
-static BOOL bClientExist(string pcClientName, INT& Index);
+static BOOL bClientExist(std::string pcClientName, INT& Index);
 static BOOL bRemoveClient(DWORD dwClientId);
 static BOOL bClientIdExist(const DWORD& dwClientId);
 static DWORD dwGetAvailableClientSlot(void);
@@ -1107,7 +1107,7 @@ static BOOL bGetClientObj(DWORD dwClientID, UINT& unClientIndex)
  *
  * Checks for the existance of the client with the name pcClientName.
  */
-static BOOL bClientExist(string pcClientName, INT& Index)
+static BOOL bClientExist(std::string pcClientName, INT& Index)
 {
     UINT i;
     for (i = 0; i < sg_unClientCnt; i++)

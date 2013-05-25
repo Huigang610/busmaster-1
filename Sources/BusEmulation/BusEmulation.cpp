@@ -33,8 +33,6 @@
 #include <atlcom.h>
 #include <time.h>
 
-using namespace ATL;
-
 /* C++ includes */
 #include <map>
 
@@ -42,9 +40,7 @@ using namespace ATL;
 #include "resource_BusSim.h"
 #include "BusEmulation.h"
 
-using namespace std;
-
-class CBusEmulationModule : public CAtlExeModuleT< CBusEmulationModule >
+class CBusEmulationModule : public ATL::CAtlExeModuleT<CBusEmulationModule>
 {
 public :
     DECLARE_LIBID(LIBID_BusEmulationLib)
@@ -53,8 +49,6 @@ public :
 
 CBusEmulationModule _AtlModule;
 
-
-//
 extern "C" int WINAPI _tWinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/,
                                 LPTSTR /*lpCmdLine*/, int nShowCmd)
 {

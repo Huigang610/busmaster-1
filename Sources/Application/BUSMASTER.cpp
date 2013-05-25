@@ -195,7 +195,7 @@ BOOL CCANMonitorApp::InitInstance()
     // detected above, take first available language,
     // or you can specify another language as second parameter to
     // LoadLangResourceDLL. And try that first.
-    ghLangInst = CMultiLanguage::LoadLangResourceDLL( szModuleFileName );
+    ghLangInst = CMultiLanguage::LoadLangResourceDLL(szModuleFileName);
     if (ghLangInst)
     {
         AfxSetResourceHandle( ghLangInst );
