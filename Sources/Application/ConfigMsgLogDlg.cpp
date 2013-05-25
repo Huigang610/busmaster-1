@@ -870,7 +870,7 @@ BOOL CConfigMsgLogDlg::OnInitDialog()
         GetDlgItem(IDC_CBTN_ADDLOG)->EnableWindow(FALSE);
         GetDlgItem(IDC_CHECK_RESET_TIMESTAMP)->EnableWindow(FALSE);
         GetWindowText(m_strCurrWndText);
-		m_strCurrWndText += " ";
+        m_strCurrWndText += " ";
         m_strCurrWndText += _("- Read only as logging is on");
         //SetWindowText(m_strCurrWndText);
         // PTV [1.6.4]

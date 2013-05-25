@@ -101,8 +101,8 @@ HRESULT CTestSetupHeader::ValidateEntity(CString& omStrResult)
     {
         if(PathFileExists(m_omDatabasePath) == FALSE)
         {
-			omStrResult = _("Incorrect database file path");
-			omStrResult += "\r\n";
+            omStrResult = _("Incorrect database file path");
+            omStrResult += "\r\n";
             hResult = ERR_VALID_ERROR;
         }
     }

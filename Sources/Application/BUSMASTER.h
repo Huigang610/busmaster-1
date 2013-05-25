@@ -121,5 +121,5 @@ protected:
     //CConfigDetails m_oConfigDetails;
 public:
     INT COM_nSaveConfiguration(CString omStrCfgFilename);
-    bool bWriteIntoTraceWnd(const char * omText);
+    bool bWriteIntoTraceWnd(const char* omText);
 };

@@ -216,7 +216,7 @@ HRESULT CSendEntity::ValidateEntity(CString& omStrResult)
     if(unSendMessageCount <= 0)
     {
         omStrResult += _("Warning: Has no send messages");
-		omStrResult += "\r\n";
+        omStrResult += "\r\n";
         return ERR_VALID_WARNING;               //CS026
     }
     return ERR_VALID_SUCCESS;

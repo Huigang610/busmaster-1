@@ -169,13 +169,13 @@ public:
      */
     HRESULT DILC_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
 
-	/**
+    /**
      *
      *
      */
     virtual HRESULT DILC_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
 
-	/**
+    /**
      * Call to Get Error Counts
      */
     HRESULT  DILC_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);

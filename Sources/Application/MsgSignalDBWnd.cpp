@@ -174,7 +174,7 @@ BOOL CMsgSignalDBWnd::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
                                         pContext);
     }
     CString omTitle = _("Database Editor");
-	omTitle += " - ";
+    omTitle += " - ";
     omTitle += m_sDbParams.m_omBusName;
     SetWindowText(omTitle.GetBuffer(MAX_PATH));
     if (m_sDbParams.m_eBus == J1939)

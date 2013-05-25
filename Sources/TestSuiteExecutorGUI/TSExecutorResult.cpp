@@ -231,13 +231,13 @@ INT CResultGenerator::nGenerateTextReport(CStdioFile& omReportFile)
 {
 
     //BUSMASTER Version
-	omReportFile.WriteString("\n\t\t\t\t");
-	omReportFile.WriteString(_("BUSMASTER Version:"));
-	omReportFile.WriteString(" BUSMASTER ");
-	omReportFile.WriteString(m_omStrVersion);
     omReportFile.WriteString("\n\t\t\t\t");
-	omReportFile.WriteString(_("Report file for:"));
-	omReportFile.WriteString(" ");
+    omReportFile.WriteString(_("BUSMASTER Version:"));
+    omReportFile.WriteString(" BUSMASTER ");
+    omReportFile.WriteString(m_omStrVersion);
+    omReportFile.WriteString("\n\t\t\t\t");
+    omReportFile.WriteString(_("Report file for:"));
+    omReportFile.WriteString(" ");
     omReportFile.WriteString(m_omStrTestSetupFile);
 
     omReportFile.WriteString("\n\n");
@@ -282,7 +282,7 @@ INT CResultGenerator::nGenerateTextReport(CStdioFile& omReportFile)
         POSITION pos = m_odTcResultList.FindIndex(nTcIndex);
         CResultTc& ouResultTc = m_odTcResultList.GetAt(pos);
         omReportFile.WriteString(_("\nTest case:"));
-		omReportFile.WriteString(" ");
+        omReportFile.WriteString(" ");
         omReportFile.WriteString(ouResultTc.m_omTestCase);
 
         if(ouResultTc.m_eResult == ERRORS)

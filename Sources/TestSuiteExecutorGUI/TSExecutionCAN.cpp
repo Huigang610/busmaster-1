@@ -444,8 +444,8 @@ HRESULT CTSExecutionCAN::TSX_VerifyMessage(CBaseEntityTA* pEntity, CResultVerify
         m_ouMsgInterpret.bInterpretMsgs(ouVerifyData.m_dwMessageID, pucData, ouSignalInfo);
 
         CString strVerDisplay = _("Verifying message");
-		strVerDisplay += " ";
-		strVerDisplay += ouVerifyData.m_omMessageName;
+        strVerDisplay += " ";
+        strVerDisplay += ouVerifyData.m_omMessageName;
         TSX_DisplayMessage(strVerDisplay);
         //Verify The Signals
         CMessageResult ouMsgResult;
@@ -545,8 +545,8 @@ HRESULT CTSExecutionCAN::TSX_SendMessage(CBaseEntityTA* pEntity)
         sMESSAGE* pMsg = pEntity->m_ouDataBaseManager.unGetMsg(ouSendData.m_dwMessageID);
         bMakeCanMessage(pMsg, ouSendData, aucData, stCanData);
         CString strSendDisplay = _("Sending message");
-		strSendDisplay += " ";
-		strSendDisplay += ouSendData.m_omMessageName;
+        strSendDisplay += " ";
+        strSendDisplay += ouSendData.m_omMessageName;
         TSX_DisplayMessage(strSendDisplay);
         m_pouDIL_CAN->DILC_SendMsg(m_dwClientId, stCanData);
     }

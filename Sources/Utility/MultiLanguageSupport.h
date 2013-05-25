@@ -8,8 +8,8 @@
 
 static HMODULE g_hLibIntl;
 
-char * textdomain(const char * __domainname);
-char * bindtextdomain(const char * __domainname, const char * __dirname);
-char * chGetText(char * __msgid);
+char* textdomain(const char* __domainname);
+char* bindtextdomain(const char* __domainname, const char* __dirname);
+char* chGetText(char* __msgid);
 
 #define _(string) chGetText (string)

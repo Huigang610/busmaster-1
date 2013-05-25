@@ -179,8 +179,8 @@ USAGEMODE HRESULT SG_CreateGraphWindow( CMDIFrameWnd* pParentWnd,  short eBusTyp
 
                     CString strWindowText;
                     strWindowText = _("Signal Graph -");
-					strWindowText += " ";
-					strWindowText += arrStrBusNames[eBusType];
+                    strWindowText += " ";
+                    strWindowText += arrStrBusNames[eBusType];
                     m_pomGraphWindows[eBusType]->SetWindowText(strWindowText);
 
                     m_pomGraphWindows[eBusType]->SetWindowPlacement(&m_sGraphWndPlacement[eBusType]);

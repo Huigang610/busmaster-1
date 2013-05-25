@@ -2460,7 +2460,8 @@ void CTSEditorChildFrame::vSetCurrentFile(CString& omNewFilePath)
     m_omCurrentTSFile = omNewFilePath;
     CString title;
     title = _("Test Automation Editor");
-	if(omNewFilePath != _(def_EMPTYFILENAME) && !m_omCurrentTSFile.IsEmpty()) {
+    if(omNewFilePath != _(def_EMPTYFILENAME) && !m_omCurrentTSFile.IsEmpty())
+    {
         title += ":: ";
         title += m_omCurrentTSFile;
     }

@@ -222,12 +222,12 @@ void CFunctionView::vSetFunctionToEdit(const CString& omStrFunction)
             omStrFnHeader = BUS_FN_HDR;
             omStrFnHeader.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
             omStrFnHeader.Replace("PLACE_HOLDER_FOR_FUNCTIONNAME",
-                                   omStrFunction );
+                                  omStrFunction );
             //Construct the Function Footer
             omStrFnFooter = EDITOR_BUS_FN_FOOTER;
             omStrFnFooter.Replace("PLACE_HOLDER_FOR_BUSNAME", sBusSpecInfo.m_omBusName);
             omStrFnFooter.Replace("PLACE_HOLDER_FOR_FUNCTIONNAME",
-                                   omStrFunction );
+                                  omStrFunction );
         }
 
         POSITION sPos = pDoc->m_omSourceCodeTextList.GetHeadPosition();

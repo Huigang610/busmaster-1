@@ -32,55 +32,56 @@
 
 
 
-static struct TMhsCanCfg *CanCfg = NULL;
+static struct TMhsCanCfg* CanCfg = NULL;
 
 #define CanSpeedTabSize 9
-static const char *CanSpeedTabStr[] = {"10 kBit/s", "20 kBit/s", "50 kBit/s", "100 kBit/s",
-                          "125 kBit/s", "250 kBit/s", "500 kBit/s", "800 kBit/s",
-                          "1 MBit/s"};
+static const char* CanSpeedTabStr[] = {"10 kBit/s", "20 kBit/s", "50 kBit/s", "100 kBit/s",
+                                       "125 kBit/s", "250 kBit/s", "500 kBit/s", "800 kBit/s",
+                                       "1 MBit/s"
+                                      };
 static const uint32_t CanSpeedTab[] = {10, 20, 50, 100, 125, 250, 500, 800, 1000};
 static BOOL g_bBTRRadioBtnChecked = FALSE;
 
 static void EnableDisableControls(HWND hdlg, int nDlgItem)
-{	
-	HWND hWndBitRate = GetDlgItem(hdlg, IDC_CAN_SPEED);
-	HWND hWndBTR = GetDlgItem(hdlg, IDC_BTR_EDIT);
+{
+    HWND hWndBitRate = GetDlgItem(hdlg, IDC_CAN_SPEED);
+    HWND hWndBTR = GetDlgItem(hdlg, IDC_BTR_EDIT);
 
-	if (nDlgItem == IDC_RADIOBTN_BITRATE)
-	{
-		EnableWindow(hWndBitRate, TRUE);	// Enable the bit rate combo box
-		EnableWindow(hWndBTR, FALSE);		// Disable the BTR edit box
-		g_bBTRRadioBtnChecked = FALSE;
-	}
-	else
-	{
-		EnableWindow(hWndBitRate, FALSE);	// Disable the bit rate combo box
-		EnableWindow(hWndBTR, TRUE);		// Enable the BTR edit box
-		g_bBTRRadioBtnChecked = TRUE;
-	}
+    if (nDlgItem == IDC_RADIOBTN_BITRATE)
+    {
+        EnableWindow(hWndBitRate, TRUE);    // Enable the bit rate combo box
+        EnableWindow(hWndBTR, FALSE);       // Disable the BTR edit box
+        g_bBTRRadioBtnChecked = FALSE;
+    }
+    else
+    {
+        EnableWindow(hWndBitRate, FALSE);   // Disable the bit rate combo box
+        EnableWindow(hWndBTR, TRUE);        // Enable the BTR edit box
+        g_bBTRRadioBtnChecked = TRUE;
+    }
 }
 
-static void InitCanSetupDlg(HWND hdlg, struct TMhsCanCfg *cfg)
+static void InitCanSetupDlg(HWND hdlg, struct TMhsCanCfg* cfg)
 {
-	int nResIDRadioItem = 0;
-	SetDlgItemText(hdlg, IDC_SNR_EDIT, cfg->CanSnrStr);
-	SetDlgItemHex(hdlg, IDC_BTR_EDIT, HEX_WORD, cfg->CanBtrValue);
+    int nResIDRadioItem = 0;
+    SetDlgItemText(hdlg, IDC_SNR_EDIT, cfg->CanSnrStr);
+    SetDlgItemHex(hdlg, IDC_BTR_EDIT, HEX_WORD, cfg->CanBtrValue);
 
-	FillComboBox(hdlg, IDC_CAN_SPEED, CanSpeedTabStr, CanSpeedTab,
-				 CanSpeedTabSize, cfg->CanSpeed);
+    FillComboBox(hdlg, IDC_CAN_SPEED, CanSpeedTabStr, CanSpeedTab,
+                 CanSpeedTabSize, cfg->CanSpeed);
 
-	// Set default value as bitrate	
-	if ( cfg->m_bBitRateSelected )
-	{				
-		nResIDRadioItem = IDC_RADIOBTN_BITRATE;
-	}
-	else
-	{		
-		nResIDRadioItem = IDC_RADIOBTN_BTR;
-	}
+    // Set default value as bitrate
+    if ( cfg->m_bBitRateSelected )
+    {
+        nResIDRadioItem = IDC_RADIOBTN_BITRATE;
+    }
+    else
+    {
+        nResIDRadioItem = IDC_RADIOBTN_BTR;
+    }
 
-	CheckRadioButton(hdlg, IDC_RADIOBTN_BITRATE, IDC_RADIOBTN_BTR, nResIDRadioItem);
-	EnableDisableControls(hdlg, nResIDRadioItem);
+    CheckRadioButton(hdlg, IDC_RADIOBTN_BITRATE, IDC_RADIOBTN_BTR, nResIDRadioItem);
+    EnableDisableControls(hdlg, nResIDRadioItem);
 }
 
 DOUBLE dCalculateBaudRateFromBTRs(UCHAR ucBTR0, UCHAR ucBTR1)
@@ -93,7 +94,7 @@ DOUBLE dCalculateBaudRateFromBTRs(UCHAR ucBTR0, UCHAR ucBTR1)
     BYTE   byTSEG1      = 0;
     BYTE   byTSEG2      = 0;
     char* pcStopStr     = NULL;
-	DOUBLE dblClock     = 16;
+    DOUBLE dblClock     = 16;
 
     uBTR0val.ucBTR0 = ucBTR0;
     uBTR1val.ucBTR1 = ucBTR1;
@@ -119,116 +120,125 @@ DOUBLE dCalculateBaudRateFromBTRs(UCHAR ucBTR0, UCHAR ucBTR1)
     return dBaudRate;
 }
 
-static BOOL SaveCanSetup(HWND hdlg, struct TMhsCanCfg *cfg)
+static BOOL SaveCanSetup(HWND hdlg, struct TMhsCanCfg* cfg)
 {
-	short unBTRVal;
-	UBTR0 sBtr0Reg;
-	UBTR1 sBtr1Reg;	
+    short unBTRVal;
+    UBTR0 sBtr0Reg;
+    UBTR1 sBtr1Reg;
     UINT    unNbt0          = 0;
     FLOAT   fNbt            = 0;
     UINT    unBrp0          = 0;
     UINT    unNbt1          = 0;
     UINT    unBrp1          = 0;
     FLOAT   fBrp            = 0;
-	WORD    unProductNbtNBrp= 0;
-	DOUBLE  dBaudRate       = 0;
-	DOUBLE  dblClock		= 16;
+    WORD    unProductNbtNBrp= 0;
+    DOUBLE  dBaudRate       = 0;
+    DOUBLE  dblClock        = 16;
 
-	GetDlgItemTextCpy(cfg->CanSnrStr, hdlg, IDC_SNR_EDIT, MHS_STR_SIZE);
+    GetDlgItemTextCpy(cfg->CanSnrStr, hdlg, IDC_SNR_EDIT, MHS_STR_SIZE);
 
-	if ( g_bBTRRadioBtnChecked )
-	{
-		cfg->CanBtrValue = GetDlgItemHex(hdlg, IDC_BTR_EDIT);
-		unBTRVal = cfg->CanBtrValue;
-		sBtr1Reg.ucBTR1 = (0x00FF & unBTRVal);		
-		sBtr0Reg.ucBTR0 = (unBTRVal >> 8);
+    if ( g_bBTRRadioBtnChecked )
+    {
+        cfg->CanBtrValue = GetDlgItemHex(hdlg, IDC_BTR_EDIT);
+        unBTRVal = cfg->CanBtrValue;
+        sBtr1Reg.ucBTR1 = (0x00FF & unBTRVal);
+        sBtr0Reg.ucBTR0 = (unBTRVal >> 8);
 
-		// Get the baudrate for BTR0 and BTR1 values.
-		dBaudRate = dCalculateBaudRateFromBTRs(sBtr0Reg.ucBTR0 ,sBtr1Reg.ucBTR1);
+        // Get the baudrate for BTR0 and BTR1 values.
+        dBaudRate = dCalculateBaudRateFromBTRs(sBtr0Reg.ucBTR0 ,sBtr1Reg.ucBTR1);
 
-		// Calculate the NBT and BRP product. and NBT value using BTR0 value
-		unProductNbtNBrp    = (UINT)((dblClock/(dBaudRate/1000))/2.0*
-									 (defFACT_FREQUENCY / defFACT_BAUD_RATE));
+        // Calculate the NBT and BRP product. and NBT value using BTR0 value
+        unProductNbtNBrp    = (UINT)((dblClock/(dBaudRate/1000))/2.0*
+                                     (defFACT_FREQUENCY / defFACT_BAUD_RATE));
 
-		unBrp0              = (sBtr0Reg.sBTR0Bit.ucBRPbit+1);
-		unNbt0              = unProductNbtNBrp/unBrp0;
-		fNbt                = (FLOAT)unProductNbtNBrp/unBrp0;
+        unBrp0              = (sBtr0Reg.sBTR0Bit.ucBRPbit+1);
+        unNbt0              = unProductNbtNBrp/unBrp0;
+        fNbt                = (FLOAT)unProductNbtNBrp/unBrp0;
 
-		unNbt1              = (sBtr1Reg.sBTR1Bit.ucTSEG1bit+1)+
-							  (sBtr1Reg.sBTR1Bit.ucTSEG2bit+1)+1;
-		unBrp1              = unProductNbtNBrp/unNbt1;
-		fBrp                = (FLOAT)unProductNbtNBrp/unNbt1;
+        unNbt1              = (sBtr1Reg.sBTR1Bit.ucTSEG1bit+1)+
+                              (sBtr1Reg.sBTR1Bit.ucTSEG2bit+1)+1;
+        unBrp1              = unProductNbtNBrp/unNbt1;
+        fBrp                = (FLOAT)unProductNbtNBrp/unNbt1;
 
         //Check if the BTR0 and BTR1 value entered is valid. if Not valid
         // Restore the previos value else calculate the new list.
-        if( unNbt0>defMAX_NBT || unNbt0<defMIN_NBT || fNbt != unNbt0  ||		    
-			unBrp1>defMAX_BRP || unBrp1<defMIN_BRP || unBrp1 != fBrp  || 
-			unNbt1>defMAX_NBT || unNbt1<defMIN_NBT )
-		{
-			MessageBox(hdlg, "Invalid BTRs Configuration!", "Warning", MB_OK|MB_ICONSTOP);
-			return FALSE;			
+        if( unNbt0>defMAX_NBT || unNbt0<defMIN_NBT || fNbt != unNbt0  ||
+                unBrp1>defMAX_BRP || unBrp1<defMIN_BRP || unBrp1 != fBrp  ||
+                unNbt1>defMAX_NBT || unNbt1<defMIN_NBT )
+        {
+            MessageBox(hdlg, "Invalid BTRs Configuration!", "Warning", MB_OK|MB_ICONSTOP);
+            return FALSE;
         }
-		
-	}	
-	else
-	{
-		cfg->CanBtrValue = 0;
-		cfg->CanSpeed = GetComboBox(hdlg, IDC_CAN_SPEED);
 
-		/* Validate baud rate selection */
-		if ( cfg->CanSpeed > 1000 )
-		{
-			MessageBox(hdlg, "Please select baud rate!", "Warning", MB_OK|MB_ICONSTOP);
-			return FALSE;
-		}
-	}	
+    }
+    else
+    {
+        cfg->CanBtrValue = 0;
+        cfg->CanSpeed = GetComboBox(hdlg, IDC_CAN_SPEED);
 
-	return TRUE;
+        /* Validate baud rate selection */
+        if ( cfg->CanSpeed > 1000 )
+        {
+            MessageBox(hdlg, "Please select baud rate!", "Warning", MB_OK|MB_ICONSTOP);
+            return FALSE;
+        }
+    }
+
+    return TRUE;
 }
 static BOOL CALLBACK CanSetupDlgProc(HWND hdlg, UINT uMessage, WPARAM wparam, LPARAM lparam)
 {
-	switch(uMessage)
-	  {
-	  case WM_INITDIALOG : {
-						   InitCanSetupDlg(hdlg, CanCfg);
-						   break;
-						   }
-	  case WM_COMMAND    : {
-						   switch (LOWORD(wparam))
-							 {
-							 case IDOK     : {
-											 if( SaveCanSetup(hdlg, CanCfg) )
-											 {
-												 EndDialog(hdlg, TRUE);
-												 return(TRUE);
-											 }
-											 else
-											 {
-												 return(FALSE);
-											 }
-											 }
-							 case IDCANCEL : {
-											 EndDialog(hdlg, TRUE);
-											 return(TRUE);
-											 }
-							 case IDC_RADIOBTN_BITRATE :
-							 case IDC_RADIOBTN_BTR :
-							 case BN_CLICKED: {
-											  EnableDisableControls(hdlg, wparam);											  
-											  }
-							 }
-						   break;
-						   }
-	  }
-	return(FALSE);
+    switch(uMessage)
+    {
+        case WM_INITDIALOG :
+        {
+            InitCanSetupDlg(hdlg, CanCfg);
+            break;
+        }
+        case WM_COMMAND    :
+        {
+            switch (LOWORD(wparam))
+            {
+                case IDOK     :
+                {
+                    if( SaveCanSetup(hdlg, CanCfg) )
+                    {
+                        EndDialog(hdlg, TRUE);
+                        return(TRUE);
+                    }
+                    else
+                    {
+                        return(FALSE);
+                    }
+                }
+                case IDCANCEL :
+                {
+                    EndDialog(hdlg, TRUE);
+                    return(TRUE);
+                }
+                case IDC_RADIOBTN_BITRATE :
+                case IDC_RADIOBTN_BTR :
+                case BN_CLICKED:
+                {
+                    EnableDisableControls(hdlg, wparam);
+                }
+            }
+            break;
+        }
+    }
+    return(FALSE);
 }
 
 
-int ShowCanSetupDlg(HINSTANCE hInstance, HWND hwnd, struct TMhsCanCfg *cfg)
+int ShowCanSetupDlg(HINSTANCE hInstance, HWND hwnd, struct TMhsCanCfg* cfg)
 {
-CanCfg = cfg;
-if (((DWORD)DialogBox(hInstance, MAKEINTRESOURCE(IDD_CAN_SETUP), hwnd, CanSetupDlgProc)) == TRUE)
-  return(1);
-else
-  return(0);
+    CanCfg = cfg;
+    if (((DWORD)DialogBox(hInstance, MAKEINTRESOURCE(IDD_CAN_SETUP), hwnd, CanSetupDlgProc)) == TRUE)
+    {
+        return(1);
+    }
+    else
+    {
+        return(0);
+    }
 }

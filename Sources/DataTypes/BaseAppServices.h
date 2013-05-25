@@ -27,5 +27,5 @@
 class CBaseAppServices
 {
 public:
-    virtual bool bWriteToTrace(const char * pcTraceStr) = 0;
+    virtual bool bWriteToTrace(const char* pcTraceStr) = 0;
 };

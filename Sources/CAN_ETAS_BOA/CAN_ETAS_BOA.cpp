@@ -1734,7 +1734,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_LoadDriverLibrary(void)
                 hResult = S_FALSE;
                 string acErr;
                 acErr.append(acLIB_OCI);
-				acErr.append(" ");
+                acErr.append(" ");
                 acErr.append(_("failed to load"));
                 sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, acErr);
                 sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("Please have a look at: https://github.com/rbei-etas/busmaster/wiki/Hardware-support"));
@@ -1747,9 +1747,9 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_LoadDriverLibrary(void)
     }
     else
     {
-		string acErr;
+        string acErr;
         acErr.append(acLIB_CSL);
-		acErr.append(" ");
+        acErr.append(" ");
         acErr.append(_("failed to load"));
         sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, acErr);
         sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("Please have a look at: https://github.com/rbei-etas/busmaster/wiki/Hardware-support"));

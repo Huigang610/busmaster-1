@@ -1182,7 +1182,7 @@ BOOL CMsgSignal::bCreateDataBase(CString omStrFilename)
 
             bRetVal = TRUE;
 
-			omStrFilename += " ";
+            omStrFilename += " ";
             omStrFilename += _("created successfully.");
 
             if (!m_bAutoServerMode)
@@ -2228,7 +2228,7 @@ BOOL CMsgSignal::bFillDataStructureFromDatabaseFile( CString strFileName, eProto
     {
         // Delete occupied memory
         bDeAllocateMemory(strFileName);
-		strFileName += " ";
+        strFileName += " ";
         if(bIsMessageLengthExceeds == FALSE)
         {
             strFileName += _("is an invalid DBF file.");

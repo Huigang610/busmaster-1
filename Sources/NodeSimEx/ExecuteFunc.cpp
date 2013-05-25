@@ -956,7 +956,7 @@ BOOL CExecuteFunc::bReadDefFile(CStringArray& omErrorArray)
             {
                 // Info file open error notification
                 omStrErrorMessage = _("Input file open error :");
-				omStrErrorMessage += " ";
+                omStrErrorMessage += " ";
                 omStrErrorMessage += omStrDefFileName;
                 /*AfxMessageBox(omStrErrorMessage ,
                                   MB_ICONERROR| MB_SYSTEMMODAL|MB_OK,nZERO);*/

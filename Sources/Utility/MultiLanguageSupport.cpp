@@ -24,7 +24,7 @@ static PSTEXTDOMAIN g_pfTextDomain;
 typedef char* (*PSBINDTEXTDOMAIN)(const char* __domainname, const char* __dirname);
 static PSBINDTEXTDOMAIN g_pfBindTextDomain;
 
-char * chGetText(char * __msgid)
+char* chGetText(char* __msgid)
 {
     if(g_pfGetText == NULL)
     {
@@ -42,11 +42,11 @@ char * chGetText(char * __msgid)
     }
     else
     {
-        return (char *) __msgid;
+        return (char*) __msgid;
     }
 }
 
-char * textdomain(const char * __domainname)
+char* textdomain(const char* __domainname)
 {
     if(g_pfTextDomain == NULL)
     {
@@ -67,7 +67,7 @@ char * textdomain(const char * __domainname)
     }
 }
 
-char * bindtextdomain(const char * __domainname, const char * __dirname)
+char* bindtextdomain(const char* __domainname, const char* __dirname)
 {
     if(g_pfBindTextDomain == NULL)
     {

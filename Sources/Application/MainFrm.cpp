@@ -666,7 +666,7 @@ CMainFrame::~CMainFrame()
 void CMainFrame::vGettextBusmaster()
 {
     setlocale(LC_ALL, "");
-	bindtextdomain("BUSMASTER", getenv("LOCALDIR"));
+    bindtextdomain("BUSMASTER", getenv("LOCALDIR"));
     textdomain("BUSMASTER");
 }
 
@@ -1607,7 +1607,7 @@ void CMainFrame::OnImportDatabase()
         }
         if(bAllFilesImported == FALSE)
         {
-			omStrMsg += " ";
+            omStrMsg += " ";
             omStrMsg += _("not found!");
             MessageBox(omStrMsg, "BUSMASTER", MB_OK|MB_ICONERROR);
         }
@@ -2322,7 +2322,7 @@ void CMainFrame::OnConfigDatabaseSave()
                             {
                                 CString omText;
                                 omText.Format(_("File \"%s\" has been modified which is currently being loaded.\nDo you want to re-import it to reflect the changes?"),
-                                               m_omStrDatabaseName);
+                                              m_omStrDatabaseName);
 
                                 if (MessageBox(omText, "BUSMASTER", MB_ICONQUESTION | MB_YESNO) == IDYES)
                                 {
@@ -9388,7 +9388,7 @@ LRESULT CMainFrame::vDisconnect(WPARAM , LPARAM lParam)
                         Moved creation of p_acTraceStr after waitforsingleobject
                         to avoid any memory leak
 ******************************************************************************/
-bool gbSendStrToTrace(const char * pcOutStrTrace)
+bool gbSendStrToTrace(const char* pcOutStrTrace)
 {
     BOOL bResult = TRUE;
 
@@ -11589,8 +11589,8 @@ void CMainFrame::vUpdateHWStatusInfo(void)
                 fBaudRate /= 1000;
             }
             omStrChannelDriver.Format(_("%s - %s - %.3f Kbps (Allowed channels: %d)"),
-                                        omStrChannels, strDriverName,
-                                        fBaudRate, CHANNEL_ALLOWED);
+                                      omStrChannels, strDriverName,
+                                      fBaudRate, CHANNEL_ALLOWED);
             break;
         }
     }
@@ -17291,7 +17291,7 @@ void CMainFrame::OnJ1939DBAssociate()
         }
         if(bAllFilesImported == FALSE)
         {
-			omStrMsg += " ";
+            omStrMsg += " ";
             omStrMsg += _("not found!");
             MessageBox(omStrMsg, "BUSMASTER", MB_OK|MB_ICONERROR);
         }

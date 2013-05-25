@@ -747,20 +747,20 @@ void CCANMonitorApp::vDisplayConfigErrMsgbox(UINT unErrorCode,
     if ( bOperation == defCONFIG_FILE_LOADING )
     {
         omStrSuffixMessage = " ";
-		omStrSuffixMessage += _("while loading");
-		omStrSuffixMessage += ".\n";
-		omStrSuffixMessage += _("Operation unsuccessful.");
+        omStrSuffixMessage += _("while loading");
+        omStrSuffixMessage += ".\n";
+        omStrSuffixMessage += _("Operation unsuccessful.");
     }
     else if ( bOperation == defCONFIG_FILE_SAVING )
     {
         omStrSuffixMessage = " ";
-		omStrSuffixMessage += _("while saving");
-		omStrSuffixMessage += ".\n";
-		omStrSuffixMessage += _("Operation unsuccessful.");
+        omStrSuffixMessage += _("while saving");
+        omStrSuffixMessage += ".\n";
+        omStrSuffixMessage += _("Operation unsuccessful.");
     }
     else
     {
-		omStrSuffixMessage += ".\n";
+        omStrSuffixMessage += ".\n";
         omStrSuffixMessage = _("Operation unsuccessful.");
     }
 
@@ -1166,9 +1166,9 @@ BOOL CCANMonitorApp::bInitialiseConfiguration(BOOL bFromCom)
                         if (_findfirst(omStrDatabase.GetBuffer(MAX_PATH) ,&fileinfo) == -1L)
                         {
                             CString omStrMsg = _("Database file:");
-							omStrMsg += " ";
+                            omStrMsg += " ";
                             omStrMsg += omStrDatabase;
-							omStrMsg += " ";
+                            omStrMsg += " ";
                             omStrMsg += _("not found!");
 
                             if(bFromCom==FALSE)
@@ -1285,7 +1285,7 @@ BOOL CCANMonitorApp::bGetDefaultValue(eCONFIGDETAILS /*eParam*/,
  * Since this function is asynchronous, caller should not immediately
  * deallocate the omText.
  */
-bool CCANMonitorApp::bWriteIntoTraceWnd(const char * omText)
+bool CCANMonitorApp::bWriteIntoTraceWnd(const char* omText)
 {
     BOOL bResult = FALSE;
     CMainFrame* pMainFrame = static_cast<CMainFrame*> (m_pMainWnd);

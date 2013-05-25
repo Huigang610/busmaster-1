@@ -3,17 +3,17 @@
   FileName      :  Functions.hpp
   Description   :  Implementation file for parsing functions
   $Log:   X:/Archive/Sources/FormatConverter/LexerHandlers.hpv  $
-   
+
       Rev 1.6   14 Mar 2012 17:37:58   CANMNTTM
    CAPL_TO_CPP Conversion is updated with
    New Design.
-   
+
       Rev 1.1   06 Jan 2012 12:02:08   CANMNTTM
    DBC2DBF Converter Library Name is changed.
-   
+
       Rev 1.0   05 Jan 2012 19:07:40   CANMNTTM
-    
-   
+
+
       Rev 1.0   17 Aug 2005 13:46:12   amb2kor
    Initial Version.
 
@@ -55,7 +55,7 @@ BOOL IsValidAlpaNum(char ch)
     }
 }
 /**
-* \brief         Reads The Function call from the current position of 
+* \brief         Reads The Function call from the current position of
                  input file using lexer input function yyinput
 * \param[in]     CString omStrFunction Function Call in the form of <FunctionCall(>
 * \param[out]    CString omStrFunction provides the total function call
@@ -65,14 +65,14 @@ BOOL IsValidAlpaNum(char ch)
 */
 void vReadFunctionCall(CString& omStrFunction)
 {
-	omStrFunction = yytext;
+    omStrFunction = yytext;
     RemoveComments(omStrFunction);
-	omStrFunction.TrimLeft(" \n\t");
-	omStrFunction.TrimRight(" \n\t");
-    
+    omStrFunction.TrimLeft(" \n\t");
+    omStrFunction.TrimRight(" \n\t");
+
     CString omStrTemp = omStrFunction;
     omStrTemp.TrimRight(" {\n\t");
-    char chCurrent = ' '; 
+    char chCurrent = ' ';
     char chPrevious = ' ';
     BOOL bComment= FALSE;
     BOOL bString = FALSE;
@@ -133,7 +133,7 @@ void vReadFunctionCall(CString& omStrFunction)
         }
         chPrevious = chCurrent;
     }
-	return;
+    return;
 }
 
 /**
@@ -143,51 +143,51 @@ void vReadFunctionCall(CString& omStrFunction)
 * \param[in]     None Takes input from yytext
 * \return        Void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vStoreTimers()
 {
-	CString omStrTimers;
-	omStrTimers = yytext;
-	if( RemoveComments(omStrTimers) == TRUE)
+    CString omStrTimers;
+    omStrTimers = yytext;
+    if( RemoveComments(omStrTimers) == TRUE)
     {
-	    omStrTimers.TrimLeft(" \t\n");
-		omStrTimers.TrimRight(" \t\n");
-	    int nStart = omStrTimers.Find(" ");
+        omStrTimers.TrimLeft(" \t\n");
+        omStrTimers.TrimRight(" \t\n");
+        int nStart = omStrTimers.Find(" ");
         if(nStart < 0)
         {
             nStart = omStrTimers.Find("\t");
         }
-	    CString omStrTimerType;
-	    CString omStrTemp;
-	    if(nStart >= 0)
-	    {
-		    omStrTimerType = omStrTimers.Left(nStart);
-		    omStrTimerType.TrimLeft(" \t\n");
-			omStrTimerType.TrimRight(" \t\n");
-		    omStrTimerType.MakeLower();
-    		
-		    omStrTimers = omStrTimers.Right(omStrTimers.GetLength() - nStart);
-		    nStart = 0;						
-			vTokenize(omStrTimers, ",;", omStrTemp, nStart);			
-		    while(omStrTemp != "")
-		    {
-			    omStrTemp.TrimLeft(" \t\n");
-				omStrTemp.TrimRight(" \t\n");
-			    if (omStrTimerType == "mstimer")
-			    {
-				    g_ouGlobalVariables.g_omStrMsTimers.Add(omStrTemp);
-			    }
-			    else if (omStrTimerType == "timer")
-			    {
-				    g_ouGlobalVariables.g_omStrSecTimers.Add(omStrTemp);
-			    }
-				
-			    omStrTemp.Empty();
-				vTokenize(omStrTimers, ",;", omStrTemp, nStart);
-		    }
-    		
-	    }
+        CString omStrTimerType;
+        CString omStrTemp;
+        if(nStart >= 0)
+        {
+            omStrTimerType = omStrTimers.Left(nStart);
+            omStrTimerType.TrimLeft(" \t\n");
+            omStrTimerType.TrimRight(" \t\n");
+            omStrTimerType.MakeLower();
+
+            omStrTimers = omStrTimers.Right(omStrTimers.GetLength() - nStart);
+            nStart = 0;
+            vTokenize(omStrTimers, ",;", omStrTemp, nStart);
+            while(omStrTemp != "")
+            {
+                omStrTemp.TrimLeft(" \t\n");
+                omStrTemp.TrimRight(" \t\n");
+                if (omStrTimerType == "mstimer")
+                {
+                    g_ouGlobalVariables.g_omStrMsTimers.Add(omStrTemp);
+                }
+                else if (omStrTimerType == "timer")
+                {
+                    g_ouGlobalVariables.g_omStrSecTimers.Add(omStrTemp);
+                }
+
+                omStrTemp.Empty();
+                vTokenize(omStrTimers, ",;", omStrTemp, nStart);
+            }
+
+        }
     }
     else
     {
@@ -198,49 +198,49 @@ void vStoreTimers()
 
 /**
 * \brief         This function finds the next token in the target string
-				 
+
 * \param[in]     None Takes input from yytext
 * \return        Void
 * \authors       Saravanan K S
-* \date          
+* \date
 */
 void vTokenize(CString strInput, CString strToken, CString& strOutput, int& nStart)
-{	
-	int nIdx = strInput.Find(strToken, nStart);
-	int nCount = 0;
-	strOutput.Empty();
+{
+    int nIdx = strInput.Find(strToken, nStart);
+    int nCount = 0;
+    strOutput.Empty();
 
-	if (nIdx != -1)
-	{
-		nCount = nIdx - nStart;	// Calculate the number of characters to extract
-		strOutput = strInput.Mid(nStart, nCount); //Extract the charatcers
-	}
-	else if( nStart < strInput.GetLength() )
-	{
-		strOutput = strInput.Right(strInput.GetLength() - nStart);
-		nIdx = strInput.GetLength()-1;
-	}
-	else
-	{
-		strOutput.Empty();
-	}
-	nStart = nIdx + 1;
+    if (nIdx != -1)
+    {
+        nCount = nIdx - nStart; // Calculate the number of characters to extract
+        strOutput = strInput.Mid(nStart, nCount); //Extract the charatcers
+    }
+    else if( nStart < strInput.GetLength() )
+    {
+        strOutput = strInput.Right(strInput.GetLength() - nStart);
+        nIdx = strInput.GetLength()-1;
+    }
+    else
+    {
+        strOutput.Empty();
+    }
+    nStart = nIdx + 1;
 }
 
 /**
 * \brief         This will extract the name of the key from yytext. If key is
-                 supported by BUSMASTER it will be stored in" acSptdKey " else 
+                 supported by BUSMASTER it will be stored in" acSptdKey " else
                  it will be stored in " acUnSptdKey ".
 * \param[in]     None Takes input from yytext
 * \return        Void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vKeyStoreHeader()
 {
     CString omStrName = yytext;
     RemoveComments(omStrName);
-    
+
     CString omStrTemp = omStrName;
     omStrTemp.MakeLower();
     INT nIndex;
@@ -254,47 +254,48 @@ void vKeyStoreHeader()
 
     try
     {
-    char acKeyName[defSTR_MaxSizeBreadth];
-    int m = 8; //length of /*@@key:
-    int n = 0;
-    
-    if( omStrTemp[0] == '\'' )
-    {
-        // Single char  
-        int id = omStrTemp[1];
-        if( IsValidAlpaNum( omStrTemp[1] ) == FALSE)//if not alpha numeric
+        char acKeyName[defSTR_MaxSizeBreadth];
+        int m = 8; //length of /*@@key:
+        int n = 0;
+
+        if( omStrTemp[0] == '\'' )
         {
-            char cTemp[2]; 
-            cTemp[0] = omStrTemp[1];
-            cTemp[1] = 0;
-            ouUnSptdKey.bAdd(cTemp);
+            // Single char
+            int id = omStrTemp[1];
+            if( IsValidAlpaNum( omStrTemp[1] ) == FALSE)//if not alpha numeric
+            {
+                char cTemp[2];
+                cTemp[0] = omStrTemp[1];
+                cTemp[1] = 0;
+                ouUnSptdKey.bAdd(cTemp);
+            }
+            else
+            {
+                //if alpha numeric
+                acSptdKey[cIndex2++] = omStrTemp[1];
+            }
         }
         else
-        { //if alpha numeric
-            acSptdKey[cIndex2++] = omStrTemp[1];
-        }
-    }
-    else
-    {
-        n = 0;
-        m = 0;
-        if( omStrTemp[m] != '*')
         {
-            while( omStrTemp[m] != NULL )
+            n = 0;
+            m = 0;
+            if( omStrTemp[m] != '*')
             {
-                acKeyName[n++] = omStrTemp[m++];
+                while( omStrTemp[m] != NULL )
+                {
+                    acKeyName[n++] = omStrTemp[m++];
+                }
+                acKeyName[n] = 0;
+                ouUnSptdKey.bAdd(acKeyName);
+
             }
-            acKeyName[n] = 0;
-            ouUnSptdKey.bAdd(acKeyName);
-            
         }
-    }
     }
 
     catch(...)
     {
         CString cs;
-        
+
         cs.Format(ExceptionFormat,"\"vKeyStoreHeader\"",__FILE__,__LINE__);
         MessageBox(0,cs,"Warning",MB_OK);
         exit(0);
@@ -306,7 +307,7 @@ void vKeyStoreHeader()
 * \param[in]     None Takes input from yytext
 * \return        Void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vHandleOnkey(CString& omStrKeyVal)
 {
@@ -315,7 +316,8 @@ void vHandleOnkey(CString& omStrKeyVal)
     g_ouGlobalVariables.g_oucaplEventHandleState = CAPL_EVENT_KEY;         //to be used to convert "this"
     fprintf(yyout,defSTR_Header);
     if( omStrKeyVal[0] == '*' )
-    {//for Key_All
+    {
+        //for Key_All
         omStrText = defSTR_KeyAllHeader;
         fprintf(yyout,omStrText);
         fprintf(yyout,defSTR_KeyAllStart);
@@ -324,7 +326,8 @@ void vHandleOnkey(CString& omStrKeyVal)
         omStrFunctionName.Replace(defSTR_FunctionDefinition, ";");
     }
     else
-    {//check for unsupported kay
+    {
+        //check for unsupported kay
         if( omStrKeyVal[0] =='\'')
         {
             omStrKeyVal = omStrKeyVal.Right( omStrKeyVal.GetLength() - 1 );
@@ -332,19 +335,22 @@ void vHandleOnkey(CString& omStrKeyVal)
         }
         int index = ouUnSptdKey.nFind( omStrKeyVal );
         if( index == -1)
-        {//means supported key
+        {
+            //means supported key
             omStrText = defSTR_KeyCharHeader;// + HandlerVal + " */\n";
             omStrText += omStrKeyVal + defSTR_HeaderFormat;
             fprintf(yyout,omStrText);
-            omStrFunctionName.Format(defSTR_KeyCharStart,omStrKeyVal[0]);            
+            omStrFunctionName.Format(defSTR_KeyCharStart,omStrKeyVal[0]);
             fprintf(yyout,"%s",omStrFunctionName.GetBuffer(MAX_PATH));
             omStrFunctionName.Replace(defSTR_FunctionDefinition, ";");
         }
         else
-        {//means unsupported key
+        {
+            //means unsupported key
             omStrText = defSTR_KeyCharHeader;
             if(  acAltKey[index] == -1)
-            { // if no alternate key is available
+            {
+                // if no alternate key is available
                 //array is initialised with -1
                 omStrText += omStrKeyVal + defSTR_HeaderFormat;
                 fprintf(yyout,omStrText);
@@ -381,7 +387,7 @@ void vHandleOnkey(CString& omStrKeyVal)
 * \param[out]    CString& omStrBMType CAPL Equivalent BM Storage Type
 * \return        S_OK if the Suitable Type is found otherwise S_FALSE
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 int GetBusmasterStorageType(CString& omStrCAPLType, CString& omStrBMType)
 {
@@ -441,13 +447,13 @@ int GetBusmasterStorageType(CString& omStrCAPLType, CString& omStrBMType)
 }
 /**
 * \brief         This Function will be called by the lexer at the start and end
-                 of the "variables" section of a CAPL File This function writes 
+                 of the "variables" section of a CAPL File This function writes
                  BM Global Variable header comments
-* \param[in]     BOOL bStart, TRUE if the variable section is started, FALSE if 
+* \param[in]     BOOL bStart, TRUE if the variable section is started, FALSE if
                  the section is over
 * \return        int
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 int onGlobalVariablesHeader(BOOL bStart)
 {
@@ -468,7 +474,7 @@ int onGlobalVariablesHeader(BOOL bStart)
 * \param[in]     CString& omStrcaplVariable CAPL Storage type.
 * \return        int
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 int ConvertToBMVariableDec(CString& omStrcaplVariable, bool bGlobal)
 {
@@ -514,12 +520,12 @@ int ConvertToBMVariableDec(CString& omStrcaplVariable, bool bGlobal)
     return S_OK;
 }
 /**
-* \brief         Called by the lexer when it encounters const variable 
+* \brief         Called by the lexer when it encounters const variable
                  declarations
 * \param[in]     bGlobal - TRUE if the declaration is in variable declaration
 * \return        int
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 int onConstGlobalVariables(bool bGlobal)
 {
@@ -531,7 +537,7 @@ int onConstGlobalVariables(bool bGlobal)
     {
         omStrTemp = omStrValue.Left(nIndex);
         omStrTemp.TrimLeft(" \n");
-		omStrTemp.TrimRight(" \n");
+        omStrTemp.TrimRight(" \n");
         if ( omStrTemp.CompareNoCase("const") == 0 )
         {
             omStrTemp = omStrValue.Right(omStrValue.GetLength()-nIndex);
@@ -545,12 +551,12 @@ int onConstGlobalVariables(bool bGlobal)
     return 0;
 }
 /**
-* \brief         Called by the lexer when it encounters global variable 
+* \brief         Called by the lexer when it encounters global variable
                  declarations
 * \param[in]     None
 * \return        int
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 int onGlobalVariables()
 {
@@ -563,12 +569,12 @@ int onGlobalVariables()
     return S_FALSE;
 }
 /**
-* \brief         Called by the lexer when it encounters loval variable 
+* \brief         Called by the lexer when it encounters loval variable
                  declarations
 * \param[in]     None
 * \return        int
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 int onLocalVariables()
 {
@@ -587,7 +593,7 @@ int onLocalVariables()
 * \param[in]     None
 * \return        int
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vFuNdef()
 {
@@ -609,7 +615,7 @@ void vFuNdef()
 * \param[in]     None
 * \return        int
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vHandleCaplSupportedFunction()
 {
@@ -617,10 +623,10 @@ void vHandleCaplSupportedFunction()
     CString omStrFunction = omStrTemp;
     RemoveComments(omStrFunction);
     omStrTemp.TrimLeft(" \t\n(");
-	omStrTemp.TrimRight(" \t\n(");
+    omStrTemp.TrimRight(" \t\n(");
     omStrFunction.TrimRight(" \t\n(");
 
-    
+
     //Handle some Specific Type of Functions
     if( omStrTemp.CompareNoCase("write") == 0 )
     {
@@ -643,7 +649,7 @@ void vHandleCaplSupportedFunction()
 * \param[in]     None
 * \return        int
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 VOID vHandleFunctionCall()
 {
@@ -654,58 +660,58 @@ VOID vHandleFunctionCall()
     start = omFunCall.Find("(",0);
     CString omFunName = omFunCall.Left(start);
     omFunName.TrimLeft(" \n\t");
-	omFunName.TrimRight(" \n\t");
+    omFunName.TrimRight(" \n\t");
 
     FunctionPrototype ouFunType;
     CString omStrNoCase = omFunName;
     omStrNoCase.MakeLower();
-	if ( omFunName.CompareNoCase("SetTimer") == 0 )
-	{
-		vHandleSetTimerCall();
-	}
+    if ( omFunName.CompareNoCase("SetTimer") == 0 )
+    {
+        vHandleSetTimerCall();
+    }
     else if ( omFunName.CompareNoCase("output") == 0 )
-	{
-		fprintf(yyout, "\noutput_CAPL(&");
-	}
+    {
+        fprintf(yyout, "\noutput_CAPL(&");
+    }
     else if ( omFunName.CompareNoCase("resetCan") == 0 )
-	{
-		fprintf(yyout, "\nResetController(1");
-	}
-     else if ( omFunName.CompareNoCase("elCount") == 0 )
-	{
-		fprintf(yyout, "\nsizeof(");
-	}
+    {
+        fprintf(yyout, "\nResetController(1");
+    }
+    else if ( omFunName.CompareNoCase("elCount") == 0 )
+    {
+        fprintf(yyout, "\nsizeof(");
+    }
     else if (GetUtilityFunctionPrototype(omFunName, ouFunType) == S_OK)
     {
         CStringArray omFunctionArray;
-		INT_PTR nArgCount = ouFunType.m_ouArgList.GetSize();
+        INT_PTR nArgCount = ouFunType.m_ouArgList.GetSize();
         CString omStrBMFunction;
         if(ouFunType.m_bMsgArgPresent == TRUE )
-		{
-		    CString omStrFunction;
-			vReadFunctionCall(omStrFunction);
+        {
+            CString omStrFunction;
+            vReadFunctionCall(omStrFunction);
             nFormBMFunctionCall(omStrFunction, omStrBMFunction);
-		    fprintf(yyout, "\n %s", omStrBMFunction.GetBuffer(MAX_PATH));     
+            fprintf(yyout, "\n %s", omStrBMFunction.GetBuffer(MAX_PATH));
         }
         else
         {
-            omStrBMFunction = defSTR_Utils; 
+            omStrBMFunction = defSTR_Utils;
             omStrBMFunction += omFunName + "(";
             fprintf(yyout, "\n %s", omStrBMFunction.GetBuffer(MAX_PATH));
         }
     }
-    
-    
+
+
     else if(omStrNoCase == "if" || omStrNoCase == "switch" || omStrNoCase =="do"
-                                        || omStrNoCase == "while"||omStrNoCase == "for"
-                                        || omStrNoCase == "return"|| omStrNoCase == "case"  )
+            || omStrNoCase == "while"||omStrNoCase == "for"
+            || omStrNoCase == "return"|| omStrNoCase == "case"  )
     {
         //fprintf(yyout, " %s(", omStrNoCase.GetBuffer(MAX_PATH));;
         ECHO;
         return;
     }
 
-    /*else if(omFunName == "if" || omFunName == "switch" || omFunName =="do"|| 
+    /*else if(omFunName == "if" || omFunName == "switch" || omFunName =="do"||
                 omFunName == "while"|| omFunName == "for"||omFunName == "return")
     {
         ECHO;
@@ -726,40 +732,40 @@ VOID vHandleFunctionCall()
 }
 
 /**
-* \brief         Created a Busmaster Function call by Typecasting Message 
+* \brief         Created a Busmaster Function call by Typecasting Message
                  Argument with STCAN_MSG
 * \param[in]     CString& omStrFunction - capl funcation call
 * \param[out]     CString& omStrBMFunction - BM Function call
 * \return        int
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 INT nFormBMFunctionCall(CString& omStrFunction, CString& omStrBMFunction)
 {
     FunctionPrototype ouFunDetails;
     RetriveFunctionDetails(omStrFunction, ouFunDetails, TYPE_FUNCALL);
-	FunctionPrototype ouFunType;
+    FunctionPrototype ouFunType;
     GetUtilityFunctionPrototype(ouFunDetails.m_omStrFunName, ouFunType);
     omStrBMFunction = defSTR_Utils;
     omStrBMFunction += ouFunDetails.m_omStrFunName + "(";
-	for(int i = 0 ; i < ouFunDetails.m_omStrFunNameArray.GetSize(); i++)
-	{
-		//omStrBMFunction = ouFunDetails.m_omStrFunName + " ( ";
-		if(ouFunType.m_ouArgList.GetAt(i) == CAPL_MESSAGE)
-		{
-			CString omStrTemp;
+    for(int i = 0 ; i < ouFunDetails.m_omStrFunNameArray.GetSize(); i++)
+    {
+        //omStrBMFunction = ouFunDetails.m_omStrFunName + " ( ";
+        if(ouFunType.m_ouArgList.GetAt(i) == CAPL_MESSAGE)
+        {
+            CString omStrTemp;
             if( ouFunDetails.m_omStrFunNameArray.GetAt(i).CompareNoCase("this") == 0)
             {
                 omStrTemp.Format(defSTR_StcanTypecase, defSTR_RxMsg);
             }
             else
             {
-			    omStrTemp.Format(defSTR_StcanTypecase, ouFunDetails.m_omStrFunNameArray.GetAt(i));
+                omStrTemp.Format(defSTR_StcanTypecase, ouFunDetails.m_omStrFunNameArray.GetAt(i));
             }
             omStrBMFunction += omStrTemp + ",";
-		}
-		else
-		{
+        }
+        else
+        {
             CString omStrArg;
             CString omStrRetArg;
             if ( HandleArgument(ouFunDetails, i, omStrRetArg) == TRUE)
@@ -772,24 +778,24 @@ INT nFormBMFunctionCall(CString& omStrFunction, CString& omStrBMFunction)
             {
                 omStrBMFunction += ouFunDetails.m_omStrFunNameArray.GetAt(i) + ",";
             }
-			
-		}
-	}
-	omStrBMFunction.TrimRight(",");
-	omStrBMFunction += ")";
+
+        }
+    }
+    omStrBMFunction.TrimRight(",");
+    omStrBMFunction += ")";
     return 0;
 }
 
 /**
-* \brief         Handles the Function call argument and if the argument 
+* \brief         Handles the Function call argument and if the argument
 * \param[in]     FunctionPrototype& ouFunDetails - Function Deatails
 * \param[in]     INT &nArgIndex                  - Argument index in ouFunDetails
-* \param[out]    CString& omStrFunction          - Function Call   
+* \param[out]    CString& omStrFunction          - Function Call
 * \return        TRUE if the argument is function call
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
-BOOL HandleArgument(FunctionPrototype& ouFunDetails, INT &nArgIndex, CString& omStrFunction )
+BOOL HandleArgument(FunctionPrototype& ouFunDetails, INT& nArgIndex, CString& omStrFunction )
 {
     CString omStrArg = ouFunDetails.m_omStrFunNameArray.GetAt(nArgIndex);
     if(isFunction(omStrArg) == TRUE)
@@ -827,7 +833,7 @@ BOOL HandleArgument(FunctionPrototype& ouFunDetails, INT &nArgIndex, CString& om
 * \param[in]     CString omStrArg - Input Text
 * \return        TRUE if the argument is function call
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 BOOL isFunction(CString omStrArg)
 {
@@ -836,7 +842,7 @@ BOOL isFunction(CString omStrArg)
     if(omStrArg[0] != '"')
     {
         int nIndex = omStrArg.Find("(", 1);
-    
+
         if(nIndex >= 1)
         {
             if((IsValidAlpaNum(omStrArg[nIndex-1]) == TRUE) || (omStrArg[nIndex-1] == '_'))
@@ -853,37 +859,37 @@ BOOL isFunction(CString omStrArg)
 * \param[in]     NONE
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vHandleSetTimerCall()
 {
-	char ch;
-	CString omStrTimerName;
-	while ( (ch = yyinput()) != ',')
-	{
-		omStrTimerName += ch; 
-	}
-	omStrTimerName.TrimLeft(" \n");
-	omStrTimerName.TrimRight(" \n");
-	RemoveComments(omStrTimerName);
-	INT_PTR nCount = g_ouGlobalVariables.g_omStrMsTimers.GetSize();
-	BOOL bTimerFound = FALSE;
-	for(int i =0 ; i< nCount; i++)
-	{
-		if ( omStrTimerName == g_ouGlobalVariables.g_omStrMsTimers.GetAt(i) )
-		{
-			bTimerFound = TRUE;
-			break;
-		}
-	}
-	if( bTimerFound == TRUE )
-	{
-		fprintf(yyout, "\n\tsettimer_CAPL(MSEC_TIMER, %s, ", omStrTimerName);
-	}
-	else
-	{
-		fprintf(yyout, "\n\tsettimer_CAPL(SEC_TIMER, %s, ", omStrTimerName);
-	}
+    char ch;
+    CString omStrTimerName;
+    while ( (ch = yyinput()) != ',')
+    {
+        omStrTimerName += ch;
+    }
+    omStrTimerName.TrimLeft(" \n");
+    omStrTimerName.TrimRight(" \n");
+    RemoveComments(omStrTimerName);
+    INT_PTR nCount = g_ouGlobalVariables.g_omStrMsTimers.GetSize();
+    BOOL bTimerFound = FALSE;
+    for(int i =0 ; i< nCount; i++)
+    {
+        if ( omStrTimerName == g_ouGlobalVariables.g_omStrMsTimers.GetAt(i) )
+        {
+            bTimerFound = TRUE;
+            break;
+        }
+    }
+    if( bTimerFound == TRUE )
+    {
+        fprintf(yyout, "\n\tsettimer_CAPL(MSEC_TIMER, %s, ", omStrTimerName);
+    }
+    else
+    {
+        fprintf(yyout, "\n\tsettimer_CAPL(SEC_TIMER, %s, ", omStrTimerName);
+    }
 }
 
 /**
@@ -893,12 +899,12 @@ void vHandleSetTimerCall()
 * \return        S_OK if the omFunName is a valid utility function
                  S_FALSE otherwise
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 int GetUtilityFunctionPrototype(CString& omFunName, FunctionPrototype& ouFunType)
 {
-	INT_PTR nCount  = g_ouGlobalVariables.g_ouFunctionPrototypeList.GetCount();
-    
+    INT_PTR nCount  = g_ouGlobalVariables.g_ouFunctionPrototypeList.GetCount();
+
     for ( INT_PTR i = 0 ; i< nCount; i++)
     {
         POSITION pos = g_ouGlobalVariables.g_ouFunctionPrototypeList.FindIndex(i);
@@ -917,7 +923,7 @@ int GetUtilityFunctionPrototype(CString& omFunName, FunctionPrototype& ouFunType
 * \return        S_OK if the omFunName is BM supported CAPL Name
                  S_FALSE otherwise
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 int isCaplSupportedFunction(CString& omFunName)
 {
@@ -934,7 +940,7 @@ int isCaplSupportedFunction(CString& omFunName)
 * \param[out]    CString& omStrArgName - Argument name
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void GetNameFromArgType(caplArgType ouArgType, CString& omStrArgName)
 {
@@ -980,7 +986,7 @@ void GetNameFromArgType(caplArgType ouArgType, CString& omStrArgName)
 * \param[in]     CString& omStrName - Argument name
 * \return        caplArgType
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 caplArgType GetArgTypeFromName(const CString& omStrName)
 {
@@ -1029,7 +1035,7 @@ caplArgType GetArgTypeFromName(const CString& omStrName)
     {
         retArgType = CAPL_VOID;
     }
-    /*else   
+    /*else
     {
         retArgType = ((bIsPointer == TRUE) ? CAPL_PINT : CAPL_INT);
     }*/
@@ -1042,7 +1048,7 @@ caplArgType GetArgTypeFromName(const CString& omStrName)
 * \param[out]    FunctionPrototype& ouFunType - Function Details
 * \return        caplArgType
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 INT RetriveFunctionDetails(CString omStrFunction, FunctionPrototype& ouFunType, eCALLTYPE eType)
 {
@@ -1055,9 +1061,9 @@ INT RetriveFunctionDetails(CString omStrFunction, FunctionPrototype& ouFunType, 
     INT nIndex = omStrFunction.Find("(", 0);
     if( nIndex >= 0)
     {
-        CString omFunTypeName = omStrFunction.Left(nIndex); 
+        CString omFunTypeName = omStrFunction.Left(nIndex);
         omFunTypeName.TrimRight(" \n\t");
-        nIndex = omFunTypeName.Find(" ", 0); 
+        nIndex = omFunTypeName.Find(" ", 0);
         if( nIndex >= 0)
         {
             CString omStrFunType = omFunTypeName.Left(nIndex);
@@ -1076,14 +1082,14 @@ INT RetriveFunctionDetails(CString omStrFunction, FunctionPrototype& ouFunType, 
             ouFunType.m_omStrFunName = omFunTypeName;
             ouFunType.m_ouRetType = CAPL_VOID;
         }
-    
+
     }
 
     CString omStrNoCase = ouFunType.m_omStrFunName;
     omStrNoCase.MakeLower();
     if(omStrNoCase == "if" || omStrNoCase == "switch" || omStrNoCase =="do"
-                                        || omStrNoCase == "while"||omStrNoCase == "for"
-                                        || omStrNoCase == "return"|| omStrNoCase == "case"  )
+            || omStrNoCase == "while"||omStrNoCase == "for"
+            || omStrNoCase == "return"|| omStrNoCase == "case"  )
     {
         return CONDITIONAL_STATEMENT;
     }
@@ -1095,7 +1101,7 @@ INT RetriveFunctionDetails(CString omStrFunction, FunctionPrototype& ouFunType, 
     }*/
     //Find Arguments
     INT nCurPos = omStrFunction.Find("(", 0);
-	INT nArgCount = 0;
+    INT nArgCount = 0;
     nCurPos++;
     //Delete Last one )
     if( eType == TYPE_FUNCALL)
@@ -1109,9 +1115,9 @@ INT RetriveFunctionDetails(CString omStrFunction, FunctionPrototype& ouFunType, 
             }
         }
     }
-    
-	CString omStrTemp = "";
-	vTokenize(omStrFunction, ",", omStrTemp, nCurPos);
+
+    CString omStrTemp = "";
+    vTokenize(omStrFunction, ",", omStrTemp, nCurPos);
     ouFunType.m_ouArgList.RemoveAll();
     while (omStrTemp != "")
     {
@@ -1119,7 +1125,7 @@ INT RetriveFunctionDetails(CString omStrFunction, FunctionPrototype& ouFunType, 
         {
             omStrTemp.TrimLeft(" ");
             INT nIndex = omStrTemp.Find(" ");
-            if( nIndex >= 0)	//FUNCTION DEFINITION
+            if( nIndex >= 0)    //FUNCTION DEFINITION
             {
                 bRet = VALID_FUNCTION;
                 CString omStrArgType = omStrTemp.Left(nIndex);
@@ -1128,23 +1134,23 @@ INT RetriveFunctionDetails(CString omStrFunction, FunctionPrototype& ouFunType, 
                 omStrArgName.TrimRight(")\n\t");    //TODO::CHECK ' '
                 omStrArgName.Remove(' ');
                 omStrArgName.TrimLeft("*");
-				omStrArgName.TrimRight("*");
+                omStrArgName.TrimRight("*");
                 caplArgType ouArgType = GetArgTypeFromName(omStrArgType);
-			    if(ouArgType ==CAPL_MESSAGE)
-			    {
-				    ouFunType.m_bMsgArgPresent = TRUE;
-			    }
+                if(ouArgType ==CAPL_MESSAGE)
+                {
+                    ouFunType.m_bMsgArgPresent = TRUE;
+                }
                 ouFunType.m_ouArgList.Add(ouArgType);
                 ouFunType.m_omStrFunNameArray.Add(omStrArgName);
-			    nArgCount++;
+                nArgCount++;
             }
             else
             {
                 bRet = INVALID_FUNCTION;
             }
         }
-		else if( eType == TYPE_FUNCALL)		//FUNCATION CALL
-		{
+        else if( eType == TYPE_FUNCALL)     //FUNCATION CALL
+        {
 
             omStrTemp.TrimLeft(" \n\t");            //TODO::CHECK ' '
             omStrTemp.TrimRight(" \n\t");          //TODO::CHECK ' '
@@ -1166,12 +1172,12 @@ INT RetriveFunctionDetails(CString omStrFunction, FunctionPrototype& ouFunType, 
                 }
             }
             ouFunType.m_omStrFunNameArray.Add(omStrTemp);
-			caplArgType argType = CAPL_VOID;
-			ouFunType.m_ouArgList.Add(argType);
-			nArgCount++;
-		}
-		omStrTemp.Empty();
-		vTokenize(omStrFunction, ",", omStrTemp, nCurPos);
+            caplArgType argType = CAPL_VOID;
+            ouFunType.m_ouArgList.Add(argType);
+            nArgCount++;
+        }
+        omStrTemp.Empty();
+        vTokenize(omStrFunction, ",", omStrTemp, nCurPos);
     };
     return VALID_FUNCTION;
 }
@@ -1181,7 +1187,7 @@ INT RetriveFunctionDetails(CString omStrFunction, FunctionPrototype& ouFunType, 
 * \param[inout]  CString& omTempString - String input and output
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 BOOL RemoveComments(CString& omTempString)
 {
@@ -1197,12 +1203,12 @@ BOOL RemoveComments(CString& omTempString)
             i = omTempString.Find("*/", nIndex);
             if(i >= 0)
             {
-				CString omTempLeft = omTempString.Left(nIndex);
-				CString omTempRight = omTempString.Right(omTempString.GetLength()-i-2);
-				//Mid(nIndex, i-nIndex+2);
-				omTempLeft.TrimRight(" \n\t");
-				omTempRight.TrimRight(" \n\t");
-				omTempString = omTempLeft + " " + omTempRight;
+                CString omTempLeft = omTempString.Left(nIndex);
+                CString omTempRight = omTempString.Right(omTempString.GetLength()-i-2);
+                //Mid(nIndex, i-nIndex+2);
+                omTempLeft.TrimRight(" \n\t");
+                omTempRight.TrimRight(" \n\t");
+                omTempString = omTempLeft + " " + omTempRight;
                 i = 0;
             }
         }
@@ -1217,7 +1223,7 @@ BOOL RemoveComments(CString& omTempString)
     nStringCount = omTempString.GetLength();
     for(INT i=0; i < omTempString.GetLength();)
     {
-       // omTempString.Trim(" \t\n");
+        // omTempString.Trim(" \t\n");
         INT nIndex = omTempString.Find("//", i);
         if(nIndex >= 0)
         {
@@ -1242,10 +1248,10 @@ BOOL RemoveComments(CString& omTempString)
 }
 /**
 * \brief         Handles the CAPL "on prestart" event
-* \param[in]     None  
+* \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vHandleOnPreStart()
 {
@@ -1258,10 +1264,10 @@ void vHandleOnPreStart()
 }
 /**
 * \brief         Handles the CAPL "on start" event
-* \param[in]     None  
+* \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vHandleOnStart()
 {
@@ -1274,16 +1280,16 @@ void vHandleOnStart()
 
     omStrTemp = defSTF_Extern + omStrTemp + ";";
     g_ouGlobalVariables.g_omStrFunCalls.Add(omStrTemp);
-   
+
     fprintf(yyout,"\n\tUtils_PreStart();");
 
 }
 /**
 * \brief         Handles the CAPL "on stopMeasurement" event
-* \param[in]     None  
+* \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vHandleOnstopMeasurement()
 {
@@ -1299,10 +1305,10 @@ void vHandleOnstopMeasurement()
 }
 /**
 * \brief         Handles the CAPL "on message" event
-* \param[in]     None  
+* \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vHandleOnmessage(CString& omStrMessage)
 {
@@ -1335,7 +1341,8 @@ void vHandleOnmessage(CString& omStrMessage)
         omStrBMMsgFormat = defSTR_OnMsgAllStart;
     }
     else if( !isdigit( omStrMessage[0] ) )
-    {//for message name
+    {
+        //for message name
         start = omStrMessage.Find("::", 0);
         if( start != -1 )
         {
@@ -1355,111 +1362,116 @@ void vHandleOnmessage(CString& omStrMessage)
         }
         g_ouGlobalVariables.omStrLastEvent = defSTR_MsgNameHeader;
         g_ouGlobalVariables.omStrLastEvent += omStrMessage + defSTR_HeaderFormat;
-        
+
 
         omStrBMMsgFormat.Format(defSTR_MsgNameStart,omStrMessage,omStrMessage);
-        
+
         //we have replaced "STCAN_MSG" with message name in this case
-    } 
-    else 
+    }
+    else
     {
         if( omStrMessage[ omStrMessage.GetLength() - 1] == 'x' ||
-            omStrMessage[ omStrMessage.GetLength() - 1] == 'X' )
-        {//avoid x for extended
+                omStrMessage[ omStrMessage.GetLength() - 1] == 'X' )
+        {
+            //avoid x for extended
             omStrMessage = omStrMessage.Left( omStrMessage.GetLength() - 1 );
         }
         start = omStrMessage.Find('-',0);
 
         if ( start >= 0 )
         {
-			//means msgrange
-			g_ouGlobalVariables.omStrLastEvent = defSTR_MsgIdRangeHeader;
-			CString id;
-			id = omStrMessage.Left( start );
-			if( id[1] == 'x' || id[1] == 'X')
-			{//hex
-				id = id.Right( id.GetLength() - 2 );//avoid"0x"
-			}
-			else
-			{//decimal
-				char *stop;
-				id.Format("%x",strtol( id, &stop, 10 ));
-				//          id = CString( strtol(id,&stop,16) );
-			}
-			g_ouGlobalVariables.omStrLastEvent += id + '_';
-			id = omStrMessage.Right( omStrMessage.GetLength() - start- 1);
-			if( id[1] == 'x' || id[1] == 'X')
-			{//hex
-				id = id.Right( id.GetLength() - 2 );//avoid"0x"
-			}
-			else
-			{//decimal
-				char *stop;
-				id.Format("%x",strtol( id, &stop, 10 ));
-				//      id = CString( strtol(id,&stop,16) );
-			}
-			g_ouGlobalVariables.omStrLastEvent +=id + defSTR_HeaderFormat;
-			start = g_ouGlobalVariables.omStrLastEvent.Find('_',0);
-			id = g_ouGlobalVariables.omStrLastEvent.Right( g_ouGlobalVariables.omStrLastEvent.GetLength() - start - 1 );
-			id = id.Left( id.GetLength() - 3 );//extract the range
+            //means msgrange
+            g_ouGlobalVariables.omStrLastEvent = defSTR_MsgIdRangeHeader;
+            CString id;
+            id = omStrMessage.Left( start );
+            if( id[1] == 'x' || id[1] == 'X')
+            {
+                //hex
+                id = id.Right( id.GetLength() - 2 );//avoid"0x"
+            }
+            else
+            {
+                //decimal
+                char* stop;
+                id.Format("%x",strtol( id, &stop, 10 ));
+                //          id = CString( strtol(id,&stop,16) );
+            }
+            g_ouGlobalVariables.omStrLastEvent += id + '_';
+            id = omStrMessage.Right( omStrMessage.GetLength() - start- 1);
+            if( id[1] == 'x' || id[1] == 'X')
+            {
+                //hex
+                id = id.Right( id.GetLength() - 2 );//avoid"0x"
+            }
+            else
+            {
+                //decimal
+                char* stop;
+                id.Format("%x",strtol( id, &stop, 10 ));
+                //      id = CString( strtol(id,&stop,16) );
+            }
+            g_ouGlobalVariables.omStrLastEvent +=id + defSTR_HeaderFormat;
+            start = g_ouGlobalVariables.omStrLastEvent.Find('_',0);
+            id = g_ouGlobalVariables.omStrLastEvent.Right( g_ouGlobalVariables.omStrLastEvent.GetLength() - start - 1 );
+            id = id.Left( id.GetLength() - 3 );//extract the range
             g_ouGlobalVariables.omStrLastEvent.Format("%s%s%s", defSTR_MsgIdRangeHeader, id, defSTR_HeaderFormat);
             omStrBMMsgFormat.Format(defSTR_MsgIdRangeStart,id);
         }
-		else
-		{
-			CString omStrList;
+        else
+        {
+            CString omStrList;
             start = omStrMessage.Find(',',0);
             if ( start >=0 )
-			{
-				//For discreate
-                start = 0;                
-				CString omStrTemp = "";
-				vTokenize(omStrMessage, ",", omStrTemp, start);
+            {
+                //For discreate
+                start = 0;
+                CString omStrTemp = "";
+                vTokenize(omStrMessage, ",", omStrTemp, start);
                 while (omStrTemp != "")
                 {
                     omStrTemp.TrimLeft(" ");
-                    omStrList += omStrTemp + "_";				
-					omStrTemp.Empty();
-					vTokenize(omStrMessage, ",", omStrTemp, start);
+                    omStrList += omStrTemp + "_";
+                    omStrTemp.Empty();
+                    vTokenize(omStrMessage, ",", omStrTemp, start);
                 };
                 omStrList.TrimRight("_");
                 g_ouGlobalVariables.omStrLastEvent = defSTR_MsgIdRangeHeader + omStrList + defSTR_HeaderFormat;
                 omStrBMMsgFormat.Format(defSTR_MsgIdListStart, omStrList);
-			}
-			else
-			{
-				//means id
-				g_ouGlobalVariables.omStrLastEvent = defSTR_MsgIdUs ;
-				if( omStrMessage[1] =='x' || omStrMessage[1] =='X')
-				{
-					omStrMessage = omStrMessage.Right( omStrMessage.GetLength() - 2);
-				}
-				else
-				{
-					char *stop;
+            }
+            else
+            {
+                //means id
+                g_ouGlobalVariables.omStrLastEvent = defSTR_MsgIdUs ;
+                if( omStrMessage[1] =='x' || omStrMessage[1] =='X')
+                {
+                    omStrMessage = omStrMessage.Right( omStrMessage.GetLength() - 2);
+                }
+                else
+                {
+                    char* stop;
 
-					omStrMessage.Format("%x",strtol( omStrMessage, &stop, 10)) ;
+                    omStrMessage.Format("%x",strtol( omStrMessage, &stop, 10)) ;
 
-				}
-				g_ouGlobalVariables.omStrLastEvent += omStrMessage + defSTR_HeaderFormat;
+                }
+                g_ouGlobalVariables.omStrLastEvent += omStrMessage + defSTR_HeaderFormat;
                 omStrBMMsgFormat.Format(defSTR_MsgIdStart,omStrMessage);
-			}
-		}
+            }
+        }
     }
     if (omStrBMMsgFormat.GetLength() > 0)
     {
         fprintf(yyout,g_ouGlobalVariables.omStrLastEvent);
         fprintf(yyout,omStrBMMsgFormat,omStrMessage);
-		
+
 
 
         omStrFunctionName = omStrBMMsgFormat;
         omStrFunctionName.TrimRight(defSTR_FunctionDefinition);
         omStrFunctionName = defSTF_Extern + omStrFunctionName + ";";
-		omStrFunctionName.Replace("_7016A3A052554b2dA5526D504AA2CE1A","");
+        omStrFunctionName.Replace("_7016A3A052554b2dA5526D504AA2CE1A","");
         g_ouGlobalVariables.g_omStrFunCalls.Add(omStrFunctionName);
 
-		
+
         if(nChannel > 0)
         {
             fprintf(yyout, defSTR_ChannelFilter, nChannel);
@@ -1468,30 +1480,30 @@ void vHandleOnmessage(CString& omStrMessage)
 }
 /**
 * \brief         Handles the CAPL Typecasting
-* \param[in]     None  
+* \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vHandleTypeCaste()
 {
     CString omStrExpression = yytext;
     CString omStrLeftOperand;
-	omStrExpression.TrimLeft(" \n");
-	omStrExpression.TrimRight(" \n");
+    omStrExpression.TrimLeft(" \n");
+    omStrExpression.TrimRight(" \n");
 
     int nStart, nEnd;
     if( omStrExpression[0] == ';' || omStrExpression[0] == ',')
     {
         fprintf( yyout,"%c", omStrExpression[0] );
     }
-    
+
     nStart = omStrExpression.Find("(",0);
     nEnd = omStrExpression.FindOneOf(")");
 
     omStrLeftOperand = omStrExpression.Mid(nStart+1, nEnd-nStart-1);
-	omStrLeftOperand.TrimLeft(" ");
-	omStrLeftOperand.TrimRight(" ");
+    omStrLeftOperand.TrimLeft(" ");
+    omStrLeftOperand.TrimRight(" ");
 
     if(GetBusmasterStorageType(omStrLeftOperand, omStrLeftOperand) == S_OK )
     {
@@ -1505,10 +1517,10 @@ void vHandleTypeCaste()
 
 /**
 * \brief         Handles the CAPL Message Type casting
-* \param[in]     None  
+* \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vHandleMsgTypeCaste()
 {
@@ -1526,13 +1538,13 @@ void vHandleMsgTypeCaste()
     omStrLeftOperand = omStrExpression.Left( nStart );//name of variable
     omStrLeftOperand.TrimLeft();
     omStrLeftOperand.TrimRight();
-    
+
     nStart = omStrExpression.Find(")");
     nEnd = omStrExpression.FindOneOf(",;");
 
     omStrRightOperand = omStrExpression.Mid(nStart+1, nEnd-nStart-1);
-	omStrRightOperand.TrimLeft(" \n");
-	omStrRightOperand.TrimRight(" \n");
+    omStrRightOperand.TrimLeft(" \n");
+    omStrRightOperand.TrimRight(" \n");
 
     if(omStrRightOperand.CompareNoCase("this") == 0)
     {
@@ -1543,10 +1555,10 @@ void vHandleMsgTypeCaste()
 
 /**
 * \brief         Handles the CAPL Utility Function call
-* \param[in]     None  
+* \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vHandleUtilityFun()
 {
@@ -1562,7 +1574,7 @@ void vHandleUtilityFun()
         if ( VALID_FUNCTION == nFunType)
         {
             g_ouGlobalVariables.g_ouLocalMsgVariables.RemoveAll();
-            
+
             if( g_ouGlobalVariables.omStrLastEvent.GetLength() > 0)
             {
                 fprintf(yyout, "\n%s%s\n", defSTR_EndComment, g_ouGlobalVariables.omStrLastEvent);
@@ -1570,19 +1582,19 @@ void vHandleUtilityFun()
             }
             CString omStrBMFunction;
             //TODO::
-            FormBMFunction(ouFunType, omStrBMFunction);     
+            FormBMFunction(ouFunType, omStrBMFunction);
 
             g_ouGlobalVariables.omStrLastEvent = "Utils_"+ ouFunType.m_omStrFunName;
             g_ouGlobalVariables.omStrLastEvent += " */";
             fprintf(yyout, "%s%s", defSTR_Header, g_ouGlobalVariables.omStrLastEvent);
             fprintf(yyout, "\n%s", omStrBMFunction.GetBuffer(MAX_PATH));
-            
+
             omStrBMFunction.TrimRight(defSTR_FunctionDefinition);
 
             omStrBMFunction = omStrBMFunction + ";";
             g_ouGlobalVariables.g_omStrFunCalls.Add(omStrBMFunction);
         }
-	    else if ( CONDITIONAL_STATEMENT == nFunType)
+        else if ( CONDITIONAL_STATEMENT == nFunType)
         {
             omStrText = yytext;
             CString omStrThisText;
@@ -1598,19 +1610,19 @@ void vHandleUtilityFun()
             fprintf(yyout, "%s", omStrText.GetBuffer(MAX_PATH));
         }
         else
-	    {
-		    ECHO;
-	    }
+        {
+            ECHO;
+        }
     }
 }
 
 /**
 * \brief         Replaces this in the string
-* \param[in]     CString& omStrText - input string  
-* \param[out]    CString& omStrThisText - output string  
+* \param[in]     CString& omStrText - input string
+* \param[out]    CString& omStrThisText - output string
 * \return        int
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 int nReplaceThisInFunction(CString& omStrText, CString& omStrThisText)
 {
@@ -1619,7 +1631,7 @@ int nReplaceThisInFunction(CString& omStrText, CString& omStrThisText)
     INT nStopIndex = -1;
     if(nStartIndex >= 0)
     {
-       nStopIndex = omStrText.Find(")", nStartIndex);
+        nStopIndex = omStrText.Find(")", nStartIndex);
     }
     if(nStopIndex >= 0)
     {
@@ -1684,7 +1696,7 @@ INT FormBMFunction(FunctionPrototype& ouFunProtoType,CString& omStrBMFunction)
         if(omStrTemp == "STCAN_MSG" )
         {
             omStrTemp += "&";
-            //ouMsgVariable.m_omStrMsgType = 
+            //ouMsgVariable.m_omStrMsgType =
         }
 
         omStrBMFunction += omStrTemp + " ";
@@ -1700,7 +1712,7 @@ INT FormBMFunction(FunctionPrototype& ouFunProtoType,CString& omStrBMFunction)
 * \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vHandleCaplEvents()
 {
@@ -1714,7 +1726,7 @@ void vHandleCaplEvents()
 
     CString omStrName = yytext;
     RemoveComments(omStrName);
-    
+
     CString omStrTemp = omStrName;
     omStrTemp.MakeLower();
     INT nIndex;
@@ -1723,7 +1735,7 @@ void vHandleCaplEvents()
         if( (nIndex = omStrTemp.Find("key")) >= 0 )
         {
             omStrTemp = omStrName;
-            omStrTemp = omStrName.Right( omStrName.GetLength() - nIndex-3); 
+            omStrTemp = omStrName.Right( omStrName.GetLength() - nIndex-3);
             omStrTemp.TrimLeft(" \n\t");
             omStrTemp.TrimRight(" \n\t{");
             g_ouGlobalVariables.g_oucaplEventHandleState = CAPL_EVENT_KEY;
@@ -1732,7 +1744,7 @@ void vHandleCaplEvents()
         else if( (nIndex = omStrTemp.Find("message")) >= 0 )
         {
             omStrTemp = omStrName;
-            omStrTemp = omStrName.Right( omStrName.GetLength() - nIndex-7); 
+            omStrTemp = omStrName.Right( omStrName.GetLength() - nIndex-7);
             omStrTemp.TrimLeft(" \n\t");
             omStrTemp.TrimRight(" \n\t{");
             vHandleOnmessage(omStrTemp);
@@ -1742,22 +1754,22 @@ void vHandleCaplEvents()
         {
             CString omStrFuncName;
             omStrTemp = omStrName;
-            omStrTemp = omStrName.Right( omStrName.GetLength() - nIndex-5); 
+            omStrTemp = omStrName.Right( omStrName.GetLength() - nIndex-5);
             omStrTemp.TrimLeft(" \n\t");
             omStrTemp.TrimRight(" \n\t{");
 
             fprintf(yyout, "\n%s%s%s%s\n", defSTR_Header, defSTR_OnTimer, omStrTemp, " */");
 
-            
+
             omStrFuncName.Format(defSTR_TimerStart,omStrTemp);
             fprintf(yyout,"%s", omStrFuncName.GetBuffer(MAX_PATH));
-            
+
             omStrFuncName.TrimRight(defSTR_FunctionDefinition);
             omStrFuncName = defSTF_Extern + omStrFuncName + ";";
             g_ouGlobalVariables.g_omStrFunCalls.Add(omStrFuncName);
-            
+
             g_ouGlobalVariables.g_oucaplEventHandleState = CAPL_EVENT_TIMER;
-            
+
             g_ouGlobalVariables.omStrLastEvent = defSTR_OnTimer + omStrTemp + " */";
         }
         else if( (nIndex = omStrTemp.Find("prestart")) >= 0 )
@@ -1803,7 +1815,7 @@ void vHandleCaplEvents()
 
             CString omStrTemp = defSTR_ErrorActiveStart;
             omStrTemp.TrimRight(defSTR_FunctionDefinition);
-            
+
             omStrTemp = defSTF_Extern + omStrTemp + ";";
             g_ouGlobalVariables.g_omStrFunCalls.Add(omStrTemp);
         }
@@ -1853,8 +1865,8 @@ void vHandleCaplEvents()
             fprintf(yyout, "//%s", omStrText);
         }
     }
-   
- //   MessageBox(0, omStrTemp, "Hi", MB_OK);
+
+    //   MessageBox(0, omStrTemp, "Hi", MB_OK);
 }
 
 /**
@@ -1862,47 +1874,48 @@ void vHandleCaplEvents()
 * \param[in]     CString& omStrVal - Timer Declarations
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
+* \date
 */
 void vHandleTimerDeclaration(CString& omStrVal)
 {
     try
     {
-    CString val, name ;
-    int start;
-    if( omStrVal[0] == ';')
-    {
-        fprintf(yyout,";");
-    }
-    val = omStrVal;
-
-    start = val.Find(' ',0);
-
-    name = val.Left(start  );
-    name.MakeLower();//extract the datatype
-    omStrVal.Empty();
-    if( name.Find("timer") != -1 )
-    {//it is timer
-        val = val.Right( val.GetLength() - start - 1);
-        val.TrimLeft();
-        while(val.GetLength() != 0 )//till end of text
+        CString val, name ;
+        int start;
+        if( omStrVal[0] == ';')
         {
-            start = val.FindOneOf(",;");
-            name = val.Left( start);
-            name.TrimLeft();
-            name.TrimRight();
-            CString omStrTemp;
-            omStrTemp.Format("%s %s[] = \"%s%s\";", "char", name, defSTR_OnTimer, name);
-            omStrVal += omStrTemp;
-            //ouTimerName.bAdd( name );//add in array
-            val = val.Right( val.GetLength() - start - 1 );
+            fprintf(yyout,";");
         }
-    }
+        val = omStrVal;
+
+        start = val.Find(' ',0);
+
+        name = val.Left(start  );
+        name.MakeLower();//extract the datatype
+        omStrVal.Empty();
+        if( name.Find("timer") != -1 )
+        {
+            //it is timer
+            val = val.Right( val.GetLength() - start - 1);
+            val.TrimLeft();
+            while(val.GetLength() != 0 )//till end of text
+            {
+                start = val.FindOneOf(",;");
+                name = val.Left( start);
+                name.TrimLeft();
+                name.TrimRight();
+                CString omStrTemp;
+                omStrTemp.Format("%s %s[] = \"%s%s\";", "char", name, defSTR_OnTimer, name);
+                omStrVal += omStrTemp;
+                //ouTimerName.bAdd( name );//add in array
+                val = val.Right( val.GetLength() - start - 1 );
+            }
+        }
     }
     catch(...)
     {
         CString cs;
-        
+
         cs.Format(ExceptionFormat,"\"vHandleTimerDeclaration\"",__FILE__,__LINE__);
         MessageBox(0,cs,"Warning",MB_OK);
         exit(0);
@@ -1913,141 +1926,143 @@ void vHandleTimerDeclaration(CString& omStrVal)
 * \param[in]     CString& omStrVal - Timer Declarations
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
-*/                        
+* \date
+*/
 void vHandleByte(CString val)
 {
     try
     {
-    //yytext asd.long(1)
-    // this.byte(2)
-    // abc.word(1);
-    CString name,type,index;
-    int start , end ;
+        //yytext asd.long(1)
+        // this.byte(2)
+        // abc.word(1);
+        CString name,type,index;
+        int start , end ;
 
-    //val = yytext;
-    start = val.Find(".",0);
+        //val = yytext;
+        start = val.Find(".",0);
 
-    name = val.Left(start);
-    name.TrimLeft();
-    name.TrimRight();
+        name = val.Left(start);
+        name.TrimLeft();
+        name.TrimRight();
 
-    end = val.Find("(",start);
-    type = val.Mid(start+1,end-start-1);
-    type.TrimLeft();
-    type.TrimRight();
-    type.MakeLower();//for case insensitive comparison
+        end = val.Find("(",start);
+        type = val.Mid(start+1,end-start-1);
+        type.TrimLeft();
+        type.TrimRight();
+        type.MakeLower();//for case insensitive comparison
 
-    start = end;
+        start = end;
 
-    end = val.Find(")",start);
+        end = val.Find(")",start);
 
-    index = val.Mid( start + 1 , end - start - 1 );
-    index.TrimLeft();
-    index.TrimRight();
+        index = val.Mid( start + 1 , end - start - 1 );
+        index.TrimLeft();
+        index.TrimRight();
 
-    if(name == defSTR_this )
-    {
-        //replace "this" withe "RxMsg"
-        name = defSTR_RxMsg;
-    }
+        if(name == defSTR_this )
+        {
+            //replace "this" withe "RxMsg"
+            name = defSTR_RxMsg;
+        }
 
-    if( type == defSTR_long ) 
-    {
-        //if long
-        fprintf(yyout,defSTR_LongCnvrt,name,index);
-    }
+        if( type == defSTR_long )
+        {
+            //if long
+            fprintf(yyout,defSTR_LongCnvrt,name,index);
+        }
 
-    if( type == defSTR_byte )
-    {
-        //if byte
-        fprintf(yyout,defSTR_ByteCnvrt,name,index);
-    }
+        if( type == defSTR_byte )
+        {
+            //if byte
+            fprintf(yyout,defSTR_ByteCnvrt,name,index);
+        }
 
-    if( type == defSTR_word )
-    {
-        //if word
-        fprintf(yyout,defSTR_WordCnvrt,name,index);
-    }
+        if( type == defSTR_word )
+        {
+            //if word
+            fprintf(yyout,defSTR_WordCnvrt,name,index);
+        }
     }
     catch(...)
     {
         CString cs;
-        
+
         cs.Format(ExceptionFormat,"\"vHandleByte\"",__FILE__,__LINE__);
         MessageBox(0,cs,"Warning",MB_OK);
         exit(0);
     }
-    
+
 
 }
 
 /**
-* \brief         Replace the CAPL message member variables with BM STCAN_MSG 
+* \brief         Replace the CAPL message member variables with BM STCAN_MSG
                  varible members
 * \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
-*/            
+* \date
+*/
 void vHandleMessageMembers()
 {
     try
     {
-    CString val , name , type;
-    int start , end;
-    val = yytext;
-    end=val.GetLength();
-    start = val.Find(".",0);
-    name = val.Mid(0,start);
+        CString val , name , type;
+        int start , end;
+        val = yytext;
+        end=val.GetLength();
+        start = val.Find(".",0);
+        name = val.Mid(0,start);
 
-    type = val.Mid(start+1,val.GetLength()-2);
-    type.MakeLower();
-    type.TrimRight();
-    if(name == defSTR_this)
-    {
-        name = defSTR_RxMsg;
-    }
+        type = val.Mid(start+1,val.GetLength()-2);
+        type.MakeLower();
+        type.TrimRight();
+        if(name == defSTR_this)
+        {
+            name = defSTR_RxMsg;
+        }
 
-    if(type.Find("id") >= 0 )//if id
-    {
-        name = name + defSTR_MuId ;
-    }
+        if(type.Find("id") >= 0 )//if id
+        {
+            name = name + defSTR_MuId ;
+        }
 
-    else if (type.Find("dlc") >= 0)// id dlc
-    {
-        name = name + defSTR_MuDlc ;
-    }
+        else if (type.Find("dlc") >= 0)// id dlc
+        {
+            name = name + defSTR_MuDlc ;
+        }
 
-    else if(type.Find("dir") >= 0)
-    {//replace "abc.dir" with "RX".( Rx ~ 1)
-        name = "RX";
-    }
-	else if(type.Find("time") >= 0)
-    {//replace "abc.dir" with "RX".( Rx ~ 1)
-        name = name + defSTR_MuTime;
-    }
+        else if(type.Find("dir") >= 0)
+        {
+            //replace "abc.dir" with "RX".( Rx ~ 1)
+            name = "RX";
+        }
+        else if(type.Find("time") >= 0)
+        {
+            //replace "abc.dir" with "RX".( Rx ~ 1)
+            name = name + defSTR_MuTime;
+        }
 
-    else if( type.Find("can") == 0)
-    {
-        name = name + defSTR_MuChannel;
-    }
-    else
-    {
-        name = defSTR_BMUnsupported;
-        name +=  type + "." + name;
+        else if( type.Find("can") == 0)
+        {
+            name = name + defSTR_MuChannel;
+        }
+        else
+        {
+            name = defSTR_BMUnsupported;
+            name +=  type + "." + name;
 
-        sprintf(g_chErrorString,"(Unsupported Variable) %s", name);
-        g_ouGlobalVariables.g_ouErrorStrings.insert(g_chErrorString);
-    }
+            sprintf(g_chErrorString,"(Unsupported Variable) %s", name);
+            g_ouGlobalVariables.g_ouErrorStrings.insert(g_chErrorString);
+        }
 
-    fprintf(yyout,"%s",name);
-    fprintf(yyout,"%c",yytext[yyleng-1]);//to write the last char
+        fprintf(yyout,"%s",name);
+        fprintf(yyout,"%c",yytext[yyleng-1]);//to write the last char
     }
     catch(...)
     {
         CString cs;
-        
+
         cs.Format(ExceptionFormat,"\"vHandleMessageMembers\"",__FILE__,__LINE__);
         MessageBox(0,cs,"Warning",MB_OK);
         exit(0);
@@ -2060,69 +2075,70 @@ void vHandleMessageMembers()
 * \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
-*/           
+* \date
+*/
 void vHandleDot()
 {
     try
     {
-    // yytext -- "Msg.Signal"
+        // yytext -- "Msg.Signal"
 
-    CString omStrVal;
-    string omStrMsg, omStrSignal;
-    int nIndex;
-    omStrVal = yytext;
+        CString omStrVal;
+        string omStrMsg, omStrSignal;
+        int nIndex;
+        omStrVal = yytext;
 
-    nIndex = omStrVal.Find(".",0);
-    //omStrMsg = (omStrVal.Mid(0,nIndex).Trim().GetBuffer(MAX_PATH));//name of message
-    //omStrSignal = omStrVal.Right(omStrVal.GetLength() - nIndex-1).Trim().GetBuffer(MAX_PATH);
+        nIndex = omStrVal.Find(".",0);
+        //omStrMsg = (omStrVal.Mid(0,nIndex).Trim().GetBuffer(MAX_PATH));//name of message
+        //omStrSignal = omStrVal.Right(omStrVal.GetLength() - nIndex-1).Trim().GetBuffer(MAX_PATH);
 
-	string omStrTempVal = omStrVal;
-	omStrVal = omStrVal.Mid(0,nIndex);
-	omStrVal.TrimLeft();
-	omStrVal.TrimRight();
-	omStrMsg = (omStrVal.GetBuffer(MAX_PATH));//name of message
+        string omStrTempVal = omStrVal;
+        omStrVal = omStrVal.Mid(0,nIndex);
+        omStrVal.TrimLeft();
+        omStrVal.TrimRight();
+        omStrMsg = (omStrVal.GetBuffer(MAX_PATH));//name of message
 
-	omStrVal = omStrTempVal.c_str();
-	omStrVal = omStrVal.Right(omStrVal.GetLength() - nIndex-1);
-    omStrSignal = omStrVal.GetBuffer(MAX_PATH);
+        omStrVal = omStrTempVal.c_str();
+        omStrVal = omStrVal.Right(omStrVal.GetLength() - nIndex-1);
+        omStrSignal = omStrVal.GetBuffer(MAX_PATH);
 
-    if( omStrMsg == defSTR_this )
-    {//replace "this" with "RxMsg".
-
-        omStrVal = defSTR_RxMsg ;
-    }
-    string omStrSignalAlias;
-    CString omStrMsgType;
-    if( bGetMessageObjType(omStrMsg.c_str(), omStrMsgType) ==  TRUE)
-    {
-        string strMsgType = omStrMsgType.GetBuffer(MAX_PATH);
-        //TODO::Check
-        g_ouGlobalVariables.g_ouDBC2DBFConverter->FindSignalAlias( strMsgType, omStrSignal, omStrSignalAlias);
-        char chWarning[1024];
-
-        if( omStrSignal != omStrSignalAlias )
+        if( omStrMsg == defSTR_this )
         {
-            sprintf(chWarning, "(Multiplexed Signal): signal <%s::%s> is Replaced with <%s::%s>", \
-                strMsgType.c_str(), omStrSignal.c_str(), strMsgType.c_str(), omStrSignalAlias.c_str());
-            g_ouGlobalVariables.g_ouWarningStrings.insert(chWarning);
-            fprintf(yyout,defSTR_MWBitAlias,omStrMsg.c_str(), omStrSignal.c_str(), omStrSignalAlias.c_str());
+            //replace "this" with "RxMsg".
+
+            omStrVal = defSTR_RxMsg ;
+        }
+        string omStrSignalAlias;
+        CString omStrMsgType;
+        if( bGetMessageObjType(omStrMsg.c_str(), omStrMsgType) ==  TRUE)
+        {
+            string strMsgType = omStrMsgType.GetBuffer(MAX_PATH);
+            //TODO::Check
+            g_ouGlobalVariables.g_ouDBC2DBFConverter->FindSignalAlias( strMsgType, omStrSignal, omStrSignalAlias);
+            char chWarning[1024];
+
+            if( omStrSignal != omStrSignalAlias )
+            {
+                sprintf(chWarning, "(Multiplexed Signal): signal <%s::%s> is Replaced with <%s::%s>", \
+                        strMsgType.c_str(), omStrSignal.c_str(), strMsgType.c_str(), omStrSignalAlias.c_str());
+                g_ouGlobalVariables.g_ouWarningStrings.insert(chWarning);
+                fprintf(yyout,defSTR_MWBitAlias,omStrMsg.c_str(), omStrSignal.c_str(), omStrSignalAlias.c_str());
+            }
+            else
+            {
+                fprintf(yyout,defSTR_MWBit,omStrMsg.c_str(), omStrSignal.c_str());
+            }
         }
         else
         {
-            fprintf(yyout,defSTR_MWBit,omStrMsg.c_str(), omStrSignal.c_str());
+            //TODO::Error is already notified in vMsgDec() Function
+            ECHO;
         }
-    }
-    else
-    {
-        //TODO::Error is already notified in vMsgDec() Function
-        ECHO;
-    }
     }
     catch(...)
     {
         CString cs;
-        
+
         cs.Format(ExceptionFormat,"\"vHandleDot\"",__FILE__,__LINE__);
         MessageBox(0,cs,"Warning",MB_OK);
         exit(0);
@@ -2136,8 +2152,8 @@ void vHandleDot()
 * \param[out]    CString omStrMsgType - message name
 * \return        BOOL TRUE - if omStrMsgObj is valid argument
 * \authors       Venkatanarayana Makam
-* \date          
-*/           
+* \date
+*/
 BOOL bGetMessageObjType(CString omStrMsgObj, CString& omStrMsgType)
 {
     INT_PTR nCount;
@@ -2154,7 +2170,7 @@ BOOL bGetMessageObjType(CString omStrMsgObj, CString& omStrMsgType)
             break;
         }
     }
-    //If not found Global 
+    //If not found Global
     if( FALSE == bFound )
     {
         nCount = g_ouGlobalVariables.g_ouGlobalMsgVariables.GetSize();
@@ -2177,8 +2193,8 @@ BOOL bGetMessageObjType(CString omStrMsgObj, CString& omStrMsgType)
 * \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
-*/     
+* \date
+*/
 void vRemovePhys()
 {
     try
@@ -2191,13 +2207,13 @@ void vRemovePhys()
         if( nIndex != -1 )
         {
             fprintf( yyout, "%s/*%s */", omStrParse.Mid( 0, nIndex),
-                                         omStrParse.Mid(nIndex));
+                     omStrParse.Mid(nIndex));
         }
     }
     catch(...)
     {
         CString cs;
-        
+
         cs.Format(ExceptionFormat,"\"vRemovePhys\"",__FILE__,__LINE__);
         MessageBox(0,cs,"Warning",MB_OK);
         exit(0);
@@ -2209,36 +2225,40 @@ void vRemovePhys()
 * \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
-*/     
+* \date
+*/
 void vCnvrtThis()
 {
     try
     {
-    if( CAPL_EVENT_MESSAGE == g_ouGlobalVariables.g_oucaplEventHandleState )
-    {//if message handler
-        fprintf(yyout,defSTR_RxMsg);
-    
-    }
-    else if( CAPL_EVENT_KEY == g_ouGlobalVariables.g_oucaplEventHandleState )
-    {//if key handler
-        fprintf(yyout,defSTR_KeyValue);
-    }
-    if( CAPL_EVENT_BUSOFF == g_ouGlobalVariables.g_oucaplEventHandleState )
-    {//if message handler
-        fprintf(yyout, "%s.%s", defSTR_ErrorMsg, defSTR_ChannelVar);
-    
-    }
-    else if( ( g_ouGlobalVariables.g_oucaplEventHandleState >= CAPL_EVENT_ERRORACTIVE ) &&   
-                ( g_ouGlobalVariables.g_oucaplEventHandleState <= CAPL_EVENT_ERRORFRAME ) )
-    {//if key handler
-        fprintf(yyout, "%s.%s + %s.%s", defSTR_ErrorMsg, defSTR_TxErrorVar, defSTR_ErrorMsg, defSTR_RxErrorVar);
-    }
+        if( CAPL_EVENT_MESSAGE == g_ouGlobalVariables.g_oucaplEventHandleState )
+        {
+            //if message handler
+            fprintf(yyout,defSTR_RxMsg);
+
+        }
+        else if( CAPL_EVENT_KEY == g_ouGlobalVariables.g_oucaplEventHandleState )
+        {
+            //if key handler
+            fprintf(yyout,defSTR_KeyValue);
+        }
+        if( CAPL_EVENT_BUSOFF == g_ouGlobalVariables.g_oucaplEventHandleState )
+        {
+            //if message handler
+            fprintf(yyout, "%s.%s", defSTR_ErrorMsg, defSTR_ChannelVar);
+
+        }
+        else if( ( g_ouGlobalVariables.g_oucaplEventHandleState >= CAPL_EVENT_ERRORACTIVE ) &&
+                 ( g_ouGlobalVariables.g_oucaplEventHandleState <= CAPL_EVENT_ERRORFRAME ) )
+        {
+            //if key handler
+            fprintf(yyout, "%s.%s + %s.%s", defSTR_ErrorMsg, defSTR_TxErrorVar, defSTR_ErrorMsg, defSTR_RxErrorVar);
+        }
     }
     catch(...)
     {
         CString cs;
-        
+
 
         cs.Format(ExceptionFormat,"\"vCnvrtThis\"",__FILE__,__LINE__);
         MessageBox(0,cs,"Warning",MB_OK);
@@ -2252,35 +2272,36 @@ void vCnvrtThis()
 * \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
-*/     
+* \date
+*/
 void vCnvrtThisData()
 {
     if( CAPL_EVENT_MESSAGE == g_ouGlobalVariables.g_oucaplEventHandleState )
-    {//if message handler
+    {
+        //if message handler
         CString strVal = yytext;
         CString strSignal;
         int start = strVal.Find("this.", 0);
         strVal = strVal.Right(strVal.GetLength() - start - 5);
-        
+
         strSignal.Format("%s.%s", defSTR_RxMsg, strVal);
         fprintf(yyout, strSignal);
         //fprintf(yyout,"Next");
-    
+
     }
 }
 
 
 /**
-* \brief         
+* \brief
 * \param[in]     None
 * \return        void
 * \authors       Venkatanarayana Makam
-* \date          
-*/     
+* \date
+*/
 int nConvert( CString omStrCAPLFile,CString omStrCFile ,CString omStrLogFile, CStringArray& omStrDbcFileArray, CDBCConverterBase* ouDBC2DBFConverter, CString& omStrResult )
 {
-    
+
     if( NULL == ouDBC2DBFConverter )
     {
         omStrResult = "Loading Dbc Converter Failed";
@@ -2291,26 +2312,27 @@ int nConvert( CString omStrCAPLFile,CString omStrCFile ,CString omStrLogFile, CS
     g_ouGlobalVariables.g_ouDBC2DBFConverter = ouDBC2DBFConverter;
     cIndex2 = 0;
     bPreStart = FALSE;
-	
-//FirstParse Starts Here::Unsupported keys anf function definitions are processed
+
+    //FirstParse Starts Here::Unsupported keys anf function definitions are processed
     CString omStrTempFile = omStrCFile + ".temp";
     yyin = fopen(omStrCAPLFile,"r");
     yyout = fopen (omStrTempFile,"w+");
-    
+
     BEGIN( FirstParse ); //start first parse
     yylex();
-    
+
     pFileLog = fopen( omStrLogFile,"w" );
     fprintf( pFileLog,defSTR_InputFileInfo, omStrCAPLFile );//writing to log file
     fprintf( pFileLog,defSTR_OutputFileInfo, omStrCFile );
 
     if( ouUnSptdKey.nGetSize() > 0)
-    {//if there is any unsuppoted key then
+    {
+        //if there is any unsuppoted key then
         CEnvVarHandlerDlg d;
         d.DoModal();
     }
 
-//SecondParse Starts Here::
+    //SecondParse Starts Here::
     fseek(yyin, 0, SEEK_SET);
     BEGIN(SecondParse);
     yylex();
@@ -2322,40 +2344,40 @@ int nConvert( CString omStrCAPLFile,CString omStrCFile ,CString omStrLogFile, CS
 
     fclose( yyin );
     fclose( yyout );
-   
-//ThirdParse Starts Here::
-	yyin = fopen(omStrTempFile,"r");
-	yyout = fopen (omStrCFile,"w+");
 
-	BEGIN(ThirdParse);
-	yylex();
-	fclose( yyin );
-	fclose( yyout );
-//Fourth Phase Starts Here::
-	yyin = fopen(omStrCFile ,"r");
-	yyout = fopen (omStrTempFile,"w+");
+    //ThirdParse Starts Here::
+    yyin = fopen(omStrTempFile,"r");
+    yyout = fopen (omStrCFile,"w+");
 
-	BEGIN(FourthParse);
-	yylex();
-	fclose( yyin );
-	fclose( yyout );
+    BEGIN(ThirdParse);
+    yylex();
+    fclose( yyin );
+    fclose( yyout );
+    //Fourth Phase Starts Here::
+    yyin = fopen(omStrCFile ,"r");
+    yyout = fopen (omStrTempFile,"w+");
 
-//Fifth Phase Starts Here::
-	yyin = fopen(omStrTempFile,"r");
-	yyout = fopen (omStrCFile,"w+");
+    BEGIN(FourthParse);
+    yylex();
+    fclose( yyin );
+    fclose( yyout );
 
-	BEGIN(FifthParse);
-	yylex();
-	
-	
-	fclose( yyin );
-	fclose( yyout);
+    //Fifth Phase Starts Here::
+    yyin = fopen(omStrTempFile,"r");
+    yyout = fopen (omStrCFile,"w+");
+
+    BEGIN(FifthParse);
+    yylex();
+
+
+    fclose( yyin );
+    fclose( yyout);
     DeleteFile(omStrTempFile);
 
 
 
-//Include Headers, Utility Function definition, Function Declarations
-	CString omFun;
+    //Include Headers, Utility Function definition, Function Declarations
+    CString omFun;
     CString omStrTemp;
     INT_PTR nCount = g_ouGlobalVariables.g_omStrFunCalls.GetSize();
     for(INT_PTR i=0; i < nCount; i++)
@@ -2365,20 +2387,20 @@ int nConvert( CString omStrCAPLFile,CString omStrCFile ,CString omStrLogFile, CS
         omFun += omStrTemp+"\n";
     }
 
-	std::fstream filestr;
+    std::fstream filestr;
     filestr.open (omStrCFile.GetBuffer(MAX_PATH), fstream::in | fstream::out);
     INT nDBCCount = omStrDbcFileArray.GetSize();
     std::string str((std::istreambuf_iterator<char>(filestr)),
-                     std::istreambuf_iterator<char>());
+                    std::istreambuf_iterator<char>());
     filestr.seekp(0);
-		
-	filestr<<COPYWRITE_INFORMATION;
-	filestr<<C_FILE_VERSION;
-	filestr<<BUSMASTER_VERSION;     
-	filestr<<PROTOCOL; 
-	
-	filestr<<endl<<endl;
-	
+
+    filestr<<COPYWRITE_INFORMATION;
+    filestr<<C_FILE_VERSION;
+    filestr<<BUSMASTER_VERSION;
+    filestr<<PROTOCOL;
+
+    filestr<<endl<<endl;
+
     filestr<<defSTR_StartIncludeHeader;
     filestr<<"#include <windows.h>\n";
     filestr<<"#include \"CANIncludes.h\"\n";
@@ -2404,28 +2426,28 @@ int nConvert( CString omStrCAPLFile,CString omStrCFile ,CString omStrLogFile, CS
     filestr<<defSTR_FuncProFooter<<endl;
     filestr<<"\n";
     filestr<<defSTR_RXMessageDec<<defSTR_TXMessageDec;
-	filestr<<defSSTR_TYPEDEFFOR<<defSSTR_TYPEDEFSWITCH<<defSSTR_TYPEDEFIF<<endl;
+    filestr<<defSSTR_TYPEDEFFOR<<defSSTR_TYPEDEFSWITCH<<defSSTR_TYPEDEFIF<<endl;
     filestr<<str;
-    
-    
 
-	if(FALSE == bPreStart)
-	{
+
+
+    if(FALSE == bPreStart)
+    {
         filestr<<defUtils_StartComment;
         filestr<<defUtils_PrestartDef<<endl<<'}';
         filestr<<defUtils_EndComment;
-	}
+    }
 
 
 
     fclose( yyin );
-    
-    
-//Result File Generation
+
+
+    //Result File Generation
     vWriteLogFile();
     fclose( pFileLog );
 
-//Return Value Updation
+    //Return Value Updation
     if( (g_ouGlobalVariables.g_ouErrorStrings.size() == 0) && g_ouGlobalVariables.g_ouWarningStrings.size() == 0)
     {
         omStrResult.Format("Conversion Completed Successfully");
@@ -2482,9 +2504,9 @@ void vWriteLogFile()
     }
 }
 BOOL bAddExport(CString& omFun)
-{ 
-	omFun.TrimLeft(" ");
-	omFun.TrimRight(" ");
+{
+    omFun.TrimLeft(" ");
+    omFun.TrimRight(" ");
     INT_PTR nIndex = omFun.Find(defSTF_Extern);
     if(nIndex >= 0)
     {
@@ -2502,396 +2524,396 @@ BOOL bAddExport(CString& omFun)
                  check whether the input file is correct or not.If name of
                  output file is not there then it will  create a default
                  output file with the name of input file with extention C.
-                 The log file will be created with default name of input file 
+                 The log file will be created with default name of input file
                  withe extention "txt".This function will intialize acAltkey
                  with -1.
 * \param[in]     None
 * \return        void
 * \authors       Amit Ranjan
 * \authors       Venkanarayana Makam
-* \date          
-*/     
+* \date
+*/
 void vMsgDecl(CString& omStrValue, MsgVariables& ouMsgVariable)
 {
     try
     {
-    CString val , ident , name ;
-    bool bSpecialMsg = false;
-    int nChannel = 1;
-    int start  ;
-    char extndd = 0;
-    CMessage msg;
-    int flag = 0;
-    unsigned int decid = 0;
-    if( omStrValue[0] == ';')
-    {
-        fprintf(yyout,";");
-    }
-    val = omStrValue;
-    CString omStrTemp;
-    val.TrimLeft();
-    val = val.Right( val.GetLength() - 7 );
-    start = val.Find(' ',0);
-    val = val.Right(val.GetLength() - start  );
-
-    val.TrimLeft();
-    
-
-    //CAN Index
-    /*int nCanPresent = val.Find(".");
-    if(nCanPresent >= 0)
-    {
-        CString omStrCAN = val.Left(nCanPresent);
-        omStrCAN.MakeLower();
-        int nCanIndex = omStrCAN.Find("can");
-        if(nCanIndex >= 0 )
+        CString val , ident , name ;
+        bool bSpecialMsg = false;
+        int nChannel = 1;
+        int start  ;
+        char extndd = 0;
+        CMessage msg;
+        int flag = 0;
+        unsigned int decid = 0;
+        if( omStrValue[0] == ';')
         {
-            nCanIndex = val.Find(" ", nCanIndex+3);
-           val = val.Right(val.GetLength() - nCanIndex - 1);
+            fprintf(yyout,";");
         }
-    }*/
-    
-        
-        
-    start = val.Find(' ',0 );
-    ident = val.Left( start );//id or name of message
+        val = omStrValue;
+        CString omStrTemp;
+        val.TrimLeft();
+        val = val.Right( val.GetLength() - 7 );
+        start = val.Find(' ',0);
+        val = val.Right(val.GetLength() - start  );
 
-    val = val.Right( val.GetLength() - start );
-    val.TrimLeft();
-    start = val.FindOneOf(" ;=");
+        val.TrimLeft();
 
-    name = val.Left( start );//name of the variable
-    val = val.Right( val.GetLength() - start );
-    
-    if( ( start = ident.Find('.',0) ) != -1 )
-    {//for "can1.asc" like cases
-        CString strCAN = ident.Left(start);
-        ident = ident.Right( ident.GetLength() - start - 1 );
-        int nStart = strCAN.Find("CAN");
-        if(  nStart >= 0 )
+
+        //CAN Index
+        /*int nCanPresent = val.Find(".");
+        if(nCanPresent >= 0)
         {
-            nChannel = atoi(strCAN.Right(strCAN.GetLength() - nStart - 3).GetBuffer(MAX_PATH));
+            CString omStrCAN = val.Left(nCanPresent);
+            omStrCAN.MakeLower();
+            int nCanIndex = omStrCAN.Find("can");
+            if(nCanIndex >= 0 )
+            {
+                nCanIndex = val.Find(" ", nCanIndex+3);
+               val = val.Right(val.GetLength() - nCanIndex - 1);
+            }
+        }*/
+
+
+
+        start = val.Find(' ',0 );
+        ident = val.Left( start );//id or name of message
+
+        val = val.Right( val.GetLength() - start );
+        val.TrimLeft();
+        start = val.FindOneOf(" ;=");
+
+        name = val.Left( start );//name of the variable
+        val = val.Right( val.GetLength() - start );
+
+        if( ( start = ident.Find('.',0) ) != -1 )
+        {
+            //for "can1.asc" like cases
+            CString strCAN = ident.Left(start);
+            ident = ident.Right( ident.GetLength() - start - 1 );
+            int nStart = strCAN.Find("CAN");
+            if(  nStart >= 0 )
+            {
+                nChannel = atoi(strCAN.Right(strCAN.GetLength() - nStart - 3).GetBuffer(MAX_PATH));
+            }
+            if(ident[0] == '*')
+            {
+                int nIndex = omStrValue.Find(".*");
+                if(nIndex > 0)
+                {
+                    ident = omStrValue.Right(omStrValue.GetLength() - nIndex - 2);
+                    ident.TrimLeft(" ");
+                    ident.TrimRight(" ");
+                    bSpecialMsg = true;
+                }
+            }
+        }
+
+        if( ident[0] == '\'')
+        {
+            ident.TrimLeft("' ");
+            ident.TrimRight("' ");
+            decid = ident[0];
+            flag = 1;
+            g_ouGlobalVariables.g_ouDBC2DBFConverter->FindMessage(decid, msg);
+        }
+        else if( isdigit( ident[0]) )
+        {
+            //if message is declared with id then
+            flag = 1;
+
+            if( ident[ ident.GetLength() - 1 ] =='x'||
+                    ident[ ident.GetLength() - 1 ] =='X')
+            {
+                //if last element is 'x'
+                extndd = 1;
+                ident = ident.Left( ident.GetLength() - 1 );
+            }
+            int nIndex = ident.Find("0x");
+            if( nIndex == -1 )
+            {
+                nIndex = ident.Find("0X");
+            }
+            if( nIndex != -1 )
+            {
+                nIndex +=2;
+                // remove 0x
+                char* stop;
+                ident = ident.Right(ident.GetLength() - nIndex);
+                decid = strtol(ident,&stop,16);
+            }
+            else
+            {
+                //if deci id
+                decid = atoi(ident);
+            }
+            //g_ouGlobalVariables.g_ouDBC2DBFConverter->FindMessage(decid, msg);
+            //Not to use database messages
+            msg.m_uiMsgID = INVALID;
         }
         if(ident[0] == '*')
         {
-            int nIndex = omStrValue.Find(".*");
-            if(nIndex > 0)
-            {
-                ident = omStrValue.Right(omStrValue.GetLength() - nIndex - 2); 
-                ident.TrimLeft(" ");
-				ident.TrimRight(" ");
-                bSpecialMsg = true;
-            }
-        }
-    }
 
-    if( ident[0] == '\'')
-    {
-        ident.TrimLeft("' ");
-		ident.TrimRight("' ");
-        decid = ident[0];
-        flag = 1;
-        g_ouGlobalVariables.g_ouDBC2DBFConverter->FindMessage(decid, msg);
-    }
-    else if( isdigit( ident[0]) )
-    {//if message is declared with id then
-        flag = 1;
-        
-        if( ident[ ident.GetLength() - 1 ] =='x'||
-            ident[ ident.GetLength() - 1 ] =='X')
-        {//if last element is 'x'
-            extndd = 1;
-            ident = ident.Left( ident.GetLength() - 1 );
-        }
-        int nIndex = ident.Find("0x");
-        if( nIndex == -1 )
-        {
-            nIndex = ident.Find("0X");
-        }
-        if( nIndex != -1 )
-        {
-            nIndex +=2;
-            // remove 0x
-            char *stop;
-            ident = ident.Right(ident.GetLength() - nIndex);
-            decid = strtol(ident,&stop,16);
         }
         else
-        {//if deci id
-            decid = atoi(ident);
-        }
-        //g_ouGlobalVariables.g_ouDBC2DBFConverter->FindMessage(decid, msg);
-        //Not to use database messages
-        msg.m_uiMsgID = INVALID;
-    }
-    if(ident[0] == '*')
-    {
-        
-    }
-    else
-    {//message is declared with name
-		g_ouGlobalVariables.g_ouDBC2DBFConverter->FindMessage(ident.GetBuffer(MAX_PATH),msg);
-    }
-    
-   // ouMsgVariable.m_omStrMsgType = msg.m_acName;
-    
-    
-    if( val.Find('{',0) == -1 )
-    {//if message is not initialized
-        if( flag == 0 )
         {
-			bReplaceBMFunctionName(name);
-			ident.TrimLeft(" \n\t");
-			ident.TrimRight(" \n\t");
-			name.TrimLeft(" \n\t");
-			name.TrimRight(" \n\t");
-            if(false == bSpecialMsg)
+            //message is declared with name
+            g_ouGlobalVariables.g_ouDBC2DBFConverter->FindMessage(ident.GetBuffer(MAX_PATH),msg);
+        }
+
+        // ouMsgVariable.m_omStrMsgType = msg.m_acName;
+
+
+        if( val.Find('{',0) == -1 )
+        {
+            //if message is not initialized
+            if( flag == 0 )
             {
-				if(ident.Compare(name) == 0)
-				{
-					g_ouGlobalVariables.g_omStrRepeatedMsg.AddTail(ident);
-					fprintf(yyout,defSTR_RepeatedMsgFormat,ident,name,
-                    msg.m_uiMsgID,msg.m_cFrameFormat == 'S'? 0 : 1,
-                    msg.m_ucLength >0? 0:1 ,msg.m_ucLength, 1 ); 
+                bReplaceBMFunctionName(name);
+                ident.TrimLeft(" \n\t");
+                ident.TrimRight(" \n\t");
+                name.TrimLeft(" \n\t");
+                name.TrimRight(" \n\t");
+                if(false == bSpecialMsg)
+                {
+                    if(ident.Compare(name) == 0)
+                    {
+                        g_ouGlobalVariables.g_omStrRepeatedMsg.AddTail(ident);
+                        fprintf(yyout,defSTR_RepeatedMsgFormat,ident,name,
+                                msg.m_uiMsgID,msg.m_cFrameFormat == 'S'? 0 : 1,
+                                msg.m_ucLength >0? 0:1 ,msg.m_ucLength, 1 );
 
-				}
-				else
-				{
-					fprintf(yyout,defSTR_MsgFormat,ident,name,
-                    msg.m_uiMsgID,msg.m_cFrameFormat == 'S'? 0 : 1,
-                    msg.m_ucLength >0? 0:1 ,msg.m_ucLength, 1 ); 
+                    }
+                    else
+                    {
+                        fprintf(yyout,defSTR_MsgFormat,ident,name,
+                                msg.m_uiMsgID,msg.m_cFrameFormat == 'S'? 0 : 1,
+                                msg.m_ucLength >0? 0:1 ,msg.m_ucLength, 1 );
 
-				}
-                if( msg.m_uiMsgID == INVALID )
-                {//means unknown message
-                    sprintf(g_chErrorString, "(Message Not Found) Message : %s not found in database.",ident);
-                    g_ouGlobalVariables.g_ouErrorStrings.insert(g_chErrorString);
-                    nUnCnvrtdLine += 1;
-                    // to decrease the percentage of conversion
+                    }
+                    if( msg.m_uiMsgID == INVALID )
+                    {
+                        //means unknown message
+                        sprintf(g_chErrorString, "(Message Not Found) Message : %s not found in database.",ident);
+                        g_ouGlobalVariables.g_ouErrorStrings.insert(g_chErrorString);
+                        nUnCnvrtdLine += 1;
+                        // to decrease the percentage of conversion
+                    }
                 }
-            }
-            else
-            {
-				//bReplaceBMFunctionName(ident);
-                fprintf(yyout,defSTR_ChanelSpecificMsg, ident); 
-				sprintf(g_chErrorString, "Channel Specific (message CAN1.*) Message Types are not supported yet.",ident);
-                g_ouGlobalVariables.g_ouErrorStrings.insert(g_chErrorString);
-            }
-            ouMsgVariable.m_omStrMsgType = ident;
-            ouMsgVariable.m_omStrMsgName = name;
-        }
-
-        else
-        {
-            flag = 0;
-            if( msg.m_uiMsgID != INVALID )
-            {//means id is in database
-				if(name = msg.m_acName.c_str())
-				{
-					fprintf(yyout,defSTR_MsgFormat,msg.m_acName,name,
-						msg.m_uiMsgID,extndd,msg.m_ucLength >0? 0:1,
-						msg.m_ucLength, 1 );
-				}
-				else
-				{
-					fprintf(yyout,defSTR_RepeatedMsgFormat,msg.m_acName,name,
-						msg.m_uiMsgID,extndd,msg.m_ucLength >0? 0:1,
-						msg.m_ucLength, 1 );
-					g_ouGlobalVariables.g_omStrRepeatedMsg.AddTail(msg.m_acName.c_str());
-				}
-                ouMsgVariable.m_omStrMsgType = msg.m_acName.c_str();
+                else
+                {
+                    //bReplaceBMFunctionName(ident);
+                    fprintf(yyout,defSTR_ChanelSpecificMsg, ident);
+                    sprintf(g_chErrorString, "Channel Specific (message CAN1.*) Message Types are not supported yet.",ident);
+                    g_ouGlobalVariables.g_ouErrorStrings.insert(g_chErrorString);
+                }
+                ouMsgVariable.m_omStrMsgType = ident;
                 ouMsgVariable.m_omStrMsgName = name;
             }
+
             else
-            {//means it is an unknown message
-                fprintf(yyout,defSTR_STCANMsgFormat,name,decid,extndd);
-            }
-        }
-    }
-    else
-    {//if message is initialized
-        int  end = 0 ;
-        char dlc = 8;//to extract dlc
-
-        CStringArray csa , msgbyte;
-        // msgbyte.SetSize(8); //***anish
-        int i;
-        for ( i = 0; i< 8; i++)
-        {//initialize array with '0'
-            msgbyte.SetAtGrow(i,'0');
-        }
-
-        start = val.Find('{',0);
-        val = val.Right( val.GetLength() - start - 1);
-        start = 0;
-        while((end = val.Find(",",start)) != -1 )
-        {
-            CString cs = val.Mid(start, end - start);
-            csa.Add(cs);
-            start = end + 1;
-        }
-        csa.Add(val.Right( val.GetLength() - start  ));//start - 1
-        for(  i = 0; i < csa.GetSize(); i++)
-        {
-            CString cs = csa.GetAt( i );//byte and value
-            CString key, value;
-            cs.TrimLeft();
-            cs.TrimRight();
-            int pos = cs.Find("=",0);
-
-            key = cs.Left(pos);
-            value = cs.Right(cs.GetLength() - pos - 1 );
-            key.TrimLeft();
-            key.TrimRight();
-            key.MakeLower();//for case insensitive comparision
-            value.TrimLeft();
-
-            if( ( start =value.FindOneOf("\t\n}") ) != -1 )
             {
-                value = value.Left( start );
-            }
-            if(key == "dlc")
-            {
-                dlc = atoi(value);//since val is CString so atoi is used
-            }
-
-
-            if(cs.Find(defSTR_byte,0) != -1)
-            {//to store the value of particular byte of message
-                CString index;
-                start = key.Find('(',4);
-                end = key.Find(')',6);
-                index = key.Mid( start + 1, end - 2 );
-                index.TrimLeft();
-                index.TrimRight();
-                start = atoi( index );//for comparision
-
-                for( int i = 0;i <= 7; i++)
+                flag = 0;
+                if( msg.m_uiMsgID != INVALID )
                 {
-                    if( i == start )
+                    //means id is in database
+                    if(name = msg.m_acName.c_str())
                     {
-                        msgbyte.SetAtGrow(i, value);
-                        break;
+                        fprintf(yyout,defSTR_MsgFormat,msg.m_acName,name,
+                                msg.m_uiMsgID,extndd,msg.m_ucLength >0? 0:1,
+                                msg.m_ucLength, 1 );
                     }
-                }
-            }//end if if(byte)
-
-            if(cs.Find(defSTR_word,0) != -1)
-            {
-                CString index;
-                int flag = 0;
-                if ( value[0]=='0'&& (value[1]=='x'||value[1]=='X') )
-                {
-                    value = value.Right( value.GetLength() - 2 );
-                    flag = 1;
-                }
-                start = key.Find('(',4);
-                end = key.Find(')',6);
-                index = key.Mid( start + 1, end - 2 );
-                index.TrimLeft();
-                index.TrimRight();
-                start = atoi( index );//for comparision
-
-                if ( flag == 1 )
-                {
-                    CString hex = "0x";
-                    msgbyte.SetAtGrow( start*2, hex + value.Left(2) );
-                    msgbyte.SetAtGrow( start*2 + 1, hex + value.Right(2) );
-                    flag = 0;
+                    else
+                    {
+                        fprintf(yyout,defSTR_RepeatedMsgFormat,msg.m_acName,name,
+                                msg.m_uiMsgID,extndd,msg.m_ucLength >0? 0:1,
+                                msg.m_ucLength, 1 );
+                        g_ouGlobalVariables.g_omStrRepeatedMsg.AddTail(msg.m_acName.c_str());
+                    }
+                    ouMsgVariable.m_omStrMsgType = msg.m_acName.c_str();
+                    ouMsgVariable.m_omStrMsgName = name;
                 }
                 else
                 {
-                    msgbyte.SetAtGrow( start*2, value.Left(2) );
-                    msgbyte.SetAtGrow( start*2 + 1, value.Right(2) );
-                }
-            }//end of word
-            if( cs.Find(defSTR_long,0) != -1)
-            {
-                CString index;
-                int flag = 0;
-                if ( value[0]=='0'&& (value[1]=='x'||value[1]=='X') )
-                {
-                    value = value.Right( value.GetLength() - 2 );
-                    flag = 1;
-                }
-                start = key.Find('(',4);
-                end = key.Find(')',6);
-                index = key.Mid( start + 1, end - 2 );
-                index.TrimLeft();
-                index.TrimRight();
-                start = atoi( index );//for comparision
-
-                if( start == 0 )
-                {
-                    if ( flag == 1 )
-                    {//if declared as hex
-                        CString hex = "0x";
-                        msgbyte.SetAtGrow(0, hex + value.Left(2) );
-                        msgbyte.SetAtGrow(1, hex + value.Mid(2,2) );
-                        msgbyte.SetAtGrow(2, hex + value.Mid(4,2) );
-                        msgbyte.SetAtGrow(3, hex + value.Right(2) );
-                        flag = 0;
-                    }
-                    else
-                    {//if declared as dec
-                        msgbyte.SetAtGrow(0,value.Left(2) );
-                        msgbyte.SetAtGrow(1,value.Mid(2,2) );
-                        msgbyte.SetAtGrow(2,value.Mid(4,2) );
-                        msgbyte.SetAtGrow(3,value.Right(2) );
-                    }
-                }
-                else
-                {//if index  = 1
-                    if ( flag == 1 )
-                    {//if declared as hex
-                        CString hex = "0x";
-                        msgbyte.SetAtGrow(4, hex + value.Left(2) );
-                        msgbyte.SetAtGrow(5, hex + value.Mid(2,2) );
-                        msgbyte.SetAtGrow(6, hex + value.Mid(4,2) );
-                        msgbyte.SetAtGrow(7, hex + value.Right(2) );
-                        flag = 0;
-                    }
-                    else
-                    {//if declared as dec
-                        msgbyte.SetAtGrow(4,value.Left(2) );
-                        msgbyte.SetAtGrow(5,value.Mid(2,2) );
-                        msgbyte.SetAtGrow(6,value.Mid(4,2) );
-                        msgbyte.SetAtGrow(7,value.Right(2) );
-                    }
-                }
-            }//end of long
-        }
-        if( flag == 0 )
-        {
-            if( msg.m_uiMsgID == INVALID )
-            {
-                sprintf(g_chErrorString, "(Message Not Found) Message : %s not found in database.",ident);
-                g_ouGlobalVariables.g_ouErrorStrings.insert(g_chErrorString);
-            }
-
-			ouMsgVariable.m_omStrMsgType = ident;
-            ouMsgVariable.m_omStrMsgName = name;
-
-            fprintf(yyout,defSTR_MsgIniFormat,ident,name,
-                msg.m_uiMsgID,msg.m_cFrameFormat == 'S'? 0 : 1,dlc );   
-
-            for( int  m = 0; m < dlc; m++)
-            {
-                fprintf(yyout,"%s",msgbyte.GetAt( m ));//each byte of message
-                if(m < dlc - 1)
-                {
-                    fprintf(yyout,",");
+                    //means it is an unknown message
+                    fprintf(yyout,defSTR_STCANMsgFormat,name,decid,extndd);
                 }
             }
-            fprintf(yyout,"}};");
         }
         else
         {
-            flag = 0;
-            if( msg.m_uiMsgID != INVALID )
+            //if message is initialized
+            int  end = 0 ;
+            char dlc = 8;//to extract dlc
+
+            CStringArray csa , msgbyte;
+            // msgbyte.SetSize(8); //***anish
+            int i;
+            for ( i = 0; i< 8; i++)
             {
-                fprintf(yyout,defSTR_MsgIniFormat,msg.m_acName.c_str(),name,
-                    msg.m_uiMsgID,extndd,dlc );
+                //initialize array with '0'
+                msgbyte.SetAtGrow(i,'0');
+            }
+
+            start = val.Find('{',0);
+            val = val.Right( val.GetLength() - start - 1);
+            start = 0;
+            while((end = val.Find(",",start)) != -1 )
+            {
+                CString cs = val.Mid(start, end - start);
+                csa.Add(cs);
+                start = end + 1;
+            }
+            csa.Add(val.Right( val.GetLength() - start  ));//start - 1
+            for(  i = 0; i < csa.GetSize(); i++)
+            {
+                CString cs = csa.GetAt( i );//byte and value
+                CString key, value;
+                cs.TrimLeft();
+                cs.TrimRight();
+                int pos = cs.Find("=",0);
+
+                key = cs.Left(pos);
+                value = cs.Right(cs.GetLength() - pos - 1 );
+                key.TrimLeft();
+                key.TrimRight();
+                key.MakeLower();//for case insensitive comparision
+                value.TrimLeft();
+
+                if( ( start =value.FindOneOf("\t\n}") ) != -1 )
+                {
+                    value = value.Left( start );
+                }
+                if(key == "dlc")
+                {
+                    dlc = atoi(value);//since val is CString so atoi is used
+                }
+
+
+                if(cs.Find(defSTR_byte,0) != -1)
+                {
+                    //to store the value of particular byte of message
+                    CString index;
+                    start = key.Find('(',4);
+                    end = key.Find(')',6);
+                    index = key.Mid( start + 1, end - 2 );
+                    index.TrimLeft();
+                    index.TrimRight();
+                    start = atoi( index );//for comparision
+
+                    for( int i = 0; i <= 7; i++)
+                    {
+                        if( i == start )
+                        {
+                            msgbyte.SetAtGrow(i, value);
+                            break;
+                        }
+                    }
+                }//end if if(byte)
+
+                if(cs.Find(defSTR_word,0) != -1)
+                {
+                    CString index;
+                    int flag = 0;
+                    if ( value[0]=='0'&& (value[1]=='x'||value[1]=='X') )
+                    {
+                        value = value.Right( value.GetLength() - 2 );
+                        flag = 1;
+                    }
+                    start = key.Find('(',4);
+                    end = key.Find(')',6);
+                    index = key.Mid( start + 1, end - 2 );
+                    index.TrimLeft();
+                    index.TrimRight();
+                    start = atoi( index );//for comparision
+
+                    if ( flag == 1 )
+                    {
+                        CString hex = "0x";
+                        msgbyte.SetAtGrow( start*2, hex + value.Left(2) );
+                        msgbyte.SetAtGrow( start*2 + 1, hex + value.Right(2) );
+                        flag = 0;
+                    }
+                    else
+                    {
+                        msgbyte.SetAtGrow( start*2, value.Left(2) );
+                        msgbyte.SetAtGrow( start*2 + 1, value.Right(2) );
+                    }
+                }//end of word
+                if( cs.Find(defSTR_long,0) != -1)
+                {
+                    CString index;
+                    int flag = 0;
+                    if ( value[0]=='0'&& (value[1]=='x'||value[1]=='X') )
+                    {
+                        value = value.Right( value.GetLength() - 2 );
+                        flag = 1;
+                    }
+                    start = key.Find('(',4);
+                    end = key.Find(')',6);
+                    index = key.Mid( start + 1, end - 2 );
+                    index.TrimLeft();
+                    index.TrimRight();
+                    start = atoi( index );//for comparision
+
+                    if( start == 0 )
+                    {
+                        if ( flag == 1 )
+                        {
+                            //if declared as hex
+                            CString hex = "0x";
+                            msgbyte.SetAtGrow(0, hex + value.Left(2) );
+                            msgbyte.SetAtGrow(1, hex + value.Mid(2,2) );
+                            msgbyte.SetAtGrow(2, hex + value.Mid(4,2) );
+                            msgbyte.SetAtGrow(3, hex + value.Right(2) );
+                            flag = 0;
+                        }
+                        else
+                        {
+                            //if declared as dec
+                            msgbyte.SetAtGrow(0,value.Left(2) );
+                            msgbyte.SetAtGrow(1,value.Mid(2,2) );
+                            msgbyte.SetAtGrow(2,value.Mid(4,2) );
+                            msgbyte.SetAtGrow(3,value.Right(2) );
+                        }
+                    }
+                    else
+                    {
+                        //if index  = 1
+                        if ( flag == 1 )
+                        {
+                            //if declared as hex
+                            CString hex = "0x";
+                            msgbyte.SetAtGrow(4, hex + value.Left(2) );
+                            msgbyte.SetAtGrow(5, hex + value.Mid(2,2) );
+                            msgbyte.SetAtGrow(6, hex + value.Mid(4,2) );
+                            msgbyte.SetAtGrow(7, hex + value.Right(2) );
+                            flag = 0;
+                        }
+                        else
+                        {
+                            //if declared as dec
+                            msgbyte.SetAtGrow(4,value.Left(2) );
+                            msgbyte.SetAtGrow(5,value.Mid(2,2) );
+                            msgbyte.SetAtGrow(6,value.Mid(4,2) );
+                            msgbyte.SetAtGrow(7,value.Right(2) );
+                        }
+                    }
+                }//end of long
+            }
+            if( flag == 0 )
+            {
+                if( msg.m_uiMsgID == INVALID )
+                {
+                    sprintf(g_chErrorString, "(Message Not Found) Message : %s not found in database.",ident);
+                    g_ouGlobalVariables.g_ouErrorStrings.insert(g_chErrorString);
+                }
+
+                ouMsgVariable.m_omStrMsgType = ident;
+                ouMsgVariable.m_omStrMsgName = name;
+
+                fprintf(yyout,defSTR_MsgIniFormat,ident,name,
+                        msg.m_uiMsgID,msg.m_cFrameFormat == 'S'? 0 : 1,dlc );
+
                 for( int  m = 0; m < dlc; m++)
                 {
                     fprintf(yyout,"%s",msgbyte.GetAt( m ));//each byte of message
@@ -2904,28 +2926,45 @@ void vMsgDecl(CString& omStrValue, MsgVariables& ouMsgVariable)
             }
             else
             {
-				fprintf(yyout,"STCAN_MSG %s = {0x%x,%d,0,%d,1,"
-                    ,name,decid,extndd,dlc);
-
-                for( int  m = 0; m < dlc; m++)
+                flag = 0;
+                if( msg.m_uiMsgID != INVALID )
                 {
-                    fprintf(yyout,"%s",msgbyte.GetAt(m ));//each byte of message
-                    if(m < dlc - 1)
+                    fprintf(yyout,defSTR_MsgIniFormat,msg.m_acName.c_str(),name,
+                            msg.m_uiMsgID,extndd,dlc );
+                    for( int  m = 0; m < dlc; m++)
                     {
-                        fprintf(yyout,",");
+                        fprintf(yyout,"%s",msgbyte.GetAt( m ));//each byte of message
+                        if(m < dlc - 1)
+                        {
+                            fprintf(yyout,",");
+                        }
                     }
+                    fprintf(yyout,"}};");
                 }
-				fprintf(yyout,"};");
+                else
+                {
+                    fprintf(yyout,"STCAN_MSG %s = {0x%x,%d,0,%d,1,"
+                            ,name,decid,extndd,dlc);
+
+                    for( int  m = 0; m < dlc; m++)
+                    {
+                        fprintf(yyout,"%s",msgbyte.GetAt(m ));//each byte of message
+                        if(m < dlc - 1)
+                        {
+                            fprintf(yyout,",");
+                        }
+                    }
+                    fprintf(yyout,"};");
+                }
             }
         }
-    }
 
-    
+
     }
     catch(...)
     {
         CString cs;
-        
+
         cs.Format(ExceptionFormat,"\"vMsgDecl\"",__FILE__,__LINE__);
         MessageBox(0,cs,"Warning",MB_OK);
         exit(0);
@@ -2933,45 +2972,45 @@ void vMsgDecl(CString& omStrValue, MsgVariables& ouMsgVariable)
 }
 void SearchForRepeatedMessage()
 {
-	CString omStrName = yytext;
-	POSITION pos = g_ouGlobalVariables.g_omStrRepeatedMsg.Find(omStrName);
-	if(NULL != pos)
-	{
-		fprintf(yyout, "BM_%s", omStrName.GetBuffer(MAX_PATH));
-	}
-	else if(omStrName == "SendMsg")
-	{
-		fprintf(yyout, "BM_%s", omStrName.GetBuffer(MAX_PATH));
-	}
-	else
-	{
-		ECHO;
-	}
+    CString omStrName = yytext;
+    POSITION pos = g_ouGlobalVariables.g_omStrRepeatedMsg.Find(omStrName);
+    if(NULL != pos)
+    {
+        fprintf(yyout, "BM_%s", omStrName.GetBuffer(MAX_PATH));
+    }
+    else if(omStrName == "SendMsg")
+    {
+        fprintf(yyout, "BM_%s", omStrName.GetBuffer(MAX_PATH));
+    }
+    else
+    {
+        ECHO;
+    }
 }
 void vUpdateArraySize()
 {
-	CString omStrText = yytext;
-	int nIndexEnd, nIndexStart;
-	nIndexEnd = omStrText.ReverseFind(']');
-	if(nIndexEnd > 0 )
-	{
-		nIndexStart = omStrText.ReverseFind('[');
-		if(nIndexStart >=0 && nIndexStart < nIndexEnd )
-		{
-			CString omStrSize = omStrText.Mid(nIndexStart+1, nIndexEnd - nIndexStart-1);
-			omStrText.Replace(omStrSize, "MAX_PATH");
-		}
-	}
-	fprintf(yyout, "%s", omStrText.GetBuffer(MAX_PATH));
+    CString omStrText = yytext;
+    int nIndexEnd, nIndexStart;
+    nIndexEnd = omStrText.ReverseFind(']');
+    if(nIndexEnd > 0 )
+    {
+        nIndexStart = omStrText.ReverseFind('[');
+        if(nIndexStart >=0 && nIndexStart < nIndexEnd )
+        {
+            CString omStrSize = omStrText.Mid(nIndexStart+1, nIndexEnd - nIndexStart-1);
+            omStrText.Replace(omStrSize, "MAX_PATH");
+        }
+    }
+    fprintf(yyout, "%s", omStrText.GetBuffer(MAX_PATH));
 }
 
 
 void bReplaceBMFunctionName(CString omStrName)
 {
-	omStrName.TrimLeft(" \n\t");
-	omStrName.TrimRight(" \n\t");
-	if(omStrName.Find("SendMsg") >= 0)	//TODO::List Has to Update
-	{
-		g_ouGlobalVariables.g_omStrRepeatedMsg.AddTail("SendMsg");
-	}
+    omStrName.TrimLeft(" \n\t");
+    omStrName.TrimRight(" \n\t");
+    if(omStrName.Find("SendMsg") >= 0)  //TODO::List Has to Update
+    {
+        g_ouGlobalVariables.g_omStrRepeatedMsg.AddTail("SendMsg");
+    }
 }

@@ -662,9 +662,9 @@ BOOL CMsgHandlerDlg::bValidateUserSelection(CFunctionEditorDoc* pDoc)
                                 {
                                     omStrMsgPro = _(defMSG_DUPL_MSG_HANDLER);
                                     omStrMsgPro.Replace("TYPE",
-                                                         omStrHandlerType );
+                                                        omStrHandlerType );
                                     omStrMsgPro.Replace("MESSAGENAME",
-                                                         omStrText );
+                                                        omStrText );
 
                                     omStrMsgPro += _("In\"") + pMsgArray->GetAt( nCount ) +_("\" handler");
                                     // Duplicate message handler, shout

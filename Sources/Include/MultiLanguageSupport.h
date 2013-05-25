@@ -29,22 +29,22 @@ static HMODULE g_hLibIntl;
 //Getting the function pointer for multilanguage support
 static char* chGetText(char* __msgid)
 {
-	if(g_pfGetText == NULL)
-	{
-		
-		//hLibIntl = GetModuleHandle("intl.dll");
-		g_hLibIntl = LoadLibrary("intl.dll");
-		g_pfGetText = (PSGETTEXT)GetProcAddress(g_hLibIntl, "gettext");
-	}
-	if(g_pfGetText != NULL)
-	{
-		char* pReturn = g_pfGetText(__msgid);
-		return pReturn;
-	}
-	else
-	{
-		return __msgid;
-	}
+    if(g_pfGetText == NULL)
+    {
+
+        //hLibIntl = GetModuleHandle("intl.dll");
+        g_hLibIntl = LoadLibrary("intl.dll");
+        g_pfGetText = (PSGETTEXT)GetProcAddress(g_hLibIntl, "gettext");
+    }
+    if(g_pfGetText != NULL)
+    {
+        char* pReturn = g_pfGetText(__msgid);
+        return pReturn;
+    }
+    else
+    {
+        return __msgid;
+    }
 }
 
 #define _(string) chGetText (string)

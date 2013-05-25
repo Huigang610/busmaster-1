@@ -212,7 +212,7 @@ void CMessageDetailsDlg::OnOK()
             m_omStrMessageCode.IsEmpty())
     {
         CString omMsg = " ";
-		omMsg += _("cannot be empty!");
+        omMsg += _("cannot be empty!");
         omMsg = m_sDbParams.m_omIdFieldName + omMsg;
         AfxMessageBox(omMsg.GetBuffer(MAX_PATH),
                       MB_OK|MB_ICONINFORMATION);
