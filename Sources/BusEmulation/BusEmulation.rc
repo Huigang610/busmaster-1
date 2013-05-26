@@ -44,14 +44,15 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "TODO: <Company name>"
-            VALUE "FileDescription", "TODO: <File description>"
-            VALUE "FileVersion", "1.0.0.1"
-            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "CompanyName", "RBEI, Bangalore"
+            VALUE "FileDescription", "BUSMASTER Bus Emulation"
+            VALUE "FileVersion", "Ver 1.8.0"
+            VALUE "LegalCopyright", "Copyright (C) 2011"
+            VALUE "LegalTrademarks", "BOSCH"
             VALUE "InternalName", "BusEmulation.exe"
             VALUE "OriginalFilename", "BusEmulation.exe"
-            VALUE "ProductName", "TODO: <Product name>"
-            VALUE "ProductVersion", "1.0.0.1"
+            VALUE "ProductName", "BUSMASTER Application"
+            VALUE "ProductVersion", "Ver 1.8.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -93,4 +94,3 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-

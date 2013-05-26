@@ -17,15 +17,15 @@
  * \file      SimENG.h
  * \author    Ratnadip Choudhury
  * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ *
+ * Declaration of the CSimENG
  */
-// SimENG.h : Declaration of the CSimENG
 
 #pragma once
-#include "resource_BusSim.h"       // main symbols
+
+#include "resource_BusSim.h"       /* main symbols */
 #include "BusEmulation.h"
 
-
-// CSimENG
 
 class ATL_NO_VTABLE CSimENG :
     public ATL::CComObjectRootEx<ATL::CComSingleThreadModel>,
@@ -37,33 +37,33 @@ public:
 
     DECLARE_REGISTRY_RESOURCEID(IDR_SIMENG)
 
-    DECLARE_CLASSFACTORY_SINGLETON(CSimENG) // To create one and only one object of
-    // this class
+    /* To create one and only one object of this class */
+    DECLARE_CLASSFACTORY_SINGLETON(CSimENG)
 
     BEGIN_COM_MAP(CSimENG)
     COM_INTERFACE_ENTRY(ISimENG)
     COM_INTERFACE_ENTRY(IDispatch)
     END_COM_MAP()
 
-
     DECLARE_PROTECT_FINAL_CONSTRUCT()
 
     HRESULT FinalConstruct();
     void FinalRelease();
-    //void UpdateState(void);
 
-public:
-
-    /* Call to transmit a message frame across the virtual bus. The data byte
-    stream is the message frame without the additional two fields (i.e.,
-    Tx/Rx flag (=1 byte) and time stamp (= sizeof(UINT64)) */
+    /**
+     * Call to transmit a message frame across the virtual bus. The data byte
+     * stream is the message frame without the additional two fields (i.e.,
+     * Tx/Rx flag (=1 byte) and time stamp (= sizeof(UINT64))
+     */
     STDMETHOD(SendMessage)(USHORT ClientID, USHORT CurrDataLength, BYTE pbCurrDataByte[128]);
 
-    /* To register as a client node in a bus. Simulation engine doesn't contain
-    any information on specific bus (i.e., CAN, FlexRay, MCNet, J1939 etc). So,
-    its the responsibility of the user to provide diferent values for different
-    bus nodes. MaxDataLen should be the length of a frame not including the
-    Rx/Tx flag and time stamp fields. Rest all are [out] parameters. */
+    /**
+     * To register as a client node in a bus. Simulation engine doesn't contain
+     * any information on specific bus (i.e., CAN, FlexRay, MCNet, J1939 etc). So,
+     * its the responsibility of the user to provide diferent values for different
+     * bus nodes. MaxDataLen should be the length of a frame not including the
+     * Rx/Tx flag and time stamp fields. Rest all are [out] parameters.
+     */
     STDMETHOD(RegisterClient)(USHORT Bus, USHORT MaxDataLen, USHORT* ClientID, BSTR* PipeName, BSTR* EventName);
 
     STDMETHOD(UnregisterClient)(USHORT ClientID);

@@ -39,10 +39,6 @@
 #include "Include/BaseDefs.h"
 #include "Include/DIL_CommonDefs.h"
 #include "EXTERNAL_INCLUDE/OCI/ocican.h"
-// Including canfd header only if BOA_FD_VERSION is defined
-#ifdef BOA_FD_VERSION
-#include "EXTERNAL_INCLUDE/OCI/ocicanfd.h"
-#endif
 #include "EXTERNAL_INCLUDE/CSI/csisfs.h"
 #include "Include/Can_Error_Defs.h"
 #include "DIL_Interface/BaseDIL_CAN_Controller.h"
@@ -50,27 +46,28 @@
 #include "ChangeRegisters_CAN_ETAS_BOA.h"
 #include "../Application/MultiLanguage.h"
 #include "Utility/MultiLanguageSupport.h"
-
 #define USAGE_EXPORT
 #include "CAN_ETAS_BOA_Extern.h"
 
+/* Including canfd header only if BOA_FD_VERSION is defined */
+#ifdef BOA_FD_VERSION
+#include "EXTERNAL_INCLUDE/OCI/ocicanfd.h"
+#endif
+
 BEGIN_MESSAGE_MAP(CCAN_ETAS_BOA, CWinApp)
 END_MESSAGE_MAP()
-
 
 /**
  * CCAN_ETAS_BOA construction
  */
 CCAN_ETAS_BOA::CCAN_ETAS_BOA()
 {
-    // TODO: add construction code here,
-    // Place all significant initialization in InitInstance
 }
 
-
-// The one and only CCAN_ETAS_BOA object
+/**
+ * The one and only CCAN_ETAS_BOA object
+ */
 CCAN_ETAS_BOA theApp;
-
 
 /**
  * CCAN_ETAS_BOA initialization
@@ -156,11 +153,11 @@ public:
     CBaseCANBufFSE* m_pClientBuf[MAX_BUFF_ALLOWED];
     std::string m_acClientName;
     UINT m_unBufCount;
-    SCLIENTBUFMAP()
+    SCLIENTBUFMAP() :
+        m_acClientName("")
     {
         m_dwClientID = 0;
         m_unBufCount = 0;
-        m_acClientName = "";
 
         for (INT i = 0; i < MAX_BUFF_ALLOWED; i++)
         {
@@ -278,7 +275,6 @@ typedef struct tagBOA_POINTER_TABLE
 
 static SBOA_POINTER_TABLE sBOA_PTRS;
 
-
 /**
  * Starts code for the state machine
  */
@@ -361,8 +357,7 @@ static void (OCI_CALLBACK ProcessEvents)(void* userData, struct OCI_CANMessage* 
 
 /**
  * CallBack function used by the qsort Function
-**/
-
+ */
 INT nCallBackStrCompareFn( const void* str1, const void* str2)
 {
     return( strcmp((char*)str1,(char*)str2) );
@@ -644,6 +639,7 @@ BOA_ResultCode OCI_FindCANController(OCI_URIName uriName[], INT nSize, INT* nFou
 
     /* Container for search results */
     CSI_Tree* sfsTree = NULL;
+
     /* Specify that we want to search for nodes which implement v1.1.0.0 of OCI_CAN. */
     static const BOA_UuidVersion ociCanUuid = { UUID_OCICAN, {1,1,0,0} };
 
@@ -2228,13 +2224,6 @@ int DisplayConfigurationDlg(HWND hParent, DILCALLBACK /*ProcDIL*/,
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
     int nResult = WARNING_NOTCONFIRMED;
-
-    SCONTROLLER_DETAILS sController[defNO_OF_CHANNELS];
-
-    for(int i =0 ; i < defNO_OF_CHANNELS; i++)
-    {
-        sController[i] = pControllerDetails[i];
-    }
 
     CChangeRegisters_CAN_ETAS_BOA ouChangeRegister(NULL, pControllerDetails, nCount);
     ouChangeRegister.DoModal();

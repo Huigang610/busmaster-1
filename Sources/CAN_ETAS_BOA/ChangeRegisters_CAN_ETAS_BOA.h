@@ -15,16 +15,15 @@
 
 /**
  * \file      ChangeRegisters_CAN_ETAS_BOA.h
- * \brief     This header file contains the defination of class
+ * \brief     CChangeRegisters_CAN_ETAS_BOA dialog
  * \author    Pradeep Kadoor
  * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
- * This header file contains the defination of class
+ * CChangeRegisters_CAN_ETAS_BOA dialog
  */
 
 #pragma once
 
-// CChangeRegisters_CAN_ETAS_BOA dialog
 #include "Utility/RadixEdit.h"
 #include "Math.h"
 #include "Include/Struct_Can.h"
@@ -33,17 +32,15 @@
 
 #define defMAXPropDelay 8
 
-
-
 class CChangeRegisters_CAN_ETAS_BOA : public CDialog
 {
-    // Construction
 public:
-    // To Fill controller information taken from configuration module
-    BOOL   bFillControllerConfig();
     // standard constructor
     CChangeRegisters_CAN_ETAS_BOA(CWnd* pParent = NULL, PSCONTROLLER_DETAILS psControllerDetails = NULL, UINT nHardwareCount = 0);
     virtual ~CChangeRegisters_CAN_ETAS_BOA();
+
+    // To Fill controller information taken from configuration module
+    BOOL   bFillControllerConfig();
     BOOL bSetBaudRateFromCom(int nChannel,BYTE bBTR0,BYTE bBTR1);
     BOOL bGetBaudRateFromCom(int nChannel,BYTE& bBTR0,BYTE& bBTR1);
     BOOL bSetFilterFromCom(BOOL  bExtended, DWORD  dBeginMsgId,
@@ -52,8 +49,6 @@ public:
     INT nGetInitStatus();
 
 protected:
-    // Dialog Data
-    //{{AFX_DATA(CChangeRegisters_CAN_ETAS_BOA)
     enum { IDD = IDD_DLG_CHANGE_REGISTERS_CAN_ETAS_BOA };
     CListCtrl   m_omChannelList;
     CRadixEdit  m_omEditWarningLimit;
@@ -70,9 +65,12 @@ protected:
     CString m_omStrEditWarningLimit;
     CString m_omStrSamplePoint;
     CString m_omStrSJW;
-    //}}AFX_DATA
     DOUBLE  m_dEditBaudRate;
     UINT    m_unCombClock;
+    CComboBox m_omCtrlSamplePoint;
+    CComboBox m_omCtrlSJW;
+    CImageList m_omChannelImageList;
+
     /*CAN FD Parameters */
     CString m_omstrDataBitRate;
     CString m_omstrDataSamplePoint;
@@ -82,17 +80,10 @@ protected:
     CString m_omstrTxDelayCompensationQuanta;
     CString m_omstrRxCompatibility;
     CString m_omstrTxCompatibility;
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CChangeRegisters_CAN_ETAS_BOA)
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+
 private:
-    // Generated message map functions
-    //{{AFX_MSG(CChangeRegisters_CAN_ETAS_BOA)
     virtual void OnCancel();
     virtual void OnOK();
     virtual BOOL OnInitDialog();
@@ -104,19 +95,21 @@ private:
     afx_msg void OnClickListChannels(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnItemchangedListChannels(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnDblclkListChannels(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
+    afx_msg void OnCbnSelchangeCombSjw();
+    afx_msg void OnCbnSelchangeCombDelayCompensation();
+    afx_msg void OnCbnSelchangeCombPropdelay();
+
     DECLARE_MESSAGE_MAP()
+
 private:
     // Pointer to hold controller information
-    SCONTROLLER_DETAILS  m_pControllerDetails[defNO_OF_CHANNELS];
+    SCONTROLLER_DETAILS m_pControllerDetails[defNO_OF_CHANNELS];
     PSCONTROLLER_DETAILS psMainContrDets;
     int m_nLastSelection;
-    CImageList m_omChannelImageList;
     SACC_FILTER_INFO m_sAccFilterInfo;
     USHORT  m_usBTR0BTR1;
     UCHAR   m_ucWarningLimit;
     UCHAR   m_ucControllerMode;
-
     BOOL    m_bDialogCancel;
     int     m_nPropDelay;
     int     m_nSJWCurr;
@@ -124,24 +117,26 @@ private:
     UINT    m_nNoHardware;
     INT     m_nDataConfirmStatus;
 
-    // To populate list box with possible vlaues for the given baudrate
-    // and to set the focus to the selected item
+    /**
+     * To populate list box with possible vlaues for the given baudrate
+     * and to set the focus to the selected item
+     */
     void    vValidateBaudRate();
-    // To save user given values in to the backend data
+
+    /**
+     * To save user given values in to the backend data
+     */
     void vUpdateControllerDetails();
-    // To set the backend data to UI
+
+    /**
+     * To set the backend data to UI
+     */
     void vFillControllerConfigDetails();
+
     BYTE bGetNBT(double fBaudRate);
     int nGetValueFromComboBox(CComboBox& omComboBox);
     CString omGetFormattedRegVal(UCHAR ucRegVal);
     int GetSelectedEntryIndex(void);
     BOOL bUpdateControllerDataMembers(void);
-
     void vEnableFDParameters(BOOL bEnable);
-public:
-    afx_msg void OnCbnSelchangeCombSjw();
-    afx_msg void OnCbnSelchangeCombDelayCompensation();
-    afx_msg void OnCbnSelchangeCombPropdelay();
-    CComboBox m_omCtrlSamplePoint;
-    CComboBox m_omCtrlSJW;
 };

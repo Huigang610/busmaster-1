@@ -15,11 +15,10 @@
 
 /**
  * \file      CAN_VSCOM.h
- * \brief     Exports API functions for MHS-Elektronik Tiny-CAN Hardware interface
- * \author
+ * \brief     Exports API functions
  * \copyright Copyright (c) 2012, ETAS GmbH. All rights reserved.
- *
  */
+
 #pragma once
 
 #ifndef __AFXWIN_H__
@@ -27,7 +26,6 @@
 #endif
 
 #include "vs_can_api.h"
-
 
 struct _VSCanCfg
 {
@@ -42,19 +40,13 @@ struct _VSCanCfg
     BOOL bDebug;
 };
 
-int WINAPI ShowCanVsComSetup(HWND hwnd, struct _VSCanCfg* cfg);
+int WINAPI ShowCanVsComSetup(HWND hwnd, _VSCanCfg* cfg);
 
-
-/**
- * See CAN_VSCOM.cpp for the implementation of this class
- */
 class CCAN_VSCOM : public CWinApp
 {
 public:
     CCAN_VSCOM();
 
-    // Overrides
-public:
     virtual BOOL InitInstance();
 
     DECLARE_MESSAGE_MAP()

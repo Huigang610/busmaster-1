@@ -21,6 +21,7 @@
  *
  * This file contain definition of all function of
  */
+
 // For all standard header file include
 #include "CAN_ETAS_BOA_stdafx.h"
 

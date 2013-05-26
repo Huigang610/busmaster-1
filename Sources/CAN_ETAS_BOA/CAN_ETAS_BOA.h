@@ -23,16 +23,11 @@
  */
 #pragma once
 
-/**
- * See CAN_ETAS_BOA.cpp for the implementation of this class
- */
 class CCAN_ETAS_BOA : public CWinApp
 {
 public:
     CCAN_ETAS_BOA();
 
-    // Overrides
-public:
     virtual BOOL InitInstance();
 
     DECLARE_MESSAGE_MAP()

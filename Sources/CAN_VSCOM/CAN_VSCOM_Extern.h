@@ -15,10 +15,8 @@
 
 /**
  * \file      CAN_VSCOM_Extern.h
- * \brief     Exports API functions for MHS-Elektronik Tiny-CAN Hardware interface
- * \author
+ * \brief     Exports API functions
  * \copyright Copyright (c) 2012, ETAS GmbH. All rights reserved.
- *
  */
 
 #pragma once
@@ -32,7 +30,6 @@
 #else
 #define USAGEMODE   __declspec(dllimport)
 #endif
-
 
 #ifdef __cplusplus
 extern "C" {  // only need to export C interface if used by C++ source code

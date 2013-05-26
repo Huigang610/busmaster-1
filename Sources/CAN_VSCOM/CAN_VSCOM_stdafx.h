@@ -15,9 +15,7 @@
 
 /**
  * \file      CAN_VSCOM_stdafx.h
- * \author
  * \copyright Copyright (c) 2012, ETAS GmbH. All rights reserved.
- *
  */
 
 #pragma once

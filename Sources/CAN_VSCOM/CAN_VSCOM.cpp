@@ -104,13 +104,13 @@ typedef struct tagClientBufMap
 {
     DWORD m_dwClientID;
     CBaseCANBufFSE* m_pClientBuf[MAX_BUFF_ALLOWED];
-    char m_acClientName[MAX_PATH];
+    std::string m_acClientName;
     UINT m_unBufCount;
     tagClientBufMap()
     {
         m_dwClientID = 0;
         m_unBufCount = 0;
-        memset(m_acClientName, 0, sizeof (char) * MAX_PATH);
+        m_acClientName = "";
         for (INT i = 0; i < MAX_BUFF_ALLOWED; i++)
         {
             m_pClientBuf[i] = NULL;
@@ -197,7 +197,6 @@ static BOOL bClientIdExist(const DWORD& dwClientId);
 static DWORD dwGetAvailableClientSlot(void);
 static void vMarkEntryIntoMap(const SACK_MAP& RefObj);
 static BOOL bRemoveMapEntry(const SACK_MAP& RefObj, UINT& ClientID);
-static int str_has_char(char* s);
 
 
 /**
@@ -360,7 +359,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char
                 {
                     //First slot is reserved to monitor node
                     ClientID = 1;
-                    _tcscpy(sg_asClientToBufMap[0].m_acClientName, pacClientName);
+                    sg_asClientToBufMap[0].m_acClientName = pacClientName;
                     sg_asClientToBufMap[0].m_dwClientID = ClientID;
                     sg_asClientToBufMap[0].m_unBufCount = 0;
                 }
@@ -375,7 +374,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char
                         Index = sg_unClientCnt;
                     }
                     ClientID = dwGetAvailableClientSlot();
-                    _tcscpy(sg_asClientToBufMap[Index].m_acClientName, pacClientName);
+                    sg_asClientToBufMap[Index].m_acClientName = pacClientName;
                     sg_asClientToBufMap[Index].m_dwClientID = ClientID;
                     sg_asClientToBufMap[Index].m_unBufCount = 0;
                 }
@@ -885,7 +884,7 @@ static void CopyMsg2CanData(STCANDATA* can_data, VSCAN_MSG* msg, unsigned char f
 }
 
 // RxD Event-Funktion
-static DWORD WINAPI CanRxEvent(LPVOID lpParam)
+static DWORD WINAPI CanRxEvent(LPVOID /*lpParam*/)
 {
     static STCANDATA can_data;
     can_data.m_uDataInfo.m_sCANMsg.m_bCANFD = false;
@@ -1191,7 +1190,8 @@ HRESULT CDIL_CAN_VSCOM::CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECO
     }
     return hResult;
 }
-HRESULT CDIL_CAN_VSCOM::CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam)
+
+HRESULT CDIL_CAN_VSCOM::CAN_SetControllerParams(int /*nValue*/, ECONTR_PARAM /*eContrparam*/)
 {
     return S_OK;
 }
@@ -1288,7 +1288,7 @@ static BOOL bClientExist(std::string pcClientName, INT& Index)
     UINT i;
     for (i = 0; i < sg_unClientCnt; i++)
     {
-        if (!_tcscmp(pcClientName.c_str(), sg_asClientToBufMap[i].m_acClientName))
+        if (pcClientName == sg_asClientToBufMap[i].m_acClientName)
         {
             Index = i;
             return(TRUE);
@@ -1315,7 +1315,7 @@ static BOOL bRemoveClient(DWORD dwClientId)
         if (bGetClientObj(dwClientId, unClientIndex))
         {
             sg_asClientToBufMap[unClientIndex].m_dwClientID = 0;
-            memset (sg_asClientToBufMap[unClientIndex].m_acClientName, 0, sizeof (char) * MAX_PATH);
+            sg_asClientToBufMap[unClientIndex].m_acClientName = "";
             for (i = 0; i < MAX_BUFF_ALLOWED; i++)
             {
                 sg_asClientToBufMap[unClientIndex].m_pClientBuf[i] = NULL;
@@ -1403,30 +1403,4 @@ static BOOL bRemoveMapEntry(const SACK_MAP& RefObj, UINT& ClientID)
         sg_asAckMapBuf.erase(iResult);
     }
     return bResult;
-}
-
-
-static int str_has_char(char* s)
-{
-    char c;
-
-    if (!s)
-    {
-        return(-1);
-    }
-    while ((c = *s++))
-    {
-        if (c != ' ')
-        {
-            break;
-        }
-    }
-    if (c)
-    {
-        return(0);
-    }
-    else
-    {
-        return(-1);
-    }
 }

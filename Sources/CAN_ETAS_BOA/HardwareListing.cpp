@@ -747,10 +747,11 @@ void CHardwareListing::vSortHardwareItems()
         {
             PHARDWARE_CONTAINER pTempHardware = m_pIter->second;
 
-            //insert List Item
-            m_omHardwareList.InsertItem( iCount, pTempHardware->m_omHardwareName, 0);
-            // Set the hardware list index as item data
-            m_omHardwareList.SetItemData( iCount++, pTempHardware->m_omDriverId );
+            /* insert List Item */
+            m_omHardwareList.InsertItem(iCount, pTempHardware->m_omHardwareName.c_str(), 0);
+
+            /* Set the hardware list index as item data */
+            m_omHardwareList.SetItemData(iCount++, pTempHardware->m_omDriverId );
 
         }
     }

@@ -1004,8 +1004,8 @@ VOID CCANMonitorApp::vDestroyUtilThreads(UINT unMaxWaitTime, BYTE byThreadCode)
                 PSTXSELMSGDATA psTxCanMsg = static_cast <PSTXSELMSGDATA>
                                             (m_asUtilThread[defTX_SEL_MSG_THREAD].m_pvThread);
                 delete [](psTxCanMsg->m_psTxMsg);
-                delete psTxCanMsg;
                 psTxCanMsg->m_psTxMsg = NULL;
+                delete psTxCanMsg;
                 psTxCanMsg = NULL;
                 m_asUtilThread[defTX_SEL_MSG_THREAD].m_pvThread = NULL;
             }

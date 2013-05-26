@@ -16,7 +16,6 @@
 /**
  * \file      can_setup.cpp
  * \brief     Source file for Can_setup definitions
- * \author
  * \copyright Copyright (c) 2012, ETAS GmbH. All rights reserved.
  *
  * Source file for Can_setup definitions
@@ -31,7 +30,6 @@
 #include "resource.h"
 #include "vs_can_api.h"
 
-
 #define MAX_DEVICES         256
 
 #define VSCAN_DEVICE_TYPE_UNKNOWN   0
@@ -40,7 +38,6 @@
 #define VSCAN_DEVICE_TYPE_NET_VCOM  3
 #define VSCAN_DEVICE_TYPE_NET_IP    4
 #define VSCAN_DEVICE_TYPE_BUS       5   // Ocera LinCAN, PCI, AM3517
-
 
 typedef struct
 {
