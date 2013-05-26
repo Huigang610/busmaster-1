@@ -34,13 +34,25 @@
 class CDIL_CAN : public CBaseDIL_CAN
 {
 public:
-    /** Constructor */
+    /**
+     * Constructor
+     */
     CDIL_CAN();
 
-    /* Destructor */
+    /**
+     * Destructor
+     */
     ~CDIL_CAN();
 
+    /**
+     * The router is realised as a set of function pointers
+     * Initialisation with dummy functions
+     */
     BOOL InitInstance(void);
+
+    /**
+     * Exit Instance
+     */
     int ExitInstance(void);
 
     /* Variable to maintain currently selected Driver ID */
@@ -58,138 +70,40 @@ public:
     /* Variable to hold handle to previously selected controller DIL */
     HMODULE m_hOldDll;
 
-    /**
-     * Based on the parameter this function renders number of the driver interface
-     * layers supported or available. If 'bAvailable' is true, this returns number of
-     * the DILs implemented; else the list of the DILs supported by the existing
-     * license will be returned. If List is NULL, only number is returned.
-     */
-    DWORD DILC_GetDILList(bool bAvailable, DILLIST* List);
-
-    /**
-     * This function selects a driver abstraction layer (DAL). If support for the
-     * intended one isn't allowed with the present license, this returns NO_LICENSE.
-     * A list for DALs (or bDriverID) is shown below:
-     * DRIVER_STUB                 : DAL for Stub
-     * DRIVER_ES520                : DAL for ES520
-     * DRIVER_TZMCYCLONE           : DAL for TZMCyclone
-     * DRIVER_CAN_USB              : DAL for CAN usb
-     * DRIVER_CAN_PARALLEL_PORT    : DAL for CAN parallel port
-     * DAL_NONE                    : Dummy DAL */
-    HRESULT DILC_SelectDriver(DWORD dwDriverID, HWND hWndParent,
-                              Base_WrapperErrorLogger* pILog);
-
-    /**
-     * This function registers the client. Only registered client's buffer will be
-     * updated on receive of a msg in the bus.
-     * Following are the return values
-     * -1 registeration failed
-     *  1 registeration successful
-     *  2 Client already registered
-     * -2 No more clients are allowed to register*/
-    HRESULT DILC_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
-
-    /**
-     * This function manages the target message buffer list. The two combinations
-     * are the following:
-     * bAction = MSGBUF_ADD, add pBufObj to the target message buffer list.
-     * bAction = MSGBUF_CLEAR, clear the list. pBufObj is ignored.
-     * At present maximum number of entries in the list is kept as 8.
-     */
-    HRESULT DILC_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
-
-    /**
-     * This returns ID of the driver interface layer presently selected.
-     */
-    DWORD DILC_GetSelectedDriver(void);
-
-    /**
-     * Call for all initialisation operations.
-     */
-    HRESULT DILC_PerformInitOperations(void);
-
-    /**
-     * Call for all uninitialisation operations
-     */
-    HRESULT DILC_PerformClosureOperations(void);
-
-    /**
-     * Call this function to get a system time and the time stamp associated with it
-     */
-    HRESULT DILC_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-
-    /**
-     * Call this function to list the hardware interfaces available and receive
-     * user's choice.
-     */
-    HRESULT DILC_ListHwInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-
-    /**
-     * Call this function to select hardware interfaces.
-     */
-    HRESULT DILC_SelectHwInterfaces(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
-
-    /**
-     * Call this function to deselect the selected hardware interface.
-     */
-    HRESULT DILC_DeselectHwInterfaces(void);
-
-    /**
-     * Function to display the configuration dialog box for the selected DIL. If
-     * the dialog box needs to be displayed been initialised, pass the relevant data
-     * as InitData. If it is null, the dialog box is uninitialised. This also contains
-     * the user's choice as OUT parameter
-     */
-    HRESULT DILC_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length);
-
-    /**
-     * To set the configuration data for the currently selected DIL. Caller must
-     * release the memory.
-     */
-    HRESULT DILC_SetConfigData(PSCONTROLLER_DETAILS InitData, int Length);
-
-    /**
-     * Start the controller
-     */
-    HRESULT DILC_StartHardware(void);
-
-    /**
-     * Stop the controller
-     */
-    HRESULT DILC_StopHardware(void);
-
-    /**
-     * Send messages
-     */
-    HRESULT DILC_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-
-    /**
-     * Call to get Controller parameters. Value will be returned stored in lParam
-     * Possible values for ECONTR_PARAM are ...
-     */
-    HRESULT DILC_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
-
-    /**
-     *
-     *
-     */
-    virtual HRESULT DILC_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
-
-    /**
-     * Call to Get Error Counts
-     */
-    HRESULT  DILC_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
-
-    /* HELPER FUNCTIONS START */
-    void vSelectInterface_Dummy(void);
+    /* Overloaded functions */
+    DWORD getDriverList(DILLIST* List);
+    HRESULT selectDriver(DWORD dwDriverID, HWND hWndParent, Base_WrapperErrorLogger* pILog);
+    HRESULT registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
+    HRESULT manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
+    DWORD getSelectedDriver(void);
+    HRESULT performInitOperations(void);
+    HRESULT performClosureOperations(void);
+    HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
+    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterfaces(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT deselectHardwareInterfaces(void);
+    HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
+    HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);
+    HRESULT startHardware(void);
+    HRESULT stopHardware(void);
+    HRESULT sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
+    HRESULT getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
+    virtual HRESULT setControllerParameters(int nValue, ECONTR_PARAM eContrparam);
+    HRESULT  getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
 
 private:
+    /**
+     * Helper Function for Dummy Interface
+     */
+    void vSelectInterface_Dummy(void);
+
+    /* Function pointers */
     HRESULT (*m_pfPerformInitOperations)(void);
     HRESULT (*m_pfPerformClosureOperations)(void);
     HRESULT (*m_pfGetTimeModeMapping)(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount);
     HRESULT (*m_pfListHwInterfaces)(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount);
     HRESULT (*m_pfSelectHwInterface)(const INTERFACE_HW_LIST& asSelHwInterface, INT nCount);
-    HRESULT (*m_pfDeselectHwInterfaces)(void);
+    HRESULT (*m_pfDeselectHardwareInterfaces)(void);
     HRESULT (*m_pfDisplayConfigDlg)(PSCONTROLLER_DETAILS InitData, int& Length);
     HRESULT (*m_pfSetConfigData)(PCHAR pInitData, int Length);
     HRESULT (*m_pfStartHardware)(void);

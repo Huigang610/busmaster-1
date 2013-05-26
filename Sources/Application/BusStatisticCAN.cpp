@@ -185,8 +185,8 @@ HRESULT CBusStatisticCAN::BSC_DoInitialization(void)
     if (DIL_GetInterface(CAN, (void**)&m_pouDIL_CAN) == S_OK)
     {
         DWORD dwClientId = 0;
-        m_pouDIL_CAN->DILC_RegisterClient(TRUE, dwClientId, CAN_MONITOR_NODE);
-        m_pouDIL_CAN->DILC_ManageMsgBuf(MSGBUF_ADD, dwClientId, &m_ouCanBufFSE);
+        m_pouDIL_CAN->registerClient(TRUE, dwClientId, CAN_MONITOR_NODE);
+        m_pouDIL_CAN->manageMessageBuffer(MSGBUF_ADD, dwClientId, &m_ouCanBufFSE);
     }
     vInitialiseBSData();
 
@@ -1198,7 +1198,7 @@ void CBusStatisticCAN::vCalculateBusParametres(void)
         sErrorCounter.m_ucRxErrCount = 0;
         sErrorCounter.m_ucTxErrCount = 0;
 
-        if (m_pouDIL_CAN->DILC_GetErrorCount( sErrorCounter, nChannelIndex, ERR_CNT) == S_OK)
+        if (m_pouDIL_CAN->getErrorCount( sErrorCounter, nChannelIndex, ERR_CNT) == S_OK)
         {
             m_sBusStatistics[ nChannelIndex ].m_ucTxErrorCounter =
                 sErrorCounter.m_ucTxErrCount;
@@ -1209,7 +1209,7 @@ void CBusStatisticCAN::vCalculateBusParametres(void)
         sErrorCounter.m_ucRxErrCount = 0;
         sErrorCounter.m_ucTxErrCount = 0;
 
-        if (m_pouDIL_CAN->DILC_GetErrorCount( sErrorCounter, nChannelIndex, PEAK_ERR_CNT) == S_OK)
+        if (m_pouDIL_CAN->getErrorCount( sErrorCounter, nChannelIndex, PEAK_ERR_CNT) == S_OK)
         {
             m_sBusStatistics[ nChannelIndex ].m_ucTxPeakErrorCount=
                 sErrorCounter.m_ucTxErrCount;
@@ -1220,7 +1220,7 @@ void CBusStatisticCAN::vCalculateBusParametres(void)
         // Get the controller status
         LPARAM lParam = 0;
 
-        if (m_pouDIL_CAN->DILC_GetControllerParams( lParam, nChannelIndex,
+        if (m_pouDIL_CAN->getControllerParameters( lParam, nChannelIndex,
                 HW_MODE) == S_OK)
         {
             m_sBusStatistics[ nChannelIndex ].m_ucStatus = (UCHAR)lParam;

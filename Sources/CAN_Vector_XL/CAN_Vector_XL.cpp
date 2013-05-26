@@ -256,28 +256,28 @@ class CDIL_CAN_VectorXL : public CBaseDIL_CAN_Controller
 {
 public:
     /* STARTS IMPLEMENTATION OF THE INTERFACE FUNCTIONS... */
-    HRESULT CAN_PerformInitOperations(void);
-    HRESULT CAN_PerformClosureOperations(void);
-    HRESULT CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT CAN_ListHwInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT CAN_SelectHwInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
-    HRESULT CAN_DeselectHwInterface(void);
-    HRESULT CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length);
-    HRESULT CAN_SetConfigData(PSCONTROLLER_DETAILS InitData, int Length);
-    HRESULT CAN_StartHardware(void);
-    HRESULT CAN_StopHardware(void);
-    HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
-    HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-    HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
-    HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
-    HRESULT CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT performInitOperations(void);
+    HRESULT performClosureOperations(void);
+    HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
+    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT deselectHardwareInterface(void);
+    HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
+    HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);
+    HRESULT startHardware(void);
+    HRESULT stopHardware(void);
+    HRESULT getCurrentStatus(s_STATUSMSG& StatusData);
+    HRESULT sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
+    HRESULT getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT setControllerParameters(int nValue, ECONTR_PARAM eContrparam);
+    HRESULT getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
 
     // Specific function set
-    HRESULT CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
-    HRESULT CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
-    HRESULT CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
-    HRESULT CAN_LoadDriverLibrary(void);
-    HRESULT CAN_UnloadDriverLibrary(void);
+    HRESULT setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
+    HRESULT manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
+    HRESULT registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
+    HRESULT loadDriverLibrary(void);
+    HRESULT unloadDriverLibrary(void);
 };
 
 CDIL_CAN_VectorXL* g_pouDIL_CAN_VectorXL = NULL;
@@ -442,7 +442,7 @@ static INT sg_anSelectedItems[CHANNEL_ALLOWED];
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
+HRESULT CDIL_CAN_VectorXL::setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
 {
     sg_hOwnerWnd = hWndOwner;
     sg_pIlog = pILog;
@@ -456,7 +456,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLog
 
     /* INITIALISE_ARRAY(sg_acErrStr); */
     sg_acErrStr = "";
-    CAN_ManageMsgBuf(MSGBUF_CLEAR, NULL, NULL);
+    manageMessageBuffer(MSGBUF_CLEAR, NULL, NULL);
 
     return S_OK;
 }
@@ -469,7 +469,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLog
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_UnloadDriverLibrary(void)
+HRESULT CDIL_CAN_VectorXL::unloadDriverLibrary(void)
 {
     if (hxlDll != NULL)
     {
@@ -489,7 +489,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_UnloadDriverLibrary(void)
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
+HRESULT CDIL_CAN_VectorXL::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
 {
     HRESULT hResult = S_FALSE;
     if (ClientID != NULL)
@@ -549,7 +549,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseC
             /* clear msg buffer */
             for (UINT i = 0; i < sg_unClientCnt; i++)
             {
-                CAN_ManageMsgBuf(MSGBUF_CLEAR, sg_asClientToBufMap[i].dwClientID, NULL);
+                manageMessageBuffer(MSGBUF_CLEAR, sg_asClientToBufMap[i].dwClientID, NULL);
             }
             hResult = S_OK;
         }
@@ -567,7 +567,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseC
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName)
+HRESULT CDIL_CAN_VectorXL::registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName)
 {
     USES_CONVERSION;
     HRESULT hResult = S_FALSE;
@@ -640,7 +640,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, c
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_LoadDriverLibrary(void)
+HRESULT CDIL_CAN_VectorXL::loadDriverLibrary(void)
 {
     HRESULT hResult = S_OK;
 
@@ -747,14 +747,14 @@ HRESULT CDIL_CAN_VectorXL::CAN_LoadDriverLibrary(void)
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_PerformInitOperations(void)
+HRESULT CDIL_CAN_VectorXL::performInitOperations(void)
 {
     HRESULT hResult = S_FALSE;
     sg_asCANMsg.m_uDataInfo.m_sCANMsg.m_bCANFD = false;
 
     /* Register Monitor client */
     DWORD dwClientID = 0;
-    CAN_RegisterClient(TRUE, dwClientID, CAN_MONITOR_NODE);
+    registerClient(TRUE, dwClientID, CAN_MONITOR_NODE);
 
     // ------------------------------------
     // open the driver
@@ -778,15 +778,15 @@ HRESULT CDIL_CAN_VectorXL::CAN_PerformInitOperations(void)
 /**
 * \brief         Performs closure operations.
 * \param         void
-* \return        S_OK if the CAN_StopHardware call successfull otherwise S_FALSE
+* \return        S_OK if the stopHardware call successfull otherwise S_FALSE
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_PerformClosureOperations(void)
+HRESULT CDIL_CAN_VectorXL::performClosureOperations(void)
 {
     HRESULT hResult = S_OK;
 
-    hResult = CAN_StopHardware();
+    hResult = stopHardware();
 
     if (hResult == S_OK)
     {
@@ -824,7 +824,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_PerformClosureOperations(void)
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
+HRESULT CDIL_CAN_VectorXL::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
 {
     memcpy(&CurrSysTime, &sg_CurrSysTime, sizeof(SYSTEMTIME));
     TimeStamp = sg_TimeStamp;
@@ -844,7 +844,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT6
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_ListHwInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN_VectorXL::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount)
 {
     USES_CONVERSION;
     HRESULT hResult = S_FALSE;
@@ -890,7 +890,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_ListHwInterfaces(INTERFACE_HW_LIST& asSelHwInterf
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_SelectHwInterface(const INTERFACE_HW_LIST& /*asSelHwInterface*/, INT /*nCount*/)
+HRESULT CDIL_CAN_VectorXL::selectHardwareInterface(const INTERFACE_HW_LIST& /*asSelHwInterface*/, INT /*nCount*/)
 {
     USES_CONVERSION;
 
@@ -911,7 +911,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_SelectHwInterface(const INTERFACE_HW_LIST& /*asSe
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_DeselectHwInterface(void)
+HRESULT CDIL_CAN_VectorXL::deselectHardwareInterface(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
 
@@ -1044,13 +1044,13 @@ static BOOL bLoadDataFromContr(PSCONTROLLER_DETAILS pControllerDetails)
 /**
 * \brief         Callback function for configuration dialog
 * \param[in]     pDatStream, contains SCONTROLLER_DETAILS structure
-* \return        TRUE if CAN_SetConfigData call succeeds, else FALSE
+* \return        TRUE if setConfigurationData call succeeds, else FALSE
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
 BOOL Callback_DILTZM(BYTE /*Argument*/, PSCONTROLLER_DETAILS pDatStream, int /*Length*/)
 {
-    return (g_pouDIL_CAN_VectorXL->CAN_SetConfigData(pDatStream, 0) == S_OK);
+    return (g_pouDIL_CAN_VectorXL->setConfigurationData(pDatStream, 0) == S_OK);
 }
 
 /**
@@ -1082,7 +1082,7 @@ int DisplayConfigurationDlg(HWND hParent, DILCALLBACK /*ProcDIL*/,
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length)
+HRESULT CDIL_CAN_VectorXL::displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
     VALIDATE_POINTER_RETURN_VAL(InitData, S_FALSE);
@@ -1290,7 +1290,7 @@ static int nSetApplyConfiguration()
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_SetConfigData(PSCONTROLLER_DETAILS ConfigFile, int Length)
+HRESULT CDIL_CAN_VectorXL::setConfigurationData(PSCONTROLLER_DETAILS ConfigFile, int Length)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
 
@@ -1628,7 +1628,7 @@ DWORD WINAPI CanMsgReadThreadProc_CAN_Vector_XL(LPVOID pVoid)
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_StartHardware(void)
+HRESULT CDIL_CAN_VectorXL::startHardware(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
 
@@ -1807,7 +1807,7 @@ static int nConnect(BOOL bConnect)
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_StopHardware(void)
+HRESULT CDIL_CAN_VectorXL::stopHardware(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_CONNECTED, ERR_IMPROPER_STATE);
 
@@ -1839,7 +1839,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_StopHardware(void)
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
+HRESULT CDIL_CAN_VectorXL::getCurrentStatus(s_STATUSMSG& StatusData)
 {
     StatusData.wControllerStatus = NORMAL_ACTIVE;
 
@@ -1915,7 +1915,7 @@ static int nWriteMessage(STCAN_MSG sMessage, DWORD dwClientID)
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sMessage)
+HRESULT CDIL_CAN_VectorXL::sendMessage(DWORD dwClientID, const STCAN_MSG& sMessage)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_CONNECTED, ERR_IMPROPER_STATE);
 
@@ -1985,7 +1985,7 @@ static int nTestHardwareConnection(UCHAR& ucaTestResult, UINT nChannel) //const
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam)
+HRESULT CDIL_CAN_VectorXL::getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam)
 {
     HRESULT hResult = S_OK;
     if ((sg_bCurrState == STATE_HW_INTERFACE_SELECTED) || (sg_bCurrState == STATE_CONNECTED))
@@ -2057,7 +2057,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_GetControllerParams(LONG& lParam, UINT nChannel, 
     return hResult;
 }
 
-HRESULT CDIL_CAN_VectorXL::CAN_SetControllerParams(INT nValue, ECONTR_PARAM eContrparam)
+HRESULT CDIL_CAN_VectorXL::setControllerParameters(INT nValue, ECONTR_PARAM eContrparam)
 {
     switch(eContrparam)
     {
@@ -2109,7 +2109,7 @@ HRESULT CDIL_CAN_VectorXL::CAN_SetControllerParams(INT nValue, ECONTR_PARAM eCon
 * \authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam)
+HRESULT CDIL_CAN_VectorXL::getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam)
 {
     HRESULT hResult = S_OK;
     if ((sg_bCurrState == STATE_CONNECTED) || (sg_bCurrState == STATE_HW_INTERFACE_SELECTED))

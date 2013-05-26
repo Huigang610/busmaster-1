@@ -2169,7 +2169,7 @@ HRESULT CNodeConManager::StartAdresClaimProc(BYTE byAddress)
     m_byNodeAddress = byAddress;
     LPARAM lParam;
     if (CNetworkMgmt::ouGetNWManagementObj().GetICANDIL()
-            ->DILC_GetControllerParams(lParam, 0, NUMBER_HW) == S_OK)
+            ->getControllerParameters(lParam, 0, NUMBER_HW) == S_OK)
     {
         /* Note address to be claimed is sent with PGN */
         for (UINT i = 0; i < (UINT)lParam; i++)

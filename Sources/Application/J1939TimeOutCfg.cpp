@@ -1,28 +1,25 @@
-/******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  J1939TimeOutCfg.cpp
-  Description   :
-  $Log:   X:/Archive/Sources/Application/J1939TimeOutCfg.cpv  $
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-      Rev 1.3   09 Jun 2011 11:28:04   CANMNTTM
+/**
+ * \file J1939TimeOutCfg.cpp
+ * \author Pradeep Kadoor
+ * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
+ */
 
-
-      Rev 1.2   15 Apr 2011 20:00:40   CANMNTTM
-   Added RBEI Copyright information.
-
-      Rev 1.1   02 Mar 2011 15:38:14   CANMNTTM
-   1. Support to J1939 Nodesimulation
-   3. Support to J1939 Message window
-   2. Removed unwanted macros
-
-      Rev 1.0   22 Dec 2010 19:06:28   CANMNTTM
-
-
-  Author(s)     :  Pradeep Kadoor
-  Date Created  :  22/12/2010
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
+/* Project includes */
 #include "stdafx.h"
 #include "Resource.h"
 #include "Datatypes/J1939_Datatypes.h"
@@ -93,7 +90,7 @@ BOOL CJ1939TimeOutCfg::OnInitDialog()
     pButton = (CButton*)GetDlgItem(IDC_CHECK_BROADCAST);
     pButton->SetCheck(BST_UNCHECKED);
 
-    GetIJ1939DIL()->DILIJ_GetTimeOut(TYPE_TO_BROADCAST, unTimeOutVal);
+    GetIJ1939DIL()->getTimeout(TYPE_TO_BROADCAST, unTimeOutVal);
     m_omBroadcast.vSetBase(BASE_DECIMAL);
     m_omBroadcast.vSetSigned(FALSE);
     m_omBroadcast.LimitText(4);
@@ -103,7 +100,7 @@ BOOL CJ1939TimeOutCfg::OnInitDialog()
     pButton = (CButton*)GetDlgItem(IDC_CHECK_RESPONSE);
     pButton->SetCheck(BST_UNCHECKED);
 
-    GetIJ1939DIL()->DILIJ_GetTimeOut(TYPE_TO_RESPONSE, unTimeOutVal);
+    GetIJ1939DIL()->getTimeout(TYPE_TO_RESPONSE, unTimeOutVal);
     m_omResponse.vSetBase(BASE_DECIMAL);
     m_omResponse.vSetSigned(FALSE);
     m_omResponse.LimitText(4);
@@ -113,7 +110,7 @@ BOOL CJ1939TimeOutCfg::OnInitDialog()
     pButton = (CButton*)GetDlgItem(IDC_CHECK_HOLDING);
     pButton->SetCheck(BST_UNCHECKED);
 
-    GetIJ1939DIL()->DILIJ_GetTimeOut(TYPE_TO_HOLDING, unTimeOutVal);
+    GetIJ1939DIL()->getTimeout(TYPE_TO_HOLDING, unTimeOutVal);
     m_omHolding.vSetBase(BASE_DECIMAL);
     m_omHolding.vSetSigned(FALSE);
     m_omHolding.LimitText(4);
@@ -123,7 +120,7 @@ BOOL CJ1939TimeOutCfg::OnInitDialog()
     pButton = (CButton*)GetDlgItem(IDC_CHECK_T1);
     pButton->SetCheck(BST_UNCHECKED);
 
-    GetIJ1939DIL()->DILIJ_GetTimeOut(TYPE_TO_T1, unTimeOutVal);
+    GetIJ1939DIL()->getTimeout(TYPE_TO_T1, unTimeOutVal);
     m_omT1.vSetBase(BASE_DECIMAL);
     m_omT1.vSetSigned(FALSE);
     m_omT1.LimitText(4);
@@ -133,7 +130,7 @@ BOOL CJ1939TimeOutCfg::OnInitDialog()
     pButton = (CButton*)GetDlgItem(IDC_CHECK_T2);
     pButton->SetCheck(BST_UNCHECKED);
 
-    GetIJ1939DIL()->DILIJ_GetTimeOut(TYPE_TO_T2, unTimeOutVal);
+    GetIJ1939DIL()->getTimeout(TYPE_TO_T2, unTimeOutVal);
     m_omT2.vSetBase(BASE_DECIMAL);
     m_omT2.vSetSigned(FALSE);
     m_omT2.LimitText(4);
@@ -143,7 +140,7 @@ BOOL CJ1939TimeOutCfg::OnInitDialog()
     pButton = (CButton*)GetDlgItem(IDC_CHECK_T3);
     pButton->SetCheck(BST_UNCHECKED);
 
-    GetIJ1939DIL()->DILIJ_GetTimeOut(TYPE_TO_T3, unTimeOutVal);
+    GetIJ1939DIL()->getTimeout(TYPE_TO_T3, unTimeOutVal);
     m_omT3.vSetBase(BASE_DECIMAL);
     m_omT3.vSetSigned(FALSE);
     m_omT3.LimitText(4);
@@ -153,7 +150,7 @@ BOOL CJ1939TimeOutCfg::OnInitDialog()
     pButton = (CButton*)GetDlgItem(IDC_CHECK_T4);
     pButton->SetCheck(BST_UNCHECKED);
 
-    GetIJ1939DIL()->DILIJ_GetTimeOut(TYPE_TO_T4, unTimeOutVal);
+    GetIJ1939DIL()->getTimeout(TYPE_TO_T4, unTimeOutVal);
     m_omT4.vSetBase(BASE_DECIMAL);
     m_omT4.vSetSigned(FALSE);
     m_omT4.LimitText(4);
@@ -280,43 +277,43 @@ void CJ1939TimeOutCfg::OnBnClickedOk()
     pButton = (CButton*)GetDlgItem(IDC_CHECK_BROADCAST);
     if (pButton->GetCheck() == BST_CHECKED && bVerifyTimeoutValue((UINT)m_omBroadcast.lGetValue()) )
     {
-        GetIJ1939DIL()->DILIJ_ConfigureTimeOut(TYPE_TO_BROADCAST, (UINT)m_omBroadcast.lGetValue());
+        GetIJ1939DIL()->configureTimeout(TYPE_TO_BROADCAST, (UINT)m_omBroadcast.lGetValue());
     }
 
     pButton = (CButton*)GetDlgItem(IDC_CHECK_RESPONSE);
     if (pButton->GetCheck() == BST_CHECKED && bVerifyTimeoutValue((UINT)m_omResponse.lGetValue()) )
     {
-        GetIJ1939DIL()->DILIJ_ConfigureTimeOut(TYPE_TO_RESPONSE, (UINT)m_omResponse.lGetValue());
+        GetIJ1939DIL()->configureTimeout(TYPE_TO_RESPONSE, (UINT)m_omResponse.lGetValue());
     }
 
     pButton = (CButton*)GetDlgItem(IDC_CHECK_HOLDING);
     if (pButton->GetCheck() == BST_CHECKED && bVerifyTimeoutValue((UINT)m_omHolding.lGetValue()) )
     {
-        GetIJ1939DIL()->DILIJ_ConfigureTimeOut(TYPE_TO_HOLDING, (UINT)m_omHolding.lGetValue());
+        GetIJ1939DIL()->configureTimeout(TYPE_TO_HOLDING, (UINT)m_omHolding.lGetValue());
     }
 
     pButton = (CButton*)GetDlgItem(IDC_CHECK_T1);
     if (pButton->GetCheck() == BST_CHECKED && bVerifyTimeoutValue((UINT)m_omT1.lGetValue()) )
     {
-        GetIJ1939DIL()->DILIJ_ConfigureTimeOut(TYPE_TO_T1, (UINT)m_omT1.lGetValue());
+        GetIJ1939DIL()->configureTimeout(TYPE_TO_T1, (UINT)m_omT1.lGetValue());
     }
 
     pButton = (CButton*)GetDlgItem(IDC_CHECK_T2);
     if (pButton->GetCheck() == BST_CHECKED && bVerifyTimeoutValue((UINT)m_omT2.lGetValue()) )
     {
-        GetIJ1939DIL()->DILIJ_ConfigureTimeOut(TYPE_TO_T2, (UINT)m_omT2.lGetValue());
+        GetIJ1939DIL()->configureTimeout(TYPE_TO_T2, (UINT)m_omT2.lGetValue());
     }
 
     pButton = (CButton*)GetDlgItem(IDC_CHECK_T3);
     if (pButton->GetCheck() == BST_CHECKED && bVerifyTimeoutValue((UINT)m_omT3.lGetValue()) )
     {
-        GetIJ1939DIL()->DILIJ_ConfigureTimeOut(TYPE_TO_T3, (UINT)m_omT3.lGetValue());
+        GetIJ1939DIL()->configureTimeout(TYPE_TO_T3, (UINT)m_omT3.lGetValue());
     }
 
     pButton = (CButton*)GetDlgItem(IDC_CHECK_T4);
     if (pButton->GetCheck() == BST_CHECKED && bVerifyTimeoutValue((UINT)m_omT4.lGetValue()) )
     {
-        GetIJ1939DIL()->DILIJ_ConfigureTimeOut(TYPE_TO_T4, (UINT)m_omT4.lGetValue());
+        GetIJ1939DIL()->configureTimeout(TYPE_TO_T4, (UINT)m_omT4.lGetValue());
     }
     GetDlgItem(IDOK)->EnableWindow(FALSE);
     //OnOK();

@@ -638,7 +638,7 @@ UINT CTxMsgManager::s_unSendSelectedMsg(LPVOID pParam )
             {
                 // Use HIL function to send CAN message
 
-                int nReturn = g_pouDIL_CAN_Interface->DILC_SendMsg(g_dwClientID, psTxCanMsg->m_psTxMsg[unIndex]);
+                int nReturn = g_pouDIL_CAN_Interface->sendMessage(g_dwClientID, psTxCanMsg->m_psTxMsg[unIndex]);
                 if (nReturn != S_OK)
                 {
                     //::PostMessage(GUI_hDisplayWindow, WM_ERROR,
@@ -886,7 +886,7 @@ UINT CTxMsgManager::s_unSendMsgBlockOnTime(LPVOID pParam )
 
                 //WaitForSingleObject(psTxMsg->m_hSemaphore, INFINITE);
                 // Use HIL Function to send CAN Message
-                int nRet = g_pouDIL_CAN_Interface->DILC_SendMsg(g_dwClientID,
+                int nRet = g_pouDIL_CAN_Interface->sendMessage(g_dwClientID,
                            psTxMsgList->m_sTxMsgDetails.m_sTxMsg);
                 if (nRet != S_OK)
                 {
@@ -1083,7 +1083,7 @@ UINT CTxMsgManager::s_unSendMsgBlockOnKey(LPVOID pParam )
                 {
                     //                    EnterCriticalSection(&psTxMsg->m_sMsgBlocksCriticalSection);
                     WaitForSingleObject(psTxMsg->m_hSemaphore, INFINITE);
-                    int nRet = g_pouDIL_CAN_Interface->DILC_SendMsg(g_dwClientID,
+                    int nRet = g_pouDIL_CAN_Interface->sendMessage(g_dwClientID,
                                psTxMsgList->m_sTxMsgDetails.m_sTxMsg);
                     if(CTxWndDataStore::ouGetTxWndDataStoreObj().m_bDelayBetweenMsgBlocks)
                     {

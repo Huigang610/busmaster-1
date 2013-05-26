@@ -329,28 +329,28 @@ class CDIL_CAN_Kvaser : public CBaseDIL_CAN_Controller
 {
 public:
     /* STARTS IMPLEMENTATION OF THE INTERFACE FUNCTIONS... */
-    HRESULT CAN_PerformInitOperations(void);
-    HRESULT CAN_PerformClosureOperations(void);
-    HRESULT CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT CAN_ListHwInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT CAN_SelectHwInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
-    HRESULT CAN_DeselectHwInterface(void);
-    HRESULT CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length);
-    HRESULT CAN_SetConfigData(PSCONTROLLER_DETAILS InitData, int Length);
-    HRESULT CAN_StartHardware(void);
-    HRESULT CAN_StopHardware(void);
-    HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
-    HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-    HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
-    HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
-    HRESULT CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT performInitOperations(void);
+    HRESULT performClosureOperations(void);
+    HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
+    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT deselectHardwareInterface(void);
+    HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
+    HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);
+    HRESULT startHardware(void);
+    HRESULT stopHardware(void);
+    HRESULT getCurrentStatus(s_STATUSMSG& StatusData);
+    HRESULT sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
+    HRESULT getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT setControllerParameters(int nValue, ECONTR_PARAM eContrparam);
+    HRESULT getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
 
     // Specific function set
-    HRESULT CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
-    HRESULT CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
-    HRESULT CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
-    HRESULT CAN_LoadDriverLibrary(void);
-    HRESULT CAN_UnloadDriverLibrary(void);
+    HRESULT setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
+    HRESULT manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
+    HRESULT registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
+    HRESULT loadDriverLibrary(void);
+    HRESULT unloadDriverLibrary(void);
 };
 
 CDIL_CAN_Kvaser* sg_pouDIL_CAN_Kvaser = NULL;
@@ -392,7 +392,7 @@ USAGEMODE HRESULT GetIDIL_CAN_Controller(void** ppvInterface)
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
+HRESULT CDIL_CAN_Kvaser::getCurrentStatus(s_STATUSMSG& StatusData)
 {
     StatusData.wControllerStatus = NORMAL_ACTIVE;
     return S_OK;
@@ -406,7 +406,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
+HRESULT CDIL_CAN_Kvaser::setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
 {
     sg_hOwnerWnd = hWndOwner;
     sg_pIlog = pILog;
@@ -420,7 +420,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogge
 
     /* INITIALISE_ARRAY(sg_acErrStr); */
     sg_acErrStr = "";
-    CAN_ManageMsgBuf(MSGBUF_CLEAR, NULL, NULL);
+    manageMessageBuffer(MSGBUF_CLEAR, NULL, NULL);
 
     return S_OK;
 }
@@ -434,7 +434,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogge
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
+HRESULT CDIL_CAN_Kvaser::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
 {
     HRESULT hResult = S_FALSE;
     if (ClientID != NULL)
@@ -494,7 +494,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCAN
             /* clear msg buffer */
             for (UINT i = 0; i < sg_unClientCnt; i++)
             {
-                CAN_ManageMsgBuf(MSGBUF_CLEAR, sg_asClientToBufMap[i].dwClientID, NULL);
+                manageMessageBuffer(MSGBUF_CLEAR, sg_asClientToBufMap[i].dwClientID, NULL);
             }
             hResult = S_OK;
         }
@@ -512,7 +512,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCAN
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName)
+HRESULT CDIL_CAN_Kvaser::registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName)
 {
     USES_CONVERSION;
     HRESULT hResult = S_FALSE;
@@ -586,14 +586,14 @@ HRESULT CDIL_CAN_Kvaser::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, cha
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_PerformInitOperations(void)
+HRESULT CDIL_CAN_Kvaser::performInitOperations(void)
 {
     HRESULT hResult = S_FALSE;
     sg_ReadMsg.m_bCANFD = false;
 
     /* Register Monitor client */
     DWORD dwClientID = 0;
-    if (CAN_RegisterClient(TRUE, dwClientID, CAN_MONITOR_NODE) == S_OK)
+    if (registerClient(TRUE, dwClientID, CAN_MONITOR_NODE) == S_OK)
     {
         // ------------------------------------
         // Initialize the CANlib driver libray
@@ -729,15 +729,15 @@ static BOOL bLoadDataFromContr(PSCONTROLLER_DETAILS pControllerDetails)
 /**
 * \brief         Performs closure operations.
 * \param         void
-* \return        S_OK if the CAN_StopHardware call successfull otherwise S_FALSE
+* \return        S_OK if the stopHardware call successfull otherwise S_FALSE
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_PerformClosureOperations(void)
+HRESULT CDIL_CAN_Kvaser::performClosureOperations(void)
 {
     HRESULT hResult = S_OK;
 
-    hResult = CAN_StopHardware();
+    hResult = stopHardware();
 
     UINT ClientIndex = 0;
     while (sg_unClientCnt > 0)
@@ -764,7 +764,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_PerformClosureOperations(void)
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
+HRESULT CDIL_CAN_Kvaser::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
 {
     memcpy(&CurrSysTime, &sg_CurrSysTime, sizeof(SYSTEMTIME));
     TimeStamp = sg_TimeStamp;
@@ -785,7 +785,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64&
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_ListHwInterfaces(INTERFACE_HW_LIST& /*asSelHwInterface*/, INT& nCount)
+HRESULT CDIL_CAN_Kvaser::listHardwareInterfaces(INTERFACE_HW_LIST& /*asSelHwInterface*/, INT& nCount)
 {
     USES_CONVERSION;
     HRESULT hResult = S_FALSE;
@@ -811,7 +811,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_ListHwInterfaces(INTERFACE_HW_LIST& /*asSelHwInterf
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_SelectHwInterface(const INTERFACE_HW_LIST& /*asSelHwInterface*/, INT /*nCount*/)
+HRESULT CDIL_CAN_Kvaser::selectHardwareInterface(const INTERFACE_HW_LIST& /*asSelHwInterface*/, INT /*nCount*/)
 {
     USES_CONVERSION;
 
@@ -830,7 +830,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_SelectHwInterface(const INTERFACE_HW_LIST& /*asSelH
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_DeselectHwInterface(void)
+HRESULT CDIL_CAN_Kvaser::deselectHardwareInterface(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
 
@@ -844,13 +844,13 @@ HRESULT CDIL_CAN_Kvaser::CAN_DeselectHwInterface(void)
 /**
 * \brief         Callback function for configuration dialog
 * \param[in]     pDatStream, contains SCONTROLLER_DETAILS structure
-* \return        TRUE if CAN_SetConfigData call succeeds, else FALSE
+* \return        TRUE if setConfigurationData call succeeds, else FALSE
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
 BOOL Callback_DILTZM(BYTE /*Argument*/, PSCONTROLLER_DETAILS pDatStream, int /*Length*/)
 {
-    return (sg_pouDIL_CAN_Kvaser->CAN_SetConfigData(pDatStream, 0) == S_OK);
+    return (sg_pouDIL_CAN_Kvaser->setConfigurationData(pDatStream, 0) == S_OK);
 }
 
 /**
@@ -882,7 +882,7 @@ int DisplayConfigurationDlg(HWND hParent, DILCALLBACK /*ProcDIL*/,
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length)
+HRESULT CDIL_CAN_Kvaser::displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
     VALIDATE_POINTER_RETURN_VAL(InitData, S_FALSE);
@@ -1118,7 +1118,7 @@ static int nSetApplyConfiguration()
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_SetConfigData(PSCONTROLLER_DETAILS ConfigFile, int Length)
+HRESULT CDIL_CAN_Kvaser::setConfigurationData(PSCONTROLLER_DETAILS ConfigFile, int Length)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
 
@@ -1561,7 +1561,7 @@ DWORD WINAPI CanMsgReadThreadProc_CAN_Kvaser_CAN(LPVOID pVoid)
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_StartHardware(void)
+HRESULT CDIL_CAN_Kvaser::startHardware(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
 
@@ -1608,7 +1608,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_StartHardware(void)
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_StopHardware(void)
+HRESULT CDIL_CAN_Kvaser::stopHardware(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_CONNECTED, ERR_IMPROPER_STATE);
 
@@ -1684,7 +1684,7 @@ static int nWriteMessage(STCAN_MSG sMessage, DWORD /*dwClientID*/)
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg)
+HRESULT CDIL_CAN_Kvaser::sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTxMsg)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_CONNECTED, ERR_IMPROPER_STATE);
     EnterCriticalSection(&sg_CritSectForAckBuf); // Lock the buffer
@@ -1758,7 +1758,7 @@ static int nTestHardwareConnection(UCHAR& ucaTestResult, UINT nChannel) //const
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam)
+HRESULT CDIL_CAN_Kvaser::getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam)
 {
     HRESULT hResult = S_OK;
     if ((sg_bCurrState == STATE_HW_INTERFACE_SELECTED) || (sg_bCurrState == STATE_CONNECTED))
@@ -1830,7 +1830,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_GetControllerParams(LONG& lParam, UINT nChannel, EC
     return hResult;
 }
 
-HRESULT CDIL_CAN_Kvaser::CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam)
+HRESULT CDIL_CAN_Kvaser::setControllerParameters(int nValue, ECONTR_PARAM eContrparam)
 {
     switch(eContrparam)
     {
@@ -1875,7 +1875,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_SetControllerParams(int nValue, ECONTR_PARAM eContr
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam)
+HRESULT CDIL_CAN_Kvaser::getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam)
 {
     HRESULT hResult = S_OK;
     if ((sg_bCurrState == STATE_CONNECTED) || (sg_bCurrState == STATE_HW_INTERFACE_SELECTED))
@@ -1912,7 +1912,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel,
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_LoadDriverLibrary(void)
+HRESULT CDIL_CAN_Kvaser::loadDriverLibrary(void)
 {
     return S_OK;
 }
@@ -1924,7 +1924,7 @@ HRESULT CDIL_CAN_Kvaser::CAN_LoadDriverLibrary(void)
 * \authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::CAN_UnloadDriverLibrary(void)
+HRESULT CDIL_CAN_Kvaser::unloadDriverLibrary(void)
 {
     return S_OK;
 }

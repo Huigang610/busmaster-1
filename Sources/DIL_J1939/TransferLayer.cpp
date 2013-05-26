@@ -210,7 +210,7 @@ void CTransferLayer::vTransmitCANMsg(DWORD dwClientID, UINT unID,
     sMsgCAN.m_ucChannel = (UCHAR)unChannel;
     sMsgCAN.m_ucRTR = 0;
     sMsgCAN.m_ucEXTENDED = 1;
-    m_pIDIL_CAN->DILC_SendMsg(dwClientID, sMsgCAN);
+    m_pIDIL_CAN->sendMessage(dwClientID, sMsgCAN);
 }
 
 

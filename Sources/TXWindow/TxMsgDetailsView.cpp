@@ -266,7 +266,7 @@ void CTxMsgDetailsView::vUpdateChannelIDInfo()
     if(((CBaseDIL_CAN*)CTxMsgManager::pGetDILInterfacePtr()) != NULL)
     {
         if(((CBaseDIL_CAN*)CTxMsgManager::pGetDILInterfacePtr())
-                ->DILC_GetControllerParams(lParam, 0, NUMBER_HW) == S_OK)
+                ->getControllerParameters(lParam, 0, NUMBER_HW) == S_OK)
         {
             UINT nHardware = (UINT)lParam;
 

@@ -776,7 +776,7 @@ BOOL CConfigMsgLogDlg::OnInitDialog()
     if (NULL != GetICANDIL())
     {
         LPARAM lParam = 0;
-        if (S_OK == GetICANDIL()->DILC_GetControllerParams(lParam, NULL, NUMBER_HW))
+        if (S_OK == GetICANDIL()->getControllerParameters(lParam, NULL, NUMBER_HW))
         {
             m_unChannelCount = (UINT)lParam;
         }

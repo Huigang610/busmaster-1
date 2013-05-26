@@ -22,51 +22,26 @@
  * Source file for the exported function used to retrieve the
  */
 
-
-// DIL_Interface.cpp :
+/* Project includes */
 #include "DIL_Interface_stdafx.h"
 #include "Include/BaseDefs.h"
-
 #define USAGE_EXPORT
 #include "DIL_Interface_extern.h"
-
 #include "DIL_CAN.h"
-
 #include "DILI_J1939.h"
 #include "DIL_Interface.h"
 
-
 static CDIL_CAN* sg_pouDIL_CAN = NULL;
-
 static CDILI_J1939* sg_pouDILI_J1939 = NULL;
-
-// CDILApp
 
 BEGIN_MESSAGE_MAP(CDILApp, CWinApp)
 END_MESSAGE_MAP()
-
-
-/**
- * CDILApp construction
- */
-CDILApp::CDILApp()
-{
-    // TODO: add construction code here,
-}
-
-CDILApp::~CDILApp()
-{
-    // TODO: add construction code here,
-}
 
 /**
  * The one and only CDILApp object
  */
 CDILApp theApp;
 
-/**
- * CDILApp initialization
- */
 BOOL CDILApp::InitInstance()
 {
     return TRUE;
@@ -75,7 +50,6 @@ BOOL CDILApp::InitInstance()
 int CDILApp::ExitInstance()
 {
     INT nResult = -1;
-    // TODO: Add your specialized code here and/or call the base class
     if (NULL != sg_pouDIL_CAN)
     {
         nResult = sg_pouDIL_CAN->ExitInstance();

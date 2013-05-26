@@ -98,7 +98,7 @@ void CMsgContainerCAN::InitTimeParams(void)
     //Kadoor WaitForSingleObject(hReadHandle, INFINITE);
     if (NULL != m_pouDIL_CAN_Interface)
     {
-        m_pouDIL_CAN_Interface->DILC_GetTimeModeMapping(CurrSysTime, unAbsTime);
+        m_pouDIL_CAN_Interface->getTimeModeMapping(CurrSysTime, unAbsTime);
         m_ouFormatCAN.vSetTimeParams(CurrSysTime, unAbsTime);
     }
 }
@@ -368,9 +368,9 @@ BOOL CMsgContainerCAN:: bStartReadThread()
     HRESULT hResult;
     if (NULL != m_pouDIL_CAN_Interface)
     {
-        //if (m_pouDIL_CAN_Interface->DILC_RegisterClient(TRUE, m_dwClientId, L"PSDI_CAN") == S_OK)
+        //if (m_pouDIL_CAN_Interface->registerClient(TRUE, m_dwClientId, L"PSDI_CAN") == S_OK)
         {
-            hResult = m_pouDIL_CAN_Interface->DILC_ManageMsgBuf(MSGBUF_ADD, m_dwClientId, &m_ouMCCanBufFSE);
+            hResult = m_pouDIL_CAN_Interface->manageMessageBuffer(MSGBUF_ADD, m_dwClientId, &m_ouMCCanBufFSE);
         }
     }
     //m_sDataCopyThread.m_pBuffer = this;
@@ -403,11 +403,11 @@ HRESULT CMsgContainerCAN:: hToggleDILBufferRead(BOOL bRead)
     {
         if(bRead)
         {
-            hResult = m_pouDIL_CAN_Interface->DILC_ManageMsgBuf(MSGBUF_ADD, m_dwClientId, &m_ouMCCanBufFSE);
+            hResult = m_pouDIL_CAN_Interface->manageMessageBuffer(MSGBUF_ADD, m_dwClientId, &m_ouMCCanBufFSE);
         }
         else
         {
-            hResult = m_pouDIL_CAN_Interface->DILC_ManageMsgBuf(MSGBUF_CLEAR, m_dwClientId, &m_ouMCCanBufFSE);
+            hResult = m_pouDIL_CAN_Interface->manageMessageBuffer(MSGBUF_CLEAR, m_dwClientId, &m_ouMCCanBufFSE);
         }
     }
     return hResult;
@@ -428,7 +428,7 @@ BOOL CMsgContainerCAN:: bStopReadThread()
     BOOL bReturn = CMsgContainerBase::bStopReadThread();
     if (NULL != m_pouDIL_CAN_Interface)
     {
-        m_pouDIL_CAN_Interface->DILC_ManageMsgBuf(MSGBUF_CLEAR, m_dwClientId, &m_ouMCCanBufFSE);
+        m_pouDIL_CAN_Interface->manageMessageBuffer(MSGBUF_CLEAR, m_dwClientId, &m_ouMCCanBufFSE);
     }
     return bReturn;
 }

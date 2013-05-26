@@ -247,7 +247,7 @@ int CTimeManager::nCalculateCurrTimeStamp(BOOL bFromDIL)
     }
     else
     {
-        //g_pouDIL_CAN_Interface->DILC_GetTimeModeMapping(CurrSysTime, TimeStamp);
+        //g_pouDIL_CAN_Interface->getTimeModeMapping(CurrSysTime, TimeStamp);
     }
     return nResult;
 }

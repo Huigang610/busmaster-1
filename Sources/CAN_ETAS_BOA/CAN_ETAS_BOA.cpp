@@ -293,28 +293,28 @@ class CDIL_CAN_ETAS_BOA : public CBaseDIL_CAN_Controller
 {
 public:
     /* STARTS IMPLEMENTATION OF THE INTERFACE FUNCTIONS... */
-    HRESULT CAN_PerformInitOperations(void);
-    HRESULT CAN_PerformClosureOperations(void);
-    HRESULT CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT CAN_ListHwInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT CAN_SelectHwInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
-    HRESULT CAN_DeselectHwInterface(void);
-    HRESULT CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length);
-    HRESULT CAN_SetConfigData(PSCONTROLLER_DETAILS InitData, int Length);
-    HRESULT CAN_StartHardware(void);
-    HRESULT CAN_StopHardware(void);
-    HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
-    HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-    HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
-    HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
-    HRESULT CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT performInitOperations(void);
+    HRESULT performClosureOperations(void);
+    HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
+    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT deselectHardwareInterface(void);
+    HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
+    HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);
+    HRESULT startHardware(void);
+    HRESULT stopHardware(void);
+    HRESULT getCurrentStatus(s_STATUSMSG& StatusData);
+    HRESULT sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
+    HRESULT getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT setControllerParameters(int nValue, ECONTR_PARAM eContrparam);
+    HRESULT getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
 
     // Specific function set
-    HRESULT CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
-    HRESULT CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
-    HRESULT CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
-    HRESULT CAN_LoadDriverLibrary(void);
-    HRESULT CAN_UnloadDriverLibrary(void);
+    HRESULT setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
+    HRESULT manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
+    HRESULT registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
+    HRESULT loadDriverLibrary(void);
+    HRESULT unloadDriverLibrary(void);
 };
 static CDIL_CAN_ETAS_BOA* sg_pouDIL_CAN_ETAS_BOA = NULL;
 
@@ -1502,7 +1502,7 @@ void (OCI_CALLBACK ProcessEvents)(void* userData, struct OCI_CANMessage* msg)
  *
  * Sets the application params.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
+HRESULT CDIL_CAN_ETAS_BOA::setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
 {
     sg_hOwnerWnd = hWndOwner;
     sg_pIlog = pILog;
@@ -1514,7 +1514,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLog
  *
  * Unloads the driver library.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_UnloadDriverLibrary(void)
+HRESULT CDIL_CAN_ETAS_BOA::unloadDriverLibrary(void)
 {
     /* Unload OCI library */
     if (sg_hLibOCI != NULL)
@@ -1537,7 +1537,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_UnloadDriverLibrary(void)
  *
  * Registers the buffer pBufObj to the client ClientID
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
+HRESULT CDIL_CAN_ETAS_BOA::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
 {
     HRESULT hResult = S_FALSE;
     if (ClientID != 0)
@@ -1600,7 +1600,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseC
             //clear msg buffer
             for (UINT i = 0; i < sg_unClientCnt; i++)
             {
-                CAN_ManageMsgBuf(MSGBUF_CLEAR, sg_asClientToBufMap[i].m_dwClientID, NULL);
+                manageMessageBuffer(MSGBUF_CLEAR, sg_asClientToBufMap[i].m_dwClientID, NULL);
             }
             hResult = S_OK;
         }
@@ -1615,7 +1615,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseC
  * Registers a client to the DIL. ClientID will have client id
  * which will be used for further client related calls
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName)
+HRESULT CDIL_CAN_ETAS_BOA::registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName)
 {
     HRESULT hResult = S_FALSE;
     if (bRegister)
@@ -1684,7 +1684,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, c
  *
  * Loads BOA related libraries. Updates BOA API pointers
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_LoadDriverLibrary(void)
+HRESULT CDIL_CAN_ETAS_BOA::loadDriverLibrary(void)
 {
     HRESULT hResult = S_FALSE;
     std::string acPath;
@@ -1757,7 +1757,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_LoadDriverLibrary(void)
  * Performs intial operations.
  * Initializes filter, queue, controller config with default values.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_PerformInitOperations(void)
+HRESULT CDIL_CAN_ETAS_BOA::performInitOperations(void)
 {
     /* Create critical section for ensuring thread
        safeness of read message function */
@@ -1780,7 +1780,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_PerformInitOperations(void)
     }
     //Register monitor client
     DWORD dwClient = 0;
-    CAN_RegisterClient(TRUE, dwClient, CAN_MONITOR_NODE);
+    registerClient(TRUE, dwClient, CAN_MONITOR_NODE);
 
     //Initialize the selected channel items array to -1
     for ( UINT i = 0; i< CHANNEL_ALLOWED; i++ )
@@ -1907,13 +1907,13 @@ BOOL vCopy_2_OCI_CANFD_Data(OCI_CANFD_TxMessage& DestMsg, const STCAN_MSG& SrcMs
  *
  * Performs closure operations.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_PerformClosureOperations(void)
+HRESULT CDIL_CAN_ETAS_BOA::performClosureOperations(void)
 {
     HRESULT hResult = S_OK;
 
-    CAN_StopHardware();
+    stopHardware();
     //deselect hw interface
-    hResult = CAN_DeselectHwInterface();
+    hResult = deselectHardwareInterface();
 
     /* close the existing handle */
     CloseHandle(sg_hEvent);
@@ -1942,7 +1942,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_PerformClosureOperations(void)
  * will be updated with the system time ref.
  * TimeStamp will be updated with the corresponding timestamp.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
+HRESULT CDIL_CAN_ETAS_BOA::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
 {
     CurrSysTime = sg_CurrSysTime;
     TimeStamp   = sg_TimeStamp;
@@ -1986,7 +1986,7 @@ int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, INTERFACE_HW* psInt
  * Lists the hardware interface available. sSelHwInterface
  * will contain the user selected hw interface.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_ListHwInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN_ETAS_BOA::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount)
 {
     //VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_DRIVER_SELECTED, ERR_IMPROPER_STATE);
     USES_CONVERSION;
@@ -2058,7 +2058,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_ListHwInterfaces(INTERFACE_HW_LIST& asSelHwInterf
  *
  * Selects the hardware interface selected by the user.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_SelectHwInterface(const INTERFACE_HW_LIST& asSelHwInterface, INT /*nCount*/)
+HRESULT CDIL_CAN_ETAS_BOA::selectHardwareInterface(const INTERFACE_HW_LIST& asSelHwInterface, INT /*nCount*/)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_LISTED, ERR_IMPROPER_STATE);
 
@@ -2155,7 +2155,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_SelectHwInterface(const INTERFACE_HW_LIST& asSelH
  *
  * Deselects the selected hardware interface.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_DeselectHwInterface(void)
+HRESULT CDIL_CAN_ETAS_BOA::deselectHardwareInterface(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
 
@@ -2211,7 +2211,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_DeselectHwInterface(void)
  */
 BOOL Callback_DILBOA(BYTE /*Argument*/, PSCONTROLLER_DETAILS pDatStream, INT /*Length*/)
 {
-    return (sg_pouDIL_CAN_ETAS_BOA->CAN_SetConfigData( pDatStream, 0) == S_OK);
+    return (sg_pouDIL_CAN_ETAS_BOA->setConfigurationData( pDatStream, 0) == S_OK);
 }
 
 /**
@@ -2240,7 +2240,7 @@ int DisplayConfigurationDlg(HWND hParent, DILCALLBACK /*ProcDIL*/,
  * Fields are initialized with values supplied by InitData.
  * InitData will be updated with the user selected values.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length)
+HRESULT CDIL_CAN_ETAS_BOA::displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
     VALIDATE_POINTER_RETURN_VAL(InitData, WARN_INITDAT_NCONFIRM);
@@ -2268,7 +2268,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, i
             case INFO_INIT_DATA_CONFIRMED:
             {
                 Length = sizeof(SCONTROLLER_DETAILS) * defNO_OF_CHANNELS;
-                Result = CAN_SetConfigData(psContrlDets, Length);
+                Result = setConfigurationData(psContrlDets, Length);
                 if (Result == S_OK)
                 {
                     Result = INFO_INITDAT_CONFIRM_CONFIG;
@@ -2298,7 +2298,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, i
  *
  * Sets the controller configuration data supplied by InitData.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_SetConfigData(PSCONTROLLER_DETAILS pInitData, int /*Length*/)
+HRESULT CDIL_CAN_ETAS_BOA::setConfigurationData(PSCONTROLLER_DETAILS pInitData, int /*Length*/)
 {
     HRESULT hResult = WARNING_NOTCONFIRMED;
 
@@ -2360,7 +2360,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_SetConfigData(PSCONTROLLER_DETAILS pInitData, int
  *
  * Starts the controller.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_StartHardware(void)
+HRESULT CDIL_CAN_ETAS_BOA::startHardware(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
 
@@ -2426,7 +2426,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_StartHardware(void)
  *
  * Stops the controller.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_StopHardware(void)
+HRESULT CDIL_CAN_ETAS_BOA::stopHardware(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_CONNECTED, ERR_IMPROPER_STATE);
 
@@ -2479,7 +2479,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_StopHardware(void)
  *
  * Function to get Controller status
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
+HRESULT CDIL_CAN_ETAS_BOA::getCurrentStatus(s_STATUSMSG& StatusData)
 {
     StatusData.wControllerStatus = NORMAL_ACTIVE;
 
@@ -2489,7 +2489,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
 /**
  * Sends STCAN_MSG structure from the client dwClientID.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg)
+HRESULT CDIL_CAN_ETAS_BOA::sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTxMsg)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_CONNECTED, ERR_IMPROPER_STATE);
     HRESULT hResult = S_FALSE;
@@ -2556,7 +2556,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTx
  * Gets the controller param eContrParam of the channel.
  * Value stored in lParam.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam)
+HRESULT CDIL_CAN_ETAS_BOA::getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam)
 {
     HRESULT hResult = S_OK;
     if ((sg_bCurrState == STATE_HW_INTERFACE_SELECTED) || (sg_bCurrState == STATE_CONNECTED))
@@ -2612,7 +2612,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_GetControllerParams(LONG& lParam, UINT nChannel, 
     return hResult;
 }
 
-HRESULT CDIL_CAN_ETAS_BOA::CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam)
+HRESULT CDIL_CAN_ETAS_BOA::setControllerParameters(int nValue, ECONTR_PARAM eContrparam)
 {
     switch(eContrparam)
     {
@@ -2655,7 +2655,7 @@ HRESULT CDIL_CAN_ETAS_BOA::CAN_SetControllerParams(int nValue, ECONTR_PARAM eCon
 /**
  * Gets the error counter for corresponding channel.
  */
-HRESULT CDIL_CAN_ETAS_BOA::CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam)
+HRESULT CDIL_CAN_ETAS_BOA::getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam)
 {
     HRESULT hResult = S_OK;
     if ((sg_bCurrState == STATE_CONNECTED) || (sg_bCurrState == STATE_HW_INTERFACE_SELECTED))

@@ -67,7 +67,7 @@ CReplayProcess::CReplayProcess(const CReplayFile& ouReplayFile) :
     m_omSelectedIndex.RemoveAll();
     //DIL related code
     DIL_GetInterface(CAN, (void**)&CReplayProcess::s_pouDIL_CAN_Interface);
-    CReplayProcess::s_pouDIL_CAN_Interface->DILC_RegisterClient( TRUE,
+    CReplayProcess::s_pouDIL_CAN_Interface->registerClient( TRUE,
             CReplayProcess::s_dwClientID,
             CAN_MONITOR_NODE);
     InitializeCriticalSection(&m_omCritSecFilter);
@@ -185,7 +185,7 @@ UINT CReplayProcess::sunReplayMonoshotThreadFunc( LPVOID pParam )
                 if(bTobeBlocked == FALSE)
                 {
                     // Use HIL Function to send CAN message
-                    HRESULT hRet =  s_pouDIL_CAN_Interface->DILC_SendMsg(s_dwClientID,
+                    HRESULT hRet =  s_pouDIL_CAN_Interface->sendMessage(s_dwClientID,
                                     pReplayDetails->m_omMsgList[ nCurrentIndex ].
                                     m_uDataInfo.m_sCANMsg );
                 }
@@ -339,7 +339,7 @@ UINT CReplayProcess::sunReplayCyclicThreadFunc( LPVOID pParam )
                 if(bTobeBlocked == FALSE)
                 {
                     // Use HIL Function to send CAN message
-                    HRESULT hRet = s_pouDIL_CAN_Interface->DILC_SendMsg(s_dwClientID,
+                    HRESULT hRet = s_pouDIL_CAN_Interface->sendMessage(s_dwClientID,
                                    pReplayDetails->m_omMsgList[ nCurrentIndex ].m_uDataInfo.m_sCANMsg );
                 }
 
@@ -715,7 +715,7 @@ UINT CReplayProcess::sunNIReplayThreadFunc( LPVOID pParam )
                 if(bTobeBlocked == FALSE)
                 {
                     // Use HIL Function to send CAN message
-                    hRet = s_pouDIL_CAN_Interface->DILC_SendMsg(s_dwClientID, pReplayDetails->m_omMsgList[ nIndex ].m_uDataInfo.m_sCANMsg);
+                    hRet = s_pouDIL_CAN_Interface->sendMessage(s_dwClientID, pReplayDetails->m_omMsgList[ nIndex ].m_uDataInfo.m_sCANMsg);
                 }
 
                 if (hRet != 0)

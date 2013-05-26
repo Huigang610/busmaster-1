@@ -165,7 +165,7 @@ void CNetworkMgmt::vInitializeAllNodes(void)
 }
 HRESULT CNetworkMgmt::GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& unAbsTime)
 {
-    return m_pIDIL_CAN->DILC_GetTimeModeMapping(CurrSysTime, unAbsTime);
+    return m_pIDIL_CAN->getTimeModeMapping(CurrSysTime, unAbsTime);
 }
 void CNetworkMgmt::vGetTimeOut(ETYPE_TIMEOUT eTimeOutType, UINT& unMiliSeconds)
 {
@@ -584,7 +584,7 @@ LONG CNetworkMgmt::lCreateNodeConManager(char* pacNodeName,
             // Connection manager is created. Proceed with rest of the procedures
             if ( _tcscmp(pacNodeName, J1939_MONITOR_NODE) == 0 )
             {
-                hResult = m_pIDIL_CAN->DILC_RegisterClient(TRUE, dwClientId,
+                hResult = m_pIDIL_CAN->registerClient(TRUE, dwClientId,
                           CAN_MONITOR_NODE);
                 m_dwCANMonitorNodeClientId = dwClientId;
                 if (hResult == ERR_CLIENT_EXISTS)
@@ -594,14 +594,14 @@ LONG CNetworkMgmt::lCreateNodeConManager(char* pacNodeName,
             }
             else
             {
-                hResult = m_pIDIL_CAN->DILC_RegisterClient(TRUE, dwClientId,
+                hResult = m_pIDIL_CAN->registerClient(TRUE, dwClientId,
                           pacNodeName);
             }
             //ASSERT(hResult == S_OK);
             if ((hResult == S_OK) || (hResult == ERR_CLIENT_EXISTS))
             {
                 CBaseCANBufFSE* pouBuffer = pNodeConMgr->pouGetBuf();
-                hResult = m_pIDIL_CAN->DILC_ManageMsgBuf(MSGBUF_ADD, dwClientId, pouBuffer);
+                hResult = m_pIDIL_CAN->manageMessageBuffer(MSGBUF_ADD, dwClientId, pouBuffer);
                 ASSERT(hResult == S_OK);
                 if (hResult == S_OK)
                 {
@@ -652,12 +652,12 @@ LONG CNetworkMgmt::lRemoveNodeConManager(DWORD dwClientId)
                 CString omClientName = "";
                 if (m_ConMgrArr[i]->m_dwClientID != m_dwCANMonitorNodeClientId) //Do not remove client from CAN if monitor
                 {
-                    m_pIDIL_CAN->DILC_RegisterClient(FALSE, m_ConMgrArr[i]->m_dwClientID, omClientName.GetBuffer(MAX_CHAR));
+                    m_pIDIL_CAN->registerClient(FALSE, m_ConMgrArr[i]->m_dwClientID, omClientName.GetBuffer(MAX_CHAR));
                 }
                 else //Do not remove client from CAN if monitor, remove only the buffer
                 {
                     CBaseCANBufFSE* pouBuffer = m_ConMgrArr[i]->pouGetBuf();
-                    m_pIDIL_CAN->DILC_ManageMsgBuf(MSGBUF_CLEAR, m_ConMgrArr[i]->m_dwClientID, pouBuffer);
+                    m_pIDIL_CAN->manageMessageBuffer(MSGBUF_CLEAR, m_ConMgrArr[i]->m_dwClientID, pouBuffer);
                 }
                 m_ConMgrArr[i]->vRemoveAllConnections();
                 delete m_ConMgrArr[i];
@@ -693,12 +693,12 @@ void CNetworkMgmt::vRemoveAllNodes(void)
 
             if (m_ConMgrArr[i]->m_dwClientID != m_dwCANMonitorNodeClientId)
             {
-                m_pIDIL_CAN->DILC_RegisterClient(FALSE, m_ConMgrArr[i]->m_dwClientID, omClientName.GetBuffer(MAX_CHAR));
+                m_pIDIL_CAN->registerClient(FALSE, m_ConMgrArr[i]->m_dwClientID, omClientName.GetBuffer(MAX_CHAR));
             }
             else //Do not remove client from CAN if monitor, remove only the buffer
             {
                 CBaseCANBufFSE* pouBuffer = m_ConMgrArr[i]->pouGetBuf();
-                m_pIDIL_CAN->DILC_ManageMsgBuf(MSGBUF_CLEAR, m_ConMgrArr[i]->m_dwClientID, pouBuffer);
+                m_pIDIL_CAN->manageMessageBuffer(MSGBUF_CLEAR, m_ConMgrArr[i]->m_dwClientID, pouBuffer);
             }
             m_ConMgrArr[i]->vDeactivate();
             m_ConMgrArr[i]->vRemoveAllConnections();

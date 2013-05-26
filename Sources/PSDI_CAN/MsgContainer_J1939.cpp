@@ -1,20 +1,25 @@
-/******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  MsgContainer_J1939.cpp
-  Description   :
-  $Log:   X:/Archive/Sources/PSDI_CAN/MsgContainer_J1939.cpv  $
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-      Rev 1.4   06 Jun 2011 11:57:32   CANMNTTM
+/**
+ * \file MsgContainer_J1939.cpp
+ * \author Pradeep Kadoor
+ * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
+ */
 
-
-      Rev 1.3   15 Apr 2011 19:28:10   CANMNTTM
-   Added RBEI Copyright information.
-
-  Author(s)     :  Pradeep Kadoor
-  Date Created  :  15/04/2011
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
+/* Project includes */
 #include "PSDI_CAN/stdafx_CAN.h"
 #include "include/Utils_Macro.h"
 #include "include/error.h"
@@ -140,7 +145,7 @@ void CMsgContainerJ1939::InitTimeParams(void)
     UINT64 unAbsTime;
     if (NULL != m_pouDIL_J1939)
     {
-        m_pouDIL_J1939->DILIJ_GetTimeModeMapping(CurrSysTime, unAbsTime);
+        m_pouDIL_J1939->getTimeModeMapping(CurrSysTime, unAbsTime);
         m_ouFormatJ1939.vSetTimeParams(CurrSysTime, unAbsTime);
     }
 }
@@ -339,7 +344,7 @@ BOOL CMsgContainerJ1939:: bStartReadThread()
     HRESULT hResult;
     if (NULL != m_pouDIL_J1939)
     {
-        hResult = m_pouDIL_J1939->DILIJ_ManageMsgBuf(MSGBUF_ADD,
+        hResult = m_pouDIL_J1939->manageMessageBuffer(MSGBUF_ADD,
                   m_dwClientId, &m_ouVSEBufJ1939);
     }
 
@@ -364,10 +369,10 @@ HRESULT CMsgContainerJ1939:: hToggleDILBufferRead(BOOL bRead)
     if (NULL != m_pouDIL_J1939)
     {
         if(bRead)
-            hResult = m_pouDIL_J1939->DILIJ_ManageMsgBuf(MSGBUF_ADD,
+            hResult = m_pouDIL_J1939->manageMessageBuffer(MSGBUF_ADD,
                       m_dwClientId, &m_ouVSEBufJ1939);
         else
-            hResult = m_pouDIL_J1939->DILIJ_ManageMsgBuf(MSGBUF_CLEAR,
+            hResult = m_pouDIL_J1939->manageMessageBuffer(MSGBUF_CLEAR,
                       m_dwClientId, &m_ouVSEBufJ1939);
     }
     return hResult;
@@ -388,7 +393,7 @@ BOOL CMsgContainerJ1939:: bStopReadThread()
     BOOL bReturn = CMsgContainerBase::bStopReadThread();
     if (NULL != m_pouDIL_J1939)
     {
-        m_pouDIL_J1939->DILIJ_ManageMsgBuf(MSGBUF_CLEAR,
+        m_pouDIL_J1939->manageMessageBuffer(MSGBUF_CLEAR,
                                            m_dwClientId, &m_ouVSEBufJ1939);
     }
 

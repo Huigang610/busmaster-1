@@ -248,7 +248,7 @@ int CTimeManager::nCalculateCurrTimeStamp(BOOL bFromDIL)
     }
     else
     {
-        g_pouDIL_CAN_Interface->DILC_GetTimeModeMapping(CurrSysTime, TimeStamp);
+        g_pouDIL_CAN_Interface->getTimeModeMapping(CurrSysTime, TimeStamp);
     }
     int nResult = (CurrSysTime.wHour * 3600 + CurrSysTime.wMinute * 60
                    + CurrSysTime.wSecond) * 10000 + CurrSysTime.wMilliseconds * 10;

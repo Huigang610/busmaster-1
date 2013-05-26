@@ -24,23 +24,22 @@
 
 #pragma once
 
-// CDILApp
-// See FrameProcessor.cpp for the implementation of this class
-//
 #ifndef __AFXWIN_H__
 #error include 'stdafx.h' before including this file for PCH
 #endif
 
 class CDILApp : public CWinApp
 {
-    // Overrides
 public:
-    CDILApp();
-    ~CDILApp();
-
-    // To be used by the read thread
+    /**
+     * Init Instance
+     */
     virtual BOOL InitInstance();
 
     DECLARE_MESSAGE_MAP();
+
+    /**
+     * Exit Instance
+     */
     virtual int ExitInstance();
 };

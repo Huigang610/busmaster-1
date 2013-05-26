@@ -212,7 +212,7 @@ public:
         if (NULL != pDIL_CAN)
         {
             SERROR_CNT sErrorCount;
-            hResult = pDIL_CAN->DILC_GetErrorCount(sErrorCount, nChannel, ERR_CNT);
+            hResult = pDIL_CAN->getErrorCount(sErrorCount, nChannel, ERR_CNT);
 
             if (S_OK == hResult)
             {
@@ -290,7 +290,7 @@ public:
                 sTempMsg.m_ucData[i] = psMsg->m_ucData[i];
             }
             /* Client ID should be set to CAN_MONITOR_NODE ID */
-            hResult = pDIL_CAN->DILC_SendMsg(pMainFrm->dwGetMonitorNodeClientID()
+            hResult = pDIL_CAN->sendMessage(pMainFrm->dwGetMonitorNodeClientID()
                                              , sTempMsg);
         }
 

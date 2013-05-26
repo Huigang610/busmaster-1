@@ -32,136 +32,173 @@ class CBaseDIL_CAN
 {
 public:
     /**
-     * Constructor
-     */
-    CBaseDIL_CAN() {};
-
-    /**
-     * Destructor
-     */
-    ~CBaseDIL_CAN() {};
-
-    /**
      * Based on the parameter this function renders number of the driver interface
-     * layers supported or available. If 'bAvailable' is true, this returns number of
-     * the DILs implemented; else the list of the DILs supported by the existing
-     * license will be returned. If List is NULL, only number is returned.
+     * layers supported or available.
+     *
+     * @req RSI_14_001 getDriverList
+     * @req RS_23_01 Getter for the DIL List
+     * @param[out] list
+     *   List of supported DILs. If List is NULL, only number is returned.
+     * @return
+     *   Returns number of the DILs implemented
      */
-    virtual DWORD DILC_GetDILList(bool bAvailable, DILLIST* List) = 0;
+    virtual DWORD getDriverList(DILLIST* list) = 0;
 
     /**
-     * DILC_SelectDriver selects a driver abstraction layer (DAL). If support for the
-     * intended one isn't allowed with the present license, this returns NO_LICENSE.
-     * A list for DALs (or bDriverID) is shown below:
-     * DRIVER_CAN_STUB, //Simulation engine without the hardware
-     * DRIVER_CAN_PEAK_USB, // PEAK-CAN USB hardware
-     * DRIVER_CAN_PEAK_PP,  // PEAK-CAN Parallel Port Interface
-     * DRIVER_CAN_ICS_NEOVI, // IntrepidCS neoVI hardware
-     * DRIVER_CAN_ETAS_BOA.     // ETAS BOA Framework
+     * This selects a driver abstraction layer (DAL).
+     *
+     * @req RSI_14_002 selectDriver
+     * @req RS_23_02 Selecting a driver from the DIL list
      */
-    virtual HRESULT DILC_SelectDriver(DWORD dwDriverID, HWND hWndParent,
+    virtual HRESULT selectDriver(DWORD dwDriverID, HWND hWndParent,
                                       Base_WrapperErrorLogger* pILog) = 0;
 
     /**
-     * DILC_RegisterClient registers/unregisters the client.
-     * bRegister = TRUE for registeration
-     * bRegister = FALSE for unregisteration
+     * registerClient registers/unregisters the client.
      * Only registered client's buffer will be updated on receive of a msg in the bus.
-
-     * Following are the return values
-     * S_OK -->registeration successful
-     * ERR_CLIENT_EXISTS -->Client already registered. Client Id will be stored in ClientId.
-     * ERR_NO_CLIENT_EXIST --> No client exists. Usually this happens if we try to remove non existing client.
-     * ERR_NO_MORE_CLIENT_ALLOWED -->No more clients are allowed to register.
+     *
+     * @req RSI_14_003 registerClient
+     * @req RS_23_04 Registration of a client to simulate a node
+     * @param[in] bRegister
+     *   - TRUE for registeration
+     *   - FALSE for unregisteration
+     *
+     * @return
+     *   - S_OK -->registeration successful
+     *   - ERR_CLIENT_EXISTS -->Client already registered. Client Id will be stored in ClientId.
+     *   - ERR_NO_CLIENT_EXIST --> No client exists. Usually this happens if we try to remove non existing client.
+     *   - ERR_NO_MORE_CLIENT_ALLOWED -->No more clients are allowed to register.
      */
-    virtual HRESULT DILC_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName) = 0;
+    virtual HRESULT registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName) = 0;
 
     /**
-     * This function manages the target message buffer list. The two combinations
-     * are the following:
-     * bAction = MSGBUF_ADD, add pBufObj to the target message buffer list.
-     * bAction = MSGBUF_CLEAR, clear the list. pBufObj is ignored.
+     * This function manages the target message buffer list.
      * At present maximum number of entries in the list is kept as 8.
+     *
+     * @req RSI_14_004 manageMessageBuffer
+     * @param[in] bAction
+     *   - MSGBUF_ADD, add pBufObj to the target message buffer list.
+     *   - MSGBUF_CLEAR, clear the list. pBufObj is ignored.
      */
-    virtual HRESULT DILC_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj) = 0;
+    virtual HRESULT manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj) = 0;
 
     /**
      * This returns ID of the driver interface layer presently selected.
+     *
+     * @req RSI_14_005 getSelectedDriver
+     * @req RS_23_03 Getter for the presently selected driver
      */
-    virtual DWORD DILC_GetSelectedDriver(void) = 0;
+    virtual DWORD getSelectedDriver(void) = 0;
 
     /**
      * Call for all initialisation operations.
+     *
+     * @req RSI_14_006 performInitOperations
+     * @req RS_23_08 Carry out initialization operations
      */
-    virtual HRESULT DILC_PerformInitOperations(void) = 0;
+    virtual HRESULT performInitOperations(void) = 0;
 
     /**
      * Call for all uninitialisation operations
+     *
+     * @req RSI_14_007 performClosureOperations
+     * @req RS_23_09 Carry out closure operations
      */
-    virtual HRESULT DILC_PerformClosureOperations(void) = 0;
+    virtual HRESULT performClosureOperations(void) = 0;
 
     /**
      * Call this function to get a system time and the time stamp associated with it
+     *
+     * @req RSI_14_008 getTimeModeMapping
+     * @req RS_23_10 Getter for the time mode mapping (usually the 64-bit time stamp by the driver)
      */
-    virtual HRESULT DILC_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL) = 0;
+    virtual HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL) = 0;
 
     /**
      * Call this function to list the hardware interfaces available and receive
      * user's choice.
+     *
+     * @req RSI_14_009 listHardwareInterfaces
+     * @req RS_23_11 Listing of the controllers for the current driver
      */
-    virtual HRESULT DILC_ListHwInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount) = 0;
+    virtual HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount) = 0;
 
     /**
      * Call this function to select a particular hardware interface.
+     *
+     * @req RSI_14_010 selectHardwareInterfaces
+     * @req RS_23_12 Selection of a controller from the hardware interface list
      */
-    virtual HRESULT DILC_SelectHwInterfaces(const INTERFACE_HW_LIST& asSelHwInterface, INT nCount) = 0;
+    virtual HRESULT selectHardwareInterfaces(const INTERFACE_HW_LIST& asSelHwInterface, INT nCount) = 0;
 
     /**
      * Call this function to deselect the selected hardware interface.
+     *
+     * @req RSI_14_011 deselectHardwareInterfaces
+     * @req RS_23_13 Deselection of the presently selected controller
      */
-    virtual HRESULT DILC_DeselectHwInterfaces(void) = 0;
+    virtual HRESULT deselectHardwareInterfaces(void) = 0;
 
     /**
      * Function to display the configuration dialog box for the selected DIL. If
      * the dialog box needs to be displayed been initialised, pass the relevant data
      * as InitData. If it is null, the dialog box is uninitialised. This also contains
      * the user's choice as OUT parameter
+     *
+     * @req RSI_14_012 displayConfigurationDialog
+     * @req RS_23_14 Display the configuration dialog box of the present controller
      */
-    virtual HRESULT DILC_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length) = 0;
+    virtual HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length) = 0;
 
     /**
      * To set the configuration data for the currently selected DIL. Caller must
      * release the memory.
+     *
+     * @req RSI_14_013 setConfigurationData
+     * @req RS_23_15 Setting of the configuration data for the present controller
      */
-    virtual HRESULT DILC_SetConfigData(PSCONTROLLER_DETAILS pInitData, int Length) = 0;
+    virtual HRESULT setConfigurationData(PSCONTROLLER_DETAILS pInitData, int Length) = 0;
 
     /**
      * Start the controller
+     *
+     * @req RSI_14_014 startHardware
+     * @req RS_23_16 Start the presently selected controller (or connect)
      */
-    virtual HRESULT DILC_StartHardware(void) = 0;
+    virtual HRESULT startHardware(void) = 0;
 
     /**
      * Stop the controller
+     *
+     * @req RSI_14_015 stopHardware
+     * @req RS_23_17 Stop the presently selected controller (or disconnect)
      */
-    virtual HRESULT DILC_StopHardware(void) = 0;
+    virtual HRESULT stopHardware(void) = 0;
 
     /**
      * Send messages
+     *
+     * @req RSI_14_017 sendMessage
+     * @req RS_23_19 Transmit a frame
      */
-    virtual HRESULT DILC_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg) = 0;
+    virtual HRESULT sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTxMsg) = 0;
 
     /**
      * Call to get Controller parameters. Value will be returned stored in lParam
-     * Possible values for ECONTR_PARAM are ...
+     *
+     * @req RSI_14_022 getControllerParameters
      */
-    virtual HRESULT DILC_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam) = 0;
+    virtual HRESULT getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam) = 0;
+
     /**
-     *
-     *
+     * Set Controller parameters.
      */
-    virtual HRESULT DILC_SetControllerParams(int nValue, ECONTR_PARAM eContrparam) = 0;
+    virtual HRESULT setControllerParameters(int nValue, ECONTR_PARAM eContrparam) = 0;
+
     /**
      * Call to Get Error Counts
+     *
+     * @req RSI_14_023 getErrorCount
      */
-    virtual HRESULT  DILC_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam) = 0;
+    virtual HRESULT getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam) = 0;
 };

@@ -223,8 +223,8 @@ HRESULT CSignalWatch_CAN::SW_DoInitialization()
     if (DIL_GetInterface(CAN, (void**)&pouDIL_CAN) == S_OK)
     {
         DWORD dwClientId = 0;
-        pouDIL_CAN->DILC_RegisterClient(TRUE, dwClientId, CAN_MONITOR_NODE);
-        pouDIL_CAN->DILC_ManageMsgBuf(MSGBUF_ADD, dwClientId, &(m_ouCanBufFSE));
+        pouDIL_CAN->registerClient(TRUE, dwClientId, CAN_MONITOR_NODE);
+        pouDIL_CAN->manageMessageBuffer(MSGBUF_ADD, dwClientId, &(m_ouCanBufFSE));
     }
     //Start the read thread
     return bStartSigWatchReadThread()? S_OK: S_FALSE;

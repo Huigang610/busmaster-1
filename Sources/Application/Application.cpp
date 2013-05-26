@@ -233,8 +233,8 @@ void CApplication::vInitializeCOMReadBuffer()
     if (pDIL_CAN != NULL)
     {
         DWORD dwClientId = 0;
-        pDIL_CAN->DILC_RegisterClient(TRUE, dwClientId, CAN_MONITOR_NODE);
-        if (pDIL_CAN->DILC_ManageMsgBuf(MSGBUF_ADD, dwClientId, &g_ouCanBufForCOM) != S_OK)
+        pDIL_CAN->registerClient(TRUE, dwClientId, CAN_MONITOR_NODE);
+        if (pDIL_CAN->manageMessageBuffer(MSGBUF_ADD, dwClientId, &g_ouCanBufForCOM) != S_OK)
         {
             TRACE(_("The function vInitializeCOMReadBuffer() failed."));
         }

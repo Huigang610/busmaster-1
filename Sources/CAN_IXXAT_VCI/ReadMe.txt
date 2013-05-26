@@ -8,15 +8,15 @@
 List with function which should be filled or reworked:
 ---------------------------------------------------------------------------------------  
 
-CDIL_CAN_IXXAT_VCI::CAN_SelectHwInterface  
+CDIL_CAN_IXXAT_VCI::selectHardwareInterface  
 No dialog is shown and the first CAN controller found in list is selected.
 Wait till the hardware selection dialog was moved to the busmaster application itself.
 
 
-CDIL_CAN_IXXAT_VCI::CAN_DisplayConfigDlg
+CDIL_CAN_IXXAT_VCI::displayConfigurationDialog
 Only the configuration for the first CAN controller can changed.
 No Mask/Value filter available.
 
 
-CDIL_CAN_IXXAT_VCI::CAN_GetControllerParams
+CDIL_CAN_IXXAT_VCI::getControllerParameters
 Check if this is correct. Only copied from another DLL.

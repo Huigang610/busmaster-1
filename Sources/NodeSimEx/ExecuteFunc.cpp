@@ -3075,7 +3075,7 @@ void CExecuteFunc::vWriteInQMsg(STCAN_TIME_MSG sRxMsgInfo)
             {
                 SYSTEMTIME CurrSysTime;
                 UINT64 unAbsTime;
-                pBaseDIL_CAN->DILC_GetTimeModeMapping(CurrSysTime, unAbsTime);
+                pBaseDIL_CAN->getTimeModeMapping(CurrSysTime, unAbsTime);
                 sRxMsgInfo.m_ulTimeStamp -= (ULONG)unAbsTime;
             }
             m_asQMsg[m_unWriteQMsgIndex] = sRxMsgInfo;

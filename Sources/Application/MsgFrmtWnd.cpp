@@ -965,7 +965,7 @@ void CMsgFrmtWnd::OnSendSelectedMessageEntry()
             if( hResult == S_OK && IS_A_MESSAGE( sInfo.m_ucDataType ) )
             {
                 //HRESULT hRet =
-                g_pouDIL_CAN_Interface->DILC_SendMsg(m_dwClientID, sInfo.m_uDataInfo.m_sCANMsg);
+                g_pouDIL_CAN_Interface->sendMessage(m_dwClientID, sInfo.m_uDataInfo.m_sCANMsg);
             }
         }
         //For J1939 Messages
@@ -988,7 +988,7 @@ void CMsgFrmtWnd::OnSendSelectedMessageEntry()
             if( hResult == S_OK /*&& IS_A_MESSAGE( sInfo.m_ucDataType )*/ )
             {
                 //HRESULT hRet =
-                (*m_ppouIJ1939DIL)->DILIJ_SendJ1939Msg(m_dwClientID,
+                (*m_ppouIJ1939DIL)->sendJ1939Message(m_dwClientID,
                                                        sJ1939Msg.m_sMsgProperties.m_byChannel,
                                                        sJ1939Msg.m_sMsgProperties.m_eType,
                                                        sJ1939Msg.m_sMsgProperties.m_uExtendedID.m_s29BitId.unGetPGN(),

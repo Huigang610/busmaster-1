@@ -196,28 +196,28 @@ class CDIL_CAN_STUB : public CBaseDIL_CAN_Controller
 {
 public:
     /* STARTS IMPLEMENTATION OF THE INTERFACE FUNCTIONS... */
-    HRESULT CAN_PerformInitOperations(void);
-    HRESULT CAN_PerformClosureOperations(void);
-    HRESULT CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT CAN_ListHwInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT CAN_SelectHwInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
-    HRESULT CAN_DeselectHwInterface(void);
-    HRESULT CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length);
-    HRESULT CAN_SetConfigData(PSCONTROLLER_DETAILS InitData, int Length);
-    HRESULT CAN_StartHardware(void);
-    HRESULT CAN_StopHardware(void);
-    HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
-    HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-    HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
-    HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
-    HRESULT CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT performInitOperations(void);
+    HRESULT performClosureOperations(void);
+    HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
+    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT deselectHardwareInterface(void);
+    HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
+    HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);
+    HRESULT startHardware(void);
+    HRESULT stopHardware(void);
+    HRESULT getCurrentStatus(s_STATUSMSG& StatusData);
+    HRESULT sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
+    HRESULT getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT setControllerParameters(int nValue, ECONTR_PARAM eContrparam);
+    HRESULT getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
 
     // Specific function set
-    HRESULT CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
-    HRESULT CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
-    HRESULT CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
-    HRESULT CAN_LoadDriverLibrary(void);
-    HRESULT CAN_UnloadDriverLibrary(void);
+    HRESULT setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
+    HRESULT manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
+    HRESULT registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
+    HRESULT loadDriverLibrary(void);
+    HRESULT unloadDriverLibrary(void);
 };
 
 static CDIL_CAN_STUB* sg_pouDIL_CAN_STUB = NULL;
@@ -478,7 +478,7 @@ HRESULT PerformAnOperation(BYTE bActionCode)
 
 /* CDIL_CAN_STUB function definitions */
 
-HRESULT CDIL_CAN_STUB::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
+HRESULT CDIL_CAN_STUB::setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
 {
     HRESULT hResult = S_FALSE;
 
@@ -506,7 +506,7 @@ HRESULT CDIL_CAN_STUB::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger*
     return hResult;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length)
+HRESULT CDIL_CAN_STUB::displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length)
 {
     HRESULT Result = S_FALSE;
     char acInitFile[MAX_PATH] = "";
@@ -639,7 +639,7 @@ static BOOL bRemoveClientBuffer(CBaseCANBufFSE* RootBufferArray[MAX_BUFF_ALLOWED
 /**
  * Register Client
  */
-HRESULT CDIL_CAN_STUB::CAN_RegisterClient(BOOL bRegister,DWORD& ClientID, char* pacClientName)
+HRESULT CDIL_CAN_STUB::registerClient(BOOL bRegister,DWORD& ClientID, char* pacClientName)
 {
     USES_CONVERSION;
     HRESULT hResult = S_FALSE;
@@ -687,7 +687,7 @@ HRESULT CDIL_CAN_STUB::CAN_RegisterClient(BOOL bRegister,DWORD& ClientID, char* 
     return hResult;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
+HRESULT CDIL_CAN_STUB::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
 {
     HRESULT hResult = S_FALSE;
     if (ClientID != NULL)
@@ -750,7 +750,7 @@ HRESULT CDIL_CAN_STUB::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBu
             //clear msg buffer
             for (UINT i = 0; i < sg_unClientCnt; i++)
             {
-                CAN_ManageMsgBuf(MSGBUF_CLEAR, sg_asClientToBufMap[i].dwClientID, NULL);
+                manageMessageBuffer(MSGBUF_CLEAR, sg_asClientToBufMap[i].dwClientID, NULL);
             }
             hResult = S_OK;
         }
@@ -759,7 +759,7 @@ HRESULT CDIL_CAN_STUB::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBu
     return hResult;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_StopHardware(void)
+HRESULT CDIL_CAN_STUB::stopHardware(void)
 {
     HRESULT hResult = PerformAnOperation(DISCONNECT);
     if (hResult == S_OK)
@@ -769,7 +769,7 @@ HRESULT CDIL_CAN_STUB::CAN_StopHardware(void)
     return hResult;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_SetConfigData(PSCONTROLLER_DETAILS ConfigFile, int /*Length*/)
+HRESULT CDIL_CAN_STUB::setConfigurationData(PSCONTROLLER_DETAILS ConfigFile, int /*Length*/)
 {
     switch (GetCurrState())
     {
@@ -795,11 +795,11 @@ HRESULT CDIL_CAN_STUB::CAN_SetConfigData(PSCONTROLLER_DETAILS ConfigFile, int /*
     }
 
     // First disconnect the node
-    CAN_StopHardware();
+    stopHardware();
     return S_OK;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_StartHardware(void)
+HRESULT CDIL_CAN_STUB::startHardware(void)
 {
     //First stop the hardware
     HRESULT hResult = PerformAnOperation(CONNECT);
@@ -810,7 +810,7 @@ HRESULT CDIL_CAN_STUB::CAN_StartHardware(void)
     return hResult;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg)
+HRESULT CDIL_CAN_STUB::sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTxMsg)
 {
     HRESULT hResult = S_FALSE;
 
@@ -836,7 +836,7 @@ HRESULT CDIL_CAN_STUB::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg)
     return hResult;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
+HRESULT CDIL_CAN_STUB::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
 {
     memcpy(&CurrSysTime, &sg_CurrSysTime, sizeof(SYSTEMTIME));
     TimeStamp = sg_TimeStampRef;
@@ -847,7 +847,7 @@ HRESULT CDIL_CAN_STUB::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& T
     return S_OK;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_PerformInitOperations(void)
+HRESULT CDIL_CAN_STUB::performInitOperations(void)
 {
     HRESULT hResult = S_FALSE;
 
@@ -880,21 +880,21 @@ HRESULT CDIL_CAN_STUB::CAN_PerformInitOperations(void)
 /**
  * Function to get Controller status
  */
-HRESULT CDIL_CAN_STUB::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
+HRESULT CDIL_CAN_STUB::getCurrentStatus(s_STATUSMSG& StatusData)
 {
     StatusData.wControllerStatus = NORMAL_ACTIVE;
     return S_OK;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_PerformClosureOperations(void)
+HRESULT CDIL_CAN_STUB::performClosureOperations(void)
 {
     //First remove all the client
     for (UINT nCount = 0; nCount < sg_unClientCnt; nCount++)
     {
-        CAN_RegisterClient(FALSE, sg_asClientToBufMap[nCount].dwClientID, "");
+        registerClient(FALSE, sg_asClientToBufMap[nCount].dwClientID, "");
     }
     // First disconnect from the simulation engine
-    CAN_DeselectHwInterface();
+    deselectHardwareInterface();
     // Then terminate the broker thread
     sg_sBrokerObjBusEmulation.bTerminateThread();
     // Close the notification event
@@ -913,7 +913,7 @@ HRESULT CDIL_CAN_STUB::CAN_PerformClosureOperations(void)
     return S_OK;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_ListHwInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN_STUB::listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount)
 {
     for (UINT i = 0; i < CHANNEL_ALLOWED; i++)
     {
@@ -925,28 +925,28 @@ HRESULT CDIL_CAN_STUB::CAN_ListHwInterfaces(INTERFACE_HW_LIST& sSelHwInterface, 
     return S_OK;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_SelectHwInterface(const INTERFACE_HW_LIST& /*sSelHwInterface*/, INT /*nSize*/)
+HRESULT CDIL_CAN_STUB::selectHardwareInterface(const INTERFACE_HW_LIST& /*sSelHwInterface*/, INT /*nSize*/)
 {
     SetCurrState(STATE_INITIALISED);
     return S_OK;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_DeselectHwInterface(void)
+HRESULT CDIL_CAN_STUB::deselectHardwareInterface(void)
 {
     return PerformAnOperation(DISCONNECT);
 }
 
-HRESULT CDIL_CAN_STUB::CAN_LoadDriverLibrary(void)
+HRESULT CDIL_CAN_STUB::loadDriverLibrary(void)
 {
     return S_OK;
 }
-HRESULT CDIL_CAN_STUB::CAN_UnloadDriverLibrary(void)
+HRESULT CDIL_CAN_STUB::unloadDriverLibrary(void)
 {
     return S_OK;
 }
 
 
-HRESULT CDIL_CAN_STUB::CAN_GetControllerParams(LONG& lParam, UINT /*nChannel*/, ECONTR_PARAM eContrParam)
+HRESULT CDIL_CAN_STUB::getControllerParameters(LONG& lParam, UINT /*nChannel*/, ECONTR_PARAM eContrParam)
 {
     HRESULT hResult = S_OK;
     switch (eContrParam)
@@ -987,12 +987,12 @@ HRESULT CDIL_CAN_STUB::CAN_GetControllerParams(LONG& lParam, UINT /*nChannel*/, 
     return hResult;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam)
+HRESULT CDIL_CAN_STUB::setControllerParameters(int nValue, ECONTR_PARAM eContrparam)
 {
     return S_OK;
 }
 
-HRESULT CDIL_CAN_STUB::CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT /*nChannel*/, ECONTR_PARAM /*eContrParam*/)
+HRESULT CDIL_CAN_STUB::getErrorCount(SERROR_CNT& sErrorCnt, UINT /*nChannel*/, ECONTR_PARAM /*eContrParam*/)
 {
     memset(&sErrorCnt, 0, sizeof(SERROR_CNT));
     return S_OK;

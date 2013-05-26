@@ -21,16 +21,15 @@
  *
  * Implementation of the CMainFrame class
  */
+
+/* Project includes */
 #include "stdafx.h"             // Standard include header
 #include "include/Struct_CAN.h"
 #include "Include/CAN_Error_Defs.h"
 #include "BUSMASTER.h"        // App class definition file
 #include "Utility/UtilFunctions.h"
 #include "include/XMLDefines.h"
-//#include "MsgMDIChildWnd.h"     // Message window class defintion file
 #include "MainFrm.h"            // Main frame class defintion file
-//#include "FunctionEditorDoc.h"  // Document class defintion file
-//#include "ExploreMsgSg.h"       // CExploreMsgSg dialog class defintion file
 #include "Properties.h"         // Properties dialog class definition file
 // Special file dialog class to
 #include "SplFileDlg.h"         // customise CSplFileDlg brower
@@ -39,9 +38,6 @@
 #include "DriverInfoDlg.h"      // Driver info class definition file
 #include "Splash.h"             // splash screen implementation file
 #include "Flags.h"              // CFlags class
-//#include "ErrHandlerDlg.h"      // Dialog class for error handlers
-// For getting name of a permanent exported function from the user-defined DLL.
-//#include "Export_userdll.h"
 #include "MessageList.h"
 #include "PPageMessage.h"
 #include "common.h"
@@ -67,18 +63,15 @@
 #include "FrameProcessor/BaseFrameProcessor_J1939.h"
 #include "ConfigMsgLogDlg.h"
 #include "Replay/Replay_Extern.h"
-
 #include "SignalWatch/SignalWatch_extern.h"
 #include "SignalWatch/BaseSignalWatch_CAN.h"
-
 #include "Filter/Filter_extern.h"
 #include "ConfigAdapter.h"
-#include ".\mainfrm.h"
+#include "mainfrm.h"
 #include "WaveformSelectionDlg.h"
-
 #include "BusStatistics.h"
 #include "SigGrphConfigDlg.h"
-#include <DataTypes/SigGrphWnd_Datatypes.h>
+#include "DataTypes/SigGrphWnd_Datatypes.h"
 #include "J1939TimeOutCfg.h"
 #include "include/XMLDefines.h"
 #include "Utility/MultiLanguageSupport.h"
@@ -998,7 +991,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     {
         DIL_GetInterface(CAN, (void**)&g_pouDIL_CAN_Interface);
     }
-    m_nDILCount = g_pouDIL_CAN_Interface->DILC_GetDILList(false, &m_ouList);
+    m_nDILCount = g_pouDIL_CAN_Interface->getDriverList(&m_ouList);
 
     // Do initialisation for the waveform transmission object
     m_ouWaveTransmitter.vDoInitialisation(&m_objWaveformDataHandler,
@@ -1923,7 +1916,7 @@ void CMainFrame::OnConfigBaudrate()
 {
     PCHAR pInitData = (PCHAR)m_asControllerDetails;
     int nSize = sizeof(SCONTROLLER_DETAILS) * defNO_OF_CHANNELS;
-    if (g_pouDIL_CAN_Interface->DILC_DisplayConfigDlg(m_asControllerDetails, nSize) == S_OK)
+    if (g_pouDIL_CAN_Interface->displayConfigurationDialog(m_asControllerDetails, nSize) == S_OK)
     {
         //Set Controller to ConfigDetails
         //memcpy(m_asControllerDetails, pInitData, nSize);
@@ -1965,11 +1958,11 @@ void CMainFrame::OnConfigChannelSelection()
     HRESULT hResult = S_FALSE;
 
     /* Deselect hardware interfaces if selected */
-    hResult = g_pouDIL_CAN_Interface->DILC_DeselectHwInterfaces();
+    hResult = g_pouDIL_CAN_Interface->deselectHardwareInterfaces();
 
-    if (g_pouDIL_CAN_Interface->DILC_ListHwInterfaces(m_asINTERFACE_HW, nCount) == S_OK)
+    if (g_pouDIL_CAN_Interface->listHardwareInterfaces(m_asINTERFACE_HW, nCount) == S_OK)
     {
-        hResult = g_pouDIL_CAN_Interface->DILC_SelectHwInterfaces(m_asINTERFACE_HW, nCount);
+        hResult = g_pouDIL_CAN_Interface->selectHardwareInterfaces(m_asINTERFACE_HW, nCount);
         if ((hResult == HW_INTERFACE_ALREADY_SELECTED) || (hResult == S_OK))
         {
             /* Updates the number of channels selected */
@@ -1982,13 +1975,13 @@ void CMainFrame::OnConfigChannelSelection()
             vUpdateChannelInfo();
 
             // Update controller information
-            g_pouDIL_CAN_Interface->DILC_SetConfigData(m_asControllerDetails, nCount);
+            g_pouDIL_CAN_Interface->setConfigurationData(m_asControllerDetails, nCount);
         }
     }
     else
     {
         /* Select previously available channels */
-        g_pouDIL_CAN_Interface->DILC_SelectHwInterfaces(m_asINTERFACE_HW, nCount);
+        g_pouDIL_CAN_Interface->selectHardwareInterfaces(m_asINTERFACE_HW, nCount);
     }
 }
 
@@ -2003,7 +1996,7 @@ void CMainFrame::OnUpdateConfigChannelSelection(CCmdUI* pCmdUI)
             BOOL bDisable = podFlag->nGetFlagStatus(CONNECTED);
             // In Simulation mode is selected then disable Controller option
             LONG lParam= 0;
-            if( g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, HW_MODE) == S_OK)
+            if( g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, HW_MODE) == S_OK)
             {
                 if (lParam == defMODE_SIMULATE)
                 {
@@ -3476,7 +3469,7 @@ void CMainFrame::OnSelectMessage()
     LPARAM lParam = NULL;
     if (NULL != GetICANDIL())
     {
-        GetICANDIL()->DILC_GetControllerParams(lParam, NULL, NUMBER_HW);
+        GetICANDIL()->getControllerParameters(lParam, NULL, NUMBER_HW);
     }
 
     HRESULT hResult = Filter_ShowConfigDlg((void*)&m_sFilterAppliedCAN, psMsgEntry, CAN, (UINT)lParam, this);
@@ -4637,7 +4630,7 @@ void CMainFrame::OnClose()
 
     if (g_pouDIL_CAN_Interface != NULL)
     {
-        g_pouDIL_CAN_Interface->DILC_PerformClosureOperations();
+        g_pouDIL_CAN_Interface->performClosureOperations();
     }
 
     vCloseFormatconverters();
@@ -6668,7 +6661,7 @@ void CMainFrame::OnDestroy()
 
     if (g_pouDIL_CAN_Interface != NULL)
     {
-        g_pouDIL_CAN_Interface->DILC_PerformClosureOperations();
+        g_pouDIL_CAN_Interface->performClosureOperations();
     }
 
     //Destruction of Menu Pointer--by Arun
@@ -7531,7 +7524,7 @@ void CMainFrame::OnFileConnect()
             ouWaitIndicator.DisplayWindow(
                 _("Trying to connect the hardware... Please wait"), this);
             {
-                if (g_pouDIL_CAN_Interface->DILC_StartHardware() == S_OK)
+                if (g_pouDIL_CAN_Interface->startHardware() == S_OK)
                 {
                     ouWaitIndicator.SetWindowText(_("Connected..."));
                     bReturn = TRUE;
@@ -7548,7 +7541,7 @@ void CMainFrame::OnFileConnect()
         }
         else
         {
-            if (g_pouDIL_CAN_Interface->DILC_StopHardware() == S_OK)
+            if (g_pouDIL_CAN_Interface->stopHardware() == S_OK)
             {
                 bReturn = TRUE;
             }
@@ -8495,7 +8488,7 @@ void CMainFrame::OnFilePropeties()
     PSCONTROLLER_DETAILS  pBaudDetails = NULL;
     UINT nHardware = 0;
     LONG lParam = 0;
-    if (g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, NUMBER_HW) == S_OK)
+    if (g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, NUMBER_HW) == S_OK)
     {
         nHardware = (UINT)lParam;
     }
@@ -8714,14 +8707,14 @@ void CMainFrame::OnTimer(UINT nIDEvent)
             // Get the number of channels available
             UINT unTotalChannels = 0;
             LONG lParam = 0;
-            if (g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, NUMBER_HW) == S_OK)
+            if (g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, NUMBER_HW) == S_OK)
             {
                 unTotalChannels = (UINT)lParam;
             }
             for( UINT unChannel = 0; unChannel < unTotalChannels; unChannel++ )
             {
                 // Get the error counter status from the HI layer
-                if( g_pouDIL_CAN_Interface->DILC_GetErrorCount( m_sErrorCount, unChannel, ERR_CNT) == S_OK)
+                if( g_pouDIL_CAN_Interface->getErrorCount( m_sErrorCount, unChannel, ERR_CNT) == S_OK)
                 {
                     // Make Channel specific error code
                     WORD nErrorWord = MAKEWORD( ERROR_BUS , unChannel );
@@ -8996,8 +8989,8 @@ void CMainFrame::OnUpdateExecuteErrorHandlers(CCmdUI* pCmdUI)
 /******************************************************************************/
 void CMainFrame::OnConfigureModeActive()
 {
-    g_pouDIL_CAN_Interface->DILC_SetControllerParams(defMODE_ACTIVE, HW_MODE);
-    //g_pouDIL_CAN_Interface->DILC_GetControllerParams(l, 0, ECONTR_PARAM(700));
+    g_pouDIL_CAN_Interface->setControllerParameters(defMODE_ACTIVE, HW_MODE);
+    //g_pouDIL_CAN_Interface->getControllerParameters(l, 0, ECONTR_PARAM(700));
 }
 /******************************************************************************/
 /*  Function Name    :  OnUpdateConfigureModeActive                           */
@@ -9046,7 +9039,7 @@ void CMainFrame::OnUpdateConfigureModeActive(CCmdUI* pCmdUI)
             }
         }
         LONG lParam = 0;
-        if (g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, HW_MODE) == S_OK)
+        if (g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, HW_MODE) == S_OK)
         {
             if (lParam == defMODE_ACTIVE)
             {
@@ -9086,7 +9079,7 @@ void CMainFrame::OnNetworkStatisticsWnd()
 
         LONG lParam = 0;
         int unTotalChannels = defNO_OF_CHANNELS;
-        if (g_pouDIL_CAN_Interface && g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, NUMBER_HW) == S_OK)
+        if (g_pouDIL_CAN_Interface && g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, NUMBER_HW) == S_OK)
         {
             unTotalChannels = (INT)lParam;
         }
@@ -9382,8 +9375,8 @@ bool gbSendStrToTrace(const char* pcOutStrTrace)
 /******************************************************************************/
 void CMainFrame::OnConfigurePassive()
 {
-    g_pouDIL_CAN_Interface->DILC_SetControllerParams(defMODE_PASSIVE, HW_MODE);
-    //g_pouDIL_CAN_Interface->DILC_SetControllerParams(lValue, unChannel, (ECONTR_PARAM)70);
+    g_pouDIL_CAN_Interface->setControllerParameters(defMODE_PASSIVE, HW_MODE);
+    //g_pouDIL_CAN_Interface->setControllerParameters(lValue, unChannel, (ECONTR_PARAM)70);
 }
 /******************************************************************************/
 /*  Function Name    :  OnUpdateConfigurePassive                              */
@@ -9434,7 +9427,7 @@ void CMainFrame::OnUpdateConfigurePassive(CCmdUI* pCmdUI)
             }
         }
         LONG lParam = 0;
-        if (g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, HW_MODE) == S_OK)
+        if (g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, HW_MODE) == S_OK)
         {
             if (lParam == defMODE_PASSIVE)
             {
@@ -9531,7 +9524,7 @@ void CMainFrame::OnUpdateConfigureBaudrate(CCmdUI* pCmdUI)
             BOOL bDisable = podFlag->nGetFlagStatus(CONNECTED);
             // In Simulation mode is selected then disable Controller option
             LONG lParam= 0;
-            if( g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, HW_MODE) == S_OK)
+            if( g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, HW_MODE) == S_OK)
             {
                 if (lParam == defMODE_SIMULATE)
                 {
@@ -10240,7 +10233,7 @@ Modifications    : Anish on 05.02.2007
 //    //HRESULT hResult = S_FALSE;
 //    if (pControllerDetails != NULL)
 //    {
-//        if (g_pouDIL_CAN_Interface->DILC_SetConfigData((PCHAR)pControllerDetails,
+//        if (g_pouDIL_CAN_Interface->setConfigurationData((PCHAR)pControllerDetails,
 //                        sizeof(SCONTROLLER_DETAILS)) == S_OK)
 //        {
 ////            theApp.vRelease(CONTROLLER_DETAILS, (void**) &pControllerDetails);
@@ -10384,13 +10377,13 @@ void CMainFrame::vSetControllerParameters()
     UCHAR ucControllerMode = defMODE_SIMULATE;
     // Get the Controller mode
     LONG lParam = 0;
-    if (g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, HW_MODE) == S_OK)
+    if (g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, HW_MODE) == S_OK)
     {
         ucControllerMode = (UCHAR)lParam;
     }
 
     INT nNoOfHardware = 0;
-    if (g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, NUMBER_HW) == S_OK)
+    if (g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, NUMBER_HW) == S_OK)
     {
         nNoOfHardware = (INT)lParam;
     }
@@ -10422,7 +10415,7 @@ void CMainFrame::vSetControllerParameters()
         {
             UCHAR ucControllerMode = defMODE_SIMULATE;
             LONG lParam = 0;
-            if (g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, HW_MODE) == S_OK)
+            if (g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, HW_MODE) == S_OK)
             {
                 ucControllerMode = (UCHAR)lParam;
             }
@@ -11359,26 +11352,26 @@ HRESULT CMainFrame::IntializeDIL(UINT unDefaultChannelCnt)
     }
     else
     {
-        //g_pouDIL_CAN_Interface->DILC_PerformClosureOperations();
+        //g_pouDIL_CAN_Interface->performClosureOperations();
         //DeselectJ1939Interfaces();
     }
     if (hResult == S_OK)
     {
-        if ((hResult = g_pouDIL_CAN_Interface->DILC_SelectDriver(m_dwDriverId, m_hWnd, &m_ouWrapperLogger)) == S_OK)
+        if ((hResult = g_pouDIL_CAN_Interface->selectDriver(m_dwDriverId, m_hWnd, &m_ouWrapperLogger)) == S_OK)
         {
-            g_pouDIL_CAN_Interface->DILC_PerformInitOperations();
+            g_pouDIL_CAN_Interface->performInitOperations();
             INT nCount = unDefaultChannelCnt;
-            if ((hResult = g_pouDIL_CAN_Interface->DILC_ListHwInterfaces(m_asINTERFACE_HW, nCount)) == S_OK)
+            if ((hResult = g_pouDIL_CAN_Interface->listHardwareInterfaces(m_asINTERFACE_HW, nCount)) == S_OK)
             {
                 DeselectJ1939Interfaces();
-                HRESULT hResult = g_pouDIL_CAN_Interface->DILC_SelectHwInterfaces(m_asINTERFACE_HW, nCount);
+                HRESULT hResult = g_pouDIL_CAN_Interface->selectHardwareInterfaces(m_asINTERFACE_HW, nCount);
                 if ((hResult == HW_INTERFACE_ALREADY_SELECTED) || (hResult == S_OK))
                 {
-                    hResult = g_pouDIL_CAN_Interface->DILC_RegisterClient(TRUE, g_dwClientID, "CAN_MONITOR");
+                    hResult = g_pouDIL_CAN_Interface->registerClient(TRUE, g_dwClientID, "CAN_MONITOR");
                     if ((hResult == S_OK)|| (hResult == ERR_CLIENT_EXISTS))
                     {
                         m_bNoHardwareFound = false;
-                        g_pouDIL_CAN_Interface->DILC_SetConfigData(m_asControllerDetails, nCount);
+                        g_pouDIL_CAN_Interface->setConfigurationData(m_asControllerDetails, nCount);
                         bInitFrameProcCAN(); // Initialize logger module
                         vReRegisterAllCANNodes();//Reinitialize node simulation
                         if (sg_pouSWInterface[CAN] == NULL)//Signal watch
@@ -11431,7 +11424,7 @@ HRESULT CMainFrame::IntializeDIL(UINT unDefaultChannelCnt)
                 {
                     theApp.bWriteIntoTraceWnd(_("Hardware selection cancelled. Retaining previous hardware settings.."));
                     /* Retain previous DIL selection */
-                    m_dwDriverId = g_pouDIL_CAN_Interface->DILC_GetSelectedDriver();
+                    m_dwDriverId = g_pouDIL_CAN_Interface->getSelectedDriver();
                     m_bNoHardwareFound = false;
                 }
                 else
@@ -11473,7 +11466,7 @@ void CMainFrame::vUpdateChannelInfo(void)
 {
     LONG lParam = 0;
     UINT nHardware = defNO_OF_CHANNELS;
-    if(g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, NUMBER_HW) == S_OK)
+    if(g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, NUMBER_HW) == S_OK)
     {
         nHardware = (UINT)lParam;
         //update Bus Stats Dlg.
@@ -11731,7 +11724,7 @@ CString CMainFrame::omStrGetUnionFilePath(CString omStrTemp)
 static int App_SendMsg(void* pMsg, HMODULE /*hModule*/)
 {
     STCAN_MSG* psMsg = (STCAN_MSG*)pMsg;
-    return g_pouDIL_CAN_Interface->DILC_SendMsg(g_dwClientID,*psMsg);
+    return g_pouDIL_CAN_Interface->sendMessage(g_dwClientID,*psMsg);
 }
 
 void CMainFrame::vInitCFileFunctPtrs()
@@ -12740,7 +12733,7 @@ void CMainFrame::vGetCurrentSessionData(eSECTION_ID eSecId, BYTE*& pbyConfigData
 
                             if(g_pouDIL_CAN_Interface != NULL)
                             {
-                                if(g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, NUMBER_HW) == S_OK)
+                                if(g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, NUMBER_HW) == S_OK)
                                 {
                                     nNumOfChannelsSel = (UINT)lParam;
                                 }
@@ -13553,7 +13546,7 @@ int CMainFrame::nLoadXMLConfiguration()
 
                     IntializeDIL(unChannelCount);
                     ASSERT(g_pouDIL_CAN_Interface != NULL);
-                    g_pouDIL_CAN_Interface->DILC_SetConfigData(m_asControllerDetails,
+                    g_pouDIL_CAN_Interface->setConfigurationData(m_asControllerDetails,
                             defNO_OF_CHANNELS);
                 }
 
@@ -13567,7 +13560,7 @@ int CMainFrame::nLoadXMLConfiguration()
                         m_asControllerDetails[i].vInitialize(TRUE);
                     }
 
-                    g_pouDIL_CAN_Interface->DILC_SetConfigData(m_asControllerDetails,
+                    g_pouDIL_CAN_Interface->setConfigurationData(m_asControllerDetails,
                             sizeof(SCONTROLLER_DETAILS) * defNO_OF_CHANNELS);
                 }
             }
@@ -15263,9 +15256,9 @@ void CMainFrame::vSetCurrentSessionData(eSECTION_ID eSecId, BYTE* pbyConfigData,
                     IntializeDIL();
                     ASSERT(g_pouDIL_CAN_Interface != NULL);
                     //HRESULT hResult =
-                    /*g_pouDIL_CAN_Interface->DILC_SetConfigData(m_asControllerDetails,
+                    /*g_pouDIL_CAN_Interface->setConfigurationData(m_asControllerDetails,
                                                         sizeof(SCONTROLLER_DETAILS) * defNO_OF_CHANNELS);*/
-                    g_pouDIL_CAN_Interface->DILC_SetConfigData(m_asControllerDetails,
+                    g_pouDIL_CAN_Interface->setConfigurationData(m_asControllerDetails,
                             defNO_OF_CHANNELS);
                 }
 
@@ -15281,9 +15274,9 @@ void CMainFrame::vSetCurrentSessionData(eSECTION_ID eSecId, BYTE* pbyConfigData,
                 }
 
                 //HRESULT hResult =
-                g_pouDIL_CAN_Interface->DILC_SetConfigData(m_asControllerDetails,
+                g_pouDIL_CAN_Interface->setConfigurationData(m_asControllerDetails,
                         sizeof(SCONTROLLER_DETAILS) * defNO_OF_CHANNELS);
-                /*g_pouDIL_CAN_Interface->DILC_SetConfigData(m_asControllerDetails,
+                /*g_pouDIL_CAN_Interface->setConfigurationData(m_asControllerDetails,
                         sizeof(SCONTROLLER_DETAILS) * defNO_OF_CHANNELS);*/
                 //Set default settings
             }
@@ -15553,7 +15546,7 @@ void CMainFrame::OnUpdateSelectDriver(CCmdUI* pCmdUI)
     {
         if (g_pouDIL_CAN_Interface != NULL)
         {
-            bSelected = (psCurrDIL->m_dwDriverID == g_pouDIL_CAN_Interface->DILC_GetSelectedDriver());
+            bSelected = (psCurrDIL->m_dwDriverID == g_pouDIL_CAN_Interface->getSelectedDriver());
         }
     }
     CFlags* pFlag = theApp.pouGetFlagsPtr();
@@ -15669,7 +15662,7 @@ void CMainFrame::OnConfigureWaveformMessages(void)
 
             LONG lParam = 0;
             UINT nHardware = 0;
-            if(g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, NUMBER_HW) == S_OK)
+            if(g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, NUMBER_HW) == S_OK)
             {
                 nHardware = (UINT)lParam;
             }
@@ -15864,8 +15857,8 @@ void CMainFrame::vInitializeGraphWndReadBuffer()
     if (g_pouDIL_CAN_Interface != NULL)
     {
         DWORD dwClientId = 0;
-        g_pouDIL_CAN_Interface->DILC_RegisterClient(TRUE, dwClientId, CAN_MONITOR_NODE);
-        if (g_pouDIL_CAN_Interface->DILC_ManageMsgBuf(MSGBUF_ADD, dwClientId, &m_ouCanBuf) != S_OK)
+        g_pouDIL_CAN_Interface->registerClient(TRUE, dwClientId, CAN_MONITOR_NODE);
+        if (g_pouDIL_CAN_Interface->manageMessageBuffer(MSGBUF_ADD, dwClientId, &m_ouCanBuf) != S_OK)
         {
             TRACE(_("The function vInitializeGraphWndReadBuffer() failed."));
         }
@@ -15875,7 +15868,7 @@ void CMainFrame::OnConfigureSignalgraphwindow()
 {
     LONG lParam = 0;
     UINT nHardware = 0;
-    if(g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, NUMBER_HW) == S_OK)
+    if(g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, NUMBER_HW) == S_OK)
     {
         nHardware = (UINT)lParam;
     }
@@ -16024,14 +16017,14 @@ void CMainFrame::OnUpdateJ1939ConfigLog(CCmdUI* pCmdUI)
 void CMainFrame::OnActionJ1939Online()
 {
     bool bOnlineStatus = false;
-    if (sg_pouIJ1939DIL->DILIJ_bIsOnline() == FALSE)
+    if (sg_pouIJ1939DIL->isOnline() == FALSE)
     {
-        if (sg_pouIJ1939DIL->DILIJ_GoOnline() == S_OK)
+        if (sg_pouIJ1939DIL->goOnline() == S_OK)
         {
             bOnlineStatus = true;
             theApp.bWriteIntoTraceWnd(_("DIL.J1939 network started..."));
 
-            GetIJ1939DIL()->DILIJ_NM_GetByteAddres(m_sJ1939ClientParam.m_byAddress,
+            GetIJ1939DIL()->getNodeAddress(m_sJ1939ClientParam.m_byAddress,
                                                    m_sJ1939ClientParam.m_dwClientId);
             if (m_pouTxMsgWndJ1939 != NULL)
             {
@@ -16060,7 +16053,7 @@ void CMainFrame::OnActionJ1939Online()
             ::SendMessage(m_pouTxMsgWndJ1939->GetSafeHwnd(),
                           WM_CONNECT_CHANGE, (WPARAM)FALSE, 0);
         }
-        if (sg_pouIJ1939DIL->DILIJ_GoOffline() == S_OK)
+        if (sg_pouIJ1939DIL->goOffline() == S_OK)
         {
             theApp.bWriteIntoTraceWnd(_("DIL.J1939 network stopped..."));
         }
@@ -16090,7 +16083,7 @@ void CMainFrame::OnUpdateActionJ1939Online(CCmdUI* pCmdUI)
     if (NULL != sg_pouIJ1939DIL)
     {
         pCmdUI->Enable(TRUE);
-        if (sg_pouIJ1939DIL->DILIJ_bIsOnline() == TRUE)
+        if (sg_pouIJ1939DIL->isOnline() == TRUE)
         {
             pCmdUI->SetText(_("&Go Offline"));
         }
@@ -16117,7 +16110,7 @@ void CMainFrame::OnActionJ1939TxMessage()
 
 void CMainFrame::OnUpdateActionJ1939TxMessage(CCmdUI* pCmdUI)
 {
-    BOOL bCheck = sg_pouIJ1939DIL && sg_pouIJ1939DIL->DILIJ_bIsOnline();
+    BOOL bCheck = sg_pouIJ1939DIL && sg_pouIJ1939DIL->isOnline();
     pCmdUI->Enable(bCheck);
 
     if(m_pouTxMsgWndJ1939 != NULL)
@@ -16204,11 +16197,11 @@ HRESULT CMainFrame::ProcessJ1939Interfaces(void)
         GetIFlags()->vSetFlagStatus(ACTIVATED_J1939, (int) TRUE);
 
         // Initialise the interface and register
-        Result = sg_pouIJ1939DIL->DILIJ_Initialise(&m_ouWrapperLogger, GetICANDIL());
+        Result = sg_pouIJ1939DIL->initialize(&m_ouWrapperLogger, GetICANDIL());
         if (S_OK == Result)
         {
             theApp.bWriteIntoTraceWnd(_("DIL.J1939 initialisation successful..."));
-            Result = sg_pouIJ1939DIL->DILIJ_RegisterClient(TRUE,
+            Result = sg_pouIJ1939DIL->registerClient(TRUE,
                      J1939_MONITOR_NODE, J1939_ECU_NAME, 0, m_sJ1939ClientParam.m_dwClientId);
             if (Result == S_OK || Result == ERR_CLIENT_EXISTS)
             {
@@ -16307,10 +16300,10 @@ HRESULT CMainFrame::DeselectJ1939Interfaces(void)
         {
             ::SendMessage(m_pouTxMsgWndJ1939->GetSafeHwnd(), WM_CONNECT_CHANGE, (WPARAM)FALSE, 0);
         }
-        if (sg_pouIJ1939DIL->DILIJ_bIsOnline() == TRUE)
+        if (sg_pouIJ1939DIL->isOnline() == TRUE)
         {
             theApp.bWriteIntoTraceWnd(_("Going offline..."));
-            if (sg_pouIJ1939DIL->DILIJ_GoOffline() != S_OK)
+            if (sg_pouIJ1939DIL->goOffline() != S_OK)
             {
                 theApp.bWriteIntoTraceWnd(_("Going offline failed..."));
                 Result = S_FALSE;
@@ -16320,7 +16313,7 @@ HRESULT CMainFrame::DeselectJ1939Interfaces(void)
         // On Disassociate of J1939 Unload all the Simulated systems
         CStringArray omStrBuildFiles;
         GetIJ1939NodeSim()->NS_DllUnloadAll(&omStrBuildFiles);
-        if (sg_pouIJ1939DIL->DILIJ_Uninitialise() != S_OK)
+        if (sg_pouIJ1939DIL->uninitialize() != S_OK)
         {
             theApp.bWriteIntoTraceWnd(_("Uninitialising DIL.J1939 failed..."));
             Result = S_FALSE;

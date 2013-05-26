@@ -1,14 +1,25 @@
-/******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  SignalWatch_J1939.cpp
-  Description   :
-  $Log:   X:/Archive/Sources/SignalWatch/SignalWatch_J1939.cpv  $
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-  Author(s)     :  Pradeep Kadoor
-  Date Created  :  16/02/2011
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
+/**
+ * \file SignalWatch_J1939.cpp
+ * \author Pradeep Kadoor
+ * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
+ */
+
+/* Project includes */
 #include "SignalWatch_stdafx.h"
 #include "Include/Utils_macro.h"
 #include "Include/DIL_CommonDefs.h"
@@ -237,8 +248,8 @@ HRESULT CSignalWatch_J1939::SW_DoInitialization()
     if (DIL_GetInterface(J1939, (void**)&pouDIL_J1939) == S_OK)
     {
         DWORD dwClientId = 0;
-        pouDIL_J1939->DILIJ_RegisterClient(TRUE, J1939_MONITOR_NODE, J1939_ECU_NAME, 0, dwClientId);
-        pouDIL_J1939->DILIJ_ManageMsgBuf(MSGBUF_ADD, dwClientId, &(m_ouMsgBufVSE_J));
+        pouDIL_J1939->registerClient(TRUE, J1939_MONITOR_NODE, J1939_ECU_NAME, 0, dwClientId);
+        pouDIL_J1939->manageMessageBuffer(MSGBUF_ADD, dwClientId, &(m_ouMsgBufVSE_J));
     }
     //Start the read thread
     return bStartSigWatchReadThread()? S_OK: S_FALSE;

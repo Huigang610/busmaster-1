@@ -53,30 +53,30 @@ public:
     CDIL_CAN_IXXAT_VCI();
     ~CDIL_CAN_IXXAT_VCI();
     /* STARTS IMPLEMENTATION OF THE INTERFACE FUNCTIONS... */
-    HRESULT CAN_PerformInitOperations(void);
-    HRESULT CAN_PerformClosureOperations(void);
-    HRESULT CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT CAN_ListHwInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT CAN_SelectHwInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
-    HRESULT CAN_DeselectHwInterface(void);
-    //HRESULT CAN_DisplayConfigDlg(PCHAR& InitData, int& Length);
-    HRESULT CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length);
-    //HRESULT CAN_SetConfigData(PCHAR pInitData, int Length);
-    HRESULT CAN_SetConfigData(PSCONTROLLER_DETAILS InitData, int Length);
-    HRESULT CAN_StartHardware(void);
-    HRESULT CAN_StopHardware(void);
-    HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
-    HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-    HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
-    HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
-    HRESULT CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT performInitOperations(void);
+    HRESULT performClosureOperations(void);
+    HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
+    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT deselectHardwareInterface(void);
+    //HRESULT displayConfigurationDialog(PCHAR& InitData, int& Length);
+    HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
+    //HRESULT setConfigurationData(PCHAR pInitData, int Length);
+    HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);
+    HRESULT startHardware(void);
+    HRESULT stopHardware(void);
+    HRESULT getCurrentStatus(s_STATUSMSG& StatusData);
+    HRESULT sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
+    HRESULT getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT setControllerParameters(int nValue, ECONTR_PARAM eContrparam);
+    HRESULT getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
 
     // Specific function set
-    HRESULT CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
-    HRESULT CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, TCHAR* pacClientName);
-    HRESULT CAN_ManageMsgBuf(BYTE byAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
-    HRESULT CAN_LoadDriverLibrary(void);
-    HRESULT CAN_UnloadDriverLibrary(void);
+    HRESULT setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
+    HRESULT registerClient(BOOL bRegister, DWORD& ClientID, TCHAR* pacClientName);
+    HRESULT manageMessageBuffer(BYTE byAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
+    HRESULT loadDriverLibrary(void);
+    HRESULT unloadDriverLibrary(void);
     void    LogMessage(BOOL bShowOnlyInDebug, LPCTSTR pFormat, ...);
 
 protected:
@@ -113,7 +113,7 @@ protected:
     int  VciDeviceInfoAddToArray(int iStartPosArray, VCIDEVICEINFO* pVciDevInfo, INTERFACE_HW_LIST& sSelHwInterface);
 
 private:
-    SYSTEMTIME    m_sCurrSysTime; ///< Current system time, set in CAN_SetAppParams()
+    SYSTEMTIME    m_sCurrSysTime; ///< Current system time, set in setApplicationParameters()
     UINT64        m_qwTimeStamp;  ///< The time stamp variable, not used.
     long long int m_qwQueryTickCount; ///< The query tick count, not used.
 };

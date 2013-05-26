@@ -154,28 +154,28 @@ class CDIL_CAN_VSCOM : public CBaseDIL_CAN_Controller
 {
 public:
     /* STARTS IMPLEMENTATION OF THE INTERFACE FUNCTIONS... */
-    HRESULT CAN_PerformInitOperations(void);
-    HRESULT CAN_PerformClosureOperations(void);
-    HRESULT CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT CAN_ListHwInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT CAN_SelectHwInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
-    HRESULT CAN_DeselectHwInterface(void);
-    HRESULT CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length);
-    HRESULT CAN_SetConfigData(PSCONTROLLER_DETAILS ConfigFile, int Length);
-    HRESULT CAN_StartHardware(void);
-    HRESULT CAN_StopHardware(void);
-    HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
-    HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-    HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
-    HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
-    HRESULT CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT performInitOperations(void);
+    HRESULT performClosureOperations(void);
+    HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
+    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT deselectHardwareInterface(void);
+    HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
+    HRESULT setConfigurationData(PSCONTROLLER_DETAILS ConfigFile, int Length);
+    HRESULT startHardware(void);
+    HRESULT stopHardware(void);
+    HRESULT getCurrentStatus(s_STATUSMSG& StatusData);
+    HRESULT sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
+    HRESULT getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT setControllerParameters(int nValue, ECONTR_PARAM eContrparam);
+    HRESULT getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
 
     // Specific function set
-    HRESULT CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
-    HRESULT CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
-    HRESULT CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
-    HRESULT CAN_LoadDriverLibrary(void);
-    HRESULT CAN_UnloadDriverLibrary(void);
+    HRESULT setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
+    HRESULT manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
+    HRESULT registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
+    HRESULT loadDriverLibrary(void);
+    HRESULT unloadDriverLibrary(void);
 };
 
 CDIL_CAN_VSCOM* g_pouDIL_CAN_VSCOM = NULL;
@@ -240,11 +240,11 @@ MessageBox(NULL, out, title, MB_ICONEXCLAMATION | MB_OK);
  *
  * Sets the application params.
  */
-HRESULT CDIL_CAN_VSCOM::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
+HRESULT CDIL_CAN_VSCOM::setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
 {
     sg_hOwnerWnd = hWndOwner;
     sg_pIlog = pILog;
-    CAN_ManageMsgBuf(MSGBUF_CLEAR, NULL, NULL);
+    manageMessageBuffer(MSGBUF_CLEAR, NULL, NULL);
     return(S_OK);
 }
 
@@ -254,7 +254,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger
  *
  * Unloads the driver library.
  */
-HRESULT CDIL_CAN_VSCOM::CAN_UnloadDriverLibrary(void)
+HRESULT CDIL_CAN_VSCOM::unloadDriverLibrary(void)
 {
     return(S_OK);
 }
@@ -265,7 +265,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_UnloadDriverLibrary(void)
  *
  * Registers the buffer pBufObj to the client ClientID
  */
-HRESULT CDIL_CAN_VSCOM::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
+HRESULT CDIL_CAN_VSCOM::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
 {
     HRESULT hResult = S_FALSE;
     UINT unClientIndex;
@@ -327,7 +327,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANB
             // **** clear msg buffer
             for (UINT i = 0; i < sg_unClientCnt; i++)
             {
-                CAN_ManageMsgBuf(MSGBUF_CLEAR, sg_asClientToBufMap[i].m_dwClientID, NULL);
+                manageMessageBuffer(MSGBUF_CLEAR, sg_asClientToBufMap[i].m_dwClientID, NULL);
             }
         }
         hResult = S_OK;
@@ -342,7 +342,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANB
  * Registers a client to the DIL. ClientID will have client id
  * which will be used for further client related calls
  */
-HRESULT CDIL_CAN_VSCOM::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName)
+HRESULT CDIL_CAN_VSCOM::registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName)
 {
     HRESULT hResult = S_FALSE;
     INT Index;
@@ -411,7 +411,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char
  *
  * Loads BOA related libraries. Updates BOA API pointers
  */
-HRESULT CDIL_CAN_VSCOM::CAN_LoadDriverLibrary(void)
+HRESULT CDIL_CAN_VSCOM::loadDriverLibrary(void)
 {
     return(S_OK);
 }
@@ -422,7 +422,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_LoadDriverLibrary(void)
 * \param         void
 * \return        S_OK if the open driver call successfull otherwise S_FALSE
 */
-HRESULT CDIL_CAN_VSCOM::CAN_PerformInitOperations(void)
+HRESULT CDIL_CAN_VSCOM::performInitOperations(void)
 {
     DWORD dwClientID;
 
@@ -433,7 +433,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_PerformInitOperations(void)
     InitializeCriticalSection(&sg_DIL_CriticalSection);
     /* Register Monitor client */
     dwClientID = 0;
-    CAN_RegisterClient(TRUE, dwClientID, CAN_MONITOR_NODE);
+    registerClient(TRUE, dwClientID, CAN_MONITOR_NODE);
 
     return(S_OK);
 }
@@ -442,13 +442,13 @@ HRESULT CDIL_CAN_VSCOM::CAN_PerformInitOperations(void)
 /**
 * \brief         Performs closure operations.
 * \param         void
-* \return        S_OK if the CAN_StopHardware call successfull otherwise S_FALSE
+* \return        S_OK if the stopHardware call successfull otherwise S_FALSE
 */
-HRESULT CDIL_CAN_VSCOM::CAN_PerformClosureOperations(void)
+HRESULT CDIL_CAN_VSCOM::performClosureOperations(void)
 {
     HRESULT hResult = S_OK;
 
-    hResult = CAN_StopHardware();
+    hResult = stopHardware();
     // ------------------------------------
     // Close driver
     // ------------------------------------
@@ -475,7 +475,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_PerformClosureOperations(void)
 * \param[out]    QueryTickCount, is LARGE_INTEGER
 * \return        S_OK for success
 */
-HRESULT CDIL_CAN_VSCOM::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
+HRESULT CDIL_CAN_VSCOM::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
 {
     (void)CurrSysTime;
     (void)TimeStamp;
@@ -494,7 +494,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& 
 * \param[out]    nCount , is INT contains the selected channel count.
 * \return        S_OK for success, S_FALSE for failure
 */
-HRESULT CDIL_CAN_VSCOM::CAN_ListHwInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN_VSCOM::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount)
 {
     USES_CONVERSION;
     static BOOL bInit = 1;
@@ -525,7 +525,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_ListHwInterfaces(INTERFACE_HW_LIST& asSelHwInterface
 * \param[out]    nCount , is INT contains the selected channel count.
 * \return        S_OK for success, S_FALSE for failure
 */
-HRESULT CDIL_CAN_VSCOM::CAN_SelectHwInterface(const INTERFACE_HW_LIST& /*asSelHwInterface*/, INT /*nCount*/)
+HRESULT CDIL_CAN_VSCOM::selectHardwareInterface(const INTERFACE_HW_LIST& /*asSelHwInterface*/, INT /*nCount*/)
 {
     USES_CONVERSION;
 
@@ -541,7 +541,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_SelectHwInterface(const INTERFACE_HW_LIST& /*asSelHw
 * \param         void
 * \return        S_OK if CAN_ResetHardware call is success, S_FALSE for failure
 */
-HRESULT CDIL_CAN_VSCOM::CAN_DeselectHwInterface(void)
+HRESULT CDIL_CAN_VSCOM::deselectHardwareInterface(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
 
@@ -559,7 +559,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_DeselectHwInterface(void)
 * \param[out]    Length , is INT
 * \return        S_OK for success
 */
-HRESULT CDIL_CAN_VSCOM::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length)
+HRESULT CDIL_CAN_VSCOM::displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length)
 {
     (void)Length;
     HRESULT result;
@@ -652,7 +652,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int&
 
         cntrl[0].m_bAccFilterMode = sg_VSCanCfg.bDualFilter;
 
-        if ((result = CAN_SetConfigData(InitData, 1)) == S_OK)
+        if ((result = setConfigurationData(InitData, 1)) == S_OK)
         {
             result = INFO_INITDAT_CONFIRM_CONFIG;
         }
@@ -667,7 +667,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int&
 * \param[in]     Length , is INT
 * \return        S_OK for success
 */
-HRESULT CDIL_CAN_VSCOM::CAN_SetConfigData(PSCONTROLLER_DETAILS ConfigFile, int Length)
+HRESULT CDIL_CAN_VSCOM::setConfigurationData(PSCONTROLLER_DETAILS ConfigFile, int Length)
 {
     (void)Length;
     SCONTROLLER_DETAILS* cntrl;
@@ -934,7 +934,7 @@ static DWORD WINAPI CanRxEvent(LPVOID /*lpParam*/)
 * \param         void
 * \return        S_OK for success, S_FALSE for failure
 */
-HRESULT CDIL_CAN_VSCOM::CAN_StartHardware(void)
+HRESULT CDIL_CAN_VSCOM::startHardware(void)
 {
     USES_CONVERSION;
     HRESULT hResult = S_FALSE;
@@ -1036,7 +1036,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_StartHardware(void)
 * \param         void
 * \return        S_OK for success, S_FALSE for failure
 */
-HRESULT CDIL_CAN_VSCOM::CAN_StopHardware(void)
+HRESULT CDIL_CAN_VSCOM::stopHardware(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_CONNECTED, ERR_IMPROPER_STATE);
 
@@ -1066,7 +1066,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_StopHardware(void)
 * \param[out]    StatusData, is s_STATUSMSG structure
 * \return        S_OK for success, S_FALSE for failure
 */
-HRESULT CDIL_CAN_VSCOM::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
+HRESULT CDIL_CAN_VSCOM::getCurrentStatus(s_STATUSMSG& StatusData)
 {
     StatusData.wControllerStatus = NORMAL_ACTIVE;
     return(S_OK);
@@ -1078,7 +1078,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
 * \param[in]     sMessage is the application specific CAN message structure
 * \return        S_OK for success, S_FALSE for failure
 */
-HRESULT CDIL_CAN_VSCOM::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sMessage)
+HRESULT CDIL_CAN_VSCOM::sendMessage(DWORD dwClientID, const STCAN_MSG& sMessage)
 {
     VSCAN_MSG msg;
     DWORD dwTemp;
@@ -1144,7 +1144,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sMessage)
 * \param[in]     eContrParam, indicates controller parameter
 * \return        S_OK for success, S_FALSE for failure
 */
-HRESULT CDIL_CAN_VSCOM::CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam)
+HRESULT CDIL_CAN_VSCOM::getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam)
 {
     HRESULT hResult;
 
@@ -1191,7 +1191,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECO
     return hResult;
 }
 
-HRESULT CDIL_CAN_VSCOM::CAN_SetControllerParams(int /*nValue*/, ECONTR_PARAM /*eContrparam*/)
+HRESULT CDIL_CAN_VSCOM::setControllerParameters(int /*nValue*/, ECONTR_PARAM /*eContrparam*/)
 {
     return S_OK;
 }
@@ -1204,7 +1204,7 @@ HRESULT CDIL_CAN_VSCOM::CAN_SetControllerParams(int /*nValue*/, ECONTR_PARAM /*e
 * \param[in]     eContrParam, indicates controller parameter
 * \return        S_OK for success, S_FALSE for failure
 */
-HRESULT CDIL_CAN_VSCOM::CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam)
+HRESULT CDIL_CAN_VSCOM::getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam)
 {
     (void)eContrParam;
     (void)nChannel;

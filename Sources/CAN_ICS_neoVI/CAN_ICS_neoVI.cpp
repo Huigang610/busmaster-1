@@ -431,28 +431,28 @@ class CDIL_CAN_ICSNeoVI : public CBaseDIL_CAN_Controller
 {
 public:
     /* STARTS IMPLEMENTATION OF THE INTERFACE FUNCTIONS... */
-    HRESULT CAN_PerformInitOperations(void);
-    HRESULT CAN_PerformClosureOperations(void);
-    HRESULT CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT CAN_ListHwInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT CAN_SelectHwInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
-    HRESULT CAN_DeselectHwInterface(void);
-    HRESULT CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length);
-    HRESULT CAN_SetConfigData(PSCONTROLLER_DETAILS InitData, int Length);
-    HRESULT CAN_StartHardware(void);
-    HRESULT CAN_StopHardware(void);
-    HRESULT CAN_GetCurrStatus(s_STATUSMSG& StatusData);
-    HRESULT CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
-    HRESULT CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
-    HRESULT CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam);
-    HRESULT CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT performInitOperations(void);
+    HRESULT performClosureOperations(void);
+    HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
+    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT deselectHardwareInterface(void);
+    HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
+    HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);
+    HRESULT startHardware(void);
+    HRESULT stopHardware(void);
+    HRESULT getCurrentStatus(s_STATUSMSG& StatusData);
+    HRESULT sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTxMsg);
+    HRESULT getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam);
+    HRESULT setControllerParameters(int nValue, ECONTR_PARAM eContrparam);
+    HRESULT getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam);
 
     // Specific function set
-    HRESULT CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
-    HRESULT CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
-    HRESULT CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
-    HRESULT CAN_LoadDriverLibrary(void);
-    HRESULT CAN_UnloadDriverLibrary(void);
+    HRESULT setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog);
+    HRESULT manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);
+    HRESULT registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
+    HRESULT loadDriverLibrary(void);
+    HRESULT unloadDriverLibrary(void);
 };
 static CDIL_CAN_ICSNeoVI* sg_pouDIL_CAN_ICSNeoVI = NULL;
 
@@ -2148,14 +2148,14 @@ HRESULT GetICS_neoVI_APIFuncPtrs(void)
 /**
  * Perform initialization operations specific to TZM
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_PerformInitOperations(void)
+HRESULT CDIL_CAN_ICSNeoVI::performInitOperations(void)
 {
     for(int nCnt =0; nCnt < 2000; nCnt++)
     {
         sg_asMsgBuffer[nCnt].m_uDataInfo.m_sCANMsg.m_bCANFD = false;
     }
     //Register Monitor client
-    CAN_RegisterClient(TRUE, sg_dwClientID, CAN_MONITOR_NODE);
+    registerClient(TRUE, sg_dwClientID, CAN_MONITOR_NODE);
     sg_podActiveNetwork = &sg_odHardwareNetwork;
 
     //Initialize the selected channel items array to -1
@@ -2170,7 +2170,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_PerformInitOperations(void)
 /**
  * Perform closure operations specific to TZM
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_PerformClosureOperations(void)
+HRESULT CDIL_CAN_ICSNeoVI::performClosureOperations(void)
 {
     HRESULT hResult = S_OK;
 
@@ -2180,7 +2180,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_PerformClosureOperations(void)
         bRemoveClient(sg_asClientToBufMap[ClientIndex].dwClientID);
     }
     nDisconnectFromDriver();
-    hResult = CAN_DeselectHwInterface();
+    hResult = deselectHardwareInterface();
     if (hResult == S_OK)
     {
         sg_bCurrState = STATE_DRIVER_SELECTED;
@@ -2191,7 +2191,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_PerformClosureOperations(void)
 /**
  * Retrieve time mode mapping
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
+HRESULT CDIL_CAN_ICSNeoVI::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
 {
     memcpy(&CurrSysTime, &sg_CurrSysTime, sizeof(SYSTEMTIME));
     TimeStamp = sg_TimeStamp;
@@ -2206,7 +2206,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT6
  * Function to List Hardware interfaces connect to the system and requests to the
  * user to select
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_ListHwInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN_ICSNeoVI::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount)
 {
     USES_CONVERSION;
     HRESULT hResult = S_FALSE;
@@ -2241,7 +2241,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_ListHwInterfaces(INTERFACE_HW_LIST& asSelHwInterf
 /**
  * Function to deselect the chosen hardware interface
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_DeselectHwInterface(void)
+HRESULT CDIL_CAN_ICSNeoVI::deselectHardwareInterface(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
 
@@ -2255,7 +2255,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_DeselectHwInterface(void)
 /**
  * Function to select hardware interface chosen by the user
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_SelectHwInterface(const INTERFACE_HW_LIST& asSelHwInterface, INT /*nCount*/)
+HRESULT CDIL_CAN_ICSNeoVI::selectHardwareInterface(const INTERFACE_HW_LIST& asSelHwInterface, INT /*nCount*/)
 {
     USES_CONVERSION;
 
@@ -2289,7 +2289,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_SelectHwInterface(const INTERFACE_HW_LIST& asSelH
 /**
  * Function to set controller configuration
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_SetConfigData(PSCONTROLLER_DETAILS ConfigFile, int Length)
+HRESULT CDIL_CAN_ICSNeoVI::setConfigurationData(PSCONTROLLER_DETAILS ConfigFile, int Length)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
 
@@ -2322,7 +2322,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_SetConfigData(PSCONTROLLER_DETAILS ConfigFile, in
 
 BOOL Callback_DILTZM(BYTE /*Argument*/, PSCONTROLLER_DETAILS pDatStream, int /*Length*/)
 {
-    return ( sg_pouDIL_CAN_ICSNeoVI->CAN_SetConfigData(pDatStream, 0) == S_OK);
+    return ( sg_pouDIL_CAN_ICSNeoVI->setConfigurationData(pDatStream, 0) == S_OK);
 }
 
 /**
@@ -2545,7 +2545,7 @@ HRESULT hFillHardwareDesc(PSCONTROLLER_DETAILS pControllerDetails)
 /**
  * Function to display config dialog
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length)
+HRESULT CDIL_CAN_ICSNeoVI::displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length)
 {
     HRESULT Result = WARN_INITDAT_NCONFIRM;
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
@@ -2611,7 +2611,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, i
 /**
  * Function to start monitoring the bus
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_StartHardware(void)
+HRESULT CDIL_CAN_ICSNeoVI::startHardware(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
 
@@ -2655,7 +2655,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_StartHardware(void)
 /**
  * Function to stop monitoring the bus
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_StopHardware(void)
+HRESULT CDIL_CAN_ICSNeoVI::stopHardware(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_CONNECTED, ERR_IMPROPER_STATE);
 
@@ -2743,7 +2743,7 @@ static int nGetErrorCounter( UINT unChannel, SERROR_CNT& sErrorCount)
 /**
  * Function to get Controller status
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
+HRESULT CDIL_CAN_ICSNeoVI::getCurrentStatus(s_STATUSMSG& StatusData)
 {
     if (sg_ucControllerMode == defUSB_MODE_ACTIVE)
     {
@@ -2814,7 +2814,7 @@ static int nWriteMessage(STCAN_MSG sMessage)
 /**
  * Function to Send CAN Message to Transmit buffer. This is called only after checking the controller in active mode
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sMessage)
+HRESULT CDIL_CAN_ICSNeoVI::sendMessage(DWORD dwClientID, const STCAN_MSG& sMessage)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_CONNECTED, ERR_IMPROPER_STATE);
     static SACK_MAP sAckMap;
@@ -2849,7 +2849,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sMessa
 /**
  * Set application parameters specific to CAN_USB
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
+HRESULT CDIL_CAN_ICSNeoVI::setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
 {
     sg_hOwnerWnd = hWndOwner;
     sg_pIlog = pILog;
@@ -2863,7 +2863,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLog
     sg_QueryTickCount.QuadPart = 0;
     //INITIALISE_ARRAY(sg_acErrStr);
     sg_acErrStr = "";
-    CAN_ManageMsgBuf(MSGBUF_CLEAR, NULL, NULL);
+    manageMessageBuffer(MSGBUF_CLEAR, NULL, NULL);
 
     return S_OK;
 }
@@ -2902,7 +2902,7 @@ static DWORD dwGetAvailableClientSlot()
 /**
  * Register Client
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_RegisterClient(BOOL bRegister,DWORD& ClientID, char* pacClientName)
+HRESULT CDIL_CAN_ICSNeoVI::registerClient(BOOL bRegister,DWORD& ClientID, char* pacClientName)
 {
     USES_CONVERSION;
     HRESULT hResult = S_FALSE;
@@ -2966,7 +2966,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_RegisterClient(BOOL bRegister,DWORD& ClientID, ch
     return hResult;
 }
 
-HRESULT CDIL_CAN_ICSNeoVI::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
+HRESULT CDIL_CAN_ICSNeoVI::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
 {
     HRESULT hResult = S_FALSE;
     if (ClientID != NULL)
@@ -3028,7 +3028,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseC
             //clear msg buffer
             for (UINT i = 0; i < sg_unClientCnt; i++)
             {
-                CAN_ManageMsgBuf(MSGBUF_CLEAR, sg_asClientToBufMap[i].dwClientID, NULL);
+                manageMessageBuffer(MSGBUF_CLEAR, sg_asClientToBufMap[i].dwClientID, NULL);
             }
             hResult = S_OK;
         }
@@ -3040,7 +3040,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_ManageMsgBuf(BYTE bAction, DWORD ClientID, CBaseC
 /**
  * Function to load driver icsneo40.dll
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_LoadDriverLibrary(void)
+HRESULT CDIL_CAN_ICSNeoVI::loadDriverLibrary(void)
 {
     USES_CONVERSION;
 
@@ -3090,10 +3090,10 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_LoadDriverLibrary(void)
 /**
  * Function to Unload Driver library
  */
-HRESULT CDIL_CAN_ICSNeoVI::CAN_UnloadDriverLibrary(void)
+HRESULT CDIL_CAN_ICSNeoVI::unloadDriverLibrary(void)
 {
     // Don't bother about the success & hence the result
-    CAN_DeselectHwInterface();
+    deselectHardwareInterface();
 
     // Store the Boardinfo to global variable
 
@@ -3105,7 +3105,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_UnloadDriverLibrary(void)
     return S_OK;
 }
 
-HRESULT CDIL_CAN_ICSNeoVI::CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam)
+HRESULT CDIL_CAN_ICSNeoVI::setControllerParameters(int nValue, ECONTR_PARAM eContrparam)
 {
     switch(eContrparam)
     {
@@ -3148,7 +3148,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_SetControllerParams(int nValue, ECONTR_PARAM eCon
     }
     return S_OK;
 }
-HRESULT CDIL_CAN_ICSNeoVI::CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam)
+HRESULT CDIL_CAN_ICSNeoVI::getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam)
 {
     HRESULT hResult = S_OK;
     if ((sg_bCurrState == STATE_HW_INTERFACE_SELECTED) || (sg_bCurrState == STATE_CONNECTED))
@@ -3239,7 +3239,7 @@ HRESULT CDIL_CAN_ICSNeoVI::CAN_GetControllerParams(LONG& lParam, UINT nChannel, 
     return hResult;
 }
 
-HRESULT CDIL_CAN_ICSNeoVI::CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM /*eContrParam*/)
+HRESULT CDIL_CAN_ICSNeoVI::getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM /*eContrParam*/)
 {
     HRESULT hResult = S_FALSE;
     if ((sg_bCurrState == STATE_CONNECTED) || (sg_bCurrState == STATE_HW_INTERFACE_SELECTED))

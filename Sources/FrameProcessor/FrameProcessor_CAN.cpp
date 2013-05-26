@@ -94,7 +94,7 @@ void CFrameProcessor_CAN::CreateTimeModeMapping(SYSTEMTIME& CurrSysTime,
 {
     if (m_pouDilCanInterface != NULL)
     {
-        m_pouDilCanInterface->DILC_GetTimeModeMapping(CurrSysTime, unAbsTime);
+        m_pouDilCanInterface->getTimeModeMapping(CurrSysTime, unAbsTime);
     }
 }
 
@@ -172,7 +172,7 @@ HRESULT CFrameProcessor_CAN::FPC_DoInitialisation(SCANPROC_PARAMS* psInitParams)
         {
             if (m_pouDilCanInterface != NULL)
             {
-                if (m_pouDilCanInterface->DILC_ManageMsgBuf(MSGBUF_ADD, m_sCANProcParams.dwClientID, &m_ouFSEBufCAN) != S_OK)
+                if (m_pouDilCanInterface->manageMessageBuffer(MSGBUF_ADD, m_sCANProcParams.dwClientID, &m_ouFSEBufCAN) != S_OK)
                 {
                     ASSERT(FALSE);
                 }

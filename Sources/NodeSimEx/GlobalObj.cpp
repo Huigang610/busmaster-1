@@ -18,6 +18,8 @@
  * \author    Ratnadip Choudhury
  * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
+
+/* Project includes */
 #include "NodeSimEx_stdafx.h"
 #include "include/Dil_CommonDefs.h"
 #include "include/BaseDefs.h"
@@ -444,20 +446,20 @@ HRESULT CGlobalObj::RegisterNodeToDIL(BOOL bRegister, PSNODEINFO pNodeInfo)
     {
         case CAN:
         {
-            hResult = CGlobalObj::GetICANDIL()->DILC_RegisterClient(bRegister,
+            hResult = CGlobalObj::GetICANDIL()->registerClient(bRegister,
                       pNodeInfo->m_dwClientId,
                       pNodeInfo->m_omStrNodeName.GetBuffer(MAX_PATH));
             if ((hResult == S_OK) && (bRegister == TRUE))
             {
                 //Set the buffer
-                hResult = CGlobalObj::GetICANDIL()->DILC_ManageMsgBuf(MSGBUF_ADD,
+                hResult = CGlobalObj::GetICANDIL()->manageMessageBuffer(MSGBUF_ADD,
                           pNodeInfo->m_dwClientId, &(pNodeInfo->m_ouCanBufFSE));
             }
         }
         break;
         case J1939:
         {
-            hResult = CGlobalObj::GetIJ1939DIL()->DILIJ_RegisterClient(bRegister,
+            hResult = CGlobalObj::GetIJ1939DIL()->registerClient(bRegister,
                       pNodeInfo->m_omStrNodeName.GetBuffer(MAX_CHAR),
                       pNodeInfo->m_unEcuName,
                       pNodeInfo->m_byPrefAddress,
@@ -465,14 +467,14 @@ HRESULT CGlobalObj::RegisterNodeToDIL(BOOL bRegister, PSNODEINFO pNodeInfo)
             if (((hResult == S_OK) || (hResult == ERR_CLIENT_EXISTS)) && (bRegister == TRUE))
             {
                 //Set the buffer
-                hResult = CGlobalObj::GetIJ1939DIL()->DILIJ_ManageMsgBuf(MSGBUF_ADD,
+                hResult = CGlobalObj::GetIJ1939DIL()->manageMessageBuffer(MSGBUF_ADD,
                           pNodeInfo->m_dwClientId, &(pNodeInfo->m_ouMsgBufVSE));
 
-                GetIJ1939DIL()->DILIJ_SetCallBckFuncPtr(pNodeInfo->m_dwClientId,
+                GetIJ1939DIL()->setCallbackFunction(pNodeInfo->m_dwClientId,
                                                         CLBCK_FN_LDATA_CONF, (PCLBCK_FN_LDATA_CONF)sg_vDataConfEventFnJ1939);
-                GetIJ1939DIL()->DILIJ_SetCallBckFuncPtr(pNodeInfo->m_dwClientId,
+                GetIJ1939DIL()->setCallbackFunction(pNodeInfo->m_dwClientId,
                                                         CLBCK_FN_BC_LDATA_CONF, (PCLBCK_FN_BC_LDATA_CONF)sg_vDataConfEventFnJ1939);
-                GetIJ1939DIL()->DILIJ_SetCallBckFuncPtr(pNodeInfo->m_dwClientId,
+                GetIJ1939DIL()->setCallbackFunction(pNodeInfo->m_dwClientId,
                                                         CLBCK_FN_NM_ACL, (PCLBCK_FN_NM_ACL)sg_vAddressClaimEventFnJ1939);
             }
         }

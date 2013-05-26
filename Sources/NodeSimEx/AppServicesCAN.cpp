@@ -52,7 +52,7 @@ UINT gunSendMsg_CAN(STCAN_TIME_MSG* psTxMsg, HMODULE hModule)
         {
             PSNODEINFO psNode = new sNODEINFO(CAN);
             pmCEexecuteFunc->vGetNodeInfo(*psNode);
-            if (CGlobalObj::GetICANDIL()->DILC_SendMsg(psNode->m_dwClientId, sMsg) == S_OK)
+            if (CGlobalObj::GetICANDIL()->sendMessage(psNode->m_dwClientId, sMsg) == S_OK)
             {
                 Return = 0;
             }

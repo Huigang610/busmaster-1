@@ -222,7 +222,7 @@ void CWaveformTransmitter::vProcessWaveForm(int CurrItr)
             psCurrSignal = psCurrSignal->m_psNextSignalList; // Iterate
         }
         // End of processing. Now transmit the CAN frame.
-        m_pouDIL_CAN_Interface->DILC_SendMsg(m_dwClientID, sCurrFrame);
+        m_pouDIL_CAN_Interface->sendMessage(m_dwClientID, sCurrFrame);
 
         /* If sawtooth signals are present */
         if ( bSawtoothExists == true)
@@ -250,7 +250,7 @@ void CWaveformTransmitter::vProcessWaveForm(int CurrItr)
                 psCurrSignal = psCurrSignal->m_psNextSignalList; // Iterate
             }
             // End of processing. Now transmit the CAN frame.
-            m_pouDIL_CAN_Interface->DILC_SendMsg(m_dwClientID, sCurrFrame);
+            m_pouDIL_CAN_Interface->sendMessage(m_dwClientID, sCurrFrame);
         }
     }
 }

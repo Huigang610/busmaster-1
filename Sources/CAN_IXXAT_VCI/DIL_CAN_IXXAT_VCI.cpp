@@ -45,16 +45,16 @@
    Internal note
    --------------------------------------------
    The sequence of called functions is:
-           CAN_SetAppParams
-           CAN_LoadDriverLibrary
-     2 x * CAN_PerformInitOperations
+           setApplicationParameters
+           loadDriverLibrary
+     2 x * performInitOperations
            CAN_ListHWInterface
-           CAN_SetConfigData
+           setConfigurationData
            ----
-    Cyclic:CAN_GetControllerParams
+    Cyclic:getControllerParameters
            ----
-           CAN_PerformClosureOperations
-           CAN_UnloadDriverLibrary
+           performClosureOperations
+           unloadDriverLibrary
 */
 
 
@@ -108,10 +108,10 @@ CDIL_CAN_IXXAT_VCI::~CDIL_CAN_IXXAT_VCI()
  *  Always S_OK.
  *
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_PerformInitOperations(void)
+HRESULT CDIL_CAN_IXXAT_VCI::performInitOperations(void)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_PerformInitOperations\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::performInitOperations\n");
 #endif
 
     //Initialize the selected channel items array to -1
@@ -132,10 +132,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_PerformInitOperations(void)
  *  Always S_OK.
  *
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_PerformClosureOperations(void)
+HRESULT CDIL_CAN_IXXAT_VCI::performClosureOperations(void)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_PerformClosureOperations\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::performClosureOperations\n");
 #endif
 
     for (int i=0; i < CHANNEL_CAN_MAX; i++)
@@ -194,10 +194,10 @@ int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, INTERFACE_HW* psInt
  *      E_POINTER - no access to the VCI drivers
  *      NO_HW_INTERFACE - no CAN interface found
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_ListHwInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN_IXXAT_VCI::listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_ListHwInterfaces\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::listHardwareInterfaces\n");
 #endif
     HRESULT hResult = E_POINTER;
 
@@ -309,10 +309,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_ListHwInterfaces(INTERFACE_HW_LIST& sSelHwInterf
  *   Always S_OK.
  *
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_SelectHwInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount)
+HRESULT CDIL_CAN_IXXAT_VCI::selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_SelectHwInterface\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::selectHardwareInterface\n");
 #endif
 
     // absolutely necessary to call this macro
@@ -351,10 +351,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_SelectHwInterface(const INTERFACE_HW_LIST& sSelH
  *
  * @remarks  TODO: Don't forget to fill in the remarks!
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_DeselectHwInterface(void)
+HRESULT CDIL_CAN_IXXAT_VCI::deselectHardwareInterface(void)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_DeselectHwInterface\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::deselectHardwareInterface\n");
 #endif
     return S_OK;
 }
@@ -378,7 +378,7 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_DeselectHwInterface(void)
  *  S_OK - baudrate set correct to first CAN controller.
  *
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, int& Length)
+HRESULT CDIL_CAN_IXXAT_VCI::displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length)
 {
     //TODO: original line, but here only the first available CAN controller is used
     // VALIDATE_VALUE_RETURN_VAL(m_byCurrHardwareState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
@@ -391,7 +391,7 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, 
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_DisplayConfigDlg\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::displayConfigurationDialog\n");
 #endif
 
     HRESULT hrRes = E_POINTER;
@@ -435,10 +435,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_DisplayConfigDlg(PSCONTROLLER_DETAILS InitData, 
  * @return
  *  Always S_OK.
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_SetConfigData(PSCONTROLLER_DETAILS pInitData, int Length)
+HRESULT CDIL_CAN_IXXAT_VCI::setConfigurationData(PSCONTROLLER_DETAILS pInitData, int Length)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_SetConfigData\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::setConfigurationData\n");
 #endif
 
     // VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
@@ -477,10 +477,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_SetConfigData(PSCONTROLLER_DETAILS pInitData, in
  *  S_OK - Success.
  *
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_StartHardware(void)
+HRESULT CDIL_CAN_IXXAT_VCI::startHardware(void)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_StartHardware\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::startHardware\n");
 #endif
 
     HRESULT hResult = E_POINTER;
@@ -517,10 +517,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_StartHardware(void)
  *  S_OK - Success.
  *
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_StopHardware(void)
+HRESULT CDIL_CAN_IXXAT_VCI::stopHardware(void)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_StopHardware\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::stopHardware\n");
 #endif
 
     HRESULT hResult = E_POINTER;
@@ -552,10 +552,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_StopHardware(void)
  *  HW_INTERFACE_NO_SEL - No open CAN controller.
  *  else an VCI result (see vcierr.h").
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
+HRESULT CDIL_CAN_IXXAT_VCI::getCurrentStatus(s_STATUSMSG& StatusData)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_GetCurrStatus\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::getCurrentStatus\n");
 #endif
 
     HRESULT hResult = E_POINTER;
@@ -582,10 +582,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetCurrStatus(s_STATUSMSG& StatusData)
  *  else an VCI result (see vcierr.h").
  *
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanTxMsg)
+HRESULT CDIL_CAN_IXXAT_VCI::sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTxMsg)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_SendMsg\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::sendMessage\n");
 #endif
 
     HRESULT hResult = E_POINTER;
@@ -612,10 +612,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_SendMsg(DWORD dwClientID, const STCAN_MSG& sCanT
  *  S_FALSE - No valid control value.
  *  S_OK - lParam successful assigned.
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetControllerParams(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam)
+HRESULT CDIL_CAN_IXXAT_VCI::getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_GetControllerParams\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::getControllerParameters\n");
 #endif
     HRESULT hResult = S_OK;
     switch (eContrParam)
@@ -656,7 +656,7 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetControllerParams(LONG& lParam, UINT nChannel,
     return hResult;
 }
 
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_SetControllerParams(int nValue, ECONTR_PARAM eContrparam)
+HRESULT CDIL_CAN_IXXAT_VCI::setControllerParameters(int nValue, ECONTR_PARAM eContrparam)
 {
     return S_OK;
 }
@@ -678,10 +678,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_SetControllerParams(int nValue, ECONTR_PARAM eCo
  *  S_OK - Success.
  *
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam)
+HRESULT CDIL_CAN_IXXAT_VCI::getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_GetErrorCount\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::getErrorCount\n");
 #endif
     HRESULT hrRes = HW_INTERFACE_NO_SEL;
     if (nChannel < CHANNEL_CAN_MAX)
@@ -718,13 +718,13 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetErrorCount(SERROR_CNT& sErrorCnt, UINT nChann
  * @return
  *  Always S_OK.
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
+HRESULT CDIL_CAN_IXXAT_VCI::setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
 {
     m_pILog = pILog;
     m_hOwnerWndHandle = hWndOwner;
 
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_SetAppParams\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::setApplicationParameters\n");
 #endif
     /* Initialise both the time parameters */
     GetLocalTime(&m_sCurrSysTime);
@@ -755,10 +755,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_SetAppParams(HWND hWndOwner, Base_WrapperErrorLo
  *  ERR_NO_CLIENT_EXIST - A client with this ID did not exists (while unregistering).
  *  S_OK - client registered or unregistered successful.
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, TCHAR* pacClientName)
+HRESULT CDIL_CAN_IXXAT_VCI::registerClient(BOOL bRegister, DWORD& ClientID, TCHAR* pacClientName)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_RegisterClient - %s\n"), pacClientName;
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::registerClient - %s\n"), pacClientName;
 #endif
 
     HRESULT hResult;
@@ -790,10 +790,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_RegisterClient(BOOL bRegister, DWORD& ClientID, 
  * @return
  *      Always S_OK.
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
+HRESULT CDIL_CAN_IXXAT_VCI::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_GetTimeModeMapping\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::getTimeModeMapping\n");
 #endif
 
     memcpy(&CurrSysTime, &m_sCurrSysTime, sizeof(SYSTEMTIME));
@@ -824,10 +824,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_GetTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT
  *
  * @remarks  TODO: Don't forget to fill in the remarks!
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_ManageMsgBuf(BYTE byAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
+HRESULT CDIL_CAN_IXXAT_VCI::manageMessageBuffer(BYTE byAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_ManageMsgBuf  - Action: %u  ClientID: %u\n", byAction, ClientID);
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::manageMessageBuffer  - Action: %u  ClientID: %u\n", byAction, ClientID);
 #endif
     HRESULT hResult = S_FALSE;
     if (pBufObj)
@@ -876,16 +876,16 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_ManageMsgBuf(BYTE byAction, DWORD ClientID, CBas
  *  the VCI V3 functions will by loaded dynamically.
  * @remarks
  *  Don't forget the unload the DLL with the function
- *  CAN_UnloadDriverLibrary().
+ *  unloadDriverLibrary().
  *
  * @return
  *  An HRESULT value (S_OK - success, else an error occurred).
  *
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_LoadDriverLibrary(void)
+HRESULT CDIL_CAN_IXXAT_VCI::loadDriverLibrary(void)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_LoadDriverLibrary\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::loadDriverLibrary\n");
 #endif
 
     // Load VCI V3 Library
@@ -938,10 +938,10 @@ HRESULT CDIL_CAN_IXXAT_VCI::CAN_LoadDriverLibrary(void)
  * @return
  *   Always S_OK.
  */
-HRESULT CDIL_CAN_IXXAT_VCI::CAN_UnloadDriverLibrary(void)
+HRESULT CDIL_CAN_IXXAT_VCI::unloadDriverLibrary(void)
 {
 #ifdef _IXXAT_DEBUG
-    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::CAN_UnloadDriverLibrary\n");
+    LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::unloadDriverLibrary\n");
 #endif
 
     m_bDriverAccessLoaded = FALSE;

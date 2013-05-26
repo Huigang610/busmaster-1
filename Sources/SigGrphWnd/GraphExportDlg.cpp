@@ -206,7 +206,7 @@ void CGraphExportDlg::OnBtnSaveHtml()
                 // Get the actual hardware available
                 UINT unActualHw = 0;
                 LONG lParam = 0;
-                if (g_pouDIL_CAN_Interface->DILC_GetControllerParams(lParam, 0, NUMBER_HW) == S_OK)
+                if (g_pouDIL_CAN_Interface->getControllerParameters(lParam, 0, NUMBER_HW) == S_OK)
                 {
                     unActualHw = (UINT)lParam;
                 }

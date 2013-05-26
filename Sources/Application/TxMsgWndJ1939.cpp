@@ -1,49 +1,25 @@
-/******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  TxMsgWndJ1939.cpp
-  Description   :
-  $Log:   X:/Archive/Sources/Application/TxMsgWndJ1939.cpv  $
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-      Rev 1.10   09 Jun 2011 11:28:26   CANMNTTM
+/**
+ * \file TxMsgWndJ1939.cpp
+ * \author Pradeep Kadoor
+ * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
+ */
 
-
-      Rev 1.9   15 Apr 2011 20:02:20   CANMNTTM
-   Added RBEI Copyright information.
-
-      Rev 1.8   23 Mar 2011 14:49:22   CANMNTTM
-   Support upto 32 channels
-
-      Rev 1.7   02 Mar 2011 15:38:18   CANMNTTM
-   1. Support to J1939 Nodesimulation
-   3. Support to J1939 Message window
-   2. Removed unwanted macros
-
-      Rev 1.6   07 Feb 2011 10:59:28   CANMNTTM
-   FOR Ver. 6.1.3.I.U310
-      Rev 1.5   13 Jan 2011 14:55:50   CANMNTTM
-   Implemented J1939 database specific functions.
-
-      Rev 1.4   23 Dec 2010 16:43:26   CANMNTTM
-   Transmission stopped before disconnecting.
-
-      Rev 1.3   22 Dec 2010 19:13:48   CANMNTTM
-   Added Cyclic transmission feature.
-
-      Rev 1.2   15 Dec 2010 17:06:46   CANMNTTM
-   Added new function to set J1939 client parameter.
-
-      Rev 1.1   14 Dec 2010 10:22:40   CANMNTTM
-   Channel information is passed for each SendMsg call.
-
-      Rev 1.0   13 Dec 2010 18:41:54   CANMNTTM
-
-
-  Author(s)     :  Pradeep Kadoor
-  Date Created  :  10/12/2010
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
-
+/* Project includes */
 #include "stdafx.h"
 #include "Application/Resource.h"
 #include "HashDefines.h"
@@ -55,7 +31,7 @@
 #include "DIL_Interface/BaseDIL_J1939.h"
 #include "Application/InterfaceGetter.h"
 #include "TxMsgWndJ1939.h"
-#include ".\txmsgwndj1939.h"
+#include "txmsgwndj1939.h"
 #include "Utility/MultiLanguageSupport.h"
 
 HANDLE sg_hMsgSent = NULL;
@@ -313,8 +289,8 @@ CTxMsgWndJ1939::CTxMsgWndJ1939(CWnd* pParent /*=NULL*/, SJ1939CLIENTPARAM& sClie
     m_bThreadStarted = FALSE;
     sg_hMsgSent = CreateEvent(NULL, FALSE, FALSE, NULL);
     sg_hMsgStopped = CreateEvent(NULL, FALSE, FALSE, NULL);
-    GetIJ1939DIL()->DILIJ_SetCallBckFuncPtr(m_sClientParams.m_dwClientId, CLBCK_FN_LDATA_CONF, (void*)CallBackMsgSent);
-    GetIJ1939DIL()->DILIJ_SetCallBckFuncPtr(m_sClientParams.m_dwClientId, CLBCK_FN_BC_LDATA_CONF, (void*)CallBackMsgSent);
+    GetIJ1939DIL()->setCallbackFunction(m_sClientParams.m_dwClientId, CLBCK_FN_LDATA_CONF, (void*)CallBackMsgSent);
+    GetIJ1939DIL()->setCallbackFunction(m_sClientParams.m_dwClientId, CLBCK_FN_BC_LDATA_CONF, (void*)CallBackMsgSent);
 }
 
 CTxMsgWndJ1939::~CTxMsgWndJ1939()
@@ -425,7 +401,7 @@ void CTxMsgWndJ1939::OnBnClickedSend()
 {
     UpdateData();
     LPARAM lParam = 0;
-    GetICANDIL()->DILC_GetControllerParams(lParam, 0, NUMBER_HW);
+    GetICANDIL()->getControllerParameters(lParam, 0, NUMBER_HW);
     UINT unChannel = (UINT) lParam;
     if (m_bNM == TRUE)
     {
@@ -436,7 +412,7 @@ void CTxMsgWndJ1939::OnBnClickedSend()
         {
             for (UINT i = 0; i < unChannel; i++)
             {
-                GetIJ1939DIL()->DILIJ_NM_ClaimAddress(m_sClientParams.m_dwClientId,
+                GetIJ1939DIL()->claimAddress(m_sClientParams.m_dwClientId,
                                                       i + 1, byAddress);
             }
         }
@@ -445,7 +421,7 @@ void CTxMsgWndJ1939::OnBnClickedSend()
         {
             for (UINT i = 0; i < unChannel; i++)
             {
-                GetIJ1939DIL()->DILIJ_NM_RequestAddress(m_sClientParams.m_dwClientId, i + 1, DEFAULT_PRIORITY, byAddress, byEcuName);
+                GetIJ1939DIL()->requestAddress(m_sClientParams.m_dwClientId, i + 1, DEFAULT_PRIORITY, byAddress, byEcuName);
             }
         }
         pButton = (CButton*)GetDlgItem(IDC_CMD_ADDRESS);
@@ -454,7 +430,7 @@ void CTxMsgWndJ1939::OnBnClickedSend()
             UINT64 unECUNAME = m_omEcuName.lGetValue();
             for (UINT i = 0; i < unChannel; i++)
             {
-                GetIJ1939DIL()->DILIJ_NM_CommandAddress(m_sClientParams.m_dwClientId,
+                GetIJ1939DIL()->commandAddress(m_sClientParams.m_dwClientId,
                                                         i + 1, unECUNAME, byAddress,
                                                         DEFAULT_PRIORITY, byAddress,
                                                         ADDRESS_ALL);
@@ -463,7 +439,7 @@ void CTxMsgWndJ1939::OnBnClickedSend()
     }
     else
     {
-        if ((eGetTransState() == TRANS_STOPPED) && GetIJ1939DIL()->DILIJ_bIsOnline())
+        if ((eGetTransState() == TRANS_STOPPED) && GetIJ1939DIL()->isOnline())
         {
             m_sMsgToBeSent.m_unChannel = 1;
             CString omChannel;
@@ -565,7 +541,7 @@ HRESULT CTxMsgWndJ1939::SendSavedMessage(void)
     if ((m_sMsgToBeSent.m_eMsgType == MSG_TYPE_DATA)
             || (m_sMsgToBeSent.m_eMsgType == MSG_TYPE_BROADCAST))
     {
-        hResult = GetIJ1939DIL()->DILIJ_SendJ1939Msg(m_sClientParams.m_dwClientId,
+        hResult = GetIJ1939DIL()->sendJ1939Message(m_sClientParams.m_dwClientId,
                   m_sMsgToBeSent.m_unChannel,
                   m_sMsgToBeSent.m_eMsgType,
                   m_sMsgToBeSent.m_unPGN,
@@ -577,7 +553,7 @@ HRESULT CTxMsgWndJ1939::SendSavedMessage(void)
     }
     if (m_sMsgToBeSent.m_eMsgType == MSG_TYPE_REQUEST)
     {
-        hResult = GetIJ1939DIL()->DILIJ_RequestPGN(m_sClientParams.m_dwClientId,
+        hResult = GetIJ1939DIL()->requestPgn(m_sClientParams.m_dwClientId,
                   m_sMsgToBeSent.m_unChannel,
                   m_sMsgToBeSent.m_unPGN,
                   m_sMsgToBeSent.m_byPriority,
@@ -695,7 +671,7 @@ void CTxMsgWndJ1939::vInitializeTpfFields(void)
 
     //Initialize with default values
     LPARAM lParam;
-    GetICANDIL()->DILC_GetControllerParams(lParam, 0, NUMBER_HW);
+    GetICANDIL()->getControllerParameters(lParam, 0, NUMBER_HW);
     for (INT_PTR i = 0; i < lParam; i++)
     {
         CString omChannel;
@@ -761,7 +737,7 @@ void CTxMsgWndJ1939::vUpdateChannelIDInfo()
 
     /* Update with latest channel info */
     LPARAM lParam;
-    GetICANDIL()->DILC_GetControllerParams(lParam, 0, NUMBER_HW);
+    GetICANDIL()->getControllerParameters(lParam, 0, NUMBER_HW);
     for (INT_PTR i = 0; i < lParam; i++)
     {
         CString omChannel;
@@ -1006,8 +982,8 @@ LRESULT CTxMsgWndJ1939::OnMessageConnect(WPARAM wParam, LPARAM lParam)
     ResetEvent(sg_hMsgStopped); //For safety
     if (bOnline == TRUE)
     {
-        GetIJ1939DIL()->DILIJ_SetCallBckFuncPtr(m_sClientParams.m_dwClientId, CLBCK_FN_LDATA_CONF, (void*)CallBackMsgSent);
-        GetIJ1939DIL()->DILIJ_SetCallBckFuncPtr(m_sClientParams.m_dwClientId, CLBCK_FN_BC_LDATA_CONF, (void*)CallBackMsgSent);
+        GetIJ1939DIL()->setCallbackFunction(m_sClientParams.m_dwClientId, CLBCK_FN_LDATA_CONF, (void*)CallBackMsgSent);
+        GetIJ1939DIL()->setCallbackFunction(m_sClientParams.m_dwClientId, CLBCK_FN_BC_LDATA_CONF, (void*)CallBackMsgSent);
     }
     if (eGetTransState() == TRANS_STARTED)
     {

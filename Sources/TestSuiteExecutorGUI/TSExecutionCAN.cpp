@@ -270,8 +270,8 @@ HRESULT CTSExecutionCAN::TSX_DoInitialization(void)
 {
     if (DIL_GetInterface(CAN, (void**)&m_pouDIL_CAN) == S_OK)
     {
-        m_pouDIL_CAN->DILC_RegisterClient(TRUE, m_dwClientId, CAN_MONITOR_NODE);
-        m_pouDIL_CAN->DILC_ManageMsgBuf(MSGBUF_ADD, m_dwClientId, &m_ouCanBufFSE);
+        m_pouDIL_CAN->registerClient(TRUE, m_dwClientId, CAN_MONITOR_NODE);
+        m_pouDIL_CAN->manageMessageBuffer(MSGBUF_ADD, m_dwClientId, &m_ouCanBufFSE);
         return S_OK;
     }
     return S_FALSE;
@@ -369,7 +369,7 @@ HRESULT CTSExecutionCAN::TSX_VerifyResponse(CBaseEntityTA* pEntity, CResultVerif
         LARGE_INTEGER Tickr;
         UINT64 tr;
         SYSTEMTIME sysTime;
-        m_pouDIL_CAN->DILC_GetTimeModeMapping(sysTime, tr, &Tickr);
+        m_pouDIL_CAN->getTimeModeMapping(sysTime, tr, &Tickr);
         //UINT64 t2 = m_LastCanMsg;
         CString omStrCount;
         if(m_LastCanMsg != -1)
@@ -548,7 +548,7 @@ HRESULT CTSExecutionCAN::TSX_SendMessage(CBaseEntityTA* pEntity)
         strSendDisplay += " ";
         strSendDisplay += ouSendData.m_omMessageName;
         TSX_DisplayMessage(strSendDisplay);
-        m_pouDIL_CAN->DILC_SendMsg(m_dwClientId, stCanData);
+        m_pouDIL_CAN->sendMessage(m_dwClientId, stCanData);
     }
     return S_OK;
 }
