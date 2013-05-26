@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      MsgFrmtWnd.cpp
- * \authors   Ratnadip Choudhury, Arunkumar Karri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MsgFrmtWnd.cpp
+ * @authors   Ratnadip Choudhury, Arunkumar Karri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 // MsgFrmtWnd.cpp : implementation file
 //

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      HardwareListing.cpp
- * \brief     Interface file for CHardwareListing class
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      HardwareListing.cpp
+ * @brief     Interface file for CHardwareListing class
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CHardwareListing class
  */
@@ -647,10 +647,10 @@ INT CHardwareListing::nGetSelectedList(int* pnList)
 }
 
 /**
-* \brief         This function will set the selected channel list
-* \param[in]     pnList, contains the list of selected channels
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         This function will set the selected channel list
+* @param[in]     pnList, contains the list of selected channels
+* @return        void
+* @authors       Arunkumar Karri
 * \date          13.12.2011 Created
 */
 void CHardwareListing::vSetSelectedList()

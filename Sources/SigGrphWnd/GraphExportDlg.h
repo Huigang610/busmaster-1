@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      GraphExportDlg.h
- * \brief     Interface file for CGraphExportDlg class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      GraphExportDlg.h
+ * @brief     Interface file for CGraphExportDlg class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CGraphExportDlg class
  */

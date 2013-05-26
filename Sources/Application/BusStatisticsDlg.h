@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      BusStatisticsDlg.h
- * \brief     This file contain the declaration of CBusStatisticsDlg class
- * \author    Amitesh Bharti
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      BusStatisticsDlg.h
+ * @brief     This file contain the declaration of CBusStatisticsDlg class
+ * @author    Amitesh Bharti
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain the declaration of CBusStatisticsDlg class
  */

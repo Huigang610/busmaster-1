@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      SignalWatch_CAN.cpp
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      SignalWatch_CAN.cpp
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #include "SignalWatch_stdafx.h"
 #include "Include/Utils_macro.h"
@@ -231,7 +231,7 @@ HRESULT CSignalWatch_CAN::SW_DoInitialization()
 }
 
 /**
- * \req RS_18_01 Signal watch configuration dialog box
+ * @req RS_18_01 Signal watch configuration dialog box
  *
  * Signal watch configuration dialog box
  * lists frames / messages from the loaded database (combo box / list box).
@@ -497,7 +497,7 @@ INT CSignalWatch_CAN::nParseXMLColumn(xmlNodePtr pNode)
 }
 
 /**
- * \req RS_18_23 Popup menu item 'Clear' (clears the signal watch window)
+ * @req RS_18_23 Popup menu item 'Clear' (clears the signal watch window)
  */
 HRESULT CSignalWatch_CAN::SW_ClearSigWatchWnd(void)
 {

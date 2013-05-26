@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ValueDescriptionDlg.h
- * \brief     This header file contains the defintion of class
- * \author    Amarnath Shastry
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ValueDescriptionDlg.h
+ * @brief     This header file contains the defintion of class
+ * @author    Amarnath Shastry
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This header file contains the defintion of class
  */

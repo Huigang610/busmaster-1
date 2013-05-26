@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      SimSysConfigDetails.cpp
- * \brief     Contains the description of the class CSimSysConfigDetails
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      SimSysConfigDetails.cpp
+ * @brief     Contains the description of the class CSimSysConfigDetails
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Contains the description of the class CSimSysConfigDetails
  */
@@ -511,10 +511,10 @@ BOOL CSimSysConfigDetails:: bLoadStoreSimSysInfo (CArchive& roSimCfgArchive,
 }
 
 /**
-* \brief         Function to convert absolute file path to relative file path based on supplied base path
-* \param         Takes base path and absolute file name
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         Function to convert absolute file path to relative file path based on supplied base path
+* @param         Takes base path and absolute file name
+* @return        void
+* @authors       Arunkumar Karri
 * \date          01.02.2013 Created
 */
 void CSimSysConfigDetails::vGetRelativePath(std::string& omStrBasePath, CString& strFileName)

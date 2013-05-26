@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      HandlerFunc.cpp
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      HandlerFunc.cpp
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #include "NodeSimEx_stdafx.h"
 #include "HandlerFunc.h"

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      BaseLogObject.cpp
- * \brief     Source file for CBaseLogObject class
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      BaseLogObject.cpp
+ * @brief     Source file for CBaseLogObject class
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Source file for CBaseLogObject class
  */
@@ -371,8 +371,8 @@ void CBaseLogObject::vCloseLogFile()
     m_pLogFile = NULL;
 }
 /**
- * \brief Start logging
- * \req RS_12_23 Start logging
+ * @brief Start logging
+ * @req RS_12_23 Start logging
  *
  * To do actions before logging starts.
  */
@@ -416,8 +416,8 @@ BOOL CBaseLogObject::bStartLogging(ETYPE_BUS eBus)
 }
 
 /**
- * \brief Stop logging
- * \req RS_12_24 Stop logging
+ * @brief Stop logging
+ * @req RS_12_24 Stop logging
  *
  * To do actions before logging stop.
  */

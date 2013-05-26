@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      ConfigAdapter.h
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ConfigAdapter.h
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 /* CConfigAdapter class is used for converting old configuration file into new format.*/
 

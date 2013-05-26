@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      SignalMatrix.h
- * \brief     Interface file for CSignalMatrix class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      SignalMatrix.h
+ * @brief     Interface file for CSignalMatrix class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CSignalMatrix class
  */

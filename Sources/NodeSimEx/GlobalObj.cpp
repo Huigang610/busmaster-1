@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      GlobalObj.cpp
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      GlobalObj.cpp
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 
 /* Project includes */
@@ -142,10 +142,10 @@ CFunctionEditorDoc* CGlobalObj::podGetFunctionEditorDoc()
 }
 
 /**
-* \brief         Callback function which can be used to close windows during configuration switching
-* \param[in]     HWND hwnd, LPARAM lParam
-* \return        TRUE
-* \authors       Arunkumar Karri
+* @brief         Callback function which can be used to close windows during configuration switching
+* @param[in]     HWND hwnd, LPARAM lParam
+* @return        TRUE
+* @authors       Arunkumar Karri
 * \date          14.02.2013 Created
 */
 BOOL CALLBACK EnumChildProc( HWND hwnd, LPARAM lParam )
@@ -206,10 +206,10 @@ BOOL CALLBACK EnumChildProc( HWND hwnd, LPARAM lParam )
 }
 
 /**
-* \brief         Closes the function editor frame window if open
-* \param[in]     -
-* \return        true if window is closed and false in other case
-* \authors       Arunkumar Karri
+* @brief         Closes the function editor frame window if open
+* @param[in]     -
+* @return        true if window is closed and false in other case
+* @authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
 bool CGlobalObj::bCloseFunctionEditorFrame()

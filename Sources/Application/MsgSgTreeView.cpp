@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MsgSgTreeView.cpp
- * \brief     This file contain definition of all function of
- * \author    Amarnath Shastry
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MsgSgTreeView.cpp
+ * @brief     This file contain definition of all function of
+ * @author    Amarnath Shastry
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain definition of all function of
  */
@@ -37,7 +37,7 @@ extern CCANMonitorApp theApp;
 IMPLEMENT_DYNCREATE(CMsgSgTreeView, CTreeView)
 
 /**
- * \brief Constructor
+ * @brief Constructor
  *
  * Constructor
  */
@@ -51,7 +51,7 @@ CMsgSgTreeView::CMsgSgTreeView()
 }
 
 /**
- * \brief Destructor
+ * @brief Destructor
  *
  * Destructor
  */
@@ -77,7 +77,7 @@ BEGIN_MESSAGE_MAP(CMsgSgTreeView, CTreeView)
 END_MESSAGE_MAP()
 
 /**
- * \brief Drawing
+ * @brief Drawing
  *
  * Drawing
  */
@@ -88,7 +88,7 @@ void CMsgSgTreeView::OnDraw(CDC* /*pDC*/)
 }
 
 /**
- * \brief Populate Tree
+ * @brief Populate Tree
  *
  * This function will populate the tree with database
  * messages.
@@ -629,7 +629,7 @@ void CMsgSgTreeView::OnDeleteMessage()
 }
 
 /**
- * \brief On New Message
+ * @brief On New Message
  *
  * New message is created and added tio the data structure
  */
@@ -649,7 +649,7 @@ void CMsgSgTreeView::vSetRootItemText(CString omStrRootitemText)
 }
 
 /**
- * \brief Set Text Bold
+ * @brief Set Text Bold
  *
  * Sets the item to bold
  */
@@ -681,7 +681,7 @@ void CMsgSgTreeView::vSetAllItemsNormal()
 }
 
 /**
- * \brief On Tool Tip Info
+ * @brief On Tool Tip Info
  *
  * Displays message ID's as tool-tips for every message
  */
@@ -708,7 +708,7 @@ void CMsgSgTreeView::OnInfoToolTip( NMHDR* /*pNMHDR*/, LRESULT* pResult )
 }
 
 /**
- * \brief On Edit Message
+ * @brief On Edit Message
  *
  * For Editing selected message
  */
@@ -718,7 +718,7 @@ void CMsgSgTreeView::OnEditMsg()
 }
 
 /**
- * \brief Add Edit Message
+ * @brief Add Edit Message
  *
  * Displays message detials dialog to add new message
  * or edit selecetd message base on the parameter passed.
@@ -789,7 +789,7 @@ void CMsgSgTreeView::vAddEditMessage(BOOL bMode)
 }
 
 /**
- * \brief On Selection Change
+ * @brief On Selection Change
  *
  * Called by the frame work when an item selection is
  * changed. Updates message information on the right pane

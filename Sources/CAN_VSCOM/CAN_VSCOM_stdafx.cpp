@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      CAN_VSCIN_stdafx.cpp
- * \author
- * \copyright Copyright (c) 2012, ETAS GmbH. All rights reserved.
+ * @file      CAN_VSCIN_stdafx.cpp
+ * @author
+ * @copyright Copyright (c) 2012, ETAS GmbH. All rights reserved.
  */
 
 #include "CAN_VSCOM_stdafx.h"

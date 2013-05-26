@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      RightView.h
- * \brief     Interface file for CGraphRightView class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      RightView.h
+ * @brief     Interface file for CGraphRightView class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CGraphRightView class
  */

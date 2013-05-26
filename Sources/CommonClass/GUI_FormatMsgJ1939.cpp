@@ -203,8 +203,8 @@ USHORT CFormatMsgJ1939::usProcessCurrErrorEntry(SERROR_INFO& sErrorInfo)
 }
 
 /**
- * \brief  Format Current Error Entry
- * \return Error Name
+ * @brief  Format Current Error Entry
+ * @return Error Name
  *
  * Gets the pointer to Message data Buffer from PSDI_CAN DLL
  * and updates the same in List Control.

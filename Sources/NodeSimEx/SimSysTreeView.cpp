@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      SimSysTreeView.cpp
- * \brief     This file contain definition of all function of
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      SimSysTreeView.cpp
+ * @brief     This file contain definition of all function of
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain definition of all function of
  */
@@ -1641,8 +1641,8 @@ void CSimSysTreeView::vAddEditNode(BOOL bMode)
 }
 
 /**
- * \brief New Simulated System
- * \req RS_13_1 - Option "New Simulated System"
+ * @brief New Simulated System
+ * @req RS_13_1 Option "New Simulated System"
  *
  * New sim sys is created and added to the data structure
  */

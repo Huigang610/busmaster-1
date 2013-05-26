@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      GUI_FormatMsgCommon.h
- * \brief     Definition of CFormatMsgCommon class
- * \author    Anish kumar
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      GUI_FormatMsgCommon.h
+ * @brief     Definition of CFormatMsgCommon class
+ * @author    Anish kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Definition of CFormatMsgCommon class
  */

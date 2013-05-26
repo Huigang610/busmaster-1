@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MessageAttrib.cpp
- * \brief     Implementation of the CMessageAttrib class
- * \authors   RBIN/EMC2 - Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MessageAttrib.cpp
+ * @brief     Implementation of the CMessageAttrib class
+ * @authors   RBIN/EMC2 - Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation of the CMessageAttrib class
  */

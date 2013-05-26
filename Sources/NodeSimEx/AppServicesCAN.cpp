@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      AppServicesCAN.cpp
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      AppServicesCAN.cpp
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #include "NodeSimEx_stdafx.h"
 #include "Include/DIL_CommonDefs.h"

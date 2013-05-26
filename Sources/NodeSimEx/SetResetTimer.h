@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      SetResetTimer.h
- * \brief     This file contain declaration of all function and data
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      SetResetTimer.h
+ * @brief     This file contain declaration of all function and data
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain declaration of all function and data
  */

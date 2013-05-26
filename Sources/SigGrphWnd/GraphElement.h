@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      GraphElement.h
- * \brief     Interface file for CGraphElement class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      GraphElement.h
+ * @brief     Interface file for CGraphElement class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CGraphElement class
  */

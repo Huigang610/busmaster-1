@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MainSubListDlg.cpp
- * \brief     Inplementation file for CMainSubListDlg class
- * \author    Raja N.
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MainSubListDlg.cpp
+ * @brief     Inplementation file for CMainSubListDlg class
+ * @author    Raja N.
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Inplementation file for CMainSubListDlg class
  */
@@ -919,8 +919,8 @@ void CMainSubListDlg::vUpdateSelSubEntryList(BOOL bAllEntries)
 }
 
 /**
- * \brief Show selected signal details
- * \todo Function needs to be implemented.
+ * @brief Show selected signal details
+ * @todo Function needs to be implemented.
  *
  * This function will be called by framework when the user
  * selects "Signal Details" from the popup menu. This will show

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MsgIDAttr.h
- * \brief     This file contains the definition of CMsgIDAttr class
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MsgIDAttr.h
+ * @brief     This file contains the definition of CMsgIDAttr class
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contains the definition of CMsgIDAttr class
  */

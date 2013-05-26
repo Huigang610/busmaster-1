@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      OutWnd.h
- * \brief     This file contain the definition COutWnd class. The output of
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      OutWnd.h
+ * @brief     This file contain the definition COutWnd class. The output of
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain the definition COutWnd class. The output of
  */

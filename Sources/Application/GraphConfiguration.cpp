@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      GraphConfiguration.cpp
- * \brief     Implementation file for CGraphConfiguration class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      GraphConfiguration.cpp
+ * @brief     Implementation file for CGraphConfiguration class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for CGraphConfiguration class
  */

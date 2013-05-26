@@ -14,11 +14,10 @@
  */
 
 /**
- * \file      FilterConfigDlg.cpp
- * \brief     Implementation file for CFilterConfigDlg class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
- * \req       The Requirement Specification defines no tags.
+ * @file      FilterConfigDlg.cpp
+ * @brief     Implementation file for CFilterConfigDlg class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for CFilterConfigDlg class
  */
@@ -84,7 +83,7 @@ CFilterConfigDlg::CFilterConfigDlg( SFILTERAPPLIED_CAN* psSrcList,
 }
 
 /**
- * \param[in] pDX Pointer to data exchange object
+ * @param[in] pDX Pointer to data exchange object
  *
  * This will map UI controls will mapped data members. This will
  * be called during UpdateData funtion call for data update
@@ -134,7 +133,7 @@ BEGIN_MESSAGE_MAP(CFilterConfigDlg, CDialog)
 END_MESSAGE_MAP()
 
 /**
- * \return FALSE - If focus is set to Any UI control explicitly
+ * @return FALSE - If focus is set to Any UI control explicitly
  *
  * Initialises dialog's UI components
  */
@@ -170,7 +169,7 @@ BOOL CFilterConfigDlg::OnInitDialog()
 }
 
 /**
- * \return Result of the image list creation
+ * @return Result of the image list creation
  *
  * Creates image list used in list controls
  */
@@ -509,7 +508,7 @@ void CFilterConfigDlg::OnItemchangedLstcFilterDetails( NMHDR* pNMHDR,
 }
 
 /**
- * \param[in] nSelectedItemIndex List control index
+ * @param[in] nSelectedItemIndex List control index
  *
  * Updated filter components with the filter details poined by
  * the input.
@@ -528,8 +527,8 @@ void CFilterConfigDlg::vUpdateFilterDetails( int nSelectedItemIndex )
 }
 
 /**
- * \param[in] sFilter Filter details
- * \param[in] sFilterDisplyInfo formatted Filter details structure
+ * @param[in] sFilter Filter details
+ * @param[in] sFilterDisplyInfo formatted Filter details structure
  *
  * This function formats the filter details and fills the
  * sFilterDisplyInfo structure with the formatted strings.
@@ -657,8 +656,8 @@ void CFilterConfigDlg::vFormatDisplayString(
 }
 
 /**
- * \param[in] nIndex List control index
- * \param[in] sDisplayInfo Display information struct
+ * @param[in] nIndex List control index
+ * @param[in] sDisplayInfo Display information struct
  *
  * Updates the list control row pointed by nIndex with the
  * display format info with the input structure sDisplayInfo
@@ -705,7 +704,7 @@ void CFilterConfigDlg::vUpdateFilterListDetails( int nIndex,
 }
 
 /**
- * \param[in] psFilterData Filter info structure
+ * @param[in] psFilterData Filter info structure
  *
  * Updates UI with the filter information passed.
  */
@@ -741,7 +740,7 @@ void CFilterConfigDlg::vUpdateFilterDetails( const PSFILTERSET psFilterSet )
 }
 
 /**
- * \param[in] nItem Selected Row, nSubItem - Sub item of the selected row
+ * @param[in] nItem Selected Row, nSubItem - Sub item of the selected row
  *
  * This will be called whenever user edits an item in the named
  * filter list. This will validate the info and save if it is
@@ -789,7 +788,7 @@ void CFilterConfigDlg::vUpdateFromFilterName(int nItem, int nSubItem)
 }
 
 /**
- * \param[in] nItem Row, nSubItem - Sub item in the row
+ * @param[in] nItem Row, nSubItem - Sub item in the row
  *
  * This function handles filter type change event
  */
@@ -820,7 +819,7 @@ void CFilterConfigDlg::vUpdateFromFilterType(int nItem, int nSubItem)
 }
 
 /**
- * \param[in] nSelectedItem Selected filter item
+ * @param[in] nSelectedItem Selected filter item
  *
  * This function updates the selected filter details
  */
@@ -841,7 +840,7 @@ void CFilterConfigDlg::vUpdateFilterComponents(int nSelectedItem)
 }
 
 /**
- * \param[in] sFilter Filter details struct
+ * @param[in] sFilter Filter details struct
  *
  * This function updates filter components with given filter
  * details
@@ -991,7 +990,7 @@ void CFilterConfigDlg::vUpdateFilterComponents(const SFILTER_CAN& sFilter)
 //}
 
 /**
- * \param[in] omCombo Constant reference to CCombobox
+ * @param[in] omCombo Constant reference to CCombobox
  *
  * This function parses the combobox text to get message ID from it.
  */
@@ -1274,7 +1273,7 @@ void CFilterConfigDlg::OnSelchangeFilterComponentCombo()
 }
 
 /**
- * \param[in] omStrText new status bar text
+ * @param[in] omStrText new status bar text
  *
  * Sets the status bar text
  */
@@ -1285,8 +1284,8 @@ void CFilterConfigDlg::vSetStatusText(CString omStrText)
 }
 
 /**
- * \param[in] sFilter Reference to filter structure
- * \return Filter detais valid or not
+ * @param[in] sFilter Reference to filter structure
+ * @return Filter detais valid or not
  *
  * Updates the filter structure with filter details from UI.
  */
@@ -1566,7 +1565,7 @@ BOOL CFilterConfigDlg::bGetFilterData(SFILTER_CAN& sFilter)
 }
 
 /**
- * \param[in] sFilter Filter Details
+ * @param[in] sFilter Filter Details
  * Updates the selected item in the list with the given filter
  * details.
  */

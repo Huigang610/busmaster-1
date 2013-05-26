@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      FrameProcessor_CAN.h
- * \brief     Definition file for CFrameProcessor_CAN class.
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      FrameProcessor_CAN.h
+ * @brief     Definition file for CFrameProcessor_CAN class.
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Definition file for CFrameProcessor_CAN class.
  */

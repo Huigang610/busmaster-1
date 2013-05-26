@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      SigWatchDlg.h
- * \brief     Interface file for CSigWatchDlg class
- * \authors   RBIN/EMC2 - Ratnadip Choudhury, Amarnath Shastri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      SigWatchDlg.h
+ * @brief     Interface file for CSigWatchDlg class
+ * @authors   RBIN/EMC2 - Ratnadip Choudhury, Amarnath Shastri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CSigWatchDlg class
  */

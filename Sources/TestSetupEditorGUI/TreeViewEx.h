@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      TreeViewEx.h
- * \author    Venkatanarayana Makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TreeViewEx.h
+ * @author    Venkatanarayana Makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 
 #pragma once

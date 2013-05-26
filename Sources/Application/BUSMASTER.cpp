@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      BUSMASTER.cpp
- * \brief     CCANMonitorApp class implementation file
- * \authors   Amitesh Bharti, Ratnadip Choudhury, Anish kumar
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      BUSMASTER.cpp
+ * @brief     CCANMonitorApp class implementation file
+ * @authors   Amitesh Bharti, Ratnadip Choudhury, Anish kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * CCANMonitorApp class implementation file
  */
@@ -490,8 +490,8 @@ void CCANMonitorApp::OnAppAbout()
 }
 
 /**
- * \brief Return m_pouFlags data member variable value
- * \return Pointer to CFlags
+ * @brief Return m_pouFlags data member variable value
+ * @return Pointer to CFlags
  *
  * Return m_pouFlags data member variable value
  */
@@ -501,7 +501,7 @@ CFlags* CCANMonitorApp::pouGetFlagsPtr()
 }
 
 /**
- * \brief assign the value passed as parameter to m_dwHelpID
+ * @brief assign the value passed as parameter to m_dwHelpID
  *
  * assign the value passed as parameter to m_dwHelpID
  */
@@ -517,7 +517,7 @@ CWnd* CCANMonitorApp::GetMainWnd()
 }
 
 /**
- * \brief Fills the CANIDlist
+ * @brief Fills the CANIDlist
  *
  * Fills the CANIDList struct with dtabase message ID,
  * name and color for future use.
@@ -569,9 +569,9 @@ void CCANMonitorApp::vPopulateCANIDList()
 }
 
 /**
- * \brief Returns file path of unions.h
- * \param file name to change
- * \return File path
+ * @brief Returns file path of unions.h
+ * @param file name to change
+ * @return File path
  *
  * Returns file path of unions.h
  */
@@ -583,11 +583,11 @@ CString CCANMonitorApp::omStrGetUnionFilePath(CString omStrTemp)
 }
 
 /**
- * \brief wrapper around the method CConfigDetails::bSetData(...)
- * \param eParam enumeration denoting the information that
+ * @brief wrapper around the method CConfigDetails::bSetData(...)
+ * @param eParam enumeration denoting the information that
  *   needs to be stored into the config
- * \param lpVoid pointer where the data should be written
- * \return
+ * @param lpVoid pointer where the data should be written
+ * @return
  *   TRUE, if the CConfigDetails object successfully updates the information.
  *   FALSE, if any error is encountered while updating the information.
  *
@@ -602,11 +602,11 @@ BOOL CCANMonitorApp::bSetData1(eCONFIGDETAILS /*eParam*/, LPVOID /*lpVoid*/)
 }
 
 /**
- * \brief wrapper around CConfigDetails::bGetData(...)
- * \param eParam enumeration denoting the information that
+ * @brief wrapper around CConfigDetails::bGetData(...)
+ * @param eParam enumeration denoting the information that
  *   needs to be obtained from the config
- * \param lpVoid source pointer for data
- * \return
+ * @param lpVoid source pointer for data
+ * @return
  *   TRUE, if the CConfigDetails object successfully obtains the information.
  *   FALSE, if any error is encountered while obtaining the information.
  *
@@ -621,10 +621,10 @@ BOOL CCANMonitorApp::bGetData1(eCONFIGDETAILS /*eParam*/, LPVOID* /*lpData*/)
 }
 
 /**
- * \brief wrapper around CConfigDetails::bRelease(...)
- * \param eParam enumeration denoting the section for which
+ * @brief wrapper around CConfigDetails::bRelease(...)
+ * @param eParam enumeration denoting the section for which
  *   the memory should be released
- * \param lpDataPtr pointer that should be released
+ * @param lpDataPtr pointer that should be released
  *
  * This is a wrapper around the method
  * CConfigDetails::bRelease(...). It is planned to use
@@ -660,7 +660,7 @@ void CCANMonitorApp::GetLoadedConfigFilename(CString& roStrCfgFile)
 }
 
 /**
- * \brief message handler for ID_FILE_OPEN
+ * @brief message handler for ID_FILE_OPEN
  *
  * This is a message handler for ID_FILE_OPEN
  * This function will be called when user selects
@@ -733,7 +733,7 @@ void CCANMonitorApp::OnFileOpen()
 }
 
 /**
- * \brief Displays message for the error code
+ * @brief Displays message for the error code
  *
  * Displays an appropriate message for the error code
  * passed to this method. The message is user friendly.
@@ -861,7 +861,7 @@ void CCANMonitorApp::vDisplayConfigErrMsgbox(UINT unErrorCode,
 }
 
 /**
- * \brief returns the value of m_bIsDirty
+ * @brief returns the value of m_bIsDirty
  *
  * This method returns the value of m_bIsDirty
  */
@@ -872,7 +872,7 @@ BOOL CCANMonitorApp::bIsConfigurationModified()
 
 
 /**
- * \brief sets the value of m_bIsConfigurationModified
+ * @brief sets the value of m_bIsConfigurationModified
  *
  * This method sets the value of m_bIsConfigurationModified
  */
@@ -888,7 +888,7 @@ BOOL CCANMonitorApp::bGetDefaultSplitterPostion(eCONFIGDETAILS /*eParam*/,
 }
 
 /**
- * \brief message handler for ID_FILE_NEW
+ * @brief message handler for ID_FILE_NEW
  *
  * This is a message handler for ID_FILE_NEW
  * This function will be called when user selects
@@ -951,8 +951,8 @@ void CCANMonitorApp::OnFileNew()
 }
 
 /**
- * \param unMaxWaitTime Maximum time to wait for event
- * \param byThreadCode which thread to terminate
+ * @param unMaxWaitTime Maximum time to wait for event
+ * @param byThreadCode which thread to terminate
  *
  * This is a function called from CMainFrm class. It is called from
  * OnDestroy() function. This will wait for all four thread
@@ -1100,8 +1100,8 @@ VOID CCANMonitorApp::vDestroyUtilThreads(UINT unMaxWaitTime, BYTE byThreadCode)
 }
 
 /**
- * \brief initialises user selection
- * \return TRUE or FALSE
+ * @brief initialises user selection
+ * @return TRUE or FALSE
  *
  * This method will initialise user selection from
  * a configuration module to respective module.
@@ -1247,8 +1247,8 @@ BOOL CCANMonitorApp::bInitialiseConfiguration(BOOL bFromCom)
 }
 
 /**
- * \brief calls psReturnMsgBlockPointer()
- * \return Pointer to SMSGBLOCKLIST structure
+ * @brief calls psReturnMsgBlockPointer()
+ * @return Pointer to SMSGBLOCKLIST structure
  *
  * This method will call psReturnMsgBlockPointer()
  * a member function of CConfigDetails class.
@@ -1260,9 +1260,9 @@ PSMSGBLOCKLIST CCANMonitorApp::psReturnMsgBlockPointer()
 
 
 /**
- * \brief calls Config Details class member
- * \param eParam Window Identity
- * \param sPosition Reference to Window Placement Structure
+ * @brief calls Config Details class member
+ * @param eParam Window Identity
+ * @param sPosition Reference to Window Placement Structure
  *
  * This function will call Config Details class member to get
  * default window size and position.
@@ -1275,9 +1275,9 @@ BOOL CCANMonitorApp::bGetDefaultValue(eCONFIGDETAILS /*eParam*/,
 
 
 /**
- * \brief writes the text into trace window
- * \param omText Text to be displayed in trace window
- * \return TRUE - Success, FALSE - Failure
+ * @brief writes the text into trace window
+ * @param omText Text to be displayed in trace window
+ * @return TRUE - Success, FALSE - Failure
  *
  * This function will write the text into trace window.
  * Since this function is asynchronous, caller should not immediately

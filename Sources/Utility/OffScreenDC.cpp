@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      OffScreenDC.cpp
- * \brief     This file contain the definition all member function of
- * \author    Amitesh Bharti & Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      OffScreenDC.cpp
+ * @brief     This file contain the definition all member function of
+ * @author    Amitesh Bharti & Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain the definition all member function of
  */

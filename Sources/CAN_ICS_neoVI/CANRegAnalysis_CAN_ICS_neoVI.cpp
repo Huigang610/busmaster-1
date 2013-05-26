@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      CANRegAnalysis_CAN_ICS_neoVI.cpp
- * \brief     This file contains the function which implements the
- * \author    Pradeep Kadoor, Tobias Lorenz
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      CANRegAnalysis_CAN_ICS_neoVI.cpp
+ * @brief     This file contains the function which implements the
+ * @author    Pradeep Kadoor, Tobias Lorenz
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contains the function which implements the
  */
@@ -30,10 +30,10 @@
 #include "ChangeRegisters_CAN_ICS_neoVI.h"
 
 /**
- * \brief     List Box Values
- * \param[in] dBuadRate Baudrate Number of Sample/bit
- * \param[in] wClockFreq Clock Frequency
- * \param[in] nSample Number of Sampling/bit
+ * @brief     List Box Values
+ * @param[in] dBuadRate Baudrate Number of Sample/bit
+ * @param[in] wClockFreq Clock Frequency
+ * @param[in] nSample Number of Sampling/bit
  *
  * Calculate set of the NBT and BRP value for given
  * baudrate and clock frequency

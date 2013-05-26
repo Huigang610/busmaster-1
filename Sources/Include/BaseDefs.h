@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      BaseDefs.h
- * \brief     This contains various basic definitions.
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      BaseDefs.h
+ * @brief     This contains various basic definitions.
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This contains various basic definitions.
  */

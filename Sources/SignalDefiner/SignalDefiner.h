@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      SignalDefiner.h
- * \brief     Main header file for the SignalDefiner DLL
- * \author    Arunkumar Karri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      SignalDefiner.h
+ * @brief     Main header file for the SignalDefiner DLL
+ * @author    Arunkumar Karri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Main header file for the SignalDefiner DLL
  */

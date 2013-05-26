@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      DriverInfoDlg.h
- * \brief     This file contain the definition of CDriverInfoDlg class
- * \author    Amarnath Shastry
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      DriverInfoDlg.h
+ * @brief     This file contain the definition of CDriverInfoDlg class
+ * @author    Amarnath Shastry
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain the definition of CDriverInfoDlg class
  */

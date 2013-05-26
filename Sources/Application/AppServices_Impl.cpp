@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      AppServices_Impl.cpp
- * \brief     Concrete class source for the application service layer
- * \authors   Ratnadip Choudhury, Anish Kumar
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      AppServices_Impl.cpp
+ * @brief     Concrete class source for the application service layer
+ * @authors   Ratnadip Choudhury, Anish Kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Concrete class source for the application service layer
  */
@@ -30,7 +30,7 @@
 
 
 /**
- * \brief Constructor
+ * @brief Constructor
  */
 CAppServices_Impl::CAppServices_Impl()
 {
@@ -39,7 +39,7 @@ CAppServices_Impl::CAppServices_Impl()
 
 
 /**
- * \brief Destructor
+ * @brief Destructor
  */
 CAppServices_Impl::~CAppServices_Impl()
 {
@@ -48,8 +48,8 @@ CAppServices_Impl::~CAppServices_Impl()
 
 
 /**
- * \brief Write the string on trace window
- * \param pcTraceStr Character buffer to be written on trace
+ * @brief Write the string on trace window
+ * @param pcTraceStr Character buffer to be written on trace
  *
  * Character buffer to be written on trace
  */

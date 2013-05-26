@@ -1,8 +1,8 @@
 /**
- * \file   SigGrphWnd_stdafx.h
- * \brief  Standard inclusion file
- * \author Arunkumar Karri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
+ * @file   SigGrphWnd_stdafx.h
+ * @brief  Standard inclusion file
+ * @author Arunkumar Karri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
  *
  * include file for standard system include files,
  * or project specific include files that are used frequently, but

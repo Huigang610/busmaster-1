@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MsgBufCANVFSE.h
- * \brief     Defines and implements the template class for circular queue
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MsgBufCANVFSE.h
+ * @brief     Defines and implements the template class for circular queue
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Defines and implements the template class for circular queue
  */

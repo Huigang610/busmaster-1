@@ -146,12 +146,12 @@ HRESULT CDIL_CAN_IXXAT_VCI::performClosureOperations(void)
 }
 
 /**
-* \brief         This function will popup hardware selection dialog and gets the user selection of channels.
-* \param[in]     psInterfaces, is INTERFACE_HW structue
-* \param[out]    pnSelList, contains channels selected array
-* \param[out]    nCount, contains selected channel count
-* \return        returns 0 if success, else -1
-* \authors       Arunkumar Karri
+* @brief         This function will popup hardware selection dialog and gets the user selection of channels.
+* @param[in]     psInterfaces, is INTERFACE_HW structue
+* @param[out]    pnSelList, contains channels selected array
+* @param[out]    nCount, contains selected channel count
+* @return        returns 0 if success, else -1
+* @authors       Arunkumar Karri
 * \date          11.07.2012 Created
 */
 int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, INTERFACE_HW* psInterfaces, int* pnSelList, int& nCount)

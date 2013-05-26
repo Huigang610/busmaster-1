@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      Utility_Replay.cpp
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      Utility_Replay.cpp
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #include "Replay_stdafx.h"
 #include "Utility_Replay.h"

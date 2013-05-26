@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      BaseLogObject.h
- * \brief     Definition file for CBaseLogObject class
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      BaseLogObject.h
+ * @brief     Definition file for CBaseLogObject class
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Definition file for CBaseLogObject class
  */

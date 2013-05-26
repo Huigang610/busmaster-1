@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MsgBufVSE.h
- * \brief     Defines concrete class for circular queue in VSE.
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MsgBufVSE.h
+ * @brief     Defines concrete class for circular queue in VSE.
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Defines concrete class for circular queue in VSE.
  */

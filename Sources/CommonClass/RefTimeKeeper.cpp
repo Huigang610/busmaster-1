@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      RefTimeKeeper.cpp
- * \brief     Implementation of CRefTimeKeeper class
- * \author    Anish kumar
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      RefTimeKeeper.cpp
+ * @brief     Implementation of CRefTimeKeeper class
+ * @author    Anish kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation of CRefTimeKeeper class
  */

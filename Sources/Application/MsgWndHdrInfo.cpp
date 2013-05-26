@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      MsgWndHdrInfo.cpp
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MsgWndHdrInfo.cpp
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #include "StdAfx.h"
 #include "MsgWndHdrInfo.h"

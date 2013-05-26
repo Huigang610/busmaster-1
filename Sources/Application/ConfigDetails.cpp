@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ConfigDetails.cpp
- * \brief     Contains the description of the class CConfigDetails
- * \author    Gopinath Mujumdar
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ConfigDetails.cpp
+ * @brief     Contains the description of the class CConfigDetails
+ * @author    Gopinath Mujumdar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Contains the description of the class CConfigDetails
  */

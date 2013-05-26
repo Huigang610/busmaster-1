@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      PSDI_CAN.cpp
- * \brief     Implementation of CPSDI_CANApp class
- * \authors   Anish Kumar, Arunkumar Karri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      PSDI_CAN.cpp
+ * @brief     Implementation of CPSDI_CANApp class
+ * @authors   Anish Kumar, Arunkumar Karri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation of CPSDI_CANApp class
  */

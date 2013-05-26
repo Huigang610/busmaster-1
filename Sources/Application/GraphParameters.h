@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      GraphParameters.h
- * \brief     Interface file for CGraphParameters class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      GraphParameters.h
+ * @brief     Interface file for CGraphParameters class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CGraphParameters class
  */

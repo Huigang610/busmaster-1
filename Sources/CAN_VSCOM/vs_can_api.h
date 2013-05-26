@@ -1,10 +1,10 @@
 /*!
- * \file
+ * @file
  *
  * \version
  * 1.6
  *
- * \brief
+ * @brief
  * VSCAN API implementation (header file)
  *
  * This is the implementation of the VSCAN API - a wrapper for the specialized ASCII command set.

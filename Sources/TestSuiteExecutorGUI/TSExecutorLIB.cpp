@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      TSExecutorLIB.cpp
- * \author    Venkatanarayana makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TSExecutorLIB.cpp
+ * @author    Venkatanarayana makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #include "TSExecutorGUI_stdafx.h"
 #include "TSExecutorLIB.h"

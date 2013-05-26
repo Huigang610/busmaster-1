@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ProjectConfiguration.h
- * \brief     This contains the dll entry point function and
- * \authors   Anish Kumar, Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ProjectConfiguration.h
+ * @brief     This contains the dll entry point function and
+ * @authors   Anish Kumar, Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This contains the dll entry point function and
  */

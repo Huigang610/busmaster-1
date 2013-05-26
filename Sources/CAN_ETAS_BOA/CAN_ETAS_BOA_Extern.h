@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      CAN_ETAS_BOA/CAN_ETAS_BOA_Extern.h
- * \brief     Exports API functions for BOA CAN Hardware interface
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      CAN_ETAS_BOA/CAN_ETAS_BOA_Extern.h
+ * @brief     Exports API functions for BOA CAN Hardware interface
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Exports API functions for BOA CAN Hardware interface
  */

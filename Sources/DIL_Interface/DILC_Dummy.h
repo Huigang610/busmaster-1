@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      DIL_Interface/DILC_Dummy.h
- * \brief     Declaration file for dummy DIL functions
- * \authors   Ratnadip Choudhury, Pradeep Kadoor, Arunkumar Karri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      DIL_Interface/DILC_Dummy.h
+ * @brief     Declaration file for dummy DIL functions
+ * @authors   Ratnadip Choudhury, Pradeep Kadoor, Arunkumar Karri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Declaration file for dummy DIL functions
  */

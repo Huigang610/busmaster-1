@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ExecuteFunc.h
- * \brief     This header file contain definition ofCExecuteFunc class.
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ExecuteFunc.h
+ * @brief     This header file contain definition ofCExecuteFunc class.
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This header file contain definition ofCExecuteFunc class.
  */

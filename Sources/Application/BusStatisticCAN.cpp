@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      BusStatisticCAN.cpp
- * \author    venkatanarayana Makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      BusStatisticCAN.cpp
+ * @author    venkatanarayana Makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #include "StdAfx.h"
 //To Include BusStatisticCAN Definitions.
@@ -30,8 +30,8 @@
 void* CBusStatisticCAN:: sm_pouBSCan;
 
 /**
- * \param[in] pBSCan contain the CBusStatisticCAN object
- * \return Function return Status
+ * @param[in] pBSCan contain the CBusStatisticCAN object
+ * @return Function return Status
  *
  * Updates the busstatistics parameters using
  * vUpdateBusStatistics Function
@@ -62,7 +62,7 @@ int ReadBSDataBuffer(CBusStatisticCAN* pBSCan)
 }
 
 /**
- * \param[in] pVoid contains CBusStatisticCAN pointer
+ * @param[in] pVoid contains CBusStatisticCAN pointer
  *
  * Thread Function that is used to read the driver data and
  * updates the Bus Statistics.
@@ -175,7 +175,7 @@ CBusStatisticCAN::~CBusStatisticCAN(void)
 }
 
 /**
- * \return contain Error information
+ * @return contain Error information
  *
  * Does the client registration with driver and starts the Read
  * Thread.
@@ -198,7 +198,7 @@ HRESULT CBusStatisticCAN::BSC_DoInitialization(void)
 }
 
 /**
- * \param[in] bStart if ture starts the TIMER otherwise kill the thread
+ * @param[in] bStart if ture starts the TIMER otherwise kill the thread
  *
  * Starts or kills the timer.
  */
@@ -220,7 +220,7 @@ BOOL CBusStatisticCAN::BSC_bStartUpdation(BOOL bStart)
 }
 
 /**
- * \return contain Error information
+ * @return contain Error information
  *
  * This function resets the bus statistics structure using
  * vInitialiseBSData() member function.
@@ -235,15 +235,15 @@ HRESULT CBusStatisticCAN::BSC_ResetBusStatistic(void)
 }
 
 /**
- * \param[in] unChannelIndex can be CAN_CHANNEL_1, CAN_CHANNEL_2, CAN_CHANNEL_ALL
- * \param[in] eDir can be DIR_RX, DIR_TX, DIR_ALL
- * \param[in] byIdType can be TYPE_ID_CAN_STANDARD, TYPE_ID_CAN_EXTENDED, TYPE_ID_CAN_ALL
- * \param[in] byMsgType can be TYPE_MSG_CAN_RTR, TYPE_MSG_CAN_NON_RTR, TYPE_MSG_CAN_ALL
- * \param[out] nMsgCount Referance variable contains the resulted Total message count
- * \req RS_24_08 Standard frames are considered.
- * \req RS_24_09 Extended frames are considered.
- * \req RS_24_10 RTR frames are considered.
- * \req RS_24_16 Total data shall be presented.
+ * @param[in] unChannelIndex can be CAN_CHANNEL_1, CAN_CHANNEL_2, CAN_CHANNEL_ALL
+ * @param[in] eDir can be DIR_RX, DIR_TX, DIR_ALL
+ * @param[in] byIdType can be TYPE_ID_CAN_STANDARD, TYPE_ID_CAN_EXTENDED, TYPE_ID_CAN_ALL
+ * @param[in] byMsgType can be TYPE_MSG_CAN_RTR, TYPE_MSG_CAN_NON_RTR, TYPE_MSG_CAN_ALL
+ * @param[out] nMsgCount Referance variable contains the resulted Total message count
+ * @req RS_24_08 Standard frames are considered.
+ * @req RS_24_09 Extended frames are considered.
+ * @req RS_24_10 RTR frames are considered.
+ * @req RS_24_16 Total data shall be presented.
  *
  * Returns the total number of valid messages transmitted to or
  * received from the bus.
@@ -500,12 +500,12 @@ HRESULT CBusStatisticCAN::BSC_GetTotalMsgCount(UINT unChannelIndex, eDirection e
 }
 
 /**
- * \param[in] unChannelIndex can be CAN_CHANNEL_1, CAN_CHANNEL_2, CAN_CHANNEL_ALL
- * \param[in] eDir can be DIR_RX, DIR_TX, DIR_ALL
- * \param[out] nErrCount contain the Total error count on function return
- * \return contain Error information
- * \req RS_24_11 Error frames occurs under the purview of status data
- * \req RS_24_16 Total data shall be presented.
+ * @param[in] unChannelIndex can be CAN_CHANNEL_1, CAN_CHANNEL_2, CAN_CHANNEL_ALL
+ * @param[in] eDir can be DIR_RX, DIR_TX, DIR_ALL
+ * @param[out] nErrCount contain the Total error count on function return
+ * @return contain Error information
+ * @req RS_24_11 Error frames occurs under the purview of status data
+ * @req RS_24_16 Total data shall be presented.
  *
  * Returns the total number of error messages occurred while
  * receiving or transmitting
@@ -535,13 +535,13 @@ HRESULT CBusStatisticCAN::BSC_GetTotalErrCount(UINT unChannelIndex, eDirection e
 }
 
 /**
- * \param[in] unChannelIndex can be CAN_CHANNEL_1, CAN_CHANNEL_2, CAN_CHANNEL_ALL
- * \param[in] eDir can be DIR_RX, DIR_TX, DIR_ALL
- * \param[in] byIdType can be TYPE_ID_CAN_STANDARD, TYPE_ID_CAN_EXTENDED, TYPE_ID_CAN_ALL
- * \param[out] fMsgCount on return it will contain the Average message count per second.
- * \req RS_24_08 Standard frames are considered.
- * \req RS_24_09 Extended frames are considered.
- * \req RS_24_17 Present moment data shall be presented.
+ * @param[in] unChannelIndex can be CAN_CHANNEL_1, CAN_CHANNEL_2, CAN_CHANNEL_ALL
+ * @param[in] eDir can be DIR_RX, DIR_TX, DIR_ALL
+ * @param[in] byIdType can be TYPE_ID_CAN_STANDARD, TYPE_ID_CAN_EXTENDED, TYPE_ID_CAN_ALL
+ * @param[out] fMsgCount on return it will contain the Average message count per second.
+ * @req RS_24_08 Standard frames are considered.
+ * @req RS_24_09 Extended frames are considered.
+ * @req RS_24_17 Present moment data shall be presented.
  *
  * Returns average number of msgs per second (Msg/s)
  */
@@ -626,12 +626,12 @@ HRESULT CBusStatisticCAN::BSC_GetAvgMsgCountPerSec(UINT unChannelIndex,
 }
 
 /**
- * \param[in] unChannelIndex can be CAN_CHANNEL_1, CAN_CHANNEL_2, CAN_CHANNEL_ALL
- * \param[in] eDir can be DIR_RX, DIR_TX, DIR_ALL
- * \param[out] fErrCount on return it contain the Average Error count per Second.
- * \return contain Error information
- * \req RS_24_11 Error frames occurs under the purview of status data
- * \req RS_24_17 Present moment data shall be presented.
+ * @param[in] unChannelIndex can be CAN_CHANNEL_1, CAN_CHANNEL_2, CAN_CHANNEL_ALL
+ * @param[in] eDir can be DIR_RX, DIR_TX, DIR_ALL
+ * @param[out] fErrCount on return it contain the Average Error count per Second.
+ * @return contain Error information
+ * @req RS_24_11 Error frames occurs under the purview of status data
+ * @req RS_24_17 Present moment data shall be presented.
  *
  * Returns average number of errors per second (Err/s)
  */
@@ -660,13 +660,13 @@ HRESULT CBusStatisticCAN::BSC_GetAvgErrCountPerSec(UINT unChannelIndex,
 }
 
 /**
- * \param[in] unChannelIndex can be CAN_CHANNEL_1, CAN_CHANNEL_2, CAN_CHANNEL_ALL
- * \param[in] eLoad can be CURRENT, AVERAGE, PEAK
- * \param[out] dBusLoad on function return it contain Bus Load
- * \return contain Error information
- * \req RS_24_12 Bus load status data set includes current load
- * \req RS_24_13 Bus load status data set includes peak load
- * \req RS_24_14 Bus load status data set includes average load
+ * @param[in] unChannelIndex can be CAN_CHANNEL_1, CAN_CHANNEL_2, CAN_CHANNEL_ALL
+ * @param[in] eLoad can be CURRENT, AVERAGE, PEAK
+ * @param[out] dBusLoad on function return it contain Bus Load
+ * @return contain Error information
+ * @req RS_24_12 Bus load status data set includes current load
+ * @req RS_24_13 Bus load status data set includes peak load
+ * @req RS_24_14 Bus load status data set includes average load
  *
  * Returns the bus load
  */
@@ -694,15 +694,15 @@ HRESULT CBusStatisticCAN::BSC_GetBusLoad(UINT unChannelIndex, eLOAD eLoad, doubl
 }
 
 /**
- * \param[in] unChannelIndex can be CAN_CHANNEL_1, CAN_CHANNEL_2, CAN_CHANNEL_ALL
- * \param[in] eDir can be DIR_RX, DIR_TX, DIR_ALL
- * \param[in] eLoad can be CURRENT, AVERAGE, PEAK
- * \param[out] ucErrCounter on return contains the error counter
- * \return contain Error information
- * \req RS_24_11 Error frames occurs under the purview of status data
- * \req RS_24_12 Bus load status data set includes current load
- * \req RS_24_13 Bus load status data set includes peak load
- * \req RS_24_14 Bus load status data set includes average load
+ * @param[in] unChannelIndex can be CAN_CHANNEL_1, CAN_CHANNEL_2, CAN_CHANNEL_ALL
+ * @param[in] eDir can be DIR_RX, DIR_TX, DIR_ALL
+ * @param[in] eLoad can be CURRENT, AVERAGE, PEAK
+ * @param[out] ucErrCounter on return contains the error counter
+ * @return contain Error information
+ * @req RS_24_11 Error frames occurs under the purview of status data
+ * @req RS_24_12 Bus load status data set includes current load
+ * @req RS_24_13 Bus load status data set includes peak load
+ * @req RS_24_14 Bus load status data set includes average load
  *
  * Returns controller status
  */
@@ -757,7 +757,7 @@ HRESULT CBusStatisticCAN::BSC_GetErrorCounter(UINT unChannelIndex, eDirection eD
 }
 
 /**
- * \return return the error state
+ * @return return the error state
  *
  * Starts the Read thread.
  */
@@ -772,8 +772,8 @@ HRESULT CBusStatisticCAN::BSC_SetBaudRate(UINT unChannelIndex, double dBaudRate)
 }
 
 /**
- * \return Controller status
- * \req RS_24_18 Controller status data covers present controller status
+ * @return Controller status
+ * @req RS_24_18 Controller status data covers present controller status
  *
  * This Function renders controller status
  */
@@ -783,8 +783,8 @@ UCHAR CBusStatisticCAN::BSC_ucGetControllerStatus(UINT unChannelIndex)
 }
 
 /**
- * \param[in] sBusStatistics will have the required channel's
- * \return function return status
+ * @param[in] sBusStatistics will have the required channel's
+ * @return function return status
  *
  * This Function returns the required channel's BusStatistics
  */
@@ -804,8 +804,8 @@ void CALLBACK CBusStatisticCAN::OnTimeWrapper(HWND, UINT, UINT_PTR, DWORD)
 }
 
 /**
- * \return return the error state
- * \req RS_24_15 Measurement period always begins (or resets) from the time of connection
+ * @return return the error state
+ * @req RS_24_15 Measurement period always begins (or resets) from the time of connection
  *
  * Starts the Read thread.
  */
@@ -818,10 +818,10 @@ BOOL CBusStatisticCAN::bStartBSReadThread(void)
 }
 
 /**
- * \req RS_24_08 Standard frames are considered.
- * \req RS_24_09 Extended frames are considered.
- * \req RS_24_10 RTR frames are considered.
- * \req RS_24_11 Error frames occurs under the purview of status data
+ * @req RS_24_08 Standard frames are considered.
+ * @req RS_24_09 Extended frames are considered.
+ * @req RS_24_10 RTR frames are considered.
+ * @req RS_24_11 Error frames occurs under the purview of status data
  *
  * Initialises the m_sbusstatistics structor
  */
@@ -881,10 +881,10 @@ void CBusStatisticCAN::vCalculateDiffTime(void)
 }
 
 /**
- * \req RS_24_08 Standard frames are considered.
- * \req RS_24_09 Extended frames are considered.
- * \req RS_24_10 RTR frames are considered.
- * \req RS_24_11 Error frames occurs under the purview of status data
+ * @req RS_24_08 Standard frames are considered.
+ * @req RS_24_09 Extended frames are considered.
+ * @req RS_24_10 RTR frames are considered.
+ * @req RS_24_11 Error frames occurs under the purview of status data
  *
  * Calculate the Bus statistics in m_sBusStatistics structure
  */
@@ -1119,18 +1119,18 @@ void CBusStatisticCAN::vUpdateBusStatistics(STCANDATA& sCanData)
 }
 
 /**
- * \req RS_24_08 Standard frames are considered.
- * \req RS_24_09 Extended frames are considered.
- * \req RS_24_10 RTR frames are considered.
- * \req RS_24_11 Error frames occurs under the purview of status data
- * \req RS_24_12 Bus load status data set includes current load
- * \req RS_24_13 Bus load status data set includes peak load
- * \req RS_24_14 Bus load status data set includes average load
- * \req RS_24_18 Controller status data covers present controller status
- * \req RS_24_19 Controller status data covers present controller Tx Error Counter (peak)
- * \req RS_24_20 Controller status data covers present controller Tx Error Counter (present)
- * \req RS_24_21 Controller status data covers present controller Rx Error Counter (peak)
- * \req RS_24_22 Controller status data covers present controller Rx Error Counter (present)
+ * @req RS_24_08 Standard frames are considered.
+ * @req RS_24_09 Extended frames are considered.
+ * @req RS_24_10 RTR frames are considered.
+ * @req RS_24_11 Error frames occurs under the purview of status data
+ * @req RS_24_12 Bus load status data set includes current load
+ * @req RS_24_13 Bus load status data set includes peak load
+ * @req RS_24_14 Bus load status data set includes average load
+ * @req RS_24_18 Controller status data covers present controller status
+ * @req RS_24_19 Controller status data covers present controller Tx Error Counter (peak)
+ * @req RS_24_20 Controller status data covers present controller Tx Error Counter (present)
+ * @req RS_24_21 Controller status data covers present controller Rx Error Counter (peak)
+ * @req RS_24_22 Controller status data covers present controller Rx Error Counter (present)
  *
  * Calculates the Bus Statistics using m_sBusStatistics structure
  */

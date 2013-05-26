@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MsgBufVSE.cpp
- * \brief     Source file of concrete class for circular queue in VSE.
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MsgBufVSE.cpp
+ * @brief     Source file of concrete class for circular queue in VSE.
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Source file of concrete class for circular queue in VSE.
  */

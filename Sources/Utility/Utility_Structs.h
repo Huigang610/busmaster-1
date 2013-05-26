@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      Utility_Structs.h
- * \brief     This file contains definitions of utility structures
- * \authors   Ravi D., Anish Kumar
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      Utility_Structs.h
+ * @brief     This file contains definitions of utility structures
+ * @authors   Ravi D., Anish Kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contains definitions of utility structures
  */

@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      EditItem.cpp
- * \brief     This file contains CEditItem class definition.
- * \authors   Zafir Anjum
+ * @file      EditItem.cpp
+ * @brief     This file contains CEditItem class definition.
+ * @authors   Zafir Anjum
   *
  * This file contains CEditItem class definition.
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      TxMsgBlocksView.cpp
- * \brief     Implementation file for CTxMsgBlocksView class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TxMsgBlocksView.cpp
+ * @brief     Implementation file for CTxMsgBlocksView class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for CTxMsgBlocksView class
  */
@@ -391,8 +391,8 @@ void CTxMsgBlocksView::OnInitialUpdate()
 }
 
 /**
- * \brief On Add Msg Block
- * \req RS_17_01 - Addition of a transmission block
+ * @brief On Add Msg Block
+ * @req RS_17_01 Addition of a transmission block
  *
  * This function will called when user selects Add button
  * or menu. This will add a new message block and
@@ -579,8 +579,8 @@ void CTxMsgBlocksView::vInitMsgBlockInfo(SMSGBLOCKLIST* psMsgBlockList)
 }
 
 /**
- * \brief On Delete Selected Msg Block
- * \req RS_17_02 - Deletion of a transmission block
+ * @brief On Delete Selected Msg Block
+ * @req RS_17_02 Deletion of a transmission block
  *
  * This function will be called by frame work when delete
  * button or menu is selected. This will be called for

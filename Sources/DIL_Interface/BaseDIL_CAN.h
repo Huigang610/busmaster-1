@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      BaseDIL_CAN.h
- * \brief     Base class for CDIL_CAN class.
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      BaseDIL_CAN.h
+ * @brief     Base class for CDIL_CAN class.
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Base class for CDIL_CAN class.
  */

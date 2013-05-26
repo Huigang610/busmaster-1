@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      BusStatisticCAN.h
- * \brief     This File contains the BusStatics Class Declaration.
- * \author    venkatanarayana Makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      BusStatisticCAN.h
+ * @brief     This File contains the BusStatics Class Declaration.
+ * @author    venkatanarayana Makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This File contains the BusStatics Class Declaration.
  */

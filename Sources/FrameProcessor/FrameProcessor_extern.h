@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      FrameProcessor_extern.h
- * \brief     Declaration file for the exported function used to get the
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      FrameProcessor_extern.h
+ * @brief     Declaration file for the exported function used to get the
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Declaration file for the exported function used to get the
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MsgHandlerDlg.cpp
- * \brief     This file contain the definition all member function of
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MsgHandlerDlg.cpp
+ * @brief     This file contain the definition all member function of
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain the definition all member function of
  */
@@ -955,11 +955,11 @@ BOOL CMsgHandlerDlg::bValidateMessageNameAndID(const CStringArray* pomStrArray,
 }
 
 /**
-* \brief         This function finds the next token in the target string
+* @brief         This function finds the next token in the target string
 
-* \param[in]     None Takes input from yytext
-* \return        Void
-* \authors       Saravanan K S
+* @param[in]     None Takes input from yytext
+* @return        Void
+* @authors       Saravanan K S
 * \date
 */
 void CMsgHandlerDlg::vTokenize(CString strInput, CString strToken, CString& strOutput, int& nStart)

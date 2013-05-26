@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      can_setup.cpp
- * \brief     Source file for Can_setup definitions
- * \copyright Copyright (c) 2012, ETAS GmbH. All rights reserved.
+ * @file      can_setup.cpp
+ * @brief     Source file for Can_setup definitions
+ * @copyright Copyright (c) 2012, ETAS GmbH. All rights reserved.
  *
  * Source file for Can_setup definitions
  */

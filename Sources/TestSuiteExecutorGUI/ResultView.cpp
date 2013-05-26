@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      ResultView.cpp
- * \author    Venkatanarayana makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ResultView.cpp
+ * @author    Venkatanarayana makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #include "TSExecutorGUI_stdafx.h"
 #include "ResultView.h"

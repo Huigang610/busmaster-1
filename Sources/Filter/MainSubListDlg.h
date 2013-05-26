@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MainSubListDlg.h
- * \brief     Interface file for CMainSubListDlg class
- * \author    Raja N.
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MainSubListDlg.h
+ * @brief     Interface file for CMainSubListDlg class
+ * @author    Raja N.
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CMainSubListDlg class
  */

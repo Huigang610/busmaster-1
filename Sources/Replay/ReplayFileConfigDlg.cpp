@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ReplayFileConfigDlg.cpp
- * \brief     Implementation file for CReplayFileConfigDlg class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ReplayFileConfigDlg.cpp
+ * @brief     Implementation file for CReplayFileConfigDlg class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for CReplayFileConfigDlg class
  */
@@ -60,7 +60,7 @@ CReplayFileConfigDlg::CReplayFileConfigDlg( CReplayManager& rouManager,
 }
 
 /**
- * \param[in] pDX Pointer to data exchange object
+ * @param[in] pDX Pointer to data exchange object
  *
  * This will map UI controls will mapped data members. This will
  * be called during UpdateData funtion call for data update
@@ -100,7 +100,7 @@ BEGIN_MESSAGE_MAP(CReplayFileConfigDlg, CDialog)
 END_MESSAGE_MAP()
 
 /**
- * \return FALSE - If focus is set to Any UI control explicitly
+ * @return FALSE - If focus is set to Any UI control explicitly
  *
  * Initialises dialog's UI components
  */
@@ -128,7 +128,7 @@ BOOL CReplayFileConfigDlg::OnInitDialog()
 }
 
 /**
- * \return TRUE if success, FALSE otherwise
+ * @return TRUE if success, FALSE otherwise
  *
  * To create image lists used in the dialog
  */
@@ -332,7 +332,7 @@ void CReplayFileConfigDlg::OnItemchangedListRepalyFiles( NMHDR* pNMHDR,
 }
 
 /**
- * \param[in] nSelectedIndex UI Index of the replay file in the list
+ * @param[in] nSelectedIndex UI Index of the replay file in the list
  *
  * Update the replay information in the UI with the replay file
  * pointed by the index
@@ -352,7 +352,7 @@ VOID CReplayFileConfigDlg::vUpdateReplayFileDetails( int nSelectedIndex )
 }
 
 /**
- * \param[in] rouFile Reference to replay file
+ * @param[in] rouFile Reference to replay file
  *
  * Updates UI with the information given by rouFile.
  */
@@ -601,7 +601,7 @@ void CReplayFileConfigDlg::OnChkInteractive()
 }
 
 /**
- * \req RS_19_03 It shall be possible to add / remove any log file from the input data source set
+ * @req RS_19_03 It shall be possible to add / remove any log file from the input data source set
  *
  * This function will be called when user selects Add button.
  * This will show file selection dialog to select replay file
@@ -654,7 +654,7 @@ void CReplayFileConfigDlg::OnBtnAddFile()
 }
 
 /**
- * \req RS_19_03 It shall be possible to add / remove any log file from the input data source set
+ * @req RS_19_03 It shall be possible to add / remove any log file from the input data source set
  *
  * This functuion will handle Delete button event. This will get
  * delete conformation from the user and will remove the
@@ -701,7 +701,7 @@ void CReplayFileConfigDlg::OnBtnDeleteFile()
 }
 
 /**
- * \param bEnable TRUE to enable and FALSE to disable
+ * @param bEnable TRUE to enable and FALSE to disable
  *
  * To enable/disable replay UI components
  */

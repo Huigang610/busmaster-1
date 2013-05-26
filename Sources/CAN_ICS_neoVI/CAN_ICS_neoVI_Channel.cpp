@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      CAN_ICS_neoVI/CAN_ICS_neoVI_Channel.cpp
- * \brief     Implementation file for CChannel class
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      CAN_ICS_neoVI/CAN_ICS_neoVI_Channel.cpp
+ * @brief     Implementation file for CChannel class
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for CChannel class
  */
@@ -82,8 +82,8 @@ CChannel::~CChannel()
 }
 
 /**
- * \param[in] ucTxError Tx Error Value
- * \param[in] ucRxError Rx Error Value
+ * @param[in] ucTxError Tx Error Value
+ * @param[in] ucRxError Rx Error Value
  *
  * Updates the error counter value and controller state as per
  * the error counter values

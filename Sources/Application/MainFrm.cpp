@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MainFrm.cpp
- * \brief     Implementation of the CMainFrame class
- * \authors   RBIN/EMC2 - Amarnath Shastry, Amitesh Bharti, Anish Kumar, Arunkumar Karri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MainFrm.cpp
+ * @brief     Implementation of the CMainFrame class
+ * @authors   RBIN/EMC2 - Amarnath Shastry, Amitesh Bharti, Anish Kumar, Arunkumar Karri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation of the CMainFrame class
  */
@@ -1946,10 +1946,10 @@ void CMainFrame::OnConfigBaudrate()
 /******************************************************************************/
 
 /**
-* \brief         This function pops out the hardware selection dialog
-* \param         void
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         This function pops out the hardware selection dialog
+* @param         void
+* @return        void
+* @authors       Arunkumar Karri
 * \date          13.12.2011 Created
 */
 void CMainFrame::OnConfigChannelSelection()
@@ -5279,8 +5279,8 @@ void CMainFrame::OnHex_DecButon()
 }
 
 /**
- * \brief Display Message window Overwrite
- * \req RS_16_01 - Two display modes namely, overwrite and append shall be supported.
+ * @brief Display Message window Overwrite
+ * @req RS_16_01 Two display modes namely, overwrite and append shall be supported.
  *
  * Toggles overwrite button and switches between
  * overwriting state to appending state.
@@ -5333,15 +5333,11 @@ void CMainFrame::ApplyMessagewindowOverwrite()
             }
         }
     }
-    /* BOOL bOverwriteON = theApp.pouGetFlagsPtr()->nGetFlagStatus(OVERWRITE);
-     bOverwriteON = bOverwriteON ? FALSE : TRUE;
-     theApp.pouGetFlagsPtr()->vSetFlagStatus(OVERWRITE, bOverwriteON);
-     PostThreadMessage(GUI_dwThread_MsgDisp, TM_OVERWRITE_MESSAGE, bOverwriteON,
-         0);*/
 }
+
 /**
- * \brief Display Message window Overwrite
- * \req RS_16_01 - Two display modes namely, overwrite and append shall be supported.
+ * @brief Display Message window Overwrite
+ * @req RS_16_01 Two display modes namely, overwrite and append shall be supported.
  *
  * Toggles overwrite button and switches between
  * overwriting state to appending state.
@@ -5675,10 +5671,10 @@ void CMainFrame::OnMessageFilterButton()
 }
 
 /**
-* \brief         Handles the J1939 tx window close notification
-* \param[in]     WPARAM, LPARAM
-* \return        LRESULT
-* \authors       Arunkumar Karri
+* @brief         Handles the J1939 tx window close notification
+* @param[in]     WPARAM, LPARAM
+* @return        LRESULT
+* @authors       Arunkumar Karri
 * \date          28.02.2013 Created
 */
 LRESULT CMainFrame::onJ1939TxWndClose(WPARAM wParam, LPARAM lParam)
@@ -5690,11 +5686,11 @@ LRESULT CMainFrame::onJ1939TxWndClose(WPARAM wParam, LPARAM lParam)
 }
 
 /**
-* \brief         Sets the icon of a particular toolbar item
-* \param[in]     Toolbar object, Item Index, Icon resource IDs for normal, hot and disabled options
-* \param[out]    void
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         Sets the icon of a particular toolbar item
+* @param[in]     Toolbar object, Item Index, Icon resource IDs for normal, hot and disabled options
+* @param[out]    void
+* @return        void
+* @authors       Arunkumar Karri
 * \date          28.02.2013 Created
 */
 void CMainFrame::vSetToolBarIcon(CNVTCToolBar& objToolbar, BYTE bytItemIndex, UINT nTBIDNormal, UINT nTBIDHot, UINT nTBIDDisabled)
@@ -5733,10 +5729,10 @@ void CMainFrame::vSetToolBarIcon(CNVTCToolBar& objToolbar, BYTE bytItemIndex, UI
 }
 
 /**
-* \brief         Modifies the toolbar button size
-* \param[in]     Toolbar object, Size object
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         Modifies the toolbar button size
+* @param[in]     Toolbar object, Size object
+* @return        void
+* @authors       Arunkumar Karri
 * \date          01.03.2013 Created
 */
 void CMainFrame::vSetToolbarButtonSize(CNVTCToolBar& objToolbar, CSize& objSize)
@@ -5749,11 +5745,11 @@ void CMainFrame::vSetToolbarButtonSize(CNVTCToolBar& objToolbar, CSize& objSize)
 }
 
 /**
-* \brief         Modifies the icon of a particular toolbar item
-* \param[in]     Toolbar object, Item Index, Icon ON and OFF resource IDs and item ON status
-* \param[out]    void
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         Modifies the icon of a particular toolbar item
+* @param[in]     Toolbar object, Item Index, Icon ON and OFF resource IDs and item ON status
+* @param[out]    void
+* @return        void
+* @authors       Arunkumar Karri
 * \date          28.02.2013 Created
 */
 void CMainFrame::vModifyToolbarIcon(CNVTCToolBar& objToolbar, BYTE bytItemIndex, BOOL bItemON, UINT nTBIDON, UINT nTBIDOFF)
@@ -16885,9 +16881,9 @@ void CMainFrame::OnJ1939AllTimerHandlers()
 }
 
 /**
-* \brief         This function will enable all the event handlers
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         This function will enable all the event handlers
+* @return        void
+* @authors       Arunkumar Karri
 * \date          11.06.2012 Created
 */
 void CMainFrame::OnJ1939AllEventHandlers()
@@ -16906,10 +16902,10 @@ void CMainFrame::OnUpdateJ1939AllTimerHandlers(CCmdUI* pCmdUI)
 }
 
 /**
-* \brief         This function will update the enable status of event handlers
-* \param[in]     CCmdUI *pCmdUI
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         This function will update the enable status of event handlers
+* @param[in]     CCmdUI *pCmdUI
+* @return        void
+* @authors       Arunkumar Karri
 * \date          11.06.2012 Created
 */
 void CMainFrame::OnUpdateJ1939AllEventHandlers(CCmdUI* pCmdUI)

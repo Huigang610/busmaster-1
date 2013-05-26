@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      RadixEdit.cpp
- * \brief     This file contains the implementation of CRadixEdit class
- * \authors   Soj Thomas, Ratnadip Choudhury, Amarnath Shastry
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      RadixEdit.cpp
+ * @brief     This file contains the implementation of CRadixEdit class
+ * @authors   Soj Thomas, Ratnadip Choudhury, Amarnath Shastry
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contains the implementation of CRadixEdit class
  */

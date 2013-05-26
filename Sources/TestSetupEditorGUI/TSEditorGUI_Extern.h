@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      TSEditorGUI_Extern.h
- * \author    Venkatanarayana Makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TSEditorGUI_Extern.h
+ * @author    Venkatanarayana Makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #include "Utility/XMLUtils.h"
 #pragma once

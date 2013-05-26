@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      TreeViewEx.cpp
- * \brief     Implementation file for the class CTSExecutorChildFrame
- * \author    Venkatanarayana makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TreeViewEx.cpp
+ * @brief     Implementation file for the class CTSExecutorChildFrame
+ * @author    Venkatanarayana makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for the class CTSExecutorChildFrame
  */
@@ -848,8 +848,8 @@ void CTreeViewEx::OnTvnKeyPress(NMHDR* pNMHDR, LRESULT* pResult)
 }
 
 /**
- * \brief Execute current test suite
- * \req RS_27_30 - Execute current test suite
+ * @brief Execute current test suite
+ * @req RS_27_30 Execute current test suite
  *
  * Execute current test suite
  */

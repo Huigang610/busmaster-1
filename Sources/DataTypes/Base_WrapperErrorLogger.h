@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      Base_WrapperErrorLogger.h
- * \brief     Base class definition for error logger module
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      Base_WrapperErrorLogger.h
+ * @brief     Base class definition for error logger module
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Base class definition for error logger module
  */

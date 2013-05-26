@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      TxMsgDetailsView.cpp
- * \brief     Implementation file for CTxMsgDetailsView class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TxMsgDetailsView.cpp
+ * @brief     Implementation file for CTxMsgDetailsView class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for CTxMsgDetailsView class
  */
@@ -182,7 +182,7 @@ BEGIN_MESSAGE_MAP(CTxMsgDetailsView, CFormView)
 END_MESSAGE_MAP()
 
 /**
- * \brief On Initial Update
+ * @brief On Initial Update
  *
  * This function will be called by the framework during initial
  * show of this view. This function will register iteself in to
@@ -1647,8 +1647,8 @@ CWnd* CTxMsgDetailsView::pomGetFunctionsViewPointer() const
 }
 
 /**
- * \brief  Validate Data
- * \return TRUE or FALSE
+ * @brief  Validate Data
+ * @return TRUE or FALSE
  *
  * This function will validate if the user has entered
  * valid data in Code and DLC edit controls
@@ -1806,7 +1806,7 @@ void CTxMsgDetailsView::vPopulateMessageComboBox()
 }
 
 /**
-* \brief Adjust Message Combo Box Width
+* @brief Adjust Message Combo Box Width
 *
 * This function adjusts the width of the Message Combo Box
 * according to its contents.
@@ -3335,7 +3335,7 @@ void CTxMsgDetailsView::vUpdateDataBytes()
 }
 
 /**
-* \brief Update state of data bytes according to DLC
+* @brief Update state of data bytes according to DLC
 *
 * This function sets/resets the Read Only flag of the data bytes
 * in accordance to the DLC setting.
@@ -3355,8 +3355,8 @@ void CTxMsgDetailsView::vUpdateStateDataBytes()
 }
 
 /**
- * \brief     Set Values
- * \param[in] psTxMsg pointer to message frame detail
+ * @brief     Set Values
+ * @param[in] psTxMsg pointer to message frame detail
  *
  * This function will format the data passed as parameter
  * and update the details into the controls below the

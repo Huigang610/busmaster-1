@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      NodeSim.cpp
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      NodeSim.cpp
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 // NodeSimEx.cpp : Defines the initialization routines for the DLL.
 //

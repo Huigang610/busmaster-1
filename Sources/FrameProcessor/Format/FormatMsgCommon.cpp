@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      FormatMsgCommon.cpp
- * \brief     Source of CFormatMsgCommon class.
- * \author    Anish Kumar
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      FormatMsgCommon.cpp
+ * @brief     Source of CFormatMsgCommon class.
+ * @author    Anish Kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Source of CFormatMsgCommon class.
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      GUI_FormatMsgCAN.cpp
- * \brief     Implementation of CFormatMsgCAN class
- * \author    Anish Kumar
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      GUI_FormatMsgCAN.cpp
+ * @brief     Implementation of CFormatMsgCAN class
+ * @author    Anish Kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation of CFormatMsgCAN class
  */

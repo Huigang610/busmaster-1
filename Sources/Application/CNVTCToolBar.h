@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      CNVTCToolBar.h
- * \brief     CNVTCToolBar class interface
- * \author    Ratnadip Choudhury, Arunkumar Karri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      CNVTCToolBar.h
+ * @brief     CNVTCToolBar class interface
+ * @author    Ratnadip Choudhury, Arunkumar Karri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * CNVTCToolBar class interface.
  */

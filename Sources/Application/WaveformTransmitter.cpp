@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      WaveformTransmitter.cpp
- * \brief     Waveform data Transmitter implementation file
- * \author    Arunkumar Karri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      WaveformTransmitter.cpp
+ * @brief     Waveform data Transmitter implementation file
+ * @author    Arunkumar Karri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Waveform data Transmitter implementation file
  */

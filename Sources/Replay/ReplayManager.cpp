@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ReplayManager.cpp
- * \brief     Implementation file for CReplayManager class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ReplayManager.cpp
+ * @brief     Implementation file for CReplayManager class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for CReplayManager class
  */

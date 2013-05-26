@@ -2376,13 +2376,13 @@ extern "C" {
 
     /*------------------------------------------------------------------------------*/
     /** xlCanSetChannelTransceiver():
-     *\brief The transceiver mode is set for all channels defined by accessMask.
+     *@brief The transceiver mode is set for all channels defined by accessMask.
      *  The port must have init access to the channels.
-     *  \param portHandle     [IN] handle to port from which the information is requested
-     *  \param accessMask     [IN] mask specifying the port's channel from where to get the device state
-     *  \param type           [IN] Transceiver type (specified by defines 'XL_TRANSCEIVER_TYPE_*')
-     *  \param lineMode       [IN] Transceiver operation mode (specified by defines 'XL_TRANSCEIVER_LINEMODE_*')
-     *  \param resNet         [IN] Reserved. Should always be set to zero!
+     *  @param portHandle     [IN] handle to port from which the information is requested
+     *  @param accessMask     [IN] mask specifying the port's channel from where to get the device state
+     *  @param type           [IN] Transceiver type (specified by defines 'XL_TRANSCEIVER_TYPE_*')
+     *  @param lineMode       [IN] Transceiver operation mode (specified by defines 'XL_TRANSCEIVER_LINEMODE_*')
+     *  @param resNet         [IN] Reserved. Should always be set to zero!
      */
 
     DECL_STDXL_FUNC ( xlCanSetChannelTransceiver, XLCANSETCHANNELTRANSCEIVER, (
@@ -2522,14 +2522,14 @@ extern "C" {
 
     /********************************************************************/
     /** xlGetLicenseInfo()
-     *\brief Function to get available licenses from Vector devices.
+     *@brief Function to get available licenses from Vector devices.
      *  This function returns the available licenses in an array of XLlicenseInfo structures. This array contains all available licenses on
      *  the queried channels. The position inside the array is defined by the license itself, e.g. the license for
      *  the Advanced-Flexray-Library is always at the same array index.
-     *  \param channelMask      [IN] : Channelmask for which to query the available licenses
-     *  \param *pLicInfoArray   [OUT]: Array with license overview
-     *  \param licInfoArraySize [IN] : Size of array pointed to with 'pLicInfo' (number of array entries)
-     *  \return XLstatus            General status information is returned.
+     *  @param channelMask      [IN] : Channelmask for which to query the available licenses
+     *  @param *pLicInfoArray   [OUT]: Array with license overview
+     *  @param licInfoArraySize [IN] : Size of array pointed to with 'pLicInfo' (number of array entries)
+     *  @return XLstatus            General status information is returned.
      *                              XL_SUCCESS if no error occured.
      *                              XL_ERR_NO_RESOURCES if the given array size is too small to copy all available licenses into it.
      *                              XL_ERROR if general error occured.
@@ -2608,123 +2608,123 @@ extern "C" {
      *                                         successfully launched or e.g. whether a command queue overflow happend
      */
 
-    /** \brief fetching events from driver queue.
+    /** @brief fetching events from driver queue.
      *  This method is used to fetch events, either bus events or acknowledgements
      *  for commands from the driver queue. Each call delivers only one event (if an event is available). \n
      *  It is a synchronous mode and either delivers event data immediately, or
      *  indicates an error condition with its return value.
-     *  \param  XLportHandle portHandle:  [IN] was previously fetched by xlOpenPort API (TODO)
-     *  \param  XLaccess accessMask:      [IN] determines on which channels an API should work (TODO)
-     *  \param  pEventBuffer              [IN] This parameter must point to a buffer to which the driver can copy
+     *  @param  XLportHandle portHandle:  [IN] was previously fetched by xlOpenPort API (TODO)
+     *  @param  XLaccess accessMask:      [IN] determines on which channels an API should work (TODO)
+     *  @param  pEventBuffer              [IN] This parameter must point to a buffer to which the driver can copy
      *                                         the next event of the receive queue
-     *  \return XLstatus                       general status information
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostReceive,            XLFP_MOSTRECEIVE,           (XLportHandle portHandle, XLmostEvent* pEventBuffer));
 
-    /** \brief Activates or deactivates the different event sources of VN2600.
+    /** @brief Activates or deactivates the different event sources of VN2600.
      *  This method is used to select which bus events should be delivered by VN2600.
      *  Either CtrlNode, CtrlSpy, AsyncNode or AsyncSpy messages \n
      *  ResponseEvent:                         XL_MOST_EVENTSOURCES
-     *  \param sourceMask                 [IN] each bit stands for an event source and can separately be set.
+     *  @param sourceMask                 [IN] each bit stands for an event source and can separately be set.
      *                                         Use the definitions of the sourcemask...
-     *  \return XLstatus                       general status information
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostSwitchEventSources, XLFP_MOSTSWITCHEVENTSOURCES,(DEFPARAMS, unsigned short sourceMask));
 
-    /** \brief Activates or deactivates the bypass of the OS8104.
+    /** @brief Activates or deactivates the bypass of the OS8104.
      *  This method is used to switch the Bypass OS8104 (register TODO:) on and off \n
      *  ResponseEvent:                         XL_MOST_ALLBYPASS
-     *  \param  bypassMode                [IN] bypass open/close
-     *  \return XLstatus                       general status information
+     *  @param  bypassMode                [IN] bypass open/close
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostSetAllBypass,       XLFP_MOSTSETALLBYPASS,      (DEFPARAMS, unsigned char bypassMode));
 
-    /** \brief Reads out the bypass mode of the OS8104.
+    /** @brief Reads out the bypass mode of the OS8104.
      *  This method is asynchronous and requests the event used to switch the Bypass OS8104.
      *  ResponseEvent:                         XL_MOST_ALLBYPASS
-     *  \return XLstatus                       general status information
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostGetAllBypass,       XLFP_MOSTGETALLBYPASS,      (DEFPARAMS));
 
-    /** \brief Switches the OS8104 into slave or master mode.
+    /** @brief Switches the OS8104 into slave or master mode.
      *  This method is used to switch the OS8104 into the timing master or slave mode\n
      *  ResponseEvent:                         XL_MOST_TIMINGMODE
-     *  \param  timingMode                [IN] MOST master/slave
-     *  \return XLstatus                       general status information
+     *  @param  timingMode                [IN] MOST master/slave
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostSetTimingMode,      XLFP_MOSTSETTIMINGMODE,     (DEFPARAMS, unsigned char timingMode));
 
-    /** \brief Triggers the event XL_MOST_TIMINGMODE.
+    /** @brief Triggers the event XL_MOST_TIMINGMODE.
      *  This method is used to trigger the event XL_MOST_TIMINGMODE, which will deliver
      *  information whether the OS8104 is configured in slave or master mode.\n
      *  ResponseEvent:                         XL_MOST_TIMINGMODE
-     *  \return XLstatus                       general status information
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostGetTimingMode,      XLFP_MOSTGETTIMINGMODE,     (DEFPARAMS));
 
-    /** \brief Selects the MOST frequency either to 44.1 kHz or 48 kHz.
+    /** @brief Selects the MOST frequency either to 44.1 kHz or 48 kHz.
      *  This method is used to select either 44.1 kHz or 48 kHz as
      *  bus clock when the OS8104 of VN2600 acts as timing master \n
      *  ResponseEvent:                         XL_MOST_FREQUENCY
-     *  \param  frequency                 [IN] 44,1kHz, 48kHz
-     *  \return XLstatus                       general status information
+     *  @param  frequency                 [IN] 44,1kHz, 48kHz
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostSetFrequency,       XLFP_MOSTSETFREQUENCY,      (DEFPARAMS, unsigned short frequency));
 
-    /** \brief Triggers the event XL_MOST_FREQUENCY.
+    /** @brief Triggers the event XL_MOST_FREQUENCY.
      *  This method is used to trigger the event XL_MOST_FREQUENCY, which will deliver
      *  information whether the OS8104 of VN2600 as timing master
      *  generates 44.1 kHz or 48 kHz as bus clock.\n
      *  ResponseEvent:                         XL_MOST_FREQUENCY
-     *  \return XLstatus                       general status information
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostGetFrequency,       XLFP_MOSTGETFREQUENCY,      (DEFPARAMS));
 
-    /** \brief Allows to write up to 16 byte register in the OS8104.
+    /** @brief Allows to write up to 16 byte register in the OS8104.
      *  This method is used to write numbyte (up to 16) bytes into the registers of the OS8104
      *  beginning from adr. \n
      *  ResponseEvent:                         XL_MOST_REGISTER_BYTES
-     *  \param  adr                       [IN] address (MAP) of register to which the first byte is written
-     *  \param  numBytes                  [IN] number of successive bytes to be written to the registers
-     *  \param  data                      [IN] bytes to be written
-     *  \return XLstatus                       general status information
+     *  @param  adr                       [IN] address (MAP) of register to which the first byte is written
+     *  @param  numBytes                  [IN] number of successive bytes to be written to the registers
+     *  @param  data                      [IN] bytes to be written
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostWriteRegister,      XLFP_MOSTWRITEREGISTER,     (DEFPARAMS, unsigned short adr, unsigned char numBytes, unsigned char data[16]));
 
-    /** \brief Triggers the event XL_MOST_REGISTER_BYTES.
+    /** @brief Triggers the event XL_MOST_REGISTER_BYTES.
      *  This method is used to read out registers of the OS8104.
      *  The results will be delivered in the event XL_MOST_REGISTER_BYTES\n
      *  ResponseEvent:                         XL_MOST_REGISTER_BYTES
-     *  \param  adr                       [IN] address (MAP) of register from which the first byte is read
-     *  \param  numBytes                  [IN] number of successive bytes to be read
-     *  \return XLstatus                       general status information
+     *  @param  adr                       [IN] address (MAP) of register from which the first byte is read
+     *  @param  numBytes                  [IN] number of successive bytes to be read
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostReadRegister,       XLFP_MOSTREADREGISTER,      (DEFPARAMS, unsigned short adr, unsigned char numBytes));
 
-    /** \brief Allows to write single or multiple bits of one byte register in the OS8104.
+    /** @brief Allows to write single or multiple bits of one byte register in the OS8104.
      *  This method is used to write bits into a register of the OS8104 \n
      *  ResponseEvent:                         XL_MOST_REGISTER_BYTES
-     *  \param  adr                       [IN] address (MAP) of the register
-     *  \param  mask                      [IN] each bit in mask corresponds to a bit in the register.
+     *  @param  adr                       [IN] address (MAP) of the register
+     *  @param  mask                      [IN] each bit in mask corresponds to a bit in the register.
      *                                         1 means this bit will be written, 0 means that the bit is not influenced
-     *  \param  value                     [IN] the byte to be written respecting the parameter mask
-     *  \return XLstatus                       general status information
+     *  @param  value                     [IN] the byte to be written respecting the parameter mask
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostWriteRegisterBit,   XLFP_MOSTWRITEREGISTERBIT,  (DEFPARAMS, unsigned short adr, unsigned char mask, unsigned char value));
 
-    /** \brief Sending a MOST Ctrl Message.
+    /** @brief Sending a MOST Ctrl Message.
      *  This method is used to send a ctrl message to the MOST ring.
      *  The members ctrlType, targetAdr, ctrlData[17], TODO: prio of pCtrlMsg will be used,
      *  all other members don't care for the transmit request.
      *  A XL_MOST_CTRL_MSG event will be delivered with dir==Tx and txStatus set to
      *  report success or failure of the transmission.\n
      *  ResponseEvent:                         XL_MOST_CTRL_MSG
-     *  \param  pCtrlMsg                  [IN] structure with all relevant data needed for a transmit request
-     *  \return XLstatus                       general status information
+     *  @param  pCtrlMsg                  [IN] structure with all relevant data needed for a transmit request
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostCtrlTransmit,       XLFP_MOSTCTRLTRANSMIT,      (DEFPARAMS, XLmostCtrlMsg* pCtrlMsg));
 
-    /** \brief Sending a MOST Async Message (Packet).
+    /** @brief Sending a MOST Async Message (Packet).
      *  This method is used to send an asynchronous message (packet) to the MOST ring.
      *  The members arbitration, targetAdr, asyncData[1014], length, TODO: prio of pAsyncMsg will be used,
      *  all other members don't care for the transmit request.
@@ -2732,331 +2732,331 @@ extern "C" {
      *  A XL_MOST_ASYNC_MSG event will be delivered with dir==Tx and txStatus set to
      *  report success or failure of the transmission.\n
      *  ResponseEvent:                         XL_MOST_ASYNC_MSG
-     *  \param  pAsyncMsg                 [IN] structure with all relevant data needed for a transmit request
-     *  \return XLstatus                       general status information
+     *  @param  pAsyncMsg                 [IN] structure with all relevant data needed for a transmit request
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostAsyncTransmit,      XLFP_MOSTASYNCTRANSMIT,     (DEFPARAMS, XLmostAsyncMsg* pAsyncMsg));
 
-    /** \brief Triggers the event XL_MOST_SYNC_ALLOCTABLE.
+    /** @brief Triggers the event XL_MOST_SYNC_ALLOCTABLE.
      *  This method is used to trigger the event XL_MOST_SYNC_ALLOCTABLE,
      *  which delivers the complete allocation table of the OS8104.\n
      *  ResponseEvent:                         XL_MOST_SYNC_ALLOCTABLE
-     *  \return XLstatus                       general status information
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostSyncGetAllocTable,  XLFP_MOSTSYNCGETALLOCTABLE, (DEFPARAMS));
 
-    /** \brief Programming the routing egine (RE) for audio channels.
+    /** @brief Programming the routing egine (RE) for audio channels.
      *  This method is used to program the routing engine (RE) of the OS8104 in order
      *  to either stream audio data from the line in of VN2600 to certain MOST channels allocated before,
      *  or to stream audio data from certain MOST channels to the headphone output of VN2600. \n
      *  ResponseEvent:                         XL_MOST_CTRL_SYNC_AUDIO
-     *  \param  channel[4]                [IN] channel numbers to be routed
-     *  \param  device                    [IN] device, e.g.: audio line in/audio line out
-     *  \param  mode                      [IN] audio mode
-     *  \return XLstatus                       general status information
+     *  @param  channel[4]                [IN] channel numbers to be routed
+     *  @param  device                    [IN] device, e.g.: audio line in/audio line out
+     *  @param  mode                      [IN] audio mode
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostCtrlSyncAudio,      XLFP_MOSTCTRLSYNCAUDIO,     (DEFPARAMS, unsigned int channel[4], unsigned int device, unsigned int mode));
 
-    /** \brief Programming the routing egine (RE) for audio channels.
+    /** @brief Programming the routing egine (RE) for audio channels.
      *  This method is used to program the routing engine (RE) of the OS8104 in order
      *  to either stream audio data from the line in of VN2600 to certain MOST channels allocated before,
      *  or to stream audio data from certain MOST channels to the headphone output of VN2600. \n
      *  ResponseEvent:                         XL_MOST_CTRL_SYNC_AUDIO_EX
-     *  \param  channel[16]               [IN] channel numbers to be routed (including SPDIF)
-     *  \param  device                    [IN] device, e.g.: audio line in/audio line out, SPDIF in/out
-     *  \param  mode                      [IN] audio mode
-     *  \return XLstatus                       general status information
+     *  @param  channel[16]               [IN] channel numbers to be routed (including SPDIF)
+     *  @param  device                    [IN] device, e.g.: audio line in/audio line out, SPDIF in/out
+     *  @param  mode                      [IN] audio mode
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostCtrlSyncAudioEx,      XLFP_MOSTCTRLSYNCAUDIOEX, (DEFPARAMS, unsigned int channel[16], unsigned int device, unsigned int mode));
 
-    /** \brief Setting the volume/attenuation for line in and line out.
+    /** @brief Setting the volume/attenuation for line in and line out.
      *  This method is used to set the volume/attenuation of the line in or line out of VN2600.\n
      *  ResponseEvent:                         XL_MOST_SYNC_VOLUME_STATUS
-     *  \param  device                    [IN] device, e.g.: audio line in/audio line out
-     *  \param  volume                    [IN] 0..255: 0..100% of volume
-     *  \return XLstatus general status information
+     *  @param  device                    [IN] device, e.g.: audio line in/audio line out
+     *  @param  volume                    [IN] 0..255: 0..100% of volume
+     *  @return XLstatus general status information
     */
     DECL_STDXL_FUNC( xlMostSyncVolume,         XLFP_MOSTSYNCVOLUME,        (DEFPARAMS, unsigned int device, unsigned char volume));
 
-    /** \brief Setting mute for line in and line out.
+    /** @brief Setting mute for line in and line out.
      *  This method is used to switch mute on or off for the line in or line out of VN2600.\n
      *  ResponseEvent:                         XL_MOST_SYNC_VOLUME_STATUS
-     *  \param  device                    [IN] device, e.g.: audio line in/audio line out
-     *  \param  mute                      [IN] mute on/mute off
-     *  \return XLstatus                       general status information
+     *  @param  device                    [IN] device, e.g.: audio line in/audio line out
+     *  @param  mute                      [IN] mute on/mute off
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostSyncMute,           XLFP_MOSTSYNCMUTE,          (DEFPARAMS, unsigned int device, unsigned char mute));
 
-    /** \brief Triggers the event XL_MOST_SYNC_VOLUME_STATUS.
+    /** @brief Triggers the event XL_MOST_SYNC_VOLUME_STATUS.
      *  This method is used to trigger the event XL_MOST_SYNC_VOLUME_STATUS,
      *  which delivers the information about volume status of line in and line out.\n
      *  ResponseEvent:                         XL_MOST_SYNC_VOLUME_STATUS
-     *  \param  device                    [IN] device, e.g.: audio line in/audio line out
-     *  \return XLstatus                       general status information
+     *  @param  device                    [IN] device, e.g.: audio line in/audio line out
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostSyncGetVolumeStatus,XLFP_MOSTSYNCGETVOLUMESTATUS,(DEFPARAMS, unsigned int device));
 
-    /** \brief Triggers the event XL_MOST_SYNC_MUTE_STATUS.
+    /** @brief Triggers the event XL_MOST_SYNC_MUTE_STATUS.
      *  This method is used to trigger the event XL_MOST_SYNC_MUTE_STATUS,
      *  which delivers the information about mute status of line in and line out.\n
      *  ResponseEvent:                         XL_MOST_SYNC_MUTE_STATUS
-     *  \param  device                    [IN] device, e.g.: audio line in/audio line out
-     *  \return XLstatus                       general status information
+     *  @param  device                    [IN] device, e.g.: audio line in/audio line out
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostSyncGetMuteStatus,  XLFP_MOSTSYNCGETMUTESTATUS,(DEFPARAMS, unsigned int device));
 
-    /** \brief Triggers the event XL_MOST_SYNC_MUTE_STATUS.
+    /** @brief Triggers the event XL_MOST_SYNC_MUTE_STATUS.
      *  This method delivers the recent light status at the Rx Pin of the OS8104.\n
      *  ResponseEvent:                         XL_MOST_SYNC_MUTE_STATUS
-     *  \param  device                    [IN] device, e.g.: audio line in/audio line out
-     *  \return XLstatus                       general status information
+     *  @param  device                    [IN] device, e.g.: audio line in/audio line out
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostGetRxLight,         XLFP_MOSTGETRXLIGHT,        (DEFPARAMS));
 
-    /** \brief Switching the Tx light of VN2600.
+    /** @brief Switching the Tx light of VN2600.
      *  This method is used to switch the Tx light of VN2600 off, to normal or to constant on\n
      *  ResponseEvent:                         XL_MOST_TXLIGHT
-     *  \param  txLight                   [IN] tx light on, off or modulated
-     *  \return XLstatus                       general status information
+     *  @param  txLight                   [IN] tx light on, off or modulated
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostSetTxLight,         XLFP_MOSTSETTXLIGHT,        (DEFPARAMS, unsigned char txLight));
 
-    /** \brief Triggers the event XL_MOST_TXLIGHT.
+    /** @brief Triggers the event XL_MOST_TXLIGHT.
      *  This method is used to trigger the event XL_MOST_TXLIGHT,
      *  which delivers the recent light status at the Tx Pin of the OS8104.\n
      *  ResponseEvent:                         XL_MOST_TXLIGHT
-     *  \return XLstatus                       general status information
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostGetTxLight,         XLFP_MOSTGETTXLIGHT,        (DEFPARAMS));
 
-    /** \brief Switching the Tx light power of the FOT.
+    /** @brief Switching the Tx light power of the FOT.
      *  This method is used to switch the Tx light power of the FOT to normal or -3 dB\n
      *  ResponseEvent:                         XL_MOST_TXLIGHT
-     *  \param  attenuation               [IN] tx power
-     *  \return XLstatus                       general status information
+     *  @param  attenuation               [IN] tx power
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostSetLightPower,      XLFP_MOSTSETLIGHTPOWER,     (DEFPARAMS, unsigned char attenuation));
 
     // TODO: GetLightPower??
 
-    /** \brief Triggers the event XL_MOST_LOCKSTATUS.
+    /** @brief Triggers the event XL_MOST_LOCKSTATUS.
      *  This method is used to trigger the event XL_MOST_LOCKSTATUS,
      *  which delivers the recent lock status at the Rx Pin of the OS8104.\n
      *  ResponseEvent:                         XL_MOST_LOCKSTATUS
-     *  \return XLstatus                       general status information
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostGetLockStatus,      XLFP_MOSTGETLOCKSTATUS,     (DEFPARAMS));
 
-    /** \brief Starts and stops the light error generator.
+    /** @brief Starts and stops the light error generator.
      *  This method is used to start (repeat>0) or stop (repeat==0) the light error generator
      *  which switches the Tx light on and off or configured periods.\n
      *  ResponseEvent:                         XL_MOST_GENLIGHTERROR
-     *  \param  lightOffTime              [IN] duration of light off in ms
-     *  \param  lightOnTime               [IN] duration of modulated light on in ms
-     *  \param  repeat                    [IN] repetition of light on light off sequence, or repeat==0: stop the generation
-     *  \return XLstatus                       general status information
+     *  @param  lightOffTime              [IN] duration of light off in ms
+     *  @param  lightOnTime               [IN] duration of modulated light on in ms
+     *  @param  repeat                    [IN] repetition of light on light off sequence, or repeat==0: stop the generation
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostGenerateLightError, XLFP_MOSTGENERATELIGHTERROR,(DEFPARAMS, unsigned long lightOffTime, unsigned long lightOnTime, unsigned short repeat));
 
-    /** \brief Starts and stops the lock error generator.
+    /** @brief Starts and stops the lock error generator.
      *  This method is used to start (repeat>0) or stop (repeat==0) the lock error generator
      *  which switches the Tx light between modulated on and permanent on for configured periods.\n
      *  ResponseEvent:                         XL_MOST_GENLOCKERROR
-     *  \param  unmodTime                 [IN] duration of light off in ms
-     *  \param  modTime                   [IN] duration of modulated light on in ms
-     *  \param  repeat                    [IN] repetition of sequence, or repeat==0: stop the generation
-     *  \return XLstatus                       general status information
+     *  @param  unmodTime                 [IN] duration of light off in ms
+     *  @param  modTime                   [IN] duration of modulated light on in ms
+     *  @param  repeat                    [IN] repetition of sequence, or repeat==0: stop the generation
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostGenerateLockError,  XLFP_MOSTGENERATELOCKERROR, (DEFPARAMS, unsigned long unmodTime, unsigned long modTime, unsigned short repeat));
 
-    /** \brief prevent firmware from emptying the Rx buffer of the OS8104
+    /** @brief prevent firmware from emptying the Rx buffer of the OS8104
      *  This method is used to Switch the stress mode on or off, where the
      *  Rx buffer of the OS8104 is not emptied by the firmware
      *  which switches the Tx light between modulated on and permanent on for configured periods.\n
      *  ResponseEvent:                         XL_MOST_CTRL_RXBUFFER
-     *  \param  bufferMode                [IN] specifies the buffer mode
-     *  \return XLstatus                       general status information
+     *  @param  bufferMode                [IN] specifies the buffer mode
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostCtrlRxBuffer,       XLFP_MOSTCTRLRXBUFFER,      (DEFPARAMS, unsigned short bufferMode));
 
-    /** \brief Twinkle the power led from the VN2600.
+    /** @brief Twinkle the power led from the VN2600.
      *  ResponseEvent:                         none
-     *  \return XLstatus                       general status information
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC( xlMostTwinklePowerLed,       XLFP_MOSTTWINKLEPOWERLED,      (DEFPARAMS));
 
-    /** \brief Prepares and configures busload generation with MOST control frames.
+    /** @brief Prepares and configures busload generation with MOST control frames.
      *  Attention: Has to be called before "xlMostCtrlGenerateBusload".
      *  ResponseEvent:                         none
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param userHandle                 [IN] used to match the response of the driver to the requests of the application
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param userHandle                 [IN] used to match the response of the driver to the requests of the application
      *                                         if an event is received spontaneously
-     *  \param pCtrlBusloadConfiguration  [IN] structure containg the ctrl msg used for busload generation and configuration,
+     *  @param pCtrlBusloadConfiguration  [IN] structure containg the ctrl msg used for busload generation and configuration,
      *                                         it's storage has has to be supplied by the caller
-     *  \return XLstatus                       general status information
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC (xlMostCtrlConfigureBusload, XLFP_MOSTCTRLCONFIGUREBUSLOAD, (DEFPARAMS,
                      XLmostCtrlBusloadConfiguration* pCtrlBusloadConfiguration));
 
-    /** \brief Starts busload generation with MOST control frames.
+    /** @brief Starts busload generation with MOST control frames.
      *  Attention: "xlMostCtrlConfigureBusload" has to be called before.
      *  ResponseEvent:                         XL_MOST_CTRL_BUSLOAD
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param userHandle                 [IN] used to match the response of the driver to the requests of the application
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param userHandle                 [IN] used to match the response of the driver to the requests of the application
      *                                         if an event is received spontaneously
-     *  \param numberCtrlFrames           [IN] number of busload ctrl messages (0xFFFFFFFF indicates infinite number of msgs)
-     *  \return XLstatus                       general status information
+     *  @param numberCtrlFrames           [IN] number of busload ctrl messages (0xFFFFFFFF indicates infinite number of msgs)
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC (xlMostCtrlGenerateBusload, XLFP_MOSTCTRLGENERATEBUSLOAD, (DEFPARAMS, unsigned long numberCtrlFrames));
 
-    /** \brief Prepares and configures busload generation of MOST asynchronous frames.
+    /** @brief Prepares and configures busload generation of MOST asynchronous frames.
      *  Attention: Has to be called before "xlMostAsyncGenerateBusload".
      *  ResponseEvent:                         none
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param userHandle                 [IN] used to match the response of the driver to the requests of the application
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param userHandle                 [IN] used to match the response of the driver to the requests of the application
      *                                         if an event is received spontaneously
-     *  \param pAsyncBusloadConfiguration [IN] structure containg the async msg used for busload generation and configuration,
+     *  @param pAsyncBusloadConfiguration [IN] structure containg the async msg used for busload generation and configuration,
      *                                         it's storage has has to be supplied by the caller
-     *  \return XLstatus                       general status information
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC (xlMostAsyncConfigureBusload, XLFP_MOSTASYNCCONFIGUREBUSLOAD, (DEFPARAMS,
                      XLmostAsyncBusloadConfiguration* pAsyncBusloadConfiguration));
 
-    /** \brief Starts busload generation with MOST asynchronous frames.
+    /** @brief Starts busload generation with MOST asynchronous frames.
      *  Attention: "xlMostAsyncConfigureBusload" has to be called before.
      *  ResponseEvent:                         XL_MOST_ASYNC_BUSLOAD
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param userHandle                 [IN] used to match the response of the driver to the requests of the application
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param userHandle                 [IN] used to match the response of the driver to the requests of the application
      *                                         if an event is received spontaneously
-     *  \param numberAsyncFrames          [IN] number of busload async messages (0xFFFFFFFF indicates infinite number of msgs)
-     *  \return XLstatus                       general status information
+     *  @param numberAsyncFrames          [IN] number of busload async messages (0xFFFFFFFF indicates infinite number of msgs)
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC (xlMostAsyncGenerateBusload, XLFP_MOSTASYNCGENERATEBUSLOAD, (DEFPARAMS, unsigned long numberAsyncFrames));
 
 
-    /** \brief Opens a stream (Rx / Tx) for routing synchronous data to or from the MOST bus (synchronous channel).
+    /** @brief Opens a stream (Rx / Tx) for routing synchronous data to or from the MOST bus (synchronous channel).
      *  Attention: Has to be called before "xlMostStreamBufferAllocate".
      *  ResponseEvent:                         none
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param userHandle                 [IN] used to match the response of the driver to the requests of the application
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param userHandle                 [IN] used to match the response of the driver to the requests of the application
      *                                         if an event is received spontaneously
-     *  \param pStreamOpen                [IN] structure containg the stream parameters -
+     *  @param pStreamOpen                [IN] structure containg the stream parameters -
      *                                         it's storage has has to be supplied by the caller
-     *  \return XLstatus                       general status information
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC (xlMostStreamOpen,           XLFP_MOSTSTREAMOPEN,           (DEFPARAMS, XLmostStreamOpen* pStreamOpen));
 
 
-    /** \brief Closes an opened a stream (Rx / Tx) used for routing synchronous data to or from the MOST bus (synchronous channel).
+    /** @brief Closes an opened a stream (Rx / Tx) used for routing synchronous data to or from the MOST bus (synchronous channel).
      *  ResponseEvent:                         none
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param userHandle                 [IN] used to match the response of the driver to the requests of the application
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param userHandle                 [IN] used to match the response of the driver to the requests of the application
      *                                         if an event is received spontaneously
-     *  \param streamHandle               [IN] stream handle returned by xlMostStreamOpen
-     *  \return XLstatus                       general status information
+     *  @param streamHandle               [IN] stream handle returned by xlMostStreamOpen
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC (xlMostStreamClose,          XLFP_MOSTSTREAMCLOSE,           (DEFPARAMS, unsigned int streamHandle));
 
 
-    /** \brief Starts the streaming (Rx / Tx) of synchronous data to or from the MOST bus (synchronous channel).
+    /** @brief Starts the streaming (Rx / Tx) of synchronous data to or from the MOST bus (synchronous channel).
      *  Attention: Has to be called after "xlMostStreamOpen and xlMostStreamBufferAllocate" were called.
      *  ResponseEvent:                         none
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param userHandle                 [IN] used to match the response of the driver to the requests of the application
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param userHandle                 [IN] used to match the response of the driver to the requests of the application
      *                                         if an event is received spontaneously
-     *  \param streamHandle               [IN] stream handle returned by xlMostStreamOpen
-     *  \param syncChannels               [IN] synchronous channels (bytes) used for streaming.
-     *  \return XLstatus                       general status information
+     *  @param streamHandle               [IN] stream handle returned by xlMostStreamOpen
+     *  @param syncChannels               [IN] synchronous channels (bytes) used for streaming.
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC (xlMostStreamStart,          XLFP_MOSTSTREAMSTART,          (DEFPARAMS, unsigned int streamHandle, unsigned char syncChannels[60]));
 
 
-    /** \brief Stops the streaming (Rx / Tx) of synchronous data to or from the MOST bus (synchronous channel).
+    /** @brief Stops the streaming (Rx / Tx) of synchronous data to or from the MOST bus (synchronous channel).
      *  Attention: Has to be called before "xlMostStreamBufferDeallocate".
      *  ResponseEvent:                         none
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param userHandle                 [IN] used to match the response of the driver to the requests of the application
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param userHandle                 [IN] used to match the response of the driver to the requests of the application
      *                                         if an event is received spontaneously
-     *  \param streamHandle               [IN] stream handle returned by xlMostStreamOpen
-     *  \return XLstatus                       general status information
+     *  @param streamHandle               [IN] stream handle returned by xlMostStreamOpen
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC (xlMostStreamStop,           XLFP_MOSTSTREAMSTOP,           (DEFPARAMS, unsigned int streamHandle));
 
 
-    /** \brief Allocates a buffer for streaming (RX / Tx) of synchronous data to or from the MOST bus (synchronous channel).
+    /** @brief Allocates a buffer for streaming (RX / Tx) of synchronous data to or from the MOST bus (synchronous channel).
      *  Attention: Has to be called before "xlMostStreamStart".
      *  ResponseEvent:                         none
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param userHandle                 [IN] used to match the response of the driver to the requests of the application
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param userHandle                 [IN] used to match the response of the driver to the requests of the application
      *                                         if an event is received spontaneously
-     *  \param streamHandle               [IN] stream handle returned by xlMostStreamOpen
-     *  \param ppBuffer                  [OUT] pointer to the buffer used for streaming
+     *  @param streamHandle               [IN] stream handle returned by xlMostStreamOpen
+     *  @param ppBuffer                  [OUT] pointer to the buffer used for streaming
      *                                         memory allocation is done by the driver
      *                                         has to be realeased by calling xlMostStreamBufferDeallocate
-     *  \param pBufferSize               [OUT] buffer size.
-     *  \return XLstatus                       general status information
+     *  @param pBufferSize               [OUT] buffer size.
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC (xlMostStreamBufferAllocate, XLFP_MOSTSTREAMBUFFERALLOCATE, (DEFPARAMS, unsigned int streamHandle, unsigned char** ppBuffer, unsigned int* pBufferSize));
 
 
-    /** \brief Deallocates any buffer allocated with "xlMostStreamBufferAllocate".
+    /** @brief Deallocates any buffer allocated with "xlMostStreamBufferAllocate".
      *  Attention: Has to be called before "xlMostStreamClose". Afterwards no buffer must be accessed!
      *  ResponseEvent:                         none
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param userHandle                 [IN] used to match the response of the driver to the requests of the application
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param userHandle                 [IN] used to match the response of the driver to the requests of the application
      *                                         if an event is received spontaneously
-     *  \param streamHandle               [IN] stream handle returned by xlMostStreamOpen
-     *  \return XLstatus                       general status information
+     *  @param streamHandle               [IN] stream handle returned by xlMostStreamOpen
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC (xlMostStreamBufferDeallocateAll, XLFP_MOSTSTREAMBUFFERDEALLOCATEALL, (DEFPARAMS, unsigned int streamHandle));
 
 
-    /** \brief Notifies the driver the next buffer to be used for streaming synchronous data to or from the MOST bus (synchronous channel).
+    /** @brief Notifies the driver the next buffer to be used for streaming synchronous data to or from the MOST bus (synchronous channel).
      *  ResponseEvent:                         none
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param userHandle                 [IN] used to match the response of the driver to the requests of the application
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param userHandle                 [IN] used to match the response of the driver to the requests of the application
      *                                         if an event is received spontaneously
-     *  \param streamHandle               [IN] stream handle returned by xlMostStreamOpen
-     *  \param pBuffer                    [IN] pointer to the next buffer used for streaming
-     *  \param filledBytes                [IN] size of  the next buffer to be used for streaming
-     *  \return XLstatus                       general status information
+     *  @param streamHandle               [IN] stream handle returned by xlMostStreamOpen
+     *  @param pBuffer                    [IN] pointer to the next buffer used for streaming
+     *  @param filledBytes                [IN] size of  the next buffer to be used for streaming
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC (xlMostStreamBufferSetNext, XLFP_MOSTSTREAMBUFFERSETNEXT, (DEFPARAMS, unsigned int streamHandle, unsigned char* pBuffer, unsigned int filledBytes));
 
 
-    /** \brief Retrieves the stream information.
+    /** @brief Retrieves the stream information.
      *  This method is used to gather the recent stream state information.\n
      *  ResponseEvent:                         None
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param userHandle                 [IN] used to match the response of the driver to the requests of the application
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param userHandle                 [IN] used to match the response of the driver to the requests of the application
      *                                         if an event is received spontaneously
-     *  \param pStreamInfo               [OUT] Pointer to the stream information.
-     *  \return XLstatus                       general status information
+     *  @param pStreamInfo               [OUT] Pointer to the stream information.
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC (xlMostStreamGetInfo, XLFP_MOSTSTREAMGETINFO, (DEFPARAMS, XLmostStreamInfo* pStreamInfo));
 
 
-    /** \brief Clears the content of the buffer(s) which are not already sent.
+    /** @brief Clears the content of the buffer(s) which are not already sent.
      *  This method is used to clear the content of any TX streaming buffer which has not been sent yet.\n
      *  ResponseEvent:                         None
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param userHandle                 [IN] used to match the response of the driver to the requests of the application
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param userHandle                 [IN] used to match the response of the driver to the requests of the application
      *                                         if an event is received spontaneously
-     *  \param streamHandle               [IN] stream handle returned by xlMostStreamOpen.
-     *  \return XLstatus                       general status information
+     *  @param streamHandle               [IN] stream handle returned by xlMostStreamOpen.
+     *  @return XLstatus                       general status information
      */
     DECL_STDXL_FUNC (xlMostStreamBufferClearAll, XLFP_MOSTSTREAMBUFFERCLEARALL, (DEFPARAMS, unsigned int streamHandle));
 
@@ -3065,104 +3065,104 @@ extern "C" {
     // FlexRay Function Declarations
     ////////////////////////////////////////////////////////////////////////////////
 
-    /** \brief Setup the FlexRay node
+    /** @brief Setup the FlexRay node
      *  ResponseEvent:
-     *  \param portHandle                 [IN] handle specifying the port to be configured
-     *  \param accessMask                 [IN] mask specifying the port's channel
-     *  \param pxlClusterConfig           [IN] structure to the cluster config structure
-     *  \return XLstatus                       general status information
+     *  @param portHandle                 [IN] handle specifying the port to be configured
+     *  @param accessMask                 [IN] mask specifying the port's channel
+     *  @param pxlClusterConfig           [IN] structure to the cluster config structure
+     *  @return XLstatus                       general status information
      */
 
     DECL_STDXL_FUNC (xlFrSetConfiguration, XLFP_FRSETCONFIGURATION, (DEFFRPARAM, XLfrClusterConfig*  pxlClusterConfig));
 
-    /** \brief Get configuration of a FlexRay channel
+    /** @brief Get configuration of a FlexRay channel
      *  ResponseEvent:
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the information
-     *  \param XLfrChannelConfig         [OUT] pointer to the FlexRay channel configuration structure
-     *  \return XLstatus                       general status information
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the information
+     *  @param XLfrChannelConfig         [OUT] pointer to the FlexRay channel configuration structure
+     *  @return XLstatus                       general status information
      */
 
     DECL_STDXL_FUNC (xlFrGetChannelConfiguration, XLFP_FRGETCHANNELCONFIGURATION, (DEFFRPARAM, XLfrChannelConfig* pxlFrChannelConfig));
 
-    /** \brief Setup the FlexRay mode
+    /** @brief Setup the FlexRay mode
      *  ResponseEvent:
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param pxlFrMode                  [IN] structure to the FlexRay mode structure (e.g.: normal-, monitor-, clusterScan mode).
-     *  \return XLstatus                       general status information
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param pxlFrMode                  [IN] structure to the FlexRay mode structure (e.g.: normal-, monitor-, clusterScan mode).
+     *  @return XLstatus                       general status information
      */
 
     DECL_STDXL_FUNC (xlFrSetMode, XLFP_FRSETMODE, (DEFFRPARAM, XLfrMode* pxlFrMode));
 
-    /** \brief Initialize the cold start and define the sync event
+    /** @brief Initialize the cold start and define the sync event
      *  ResponseEvent:
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param pEventBuffer               [IN] pointer to the startup and sync frame
-     *  \return XLstatus                       general status information
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param pEventBuffer               [IN] pointer to the startup and sync frame
+     *  @return XLstatus                       general status information
      */
 
     DECL_STDXL_FUNC (xlFrInitStartupAndSync, XLFP_FRINITSTARTUPANDSYNC, (DEFFRPARAM, XLfrEvent* pEventBuffer));
 
-    /** \brief setup the symbol window.
+    /** @brief setup the symbol window.
      *  ResponseEvent:
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param frChannel                  [IN] FlexRay channel, like A,B, both...
-     *  \param symbolWindowMask           [IN] symbol window mask like MTS.
-     *  \return XLstatus                       general status information
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param frChannel                  [IN] FlexRay channel, like A,B, both...
+     *  @param symbolWindowMask           [IN] symbol window mask like MTS.
+     *  @return XLstatus                       general status information
      */
 
     DECL_STDXL_FUNC (xlFrSetupSymbolWindow, XLFP_FRSETUPSYMBOLWINDOW, (DEFFRPARAM, unsigned int frChannel,
                      unsigned int symbolWindowMask));
 
-    /** \brief Reads the FlexRay events
+    /** @brief Reads the FlexRay events
      *  ResponseEvent:
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param pEventBuffer              [OUT] pointer to the FlexRay RX event
-     *  \return XLstatus                       general status information
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param pEventBuffer              [OUT] pointer to the FlexRay RX event
+     *  @return XLstatus                       general status information
      */
 
     DECL_STDXL_FUNC (xlFrReceive, XLFP_FRRECEIVE, (XLportHandle portHandle, XLfrEvent* pEventBuffer));
 
-    /** \brief Transmit a FlexRay event
+    /** @brief Transmit a FlexRay event
      *  ResponseEvent:
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param pEventBuffer               [IN] pointer to the FlexRay TX event
-     *  \return XLstatus                       general status information
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param pEventBuffer               [IN] pointer to the FlexRay TX event
+     *  @return XLstatus                       general status information
      */
 
     DECL_STDXL_FUNC (xlFrTransmit, XLFP_FRTRANSMIT, (DEFFRPARAM, XLfrEvent* pEventBuffer));
 
-    /** \brief
+    /** @brief
      *  ResponseEvent:
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param frChannel                  [IN] FlexRay channel. e.g. CHANNEL_A...
-     *  \param mode                       [IN] transceiver mode. e.g. sleep
-     *  \return XLstatus                       general status information
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param frChannel                  [IN] FlexRay channel. e.g. CHANNEL_A...
+     *  @param mode                       [IN] transceiver mode. e.g. sleep
+     *  @return XLstatus                       general status information
      */
 
     DECL_STDXL_FUNC (xlFrSetTransceiverMode, XLFP_FRSETTRANSCEIVERMODE, (DEFFRPARAM, unsigned int frChannel, unsigned int mode));
 
-    /** \brief
+    /** @brief
      *  ResponseEvent:
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param symbolWindow               [IN] defines the symbol window (e.g. MTS).
-     *  \return XLstatus                       general status information
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param symbolWindow               [IN] defines the symbol window (e.g. MTS).
+     *  @return XLstatus                       general status information
      */
 
     DECL_STDXL_FUNC (xlFrSendSymbolWindow, XLFP_FRSENDSYMBOLWINDOW, (DEFFRPARAM, unsigned int symbolWindow));
 
-    /** \brief
+    /** @brief
      *  ResponseEvent:
-     *  \param portHandle                 [IN] handle to port from which the information is requested
-     *  \param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
-     *  \param mode                       [IN] specifies the spy mode: XL_FR_SPY_MODE_***
-     *  \return XLstatus                       general status information
+     *  @param portHandle                 [IN] handle to port from which the information is requested
+     *  @param accessMask                 [IN] mask specifying the port's channel from where to get the device's state
+     *  @param mode                       [IN] specifies the spy mode: XL_FR_SPY_MODE_***
+     *  @return XLstatus                       general status information
      */
 
     DECL_STDXL_FUNC (xlFrActivateSpy, XLFP_FRACTIVATESPY, (DEFFRPARAM, unsigned int mode));

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      Error.h
- * \brief     This contains various error code definitions.
- * \authors   Ratnadip Choudhury, Anish Kumar, Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      Error.h
+ * @brief     This contains various error code definitions.
+ * @authors   Ratnadip Choudhury, Anish Kumar, Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This contains various error code definitions.
  */

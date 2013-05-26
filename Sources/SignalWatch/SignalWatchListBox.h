@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      SignalWatchListBox.h
- * \brief     Interface file for CSignalWatchListBox class
- * \authors   Ratnadip Choudhury, Amarnath Shastri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      SignalWatchListBox.h
+ * @brief     Interface file for CSignalWatchListBox class
+ * @authors   Ratnadip Choudhury, Amarnath Shastri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CSignalWatchListBox class
  */

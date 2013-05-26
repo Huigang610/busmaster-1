@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      RefTimeKeeper.h
- * \brief     Definition of CRefTimeKeeper class
- * \author    Anish kumar
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      RefTimeKeeper.h
+ * @brief     Definition of CRefTimeKeeper class
+ * @author    Anish kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Definition of CRefTimeKeeper class
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      SimENG.cpp
- * \brief     Implementation of CSimENG
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      SimENG.cpp
+ * @brief     Implementation of CSimENG
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation of CSimENG
  */
@@ -323,8 +323,8 @@ void CSimENG::FinalRelease()
 #define FLAG_TX     0x1
 
 /**
- * \brief     Send Message
- * \req       RSI_5_006 - SendMessage
+ * @brief     Send Message
+ * @req       RSI_5_006 SendMessage
  *
  * Call this function to send a message to the virtual bus or other nodes.
  */
@@ -367,8 +367,8 @@ STDMETHODIMP CSimENG::SendMessage(USHORT ClientID, USHORT CurrDataLength,
 }
 
 /**
- * \brief     Register Client
- * \req       RSI_5_001 - RegisterClient
+ * @brief     Register Client
+ * @req       RSI_5_001 RegisterClient
  *
  * This function makes an entry in the client list of the simulation engine
  * assigning a unique client id. Also, it opens a communication channel
@@ -485,8 +485,8 @@ STDMETHODIMP CSimENG::RegisterClient(USHORT Bus, USHORT MaxLenFrame,
 }
 
 /**
- * \brief     Unegister Client
- * \req       RSI_5_002 - UnregisterClient
+ * @brief     Unegister Client
+ * @req       RSI_5_002 UnregisterClient
  *
  * Call this function to get unregistered from SimENG.
  */
@@ -517,8 +517,8 @@ STDMETHODIMP CSimENG::UnregisterClient(USHORT ClientID)
 }
 
 /**
- * \brief     Connect Node
- * \req       RSI_5_003 - ConnectNode
+ * @brief     Connect Node
+ * @req       RSI_5_003 ConnectNode
  *
  * Connects the caller to the virtual bus. On successful calling of this
  * function, receiving and sending of messages shall be possible.
@@ -542,8 +542,8 @@ STDMETHODIMP CSimENG::ConnectNode(USHORT ClientID)
 }
 
 /**
- * \brief     Disconnect Node
- * \req       RSI_5_004 - DisconnectNode
+ * @brief     Disconnect Node
+ * @req       RSI_5_004 DisconnectNode
  *
  * Disconnects the caller from the virtual bus.
  */
@@ -564,8 +564,8 @@ STDMETHODIMP CSimENG::DisconnectNode(USHORT ClientID)
 }
 
 /**
- * \brief     Get Time Mode Mapping
- * \req       RSI_5_005 - GetTimeModeMapping
+ * @brief     Get Time Mode Mapping
+ * @req       RSI_5_005 GetTimeModeMapping
  *
  * Call this function to get a system time and the time stamp associated to it.
  */
@@ -579,8 +579,8 @@ STDMETHODIMP CSimENG::GetTimeModeMapping(SYSTEMTIME* CurrSysTime, ULONGLONG* Tim
 }
 
 /**
- * \brief     Get Current Status
- * \req       RSI_5_007 - GetCurrentStatus
+ * @brief     Get Current Status
+ * @req       RSI_5_007 GetCurrentStatus
  *
  * Call this function to get the current state of the node.
  */

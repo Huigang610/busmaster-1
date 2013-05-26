@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      TxFunctionsView.h
- * \brief     Interface file for CTxFunctionsView class
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TxFunctionsView.h
+ * @brief     Interface file for CTxFunctionsView class
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CTxFunctionsView class
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      CAN_ICS_neoVI.cpp
- * \brief     Exports API functions for IntrepidCS neoVI CAN Hardware interface
- * \author    Pradeep Kadoor, Arunkumar Karri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      CAN_ICS_neoVI.cpp
+ * @brief     Exports API functions for IntrepidCS neoVI CAN Hardware interface
+ * @author    Pradeep Kadoor, Arunkumar Karri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Exports API functions for IntrepidCS neoVI CAN Hardware interface
  */
@@ -457,7 +457,7 @@ public:
 static CDIL_CAN_ICSNeoVI* sg_pouDIL_CAN_ICSNeoVI = NULL;
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Returns the interface to controller
  */
@@ -530,9 +530,9 @@ static int nSetHardwareMode(UCHAR ucDeviceMode)
 }
 
 /**
- * \param[in] ucRxErr Rx Error Counter Value
- * \param[in] ucTxErr Tx Error Counter Value
- * \return Type of the error message: Error Bus, Error Warning Limit and Error Interrupt
+ * @param[in] ucRxErr Rx Error Counter Value
+ * @param[in] ucTxErr Tx Error Counter Value
+ * @return Type of the error message: Error Bus, Error Warning Limit and Error Interrupt
  *
  * Posts message as per the error counter. This function will
  * update local state variable as per error codes.
@@ -613,9 +613,9 @@ static UCHAR USB_ucHandleErrorCounter( UCHAR ucChannel,
 }
 
 /**
- * \param[in] lError Error code in Peak USB driver format
- * \param[in] byDir  Error direction Tx/Rx
- * \return Error code in BUSMASTER application format
+ * @param[in] lError Error code in Peak USB driver format
+ * @param[in] byDir  Error direction Tx/Rx
+ * @return Error code in BUSMASTER application format
  *
  * This will convert the error code from Perk USB driver format
  * to the format that is used by BUSMASTER.
@@ -753,10 +753,10 @@ static BOOL bLoadDataFromContr(PSCONTROLLER_DETAILS pControllerDetails)
 }
 
 /**
- * \param[in]  odChannel The current channel
- * \param[out] sCanData Application specific data format
- * \param[in]  ushRxErr Number of Rx error
- * \param[in]  ushTxErr Number of Tx error
+ * @param[in]  odChannel The current channel
+ * @param[out] sCanData Application specific data format
+ * @param[in]  ushRxErr Number of Rx error
+ * @param[in]  ushTxErr Number of Tx error
  *
  * Based on the number of Rx and Tx error, this will take the
  * action necessary.
@@ -779,10 +779,10 @@ static void vProcessError(STCANDATA& sCanData, CChannel& odChannel,
 }
 
 /**
- * \param[in]  CurrSpyMsg Message polled from the bus in neoVI format
- * \param[out] sCanData Application specific data format
- * \param[in]  unChannel channel
- * \return TRUE (always)
+ * @param[in]  CurrSpyMsg Message polled from the bus in neoVI format
+ * @param[out] sCanData Application specific data format
+ * @param[in]  unChannel channel
+ * @return TRUE (always)
  *
  * This will classify the messages, which can be one of Rx, Tx or
  * Error messages. In case of Err messages this identifies under
@@ -918,10 +918,10 @@ static BYTE bClassifyMsgType(icsSpyMessage& CurrSpyMsg,
 }
 
 /**
- * \param[in] psCanDataArray Pointer to CAN Message Array of Structures
- * \param[in] nMessage Maximun number of message to read or size of the CAN Message Array
- * \param[out] Message Actual Messages Read
- * \return Returns defERR_OK if successful otherwise corresponding Error code.
+ * @param[in] psCanDataArray Pointer to CAN Message Array of Structures
+ * @param[in] nMessage Maximun number of message to read or size of the CAN Message Array
+ * @param[out] Message Actual Messages Read
+ * @return Returns defERR_OK if successful otherwise corresponding Error code.
  *
  * This function will read multiple CAN messages from the driver.
  * The other fuctionality is same as single message read. This
@@ -1434,12 +1434,12 @@ static int nCreateSingleHardwareNetwork()
 }
 
 /**
-* \brief         This function will popup hardware selection dialog and gets the user selection of channels.
-* \param[in]     psInterfaces, is INTERFACE_HW structue
-* \param[out]    pnSelList, contains channels selected array
-* \param[out]    nCount, contains selected channel count
-* \return        returns 0 if success, else -1
-* \authors       Arunkumar Karri
+* @brief         This function will popup hardware selection dialog and gets the user selection of channels.
+* @param[in]     psInterfaces, is INTERFACE_HW structue
+* @param[out]    pnSelList, contains channels selected array
+* @param[out]    nCount, contains selected channel count
+* @return        returns 0 if success, else -1
+* @authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
 int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, INTERFACE_HW* psInterfaces, int* pnSelList, int& nCount)
@@ -1598,8 +1598,8 @@ static int nCreateMultipleHardwareNetwork(UINT unDefaultChannelCnt = 0)
 }
 
 /**
- * \param[in] nHardwareCount Hardware Count
- * \return Returns defERR_OK if successful otherwise corresponding Error code.
+ * @param[in] nHardwareCount Hardware Count
+ * @return Returns defERR_OK if successful otherwise corresponding Error code.
  *
  * Finds the number of hardware connected. This is applicable
  * only for USB device. For parallel port this is not required.
@@ -1635,7 +1635,7 @@ static int nGetNoOfConnectedHardware(int& nHardwareCount)
 }
 
 /**
- * \return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
+ * @return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
  *
  * This is USB Specific function.This function will create
  * find number of hardware connected. It will create network as
@@ -1684,7 +1684,7 @@ static int nInitHwNetwork(UINT unDefaultChannelCnt = 0)
 }
 
 /**
- * \return Returns defERR_OK if successful otherwise corresponding Error code.
+ * @return Returns defERR_OK if successful otherwise corresponding Error code.
  *
  * This function will initialise hardware handlers of USB. This
  * will establish the connection with driver. This will create or
@@ -1705,7 +1705,7 @@ static int nConnectToDriver(UINT unDefaultChannelCnt = 0)
 }
 
 /**
- * \return TRUE if the driver is running. FALSE - IF it is not running
+ * @return TRUE if the driver is running. FALSE - IF it is not running
  */
 static BOOL bGetDriverStatus()
 {
@@ -1714,7 +1714,7 @@ static BOOL bGetDriverStatus()
 }
 
 /**
- * \return defERR_OK if successful otherwise corresponding Error code.
+ * @return defERR_OK if successful otherwise corresponding Error code.
  *
  * This function will set the baud rate of the controller
  * Parallel Port Mode: Controller will be initialised with all
@@ -1748,7 +1748,7 @@ static int nSetBaudRate()
 }
 
 /**
- * \return Returns defERR_OK if successful otherwise corresponding Error code.
+ * @return Returns defERR_OK if successful otherwise corresponding Error code.
  * This function will set the warning limit of the controller. In
  * USB mode this is not supported as the warning limit is
  * internally set to 96
@@ -1766,7 +1766,7 @@ static int nSetWarningLimit()
 }
 
 /**
- * \return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
+ * @return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
  *
  * This function will set the filter information.
  */
@@ -1776,7 +1776,7 @@ static int nSetFilter( )
 }
 
 /**
- * \return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
+ * @return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
  *
  * This function will set all controller parameters. This will
  * set Baud rate, Filter, Warning Limit and Controller Mode. In
@@ -1803,8 +1803,8 @@ static int nSetApplyConfiguration()
 }
 
 /**
- * \param[out] ucaTestResult Array that will hold test result. TRUE if hardware present and false if not connected
- * \return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
+ * @param[out] ucaTestResult Array that will hold test result. TRUE if hardware present and false if not connected
+ * @return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
  *
  * This function will check all hardware connectivity by getting
  * hardware parameter. In parallel port mode this will set the
@@ -1831,7 +1831,7 @@ static int nTestHardwareConnection(UCHAR& ucaTestResult, UINT nChannel) //const
 }
 
 /**
- * \return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
+ * @return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
  *
  * This will close the connection with the driver. This will be
  * called before deleting HI layer. This will be called during
@@ -1866,8 +1866,8 @@ static int nDisconnectFromDriver()
 }
 
 /**
- * \param[in] bConnect TRUE to Connect, FALSE to Disconnect
- * \return Returns defERR_OK if successful otherwise corresponding Error code.
+ * @param[in] bConnect TRUE to Connect, FALSE to Disconnect
+ * @return Returns defERR_OK if successful otherwise corresponding Error code.
  *
  * This function will connect the tool with hardware. This will
  * establish the data link between the application and hardware.
@@ -2326,7 +2326,7 @@ BOOL Callback_DILTZM(BYTE /*Argument*/, PSCONTROLLER_DETAILS pDatStream, int /*L
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Displays the configuration dialog for controller
  */
@@ -2713,8 +2713,8 @@ static BOOL bClientIdExist(const DWORD& dwClientId)
 }
 
 /**
- * \param sErrorCount Error Counter Structure
- * \return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
+ * @param sErrorCount Error Counter Structure
+ * @return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
  *
  * This function will return the error counter values. In case of USB this is not supported.
  */
@@ -2761,8 +2761,8 @@ HRESULT CDIL_CAN_ICSNeoVI::getCurrentStatus(s_STATUSMSG& StatusData)
 }
 
 /**
- * \param[in] sMessage Message to Transmit
- * \return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
+ * @param[in] sMessage Message to Transmit
+ * @return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
  *
  * This will send a CAN message to the driver. In case of USB
  * this will write the message in to the driver buffer and will

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      FlickerFreeTree.h
- * \brief     Definition file for CFlickerFreeTree class.
- * \author    Ravi D.
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      FlickerFreeTree.h
+ * @brief     Definition file for CFlickerFreeTree class.
+ * @author    Ravi D.
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Definition file for CFlickerFreeTree class.
  */

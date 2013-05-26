@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      GraphList.h
- * \brief     Interface file for CGraphList class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      GraphList.h
+ * @brief     Interface file for CGraphList class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CGraphList class
  */

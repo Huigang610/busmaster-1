@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MainSubEntry.cpp
- * \brief     Implementation file for main sub entry entities.
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MainSubEntry.cpp
+ * @brief     Implementation file for main sub entry entities.
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for main sub entry entities.
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      TxFlags.cpp
- * \brief     Contains implementaion of CFlags class
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TxFlags.cpp
+ * @brief     Contains implementaion of CFlags class
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Contains implementaion of CFlags class
  */

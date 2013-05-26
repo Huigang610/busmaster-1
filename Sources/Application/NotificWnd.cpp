@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      Application/NotificWnd.cpp
- * \brief     This file contain definition of all function of
- * \author    Ravikumar Patil
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      Application/NotificWnd.cpp
+ * @brief     This file contain definition of all function of
+ * @author    Ravikumar Patil
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain definition of all function of
  */
@@ -454,10 +454,10 @@ LRESULT CNotificWnd::DoConfigOperation(WPARAM WParam, LPARAM LParam)
 }
 
 /**
-* \brief         Clears Trace window contents
-* \param         void
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         Clears Trace window contents
+* @param         void
+* @return        void
+* @authors       Arunkumar Karri
 * \date          17.12.2012 Created
 */
 void CNotificWnd ::vClearTraceContents()

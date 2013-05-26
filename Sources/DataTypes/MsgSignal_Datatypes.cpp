@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      MsgSignal_Datatypes.cpp
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MsgSignal_Datatypes.cpp
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #include "Datatypes_stdafx.h"
 #include "Include/BaseDefs.h"

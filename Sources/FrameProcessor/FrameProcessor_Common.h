@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      FrameProcessor_Common.h
- * \brief     Definition file for CFrameProcessor_Common class realising
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      FrameProcessor_Common.h
+ * @brief     Definition file for CFrameProcessor_Common class realising
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Definition file for CFrameProcessor_Common class realising
  */

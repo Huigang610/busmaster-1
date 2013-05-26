@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      TxMsgManager.h
- * \brief     Interface file for CTxMsgManager class
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TxMsgManager.h
+ * @brief     Interface file for CTxMsgManager class
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CTxMsgManager class
  */

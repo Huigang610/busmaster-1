@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ProjConfig_DataTypes.h
- * \brief     Definition file for project configuration data types.
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ProjConfig_DataTypes.h
+ * @brief     Definition file for project configuration data types.
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Definition file for project configuration data types.
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      UtlityDlg.cpp
- * \brief     This file contain definition of all function of
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      UtlityDlg.cpp
+ * @brief     This file contain definition of all function of
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain definition of all function of
  */

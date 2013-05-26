@@ -207,11 +207,11 @@ void CSignalDefinerDlg::OnBnClickedAutoCorrect()
     vGenerateWave();
 }
 /**
-* \brief         Helper to convert degrees to radians
-* \param[out]    -
-* \param[in]     Degrees as double
-* \return        Radians as double
-* \authors       Arunkumar Karri
+* @brief         Helper to convert degrees to radians
+* @param[out]    -
+* @param[in]     Degrees as double
+* @return        Radians as double
+* @authors       Arunkumar Karri
 * \date          03.02.2012 Created
 */
 
@@ -221,11 +221,11 @@ double DegreesToRadians(double dblDegrees)
 }
 
 /**
-* \brief         Helper function to get the Triangle values calculated
-* \param[out]    -
-* \param[in]     dblXSamplingPoint, fAmplitude, dblTimePeriod
-* \return        double is the Y value calculated
-* \authors       Arunkumar Karri
+* @brief         Helper function to get the Triangle values calculated
+* @param[out]    -
+* @param[in]     dblXSamplingPoint, fAmplitude, dblTimePeriod
+* @return        double is the Y value calculated
+* @authors       Arunkumar Karri
 * \date          07.02.2012 Created
 */
 double CalculateYatXForTriangleWave(double dblXSamplingPoint,float fAmplitude,double dblTimePeriod)
@@ -252,11 +252,11 @@ double CalculateYatXForTriangleWave(double dblXSamplingPoint,float fAmplitude,do
 }
 
 /**
-* \brief         Generates points based on selected signal type
-* \param[out]    -
-* \param[in]     Signal Type
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         Generates points based on selected signal type
+* @param[out]    -
+* @param[in]     Signal Type
+* @return        void
+* @authors       Arunkumar Karri
 * \date          03.02.2012 Created
 */
 void CSignalDefinerDlg::vGenerateWave()
@@ -404,11 +404,11 @@ void CSignalDefinerDlg::vGenerateWave()
 }
 
 /**
-* \brief         Plots the element points available onto the Graph
-* \param[out]    -
-* \param[in]     pvarrX, pvarrY; Takes the element points in the form of VARIANT array
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         Plots the element points available onto the Graph
+* @param[out]    -
+* @param[in]     pvarrX, pvarrY; Takes the element points in the form of VARIANT array
+* @return        void
+* @authors       Arunkumar Karri
 * \date          03.02.2012 Created
 */
 void CSignalDefinerDlg::SetGraphData(VARIANT* pvarrX, VARIANT* pvarrY)

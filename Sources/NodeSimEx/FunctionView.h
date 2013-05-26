@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      FunctionView.h
- * \brief     Interface for CFunctionView class. Has functions to Set the
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      FunctionView.h
+ * @brief     Interface for CFunctionView class. Has functions to Set the
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface for CFunctionView class. Has functions to Set the
  */

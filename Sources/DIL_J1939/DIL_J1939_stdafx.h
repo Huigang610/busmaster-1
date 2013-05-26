@@ -1,7 +1,7 @@
 /**
- * \file   DIL_J1939_stdafx.h
- * \brief  Include file for precompiled header
- * \author Anish Kumar
+ * @file   DIL_J1939_stdafx.h
+ * @brief  Include file for precompiled header
+ * @author Anish Kumar
  * \copyricht Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
  *
  * Include file for standard system include files,

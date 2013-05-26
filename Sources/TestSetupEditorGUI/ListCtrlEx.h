@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ListCtrlEx.h
- * \brief     This file contain the definition of CListCtrlEx class
- * \author    Venkatanarayana Makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ListCtrlEx.h
+ * @brief     This file contain the definition of CListCtrlEx class
+ * @author    Venkatanarayana Makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain the definition of CListCtrlEx class
  */

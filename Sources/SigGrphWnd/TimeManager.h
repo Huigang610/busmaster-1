@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      TimeManager.h
- * \brief     Interface file for CTimeManager class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TimeManager.h
+ * @brief     Interface file for CTimeManager class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CTimeManager class
  */

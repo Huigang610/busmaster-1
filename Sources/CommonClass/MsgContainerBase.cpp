@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      MsgContainerBase.cpp
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MsgContainerBase.cpp
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #include "CommonClass_stdafx.h"
 #include "MsgContainerBase.h"
@@ -164,7 +164,7 @@ BOOL CMsgContainerBase:: bStopReadThread()
 }
 
 /**
- * \brief Copy String to char array
+ * @brief Copy String to char array
  *
  * String to char
  */

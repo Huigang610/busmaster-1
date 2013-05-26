@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ChangeRegisters_CAN_ETAS_BOA.cpp
- * \brief     This file contain definition of all function of
- * \author    Amitesh Bharti
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ChangeRegisters_CAN_ETAS_BOA.cpp
+ * @brief     This file contain definition of all function of
+ * @author    Amitesh Bharti
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain definition of all function of
  */
@@ -65,7 +65,7 @@ static ENTRY_COMPATIBILITY sg_ListRxCompatibility[] =
 #endif
 
 /**
- * \brief Constructor
+ * @brief Constructor
  *
  * Constructor is called when user create an object of
  * this class. Initialisation of all data members
@@ -1262,10 +1262,10 @@ void CChangeRegisters_CAN_ETAS_BOA::OnCbnSelchangeCombSjw()
 }
 
 /**
-* \brief         Handler when user switches the Delay compensation ON\OFF state
-* \param[out]    void
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         Handler when user switches the Delay compensation ON\OFF state
+* @param[out]    void
+* @return        void
+* @authors       Arunkumar Karri
 * \date          07.09.2012 Created
 */
 void CChangeRegisters_CAN_ETAS_BOA::OnCbnSelchangeCombDelayCompensation()

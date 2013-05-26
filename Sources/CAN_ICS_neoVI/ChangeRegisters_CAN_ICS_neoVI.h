@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ChangeRegisters_CAN_ICS_neoVI.h
- * \brief     This header file contains the defination of class
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ChangeRegisters_CAN_ICS_neoVI.h
+ * @brief     This header file contains the defination of class
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This header file contains the defination of class
  */

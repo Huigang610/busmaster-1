@@ -14,11 +14,11 @@
  */
 
 /**
- * \file      Send_MessageEntity.cpp
- * \brief     his File Contains Send_MessageEntity, CSend_MessageData,
- * \author    Venkatanarayana makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
- * \req       RS_27_36 - Transmit a message
+ * @file      Send_MessageEntity.cpp
+ * @brief     his File Contains Send_MessageEntity, CSend_MessageData,
+ * @author    Venkatanarayana makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @req       RS_27_36 Transmit a message
  *
  * his File Contains Send_MessageEntity, CSend_MessageData,
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      OffScreenDC.h
- * \brief     This file contain the interface for COffScreenDC class
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      OffScreenDC.h
+ * @brief     This file contain the interface for COffScreenDC class
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain the interface for COffScreenDC class
  */

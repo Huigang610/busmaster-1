@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      TxMsgChildFrame.h
- * \brief     Interface file for CTxMsgChildFrame class
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TxMsgChildFrame.h
+ * @brief     Interface file for CTxMsgChildFrame class
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CTxMsgChildFrame class
  */

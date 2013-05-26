@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      WaveFormDataHandler.cpp
- * \brief     Implementation file for CWaveformDataHandler class
- * \author    Arunkumar Karri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      WaveFormDataHandler.cpp
+ * @brief     Implementation file for CWaveformDataHandler class
+ * @author    Arunkumar Karri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for CWaveformDataHandler class
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      operations_file.h
- * \brief     This file contains the codes when configuration procedure
- * \authors   Anish Kumar, Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      operations_file.h
+ * @brief     This file contains the codes when configuration procedure
+ * @authors   Anish Kumar, Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contains the codes when configuration procedure
  */

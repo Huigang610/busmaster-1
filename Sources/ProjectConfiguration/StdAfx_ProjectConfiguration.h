@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      StdAfx_ProjectConfiguration.h
- * \brief     Include file for precompiled header
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      StdAfx_ProjectConfiguration.h
+ * @brief     Include file for precompiled header
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Include file for precompiled header
  */

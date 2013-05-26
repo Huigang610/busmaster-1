@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MsgReplayWnd.cpp
- * \brief     This file contain the definition all member function of
- * \authors   Amitesh Bharti, Krishnaswamy B.N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MsgReplayWnd.cpp
+ * @brief     This file contain the definition all member function of
+ * @authors   Amitesh Bharti, Krishnaswamy B.N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain the definition all member function of
  */

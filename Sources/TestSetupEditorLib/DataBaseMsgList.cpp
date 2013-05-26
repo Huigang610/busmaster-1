@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      DataBaseMsgList.cpp
- * \author    Venkatanarayana makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      DataBaseMsgList.cpp
+ * @author    Venkatanarayana makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #include "TestSetupEditorLib_stdafx.h"
 #include "DataBaseMsgList.h"

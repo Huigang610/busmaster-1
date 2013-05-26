@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      DIL_Interface/DIL_Interface.cpp
- * \brief     Source file for the exported function used to retrieve the
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      DIL_Interface/DIL_Interface.cpp
+ * @brief     Source file for the exported function used to retrieve the
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Source file for the exported function used to retrieve the
  */

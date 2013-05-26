@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      Application/UIThread.cpp
- * \brief     This is the implementation file for CNotificWnd class
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      Application/UIThread.cpp
+ * @brief     This is the implementation file for CNotificWnd class
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This is the implementation file for CNotificWnd class
  */
@@ -186,10 +186,10 @@ void CUIThread::vUpdateWndCo_Ords(WINDOWPLACEMENT& wndPlacement, BOOL bLoadIntoT
     }
 }
 /**
-* \brief         Clears Trace window contents
-* \param         void
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         Clears Trace window contents
+* @param         void
+* @return        void
+* @authors       Arunkumar Karri
 * \date          17.12.2012 Created
 */
 void CUIThread::vClearTraceContents()

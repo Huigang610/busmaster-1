@@ -14,9 +14,9 @@
  */
 
 /**
- * \file TxMsgWndJ1939.cpp
- * \author Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
+ * @file TxMsgWndJ1939.cpp
+ * @author Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
  */
 
 /* Project includes */
@@ -127,7 +127,7 @@ void CTxMsgWndJ1939::vPopulatePGNComboBox(void)
 }
 
 /**
- * \brief Adjust Message Combo Box Width
+ * @brief Adjust Message Combo Box Width
  *
  * This function adjusts the width of the Message Combo Box
  * according to its contents.
@@ -724,10 +724,10 @@ void CTxMsgWndJ1939::vInitializeTpfFields(void)
 }
 
 /**
-* \brief         Updates channel information
-* \param         void
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         Updates channel information
+* @param         void
+* @return        void
+* @authors       Arunkumar Karri
 * \date          27.09.2012 Created
 */
 void CTxMsgWndJ1939::vUpdateChannelIDInfo()
@@ -1082,10 +1082,10 @@ void CTxMsgWndJ1939::OnCbnSelchangeComboPgn()
 }
 
 /**
-* \brief         Called when editing PGN combobox
-* \param[in]     void
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         Called when editing PGN combobox
+* @param[in]     void
+* @return        void
+* @authors       Arunkumar Karri
 * \date          17.07.2012 Created
 */
 void CTxMsgWndJ1939::OnCbnEditChangeComboPgn()
@@ -1109,10 +1109,10 @@ void CTxMsgWndJ1939::OnCbnEditChangeComboPgn()
 }
 
 /**
-* \brief         Verifies the PGN's PDU format field and updates message type combobox
-* \param[in]     unPGN, is the PGN ID
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         Verifies the PGN's PDU format field and updates message type combobox
+* @param[in]     unPGN, is the PGN ID
+* @return        void
+* @authors       Arunkumar Karri
 * \date          06.06.2012 Created
 */
 void CTxMsgWndJ1939::vVerifyPDUFormatInPGN(UINT unPGN)

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      TxHandler.h
- * \brief     CTxHandler class
- * \author    ArunKumar K
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TxHandler.h
+ * @brief     CTxHandler class
+ * @author    ArunKumar K
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * CTxHandler class
  */

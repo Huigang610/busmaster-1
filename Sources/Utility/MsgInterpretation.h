@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MsgInterpretation.h
- * \brief     This file contain the definition of CMsgInterpretation class
- * \authors   Amitesh Bharti, Amarnath Shastry
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MsgInterpretation.h
+ * @brief     This file contain the definition of CMsgInterpretation class
+ * @authors   Amitesh Bharti, Amarnath Shastry
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain the definition of CMsgInterpretation class
  */

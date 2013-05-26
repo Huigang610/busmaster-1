@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      TSEditorGUI_PropertyView.cpp
- * \author    Venkatanarayana makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TSEditorGUI_PropertyView.cpp
+ * @author    Venkatanarayana makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 
 #include "TSEditorGUI_stdafx.h"

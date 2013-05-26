@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      CAN_VSCOM_Extern.h
- * \brief     Exports API functions
- * \copyright Copyright (c) 2012, ETAS GmbH. All rights reserved.
+ * @file      CAN_VSCOM_Extern.h
+ * @brief     Exports API functions
+ * @copyright Copyright (c) 2012, ETAS GmbH. All rights reserved.
  */
 
 #pragma once

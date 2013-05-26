@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      CAN_MHS_stdafx.h
- * \author    Klaus Demlehner
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions
+ * @file      CAN_MHS_stdafx.h
+ * @author    Klaus Demlehner
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions
  *
  */
 

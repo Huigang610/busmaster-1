@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      WaveformSelectionDlg.h
- * \brief     Interface file for CWaveformSelectionDlg class
- * \author    Arunkumar Karri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      WaveformSelectionDlg.h
+ * @brief     Interface file for CWaveformSelectionDlg class
+ * @author    Arunkumar Karri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CWaveformSelectionDlg class
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      Utility_Thread.cpp
- * \brief     Source file for CPARAM_THREADPROC class.
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      Utility_Thread.cpp
+ * @brief     Source file for CPARAM_THREADPROC class.
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Source file for CPARAM_THREADPROC class.
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      GraphBottomView.h
- * \brief     Interface file for CGraphBottomView class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      GraphBottomView.h
+ * @brief     Interface file for CGraphBottomView class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CGraphBottomView class
  */

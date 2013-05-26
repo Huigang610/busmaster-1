@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      WrapperErrorLogger.cpp
- * \brief     Concrete data type source for error logger wrapper.
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      WrapperErrorLogger.cpp
+ * @brief     Concrete data type source for error logger wrapper.
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Concrete data type source for error logger wrapper.
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      AppServices_Impl.h
- * \brief     Concrete class definition for the application service layer
- * \authors   Ratnadip Choudhury, Anish Kumar
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      AppServices_Impl.h
+ * @brief     Concrete class definition for the application service layer
+ * @authors   Ratnadip Choudhury, Anish Kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Concrete class definition for the application service layer
  */

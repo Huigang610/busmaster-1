@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      CAN_ICS_neoVI/CAN_ICS_neoVI_Network.cpp
- * \brief     Implementation file for CNetwork class
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      CAN_ICS_neoVI/CAN_ICS_neoVI_Network.cpp
+ * @brief     Implementation file for CNetwork class
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for CNetwork class
  */

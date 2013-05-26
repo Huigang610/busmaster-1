@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      MDIChildBase.cpp
- * \brief     Implementation file for CMDIChildBase class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      MDIChildBase.cpp
+ * @brief     Implementation file for CMDIChildBase class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for CMDIChildBase class
  */

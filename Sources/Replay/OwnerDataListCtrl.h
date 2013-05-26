@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      OwnerDataListCtrl.h
- * \brief     Interface file for COwnerDataListCtrl class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      OwnerDataListCtrl.h
+ * @brief     Interface file for COwnerDataListCtrl class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for COwnerDataListCtrl class
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      SigGrphWnd_Defines.h
- * \brief     Contains all the associated macro definitions
- * \author    Arunkumar Karri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      SigGrphWnd_Defines.h
+ * @brief     Contains all the associated macro definitions
+ * @author    Arunkumar Karri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Contains all the associated macro definitions
  */

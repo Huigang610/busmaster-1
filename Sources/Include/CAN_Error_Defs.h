@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      CAN_Error_Defs.h
- * \author    Pemmaiah BD
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      CAN_Error_Defs.h
+ * @author    Pemmaiah BD
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 
 #pragma once

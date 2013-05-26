@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      SignalDefiner.cpp
- * \brief     Defines the initialization routines for the DLL.
- * \author    Arunkumar Karri
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
+ * @file      SignalDefiner.cpp
+ * @brief     Defines the initialization routines for the DLL.
+ * @author    Arunkumar Karri
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
  *
  * Defines the initialization routines for the DLL.
  */
@@ -113,11 +113,11 @@ BOOL CSignalDefinerApp::InitInstance()
 CSignalDefinerDlg g_objSignalDefiner;
 
 /**
-* \brief         Shows the signal definer dialog
-* \param[out]    -
-* \param[in]     -
-* \return        S_OK on success and if USER presses OK button, S_FALSE otherwise
-* \authors       Arunkumar Karri
+* @brief         Shows the signal definer dialog
+* @param[out]    -
+* @param[in]     -
+* @return        S_OK on success and if USER presses OK button, S_FALSE otherwise
+* @authors       Arunkumar Karri
 * \date          03.02.2012 Created
 */
 USAGEMODE HRESULT SignalDefiner_ShowDlg()
@@ -128,11 +128,11 @@ USAGEMODE HRESULT SignalDefiner_ShowDlg()
 }
 
 /**
-* \brief         Gets the Signal details to display in Signal definer dialog
-* \param[out]    -
-* \param[in]     Signal Name as 'CString'
-* \return        S_OK on success and if USER presses OK button, S_FALSE otherwise
-* \authors       Arunkumar Karri
+* @brief         Gets the Signal details to display in Signal definer dialog
+* @param[out]    -
+* @param[in]     Signal Name as 'CString'
+* @return        S_OK on success and if USER presses OK button, S_FALSE otherwise
+* @authors       Arunkumar Karri
 * \date          03.02.2012 Created
 */
 USAGEMODE HRESULT SignalDefiner_SetSignalDetails(BSTR strSignalName)
@@ -142,11 +142,11 @@ USAGEMODE HRESULT SignalDefiner_SetSignalDetails(BSTR strSignalName)
 }
 
 /**
-* \brief         Setter for signal type
-* \param[out]    -
-* \param[in]     Gets the signal type in enum 'eSignalType'
-* \return        S_OK on success , S_FALSE otherwise
-* \authors       Arunkumar Karri
+* @brief         Setter for signal type
+* @param[out]    -
+* @param[in]     Gets the signal type in enum 'eSignalType'
+* @return        S_OK on success , S_FALSE otherwise
+* @authors       Arunkumar Karri
 * \date          03.02.2012 Created
 */
 USAGEMODE HRESULT SignalDefiner_SetType(SIGNAL_TYPE eSignalType)
@@ -157,11 +157,11 @@ USAGEMODE HRESULT SignalDefiner_SetType(SIGNAL_TYPE eSignalType)
 }
 
 /**
-* \brief         Getter for signal type
-* \param[out]    Gives back the signal type in enum 'peSignalType'
-* \param[in]     -
-* \return        S_OK on success , S_FALSE otherwise
-* \authors       Arunkumar Karri
+* @brief         Getter for signal type
+* @param[out]    Gives back the signal type in enum 'peSignalType'
+* @param[in]     -
+* @return        S_OK on success , S_FALSE otherwise
+* @authors       Arunkumar Karri
 * \date          03.02.2012 Created
 */
 USAGEMODE HRESULT SignalDefiner_GetType(SIGNAL_TYPE* peSignalType)
@@ -172,11 +172,11 @@ USAGEMODE HRESULT SignalDefiner_GetType(SIGNAL_TYPE* peSignalType)
 }
 
 /**
-* \brief         Setter for signal amplitude
-* \param[out]    -
-* \param[in]     Gets the signal amplitude in float 'fAmplitude'
-* \return        S_OK on success , S_FALSE otherwise
-* \authors       Arunkumar Karri
+* @brief         Setter for signal amplitude
+* @param[out]    -
+* @param[in]     Gets the signal amplitude in float 'fAmplitude'
+* @return        S_OK on success , S_FALSE otherwise
+* @authors       Arunkumar Karri
 * \date          03.02.2012 Created
 */
 USAGEMODE HRESULT SignalDefiner_SetAmplitude(float fAmplitude)
@@ -187,11 +187,11 @@ USAGEMODE HRESULT SignalDefiner_SetAmplitude(float fAmplitude)
 }
 
 /**
-* \brief         Getter for signal amplitude
-* \param[out]    Gives back the signal amplitude in float 'pfAmplitude'
-* \param[in]     -
-* \return        S_OK on success , S_FALSE otherwise
-* \authors       Arunkumar Karri
+* @brief         Getter for signal amplitude
+* @param[out]    Gives back the signal amplitude in float 'pfAmplitude'
+* @param[in]     -
+* @return        S_OK on success , S_FALSE otherwise
+* @authors       Arunkumar Karri
 * \date          03.02.2012 Created
 */
 USAGEMODE HRESULT SignalDefiner_GetAmplitude(float* pfAmplitude)
@@ -202,11 +202,11 @@ USAGEMODE HRESULT SignalDefiner_GetAmplitude(float* pfAmplitude)
 }
 
 /**
-* \brief         Setter for signal Sampling TimePeriod
-* \param[out]    -
-* \param[in]     Gets the signal Sampling TimePeriod in int 'nSamplingTime'
-* \return        S_OK on success , S_FALSE otherwise
-* \authors       Arunkumar Karri
+* @brief         Setter for signal Sampling TimePeriod
+* @param[out]    -
+* @param[in]     Gets the signal Sampling TimePeriod in int 'nSamplingTime'
+* @return        S_OK on success , S_FALSE otherwise
+* @authors       Arunkumar Karri
 * \date          03.02.2012 Created
 */
 USAGEMODE HRESULT SignalDefiner_SetSamplingTimePeriod(int nSamplingTime)
@@ -226,11 +226,11 @@ USAGEMODE HRESULT SignalDefiner_SetAutoCorrect(bool bChecked)
     return S_OK;
 }
 /**
-* \brief         Getter for signal Sampling TimePeriod
-* \param[out]    Gives back the signal Sampling TimePeriod in int 'pnSamplingTime'
-* \param[in]     -
-* \return        S_OK on success , S_FALSE otherwise
-* \authors       Arunkumar Karri
+* @brief         Getter for signal Sampling TimePeriod
+* @param[out]    Gives back the signal Sampling TimePeriod in int 'pnSamplingTime'
+* @param[in]     -
+* @return        S_OK on success , S_FALSE otherwise
+* @authors       Arunkumar Karri
 * \date          03.02.2012 Created
 */
 USAGEMODE HRESULT SignalDefiner_GetSamplingTimePeriod(int* pnSamplingTime)
@@ -242,11 +242,11 @@ USAGEMODE HRESULT SignalDefiner_GetSamplingTimePeriod(int* pnSamplingTime)
 }
 
 /**
-* \brief         Setter for signal Frequency
-* \param[out]    -
-* \param[in]     Gets the signal Frequency in double 'dblFrequency'
-* \return        S_OK on success , S_FALSE otherwise
-* \authors       Arunkumar Karri
+* @brief         Setter for signal Frequency
+* @param[out]    -
+* @param[in]     Gets the signal Frequency in double 'dblFrequency'
+* @return        S_OK on success , S_FALSE otherwise
+* @authors       Arunkumar Karri
 * \date          03.02.2012 Created
 */
 USAGEMODE HRESULT SignalDefiner_SetFrequency(float dblFrequency)
@@ -257,11 +257,11 @@ USAGEMODE HRESULT SignalDefiner_SetFrequency(float dblFrequency)
 }
 
 /**
-* \brief         Getter for signal Frequency
-* \param[out]    Gives back the signal Frequency in double 'pdblFrequency'
-* \param[in]     -
-* \return        S_OK on success , S_FALSE otherwise
-* \authors       Arunkumar Karri
+* @brief         Getter for signal Frequency
+* @param[out]    Gives back the signal Frequency in double 'pdblFrequency'
+* @param[in]     -
+* @return        S_OK on success , S_FALSE otherwise
+* @authors       Arunkumar Karri
 * \date          03.02.2012 Created
 */
 USAGEMODE HRESULT SignalDefiner_GetFrequency(float* pdblFrequency)

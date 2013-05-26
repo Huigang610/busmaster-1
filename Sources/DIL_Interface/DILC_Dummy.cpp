@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      DIL_Interface/DILC_Dummy.cpp
- * \brief     Source file for dummy DIL functions
- * \authors   Ratnadip Choudhury, Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      DIL_Interface/DILC_Dummy.cpp
+ * @brief     Source file for dummy DIL functions
+ * @authors   Ratnadip Choudhury, Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Source file for dummy DIL functions
  */

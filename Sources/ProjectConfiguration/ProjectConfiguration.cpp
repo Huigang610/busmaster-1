@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ProjectConfiguration.cpp
- * \brief     This contains the dll entry point function and defines the entry point for the DLL application.
- * \authors   Anish Kumar, Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ProjectConfiguration.cpp
+ * @brief     This contains the dll entry point function and defines the entry point for the DLL application.
+ * @authors   Anish Kumar, Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This contains the dll entry point function and defines the entry point for the DLL application.
  */
@@ -98,8 +98,8 @@ BOOL CProjectConfigurationApp::InitInstance()
 }
 
 /**
- * \brief Adds a project entry in the project table or modifies an existing one
- * \req RS_06_06 - Adds a project entry in the project table or modifies an existing one
+ * @brief Adds a project entry in the project table or modifies an existing one
+ * @req RS_06_06 Adds a project entry in the project table or modifies an existing one
  *
  * Adds a project entry in the project table or modifies an existing one.
  * This is a project table related function.
@@ -118,8 +118,8 @@ USAGEMODE int AddModifyProjectTable(std::string& ProjectName, PROJECTDATA* ProjD
 }
 
 /**
- * \brief Deletes the project entry from the project table
- * \req RS_06_07 - Deletes the project entry from the project table
+ * @brief Deletes the project entry from the project table
+ * @req RS_06_07 Deletes the project entry from the project table
  *
  * Deletes the project entry from the project table.
  * This is a project table related function.
@@ -138,8 +138,8 @@ USAGEMODE int DeleteProjectTable(std::string& ProjectName)
 }
 
 /**
- * \brief Get total number of projects in the project table
- * \req RS_06_04 - Get total number of projects in the project table
+ * @brief Get total number of projects in the project table
+ * @req RS_06_04 Get total number of projects in the project table
  *
  * Get total number of projects in the project table.
  * This is a project table related function.
@@ -158,8 +158,8 @@ USAGEMODE int GetProjectCount(void)
 }
 
 /**
- * \brief Get project name list from the project table
- * \req RS_06_05 - Get project name list from the project table
+ * @brief Get project name list from the project table
+ * @req RS_06_05 Get project name list from the project table
  *
  * Get project name list from the project table.
  * This is a project table related function.
@@ -178,8 +178,8 @@ USAGEMODE int GetProjectList(LISTSTR* ProjList)
 }
 
 /**
- * \brief Retrieves project data from the project table
- * \req RS_06_08 - Retrieves project data from the project table
+ * @brief Retrieves project data from the project table
+ * @req RS_06_08 Retrieves project data from the project table
  *
  * Retrieves project data from the project table.
  * This is a project table related function.
@@ -198,8 +198,8 @@ USAGEMODE int GetProjectData(std::string& ProjName, PROJECTDATA& ProjData)
 }
 
 /**
- * \brief Add a section or modify an existing one in the section table of the project
- * \req RS_06_09 - Add a section or modify an existing one in the section table of the project
+ * @brief Add a section or modify an existing one in the section table of the project
+ * @req RS_06_09 Add a section or modify an existing one in the section table of the project
  *
  * Add a section or modify an existing one in the section table of the project.
  * This is a section data related function.
@@ -221,8 +221,8 @@ USAGEMODE int AddModifySectionData(std::string& ProjectName, std::string& Sectio
 }
 
 /**
- * \brief Gets information of that particular section from the section table of the project
- * \req RS_06_11 - Gets information of that particular section from the section table of the project
+ * @brief Gets information of that particular section from the section table of the project
+ * @req RS_06_11 Gets information of that particular section from the section table of the project
  *
  * Gets information of that particular section from the section table of the project.
  * This is a section data related function.
@@ -241,8 +241,8 @@ USAGEMODE BOOL GetSectionData(std::string& ProjectName, std::string& SectionName
 }
 
 /**
- * \brief Receives total number of sections from the section table of the project
- * \req RS_06_12 - Receives total number of sections from the section table of the project
+ * @brief Receives total number of sections from the section table of the project
+ * @req RS_06_12 Receives total number of sections from the section table of the project
  *
  * Receives total number of sections from the section table of the project.
  * This is a section data related function.
@@ -261,8 +261,8 @@ USAGEMODE int GetSectionCount(std::string& ProjectName)
 }
 
 /**
- * \brief Retrieves list of all the section names from the section table of the project
- * \req RS_06_13 - Retrieves list of all the section names from the section table of the project
+ * @brief Retrieves list of all the section names from the section table of the project
+ * @req RS_06_13 Retrieves list of all the section names from the section table of the project
  *
  * Retrieves list of all the section names from the section table of the project.
  * This is a section data related function.
@@ -281,8 +281,8 @@ USAGEMODE int GetSectionList(std::string& ProjectName, LISTSTR* SectionList)
 }
 
 /**
- * \brief Set the present data storage configuration
- * \req RS_06_01 - Set the present data storage configuration
+ * @brief Set the present data storage configuration
+ * @req RS_06_01 Set the present data storage configuration
  *
  * Set the present data storage configuration.
  * This is a data storage related function.
@@ -306,8 +306,8 @@ USAGEMODE int SetDatastorageConfig(DATASTORAGEINFO* StorageInfo)
 }
 
 /**
- * \brief Get the presently selected data storage configuration
- * \req RS_06_02 - Get the presently selected data storage configuration
+ * @brief Get the presently selected data storage configuration
+ * @req RS_06_02 Get the presently selected data storage configuration
  *
  * Get the presently selected data storage configuration.
  * This is a data storage related function.
@@ -335,9 +335,9 @@ USAGEMODE int GetDatastorageConfig(DATASTORAGEINFO* StorageInfo)
 }
 
 /**
- * \brief Perform data storage operation after selection
- * \param[in] operation is OPEN, SAVE or CLOSE
- * \req RS_06_03 - Perform data storage operation after selection
+ * @brief Perform data storage operation after selection
+ * @param[in] operation is OPEN, SAVE or CLOSE
+ * @req RS_06_03 Perform data storage operation after selection
  *
  * Perform data storage operation after selection.
  * This is a data storage related function.

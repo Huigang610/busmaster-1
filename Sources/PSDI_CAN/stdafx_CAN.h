@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      stdafx_CAN.h
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      stdafx_CAN.h
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 // stdafx.h : include file for standard system include files,
 // or project specific include files that are used frequently, but

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      CAN_ETAS_BOA/CAN_ETAS_BOA.cpp
- * \brief     Source file for BOA DIL functions
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      CAN_ETAS_BOA/CAN_ETAS_BOA.cpp
+ * @brief     Source file for BOA DIL functions
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Source file for BOA DIL functions
  * Defines the initialization routines for the DLL.
@@ -319,7 +319,7 @@ public:
 static CDIL_CAN_ETAS_BOA* sg_pouDIL_CAN_ETAS_BOA = NULL;
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Returns the interface to controller
  */
@@ -662,7 +662,7 @@ BOA_ResultCode OCI_FindCANController(OCI_URIName uriName[], INT nSize, INT* nFou
 }
 
 /**
- * \return Returns true if found else false.
+ * @return Returns true if found else false.
  *
  * unClientIndex will have index to client array which has clientId dwClientID.
  */
@@ -684,7 +684,7 @@ static BOOL bGetClientObj(DWORD dwClientID, UINT& unClientIndex)
 }
 
 /**
- * \return TRUE if client exists else FALSE
+ * @return TRUE if client exists else FALSE
  *
  * Checks for the existance of the client with the name pcClientName.
  */
@@ -702,7 +702,7 @@ static BOOL bClientExist(std::string pcClientName, INT& Index)
 }
 
 /**
- * \return TRUE if client removed else FALSE
+ * @return TRUE if client removed else FALSE
  *
  * Removes the client with client id dwClientId.
  */
@@ -734,7 +734,7 @@ static BOOL bRemoveClient(DWORD dwClientId)
 }
 
 /**
- * \return TRUE if client exists else FALSE
+ * @return TRUE if client exists else FALSE
  *
  * Searches for the client with the id dwClientId.
  */
@@ -802,7 +802,7 @@ BOOL bRemoveMapEntry(const SACK_MAP& RefObj, UINT& ClientID)
 }
 
 /**
- * \param[in] nChannel Channel information
+ * @param[in] nChannel Channel information
  *
  * Initialize default values for controller configuration
  */
@@ -848,7 +848,7 @@ void vInitializeControllerConfig(UINT nChannel)
 }
 
 /**
- * \param[in] nChannel Channel information
+ * @param[in] nChannel Channel information
  *
  * Initialize default values for queue confgiuration
  */
@@ -863,7 +863,7 @@ void vInitializeQueueConfig(UINT nChannel)
 }
 
 /**
- * \param[in] nChannel Channel information
+ * @param[in] nChannel Channel information
  *
  * Initialize default values for filter confgiuration
  */
@@ -887,7 +887,7 @@ void vInitializeFilterConfig(UINT nChannel)
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Adds or removes the HW filter to/from the channel.
  */
@@ -1008,7 +1008,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Adds or removes the queue to/from the channel.
  */
@@ -1121,7 +1121,7 @@ void vCopyOCI_CAN_FD_RX_2_DATA(const OCI_CANFD_RxMessage* SrcMsg, STCANDATA* Des
 #endif
 
 /**
- * \return Returns channel number
+ * @return Returns channel number
  *
  * Gets the channel with handle OCI_ControllerHandle
  */
@@ -1498,7 +1498,7 @@ void (OCI_CALLBACK ProcessEvents)(void* userData, struct OCI_CANMessage* msg)
 }
 
 /**
- * \return Returns S_OK for success, S_FALSE for failure
+ * @return Returns S_OK for success, S_FALSE for failure
  *
  * Sets the application params.
  */
@@ -1510,7 +1510,7 @@ HRESULT CDIL_CAN_ETAS_BOA::setApplicationParameters(HWND hWndOwner, Base_Wrapper
 }
 
 /**
- * \return Returns S_OK for success, S_FALSE for failure
+ * @return Returns S_OK for success, S_FALSE for failure
  *
  * Unloads the driver library.
  */
@@ -1533,7 +1533,7 @@ HRESULT CDIL_CAN_ETAS_BOA::unloadDriverLibrary(void)
 }
 
 /**
- * \return Returns S_OK for success, S_FALSE for failure
+ * @return Returns S_OK for success, S_FALSE for failure
  *
  * Registers the buffer pBufObj to the client ClientID
  */
@@ -1610,7 +1610,7 @@ HRESULT CDIL_CAN_ETAS_BOA::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBa
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Registers a client to the DIL. ClientID will have client id
  * which will be used for further client related calls
@@ -1680,7 +1680,7 @@ HRESULT CDIL_CAN_ETAS_BOA::registerClient(BOOL bRegister, DWORD& ClientID, char*
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Loads BOA related libraries. Updates BOA API pointers
  */
@@ -1752,7 +1752,7 @@ HRESULT CDIL_CAN_ETAS_BOA::loadDriverLibrary(void)
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Performs intial operations.
  * Initializes filter, queue, controller config with default values.
@@ -1792,7 +1792,7 @@ HRESULT CDIL_CAN_ETAS_BOA::performInitOperations(void)
 }
 
 /**
- * \return TRUE for success, FALSE for failure
+ * @return TRUE for success, FALSE for failure
  *
  * Copies the controller config values into channel's
  * controller config structure.
@@ -1903,7 +1903,7 @@ BOOL vCopy_2_OCI_CANFD_Data(OCI_CANFD_TxMessage& DestMsg, const STCAN_MSG& SrcMs
 #endif
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Performs closure operations.
  */
@@ -1936,7 +1936,7 @@ HRESULT CDIL_CAN_ETAS_BOA::performClosureOperations(void)
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Gets the time mode mapping of the hardware. CurrSysTime
  * will be updated with the system time ref.
@@ -1954,7 +1954,7 @@ HRESULT CDIL_CAN_ETAS_BOA::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& T
 }
 
 /**
- * \return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
+ * @return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
  *
  * This function will popup hardware selection dialog and gets the user selection of channels.
  *
@@ -1981,7 +1981,7 @@ int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, INTERFACE_HW* psInt
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Lists the hardware interface available. sSelHwInterface
  * will contain the user selected hw interface.
@@ -2054,7 +2054,7 @@ HRESULT CDIL_CAN_ETAS_BOA::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInte
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Selects the hardware interface selected by the user.
  */
@@ -2151,7 +2151,7 @@ HRESULT CDIL_CAN_ETAS_BOA::selectHardwareInterface(const INTERFACE_HW_LIST& asSe
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Deselects the selected hardware interface.
  */
@@ -2205,7 +2205,7 @@ HRESULT CDIL_CAN_ETAS_BOA::deselectHardwareInterface(void)
 }
 
 /**
- * \return TRUE for success, FALSE for failure
+ * @return TRUE for success, FALSE for failure
  *
  * Call back function called from ConfigDialogDIL
  */
@@ -2215,7 +2215,7 @@ BOOL Callback_DILBOA(BYTE /*Argument*/, PSCONTROLLER_DETAILS pDatStream, INT /*L
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Displays the configuration dialog for controller
  */
@@ -2234,7 +2234,7 @@ int DisplayConfigurationDlg(HWND hParent, DILCALLBACK /*ProcDIL*/,
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Displays the controller configuration dialog.
  * Fields are initialized with values supplied by InitData.
@@ -2294,7 +2294,7 @@ HRESULT CDIL_CAN_ETAS_BOA::displayConfigurationDialog(PSCONTROLLER_DETAILS InitD
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Sets the controller configuration data supplied by InitData.
  */
@@ -2356,7 +2356,7 @@ HRESULT CDIL_CAN_ETAS_BOA::setConfigurationData(PSCONTROLLER_DETAILS pInitData, 
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Starts the controller.
  */
@@ -2422,7 +2422,7 @@ HRESULT CDIL_CAN_ETAS_BOA::startHardware(void)
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Stops the controller.
  */
@@ -2475,7 +2475,7 @@ HRESULT CDIL_CAN_ETAS_BOA::stopHardware(void)
 }
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Function to get Controller status
  */

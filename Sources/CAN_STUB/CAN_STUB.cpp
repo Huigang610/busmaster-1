@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      CAN_STUB/CAN_STUB.cpp
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      CAN_STUB/CAN_STUB.cpp
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation of CStub
  */
@@ -106,7 +106,7 @@ enum
 };
 
 /**
- * \brief Buffer to read msg from the PIPE
+ * @brief Buffer to read msg from the PIPE
  *
  * This buffer include CAN Msg + 1 Byte to indicate TX/RX + UINT64 to indicate timestamp
  */
@@ -223,7 +223,7 @@ public:
 static CDIL_CAN_STUB* sg_pouDIL_CAN_STUB = NULL;
 
 /**
- * \return S_OK for success, S_FALSE for failure
+ * @return S_OK for success, S_FALSE for failure
  *
  * Returns the interface to controller
  */

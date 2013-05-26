@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ContrConfigPeakUsbDefs.h
- * \brief     Macro definitions for controller configuration.
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ContrConfigPeakUsbDefs.h
+ * @brief     Macro definitions for controller configuration.
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Macro definitions for controller configuration.
  */

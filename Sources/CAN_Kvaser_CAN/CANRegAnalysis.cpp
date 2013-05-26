@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      CANRegAnalysis.cpp
- * \brief     This file contains the function which implements the
- * \authors   Amitesh Bharti, Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      CANRegAnalysis.cpp
+ * @brief     This file contains the function which implements the
+ * @authors   Amitesh Bharti, Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contains the function which implements the
  */

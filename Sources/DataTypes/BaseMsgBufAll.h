@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      BaseMsgBufAll.h
- * \brief     Defines base class for circular queue, both FSE and VSE.
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      BaseMsgBufAll.h
+ * @brief     Defines base class for circular queue, both FSE and VSE.
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Defines base class for circular queue, both FSE and VSE.
  */

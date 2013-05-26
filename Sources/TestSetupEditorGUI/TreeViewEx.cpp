@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      TreeViewEx.cpp
- * \author    Venkatanarayana makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TreeViewEx.cpp
+ * @author    Venkatanarayana makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 
 #include "TSEditorGUI_stdafx.h"
@@ -1377,10 +1377,10 @@ void CTreeViewEx::OnTvnEndlabeledit(NMHDR* pNMHDR, LRESULT* pResult)
 }
 
 /**
- * \brief On Add Entity Item
- * \req RS_27_08 - Addition of a test case sub-node
- * \req RS_27_11 - Addition of a send message node
- * \req RS_27_14 - Addition of a verify message node
+ * @brief On Add Entity Item
+ * @req RS_27_08 Addition of a test case sub-node
+ * @req RS_27_11 Addition of a send message node
+ * @req RS_27_14 Addition of a verify message node
  *
  * On Add Entity Item
  */
@@ -1421,10 +1421,10 @@ void CTreeViewEx::OnAddEntityItem(UINT nId)
 }
 
 /**
- * \brief On Delete Entity Item
- * \req RS_27_10 - Deletion of a test case sub-node
- * \req RS_27_13 - Deletion of a send message node
- * \req RS_27_16 - Deletion of a verify message node
+ * @brief On Delete Entity Item
+ * @req RS_27_10 Deletion of a test case sub-node
+ * @req RS_27_13 Deletion of a send message node
+ * @req RS_27_16 Deletion of a verify message node
  *
  * On Add Entity Item
  */

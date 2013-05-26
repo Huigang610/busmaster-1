@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ModuleID.h
- * \brief     This contains identifier of various modules.
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ModuleID.h
+ * @brief     This contains identifier of various modules.
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This contains identifier of various modules.
  */

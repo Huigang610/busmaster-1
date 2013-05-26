@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      TSEditorGUI_ChildFrame.cpp
- * \author    Venkatanarayana makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TSEditorGUI_ChildFrame.cpp
+ * @author    Venkatanarayana makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #include "TSEditorGUI_stdafx.h"
 #include "TreeViewEx.h"
@@ -3566,10 +3566,10 @@ void CTSEditorChildFrame::OnClose()
 }
 
 /**
-* \brief         Handler for GetMinMaxInfo event where default window size is validated.
-* \param         void
-* \return        S_OK if CAN_ResetHardware call is success, S_FALSE for failure
-* \authors       Arunkumar Karri
+* @brief         Handler for GetMinMaxInfo event where default window size is validated.
+* @param         void
+* @return        S_OK if CAN_ResetHardware call is success, S_FALSE for failure
+* @authors       Arunkumar Karri
 * \date          31.01.2013 Created
 */
 void CTSEditorChildFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)

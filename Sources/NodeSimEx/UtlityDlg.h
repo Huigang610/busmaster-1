@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      UtlityDlg.h
- * \brief     This header file contains the defintion of class
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      UtlityDlg.h
+ * @brief     This header file contains the defintion of class
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This header file contains the defintion of class
  */

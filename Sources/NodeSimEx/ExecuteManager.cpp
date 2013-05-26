@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ExecuteManager.cpp
- * \brief     This is a singleton class which takes care of creating and destroying
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ExecuteManager.cpp
+ * @brief     This is a singleton class which takes care of creating and destroying
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This is a singleton class which takes care of creating and destroying
  */
@@ -541,12 +541,12 @@ void CExecuteManager::vEnableNodeErrorHandler(const PSNODEINFO psNodeInfo,BOOL b
 }
 
 /**
-* \brief         Enable disable event handlers of the node whose NOdeInfo is
+* @brief         Enable disable event handlers of the node whose NOdeInfo is
 *                passed as parameter
-* \param[in]     PSNODEINFO
-* \param[in]     bool enable/disable
-* \return        void
-* \authors       Arunkumar Karri
+* @param[in]     PSNODEINFO
+* @param[in]     bool enable/disable
+* @return        void
+* @authors       Arunkumar Karri
 * \date          11.06.2012 Created
 */
 void CExecuteManager::vEnableNodeEventHandler(const PSNODEINFO psNodeInfo,BOOL bState)
@@ -594,10 +594,10 @@ void CExecuteManager::vEnableAllErrorHandler(BOOL bState)
 }
 
 /**
-* \brief         enable/disable all event handlers of all the nodes
-* \param[in]     bool to indicate enable/disable state
-* \return        void
-* \authors       Arunkumar Karri
+* @brief         enable/disable all event handlers of all the nodes
+* @param[in]     bool to indicate enable/disable state
+* @return        void
+* @authors       Arunkumar Karri
 * \date          11.06.2012 Created
 */
 void CExecuteManager::vEnableAllEventHandler(BOOL bState)

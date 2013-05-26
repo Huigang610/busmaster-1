@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      TSEditorGUI_stdafx.h
- * \brief     Include file for standard system include files,
- * \author    Venkatanarayana makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TSEditorGUI_stdafx.h
+ * @brief     Include file for standard system include files,
+ * @author    Venkatanarayana makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Include file for standard system include files,
  */

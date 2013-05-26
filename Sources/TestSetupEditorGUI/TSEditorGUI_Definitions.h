@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      TSEditorGUI_Definitions.h
- * \brief     Include file containing all the macro definitions
- * \author    Venkatanarayana Makam
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      TSEditorGUI_Definitions.h
+ * @brief     Include file containing all the macro definitions
+ * @author    Venkatanarayana Makam
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Include file containing all the macro definitions
  */

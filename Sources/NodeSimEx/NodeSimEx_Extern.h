@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      NodeSimEx_Extern.h
- * \brief     Declaration file for the exported function used to get the
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      NodeSimEx_Extern.h
+ * @brief     Declaration file for the exported function used to get the
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Declaration file for the exported function used to get the
  */

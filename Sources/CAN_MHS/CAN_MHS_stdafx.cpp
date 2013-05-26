@@ -14,9 +14,9 @@
  */
 
 /**
- * \file      CAN_MHS_stdafx.cpp
- * \author    Saravanan
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      CAN_MHS_stdafx.cpp
+ * @author    Saravanan
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 
 #include "CAN_MHS_stdafx.h"

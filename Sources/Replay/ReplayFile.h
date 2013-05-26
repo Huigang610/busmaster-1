@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      ReplayFile.h
- * \brief     Interface file for CReplayFile class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      ReplayFile.h
+ * @brief     Interface file for CReplayFile class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CReplayFile class
  */

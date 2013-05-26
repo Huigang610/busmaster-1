@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      AcceptanceFilterDlg.cpp
- * \brief     This file contain definition of CAcceptanceFilterDlg class
- * \authors   Amitesh Bharti, Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      AcceptanceFilterDlg.cpp
+ * @brief     This file contain definition of CAcceptanceFilterDlg class
+ * @authors   Amitesh Bharti, Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain definition of CAcceptanceFilterDlg class
  */
@@ -475,7 +475,7 @@ void CAcceptanceFilterDlg::OnOK()
 }
 
 /**
- * \brief     List hardware interfaces
+ * @brief     List hardware interfaces
  *
  * This function gets called when switched to extended filter mode
  */
@@ -487,7 +487,7 @@ void CAcceptanceFilterDlg::OnBnClickedRbtnDualFilterMode()
 }
 
 /**
- * \brief     List hardware interfaces
+ * @brief     List hardware interfaces
  *
  * This function gets called when switched to standard filter mode
  */
@@ -499,7 +499,7 @@ void CAcceptanceFilterDlg::OnBnClickedRbtnSingleFilterMode()
 }
 
 /**
- * \brief     List hardware interfaces
+ * @brief     List hardware interfaces
  *
  * This function gets called when switched to 'Accept all' filter type
  */
@@ -510,7 +510,7 @@ void CAcceptanceFilterDlg::OnBnClickedRbtnFilterAcceptAll()
 }
 
 /**
- * \brief     List hardware interfaces
+ * @brief     List hardware interfaces
  *
  * This function gets called when switched to 'Reject all' filter type
  */
@@ -521,7 +521,7 @@ void CAcceptanceFilterDlg::OnBnClickedRbtnFilterRejectAll()
 }
 
 /**
- * \brief     List hardware interfaces
+ * @brief     List hardware interfaces
  *
  * This function gets called when switched to 'Use mask and code' filter type
  */
@@ -532,7 +532,7 @@ void CAcceptanceFilterDlg::OnBnClickedRbtnFilterManualSet()
 }
 
 /**
- * \brief     List hardware interfaces
+ * @brief     List hardware interfaces
  *
  * Call this function to set the currently selected filter mode code, mask fields.
  */
@@ -557,7 +557,7 @@ void CAcceptanceFilterDlg::vSetFilterDetails(bool bSave)
 }
 
 /**
- * \brief     List hardware interfaces
+ * @brief     List hardware interfaces
  *
  * Call this function to save code, mask filter details of previous filter mode.
  */
@@ -574,7 +574,7 @@ void CAcceptanceFilterDlg::vSaveFilterDetails(BOOL bAccFilterMode)
 }
 
 /**
- * \brief     List hardware interfaces
+ * @brief     List hardware interfaces
  *
  * Call this function to enable or disable the code, mask options.
  */
@@ -591,7 +591,7 @@ void CAcceptanceFilterDlg::vEnableDisableCodeMaskFields(bool bEnable)
 }
 
 /**
- * \brief     List hardware interfaces
+ * @brief     List hardware interfaces
  *
  * Call this function to set hardware filter detail related settings
  */

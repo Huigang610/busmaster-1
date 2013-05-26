@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      NumEdit.cpp
- * \brief     Implementation file for CNumEdit
- * \author    Arunkumar K
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      NumEdit.cpp
+ * @brief     Implementation file for CNumEdit
+ * @author    Arunkumar K
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for CNumEdit
  */

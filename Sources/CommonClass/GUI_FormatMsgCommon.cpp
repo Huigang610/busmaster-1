@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      GUI_FormatMsgCommon.cpp
- * \brief     Implementation of CFormatMsgCommon class
- * \author    Anish kumar
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      GUI_FormatMsgCommon.cpp
+ * @brief     Implementation of CFormatMsgCommon class
+ * @author    Anish kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation of CFormatMsgCommon class
  */
@@ -100,9 +100,9 @@ void CFormatMsgCommon::vCalculateAndFormatTM(BYTE bExprnFlag, UINT64 TimeStamp,
 }
 
 /**
- * \brief      Format Time Stamp
- * \param[in]  dwTimeStamp time stamp to be formatted
- * \param[out] acTime Buffer to store formatted time
+ * @brief      Format Time Stamp
+ * @param[in]  dwTimeStamp time stamp to be formatted
+ * @param[out] acTime Buffer to store formatted time
  *
  * Format Time Stamp
  */

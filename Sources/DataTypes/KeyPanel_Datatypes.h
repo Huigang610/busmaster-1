@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      KeyPanel_Datatypes.h
- * \brief     Defines data type class for key panel
- * \author    Pradeep Kadoor
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      KeyPanel_Datatypes.h
+ * @brief     Defines data type class for key panel
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Defines data type class for key panel
  */

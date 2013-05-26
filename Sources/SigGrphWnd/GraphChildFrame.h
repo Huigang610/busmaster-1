@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      GraphChildFrm.h
- * \brief     Interface file for CGraphChildFrame class
- * \author    Raja N
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      GraphChildFrm.h
+ * @brief     Interface file for CGraphChildFrame class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CGraphChildFrame class
  */

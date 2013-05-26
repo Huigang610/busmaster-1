@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      SimSysWnd.h
- * \brief     Interface file for CSimSysWnd class
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      SimSysWnd.h
+ * @brief     Interface file for CSimSysWnd class
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CSimSysWnd class
  */

@@ -14,10 +14,10 @@
  */
 
 /**
- * \file      DatabaseDissociateDlg.cpp
- * \brief     Contains the description of the class CDatabaseDissociateDlg
- * \author    Ratnadip Choudhury
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      DatabaseDissociateDlg.cpp
+ * @brief     Contains the description of the class CDatabaseDissociateDlg
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Contains the description of the class CDatabaseDissociateDlg
  */
