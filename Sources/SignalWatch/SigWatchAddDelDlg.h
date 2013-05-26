@@ -66,7 +66,6 @@ protected:
     afx_msg void OnClickUnSelSubEntryList(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnDblclkUnSelSubEntryList(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnClickSelSubEntryList(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnSignaldetails();
     afx_msg void OnRClickUnSelSubEntryList(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnRClickSelSubEntryList(NMHDR* pNMHDR, LRESULT* pResult);
     virtual void OnOK();

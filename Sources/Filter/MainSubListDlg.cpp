@@ -75,7 +75,6 @@ BEGIN_MESSAGE_MAP(CMainSubListDlg, CDialog)
     ON_NOTIFY(NM_CLICK, IDC_LSTC_SIGNAL, OnClickUnSelSubEntryList)
     ON_NOTIFY(NM_DBLCLK, IDC_LSTC_SIGNAL, OnDblclkUnSelSubEntryList)
     ON_NOTIFY(NM_CLICK, IDC_LSTC_SIGNAL_WATCH, OnClickSelSubEntryList)
-    ON_COMMAND(IDM_SIGNALDLG_SIGNALDETAILS, OnSignaldetails)
     ON_NOTIFY(NM_RCLICK, IDC_LSTC_SIGNAL, OnRClickUnSelSubEntryList)
     ON_NOTIFY(NM_RCLICK, IDC_LSTC_SIGNAL_WATCH, OnRClickSelSubEntryList)
     ON_COMMAND(IDM_SIGNALDLG_ADD, OnBtnAddSubEntries)
@@ -916,18 +915,6 @@ void CMainSubListDlg::vUpdateSelSubEntryList(BOOL bAllEntries)
         // list of signal watch
     }
 
-}
-
-/**
- * @brief Show selected signal details
- * @todo Function needs to be implemented.
- *
- * This function will be called by framework when the user
- * selects "Signal Details" from the popup menu. This will show
- * selected signal details using CSignalDetailsDlg.
- */
-void CMainSubListDlg::OnSignaldetails()
-{
 }
 
 /*******************************************************************************

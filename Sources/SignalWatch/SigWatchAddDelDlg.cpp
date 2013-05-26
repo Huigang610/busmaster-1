@@ -74,7 +74,6 @@ BEGIN_MESSAGE_MAP(CSigWatchAddDelDlg, CDialog)
     ON_NOTIFY(NM_CLICK, IDC_LSTC_SIGNAL, OnClickUnSelSubEntryList)
     ON_NOTIFY(NM_DBLCLK, IDC_LSTC_SIGNAL, OnDblclkUnSelSubEntryList)
     ON_NOTIFY(NM_CLICK, IDC_LSTC_SIGNAL_WATCH, OnClickSelSubEntryList)
-    ON_COMMAND(IDM_SIGNALDLG_SIGNALDETAILS, OnSignaldetails)
     ON_NOTIFY(NM_RCLICK, IDC_LSTC_SIGNAL, OnRClickUnSelSubEntryList)
     ON_NOTIFY(NM_RCLICK, IDC_LSTC_SIGNAL_WATCH, OnRClickSelSubEntryList)
     ON_COMMAND(IDM_SIGNALDLG_ADD, OnBtnAddSubEntries)
@@ -891,25 +890,6 @@ void CSigWatchAddDelDlg::vUpdateSelSubEntryList(BOOL bAllEntries)
         // list of signal watch
     }
 
-}
-
-/*******************************************************************************
-Function Name    : OnSignaldetails
-Input(s)         :  -
-Output           :  -
-Functionality    : This function will be called by framework when the user
-                   selects "Signal Details" from the popup menu. This will show
-                   selected signal details using CSignalDetailsDlg.
-Member of        : CSigWatchAddDelDlg
-Friend of        :  -
-Author(s)        : Raja N
-Date Created     : 25.03.2004
-Modification By  : Raja N
-Modification on  : 22.07.2004, Modified calculating negative signal values in
-                   Hex mode
-*******************************************************************************/
-void CSigWatchAddDelDlg::OnSignaldetails()
-{
 }
 
 /*******************************************************************************
