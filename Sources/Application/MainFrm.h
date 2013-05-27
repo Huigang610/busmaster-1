@@ -485,7 +485,7 @@ private:
     HMODULE m_hModAdvancedUILib;
     bool    m_bUseAdvancedUILib;
     BYTE    m_bytIconSize;
-    PROJECTDATA m_sProjData;
+    ProjectData m_sProjData;
     CMenu* m_pExternalTools; // External Tools menu is dynamically created.
     DILLIST m_ouList;// List of the driver interface layers supported
     INT m_nDILCount; //Count of the driver interface layers supported

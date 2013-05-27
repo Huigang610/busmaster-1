@@ -24,89 +24,143 @@
 
 #pragma once
 
+/* C++ includes */
 #include <list>
 #include <string>
 
-enum {OPEN = 0x1, SAVE = 0x2, CLOSE = 0x4};
+typedef enum DataStorageOperationMode {
+    OPEN = 0x1,
+    SAVE = 0x2,
+    CLOSE = 0x4
+} DataStorageOperationMode;
 
-enum {FILEMODE = 0, DATABASEMODE};
+typedef enum DataStorageMode {
+    FILEMODE = 0,
+    DATABASEMODE
+} DataStorageMode;
 
-typedef std::list<std::string> LISTSTR;
+typedef std::list<std::string> StringList;
 
-class FILESTORAGEINFO
+class FileStorageInformation
 {
 public:
-    char m_FilePath[_MAX_PATH];
-    FILESTORAGEINFO();
+    std::string filePath;
+    FileStorageInformation();
 };
 
-class DBSTORAGEINFO
+typedef struct DataStorageInformation
 {
-};
+    DataStorageMode mode;
+    FileStorageInformation* FSInfo;
+} DataStorageInformation;
 
-typedef struct tagDATASTORAGEINFO
-{
-    short m_Datastore; // Value should be one between FILEMODE or DATABASEMODE
-    union
-    {
-        FILESTORAGEINFO* FSInfo;
-        DBSTORAGEINFO* DBSInfo;
-    };
-
-} DATASTORAGEINFO;
-
-/* The following class is defined to represent a project entry completely
-without the data (or section). This is used as a structure and hence all the
-members are declared public. */
-class PROJECTDATA
+/**
+ * This class is defined to represent a project entry completely
+ * without the data (or section). This is used as a structure and hence all the
+ * members are declared public.
+ *
+ * The necessary and sufficient information for a
+ * project entry is name (signature and hence it
+ * has to be unique), the language (expressed in
+ * ISO 639-3 code), time and date of last saving,
+ * application version and unique identifier.
+ */
+class ProjectData
 {
 public:
-    // DATA MEMBERS
-	std::string m_ProjectName;   // The necessary and sufficient information for a
-    std::string m_Language;      // project entry is name (signature and hence it
-    SYSTEMTIME m_ProjSysTime;// has to be unique), the language (expressed in
-    float m_fAppVersion;    // ISO 639-3 code), time and date of last saving,
-    DWORD m_dwAppUniqueId;  // application version and unique identifier.
+    std::string projectName;
+    std::string language;
+    SYSTEMTIME projectTime;
+    float applicationVersion;
+    DWORD applicationUniqueId;
 
-    // MEMBER FUNCTIONS
-    PROJECTDATA();          // Standard constructor
-    ~PROJECTDATA();         // Destructor
+    ProjectData();
 
-    // This clears the project entry wiping out all the data.
-    void Initialise(void);
+    /**
+     * @brief Does initialisation.
+     *
+     * This clears the project entry wiping out all the data.
+     */
+    void initialize(void);
 
-    // Equal operator overloaded
-    PROJECTDATA& operator=(const PROJECTDATA& RefObj);
+    /**
+     * Equal operator overloaded
+     *
+     * @param[in] refObj The soure object
+     * @return The current object, the modified one.
+     */
+    ProjectData& operator=(const ProjectData& refObj);
 
-    // To write project entry into a file. Advances the file pointer afterwards.
-    bool Write(FILE* pFile);
+    /**
+     * Writes the current object data into the target file.
+     * Advances the file pointer afterwards.
+     *
+     * @param[in] file The target file pointer.
+     * @return true if all the operations are successful, else false.
+     */
+    bool write(FILE* file);
 
-    // To read project entry from a file. This assumes the file pointer is cur-
-    // rently pointing to a project entry. Advances the file pointer afterwards.
-    bool Read(FILE* pFile);
+    /**
+     * Assuming the current file pointer points to a project
+     * data entry, this function retrieves project data entry
+     * and initialises the current object with the information.
+     * Advances the file pointer afterwards.
+     *
+     * @param[in] file The source file pointer.
+     * @return true if all the operations are successful, else false.
+     */
+    bool read(FILE* file);
 };
 
-// This class is defined to represent a section completely.
-class SECTIONDATA
+/**
+ * This class is defined to represent a section completely.
+ *
+ * The necessary and sufficient information for a
+ * section are the section name and the data in
+ * byte stream that it should contain.
+ */
+class SectionData
 {
 public:
-    std::string m_omSectionName; // The necessary and sufficient information for a
-    int m_nBLOBLen;         // section are the section name and the data in
-    BYTE* m_bBLOB;          // byte stream that it should contain.
+    std::string sectionName;
+    int blobLen;
+    BYTE* blob;
 
-    SECTIONDATA();          // Standard constructor
-    ~SECTIONDATA();         // Destructor
+    SectionData();
+    ~SectionData();
 
-    // This clears the section wiping out all the data.
-    void Initialise(void);
+    /**
+     * @brief Does initialisation
+     *
+     * This clears the section wiping out all the data.
+     */
+    void initialize(void);
 
-    // Equal operator overloaded
-    SECTIONDATA& operator=(const SECTIONDATA& RefObj);
+    /**
+     * Equal operator overloaded
+     *
+     * @param[in] refObj The soure object
+     * @return The current object, the modified one.
+     */
+    SectionData& operator=(const SectionData& refObj);
 
-    // To write section data into a file. Advances the file pointer afterwards.
-    bool Write(FILE* pFile);
+    /**
+     * Writes the current object data into the target file.
+     * Advances the file pointer afterwards.
+     *
+     * @param[in] file The target file pointer.
+     * @return true if all the operations are successful, else false.
+     */
+    bool write(FILE* file);
 
-    // To read section data from a file. This assumes the file pointer is
-    // currently pointing to a section. Advances the file pointer afterwards.
-    bool Read(FILE* pFile);
+    /**
+     * Assuming the current file pointer points to a section
+     * entry, this function retrieves section entry and
+     * initialises the current object with the information.
+     * Advances the file pointer afterwards.
+     *
+     * @param[in] file The source file pointer.
+     * @return true if all the operations are successful, else false.
+     */
+    bool read(FILE* file);
 };

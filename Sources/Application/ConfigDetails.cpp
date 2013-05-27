@@ -60,7 +60,7 @@ extern PSTXMSG g_psTxMsgBlockList;
 CConfigDetails::CConfigDetails() :  m_bConfigInfoLoaded(FALSE),
     m_bIsDirty(FALSE),
     m_hConfigFile(NULL),
-    m_fAppVersion(static_cast<FLOAT>(defAPPVERSION)),
+    applicationVersion(static_cast<FLOAT>(defAPPVERSION)),
     m_omStrMruCFile(defEMPTYSTR),
     m_omstrConfigFilename(defEMPTYSTR),
     m_omstrTempFilename(defEMPTYSTR),
@@ -772,7 +772,7 @@ BOOL CConfigDetails::bGetData(eCONFIGDETAILS  eParam, LPVOID* lpData)
                 if (lpData != NULL && *lpData != NULL)
                 {
                     float* pData = static_cast<float*>(*lpData);
-                    *pData = m_fAppVersion;
+                    *pData = applicationVersion;
                 }
             }
             break;
@@ -1735,7 +1735,7 @@ int CConfigDetails::nLoadStoreData(UINT nMode)
             {
                 bIsLoading = TRUE;
                 // extract the header information
-                oCfgArchive >> m_fAppVersion;
+                oCfgArchive >> applicationVersion;
                 oCfgArchive >> m_omStrCopyright;
 
                 // From this version onwards all successor
@@ -1746,7 +1746,7 @@ int CConfigDetails::nLoadStoreData(UINT nMode)
                 // If the config version is not latest version and
                 // not previous version too or the header is not correct
                 // then declare it as unsupported or coppupted header file
-                if ((m_fAppVersion < fSupportedVersion)
+                if ((applicationVersion < fSupportedVersion)
                         || m_omStrCopyright != defCOPYRIGHT)
                 {
                     // there is a corruption in th header information
@@ -1773,7 +1773,7 @@ int CConfigDetails::nLoadStoreData(UINT nMode)
                     oCfgArchive >> m_omStrMruCFile;
                     oCfgArchive >> m_omStrLogFilename;
                     oCfgArchive >> m_omStrReplayFilename;
-                    if (m_fAppVersion >= defMULTI_DATABASE_VERSION)
+                    if (applicationVersion >= defMULTI_DATABASE_VERSION)
                     {
                         CStringArray* pouTempArray ;
                         oCfgArchive >> pouTempArray;
@@ -1798,8 +1798,8 @@ int CConfigDetails::nLoadStoreData(UINT nMode)
             if (oCfgArchive.IsStoring())
             {
                 // extract the header information
-                m_fAppVersion = static_cast<FLOAT> (defAPPVERSION);
-                oCfgArchive << m_fAppVersion;
+                applicationVersion = static_cast<FLOAT> (defAPPVERSION);
+                oCfgArchive << applicationVersion;
                 oCfgArchive << m_omStrCopyright;
 
                 oCfgArchive << m_sToolBarButtonStatus.m_byMsgFilter;
@@ -1900,7 +1900,7 @@ int CConfigDetails::nLoadStoreData(UINT nMode)
                 if ( oCfgArchive.IsLoading())
                 {
                     // Load graph details only if the conf file version > 2.3
-                    if (m_fAppVersion >=
+                    if (applicationVersion >=
                             static_cast<float>( defSIGNAL_GRAPH_VERSION))
                     {
                         // Load it from the config file
@@ -1908,7 +1908,7 @@ int CConfigDetails::nLoadStoreData(UINT nMode)
                         // Reset the channel number if it is older version
                         // configuration file (V2.4)
                         // Channel support comes from V2.5 onwards
-                        if (m_fAppVersion ==
+                        if (applicationVersion ==
                                 static_cast<float>( defSIGNAL_GRAPH_VERSION))
                         {
                             int nSize =
@@ -2034,7 +2034,7 @@ void CConfigDetails::vInitDefaultValues()
     m_omStrCopyright = defCOPYRIGHT;
 
     // version info
-    m_fAppVersion = static_cast <float> (defAPPVERSION);
+    applicationVersion = static_cast <float> (defAPPVERSION);
 
 
     m_bIsDirty  = FALSE;
@@ -2458,7 +2458,7 @@ void CConfigDetails::vLoadStoreBaudRateDetails(CArchive& roCfgArchive)
         int nTimes = 0;
 
         // Check the Config file version
-        if (m_fAppVersion >= defMULTI_CHANNEL_VERSION)
+        if (applicationVersion >= defMULTI_CHANNEL_VERSION)
         {
             // Get the number of channels from the configuration file
             roCfgArchive >> nChannels;
@@ -2627,7 +2627,7 @@ void CConfigDetails::vLoadStoreWndCoords(CArchive& roCfgArchive)
 {
     // Set All values to default
     if (roCfgArchive.IsLoading() &&
-            m_fAppVersion < defMULTI_CHANNEL_VERSION)
+            applicationVersion < defMULTI_CHANNEL_VERSION)
     {
         // Load Default values
         vInitWndCoords();
@@ -2647,7 +2647,7 @@ void CConfigDetails::vLoadStoreWndCoords(CArchive& roCfgArchive)
     // Load Graph window and Tx Window information only if the
     // version is >=2.5 that is Multi channel version
     // Save irrespective of app version
-    if (m_fAppVersion >= defMULTI_CHANNEL_VERSION ||
+    if (applicationVersion >= defMULTI_CHANNEL_VERSION ||
             roCfgArchive.IsStoring())
     {
         // Placement structure of Graph window
@@ -2673,7 +2673,7 @@ void CConfigDetails::vLoadStoreSplitterPostion( CArchive& oCfgArchive)
     // Loading
     if (oCfgArchive.IsLoading())
     {
-        if (m_fAppVersion >= defMULTI_CHANNEL_VERSION)
+        if (applicationVersion >= defMULTI_CHANNEL_VERSION)
         {
             // Read Graph Window Splitter Postion
             // Root splitter information
@@ -3057,7 +3057,7 @@ BOOL CConfigDetails::bLoadStoreMsgFilterDetails(CArchive& roCfgArchive)
     if(roCfgArchive.IsLoading())
     {
         // Latest version file
-        if( m_fAppVersion >= static_cast<float>( defMULTI_FILTER_VERSION ))
+        if( applicationVersion >= static_cast<float>( defMULTI_FILTER_VERSION ))
         {
             bLoadFilterDets(roCfgArchive, m_sFilterConfigured);
             //CFilterManager::ouGetFilterManager().Serialize( roCfgArchive );
@@ -3194,7 +3194,7 @@ BOOL CConfigDetails::bLoadStoreMsgInfo(CArchive& roCfgArchive,
 
                     // Load Enable Option only for latest configuration file
                     // That is version > 2.4
-                    if (m_fAppVersion >= defTX_MSG_ENABLE_OPTION_VERISION)
+                    if (applicationVersion >= defTX_MSG_ENABLE_OPTION_VERISION)
                     {
                         roCfgArchive >> sTxMsgDetails.m_bEnabled;
                     }
@@ -3211,7 +3211,7 @@ BOOL CConfigDetails::bLoadStoreMsgInfo(CArchive& roCfgArchive,
                     roCfgArchive >> sTxMsgDetails.m_sTxMsg.m_ucRTR;
 
                     // Read Channel Info only for Multi channel version
-                    if (m_fAppVersion >= defMULTI_CHANNEL_VERSION)
+                    if (applicationVersion >= defMULTI_CHANNEL_VERSION)
                     {
                         roCfgArchive >> sTxMsgDetails.m_sTxMsg.m_ucChannel;
                     }
@@ -4757,7 +4757,7 @@ BOOL CConfigDetails::bLoadStoreSimSysList(CArchive& roCfgArchive)
     // Loading
     else
     {
-        if (m_fAppVersion >= static_cast<FLOAT>(defMULTI_NODE_VERSION))
+        if (applicationVersion >= static_cast<FLOAT>(defMULTI_NODE_VERSION))
         {
 
             UINT unLength = 0;
@@ -5237,7 +5237,7 @@ BOOL CConfigDetails::bLoadStoreDisplayFilterInfo( CArchive& oCfgArchive)
     if (oCfgArchive.IsLoading())
     {
         // Only If supported in the config file
-        if (m_fAppVersion >= static_cast<float>( defMULTI_FILTER_VERSION))
+        if (applicationVersion >= static_cast<float>( defMULTI_FILTER_VERSION))
         {
             m_omMsgDisplayFilter.RemoveAll();
             // Get Message Filter List size
@@ -5383,7 +5383,7 @@ BOOL CConfigDetails::bLoadStoreLogFileInfo(CArchive& omArchive)
     // Loading file
     if (omArchive.IsLoading())
     {
-        if (m_fAppVersion >= static_cast<float>( defMULTI_FILTER_VERSION))
+        if (applicationVersion >= static_cast<float>( defMULTI_FILTER_VERSION))
         {
             bLoadSaveLogInfo(omArchive, m_sLogConfigDets);
         }
@@ -5476,7 +5476,7 @@ BOOL CConfigDetails::bLoadStoreReplayFileInfo(CArchive& omArchive)
     // Loading file
     if (omArchive.IsLoading())
     {
-        if (m_fAppVersion >= static_cast<float>( defMULTI_FILTER_VERSION))
+        if (applicationVersion >= static_cast<float>( defMULTI_FILTER_VERSION))
         {
             bResult =
                 bLoadReplayDetails(omArchive, m_sReplayDetails);

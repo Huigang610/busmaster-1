@@ -158,7 +158,7 @@ private:
     // handle to the configuration file currently loaded
     HANDLE                  m_hConfigFile;
     // version information
-    float                   m_fAppVersion;
+    float                   applicationVersion;
     // message name that is written/read from configuration
     CString                 m_omStrMsgName;
     // message id that is written/ read from configuration

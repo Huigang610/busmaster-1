@@ -24,34 +24,45 @@
 
 #pragma once
 
+/* C++ includes */
 #include <list>
 #include <map>
 #include <string>
 
-typedef std::map<std::string, SECTIONDATA*> SECTIONMAP;
+/**
+ * Section map type
+ */
+typedef std::map<std::string, SectionData*> SectionMap;
 
 class CProjConfig
 {
-private:
-
-    PROJECTDATA m_sProjectDetails;
-    SECTIONMAP m_MapOfSection;
-
-    void vClearMap(void);
-
 public:
-
-    // Constructor and destructor
     CProjConfig();
     virtual ~CProjConfig();
 
-    // All the getters
-    int GetSectionCount();
-    void GetProjectDetail(PROJECTDATA& ProjData);
-	int GetSectionList(std::list<std::string>& SectionList);
-    bool GetSectionData(std::string SectionName, SECTIONDATA& SectionData);
+    /* Getters */
+    int getSectionCount();
+    void getProjectData(ProjectData& projectData);
+    int getSectionList(std::list<std::string>& sectionList);
+    bool getSectionData(std::string sectionName, SectionData& sectionData);
 
-    // All the setters
-    bool AddModifySectionDetail(const SECTIONDATA& SectionData);
-    void ModifyProjValues(const PROJECTDATA& ProjDATA);
+    /* Setters */
+    bool setSectionData(const SectionData& sectionData);
+    void setProjectData(const ProjectData& projectData);
+
+private:
+    /**
+     * Project data
+     */
+    ProjectData projectData;
+
+    /**
+     * Section map
+     */
+    SectionMap sectionMap;
+
+    /**
+     * Clear project map
+     */
+    void clearProjectMap(void);
 };

@@ -24,38 +24,50 @@
 
 #pragma once
 
+/* C++ includes */
 #include <list>
 #include <map>
 #include <string>
 
-typedef std::map<std::string, CProjConfig> PROJECTMAP;
+/* Project includes */
+#include "ProjConfig.h"
+
+typedef std::map<std::string, CProjConfig> ProjectMap;
 
 class CProjConfigManager
 {
-
-private:
-
-    PROJECTMAP m_MapOfProject;
-
-	bool GetProjectConfig(std::string ProjectName, CProjConfig*& ProjConfig);
-
 public:
-
     // Constructor and destructor
     CProjConfigManager();
     virtual ~CProjConfigManager();
 
-    // Getters
-    int GetProjectCount();
-    int GetProjectList(std::list<std::string>& ProjectList);
-    bool GetProjectData(std::string ProjectName, PROJECTDATA& ProjData);
-    int GetSectionCount(std::string ProjectName);
-    int GetSectionList(std::string ProjectName, std::list<std::string>& SectionList);
-    bool GetSectionData(std::string ProjectName, std::string SectionName, SECTIONDATA& Sectiondata);
+    /* Project functions */
+    int getProjectCount();
+    int getProjectList(std::list<std::string>& projectList);
+    bool getProjectData(std::string projectName, ProjectData& projectData);
+    void setProjectData(const ProjectData& projectData);
+    void deleteProject(std::string projectName);
+    void deleteAllProjects(void);
 
-    // Setters
-    void AddModifyProjDetail(const PROJECTDATA& ProjData);
-    bool AddModifySection(std::string ProjectName, const SECTIONDATA& SectionData);
-    void DeleteProjectTable(std::string ProjectName);
-    void DeleteAllProjectTable(void);
+    /* Section functions */
+    int getSectionCount(std::string projectName);
+    int getSectionList(std::string projectName, std::list<std::string>& sectionList);
+    bool getSectionData(std::string projectName, std::string sectionName, SectionData& sectionData);
+    bool setSectionData(std::string projectName, const SectionData& sectionData);
+
+private:
+    /**
+     * Project map
+     */
+    ProjectMap projectMap;
+
+    /**
+     * Get project configuration.
+     */
+    bool getProjectConfiguration(std::string projectName, CProjConfig*& projectConfiguration);
 };
+
+/**
+ * Project manager object
+ */
+extern CProjConfigManager g_ProjCfgManager;

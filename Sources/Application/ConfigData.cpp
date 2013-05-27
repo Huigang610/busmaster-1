@@ -48,22 +48,22 @@ void CConfigData::vReadConfigFile()
     {
         if (pCheckSum == fChecksum)
         {
-            if (DoDatastorageOperation(OPEN) == 0)
+            if (doDataStorageOperation(OPEN) == 0)
             {
-                PROJECTDATA sTempData;
-                GetProjectData(m_strCurrProjName, sTempData);
-                if (sTempData.m_dwAppUniqueId != BUSMASTER_UNIQUE_ID)
+                ProjectData sTempData;
+                getProjectData(m_strCurrProjName, sTempData);
+                if (sTempData.applicationUniqueId != BUSMASTER_UNIQUE_ID)
                 {
                     AfxMessageBox (_("The configuration file is not compatible"),
                                    MB_OK | MB_ICONERROR);
-                    DoDatastorageOperation(CLOSE);
+                    doDataStorageOperation(CLOSE);
                 }
             }
             else
             {
                 AfxMessageBox (_("The configuration file is not valid"),
                                MB_OK | MB_ICONERROR);
-                DoDatastorageOperation(CLOSE);
+                doDataStorageOperation(CLOSE);
             }
         }
         else
@@ -77,25 +77,25 @@ void CConfigData::vReadConfigFile()
 void CConfigData::vSaveConfigFile()
 {
     UCHAR pCheckSum;
-    DoDatastorageOperation(SAVE);
+    doDataStorageOperation(SAVE);
     bSetCheckSum(m_omStrCurrFileName , &pCheckSum);
 }
 
 void CConfigData::vCloseConfigFile()
 {
-    DoDatastorageOperation(CLOSE);
+    doDataStorageOperation(CLOSE);
     m_omStrCurrFileName.Empty();
 }
 
-int CConfigData::SetConfigDatastorage(DATASTORAGEINFO* StorageInfo)
+int CConfigData::SetConfigDatastorage(DataStorageInformation* StorageInfo)
 {
-    m_omStrCurrFileName = StorageInfo->FSInfo->m_FilePath;
-    return SetDatastorageConfig(StorageInfo);
+    m_omStrCurrFileName = StorageInfo->FSInfo->filePath.c_str();
+    return setDataStorageConfiguration(StorageInfo);
 }
 
-int CConfigData::GetConfigDatastorage(DATASTORAGEINFO* StorageInfo)
+int CConfigData::GetConfigDatastorage(DataStorageInformation* StorageInfo)
 {
-    return GetDatastorageConfig(StorageInfo);
+    return getDataStorageConfiguration(StorageInfo);
 }
 
 void CConfigData::vSetCurrProjName(std::string strCurrProjName)
@@ -108,16 +108,15 @@ std::string CConfigData::GetCurrProjName()
     return m_strCurrProjName;
 }
 
-
-BOOL CConfigData::bSetCurrProjInfo(PROJECTDATA* ProjData)
+BOOL CConfigData::bSetCurrProjInfo(ProjectData& ProjData)
 {
-    ProjData->m_ProjectName = m_strCurrProjName;
-    return AddModifyProjectTable(m_strCurrProjName , ProjData);
+    ProjData.projectName = m_strCurrProjName;
+    return setProjectData(ProjData);
 }
 
-BOOL CConfigData::bGetCurrProjInfo(PROJECTDATA* ProjData)
+BOOL CConfigData::bGetCurrProjInfo(ProjectData& ProjData)
 {
-    return GetProjectData(m_strCurrProjName, *ProjData);
+    return getProjectData(m_strCurrProjName, ProjData);
 }
 
 BOOL CConfigData::bSetData(LPVOID lpVoid, int nStreamLength, std::string strSectionName)
@@ -130,13 +129,12 @@ BOOL CConfigData::bSetData(LPVOID lpVoid, int nStreamLength, std::string strSect
         //if(m_bConfigInfoLoaded == TRUE)
         //{
 
-        SECTIONDATA tempSecData;
-        tempSecData.m_omSectionName = strSectionName;
-        tempSecData.m_nBLOBLen = nStreamLength;
-        tempSecData.m_bBLOB = new BYTE[nStreamLength];
-        memcpy(tempSecData.m_bBLOB,lpVoid, nStreamLength);
-        AddModifySectionData(m_strCurrProjName,
-                             tempSecData.m_omSectionName, &tempSecData);
+        SectionData tempSecData;
+        tempSecData.sectionName = strSectionName;
+        tempSecData.blobLen = nStreamLength;
+        tempSecData.blob = new BYTE[nStreamLength];
+        memcpy(tempSecData.blob, lpVoid, nStreamLength);
+        setSectionData(m_strCurrProjName, tempSecData);
         //delete []tempSecData.m_bBLOB;
 
         //}
@@ -151,18 +149,17 @@ BOOL CConfigData::bGetData(void*& lpData, int& nStreamLength, std::string strSec
     // is the configuration loaded?
     // if((m_bConfigInfoLoaded == TRUE) && (bRetVal == TRUE))
     {
-        SECTIONDATA tempSecData;
-        tempSecData.m_omSectionName = strSectionName;
-        bRetVal = GetSectionData(m_strCurrProjName,
-                                 tempSecData.m_omSectionName, tempSecData);
+        SectionData tempSecData;
+        tempSecData.sectionName = strSectionName;
+        bRetVal = getSectionData(m_strCurrProjName, tempSecData.sectionName, tempSecData);
         if (bRetVal != FALSE)
         {
             bRetVal = FALSE;
-            BYTE* pbNewDat = new BYTE[tempSecData.m_nBLOBLen];
+            BYTE* pbNewDat = new BYTE[tempSecData.blobLen];
             if (pbNewDat != NULL)
             {
-                memcpy(pbNewDat, tempSecData.m_bBLOB, tempSecData.m_nBLOBLen);
-                nStreamLength = tempSecData.m_nBLOBLen;
+                memcpy(pbNewDat, tempSecData.blob, tempSecData.blobLen);
+                nStreamLength = tempSecData.blobLen;
                 lpData = (void*) pbNewDat;
                 bRetVal = TRUE;
             }

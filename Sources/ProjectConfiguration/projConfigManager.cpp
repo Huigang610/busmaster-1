@@ -22,168 +22,145 @@
  * Contains project configuration manager class implementation.
  */
 
-// projConfigManager.cpp: implementation of the CProjConfigManager class.
-//
-//////////////////////////////////////////////////////////////////////
-
+/* Project includes */
 #include "StdAfx_ProjectConfiguration.h"
 #include "ProjectConfiguration_extern.h"
 #include "ProjConfig.h"
 #include "projConfigManager.h"
 #include "Application/StdAfx.h"
 
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+CProjConfigManager g_ProjCfgManager;
 
 CProjConfigManager::CProjConfigManager()
 {
-    m_MapOfProject.clear();
+    projectMap.clear();
 }
 
 CProjConfigManager::~CProjConfigManager()
 {
     // ENSURE DESTRUCTOR OF CProjConfig IS CALLED
-    m_MapOfProject.clear();
+    projectMap.clear();
 }
 
-
-bool CProjConfigManager::GetProjectConfig(std::string ProjectName, CProjConfig*& ProjConfig)
+bool CProjConfigManager::getProjectConfiguration(std::string ProjectName, CProjConfig*& ProjConfig)
 {
     bool bResult = false;
-    PROJECTMAP::iterator i = m_MapOfProject.begin();
-    if (i != m_MapOfProject.end())
+    ProjectMap::iterator i = projectMap.begin();
+    if (i != projectMap.end())
     {
         bResult = true;
         ProjConfig = &(i->second);
     }
-    //else
-    //{
-    //  if (m_MapOfProject.size() > 0)
-    //  {
-    //      PROJECTDATA xyz;
-    //      PROJECTMAP::iterator i1 = m_MapOfProject.begin();
-    //      CProjConfig *ProjConfig = &(i1->second);
-    //      ProjConfig->GetProjectDetail(xyz);
-    //      string ab;//= xyz.m_ProjectName;
-    //      ab = i1->first;
-    //  }
-    //}
     return bResult;
 }
 
-// Getters
-
-int CProjConfigManager::GetProjectCount()
+int CProjConfigManager::getProjectCount()
 {
-    return m_MapOfProject.size();
+    return projectMap.size();
 }
 
-int CProjConfigManager::GetProjectList(std::list<std::string>& ProjectList)
+int CProjConfigManager::getProjectList(std::list<std::string>& ProjectList)
 {
     ProjectList.clear();
 
-    for (PROJECTMAP::iterator i = m_MapOfProject.begin(); i != m_MapOfProject.end(); ++i)
+    for (ProjectMap::iterator i = projectMap.begin(); i != projectMap.end(); ++i)
     {
         ProjectList.push_front(i->first);
     }
 
-    return GetProjectCount();
+    return getProjectCount();
 }
 
-bool CProjConfigManager::GetProjectData(std::string ProjName, PROJECTDATA& ProjData)
+bool CProjConfigManager::getProjectData(std::string ProjName, ProjectData& ProjData)
 {
     bool bResult = false;
 
-    PROJECTMAP::iterator i = m_MapOfProject.find(ProjName);
-    bResult = (i != m_MapOfProject.end());
+    ProjectMap::iterator i = projectMap.find(ProjName);
+    bResult = (i != projectMap.end());
 
     if (bResult)
     {
-        i->second.GetProjectDetail(ProjData);
+        i->second.getProjectData(ProjData);
     }
 
     return bResult;
 }
 
-int CProjConfigManager::GetSectionCount(std::string ProjectName)
+int CProjConfigManager::getSectionCount(std::string ProjectName)
 {
     int nResult = 0;
 
     CProjConfig* ProjConfig = NULL;
-    if (GetProjectConfig(ProjectName, ProjConfig))
+    if (getProjectConfiguration(ProjectName, ProjConfig))
     {
-        nResult = ProjConfig->GetSectionCount();
+        nResult = ProjConfig->getSectionCount();
     }
 
     return nResult;
 }
 
-int CProjConfigManager::GetSectionList(std::string ProjectName, std::list<std::string>& SectionList)
+int CProjConfigManager::getSectionList(std::string ProjectName, std::list<std::string>& SectionList)
 {
     int nResult = 0;
 
     CProjConfig* ProjConfig = NULL;
-    if (GetProjectConfig(ProjectName, ProjConfig))
+    if (getProjectConfiguration(ProjectName, ProjConfig))
     {
-        nResult = ProjConfig->GetSectionList(SectionList);
+        nResult = ProjConfig->getSectionList(SectionList);
     }
 
     return nResult;
 }
 
-bool CProjConfigManager::GetSectionData(std::string ProjectName, std::string SectionName,
-                                        SECTIONDATA& Sectiondata)
+bool CProjConfigManager::getSectionData(std::string ProjectName, std::string SectionName,
+                                        SectionData& Sectiondata)
 {
     bool bResult = false;
 
     CProjConfig* ProjConfig = NULL;
-    if (GetProjectConfig(ProjectName, ProjConfig))
+    if (getProjectConfiguration(ProjectName, ProjConfig))
     {
-        bResult = ProjConfig->GetSectionData(SectionName, Sectiondata);
+        bResult = ProjConfig->getSectionData(SectionName, Sectiondata);
     }
     return bResult;
 }
 
-
-// Setters
-
-void CProjConfigManager::AddModifyProjDetail(const PROJECTDATA& NewProjData)
+void CProjConfigManager::setProjectData(const ProjectData& NewProjData)
 {
     CProjConfig* pProjConfig = NULL;
-    if (GetProjectConfig(NewProjData.m_ProjectName, pProjConfig))
+    if (getProjectConfiguration(NewProjData.projectName, pProjConfig))
     {
-        pProjConfig->ModifyProjValues(NewProjData);
+        pProjConfig->setProjectData(NewProjData);
     }
     else
     {
         CProjConfig NewProjConfig;
-        NewProjConfig.ModifyProjValues(NewProjData);
-        m_MapOfProject.insert(PROJECTMAP::value_type(NewProjData.m_ProjectName,
-                              NewProjConfig));
+        NewProjConfig.setProjectData(NewProjData);
+        projectMap.insert(ProjectMap::value_type(NewProjData.projectName,
+                          NewProjConfig));
     }
 }
 
-bool CProjConfigManager::AddModifySection(std::string ProjectName,
-        const SECTIONDATA& SectionData)
+bool CProjConfigManager::setSectionData(std::string ProjectName,
+                                        const SectionData& SectionData)
 {
     bool bResult = false;
 
     CProjConfig* ProjConfig = NULL;
-    if (GetProjectConfig(ProjectName, ProjConfig))
+    if (getProjectConfiguration(ProjectName, ProjConfig))
     {
-        bResult = ProjConfig->AddModifySectionDetail(SectionData);
+        bResult = ProjConfig->setSectionData(SectionData);
     }
 
     return bResult;
 }
 
-void CProjConfigManager::DeleteProjectTable(std::string ProjectName)
+void CProjConfigManager::deleteProject(std::string ProjectName)
 {
-    m_MapOfProject.erase(ProjectName);
+    projectMap.erase(ProjectName);
 }
 
-void CProjConfigManager::DeleteAllProjectTable(void)
+void CProjConfigManager::deleteAllProjects(void)
 {
-    m_MapOfProject.clear();
+    projectMap.clear();
 }

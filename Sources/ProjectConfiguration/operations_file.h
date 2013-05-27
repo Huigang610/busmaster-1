@@ -24,29 +24,34 @@
 
 #pragma once
 
-// Project getters
-int FileGetProjectCount(void);
-int FileGetProjectList(LISTSTR& ProjectList);
-bool FileGetProjectData(std::string ProjectName, PROJECTDATA& ProjData);
+/* C++ includes */
+#include <string>
 
-// Section getters
-int FileGetSectionCount(std::string ProjectName);
-int FileGetSectionList(std::string ProjectName, LISTSTR& SectionList);
-bool FileGetSectionData(std::string ProjectName, std::string SectionName, SECTIONDATA& SectionData);
+/**
+ * File read
+ *
+ * @param[in] fileName File name
+ * @return Error code
+ */
+int loadDataFile(std::string fileName);
 
-// Project setters
-void FileAddModifyProjectTable(std::string ProjectName, PROJECTDATA& ProjData);
-bool FileDeleteProjectTable(std::string ProjectName);
+/**
+ * File close
+ */
+void closeDataFile();
 
-// Section setter
-bool FileAddModifySectionData(std::string ProjectName, std::string SectionName,
-                              SECTIONDATA& SectionData);
+/**
+ * File write
+ *
+ * @param[in] fileName File name
+ * @return Error code
+ */
+int saveDataFile(std::string fileName);
 
-// File read
-int LoadDataFile(char FileName[]);
-
-void CloseDataFile();
-// File write
-int SaveDataFile(char FileName[]);
-
-int GetTheErrorType(FILE* dbFile);
+/**
+ * Get error type
+ *
+ * @param[in] databaseFile Database file
+ * @return Error code
+ */
+int getErrorType(FILE* databaseFile);

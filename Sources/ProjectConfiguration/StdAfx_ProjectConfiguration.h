@@ -24,6 +24,11 @@
 
 #pragma once
 
+/* C++ includes */
+#include <list>
+#include <map>
+#include <string>
+
 /* MFC includes */
 #define VC_EXTRALEAN        // Exclude rarely-used stuff from Windows headers
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS  // some CString constructors will be explicit
@@ -36,11 +41,3 @@
 #include <afxcmn.h>         // MFC support for Windows Common Controls
 #include "afxtempl.h"
 #endif // _AFX_NO_AFXCMN_SUPPORT
-
-
-//#include <windows.h>
-
-/* C++ includes */
-#include <list>
-#include <map>
-#include <string>

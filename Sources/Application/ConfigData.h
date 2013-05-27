@@ -38,8 +38,8 @@ public:
     static CConfigData& ouGetConfigDetailsObject();
     ~CConfigData(void);
 
-    int SetConfigDatastorage(DATASTORAGEINFO* StorageInfo);
-    int GetConfigDatastorage(DATASTORAGEINFO* StorageInfo);
+    int SetConfigDatastorage(DataStorageInformation* StorageInfo);
+    int GetConfigDatastorage(DataStorageInformation* StorageInfo);
 
     void vReadConfigFile();
     void vSaveConfigFile();
@@ -47,8 +47,8 @@ public:
 
     void vSetCurrProjName(std::string strCurrProjName);
     std::string GetCurrProjName();
-    BOOL bSetCurrProjInfo(PROJECTDATA* ProjData);
-    BOOL bGetCurrProjInfo(PROJECTDATA* ProjData);
+    BOOL bSetCurrProjInfo(ProjectData& ProjData);
+    BOOL bGetCurrProjInfo(ProjectData& ProjData);
 
     BOOL bSetData(LPVOID lpVoid, int nStreamLength, std::string strSectionName);
     BOOL bGetData(void*& lpData, int& nStreamLength, std::string strSectionName);

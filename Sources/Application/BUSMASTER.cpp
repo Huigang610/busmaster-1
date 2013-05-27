@@ -639,11 +639,11 @@ void CCANMonitorApp::vRelease1(eCONFIGDETAILS /*eParam*/, LPVOID* /*lpDataPtr*/)
 void CCANMonitorApp::vSetFileStorageInfo(CString oCfgFilename)
 {
     USES_CONVERSION;
-    DATASTORAGEINFO stempDataInfo;
-    FILESTORAGEINFO FileStoreInfo;
-    strcpy_s(FileStoreInfo.m_FilePath, MAX_PATH, oCfgFilename.GetBuffer(MAX_PATH));
+    DataStorageInformation stempDataInfo;
+    FileStorageInformation FileStoreInfo;
+    FileStoreInfo.filePath = oCfgFilename.GetBuffer(MAX_PATH);
     stempDataInfo.FSInfo = &FileStoreInfo;
-    stempDataInfo.m_Datastore = FILEMODE;
+    stempDataInfo.mode = FILEMODE;
     CConfigData::ouGetConfigDetailsObject().SetConfigDatastorage(&stempDataInfo);
     CConfigData::ouGetConfigDetailsObject().vSetCurrProjName(_(DEFAULT_PROJECT_NAME));
     CMainFrame* pMainFrame = static_cast<CMainFrame*> (m_pMainWnd);

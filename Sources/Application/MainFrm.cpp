@@ -7989,11 +7989,11 @@ void CMainFrame::OnNewConfigFile()
 }
 void CMainFrame::vGetLoadedCfgFileName(CString& omFileName)
 {
-    DATASTORAGEINFO sDataStorageInfo;
+    DataStorageInformation sDataStorageInfo;
     CConfigData::ouGetConfigDetailsObject().GetConfigDatastorage(&sDataStorageInfo);
     if (sDataStorageInfo.FSInfo != NULL)
     {
-        omFileName.Format("%s", T2A(sDataStorageInfo.FSInfo->m_FilePath));
+        omFileName = sDataStorageInfo.FSInfo->filePath.c_str();
         delete sDataStorageInfo.FSInfo;
     }
 }
@@ -11971,7 +11971,7 @@ INT CMainFrame::nLoadConfigFile(CString omConfigFileName)
 INT CMainFrame::LoadConfiguration(void)
 {
     INT nReturn = defCONFIG_FILE_SUCCESS;
-    CConfigData::ouGetConfigDetailsObject().bGetCurrProjInfo(&m_sProjData);
+    CConfigData::ouGetConfigDetailsObject().bGetCurrProjInfo(m_sProjData);
     for (eSECTION_ID eSecId = DATABASE_SECTION_ID; eSecId < SECTION_TOTAL;)
     {
         BYTE* pbyConfigData = NULL;
@@ -14607,24 +14607,24 @@ CString CMainFrame::vGetControllerName(UINT nDriverId)
 void CMainFrame::vSetFileStorageInfo(CString oCfgFilename)
 {
     USES_CONVERSION;
-    DATASTORAGEINFO stempDataInfo;
-    FILESTORAGEINFO FileStoreInfo;
-    strcpy_s(FileStoreInfo.m_FilePath, _MAX_PATH, T2A(oCfgFilename.GetBuffer(MAX_PATH)));
+    DataStorageInformation stempDataInfo;
+    FileStorageInformation FileStoreInfo;
+    FileStoreInfo.filePath = T2A(oCfgFilename.GetBuffer(MAX_PATH));
     stempDataInfo.FSInfo = &FileStoreInfo;
-    stempDataInfo.m_Datastore = FILEMODE;
+    stempDataInfo.mode = FILEMODE;
     CConfigData::ouGetConfigDetailsObject().SetConfigDatastorage(&stempDataInfo);
     CConfigData::ouGetConfigDetailsObject().vSetCurrProjName(_(DEFAULT_PROJECT_NAME));
     vPushConfigFilenameDown(oCfgFilename);
 }
 void CMainFrame::vSetCurrProjInfo(float fAppVersion)
 {
-    PROJECTDATA ProjData;
-    ProjData.m_dwAppUniqueId = BUSMASTER_UNIQUE_ID;
-    ProjData.m_fAppVersion = fAppVersion;
-    ProjData.m_Language = _("English");
-    ProjData.m_ProjectName = _(DEFAULT_PROJECT_NAME);
-    GetLocalTime(&ProjData.m_ProjSysTime );
-    CConfigData::ouGetConfigDetailsObject().bSetCurrProjInfo(&ProjData);
+    ProjectData ProjData;
+    ProjData.applicationUniqueId = BUSMASTER_UNIQUE_ID;
+    ProjData.applicationVersion = fAppVersion;
+    ProjData.language = _("English");
+    ProjData.projectName = _(DEFAULT_PROJECT_NAME);
+    GetLocalTime(&ProjData.projectTime );
+    CConfigData::ouGetConfigDetailsObject().bSetCurrProjInfo(ProjData);
 }
 
 INT CMainFrame::SaveConfiguration(void)
@@ -16021,7 +16021,7 @@ void CMainFrame::OnActionJ1939Online()
             theApp.bWriteIntoTraceWnd(_("DIL.J1939 network started..."));
 
             GetIJ1939DIL()->getNodeAddress(m_sJ1939ClientParam.m_byAddress,
-                                                   m_sJ1939ClientParam.m_dwClientId);
+                                           m_sJ1939ClientParam.m_dwClientId);
             if (m_pouTxMsgWndJ1939 != NULL)
             {
                 m_pouTxMsgWndJ1939->vSetJ1939ClientParam(m_sJ1939ClientParam);

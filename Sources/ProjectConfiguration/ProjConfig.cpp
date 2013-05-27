@@ -23,70 +23,63 @@
  * Implementation of the ProjConfig class.
  */
 
+/* Project includes */
 #include "StdAfx_ProjectConfiguration.h"
 #include "ProjectConfiguration_extern.h"
 #include "ProjConfig.h"
 
-/**
- * @brief Construction
- */
 CProjConfig::CProjConfig()
 {
-    vClearMap();
+    clearProjectMap();
 }
 
-/**
- * @brief Destruction
- */
 CProjConfig::~CProjConfig()
 {
-    vClearMap();
+    clearProjectMap();
 }
 
-void CProjConfig::vClearMap(void)
+void CProjConfig::clearProjectMap(void)
 {
-    for (SECTIONMAP::iterator i = m_MapOfSection.begin(); i != m_MapOfSection.end(); ++i)
+    for (SectionMap::iterator i = sectionMap.begin(); i != sectionMap.end(); ++i)
     {
         delete i->second;
         i->second = NULL;
     }
 
-    m_MapOfSection.clear();
+    sectionMap.clear();
 }
 
-// Getters
-
-int CProjConfig::GetSectionCount()
+int CProjConfig::getSectionCount()
 {
-    return m_MapOfSection.size();
+    return sectionMap.size();
 }
 
-void CProjConfig::GetProjectDetail(PROJECTDATA& ProjDATA)
+void CProjConfig::getProjectData(ProjectData& ProjDATA)
 {
-    ProjDATA = m_sProjectDetails;
+    ProjDATA = projectData;
 }
 
-int CProjConfig::GetSectionList(std::list<std::string>& SectionList)
+int CProjConfig::getSectionList(std::list<std::string>& SectionList)
 {
     SectionList.empty();
 
-    for (SECTIONMAP::iterator i = m_MapOfSection.begin(); i != m_MapOfSection.end(); ++i)
+    for (SectionMap::iterator i = sectionMap.begin(); i != sectionMap.end(); ++i)
     {
         SectionList.push_front(i->first);
     }
 
-    return GetSectionCount();
+    return getSectionCount();
 }
 
-bool CProjConfig::GetSectionData(std::string SectionName, SECTIONDATA& SectionData)
+bool CProjConfig::getSectionData(std::string sectionName, SectionData& sectionData)
 {
     bool bResult = false;
 
-    SECTIONMAP::const_iterator i;
-    i = m_MapOfSection.find(SectionName);
-    if (i != m_MapOfSection.end())
+    SectionMap::const_iterator i;
+    i = sectionMap.find(sectionName);
+    if (i != sectionMap.end())
     {
-        SectionData = *(i->second);
+        sectionData = *(i->second);
         bResult = true;
     }
     else
@@ -96,32 +89,29 @@ bool CProjConfig::GetSectionData(std::string SectionName, SECTIONDATA& SectionDa
     return bResult;
 }
 
-
-// Setters
-
-bool CProjConfig::AddModifySectionDetail(const SECTIONDATA& SectionData)
+bool CProjConfig::setSectionData(const SectionData& sectionData)
 {
     bool bAdded = false;
 
-    SECTIONMAP::iterator i;
-    i = m_MapOfSection.find(SectionData.m_omSectionName);
-    if (i != m_MapOfSection.end())
+    SectionMap::iterator i;
+    i = sectionMap.find(sectionData.sectionName);
+    if (i != sectionMap.end())
     {
-        *(i->second) = SectionData;
+        *(i->second) = sectionData;
     }
     else
     {
-        SECTIONDATA* pNewSection = new SECTIONDATA;
-        *pNewSection = SectionData;
-        m_MapOfSection.insert(SECTIONMAP::value_type(SectionData.m_omSectionName,
-                              pNewSection));
+        SectionData* pNewSection = new SectionData;
+        *pNewSection = sectionData;
+        sectionMap.insert(SectionMap::value_type(sectionData.sectionName,
+                          pNewSection));
         bAdded = true;
     }
 
     return bAdded;
 }
 
-void CProjConfig::ModifyProjValues(const PROJECTDATA& ProjDATA)
+void CProjConfig::setProjectData(const ProjectData& projDATA)
 {
-    m_sProjectDetails = ProjDATA;
+    projectData = projDATA;
 }

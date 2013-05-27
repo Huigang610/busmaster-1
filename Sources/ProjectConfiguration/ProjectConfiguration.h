@@ -21,22 +21,18 @@
  *
  * This contains the dll entry point function and
  */
+
 #pragma once
 
+/* Project includes */
 #include "resource.h"       // main symbols
-
-
-// CProjectConfigurationApp
-// See ProjectConfiguration.cpp for the implementation of this class
-//
 
 class CProjectConfigurationApp : public CWinApp
 {
 public:
-    CProjectConfigurationApp();
-
-    // Overrides
-public:
+    /**
+     * Initialization
+     */
     virtual BOOL InitInstance();
 
     DECLARE_MESSAGE_MAP()
