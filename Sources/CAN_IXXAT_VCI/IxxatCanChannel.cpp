@@ -33,7 +33,7 @@
 #include <process.h> // _beginthread
 #include "vcinpldynl.h"
 
-#include "CAN_Error_Defs.h"
+#include "Include/CAN_Error_Defs.h"
 
 
 // forward declaration for the C-Function

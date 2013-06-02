@@ -28,7 +28,7 @@
 
 
 #include "AllIncludes.h"
-#include "vcinpl.h"
+#include "EXTERNAL_INCLUDE/vcinpl.h"
 
 /**
  * @class CIxxatCanChannel

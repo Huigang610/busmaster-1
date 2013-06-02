@@ -29,7 +29,7 @@
 #include "CAN_IXXAT_VCI_stdafx.h"
 #include "DIL_CAN_IXXAT_VCI.h"
 #include "vcinpldynl.h"
-#include "DIL_CommonDefs.h"
+#include "Include/DIL_CommonDefs.h"
 
 #include "resource.h"
 

@@ -35,8 +35,8 @@
 #include "Include/DIL_CommonDefs.h"
 #include "DIL_Interface/BaseDIL_CAN_Controller.h"
 #include "../Application/MultiLanguage.h"
-#include "mhstcan.h"
-#include "mhsbmcfg.h"
+#include "EXTERNAL_INCLUDE/mhstcan.h"
+#include "EXTERNAL_INCLUDE/mhsbmcfg.h"
 #include "Utility/MultiLanguageSupport.h"
 
 #define USAGE_EXPORT
