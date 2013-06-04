@@ -24,14 +24,14 @@
 
 #pragma once
 
-//libxml file includes
-#include <libxml/xmlmemory.h>
-#include <libxml/parser.h>
-#include <libxml/xpath.h>
-
 /* C++ includes */
 #include <string>
 #include <sstream>
+
+/* libxml includes */
+#include <libxml/xmlmemory.h>
+#include <libxml/parser.h>
+#include <libxml/xpath.h>
 
 const int MAX_STRING = 256;
 /**

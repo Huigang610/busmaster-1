@@ -25,7 +25,7 @@
 #error include 'stdafx.h' before including this file for PCH
 #endif
 
-#include "EXTERNAL_INCLUDE/vs_can_api.h"
+#include "EXTERNAL/vs_can_api.h"
 
 struct _VSCanCfg
 {
