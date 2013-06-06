@@ -24,7 +24,7 @@
 
 #include "../FrameProcessor_stdafx.h"
 #include "FormatMsgCommon.h"
-#include "FrameProcessor/RefTimeKeeper.h"
+#include "CommonClass/RefTimeKeeper.h"
 #include "include/Utils_Macro.h"
 
 CFormatMsgCommon::CFormatMsgCommon(void)
@@ -35,10 +35,6 @@ CFormatMsgCommon::CFormatMsgCommon(void)
     m_qwLogDelayTime =0;
 }
 
-CFormatMsgCommon::~CFormatMsgCommon(void)
-{
-}
-
 void CFormatMsgCommon::vCalculateAndFormatTM(BYTE bExprnFlag, UINT64 TimeStamp,
         char acTime[])
 {
@@ -46,12 +42,12 @@ void CFormatMsgCommon::vCalculateAndFormatTM(BYTE bExprnFlag, UINT64 TimeStamp,
     ONE time mode bit up */
 
     DWORD dwTSTmp = 0; // temporary time stamp
-    UINT64 qwRefSysTime, qwAbsBaseTime;
-    CRefTimeKeeper::vGetTimeParams(qwRefSysTime, qwAbsBaseTime);
+    UINT64 referenceSystemTime, absoluteBaseTime;
+    CRefTimeKeeper::getTimeParameters(referenceSystemTime, absoluteBaseTime);
 
     if (IS_TM_SYS_SET(bExprnFlag))
     {
-        dwTSTmp = (DWORD) ((TimeStamp - qwAbsBaseTime) + qwRefSysTime);
+        dwTSTmp = (DWORD) ((TimeStamp - absoluteBaseTime) + referenceSystemTime);
     }
     else if (IS_TM_REL_SET(bExprnFlag))
     {
@@ -74,13 +70,13 @@ void CFormatMsgCommon::vCalculateAndFormatTM(BYTE bExprnFlag, UINT64 TimeStamp,
     else if (IS_TM_ABS_SET(bExprnFlag))
     {
         //Time difference should be +ve value
-        if(TimeStamp >= qwAbsBaseTime)
+        if(TimeStamp >= absoluteBaseTime)
         {
-            dwTSTmp = (DWORD) (TimeStamp - qwAbsBaseTime);
+            dwTSTmp = (DWORD) (TimeStamp - absoluteBaseTime);
         }
         else
         {
-            dwTSTmp = (DWORD) (qwAbsBaseTime - TimeStamp);
+            dwTSTmp = (DWORD) (absoluteBaseTime - TimeStamp);
         }
 
     }
@@ -100,24 +96,24 @@ void CFormatMsgCommon::vCalculateAndFormatTM(BYTE bExprnFlag, UINT64 TimeStamp,
 
             m_qwLogDelayTime = (DWORD)(RefCurrTime - RefLogTime);//for log & msg delay time
 
-            if(TimeStamp >= qwAbsBaseTime)//Time difference should be +ve value
+            if(TimeStamp >= absoluteBaseTime)//Time difference should be +ve value
             {
-                m_qwResTime = TimeStamp - qwAbsBaseTime;
+                m_qwResTime = TimeStamp - absoluteBaseTime;
             }
             else
             {
-                m_qwResTime = qwAbsBaseTime - TimeStamp;
+                m_qwResTime = absoluteBaseTime - TimeStamp;
             }
             m_bResetMsgAbsTime = FALSE;
         }
         //Time difference should be +ve value
-        if(TimeStamp >= (qwAbsBaseTime + m_qwResTime))
+        if(TimeStamp >= (absoluteBaseTime + m_qwResTime))
         {
-            dwTSTmp = (DWORD) (TimeStamp - qwAbsBaseTime - m_qwResTime );
+            dwTSTmp = (DWORD) (TimeStamp - absoluteBaseTime - m_qwResTime );
         }
         else
         {
-            dwTSTmp = (DWORD) (m_qwResTime + qwAbsBaseTime - TimeStamp );
+            dwTSTmp = (DWORD) (m_qwResTime + absoluteBaseTime - TimeStamp );
         }
 
         dwTSTmp = dwTSTmp + m_qwLogDelayTime; //add msg delay time

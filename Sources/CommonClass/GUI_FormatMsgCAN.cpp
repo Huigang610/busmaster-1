@@ -59,34 +59,6 @@ static SERRORMSGINFO sg_asErrorEntry[ERRORS_DEFINED] =
 };
 
 /*******************************************************************************
-  Function Name  : CFormatMsgCAN
-  Input(s)       : -
-  Output         : -
-  Functionality  : Constructor
-  Member of      : CFormatMsgCAN
-  Author(s)      : Ratnadip
-  Date Created   : 8.7.2009
-  Modifications  :
-*******************************************************************************/
-CFormatMsgCAN::CFormatMsgCAN(void)
-{
-}
-
-/*******************************************************************************
-  Function Name  : ~CFormatMsgCAN
-  Input(s)       : -
-  Output         : -
-  Functionality  : Destructor
-  Member of      : CFormatMsgCAN
-  Author(s)      : Ratnadip
-  Date Created   : 8.7.2009
-  Modifications  :
-*******************************************************************************/
-CFormatMsgCAN::~CFormatMsgCAN(void)
-{
-}
-
-/*******************************************************************************
   Function Name  : vFormatTime
   Input(s)       : -
   Output         : -

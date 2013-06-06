@@ -1036,7 +1036,6 @@ void CMsgFrmtWnd::OnExpandSelectedMessageEntry()
 void CMsgFrmtWnd::vInit(void* pParam)
 {
     PSDI_GetInterface(m_eBusType, (void**)&m_pouMsgContainerIntrf);
-    m_pouMsgContainerIntrf->vInit(pParam);
     m_pouMsgContainerIntrf->bGetDilInterFace();
 }
 

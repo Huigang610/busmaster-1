@@ -185,8 +185,8 @@ public:
     HRESULT performInitOperations(void);
     HRESULT performClosureOperations(void);
     HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const InterfaceHardwareList& sSelHwInterface, INT nCount);
     HRESULT deselectHardwareInterface(void);
     HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
     HRESULT setConfigurationData(PSCONTROLLER_DETAILS ConfigFile, int Length);
@@ -541,11 +541,11 @@ HRESULT CDIL_CAN_MHS::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeSt
 
 /**
 * @brief         Lists the hardware interface available.
-* @param[out]    asSelHwInterface, is INTERFACE_HW_LIST structure
+* @param[out]    asSelHwInterface, is InterfaceHardwareList structure
 * @param[out]    nCount , is INT contains the selected channel count.
 * @return        S_OK for success, S_FALSE for failure
 */
-HRESULT CDIL_CAN_MHS::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN_MHS::listHardwareInterfaces(InterfaceHardwareList& asSelHwInterface, INT& nCount)
 {
     USES_CONVERSION;
 
@@ -558,8 +558,8 @@ HRESULT CDIL_CAN_MHS::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterface
         nCount = 1;
         //set the current number of channels
         sg_nNoOfChannels = 1;
-        asSelHwInterface[0].m_dwIdInterface = 0;
-        asSelHwInterface[0].m_acDescription = "0";
+        asSelHwInterface[0].interfaceId = 0;
+        asSelHwInterface[0].description = "0";
         sg_bCurrState = STATE_HW_INTERFACE_LISTED;
     }
     else
@@ -573,11 +573,11 @@ HRESULT CDIL_CAN_MHS::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterface
 
 /**
 * @brief         Selects the hardware interface selected by the user.
-* @param[out]    asSelHwInterface, is INTERFACE_HW_LIST structure
+* @param[out]    asSelHwInterface, is InterfaceHardwareList structure
 * @param[out]    nCount , is INT contains the selected channel count.
 * @return        S_OK for success, S_FALSE for failure
 */
-HRESULT CDIL_CAN_MHS::selectHardwareInterface(const INTERFACE_HW_LIST& /*asSelHwInterface*/, INT /*nCount*/)
+HRESULT CDIL_CAN_MHS::selectHardwareInterface(const InterfaceHardwareList& /*asSelHwInterface*/, INT /*nCount*/)
 {
     USES_CONVERSION;
 
@@ -864,14 +864,14 @@ HRESULT CDIL_CAN_MHS::startHardware(void)
         else
         {
             hResult = S_FALSE;
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not start the controller in running mode"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not start the controller in running mode"));
         }
         sg_bCurrState = STATE_CONNECTED;
     }
     else
     {
         //log the error for open port failure
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("error opening \"Tiny-CAN\" interface"));
+        sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("error opening \"Tiny-CAN\" interface"));
         hResult = ERR_LOAD_HW_INTERFACE;
     }
     return(hResult);
@@ -897,7 +897,7 @@ HRESULT CDIL_CAN_MHS::stopHardware(void)
 */
 HRESULT CDIL_CAN_MHS::getCurrentStatus(s_STATUSMSG& StatusData)
 {
-    StatusData.wControllerStatus = NORMAL_ACTIVE;
+    StatusData.controllerStatus = NORMAL_ACTIVE;
     return(S_OK);
 }
 
@@ -945,7 +945,7 @@ HRESULT CDIL_CAN_MHS::sendMessage(DWORD dwClientID, const STCAN_MSG& sMessage)
             else
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not write can data into bus"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not write can data into bus"));
             }
         }
         else

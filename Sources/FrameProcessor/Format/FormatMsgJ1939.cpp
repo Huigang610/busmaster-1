@@ -27,20 +27,11 @@
   Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
 ******************************************************************************/
 
+/* Project includes */
 #include "../FrameProcessor_stdafx.h"
 #include "DataTypes/J1939_dataTypes.h"
 #include "FormatMsgJ1939.h"
 #include "include/Utils_macro.h"
-
-
-
-CFormatMsgJ1939::CFormatMsgJ1939(void)
-{
-    //m_podJ1939Rules = NULL;
-}
-CFormatMsgJ1939::~CFormatMsgJ1939(void)
-{
-}
 
 void CFormatMsgJ1939::vFormatTime(BYTE bExprnFlag,
                                   PSTJ1939_MSG psJ1939BData,

@@ -157,8 +157,8 @@ public:
     HRESULT performInitOperations(void);
     HRESULT performClosureOperations(void);
     HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const InterfaceHardwareList& sSelHwInterface, INT nCount);
     HRESULT deselectHardwareInterface(void);
     HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
     HRESULT setConfigurationData(PSCONTROLLER_DETAILS ConfigFile, int Length);
@@ -490,11 +490,11 @@ HRESULT CDIL_CAN_VSCOM::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& Time
 
 /**
 * @brief         Lists the hardware interface available.
-* @param[out]    asSelHwInterface, is INTERFACE_HW_LIST structure
+* @param[out]    asSelHwInterface, is InterfaceHardwareList structure
 * @param[out]    nCount , is INT contains the selected channel count.
 * @return        S_OK for success, S_FALSE for failure
 */
-HRESULT CDIL_CAN_VSCOM::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN_VSCOM::listHardwareInterfaces(InterfaceHardwareList& asSelHwInterface, INT& nCount)
 {
     USES_CONVERSION;
     static BOOL bInit = 1;
@@ -502,8 +502,8 @@ HRESULT CDIL_CAN_VSCOM::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterfa
     nCount = 1;
     //set the current number of channels
     sg_nNoOfChannels = 1;
-    asSelHwInterface[0].m_dwIdInterface = 0;
-    asSelHwInterface[0].m_acDescription = "VScom CAN Device";
+    asSelHwInterface[0].interfaceId = 0;
+    asSelHwInterface[0].description = "VScom CAN Device";
     sg_bCurrState = STATE_HW_INTERFACE_LISTED;
 
     if (bInit)
@@ -521,11 +521,11 @@ HRESULT CDIL_CAN_VSCOM::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterfa
 
 /**
 * @brief         Selects the hardware interface selected by the user.
-* @param[out]    asSelHwInterface, is INTERFACE_HW_LIST structure
+* @param[out]    asSelHwInterface, is InterfaceHardwareList structure
 * @param[out]    nCount , is INT contains the selected channel count.
 * @return        S_OK for success, S_FALSE for failure
 */
-HRESULT CDIL_CAN_VSCOM::selectHardwareInterface(const INTERFACE_HW_LIST& /*asSelHwInterface*/, INT /*nCount*/)
+HRESULT CDIL_CAN_VSCOM::selectHardwareInterface(const InterfaceHardwareList& /*asSelHwInterface*/, INT /*nCount*/)
 {
     USES_CONVERSION;
 
@@ -899,7 +899,7 @@ static DWORD WINAPI CanRxEvent(LPVOID /*lpParam*/)
             {
                 if (VSCAN_Read(sg_VSCanCfg.hCan, &msg, 1, &dwTemp) != VSCAN_ERR_OK)
                 {
-                    sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("VSCAN_Read failed"));
+                    sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("VSCAN_Read failed"));
                     Sleep(100);
                     continue;
                 }
@@ -920,7 +920,7 @@ static DWORD WINAPI CanRxEvent(LPVOID /*lpParam*/)
         }
         else
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("WaitForSingleObject failed"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("WaitForSingleObject failed"));
             Sleep(100);
         }
 
@@ -963,19 +963,19 @@ HRESULT CDIL_CAN_VSCOM::startHardware(void)
     {
         if (VSCAN_Ioctl(sg_VSCanCfg.hCan, VSCAN_IOCTL_SET_TIMESTAMP, sg_VSCanCfg.bTimestamps?VSCAN_TIMESTAMP_ON:VSCAN_TIMESTAMP_OFF) != VSCAN_ERR_OK)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("set timestamp ioctl failed"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("set timestamp ioctl failed"));
             return (S_FALSE);
         }
 
         if (VSCAN_Ioctl(sg_VSCanCfg.hCan, VSCAN_IOCTL_SET_FILTER_MODE, sg_VSCanCfg.bDualFilter?VSCAN_FILTER_MODE_DUAL:VSCAN_FILTER_MODE_SINGLE) != VSCAN_ERR_OK)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("set filter mode ioctl failed"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("set filter mode ioctl failed"));
             return (S_FALSE);
         }
 
         if (VSCAN_Ioctl(sg_VSCanCfg.hCan, VSCAN_IOCTL_SET_ACC_CODE_MASK, &sg_VSCanCfg.codeMask) != VSCAN_ERR_OK)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("set acceptance code mask ioctl failed"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("set acceptance code mask ioctl failed"));
             return (S_FALSE);
         }
 
@@ -983,7 +983,7 @@ HRESULT CDIL_CAN_VSCOM::startHardware(void)
         {
             if (VSCAN_Ioctl(sg_VSCanCfg.hCan, VSCAN_IOCTL_SET_SPEED, (void*)sg_VSCanCfg.vSpeed) != VSCAN_ERR_OK)
             {
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("set speed ioctl failed"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("set speed ioctl failed"));
                 return (S_FALSE);
             }
         }
@@ -991,7 +991,7 @@ HRESULT CDIL_CAN_VSCOM::startHardware(void)
         {
             if (VSCAN_Ioctl(sg_VSCanCfg.hCan, VSCAN_IOCTL_SET_BTR, &sg_VSCanCfg.btr) != VSCAN_ERR_OK)
             {
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("set btr ioctl failed"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("set btr ioctl failed"));
                 return (S_FALSE);
             }
         }
@@ -999,20 +999,20 @@ HRESULT CDIL_CAN_VSCOM::startHardware(void)
         sg_hEventRecv = CreateEvent(NULL, FALSE, FALSE, NULL);
         if (sg_hEventRecv == NULL)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create the receive event"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not create the receive event"));
             hResult = S_FALSE;
         }
 
         if (VSCAN_SetRcvEvent(sg_VSCanCfg.hCan, sg_hEventRecv) != VSCAN_ERR_OK)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("VSCAN_SetRcvEvent failed"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("VSCAN_SetRcvEvent failed"));
             hResult = S_FALSE;
         }
 
         sg_hReadThread = CreateThread(NULL, 0, CanRxEvent, NULL, 0, &sg_dwReadThreadId);
         if (sg_hReadThread == NULL)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create the receive thread"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not create the receive thread"));
             hResult = S_FALSE;
         }
 
@@ -1023,7 +1023,7 @@ HRESULT CDIL_CAN_VSCOM::startHardware(void)
     else
     {
         //log the error for open port failure
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("error opening \"VScom CAN\" interface"));
+        sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("error opening \"VScom CAN\" interface"));
         hResult = ERR_LOAD_HW_INTERFACE;
     }
 
@@ -1068,7 +1068,7 @@ HRESULT CDIL_CAN_VSCOM::stopHardware(void)
 */
 HRESULT CDIL_CAN_VSCOM::getCurrentStatus(s_STATUSMSG& StatusData)
 {
-    StatusData.wControllerStatus = NORMAL_ACTIVE;
+    StatusData.controllerStatus = NORMAL_ACTIVE;
     return(S_OK);
 }
 
@@ -1122,7 +1122,7 @@ HRESULT CDIL_CAN_VSCOM::sendMessage(DWORD dwClientID, const STCAN_MSG& sMessage)
             else
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not write can data into bus"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not write can data into bus"));
             }
         }
         else

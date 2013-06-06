@@ -147,7 +147,6 @@
     <ClInclude Include="DIL_Datatypes.h" />
     <ClInclude Include="Filter_Datatypes.h" />
     <ClInclude Include="J1939_DataTypes.h" />
-    <ClInclude Include="KeyPanel_Datatypes.h" />
     <ClInclude Include="Log_Datatypes.h" />
     <ClInclude Include="MainSubEntry.h" />
     <ClInclude Include="MsgBufAll_DataTypes.h" />

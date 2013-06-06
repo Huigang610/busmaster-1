@@ -40,7 +40,7 @@ BOOL CReplayManager::m_bCreated = FALSE;
 // created before CCANMonitorApp object. CCANMonitorApp class uses this class
 // So this should be created befor CCANMonitorApp object.
 CReplayManager CReplayManager::m_ouReplayManager;
-static CBaseAppServices* g_pouITracePtr = NULL;
+static BaseAppServices* g_pouITracePtr = NULL;
 
 
 /*******************************************************************************
@@ -833,13 +833,13 @@ void CReplayManager::vAddReplayFile(CReplayFile& ouFile)
 
 void CReplayManager::vSetTraceObjPtr( PVOID pvObj)
 {
-    g_pouITracePtr = (CBaseAppServices*) pvObj;
+    g_pouITracePtr = (BaseAppServices*) pvObj;
 }
 
 void CReplayManager::vSendToTrace(char* pcString)
 {
     if (NULL != g_pouITracePtr)
     {
-        g_pouITracePtr->bWriteToTrace(pcString);
+        g_pouITracePtr->writeToTrace(pcString);
     }
 }

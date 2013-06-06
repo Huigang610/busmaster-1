@@ -197,20 +197,20 @@ BOOL CTSExecutorChildFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/, CCreateConte
     omPropertyList.InsertColumn(1, _("Execution step"), LVCFMT_LEFT, 150, -1);
     omPropertyList.InsertColumn(2, _("Result"), LVCFMT_LEFT, 100, -1);
 
-    m_pomImageList = new CImageList();
-    m_pomImageList->Create(def_HEIGHT_IMAGE, def_WIDTH_IMAGE, ILC_COLOR32, 3, 3);
-    m_pomImageList->SetBkColor(def_COLOR_TREE_BKG);
+    imageList = new CImageList();
+    imageList->Create(def_HEIGHT_IMAGE, def_WIDTH_IMAGE, ILC_COLOR32, 3, 3);
+    imageList->SetBkColor(def_COLOR_TREE_BKG);
     CBitmap omBitmap;
 
     for (int nID = IDI_ICON_TESTCASE; nID <= IDI_ICON_TESTCASE+2; nID++)  // load bitmaps for dog, bird and fish
     {
         HICON hIcon = AfxGetApp()->LoadIcon(MAKEINTRESOURCE(IDI_ICON_TESTCASE));
         DWORD err = GetLastError();
-        m_pomImageList->Add(hIcon);
+        imageList->Add(hIcon);
     }
 
 
-    m_odTreeView->GetTreeCtrl().SetImageList(m_pomImageList, TVSIL_NORMAL);
+    m_odTreeView->GetTreeCtrl().SetImageList(imageList, TVSIL_NORMAL);
     return TRUE;
 }
 

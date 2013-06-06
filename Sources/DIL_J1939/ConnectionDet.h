@@ -1,51 +1,45 @@
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-/******************************************************************************
-  Project       :  Frame_McNet
-  FileName      :  ConnectionDet.h
-  Description   :  Keep details of each connenction
-  $Log:   X:/Archive/Sources/DIL_J1939/ConnectionDet.h_v  $
+/**
+ * @file   ConnectionDet.h
+ * @brief  Keep details of each connenction
+ * @author Anish Kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
  *
- *    Rev 1.3   15 Apr 2011 18:48:34   CANMNTTM
- * Added RBEI Copyright information.
- *
- *    Rev 1.2   29 Dec 2010 19:32:38   CANMNTTM
- * Connection mode for both transmission and reception added.
- *
- *    Rev 1.1   23 Dec 2010 16:52:20   CANMNTTM
- * Macro MAX_MSG_LEN_J1939
- *  instead of MAX_DATA_LEN_J1939 wherever applicable.
- *
- *    Rev 1.0   06 Dec 2010 18:47:20   rac2kor
- *
- *
- *    Rev 1.3   12 Jan 2010 14:22:46   mcnetpl
- * Bugfixing
- *
- *    Rev 1.2   04 Jan 2010 14:46:12   mcnetpl
- *
- *
- *    Rev 1.1   07 Dec 2009 12:58:04   mcnetpl
- * Bugfix
- *
- *    Rev 1.0   02 Dec 2009 17:53:04   mcnetpl
- * Initial version
-
-  Author(s)     :  Anish Kumar
-  Date Created  :  15/09/2009
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
+ * Keep details of each connenction
+ */
 
 #pragma once
 
+/* Project includes */
 #include "Datatypes/J1939_DataTypes.h"
 #include "J1939_UtilityFuncs.h"
 
 class CConnectionDet
 {
-private:
-    eCON_STATUS m_eConStatus;
 public:
+    CConnectionDet(BYTE bySrcAddress,
+                   BYTE byDestAddress);
+    ~CConnectionDet();
+    BOOL bIsMsgRxForThisConnection(UINT32 unExtId);
+    //BOOL  bGetAckFrame(BYTE &byData, BOOL bIsLong, BOOL bIsRxReady = TRUE);
+    void vInitializeMemberVar();
+    void vSetConStatus(eCON_STATUS eConStatus);
+    eCON_STATUS eGetConStatus(void);
+
     //STJ1939_MSG m_sJ1939Msg;
     //Only for long message
     BYTE  m_byCurrPacket;
@@ -79,21 +73,13 @@ public:
     UINT32 m_BCPGN;
     UINT m_BCRXLongDataLen;
     UINT m_BCLastFrameLen;
-public:
+
     BYTE       m_bySrcAddress;             // Tx msg id for this connection
     BYTE       m_byDestAddress;            // Rx msg id for this connection
 
     BYTE       m_byResult;
     UINT       m_unNextPacket;
 
-public:
-    CConnectionDet(BYTE bySrcAddress,
-                   BYTE byDestAddress);
-    ~CConnectionDet();
-    BOOL bIsMsgRxForThisConnection(UINT32 unExtId);
-    //BOOL  bGetAckFrame(BYTE &byData, BOOL bIsLong, BOOL bIsRxReady = TRUE);
-    void vInitializeMemberVar();
-    void vSetConStatus(eCON_STATUS eConStatus);
-    eCON_STATUS eGetConStatus(void);
-
+private:
+    eCON_STATUS m_eConStatus;
 };

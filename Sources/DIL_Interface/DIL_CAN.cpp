@@ -71,7 +71,7 @@ CDIL_CAN::CDIL_CAN()
 {
     m_hDll = NULL;
     m_hOldDll = NULL;
-    m_dwDriverID = DAL_NONE;
+    driverId = DAL_NONE;
     pfGetIDILCAN_Controller = NULL;
     m_pBaseDILCAN_Controller = NULL;
     m_pOldBaseDILCAN_Controller = NULL;
@@ -119,8 +119,8 @@ DWORD CDIL_CAN::getDriverList(DILLIST* List)
     {
         for (int i = 0; i < sizeof(sg_ListDIL)/sizeof(ENTRY_DIL); i++)
         {
-            (*List)[i].m_acName = sg_ListDIL[i].m_acDIL;
-            (*List)[i].m_dwDriverID = sg_ListDIL[i].m_dwDIL;
+            (*List)[i].name = sg_ListDIL[i].m_acDIL;
+            (*List)[i].driverId = sg_ListDIL[i].m_dwDIL;
             Result++;
         }
     }
@@ -157,7 +157,7 @@ HRESULT CDIL_CAN::selectDriver(DWORD dwDriverID, HWND hWndOwner,
             //FreeLibrary(m_hDll);
             m_hOldDll = m_hDll;
             m_pOldBaseDILCAN_Controller = m_pBaseDILCAN_Controller;
-            m_dwOldDriverID = m_dwDriverID;
+            m_dwOldDriverID = driverId;
             m_hDll = NULL;
         }
 
@@ -203,26 +203,26 @@ HRESULT CDIL_CAN::selectDriver(DWORD dwDriverID, HWND hWndOwner,
             case DAL_NONE:
                 performClosureOperations();
                 vSelectInterface_Dummy();
-                m_dwDriverID = DAL_NONE;
+                driverId = DAL_NONE;
                 return hResult;
 
             default:
                 hResult = DAL_INVALID;
-                m_dwDriverID = DAL_NONE;
+                driverId = DAL_NONE;
                 return hResult;
         }
 
         if (m_hDll == NULL)
         {
             hResult = ERR_LOAD_DRIVER;
-            pILog->vLogAMessage(A2T(__FILE__), __LINE__, _("Load library failed..."));
+            pILog->logMessage(A2T(__FILE__), __LINE__, _("Load library failed..."));
         }
         else
         {
             // First select the dummy interface
             //selectDriver((DWORD)DAL_NONE, hWndOwner, pILog);
 
-            pILog->vLogAMessage(A2T(__FILE__), __LINE__, _("Load library successful..."));
+            pILog->logMessage(A2T(__FILE__), __LINE__, _("Load library successful..."));
             pfGetIDILCAN_Controller = (GETIDIL_CAN_CONTROLLER)GetProcAddress(m_hDll, "GetIDIL_CAN_Controller");
             pfGetIDILCAN_Controller((void**)&m_pBaseDILCAN_Controller);
             if ( m_pBaseDILCAN_Controller )
@@ -234,13 +234,13 @@ HRESULT CDIL_CAN::selectDriver(DWORD dwDriverID, HWND hWndOwner,
                 {
                     case S_OK:
                     case DLL_ALREADY_LOADED:
-                        m_dwDriverID = dwDriverID;
+                        driverId = dwDriverID;
                         hResult = S_OK;
                         break;
 
                     default:
                         hResult = ERR_LOAD_DRIVER;
-                        pILog->vLogAMessage(A2T(__FILE__), __LINE__, _("Load library failed..."));
+                        pILog->logMessage(A2T(__FILE__), __LINE__, _("Load library failed..."));
                         /* New Code */
                         /* Get rid of current DIL library */
                         if ( m_pBaseDILCAN_Controller )
@@ -253,7 +253,7 @@ HRESULT CDIL_CAN::selectDriver(DWORD dwDriverID, HWND hWndOwner,
                         {
                             m_hDll = m_hOldDll;
                             m_pBaseDILCAN_Controller = m_pOldBaseDILCAN_Controller;
-                            m_dwDriverID =  m_dwOldDriverID;
+                            driverId =  m_dwOldDriverID;
                         }
                         /* New Code */
                         break;
@@ -277,7 +277,7 @@ HRESULT CDIL_CAN::registerClient(BOOL bRegister, DWORD& ClientID, char* pacClien
 
 DWORD CDIL_CAN::getSelectedDriver(void)
 {
-    return m_dwDriverID;
+    return driverId;
 }
 
 HRESULT CDIL_CAN::performInitOperations(void)
@@ -295,7 +295,7 @@ HRESULT CDIL_CAN::performClosureOperations(void)
     }
 
     vSelectInterface_Dummy();
-    m_dwDriverID = DAL_NONE;
+    driverId = DAL_NONE;
     return hResult;
 }
 
@@ -304,7 +304,7 @@ HRESULT CDIL_CAN::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp,
     return m_pBaseDILCAN_Controller->getTimeModeMapping(CurrSysTime, TimeStamp, QueryTickCount);
 }
 
-HRESULT CDIL_CAN::listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN::listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount)
 {
     HRESULT hr = m_pBaseDILCAN_Controller->listHardwareInterfaces(sSelHwInterface, nCount);
 
@@ -325,7 +325,7 @@ HRESULT CDIL_CAN::listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT
         /* Retain old DIL selection */
         m_hDll = m_hOldDll;
         m_pBaseDILCAN_Controller = m_pOldBaseDILCAN_Controller;
-        m_dwDriverID = m_dwOldDriverID;
+        driverId = m_dwOldDriverID;
     }
     else if ( m_hOldDll )
     {
@@ -346,7 +346,7 @@ HRESULT CDIL_CAN::listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT
     return hr;
 }
 
-HRESULT CDIL_CAN::selectHardwareInterfaces(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount)
+HRESULT CDIL_CAN::selectHardwareInterfaces(const InterfaceHardwareList& sSelHwInterface, INT nCount)
 {
     return m_pBaseDILCAN_Controller->selectHardwareInterface(sSelHwInterface, nCount);
 }

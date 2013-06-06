@@ -43,7 +43,7 @@ private:
     HTREEITEM m_hDraggingItemgedItem;
     HCURSOR m_hOrigCursor;
     HCURSOR m_hCurNoDrop;
-    CImageList* m_pomImageList;
+    CImageList* imageList;
     CImageList* m_pomDragImageList;
     typedef enum eTYPE_DROPPING
     {

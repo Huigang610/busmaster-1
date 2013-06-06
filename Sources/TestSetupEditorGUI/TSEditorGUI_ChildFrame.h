@@ -60,7 +60,7 @@ protected:
     virtual ~CTSEditorChildFrame();
 
     CSplitterWnd m_omSplitterWnd;
-    CImageList*  m_pomImageList;
+    CImageList*  imageList;
 protected:
     virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
 

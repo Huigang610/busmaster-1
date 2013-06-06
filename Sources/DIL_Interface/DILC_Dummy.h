@@ -35,8 +35,8 @@ public:
     HRESULT performInitOperations(void);
     HRESULT performClosureOperations(void);
     HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const InterfaceHardwareList& sSelHwInterface, INT nCount);
     HRESULT deselectHardwareInterface(void);
     HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
     HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);

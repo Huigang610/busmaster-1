@@ -21,41 +21,40 @@
 
 #pragma once
 
-struct SGUIPARAMS
+struct GuiParameters
 {
-    char       m_acTitleName[MAX_PATH];
-    char       m_acMainListName[MAX_PATH];
-    char       m_acUnSelListName[MAX_PATH];
-    char       m_acSelListName[MAX_PATH];
+    char       titleName[MAX_PATH];
+    char       mainListName[MAX_PATH];
+    char       unselectedListName[MAX_PATH];
+    char       selectedListName[MAX_PATH];
 
-    CImageList* m_pomImageList;     //Pointer to loaded imagelist
-    INT         m_unUnSelIconIndex; // Icon will appear in left list cntrl
-    INT         m_unSelIconIndex;   // Icon will appear in rightlist cntrl
-    BOOL        m_bCombine;  // Whether Main Entry should be combined with subentry name
-    // while displaying in the list
-    SGUIPARAMS();
+    CImageList* imageList;           /**< Pointer to loaded imagelist */
+    INT         unselectedIconIndex; /**< Icon will appear in left list control */
+    INT         selectedIconIndex;   /** Icon will appear in right list control */
+    BOOL        combine;             /** Whether Main Entry should be combined with subentry name while displaying in the list */
+    GuiParameters();
 };
 
 typedef struct tagSubEntry
 {
-    unsigned int m_unSubEntryID;    // ID
-    CString m_omSubEntryName;       // Name
+    unsigned int m_unSubEntryID;    /**< ID */
+    CString m_omSubEntryName;       /**< Name */
 
-    tagSubEntry();
-    ~tagSubEntry();
     BOOL operator ==(const tagSubEntry& RefObj) const;
 
 } SSUBENTRY;
 
 typedef CList<SSUBENTRY, SSUBENTRY&> CSubEntryList;
 
-// Structure for Signal Watch Implementation
+/**
+ * Structure for Signal Watch Implementation
+ */
 typedef struct tagMainEntry
 {
-    UINT m_unMainEntryID;             // ID
-    CString m_omMainEntryName;        // Name
-    CSubEntryList m_odUnSelEntryList; // Sub entries which are not selected
-    CSubEntryList m_odSelEntryList;   // Sub entries which are selected
+    UINT m_unMainEntryID;             /**< ID */
+    CString m_omMainEntryName;        /**< Name */
+    CSubEntryList m_odUnSelEntryList; /**< Sub entries which are not selected */
+    CSubEntryList m_odSelEntryList;   /**< Sub entries which are selected */
 
     tagMainEntry();
     ~tagMainEntry();

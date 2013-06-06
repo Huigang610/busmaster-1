@@ -104,7 +104,7 @@ enum ETYPE_ACK
 /* Node parmaeters in j1939 network*/
 typedef struct tagSJ1939CLIENTPARAM
 {
-    char   m_acName[MAX_PATH];
+    char   name[MAX_PATH];
     DWORD   m_dwClientId;
     UINT64  m_unEcuName;
     BYTE    m_byAddress;

@@ -1,26 +1,27 @@
-/******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  J1939_UtilityFuncs.h
-  Description   :
-  $Log:   X:/Archive/Sources/DIL_J1939/J1939_UtilityFuncs.h_v  $
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *    Rev 1.6   09 Jun 2011 17:55:46   CANMNTTM
- * All errors in VS2005 are removed
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
  *
- *    Rev 1.5   07 Jun 2011 11:11:16   CANMNTTM
- *
- *
- *    Rev 1.4   15 Apr 2011 18:48:36   CANMNTTM
- * Added RBEI Copyright information.
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-  Author(s)     :  Pradeep Kadoor
-  Date Created  :  15/04/2011
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
- ******************************************************************************/
+/**
+ * @file   J1939_UtilityFuncs.h
+ * @author Pradeep Kadoor
+ * @copyricht Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
+ */
 
 #pragma once
 
+/* Project includes */
 #include "Include/BaseDefs.h"
 #include "Datatypes/J1939_DataTypes.h"
 #include "DataTypes/MsgBufAll_DataTypes.h"

@@ -774,7 +774,7 @@ void CTxMsgWndJ1939::vInitializeNmFields(void)
 
     CComboBox* pComboBox = (CComboBox*)GetDlgItem(IDC_COMBO_NODE);
 
-    int nIndex = pComboBox->AddString(m_sClientParams.m_acName);
+    int nIndex = pComboBox->AddString(m_sClientParams.name);
     pComboBox->SetItemData(nIndex, m_sClientParams.m_byAddress);
     pComboBox->SetCurSel(nIndex);
     m_omEcuName.vSetValue(m_sClientParams.m_unEcuName);

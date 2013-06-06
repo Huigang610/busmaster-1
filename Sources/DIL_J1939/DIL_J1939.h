@@ -1,24 +1,26 @@
-
-/******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  J1939Translator.h
-  Description   :  J1939 Translator application class
-  $Log:   X:/Archive/Sources/DIL_J1939/DIL_J1939.h_v  $
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *    Rev 1.1   15 Apr 2011 18:48:34   CANMNTTM
- * Added RBEI Copyright information.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
  *
- *    Rev 1.0   06 Dec 2010 18:47:20   rac2kor
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * @file   J1939Translator.h
+ * @brief  J1939 Translator application class
+ * @author Pradeep Kadoor
+ * @copyricht Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
  *
-  Author(s)     :  Pradeep Kadoor
-  Date Created  :  26/10/2010
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
-
-
-// J1939Translator.h : main header file for the MCNetTranslator DLL
-//
+ * J1939 Translator application class
+ */
 
 #pragma once
 
@@ -26,18 +28,11 @@
 #error include 'stdafx.h' before including this file for PCH
 #endif
 
-
-// CMCNetTranslatorApp
-// See MCNetTranslator.cpp for the implementation of this class
-//
-
 class CJ1939TranslatorApp : public CWinApp
 {
 public:
     CJ1939TranslatorApp();
 
-    // Overrides
-public:
     virtual BOOL InitInstance();
 
     DECLARE_MESSAGE_MAP()

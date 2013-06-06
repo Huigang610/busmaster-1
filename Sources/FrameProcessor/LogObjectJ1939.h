@@ -1,94 +1,131 @@
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-/******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  LogObjectJ1939.h
-  Description   :  Definition file for CLogObjectJ1939 class.
-  $Log:   X:/Archive/Sources/FrameProcessor/LogObjectJ1939.h_v  $
+/**
+ * @file      LogObjectJ1939.h
+ * @brief     Definition file for CLogObjectJ1939 class.
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
- *    Rev 1.2   02 Dec 2011 20:16:50   rac2kor
- * Removed hard coding of version information
- * string in the log file by accepting it as a parameter
- * from the application / client.
- *
- *    Rev 1.1   15 Apr 2011 19:20:38   rac2kor
- * Inserted RBEI Copyright information text into the file header.
- *
- *    Rev 1.0   06 Dec 2010 18:53:02   rac2kor
- *
-
-  Author(s)     :  Ratnadip Choudhury
-  Date Created  :  30.11.2010
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
+ * Definition file for CLogObjectJ1939 class.
+ */
 
 #pragma once
 
+/* Project includes */
 #include "include/BaseDefs.h"
 #include "DataTypes/Log_Datatypes.h"
 #include "DataTypes/Filter_Datatypes.h"
 #include "BaseLogObject.h"
 #include "DataTypes/J1939_DataTypes.h"
 
-
 class CLogObjectJ1939 : public CBaseLogObject
 {
-private:
-    // The filter object
-    SFILTERAPPLIED_J1939 m_sFilterApplied;
-
-    // To format the header
-    void vFormatHeader(CString& omHeader, ETYPE_BUS eBus = J1939);
-
-    // To format the footer
-    void vFormatFooter(CString& omFooter);
-
-    BOOL bToBeLogged(SFRAMEINFO_BASIC_J1939& J1939Info_Basic);
-
-protected:
-    // To copy specific data pertaining to the conrete class.
-    void Der_CopySpecificData(const CBaseLogObject* pouLogObjRef);
-    // Set configuration data - concrete class specific logics
-    BYTE* Der_SetConfigData(BYTE* pvDataStream);
-    // Get configuration data - concrete class specific logics
-    BYTE* Der_GetConfigData(BYTE* pvDataStream) const;
-    void Der_GetConfigData(xmlNodePtr pNodePtr) const;
-    // To get the total buffer size - concrete class specific logics
-    UINT Der_unGetBufSize(void) const;
-
 public:
-
     CStringArray        m_omListDBFiles;
     SCONTROLLER_DETAILS*    m_pasControllerDetails;
     int                 m_nNumChannels;
 
-    CLogObjectJ1939(CString omVersion);    // Overloaded constructor
-    ~CLogObjectJ1939();   // Destructor
+    CLogObjectJ1939(CString omVersion);
+    ~CLogObjectJ1939();
 
-    // Log a J1939 data object
+    /**
+	 * Log a J1939 data object
+	 */
     BOOL bLogData(const SFORMATTEDATA_J1939&);
 
-    // Enable / disable filter
+    /**
+	 * Enable / disable filter
+	 */
     void EnableFilter(BOOL bEnable);
 
-    // Get the filter info structure
+    /**
+	 * Get the filter info structure
+	 */
     void GetFilterInfo(SFILTERAPPLIED_J1939& sFilterInfo) const;
-    // Set the filter info structure
+    
+	/**
+	 * Set the filter info structure
+	 */
     void SetFilterInfo(const SFILTERAPPLIED_J1939& sFilterInfo);
 
-    // Get the list of database files associated
+    /**
+	 * Get the list of database files associated
+	 */
     void Der_GetDatabaseFiles(CStringArray& omList);
-    // Set the list of database files associated
+    
+	/**
+	 * Set the list of database files associated
+	 */
     void Der_SetDatabaseFiles(const CStringArray& omList);
-    int Der_SetConfigData(xmlNodePtr)
+    
+	int Der_SetConfigData(xmlNodePtr)
     {
         return S_OK;
     }
-    // Set the baud rate details for each channel
+    
+	/**
+	 * Set the baud rate details for each channel
+	 */
     void Der_SetChannelBaudRateDetails(SCONTROLLER_DETAILS* controllerDetails,
                                        int nNumChannels);
-    // To get the channel baud rate info for each channel
+    
+	/**
+	 * To get the channel baud rate info for each channel
+	 */
     void Der_GetChannelBaudRateDetails(SCONTROLLER_DETAILS* controllerDetails,
                                        int& nNumChannels);
 
+protected:
+    /**
+	 * To copy specific data pertaining to the conrete class.
+	 */
+    void Der_CopySpecificData(const CBaseLogObject* pouLogObjRef);
+
+	/**
+	 * Set configuration data - concrete class specific logics
+	 */
+    BYTE* Der_SetConfigData(BYTE* pvDataStream);
+    
+	/**
+	 * Get configuration data - concrete class specific logics
+	 */
+    BYTE* Der_GetConfigData(BYTE* pvDataStream) const;
+    
+	void Der_GetConfigData(xmlNodePtr pNodePtr) const;
+    
+	/**
+	 * To get the total buffer size - concrete class specific logics
+	 */
+    UINT Der_unGetBufSize(void) const;
+
+private:
+    /**
+	 * The filter object
+	 */
+    SFILTERAPPLIED_J1939 m_sFilterApplied;
+
+    /**
+	 * To format the header
+	 */
+    void vFormatHeader(CString& omHeader, ETYPE_BUS eBus = J1939);
+
+    /**
+	 * To format the footer
+	 */
+    void vFormatFooter(CString& omFooter);
+
+    BOOL bToBeLogged(SFRAMEINFO_BASIC_J1939& J1939Info_Basic);
 };

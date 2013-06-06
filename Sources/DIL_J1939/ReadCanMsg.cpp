@@ -1,23 +1,25 @@
-/******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  ReadCanMsg.cpp
-  Description   :
-  $Log:   X:/Archive/Sources/DIL_J1939/ReadCanMsg.cpv  $
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-      Rev 1.2   07 Jun 2011 11:11:18   CANMNTTM
+/**
+ * @file      ReadCanMsg.cpp
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ */
 
-
-      Rev 1.1   15 Apr 2011 18:48:38   CANMNTTM
-   Added RBEI Copyright information.
-
-      Rev 1.0   06 Dec 2010 18:47:22   rac2kor
-
-
-  Author(s)     :  Pradeep Kadoor
-  Date Created  :  23/11/2010
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
+/* Project includes */
 #include "DIL_J1939_stdafx.h"
 #include "J1939_UtilityFuncs.h"
 #include "ReadCanMsg.h"

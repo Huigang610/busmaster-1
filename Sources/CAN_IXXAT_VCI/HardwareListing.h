@@ -42,9 +42,9 @@ public:
     // To update selected hardware detaisl
     void vUpdateHwDetails( int nIndex );
     // To set List of hardware handles
-    void vSetHardwareList(INTERFACE_HW*, int );
+    void vSetHardwareList(InterfaceHardware*, int );
     // Constructor
-    CHardwareListing(INTERFACE_HW*, int , int*, CWnd* pParent = NULL);
+    CHardwareListing(InterfaceHardware*, int , int*, CWnd* pParent = NULL);
     // standard constructor
     CHardwareListing();
     //Get selection list
@@ -87,7 +87,7 @@ protected:
 private:
     void vEnableDisableButtons();
     // Pointer to Hardware List
-    INTERFACE_HW* m_psHwInterface;
+    InterfaceHardware* m_psHwInterface;
     // Size of the array
     int m_nSize;
     //Number of selected items

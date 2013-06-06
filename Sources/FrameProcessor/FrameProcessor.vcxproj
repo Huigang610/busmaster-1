@@ -140,6 +140,7 @@
       <AdditionalOptions>"$(SolutionDir)/BIN/Libs/$(OutDir)DataTypes.lib"
 "$(SolutionDir)/BIN/Libs/$(OutDir)Utils.lib"
 "$(SolutionDir)/BIN/Libs/$(OutDir)DIL_Interface.lib"
+"$(SolutionDir)/BIN/Libs/$(OutDir)CommonClass.lib"
  %(AdditionalOptions)</AdditionalOptions>
       <OutputFile>$(SolutionDir)/bin/$(OutDir)FrameProcessor.dll</OutputFile>
       <AdditionalLibraryDirectories>C:\WinDDK\7600.16385.1\lib\Mfc\i386;C:\WinDDK\7600.16385.1\lib\ATL\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -212,7 +213,6 @@
     <ClCompile Include="FrameProcessor_J1939.cpp" />
     <ClCompile Include="LogObjectCAN.cpp" />
     <ClCompile Include="LogObjectJ1939.cpp" />
-    <ClCompile Include="RefTimeKeeper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseFrameProcessor_CAN.h" />
@@ -230,7 +230,6 @@
     <ClInclude Include="Logger_CommonDataTypes.h" />
     <ClInclude Include="LogObjectCAN.h" />
     <ClInclude Include="LogObjectJ1939.h" />
-    <ClInclude Include="RefTimeKeeper.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataTypes\DataTypes.vcxproj">

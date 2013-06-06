@@ -220,7 +220,7 @@ static int sg_nFRAMES = 128;
 const int ENTRIES_IN_GBUF       = 2000;
 static STCANDATA sg_asCANMsg;
 static SCONTROLLER_DETAILS sg_ControllerDetails[defNO_OF_CHANNELS];
-static INTERFACE_HW sg_HardwareIntr[defNO_OF_CHANNELS];
+static InterfaceHardware sg_HardwareIntr[defNO_OF_CHANNELS];
 
 
 // TZM specific Global variables
@@ -259,8 +259,8 @@ public:
     HRESULT performInitOperations(void);
     HRESULT performClosureOperations(void);
     HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const InterfaceHardwareList& sSelHwInterface, INT nCount);
     HRESULT deselectHardwareInterface(void);
     HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
     HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);
@@ -646,7 +646,7 @@ HRESULT CDIL_CAN_VectorXL::loadDriverLibrary(void)
 
     if (hxlDll != NULL)
     {
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("vxlapi.dll already loaded"));
+        sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("vxlapi.dll already loaded"));
         hResult = DLL_ALREADY_LOADED;
     }
 
@@ -655,7 +655,7 @@ HRESULT CDIL_CAN_VectorXL::loadDriverLibrary(void)
         hxlDll = LoadLibrary("vxlapi.dll");
         if (hxlDll == NULL)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("vxlapi.dll loading failed"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("vxlapi.dll loading failed"));
             hResult = ERR_LOAD_DRIVER;
         }
         else
@@ -729,7 +729,7 @@ HRESULT CDIL_CAN_VectorXL::loadDriverLibrary(void)
                     !xlCanTransmit || !xlSetGlobalTimeSync)
             {
                 FreeLibrary(hxlDll);
-                sg_pIlog->vLogAMessage(A2T(__FILE__),
+                sg_pIlog->logMessage(A2T(__FILE__),
                                        __LINE__, _("Getting Process address of the APIs failed"));
                 hResult = ERR_LOAD_DRIVER;
             }
@@ -838,13 +838,13 @@ HRESULT CDIL_CAN_VectorXL::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& T
 
 /**
 * @brief         Lists the hardware interface available.
-* @param[out]    asSelHwInterface, is INTERFACE_HW_LIST structure
+* @param[out]    asSelHwInterface, is InterfaceHardwareList structure
 * @param[out]    nCount , is INT contains the selected channel count.
 * @return        S_OK for success, S_FALSE for failure
 * @authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN_VectorXL::listHardwareInterfaces(InterfaceHardwareList& asSelHwInterface, INT& nCount)
 {
     USES_CONVERSION;
     HRESULT hResult = S_FALSE;
@@ -855,12 +855,12 @@ HRESULT CDIL_CAN_VectorXL::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInte
         nCount = sg_nNoOfChannels;
         for (UINT i = 0; i < sg_nNoOfChannels; i++)
         {
-            asSelHwInterface[i].m_dwIdInterface = i;
+            asSelHwInterface[i].interfaceId = i;
             unsigned int serialNumber = sg_aodChannels[i].m_pXLChannelInfo->serialNumber;
             std::ostringstream oss;
             oss << std::dec << serialNumber;
-            asSelHwInterface[i].m_acDescription = oss.str();
-            //_stprintf(asSelHwInterface[i].m_acDescription, "%d", serialNumber);
+            asSelHwInterface[i].description = oss.str();
+            //_stprintf(asSelHwInterface[i].description, "%d", serialNumber);
             std::ostringstream oss1;
             oss1 << "Vector - " << sg_aodChannels[i].m_pXLChannelInfo->name << " SN - " <<serialNumber;
             oss1 << "Channel Index - " <<(int)sg_aodChannels[i].m_pXLChannelInfo->channelIndex;
@@ -877,20 +877,20 @@ HRESULT CDIL_CAN_VectorXL::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInte
     }
     else
     {
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("Error connecting to driver"));
+        sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("Error connecting to driver"));
     }
     return hResult;
 }
 
 /**
 * @brief         Selects the hardware interface selected by the user.
-* @param[out]    asSelHwInterface, is INTERFACE_HW_LIST structure
+* @param[out]    asSelHwInterface, is InterfaceHardwareList structure
 * @param[out]    nCount , is INT contains the selected channel count.
 * @return        S_OK for success, S_FALSE for failure
 * @authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-HRESULT CDIL_CAN_VectorXL::selectHardwareInterface(const INTERFACE_HW_LIST& /*asSelHwInterface*/, INT /*nCount*/)
+HRESULT CDIL_CAN_VectorXL::selectHardwareInterface(const InterfaceHardwareList& /*asSelHwInterface*/, INT /*nCount*/)
 {
     USES_CONVERSION;
 
@@ -1659,7 +1659,7 @@ HRESULT CDIL_CAN_VectorXL::startHardware(void)
         }
         else
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _(_("Could not start the read thread") ));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _(_("Could not start the read thread") ));
         }
     }
 
@@ -1841,7 +1841,7 @@ HRESULT CDIL_CAN_VectorXL::stopHardware(void)
 */
 HRESULT CDIL_CAN_VectorXL::getCurrentStatus(s_STATUSMSG& StatusData)
 {
-    StatusData.wControllerStatus = NORMAL_ACTIVE;
+    StatusData.controllerStatus = NORMAL_ACTIVE;
 
     return S_OK;
 }
@@ -2204,14 +2204,14 @@ static int nGetNoOfConnectedHardware(void)
 
 /**
 * @brief         This function will popup hardware selection dialog and gets the user selection of channels.
-* @param[in]     psInterfaces, is INTERFACE_HW structue
+* @param[in]     psInterfaces, is InterfaceHardware structue
 * @param[out]    pnSelList, contains channels selected array
 * @param[out]    nCount, contains selected channel count
 * @return        returns 0 if success, else -1
 * @authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, INTERFACE_HW* psInterfaces, int* pnSelList, int& nCount)
+int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, InterfaceHardware* psInterfaces, int* pnSelList, int& nCount)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
@@ -2258,11 +2258,11 @@ static int nCreateMultipleHardwareNetwork(UINT unDefaultChannelCnt = 0)
             {
                 continue;
             }
-            sg_HardwareIntr[nChannels].m_dwIdInterface = nCount;
-            sg_HardwareIntr[nChannels].m_dwVendor = g_xlDrvConfig.channel[nCount].serialNumber;
-            /*_stprintf(acTempStr, _("SN: %d, Port ID: %d"), sg_HardwareIntr[nChannels].m_dwVendor,
-                                                                    sg_HardwareIntr[nChannels].m_dwIdInterface);*/
-            sg_HardwareIntr[nChannels].m_acDescription = g_xlDrvConfig.channel[nCount].name;
+            sg_HardwareIntr[nChannels].interfaceId = nCount;
+            sg_HardwareIntr[nChannels].vendor = g_xlDrvConfig.channel[nCount].serialNumber;
+            /*_stprintf(acTempStr, _("SN: %d, Port ID: %d"), sg_HardwareIntr[nChannels].vendor,
+                                                                    sg_HardwareIntr[nChannels].interfaceId);*/
+            sg_HardwareIntr[nChannels].description = g_xlDrvConfig.channel[nCount].name;
             nChannels++;
         }
     }
@@ -2287,7 +2287,7 @@ static int nCreateMultipleHardwareNetwork(UINT unDefaultChannelCnt = 0)
     //Reorder hardware interface as per the user selection
     for (int nCount = 0; nCount < sg_ucNoOfHardware; nCount++)
     {
-        sg_aodChannels[nCount].m_pXLChannelInfo  = &g_xlDrvConfig.channel[sg_HardwareIntr[sg_anSelectedItems[nCount]].m_dwIdInterface];
+        sg_aodChannels[nCount].m_pXLChannelInfo  = &g_xlDrvConfig.channel[sg_HardwareIntr[sg_anSelectedItems[nCount]].interfaceId];
         g_xlChannelMask |= sg_aodChannels[nCount].m_pXLChannelInfo->channelMask;
     }
     g_xlPermissionMask = g_xlChannelMask;
@@ -2551,7 +2551,7 @@ static void vRetrieveAndLog(DWORD /*dwErrorCode*/, char* File, int Line)
     char acErrText[MAX_PATH] = "";
 
     /* Get the error text for the corresponding error code */
-    sg_pIlog->vLogAMessage(A2T(File), Line, A2T(acErrText));
+    sg_pIlog->logMessage(A2T(File), Line, A2T(acErrText));
 
     size_t nStrLen = strlen(acErrText);
     if (nStrLen > CAN_MAX_ERRSTR)

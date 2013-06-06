@@ -76,9 +76,9 @@ void tagLogInfo::vClear(void)
     strcpy_s(m_sLogFileName, _MAX_PATH, "");
 
     // Init Trigger Condition
-    m_sLogTrigger.m_unTriggerType = NONE;   // No trigger
-    m_sLogTrigger.m_unStartID = 0;          // No Start-ID
-    m_sLogTrigger.m_unStopID = 0;           // No Stop-ID
+    m_sLogTrigger.triggerType = NONE;   // No trigger
+    m_sLogTrigger.startId = 0;          // No Start-ID
+    m_sLogTrigger.stopId = 0;           // No Stop-ID
 }
 
 /******************************************************************************
@@ -206,20 +206,20 @@ BOOL tagLogInfo::pbGetConfigData(xmlNodePtr pxmlNodePtr) const
 
     CString omstrStartId = "";
     CString omstrStpId = "";
-    if ( m_sLogTrigger.m_unTriggerType == START )
+    if ( m_sLogTrigger.triggerType == START )
     {
-        omstrStartId.Format("%d", m_sLogTrigger.m_unStartID);
+        omstrStartId.Format("%d", m_sLogTrigger.startId);
         omstrStpId.Format("%d", -1);
     }
-    else if ( m_sLogTrigger.m_unTriggerType == STOP )
+    else if ( m_sLogTrigger.triggerType == STOP )
     {
         omstrStartId.Format("%d", -1);
-        omstrStpId.Format("%d", m_sLogTrigger.m_unStopID);
+        omstrStpId.Format("%d", m_sLogTrigger.stopId);
     }
-    else if ( m_sLogTrigger.m_unTriggerType == BOTH )
+    else if ( m_sLogTrigger.triggerType == BOTH )
     {
-        omstrStartId.Format("%d", m_sLogTrigger.m_unStartID);
-        omstrStpId.Format("%d", m_sLogTrigger.m_unStopID);
+        omstrStartId.Format("%d", m_sLogTrigger.startId);
+        omstrStpId.Format("%d", m_sLogTrigger.stopId);
     }
     else
     {
@@ -329,8 +329,8 @@ INT tagLogInfo::nSetConfigData(xmlNodePtr pNodePtr)
     //pNodePtr = pNodePtr->xmlChildrenNode;
     vClear();   //To give Initial Values
     INT nRetValue = S_OK;
-    m_sLogTrigger.m_unStartID = -1;
-    m_sLogTrigger.m_unStopID = -1;
+    m_sLogTrigger.startId = -1;
+    m_sLogTrigger.stopId = -1;
 
     while (pNodePtr != NULL)
     {
@@ -440,7 +440,7 @@ INT tagLogInfo::nSetConfigData(xmlNodePtr pNodePtr)
                 xmlChar* key = xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1);
                 if(NULL != key)
                 {
-                    m_sLogTrigger.m_unStartID = atoi((char*)key);
+                    m_sLogTrigger.startId = atoi((char*)key);
                     xmlFree(key);
                 }
             }
@@ -449,7 +449,7 @@ INT tagLogInfo::nSetConfigData(xmlNodePtr pNodePtr)
                 xmlChar* key = xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1);
                 if(NULL != key)
                 {
-                    m_sLogTrigger.m_unStopID = atoi((char*)key);
+                    m_sLogTrigger.stopId = atoi((char*)key);
                     xmlFree(key);
                 }
             }
@@ -461,25 +461,25 @@ INT tagLogInfo::nSetConfigData(xmlNodePtr pNodePtr)
         nRetValue = S_FALSE;
     }
     //0 - None, 1 - Start, 2 - Stop, 3 - Both
-    m_sLogTrigger.m_unTriggerType = NONE;
-    int nStartID = m_sLogTrigger.m_unStartID;
-    int nStopID = m_sLogTrigger.m_unStopID;
+    m_sLogTrigger.triggerType = NONE;
+    int nStartID = m_sLogTrigger.startId;
+    int nStopID = m_sLogTrigger.stopId;
 
     if( nStartID >= 0 && nStopID < 0 )
     {
-        m_sLogTrigger.m_unTriggerType = START;
+        m_sLogTrigger.triggerType = START;
     }
     else if( nStartID < 0 && nStopID >= 0 )
     {
-        m_sLogTrigger.m_unTriggerType = STOP;
+        m_sLogTrigger.triggerType = STOP;
     }
     else if( nStartID < 0 && nStopID < 0 )
     {
-        m_sLogTrigger.m_unTriggerType = NONE;
+        m_sLogTrigger.triggerType = NONE;
     }
     else if( nStartID >= 0 && nStopID >= 0 )
     {
-        m_sLogTrigger.m_unTriggerType = BOTH;
+        m_sLogTrigger.triggerType = BOTH;
     }
 
     return nRetValue;

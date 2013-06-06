@@ -39,7 +39,6 @@ enum eTHREAD_ACTION
 #define THREAD_WAIT_PERIOD       200
 #define EXIT_CODE_ABNORMAL       2
 
-
 class CPARAM_THREADPROC
 {
 protected:

@@ -199,8 +199,8 @@ public:
     HRESULT performInitOperations(void);
     HRESULT performClosureOperations(void);
     HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const InterfaceHardwareList& sSelHwInterface, INT nCount);
     HRESULT deselectHardwareInterface(void);
     HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
     HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);
@@ -603,7 +603,7 @@ static BOOL bRemoveClient(DWORD dwClientId)
             }
             else
             {
-                sg_pIlog->vLogAMessage(__FILE__, __LINE__, _("Unregister failed"));
+                sg_pIlog->logMessage(__FILE__, __LINE__, _("Unregister failed"));
             }
 
             if (bResult == TRUE)
@@ -882,7 +882,7 @@ HRESULT CDIL_CAN_STUB::performInitOperations(void)
  */
 HRESULT CDIL_CAN_STUB::getCurrentStatus(s_STATUSMSG& StatusData)
 {
-    StatusData.wControllerStatus = NORMAL_ACTIVE;
+    StatusData.controllerStatus = NORMAL_ACTIVE;
     return S_OK;
 }
 
@@ -913,19 +913,19 @@ HRESULT CDIL_CAN_STUB::performClosureOperations(void)
     return S_OK;
 }
 
-HRESULT CDIL_CAN_STUB::listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN_STUB::listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount)
 {
     for (UINT i = 0; i < CHANNEL_ALLOWED; i++)
     {
-        sSelHwInterface[i].m_dwIdInterface = 0x100;
-        sSelHwInterface[i].m_acNameInterface = _("Simulation");
-        sSelHwInterface[i].m_acDescription = _("A simulation engine to create a virtual bus system");
+        sSelHwInterface[i].interfaceId = 0x100;
+        sSelHwInterface[i].interfaceName = _("Simulation");
+        sSelHwInterface[i].description = _("A simulation engine to create a virtual bus system");
     }
     nCount = CHANNEL_ALLOWED;
     return S_OK;
 }
 
-HRESULT CDIL_CAN_STUB::selectHardwareInterface(const INTERFACE_HW_LIST& /*sSelHwInterface*/, INT /*nSize*/)
+HRESULT CDIL_CAN_STUB::selectHardwareInterface(const InterfaceHardwareList& /*sSelHwInterface*/, INT /*nSize*/)
 {
     SetCurrState(STATE_INITIALISED);
     return S_OK;
@@ -1110,7 +1110,7 @@ HRESULT Worker_Connect(ISimENG* pISimENGLoc, Base_WrapperErrorLogger* pIlogLoc)
     }
     else if (GetCurrState() != STATE_INITIALISED)
     {
-        sg_pIlog->vLogAMessage(__FILE__, __LINE__,
+        sg_pIlog->logMessage(__FILE__, __LINE__,
                                (_("CAN_STUB_Connect called at improper state")));
         return S_FALSE;
     }
@@ -1130,7 +1130,7 @@ HRESULT Worker_Connect(ISimENG* pISimENGLoc, Base_WrapperErrorLogger* pIlogLoc)
             sg_asClientToBufMap[i].hClientHandle = NULL;
             sg_asClientToBufMap[i].hPipeFileHandle = NULL;
         }
-        sg_pIlog->vLogAMessage(__FILE__, __LINE__,
+        sg_pIlog->logMessage(__FILE__, __LINE__,
                                (_("Unable to start the reading thread")));
         return S_FALSE;
     }
@@ -1149,7 +1149,7 @@ HRESULT Worker_Disconnect(ISimENG* /*pISimENGLoc*/, Base_WrapperErrorLogger* pIl
     }
     else if (GetCurrState() == STATE_RESET)
     {
-        pIlogLoc->vLogAMessage(__FILE__, __LINE__,
+        pIlogLoc->logMessage(__FILE__, __LINE__,
                                (_("CAN_STUB_DeselectHwInterface called at improper state")));
         return S_FALSE;
     }
@@ -1188,7 +1188,7 @@ HRESULT Worker_StopHardware(ISimENG* pISimENGLoc, Base_WrapperErrorLogger* pIlog
     else
     {
         if ( pIlogLoc )
-            pIlogLoc->vLogAMessage(__FILE__, __LINE__,
+            pIlogLoc->logMessage(__FILE__, __LINE__,
                                    (_("CAN_STUB_StopHardware called at improper state")));
     }
 
@@ -1211,7 +1211,7 @@ HRESULT Worker_StartHardware(ISimENG* pISimENGLoc, Base_WrapperErrorLogger* pIlo
     }
     else
     {
-        pIlogLoc->vLogAMessage(__FILE__, __LINE__,
+        pIlogLoc->logMessage(__FILE__, __LINE__,
                                (_("CAN_STUB_StartHardware called at improper state")));
     }
 
@@ -1243,7 +1243,7 @@ HRESULT Worker_RegisterClient(ISimENG* pISimENG, Base_WrapperErrorLogger* pIlog)
     hResult = pISimENG->RegisterClient(CAN, sizeof (STCAN_MSG), &ushClientID, &PipeName, &EventName);
     if (hResult != S_OK)
     {
-        pIlog->vLogAMessage(__FILE__, __LINE__,
+        pIlog->logMessage(__FILE__, __LINE__,
                             (_("Unable to register to the simulation engine")));
         return S_FALSE;
     }
@@ -1267,7 +1267,7 @@ HRESULT Worker_RegisterClient(ISimENG* pISimENG, Base_WrapperErrorLogger* pIlog)
     {
         // Unregister from the simulation engine
         pISimENG->UnregisterClient(ushClientID);
-        pIlog->vLogAMessage(__FILE__, __LINE__,
+        pIlog->logMessage(__FILE__, __LINE__,
                             (_("Can't convert from BSTR to ASCII string")));
         return S_FALSE;
     }

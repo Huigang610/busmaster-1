@@ -18,6 +18,7 @@
     <ProjectGuid>{7812969F-7FF6-448C-A19C-78CC07362163}</ProjectGuid>
     <RootNamespace>DIL_J1939</RootNamespace>
     <Keyword>MFCDLLProj</Keyword>
+    <ProjectName>DIL_J1939</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='busmaster_debug|Win32'" Label="Configuration">

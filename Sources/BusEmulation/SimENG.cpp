@@ -233,7 +233,7 @@ DWORD WINAPI MsgDelegatingThread(LPVOID pParam)
     CurrMsgDat.wMessageType = MESSAGE_STATUS;
     CurrMsgDat.qwTimestamp = 0x0;
 
-    CurrMsgDat.stcStatusMsg.wControllerStatus = (sg_ClientMap.size() > 1) ?
+    CurrMsgDat.stcStatusMsg.controllerStatus = (sg_ClientMap.size() > 1) ?
                                                 NORMAL_ACTIVE : NORMAL_PASSIVE;
 
     sg_MessageBuf.WriteIntoBuffer(&CurrMsgDat);
@@ -590,7 +590,7 @@ STDMETHODIMP CSimENG::GetCurrentStatus(USHORT ClientID, VARIANT* /*pNodeStatus*/
     if (itr != sg_ClientMap.end())
     {
         //s_FLXSTATUSMSG* pStatusData = (s_FLXSTATUSMSG *) pNodeStatus;
-        //pStatusData->wControllerStatus = itr->second.m_bCurrState;
+        //pStatusData->controllerStatus = itr->second.m_bCurrState;
     }
 
     return S_OK;

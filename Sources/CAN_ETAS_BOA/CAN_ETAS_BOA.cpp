@@ -296,8 +296,8 @@ public:
     HRESULT performInitOperations(void);
     HRESULT performClosureOperations(void);
     HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const InterfaceHardwareList& sSelHwInterface, INT nCount);
     HRESULT deselectHardwareInterface(void);
     HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
     HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);
@@ -908,7 +908,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
         else
         {
             hResult = S_FALSE;
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add frame filter"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not add frame filter"));
         }
 
         // Add Event filter
@@ -921,7 +921,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
             if (ErrCode != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add event filter"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not add event filter"));
             }
         }
 
@@ -934,7 +934,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
             if (ErrCode != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add error filter"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not add error filter"));
             }
         }
         // Add internal error filter
@@ -946,7 +946,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
             if (ErrCode != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add error filter"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not add error filter"));
             }
         }
 
@@ -964,7 +964,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
         else
         {
             hResult = S_FALSE;
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not remove frame filter"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not remove frame filter"));
         }
 
         // Remove Event filter
@@ -976,7 +976,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
             if (ErrCode != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not remove event filter"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not remove event filter"));
             }
         }
 
@@ -989,7 +989,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
             if (ErrCode != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not remove error filter"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not remove error filter"));
             }
         }
         if (hResult == S_OK)
@@ -1000,7 +1000,7 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
             if (ErrCode != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add error filter"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not add error filter"));
             }
         }
     }
@@ -1030,7 +1030,7 @@ HRESULT ManageQueue(BYTE byCode, UINT nChannel)
         else
         {
             hResult = S_FALSE;
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create rx queue"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not create rx queue"));
         }
         //Create CAN Tx queue
         if (hResult == S_OK)
@@ -1042,7 +1042,7 @@ HRESULT ManageQueue(BYTE byCode, UINT nChannel)
             if (Err != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create tx queue"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not create tx queue"));
             }
         }
     }
@@ -1057,7 +1057,7 @@ HRESULT ManageQueue(BYTE byCode, UINT nChannel)
         else
         {
             hResult = S_FALSE;
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create rx queue"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not create rx queue"));
         }
         //Create CAN Tx queue
         if (hResult == S_OK)
@@ -1066,7 +1066,7 @@ HRESULT ManageQueue(BYTE byCode, UINT nChannel)
             if (Err != OCI_SUCCESS)
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create tx queue"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not create tx queue"));
             }
         }
     }
@@ -1716,7 +1716,7 @@ HRESULT CDIL_CAN_ETAS_BOA::loadDriverLibrary(void)
                 hResult = GetOCI_API_Pointers(sg_hLibOCI);
                 if (hResult != S_OK)
                 {
-                    sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not get OCI function pointers"));
+                    sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not get OCI function pointers"));
                 }
                 else
                 {
@@ -1730,13 +1730,13 @@ HRESULT CDIL_CAN_ETAS_BOA::loadDriverLibrary(void)
                 acErr.append(acLIB_OCI);
                 acErr.append(" ");
                 acErr.append(_("failed to load"));
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, acErr);
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("Please have a look at: https://github.com/rbei-etas/busmaster/wiki/Hardware-support"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, acErr);
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("Please have a look at: https://github.com/rbei-etas/busmaster/wiki/Hardware-support"));
             }
         }
         else
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not get CSI function pointers"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not get CSI function pointers"));
         }
     }
     else
@@ -1745,8 +1745,8 @@ HRESULT CDIL_CAN_ETAS_BOA::loadDriverLibrary(void)
         acErr.append(acLIB_CSL);
         acErr.append(" ");
         acErr.append(_("failed to load"));
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, acErr);
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("Please have a look at: https://github.com/rbei-etas/busmaster/wiki/Hardware-support"));
+        sg_pIlog->logMessage(A2T(__FILE__), __LINE__, acErr);
+        sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("Please have a look at: https://github.com/rbei-etas/busmaster/wiki/Hardware-support"));
     }
     return hResult;
 }
@@ -1959,7 +1959,7 @@ HRESULT CDIL_CAN_ETAS_BOA::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& T
  * This function will popup hardware selection dialog and gets the user selection of channels.
  *
  */
-int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, INTERFACE_HW* psInterfaces, int* pnSelList, int& nCount)
+int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, InterfaceHardware* psInterfaces, int* pnSelList, int& nCount)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
@@ -1986,7 +1986,7 @@ int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, INTERFACE_HW* psInt
  * Lists the hardware interface available. sSelHwInterface
  * will contain the user selected hw interface.
  */
-HRESULT CDIL_CAN_ETAS_BOA::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN_ETAS_BOA::listHardwareInterfaces(InterfaceHardwareList& asSelHwInterface, INT& nCount)
 {
     //VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_DRIVER_SELECTED, ERR_IMPROPER_STATE);
     USES_CONVERSION;
@@ -2003,17 +2003,17 @@ HRESULT CDIL_CAN_ETAS_BOA::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInte
 
         if (nCount > 0)//Success only if there exists alteast one hw
         {
-            INTERFACE_HW psHWInterface[defNO_OF_CHANNELS];
+            InterfaceHardware psHWInterface[defNO_OF_CHANNELS];
             //set the current number of channels
             nCount = min(nCount, defNO_OF_CHANNELS);
 
             for (UINT i = 0; i < nCount; i++)
             {
-                psHWInterface[i].m_dwIdInterface = 0;
-                psHWInterface[i].m_dwVendor = 0;
-                psHWInterface[i].m_acDeviceName = "";
-                psHWInterface[i].m_acNameInterface = acURI[i];
-                psHWInterface[i].m_acDescription = acURI[i];
+                psHWInterface[i].interfaceId = 0;
+                psHWInterface[i].vendor = 0;
+                psHWInterface[i].deviceName = "";
+                psHWInterface[i].interfaceName = acURI[i];
+                psHWInterface[i].description = acURI[i];
             }
 
             if (nCount > 1)// List hw interface if there are more than one hw
@@ -2037,9 +2037,9 @@ HRESULT CDIL_CAN_ETAS_BOA::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInte
             sg_nNoOfChannels = min(nCount, defNO_OF_CHANNELS);
             for (UINT nList = 0; nList < sg_nNoOfChannels; nList++)
             {
-                asSelHwInterface[nList].m_acNameInterface = psHWInterface[sg_anSelectedItems[nList]].m_acNameInterface;
-                asSelHwInterface[nList].m_acDescription = psHWInterface[sg_anSelectedItems[nList]].m_acDescription;
-                asSelHwInterface[nList].m_dwIdInterface = 100 + nList; // Give a dummy number
+                asSelHwInterface[nList].interfaceName = psHWInterface[sg_anSelectedItems[nList]].interfaceName;
+                asSelHwInterface[nList].description = psHWInterface[sg_anSelectedItems[nList]].description;
+                asSelHwInterface[nList].interfaceId = 100 + nList; // Give a dummy number
             }
 
             sg_bCurrState = STATE_HW_INTERFACE_LISTED;
@@ -2058,7 +2058,7 @@ HRESULT CDIL_CAN_ETAS_BOA::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInte
  *
  * Selects the hardware interface selected by the user.
  */
-HRESULT CDIL_CAN_ETAS_BOA::selectHardwareInterface(const INTERFACE_HW_LIST& asSelHwInterface, INT /*nCount*/)
+HRESULT CDIL_CAN_ETAS_BOA::selectHardwareInterface(const InterfaceHardwareList& asSelHwInterface, INT /*nCount*/)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_LISTED, ERR_IMPROPER_STATE);
 
@@ -2067,7 +2067,7 @@ HRESULT CDIL_CAN_ETAS_BOA::selectHardwareInterface(const INTERFACE_HW_LIST& asSe
     //First select only supported number of HW interfaces
     for (UINT i = 0; i < sg_nNoOfChannels; i++)
     {
-        strcpy_s(sg_asChannel[i].m_acURI, asSelHwInterface[i].m_acNameInterface.c_str());
+        strcpy_s(sg_asChannel[i].m_acURI, asSelHwInterface[i].interfaceName.c_str());
     }
     // Create the controller instance.
     for (UINT i = 0; i < sg_nNoOfChannels; i++)
@@ -2114,32 +2114,32 @@ HRESULT CDIL_CAN_ETAS_BOA::selectHardwareInterface(const INTERFACE_HW_LIST& asSe
                         else
                         {
                             hResult = ERR_LOAD_HW_INTERFACE;
-                            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not get timer resolution"));
+                            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not get timer resolution"));
                         }
                     }
                     else
                     {
                         hResult = ERR_LOAD_HW_INTERFACE;
-                        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not add filters"));
+                        sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not add filters"));
                     }
                 }
                 else
                 {
                     hResult = ERR_LOAD_HW_INTERFACE;
-                    sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create rx queue"));
+                    sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not create rx queue"));
                 }
 
             }
             else
             {
                 hResult = ERR_LOAD_HW_INTERFACE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not open controller"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not open controller"));
             }
         }
         else
         {
             hResult = ERR_LOAD_HW_INTERFACE;
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not create controller"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not create controller"));
         }
     }
     //Check for the success
@@ -2175,25 +2175,25 @@ HRESULT CDIL_CAN_ETAS_BOA::deselectHardwareInterface(void)
                     else
                     {
                         hResult = S_FALSE;
-                        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not destroy controller"));
+                        sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not destroy controller"));
                     }
                 }
                 else
                 {
                     hResult = S_FALSE;
-                    sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not close controller"));
+                    sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not close controller"));
                 }
             }
             else
             {
                 hResult = S_FALSE;
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not destroy the queue"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not destroy the queue"));
             }
         }
         else
         {
             hResult = S_FALSE;
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not remove the filter"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not remove the filter"));
         }
     }
 
@@ -2349,7 +2349,7 @@ HRESULT CDIL_CAN_ETAS_BOA::setConfigurationData(PSCONTROLLER_DETAILS pInitData, 
         else
         {
             hResult = S_FALSE;
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not configure the controller"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not configure the controller"));
         }
     }
     return hResult;
@@ -2384,14 +2384,14 @@ HRESULT CDIL_CAN_ETAS_BOA::startHardware(void)
                 else
                 {
                     hResult = S_FALSE;
-                    sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not start the controller in running mode"));
+                    sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not start the controller in running mode"));
                 }
             }
         }
         else
         {
             hResult = S_FALSE;
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not get controller mode"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not get controller mode"));
         }
     }
     //Check for the success
@@ -2449,7 +2449,7 @@ HRESULT CDIL_CAN_ETAS_BOA::stopHardware(void)
                 else
                 {
                     hResult = S_FALSE;
-                    sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not stop the controller in suspended mode"));
+                    sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not stop the controller in suspended mode"));
                 }
             }
             else if (sg_asChannel[i].m_OCI_CntrlProp.mode == OCI_CONTROLLER_MODE_SUSPENDED)
@@ -2460,7 +2460,7 @@ HRESULT CDIL_CAN_ETAS_BOA::stopHardware(void)
         else
         {
             hResult = S_FALSE;
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not get controller mode"));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not get controller mode"));
         }
     }
     //Check for the success
@@ -2481,7 +2481,7 @@ HRESULT CDIL_CAN_ETAS_BOA::stopHardware(void)
  */
 HRESULT CDIL_CAN_ETAS_BOA::getCurrentStatus(s_STATUSMSG& StatusData)
 {
-    StatusData.wControllerStatus = NORMAL_ACTIVE;
+    StatusData.controllerStatus = NORMAL_ACTIVE;
 
     return S_OK;
 }
@@ -2537,7 +2537,7 @@ HRESULT CDIL_CAN_ETAS_BOA::sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTx
             }
             else
             {
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("could not write CAN data onto bus"));
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not write CAN data onto bus"));
             }
         }
         else

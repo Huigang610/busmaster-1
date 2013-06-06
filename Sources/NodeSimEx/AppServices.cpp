@@ -361,7 +361,7 @@ bool gbSendStrToTrace(const char* pcOutStrTrace)
 {
     if (NULL != CGlobalObj::sm_pouITraceWndPtr)
     {
-        return CGlobalObj::sm_pouITraceWndPtr->bWriteToTrace(pcOutStrTrace);
+        return CGlobalObj::sm_pouITraceWndPtr->writeToTrace(pcOutStrTrace);
     }
     return TRUE;
 }

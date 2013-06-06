@@ -36,5 +36,5 @@ public:
     WrapperErrorLogger(void);
     ~WrapperErrorLogger(void);
 
-    void vLogAMessage(char* File, int Line, std::string Msg);
+    void logMessage(char* File, int Line, std::string Msg);
 };

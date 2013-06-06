@@ -21,7 +21,7 @@
 
 #pragma once
 
-class CBaseAppServices;
+class BaseAppServices;
 typedef enum
 {
     eINIT_ALL,
@@ -30,5 +30,5 @@ typedef enum
 
 typedef struct
 {
-    CBaseAppServices*   m_pouITraceWndPtr;
+    BaseAppServices*   m_pouITraceWndPtr;
 } SREPLAYINIT;

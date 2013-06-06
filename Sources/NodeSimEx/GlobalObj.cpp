@@ -40,7 +40,7 @@
 //definition
 CGlobalObj* CGlobalObj::sm_pThis[BUS_TOTAL] = {0};
 HWND CGlobalObj::sm_hWndMDIParentFrame = NULL;
-CBaseAppServices* CGlobalObj::sm_pouITraceWndPtr = NULL;
+BaseAppServices* CGlobalObj::sm_pouITraceWndPtr = NULL;
 CBaseDIL_CAN* CGlobalObj::sm_pouDilCanInterface = NULL;
 static bool g_bReqUserConfirmation;
 static bool g_bQueryConfirm;
@@ -72,7 +72,6 @@ CGlobalObj::CGlobalObj(ETYPE_BUS eBus)
     m_omErrorHandlerList.RemoveAll();
     m_omObjWrapperName = "wrapper.o";
     m_podNodeToDllMap = NULL;
-    //CKeyPanelEntryList* CGlobalObj::g_podKeyPanelEntryList = NULL;
     m_pfTransmitMsg         = NULL;
     m_pfEnableDisableLog    = NULL;
     m_pfDisconnectTool      = NULL;

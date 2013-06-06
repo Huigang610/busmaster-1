@@ -24,21 +24,21 @@
 
 #pragma once
 
+/* Project includes */
 #include "GUI_FormatMsgCommon.h"
 #include "include/BaseDefs.h"
 #include "include/struct_can.h"
 
 class CFormatMsgCAN : public CFormatMsgCommon
 {
+public:
+    void vFormatCANDataMsg(STCANDATA* pMsgCAN,
+                           SFORMATTEDDATA_CAN* CurrDataCAN,
+                           BYTE bExprnFlag_Log);
+
 private:
     void vFormatTime(BYTE bExprnFlag, SFORMATTEDDATA_CAN* CurrDataCAN);
     void vFormatDataAndId(BYTE bExprnFlag, SFORMATTEDDATA_CAN* CurrDataCAN);
     USHORT usProcessCurrErrorEntry(SERROR_INFO& sErrorInfo);
     char* vFormatCurrErrorEntry(USHORT usErrorID);
-public:
-    CFormatMsgCAN(void);
-    ~CFormatMsgCAN(void);
-    void vFormatCANDataMsg(STCANDATA* pMsgCAN,
-                           SFORMATTEDDATA_CAN* CurrDataCAN,
-                           BYTE bExprnFlag_Log);
 };

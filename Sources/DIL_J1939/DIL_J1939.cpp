@@ -14,13 +14,15 @@
  */
 
 /**
- * @file      DIL_J1939/DIL_J1939.cpp
+ * @file      DIL_J1939.cpp
  * @brief     Defines the initialization routines for the DLL.
  * @author    Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for CAN BUS
  */
+
+/* Project includes */
 #include "DIL_J1939_stdafx.h"
 #include "J1939_UtilityFuncs.h"
 #include "DIL_Interface/BaseDIL_CAN.h"

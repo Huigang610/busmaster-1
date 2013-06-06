@@ -521,7 +521,7 @@ CMainFrame::CMainFrame()
 
     // Create message manager
     //Initialize HW Interface
-    //INITIALISE_ARRAY(m_asINTERFACE_HW);
+    //INITIALISE_ARRAY(m_asInterfaceHardware);
     //Initialize CONTROLLER DETAILS
     //INITIALISE_ARRAY(m_asControllerDetails);
     //Default Hw mode
@@ -1960,9 +1960,9 @@ void CMainFrame::OnConfigChannelSelection()
     /* Deselect hardware interfaces if selected */
     hResult = g_pouDIL_CAN_Interface->deselectHardwareInterfaces();
 
-    if (g_pouDIL_CAN_Interface->listHardwareInterfaces(m_asINTERFACE_HW, nCount) == S_OK)
+    if (g_pouDIL_CAN_Interface->listHardwareInterfaces(m_asInterfaceHardware, nCount) == S_OK)
     {
-        hResult = g_pouDIL_CAN_Interface->selectHardwareInterfaces(m_asINTERFACE_HW, nCount);
+        hResult = g_pouDIL_CAN_Interface->selectHardwareInterfaces(m_asInterfaceHardware, nCount);
         if ((hResult == HW_INTERFACE_ALREADY_SELECTED) || (hResult == S_OK))
         {
             /* Updates the number of channels selected */
@@ -1981,7 +1981,7 @@ void CMainFrame::OnConfigChannelSelection()
     else
     {
         /* Select previously available channels */
-        g_pouDIL_CAN_Interface->selectHardwareInterfaces(m_asINTERFACE_HW, nCount);
+        g_pouDIL_CAN_Interface->selectHardwareInterfaces(m_asInterfaceHardware, nCount);
     }
 }
 
@@ -11357,10 +11357,10 @@ HRESULT CMainFrame::IntializeDIL(UINT unDefaultChannelCnt)
         {
             g_pouDIL_CAN_Interface->performInitOperations();
             INT nCount = unDefaultChannelCnt;
-            if ((hResult = g_pouDIL_CAN_Interface->listHardwareInterfaces(m_asINTERFACE_HW, nCount)) == S_OK)
+            if ((hResult = g_pouDIL_CAN_Interface->listHardwareInterfaces(m_asInterfaceHardware, nCount)) == S_OK)
             {
                 DeselectJ1939Interfaces();
-                HRESULT hResult = g_pouDIL_CAN_Interface->selectHardwareInterfaces(m_asINTERFACE_HW, nCount);
+                HRESULT hResult = g_pouDIL_CAN_Interface->selectHardwareInterfaces(m_asInterfaceHardware, nCount);
                 if ((hResult == HW_INTERFACE_ALREADY_SELECTED) || (hResult == S_OK))
                 {
                     hResult = g_pouDIL_CAN_Interface->registerClient(TRUE, g_dwClientID, "CAN_MONITOR");
@@ -11504,7 +11504,7 @@ void CMainFrame::vUpdateHWStatusInfo(void)
 
     for (int i = 0 ; i < m_nDILCount ; i++)
     {
-        if ( m_dwDriverId == m_ouList[i].m_dwDriverID )
+        if ( m_dwDriverId == m_ouList[i].driverId )
         {
             if ( m_asControllerDetails->m_omStrBaudrate== "" )
             {
@@ -11512,7 +11512,7 @@ void CMainFrame::vUpdateHWStatusInfo(void)
             }
 
             // Added Shortcut key for the hardwared device, Removing '&'
-            CString strDriverName = m_ouList[i].m_acName.c_str();
+            CString strDriverName = m_ouList[i].name.c_str();
             strDriverName.Replace("&", "");
 
             float fBaudRate = atof(m_asControllerDetails->m_omStrBaudrate.c_str());
@@ -11569,7 +11569,7 @@ BOOL CMainFrame::bInitFrameProcCAN(void)
         SCANPROC_PARAMS sCANProcParams;
 
         omVerStr.Format(IDS_VERSION);
-        strncpy_s(sCANProcParams.m_acVersion, 64, omVerStr, omVerStr.GetLength());
+        strncpy_s(sCANProcParams.version, 64, omVerStr, omVerStr.GetLength());
         sCANProcParams.dwClientID = g_dwClientID;
         sCANProcParams.m_pouCANBuffer = &g_ouCANBufFSE;
         sCANProcParams.m_pILog = &m_ouWrapperLogger;
@@ -11758,8 +11758,6 @@ void CMainFrame::vInitCFileFunctPtrs()
 
     vUpdateMsgNameCodeList(theApp.m_pouMsgSignal, m_sExFuncPtr[CAN].m_odMsgNameMsgCodeListDB);
     // Send KeyPanel list pointer
-    //m_sExFuncPtr.m_podNodeToDllMap = &g_odNodeToDllMap;
-    //m_sExFuncPtr.m_podKeyPanelEntryList = &g_odKeyPanelEntryList;
     m_sExFuncPtr[CAN].m_omAppDirectory = m_omAppDirectory;
     m_sExFuncPtr[CAN].m_omObjWrapperName = WRAPPER_NAME;
     m_sExFuncPtr[CAN].m_omStructFile = STRUCT_FILE;
@@ -11805,8 +11803,6 @@ void CMainFrame::NS_InitJ1939SpecInfo()
 
     vUpdateMsgNameCodeList(m_pouMsgSigJ1939, m_sExFuncPtr[J1939].m_odMsgNameMsgCodeListDB);
     // Send KeyPanel list pointer
-    //m_sExFuncPtr.m_podNodeToDllMap = &g_odNodeToDllMap;
-    //m_sExFuncPtr.m_podKeyPanelEntryList = &g_odKeyPanelEntryList;
     m_sExFuncPtr[J1939].m_omAppDirectory = m_omAppDirectory;
     m_sExFuncPtr[J1939].m_omObjWrapperName = WRAPPER_NAME_J1939;
     m_sExFuncPtr[J1939].m_omStructFile = STRUCT_FILE_J1939;
@@ -12684,7 +12680,7 @@ void CMainFrame::vGetCurrentSessionData(eSECTION_ID eSecId, BYTE*& pbyConfigData
                     if(pNodeDBFilePtr != NULL)
                     {
                         // Get the selected driver Name
-                        //CString omstrDriverName = m_ouList[nDriverId].m_acName.c_str();
+                        //CString omstrDriverName = m_ouList[nDriverId].name.c_str();
 
                         //omstrDriverName.Replace("&", "");
                         const char* strDriverName = omstrDriverName;
@@ -14588,7 +14584,7 @@ CString CMainFrame::vGetControllerName(UINT nDriverId)
 {
     for (int i = 0 ; i < m_nDILCount ; i++)
     {
-        if ( m_dwDriverId == m_ouList[i].m_dwDriverID )
+        if ( m_dwDriverId == m_ouList[i].driverId )
         {
             if ( m_asControllerDetails->m_omStrBaudrate== "" )
             {
@@ -14596,7 +14592,7 @@ CString CMainFrame::vGetControllerName(UINT nDriverId)
             }
 
             // Added Shortcut key for the hardwared device, Removing '&'
-            CString strDriverName = m_ouList[i].m_acName.c_str();
+            CString strDriverName = m_ouList[i].name.c_str();
             strDriverName.Replace("&", "");
 
             return strDriverName;
@@ -15510,7 +15506,7 @@ void CMainFrame::OnSelectDriver(UINT nID)
 
     if (psCurrDIL != NULL)
     {
-        m_dwDriverId =  psCurrDIL->m_dwDriverID;
+        m_dwDriverId =  psCurrDIL->driverId;
 
         HRESULT hResult = IntializeDIL();
 
@@ -15542,7 +15538,7 @@ void CMainFrame::OnUpdateSelectDriver(CCmdUI* pCmdUI)
     {
         if (g_pouDIL_CAN_Interface != NULL)
         {
-            bSelected = (psCurrDIL->m_dwDriverID == g_pouDIL_CAN_Interface->getSelectedDriver());
+            bSelected = (psCurrDIL->driverId == g_pouDIL_CAN_Interface->getSelectedDriver());
         }
     }
     CFlags* pFlag = theApp.pouGetFlagsPtr();
@@ -15580,10 +15576,10 @@ BOOL CMainFrame::bUpdatePopupMenuDIL(void)
                 for (int i = 0; (i < m_nDILCount) && bResult; i++)
                 {
                     bResult = m_pDILSubMenu->AppendMenu(MF_STRING,
-                                                        IDC_SELECT_DRIVER + i, _((char*)m_ouList[i].m_acName.c_str()));
+                                                        IDC_SELECT_DRIVER + i, _((char*)m_ouList[i].name.c_str()));
                     if (bResult == TRUE)
                     {
-                        m_ouList[i].m_ResourceID = IDC_SELECT_DRIVER + i;
+                        m_ouList[i].resourceId = IDC_SELECT_DRIVER + i;
                     }
                 }
             }
@@ -15628,7 +15624,7 @@ DILINFO* CMainFrame::psGetDILEntry(UINT unKeyID, BOOL bKeyMenuItem)
     {
         if (bKeyMenuItem == TRUE)
         {
-            if (m_ouList[i].m_ResourceID == unKeyID)
+            if (m_ouList[i].resourceId == unKeyID)
             {
                 psResult = &(m_ouList[i]);
                 break;
@@ -15636,7 +15632,7 @@ DILINFO* CMainFrame::psGetDILEntry(UINT unKeyID, BOOL bKeyMenuItem)
         }
         else
         {
-            if (m_ouList[i].m_dwDriverID == unKeyID)
+            if (m_ouList[i].driverId == unKeyID)
             {
                 psResult = &(m_ouList[i]);
                 break;
@@ -16201,7 +16197,7 @@ HRESULT CMainFrame::ProcessJ1939Interfaces(void)
                      J1939_MONITOR_NODE, J1939_ECU_NAME, 0, m_sJ1939ClientParam.m_dwClientId);
             if (Result == S_OK || Result == ERR_CLIENT_EXISTS)
             {
-                strcpy_s(m_sJ1939ClientParam.m_acName, MAX_PATH, J1939_MONITOR_NODE);
+                strcpy_s(m_sJ1939ClientParam.name, MAX_PATH, J1939_MONITOR_NODE);
                 m_sJ1939ClientParam.m_unEcuName = J1939_ECU_NAME;
                 m_podMsgWndThread->vUpdateClientID(J1939, m_sJ1939ClientParam.m_dwClientId);
                 m_podMsgWndThread->vSetDILInterfacePointer(J1939, (void**)&(sg_pouIJ1939DIL));
@@ -16236,7 +16232,7 @@ HRESULT CMainFrame::ProcessJ1939Interfaces(void)
                 CParamLoggerJ1939 ouParam;
                 CString omVerStr("");       // First get the version information
                 omVerStr.Format(IDS_VERSION);   // string from the rsource
-                strcpy_s(ouParam.m_acVersion, MAX_PATH, omVerStr.GetBuffer(MAX_CHAR));
+                strcpy_s(ouParam.version, MAX_PATH, omVerStr.GetBuffer(MAX_CHAR));
 
                 ouParam.m_pILog = &m_ouWrapperLogger;
                 ouParam.dwClientID = m_sJ1939ClientParam.m_dwClientId;

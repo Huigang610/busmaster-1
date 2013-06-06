@@ -128,7 +128,7 @@ typedef struct tagDbNameMsg
 
 typedef CList<SDB_NAME_MSG, SDB_NAME_MSG&> CMsgNameMsgCodeListDataBase;
 
-class CBaseAppServices;
+class BaseAppServices;
 typedef struct
 {
     HWND                m_hWmdMDIParentFrame;
@@ -143,7 +143,7 @@ typedef struct
     CStringArray        m_omDefinedMsgHeaders; // _unions.h
     CStringArray        m_omErrorHandlerList;
     CMsgNameMsgCodeListDataBase m_odMsgNameMsgCodeListDB;   //CAPL_DB_NAME_CHANGE
-    CBaseAppServices*   m_pouITraceWndPtr;
+    BaseAppServices*    m_pouITraceWndPtr;
     CMapStringToPtr*    m_podNodeToDllMap;
     //CKeyPanelEntryList* m_podKeyPanelEntryList;
     TRANSMIT_MSG        Send_Msg;

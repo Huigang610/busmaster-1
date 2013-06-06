@@ -93,7 +93,7 @@ public:
     // Attributes
     HANDLE m_hProcess;
     // Flag specifies whether to enable
-    INTERFACE_HW_LIST m_asINTERFACE_HW;
+    InterfaceHardwareList m_asInterfaceHardware;
     //controller mode
     BYTE m_byControllerMode;
     DWORD m_dwDriverId;

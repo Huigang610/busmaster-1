@@ -66,7 +66,7 @@ int CFrameProcessor_CAN::ExitInstance(void)
 CBaseLogObject* CFrameProcessor_CAN::CreateNewLogObj(const CString& omStrVersion)
 {
     CLogObjectCAN* pLogObj = NULL;
-    CString strVersion = CString(m_sCANProcParams.m_acVersion);
+    CString strVersion = CString(m_sCANProcParams.version);
     if (strVersion.IsEmpty())
     {
         strVersion = omStrVersion;
@@ -89,12 +89,12 @@ void CFrameProcessor_CAN::DeleteLogObj(CBaseLogObject*& pouLogObj)
     }
 }
 
-void CFrameProcessor_CAN::CreateTimeModeMapping(SYSTEMTIME& CurrSysTime,
+void CFrameProcessor_CAN::CreateTimeModeMapping(SYSTEMTIME& currentSystemTime,
         UINT64& unAbsTime)
 {
     if (m_pouDilCanInterface != NULL)
     {
-        m_pouDilCanInterface->getTimeModeMapping(CurrSysTime, unAbsTime);
+        m_pouDilCanInterface->getTimeModeMapping(currentSystemTime, unAbsTime);
     }
 }
 

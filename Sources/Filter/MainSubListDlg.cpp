@@ -37,7 +37,7 @@ extern UINT unGetMainEntryIDFromName(CString omMsgName);
 
 
 
-CMainSubListDlg::CMainSubListDlg(CWnd* pParent, CMainEntryList* psMainFrameSignalWatchList, SGUIPARAMS& sGuiParams)
+CMainSubListDlg::CMainSubListDlg(CWnd* pParent, CMainEntryList* psMainFrameSignalWatchList, GuiParameters& sGuiParams)
     : CDialog(CMainSubListDlg::IDD, pParent)
 {
     //{{AFX_DATA_INIT(CMainSubListDlg)
@@ -105,24 +105,24 @@ BOOL CMainSubListDlg::OnInitDialog()
     CDialog::OnInitDialog();
 
     //Display title name
-    SetWindowText((LPCTSTR)m_sGuiParams.m_acTitleName);
+    SetWindowText((LPCTSTR)m_sGuiParams.titleName);
     //Dislay Main List name
     CWnd* pWnd = GetDlgItem(IDC_EDIT_MAINLIST_NAME);
     if (pWnd != NULL)
     {
-        pWnd->SetWindowText((LPCTSTR)m_sGuiParams.m_acMainListName);
+        pWnd->SetWindowText((LPCTSTR)m_sGuiParams.mainListName);
     }
     //Dislay Unselected List name
     pWnd = GetDlgItem(IDC_EDIT_UNSELLIST_NAME);
     if (pWnd != NULL)
     {
-        pWnd->SetWindowText((LPCTSTR)m_sGuiParams.m_acUnSelListName);
+        pWnd->SetWindowText((LPCTSTR)m_sGuiParams.unselectedListName);
     }
     //Dislay Selected List name
     pWnd = GetDlgItem(IDC_EDIT_SELLIST_NAME);
     if (pWnd != NULL)
     {
-        pWnd->SetWindowText((LPCTSTR)m_sGuiParams.m_acSelListName);
+        pWnd->SetWindowText((LPCTSTR)m_sGuiParams.selectedListName);
     }
     // Populate the message name combo
     // Clear the content if any
@@ -141,7 +141,7 @@ BOOL CMainSubListDlg::OnInitDialog()
                 CString omMainEntryName = sMainEntry.m_omMainEntryName;
                 CString omMainEntryId = "";
 
-                if (m_sGuiParams.m_bCombine == TRUE)
+                if (m_sGuiParams.combine == TRUE)
                 {
                     omMainEntryId.Format(defSTR_MSG_ID_IN_HEX,sMainEntry.m_unMainEntryID);
                     omMainEntryName = omMainEntryId + omMainEntryName;
@@ -151,7 +151,7 @@ BOOL CMainSubListDlg::OnInitDialog()
             }
             m_omCombMessage.SetCurSel(0);
 
-            m_omListCtrlSignal.SetImageList(m_sGuiParams.m_pomImageList, LVSIL_SMALL);
+            m_omListCtrlSignal.SetImageList(m_sGuiParams.imageList, LVSIL_SMALL);
 
             // Create the first column. But this will not be shown
             m_omListCtrlSignal.InsertColumn( 0,
@@ -168,7 +168,7 @@ BOOL CMainSubListDlg::OnInitDialog()
 
     // Update Signal Watch List
     // Set the same image list to this control
-    m_omListCtrlSignalWatch.SetImageList(m_sGuiParams.m_pomImageList,LVSIL_SMALL);
+    m_omListCtrlSignalWatch.SetImageList(m_sGuiParams.imageList,LVSIL_SMALL);
     // Create Column for Signal Watch Lsit
     m_omListCtrlSignalWatch.InsertColumn( 0,
                                           STR_EMPTY,
@@ -224,7 +224,7 @@ void CMainSubListDlg::vPopulateUnSelSubEntryList(UINT unMainEntryID)
                 {
                     unMaxLen = unLen;
                 }
-                m_omListCtrlSignal.InsertItem(unCountItem++, sSubEntry.m_omSubEntryName, m_sGuiParams.m_unUnSelIconIndex);
+                m_omListCtrlSignal.InsertItem(unCountItem++, sSubEntry.m_omSubEntryName, m_sGuiParams.unselectedIconIndex);
             }
             // Set the column width if it is valid
             if( unMaxLen > 0 )
@@ -797,7 +797,7 @@ void CMainSubListDlg::vUpdateUnSelSubEntryList(BOOL bAllEntries)
                               omSelSubEntry);
             m_omListCtrlSignalWatch.InsertItem(0,
                                                omStrEntry,
-                                               m_sGuiParams.m_unSelIconIndex);
+                                               m_sGuiParams.selectedIconIndex);
             // Resize the the column width
 
             INT unSize = m_omListCtrlSignalWatch.GetStringWidth(omStrEntry);
@@ -845,7 +845,7 @@ void CMainSubListDlg::vUpdateUnSelSubEntryList(BOOL bAllEntries)
             }
             m_omListCtrlSignalWatch.InsertItem(0,
                                                omStrEntry,
-                                               m_sGuiParams.m_unSelIconIndex);
+                                               m_sGuiParams.selectedIconIndex);
         }
         if( unMaxSize > unCurrentSize )
         {
@@ -1140,7 +1140,7 @@ void CMainSubListDlg::vPopulateSelSubEntryList()
             {
                 CString omNameWithId = "";
 
-                if (m_sGuiParams.m_bCombine == TRUE)
+                if (m_sGuiParams.combine == TRUE)
                 {
                     omNameWithId.Format(defSTR_MSG_ID_IN_HEX,sMainEntry.m_unMainEntryID);
                 }
@@ -1165,7 +1165,7 @@ void CMainSubListDlg::vPopulateSelSubEntryList()
                         // This is gonna be the maximum
                         unMaxSize = unSize;
                     }
-                    m_omListCtrlSignalWatch.InsertItem(0, omStrEntry, m_sGuiParams.m_unSelIconIndex);
+                    m_omListCtrlSignalWatch.InsertItem(0, omStrEntry, m_sGuiParams.selectedIconIndex);
                 }
             }
         }

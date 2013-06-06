@@ -24,8 +24,8 @@
 
 #pragma once
 
-class CBaseAppServices
+class BaseAppServices
 {
 public:
-    virtual bool bWriteToTrace(const char* pcTraceStr) = 0;
+    virtual bool writeToTrace(const char* pcTraceStr) = 0;
 };

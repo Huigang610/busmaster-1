@@ -30,8 +30,6 @@
 /* Project includes */
 #include "../Include/BaseDefs.h"
 
-#define NO_SELECTION_HI 0xCDCD
-
 #define CAN_MONITOR_NODE "CAN_MONITOR"
 const int CAN_MONITOR_NODE_INDEX = 0;
 const int CAN_MONITOR_CLIENT_ID  = 1;
@@ -42,7 +40,7 @@ const UINT64 J1939_ECU_NAME     = 0x8000000000000001;
 const BYTE MSGBUF_ADD = 0x1;
 const BYTE MSGBUF_CLEAR = 0x0;
 
-enum ECONTR_STATUS
+enum ECONTR_STATUS : unsigned short
 {
     RESET_STATE = 0,    // reset
     INITIALISED,        // stopped / initialized
@@ -64,15 +62,13 @@ enum ECONTR_PARAM
     CON_TEST,
 };
 
-//----------------------------------------------------------------------------
-// declaration of FlexRay status message
-//----------------------------------------------------------------------------
-
-typedef struct struct_STATUSMSG
+/**
+ * Controller Status Message
+ */
+typedef struct s_STATUSMSG
 {
-    unsigned short wControllerStatus;    // Current controller state
-    unsigned long  dwStatusInfoFlags;    // Flagfield of status information (UCI_FLXSTSINFO_???)
-} s_STATUSMSG, *ps_STATUSMSG;
+    ECONTR_STATUS controllerStatus; /**< Current controller state */
+} s_STATUSMSG;
 
 enum
 {
@@ -90,99 +86,82 @@ enum
     DAL_NONE            = ~0x0
 };
 
-typedef enum FILTER_TYPE
-{
-    PASS_FILTER = 0,
-    STOP_FILTER,
-} FILTER_TYPE;
-
-typedef enum TXMODE
-{
-    SINGLE_SHOT,
-    CONTINOUS,
-} TXMODE;
-
-#define  MAX_CHAR_SHORT       128
-#define  MAX_CHAR_LONG        512
 #define  MAX_CHAR             1024
 
-class INTERFACE_HW
+class InterfaceHardware
 {
 public:
-    unsigned long  m_dwIdInterface;
-    unsigned long  m_dwVendor;
-    unsigned char  m_bytNetworkID;
-	std::string    m_acNameInterface;
-	std::string    m_acDescription;
-	std::string    m_acDeviceName;
-    INTERFACE_HW()
+    unsigned long  interfaceId;
+    unsigned long  vendor;
+    unsigned char  networkId;
+	std::string    interfaceName;
+	std::string    description;
+	std::string    deviceName;
+
+    InterfaceHardware()
     {
-        m_dwIdInterface = 0;
-        m_dwVendor = 0;
-        m_bytNetworkID = 0;
-        m_acNameInterface = "";
-        m_acDescription = "";
-        m_acDeviceName = "";
+        interfaceId = 0;
+        vendor = 0;
+        networkId = 0;
+        interfaceName = "";
+        description = "";
+        deviceName = "";
     }
-    INTERFACE_HW(const INTERFACE_HW& objRef)
+
+    InterfaceHardware(const InterfaceHardware& objRef)
     {
-        m_dwIdInterface = objRef.m_dwIdInterface;
-        m_dwVendor = objRef.m_dwVendor;
-        m_bytNetworkID = objRef.m_bytNetworkID;
-        m_acNameInterface = objRef.m_acNameInterface;
-        m_acDescription = objRef.m_acDescription;
-        m_acDeviceName = objRef.m_acDeviceName;
+        interfaceId = objRef.interfaceId;
+        vendor = objRef.vendor;
+        networkId = objRef.networkId;
+        interfaceName = objRef.interfaceName;
+        description = objRef.description;
+        deviceName = objRef.deviceName;
     }
-    INTERFACE_HW& operator=(INTERFACE_HW& objRef)
+
+    InterfaceHardware& operator=(InterfaceHardware& objRef)
     {
-        m_dwIdInterface = objRef.m_dwIdInterface;
-        m_dwVendor = objRef.m_dwVendor;
-        m_bytNetworkID = objRef.m_bytNetworkID;
-        m_acNameInterface = objRef.m_acNameInterface;
-        m_acDescription = objRef.m_acDescription;
-        m_acDeviceName = objRef.m_acDeviceName;
+        interfaceId = objRef.interfaceId;
+        vendor = objRef.vendor;
+        networkId = objRef.networkId;
+        interfaceName = objRef.interfaceName;
+        description = objRef.description;
+        deviceName = objRef.deviceName;
         return *this;
     }
-} ;
-
-typedef INTERFACE_HW INTERFACE_HW_LIST[defNO_OF_CHANNELS];
-
-class VERSIONINFO
-{
-public:
-	std::string m_acDIL;
-	std::string m_acController;
-	std::string m_acDriver;
 };
+
+typedef InterfaceHardware InterfaceHardwareList[defNO_OF_CHANNELS];
 
 class DILINFO
 {
 public:
-	std::string    m_acName;
-    unsigned long  m_dwDriverID;
-    unsigned int   m_ResourceID;
+	std::string    name;
+    unsigned long  driverId;
+    unsigned int   resourceId;
+
     DILINFO()
     {
-        m_acName = "";
-        m_dwDriverID = 0;
-        m_ResourceID = 0;
+        name = "";
+        driverId = 0;
+        resourceId = 0;
     }
+
     DILINFO(const DILINFO& objRef)
     {
-        m_acName = objRef.m_acName;
-        m_dwDriverID = objRef.m_dwDriverID;
-        m_ResourceID = objRef.m_ResourceID;
+        name = objRef.name;
+        driverId = objRef.driverId;
+        resourceId = objRef.resourceId;
     }
+
     DILINFO& operator=(DILINFO& objRef)
     {
-        m_acName = objRef.m_acName;
-        m_dwDriverID = objRef.m_dwDriverID;
-        m_ResourceID = objRef.m_ResourceID;
+        name = objRef.name;
+        driverId = objRef.driverId;
+        resourceId = objRef.resourceId;
         return *this;
     }
 };
 
 const int MAX_DILS = 16;
 const int MAX_HW = 32;
-#define     MAX_DILNAME             32
 typedef DILINFO DILLIST[MAX_DILS];

@@ -174,7 +174,7 @@ struct CChannel
 {
     /* Kvaser channel details */
     int        m_nChannel;
-    char      m_strName[MAX_CHAR_LONG];
+    char      m_strName[512];
     DWORD      m_dwHwType;
     canHandle  m_hnd;
     int        m_nHwIndex;
@@ -322,7 +322,7 @@ const int ENTRIES_IN_GBUF       = 2000;
 static STCANDATA sg_asCANMsg;
 static STCAN_MSG sg_ReadMsg;
 static SCONTROLLER_DETAILS sg_ControllerDetails[defNO_OF_CHANNELS];
-static INTERFACE_HW sg_HardwareIntr[defNO_OF_CHANNELS];
+static InterfaceHardware sg_HardwareIntr[defNO_OF_CHANNELS];
 
 /* CDIL_CAN_Kvaser class definition */
 class CDIL_CAN_Kvaser : public CBaseDIL_CAN_Controller
@@ -332,8 +332,8 @@ public:
     HRESULT performInitOperations(void);
     HRESULT performClosureOperations(void);
     HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const InterfaceHardwareList& sSelHwInterface, INT nCount);
     HRESULT deselectHardwareInterface(void);
     HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
     HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);
@@ -394,7 +394,7 @@ USAGEMODE HRESULT GetIDIL_CAN_Controller(void** ppvInterface)
 */
 HRESULT CDIL_CAN_Kvaser::getCurrentStatus(s_STATUSMSG& StatusData)
 {
-    StatusData.wControllerStatus = NORMAL_ACTIVE;
+    StatusData.controllerStatus = NORMAL_ACTIVE;
     return S_OK;
 }
 
@@ -779,13 +779,13 @@ HRESULT CDIL_CAN_Kvaser::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& Tim
 
 /**
 * @brief         Lists the hardware interface available.
-* @param[out]    asSelHwInterface, is INTERFACE_HW_LIST structure
+* @param[out]    asSelHwInterface, is InterfaceHardwareList structure
 * @param[out]    nCount , is INT contains the selected channel count.
 * @return        S_OK for success, S_FALSE for failure
 * @authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::listHardwareInterfaces(INTERFACE_HW_LIST& /*asSelHwInterface*/, INT& nCount)
+HRESULT CDIL_CAN_Kvaser::listHardwareInterfaces(InterfaceHardwareList& /*asSelHwInterface*/, INT& nCount)
 {
     USES_CONVERSION;
     HRESULT hResult = S_FALSE;
@@ -798,20 +798,20 @@ HRESULT CDIL_CAN_Kvaser::listHardwareInterfaces(INTERFACE_HW_LIST& /*asSelHwInte
     }
     else
     {
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("Error connecting to driver"));
+        sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("Error connecting to driver"));
     }
     return hResult;
 }
 
 /**
 * @brief         Selects the hardware interface selected by the user.
-* @param[out]    asSelHwInterface, is INTERFACE_HW_LIST structure
+* @param[out]    asSelHwInterface, is InterfaceHardwareList structure
 * @param[out]    nCount , is INT contains the selected channel count.
 * @return        S_OK for success, S_FALSE for failure
 * @authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-HRESULT CDIL_CAN_Kvaser::selectHardwareInterface(const INTERFACE_HW_LIST& /*asSelHwInterface*/, INT /*nCount*/)
+HRESULT CDIL_CAN_Kvaser::selectHardwareInterface(const InterfaceHardwareList& /*asSelHwInterface*/, INT /*nCount*/)
 {
     USES_CONVERSION;
 
@@ -1593,7 +1593,7 @@ HRESULT CDIL_CAN_Kvaser::startHardware(void)
         }
         else
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, _("Could not start the read thread" ));
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("Could not start the read thread" ));
         }
     }
 
@@ -2056,14 +2056,14 @@ static int nConnect(BOOL bConnect, BYTE /*hClient*/)
 
 /**
 * @brief         This function will popup hardware selection dialog and gets the user selection of channels.
-* @param[in]     psInterfaces, is INTERFACE_HW structue
+* @param[in]     psInterfaces, is InterfaceHardware structue
 * @param[out]    pnSelList, contains channels selected array
 * @param[out]    nCount, contains selected channel count
 * @return        returns 0 (always)
 * @authors       Arunkumar Karri
 * \date          12.10.2011 Created
 */
-int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, INTERFACE_HW* psInterfaces, int* pnSelList, int& nCount)
+int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, InterfaceHardware* psInterfaces, int* pnSelList, int& nCount)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
@@ -2100,21 +2100,21 @@ static int nCreateMultipleHardwareNetwork(UINT unDefaultChannelCnt = 0)
     // Get Hardware Network Map
     for (int nCount = 0; nCount < nHwCount; nCount++)
     {
-        sg_HardwareIntr[nCount].m_dwIdInterface = nCount;
+        sg_HardwareIntr[nCount].interfaceId = nCount;
 
         canGetChannelData(nCount, canCHANNELDATA_CARD_SERIAL_NO,
                           chBuffer, sizeof(chBuffer));
-        sscanf_s( chBuffer, "%ld", &sg_HardwareIntr[nCount].m_dwVendor );
+        sscanf_s( chBuffer, "%ld", &sg_HardwareIntr[nCount].vendor );
 
         canGetChannelData(nCount, canCHANNELDATA_CHANNEL_NAME,
                           chBuffer, sizeof(chBuffer));
-        sg_HardwareIntr[nCount].m_acDescription = chBuffer;
+        sg_HardwareIntr[nCount].description = chBuffer;
         //Get Firmware info
         canGetChannelData(nCount, canCHANNELDATA_CARD_FIRMWARE_REV, dwFirmWare, sizeof(dwFirmWare));
 
         sprintf_s(chBuffer, sizeof(chBuffer), "0x%08lx 0x%08lx", dwFirmWare[0], dwFirmWare[1]);
-        sg_HardwareIntr[nCount].m_acDeviceName = chBuffer;
-        //sprintf(sg_HardwareIntr[nCount].m_acDeviceName,"0x%08lx 0x%08lx", dwFirmWare[0], dwFirmWare[1]);
+        sg_HardwareIntr[nCount].deviceName = chBuffer;
+        //sprintf(sg_HardwareIntr[nCount].deviceName,"0x%08lx 0x%08lx", dwFirmWare[0], dwFirmWare[1]);
     }
 
     /* If the default channel count parameter is set, prevent displaying the hardware selection dialog */
@@ -2136,11 +2136,11 @@ static int nCreateMultipleHardwareNetwork(UINT unDefaultChannelCnt = 0)
     //Reorder hardware interface as per the user selection
     for (int nCount = 0; nCount < sg_ucNoOfHardware; nCount++)
     {
-        sg_aodChannels[nCount].m_nChannel = sg_HardwareIntr[sg_anSelectedItems[nCount]].m_dwIdInterface;
+        sg_aodChannels[nCount].m_nChannel = sg_HardwareIntr[sg_anSelectedItems[nCount]].interfaceId;
         _stprintf(sg_aodChannels[nCount].m_strName , _("Kvaser - %s, Serial Number- %ld, Firmware- %s"),
-                  sg_HardwareIntr[sg_anSelectedItems[nCount]].m_acDescription.c_str(),
-                  sg_HardwareIntr[sg_anSelectedItems[nCount]].m_dwVendor,
-                  sg_HardwareIntr[sg_anSelectedItems[nCount]].m_acDeviceName.c_str());
+                  sg_HardwareIntr[sg_anSelectedItems[nCount]].description.c_str(),
+                  sg_HardwareIntr[sg_anSelectedItems[nCount]].vendor,
+                  sg_HardwareIntr[sg_anSelectedItems[nCount]].deviceName.c_str());
     }
 
     return defERR_OK;
@@ -2163,29 +2163,28 @@ static int nCreateSingleHardwareNetwork()
 
     /* Update channel info */
 
-    //char acVendor[MAX_CHAR_LONG];
     char chBuffer[512];
     DWORD dwFirmWare[2];
 
     canGetChannelData(0, canCHANNELDATA_CARD_SERIAL_NO,
                       chBuffer, sizeof(chBuffer));
-    sscanf_s( chBuffer, "%ld", &sg_HardwareIntr[0].m_dwVendor );
+    sscanf_s( chBuffer, "%ld", &sg_HardwareIntr[0].vendor );
 
     canGetChannelData(0, canCHANNELDATA_CHANNEL_NAME,
                       chBuffer, sizeof(chBuffer));
 
-    sg_HardwareIntr[0].m_acDescription = chBuffer;
+    sg_HardwareIntr[0].description = chBuffer;
 
     /* Get Firmware info */
     canGetChannelData(0, canCHANNELDATA_CARD_FIRMWARE_REV, dwFirmWare, sizeof(dwFirmWare));
 
     sprintf(chBuffer,"0x%08lx 0x%08lx", dwFirmWare[0], dwFirmWare[1]);
-    sg_HardwareIntr[0].m_acDeviceName = chBuffer;
+    sg_HardwareIntr[0].deviceName = chBuffer;
 
     _stprintf(sg_aodChannels[0].m_strName , _("%s, Serial Number: %ld, Firmware: %s"),
-              sg_HardwareIntr[0].m_acDescription.c_str(),
-              sg_HardwareIntr[0].m_dwVendor,
-              sg_HardwareIntr[0].m_acDeviceName.c_str());
+              sg_HardwareIntr[0].description.c_str(),
+              sg_HardwareIntr[0].vendor,
+              sg_HardwareIntr[0].deviceName.c_str());
 
     return defERR_OK;
 }
@@ -2390,7 +2389,7 @@ static void vRetrieveAndLog(DWORD /*dwErrorCode*/, char* File, int Line)
     char acErrText[MAX_PATH] = "";
 
     /* Get the error text for the corresponding error code */
-    sg_pIlog->vLogAMessage(A2T(File), Line, A2T(acErrText));
+    sg_pIlog->logMessage(A2T(File), Line, A2T(acErrText));
 
     size_t nStrLen = strlen(acErrText);
     if (nStrLen > CAN_MAX_ERRSTR)

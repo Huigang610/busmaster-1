@@ -26,7 +26,6 @@
 
 class CFrameProcessorApp : public CWinApp
 {
-    // Overrides
 public:
     CFrameProcessorApp();
     ~CFrameProcessorApp();
@@ -34,6 +33,7 @@ public:
     // To be used by the read thread
     virtual BOOL InitInstance();
 
-    DECLARE_MESSAGE_MAP()
-    virtual int ExitInstance();
+	virtual int ExitInstance();
+
+	DECLARE_MESSAGE_MAP()
 };

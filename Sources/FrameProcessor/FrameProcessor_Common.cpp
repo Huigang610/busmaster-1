@@ -22,23 +22,16 @@
  * Source file for CFrameProcessor_Common class realising the
  */
 
-
-// FrameProcessor.cpp : Defines the initialization routines for the DLL.
-//
-
 #include "FrameProcessor_stdafx.h"
 #include "include/Utils_macro.h"
 #include "FrameProcessor_Common.h"
-#include "RefTimeKeeper.h"
+#include "CommonClass/RefTimeKeeper.h"
 #include "include/XMLDefines.h"
 
 /* Log version..applicable for log files from ver 1.6.2 */
 #define VERSION_CURR    0x02
 /* Log version..applicable for log files before ver 1.6.2 */
 /*#define VERSION_CURR    0x01*/
-
-// CFrameProcessor_Common
-
 
 DWORD WINAPI DataCopyThreadProc(LPVOID pVoid)
 {
@@ -196,10 +189,10 @@ UINT CFrameProcessor_Common::unGetBufSize(void)
 
 void CFrameProcessor_Common::InitTimeParams(void)
 {
-    SYSTEMTIME CurrSysTime;
+    SYSTEMTIME currentSystemTime;
     UINT64 unAbsTime;
-    CreateTimeModeMapping(CurrSysTime, unAbsTime);
-    CRefTimeKeeper::vSetTimeParams(CurrSysTime, unAbsTime);
+    CreateTimeModeMapping(currentSystemTime, unAbsTime);
+    CRefTimeKeeper::setTimeParameters(currentSystemTime, unAbsTime);
 }
 
 

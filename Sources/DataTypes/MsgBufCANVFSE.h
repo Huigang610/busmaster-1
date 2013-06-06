@@ -24,10 +24,9 @@
 
 #pragma once
 
+/* Project includes */
 #include "include/Error.h"
 #include "BaseMsgBufAll.h"
-//#include "afxtempl.h"
-
 
 const int SIZE_APP_CAN_BUFFER       = 5000;
 

@@ -24,7 +24,7 @@
 
 #pragma once
 
-#define LOG_ERR_MSG() sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, A2T((LPSTR) (sg_acErrStr.c_str())))
+#define LOG_ERR_MSG() sg_pIlog->logMessage(A2T(__FILE__), __LINE__, A2T((LPSTR) (sg_acErrStr.c_str())))
 
 #define VALIDATE_POINTER_RETURN_VAL(Ptr, RetVal)        if (Ptr == NULL) {return RetVal;}
 #define VALIDATE_VALUE_RETURN_VAL(Val1, Val2, RetVal)   if (Val1 != Val2) {return RetVal;}

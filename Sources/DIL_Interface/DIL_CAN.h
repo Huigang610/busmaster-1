@@ -24,6 +24,7 @@
 
 #pragma once
 
+/* Project includes */
 #include "DataTypes/Base_WrapperErrorLogger.h"
 #include "DataTypes/MsgBufAll_DataTypes.h"
 #include "DataTypes/DIL_Datatypes.h"
@@ -55,19 +56,34 @@ public:
      */
     int ExitInstance(void);
 
-    /* Variable to maintain currently selected Driver ID */
-    DWORD m_dwDriverID;
-    /* Variable to store previously selected Driver ID */
+    /**
+	 * Variable to maintain currently selected Driver ID
+	 */
+    DWORD driverId;
+    
+	/**
+	 * Variable to store previously selected Driver ID
+	 */
     DWORD m_dwOldDriverID;
 
-    /* member variable to hold the pointer of currently selected controller interface */
+    /**
+	 * member variable to hold the pointer of currently selected controller interface
+	 */
     CBaseDIL_CAN_Controller* m_pBaseDILCAN_Controller;
-    /* member variable to hold the previously selected controller interface */
+    
+	/**
+	 * member variable to hold the previously selected controller interface
+	 */
     CBaseDIL_CAN_Controller* m_pOldBaseDILCAN_Controller;
 
-    /* Variable to hold handle to currently selected controller DIL */
+    /**
+	 * Variable to hold handle to currently selected controller DIL
+	 */
     HMODULE m_hDll;
-    /* Variable to hold handle to previously selected controller DIL */
+    
+	/**
+	 * Variable to hold handle to previously selected controller DIL
+	 */
     HMODULE m_hOldDll;
 
     /* Overloaded functions */
@@ -79,8 +95,8 @@ public:
     HRESULT performInitOperations(void);
     HRESULT performClosureOperations(void);
     HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT selectHardwareInterfaces(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterfaces(const InterfaceHardwareList& sSelHwInterface, INT nCount);
     HRESULT deselectHardwareInterfaces(void);
     HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
     HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);
@@ -101,8 +117,8 @@ private:
     HRESULT (*m_pfPerformInitOperations)(void);
     HRESULT (*m_pfPerformClosureOperations)(void);
     HRESULT (*m_pfGetTimeModeMapping)(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount);
-    HRESULT (*m_pfListHwInterfaces)(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount);
-    HRESULT (*m_pfSelectHwInterface)(const INTERFACE_HW_LIST& asSelHwInterface, INT nCount);
+    HRESULT (*m_pfListHwInterfaces)(InterfaceHardwareList& asSelHwInterface, INT& nCount);
+    HRESULT (*m_pfSelectHwInterface)(const InterfaceHardwareList& asSelHwInterface, INT nCount);
     HRESULT (*m_pfDeselectHardwareInterfaces)(void);
     HRESULT (*m_pfDisplayConfigDlg)(PSCONTROLLER_DETAILS InitData, int& Length);
     HRESULT (*m_pfSetConfigData)(PCHAR pInitData, int Length);

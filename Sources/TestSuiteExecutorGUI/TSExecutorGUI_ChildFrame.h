@@ -46,7 +46,7 @@ class CTSExecutorChildFrame : public CMDIChildWnd
     CSemaphore m_ouExecutionSync;
     BOOL m_bConnected;
     CSplitterWnd m_omSplitterWnd;
-    CImageList*  m_pomImageList;
+    CImageList*  imageList;
     CString m_strVersionInfo;
 public:
     CTSExecutorLIB m_ouTSExecutor;

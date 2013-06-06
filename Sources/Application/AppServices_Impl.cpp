@@ -53,14 +53,14 @@ CAppServices_Impl::~CAppServices_Impl()
  *
  * Character buffer to be written on trace
  */
-bool CAppServices_Impl::bWriteToTrace(const char* pcTraceStr)
+bool CAppServices_Impl::writeToTrace(const char* traceStr)
 {
     BOOL Result = FALSE;
 
     if (NULL != m_podUIThread)
     {
-        CString omStr(pcTraceStr);
-        m_podUIThread->vAddString(omStr);
+        CString str(traceStr);
+        m_podUIThread->vAddString(str);
         Result = TRUE;
     }
     return Result;

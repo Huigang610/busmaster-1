@@ -24,14 +24,13 @@
 
 #pragma once
 
+/* Project includes */
 #include "include/Struct_CAN.h"
 #include "include/BaseDefs.h"
 #include "DataTypes/J1939_DataTypes.h"
-
 #include "MsgBufFSE.h"
 #include "MsgBufVFSE.h"
 
 typedef CBaseMsgBufFSE<STCANDATA> CBaseCANBufFSE;
 typedef CMsgBufFSE<STCANDATA> CCANBufFSE;
 typedef CMsgBufVFSE<STJ1939_MSG> CJ1939BufVFSE;
-//typedef CMsgBufCANVFSE<STCANDATA> CCANBufCANVFSE;

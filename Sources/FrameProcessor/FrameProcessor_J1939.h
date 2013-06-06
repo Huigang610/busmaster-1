@@ -24,6 +24,7 @@
 
 #pragma once
 
+/* Project includes */
 #include "BaseFrameProcessor_J1939.h"
 #include "FrameProcessor_Common.h"
 #include "Format/FormatMsgJ1939.h"
@@ -32,6 +33,153 @@
 
 class CFrameProcessor_J1939 : public CBaseFrameProcessor_J1939, CFrameProcessor_Common
 {
+public:
+    CFrameProcessor_J1939();
+    ~CFrameProcessor_J1939();
+
+    BOOL InitInstance(void);
+    int ExitInstance(void);
+    void vRetrieveDataFromBuffer(void);
+
+    /**
+	 * To initialise this module
+	 */
+    HRESULT FPJ1_DoInitialisation(CParamLoggerJ1939* psInitParams);
+
+    /**
+	 * To modify the filtering scheme of a logging block
+	 */
+    HRESULT FPJ1_ApplyFilteringScheme(USHORT ushLogBlkID,
+                                      const SFILTERAPPLIED_J1939& sFilterObj);
+
+    /**
+	 * Getter for the filtering scheme of a logging block
+	 */
+    HRESULT FPJ1_GetFilteringScheme(USHORT ushLogBlk,
+                                    SFILTERAPPLIED_J1939& sFilterObj);
+
+
+    /**
+	 * Call to enable/disable logging for a particular block. Having ushBlk equal
+     * to FOR_ALL, signifies the operation to be performed for all the blocks
+	 */
+    HRESULT FPJ1_EnableLoggingBlock(USHORT ushBlk, BOOL bEnable);
+
+    /**
+	 * To enable/disable logging
+	 */
+    HRESULT FPJ1_EnableLogging(BOOL bEnable);
+
+    /**
+	 * Call to enable/disable logging for a particular block. Having ushBlk equal
+     * to FOR_ALL, signifies the operation to be performed for all the blocks
+	 */
+    HRESULT FPJ1_EnableFilter(USHORT ushBlk, BOOL bEnable);
+
+    /**
+	 * Query function - current logging status (OFF/ON).
+	 */
+    BOOL FPJ1_IsLoggingON(void);
+
+    void FPJ1_vCloseLogFile(void);
+
+    /**
+	 * Check if the data is actually logging in
+	 */
+    BOOL FPJ1_IsDataLogged(void);
+    BOOL FPJ1_IsJ1939DataLogged(void);
+    BOOL FPJ1_IsJ1939ThreadBlocked(void);
+    void FPJ1_DisableJ1939DataLogFlag(void);
+
+	/**
+	 * Query function - current filtering status
+	 */
+    BOOL FPJ1_IsFilterON(void);
+
+    /**
+	 * To log a string
+	 */
+    HRESULT FPJ1_LogString(CString& omStr);
+
+    /**
+	 * To add a logging block; must be in editing mode
+	 */
+    HRESULT FPJ1_AddLoggingBlock(const SLOGINFO& sLogObject);
+
+    /**
+	 * To remove a logging block by its index in the list; editing mode prerequisite
+	 */
+    HRESULT FPJ1_RemoveLoggingBlock(USHORT ushBlk);
+
+    /**
+	 * Getter for total number of logging blocks
+	 */
+    USHORT FPJ1_GetLoggingBlockCount(void);
+
+    /**
+	 * To clear the logging block list
+	 */
+    HRESULT FPJ1_ClearLoggingBlockList(void);
+
+    /**
+	 * Getter for a logging block by specifying its index in the list
+	 */
+    HRESULT FPJ1_GetLoggingBlock(USHORT ushBlk, SLOGINFO& sLogObject);
+
+    /**
+	 * Setter for a logging block by specifying its index in the list
+	 */
+    HRESULT FPJ1_SetLoggingBlock(USHORT ushBlk, const SLOGINFO& sLogObject);
+
+    /**
+	 * To reset or revoke the modifications made
+	 */
+    HRESULT FPJ1_Reset(void);
+
+    /**
+	 * To confirm the modifications made
+	 */
+    HRESULT FPJ1_Confirm(void);
+
+    /**
+	 * To start logging block editing session
+	 */
+    HRESULT FPJ1_StartEditingSession(void);
+
+    /**
+	 * To stop logging block editing session
+	 */
+    HRESULT FPJ1_StopEditingSession(BOOL bConfirm);
+
+    /**
+	 * Getter for the logging configuration data
+	 */
+    HRESULT FPJ1_GetConfigData(BYTE** ppvConfigData, UINT& unLength);
+
+    /**
+	 * Getter for the logging configuration data
+	 */
+    HRESULT FPJ1_GetConfigData(xmlNodePtr pNodePtr);
+
+    /**
+	 * Setter for the logging configuration data
+	 */
+    HRESULT FPJ1_SetConfigData(BYTE* pvDataStream, const CString& omStrVersion);
+
+    HRESULT FPJ1_SetConfigData(xmlDocPtr pDoc);
+
+	/**
+	 * To update the associated database list to logger
+	 */
+    HRESULT FPJ1_SetDatabaseFiles(const CStringArray& omList);
+
+    /**
+	 * To update the channel baud rate info to logger
+	 */
+    HRESULT FPJ1_SetChannelBaudRateDetails(SCONTROLLER_DETAILS* controllerDetails,
+                                           int nNumChannels);
+
+
 private:
     CParamLoggerJ1939   m_sJ1939ProcParams;
     CBaseDILI_J1939*    m_pouDIL_J1939;
@@ -42,111 +190,21 @@ private:
     CFormatMsgJ1939     m_ouFormatMsgJ1939;
 
     USHORT ushCalculateStrLen(bool bForHex, USHORT ushLength);
-    void vEmptyLogObjArray(CLogObjArray& omLogObjArray);
-    // To create a new logging object
+    
+	void vEmptyLogObjArray(CLogObjArray& omLogObjArray);
+
+	/**
+	 * To create a new logging object
+	 */
     CBaseLogObject* CreateNewLogObj(const CString& omStrVersion);
-    // To delete a logging object
+
+	/**
+	 * To delete a logging object
+	 */
     void DeleteLogObj(CBaseLogObject*& pouLogObj);
-    // To create the time mode mapping
-    void CreateTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& unAbsTime);
 
-
-public:
-
-    CFrameProcessor_J1939();      // Constructor
-    ~CFrameProcessor_J1939();     // Destructor
-
-    BOOL InitInstance(void);
-    int ExitInstance(void);
-    void vRetrieveDataFromBuffer(void);
-
-    /* STARTS IMPLEMENTATION OF THE INTERFACE FUNCTIONS... */
-    // To initialise this module
-    HRESULT FPJ1_DoInitialisation(CParamLoggerJ1939* psInitParams);
-
-    // To modify the filtering scheme of a logging block
-    HRESULT FPJ1_ApplyFilteringScheme(USHORT ushLogBlkID,
-                                      const SFILTERAPPLIED_J1939& sFilterObj);
-
-    // Getter for the filtering scheme of a logging block
-    HRESULT FPJ1_GetFilteringScheme(USHORT ushLogBlk,
-                                    SFILTERAPPLIED_J1939& sFilterObj);
-
-
-    /* USE COMMON BASE CLASS ALIAS FUNCTIONS */
-
-    /* Call to enable/disable logging for a particular block. Having ushBlk equal
-    to FOR_ALL, signifies the operation to be performed for all the blocks */
-    HRESULT FPJ1_EnableLoggingBlock(USHORT ushBlk, BOOL bEnable);
-
-    // To enable/disable logging
-    HRESULT FPJ1_EnableLogging(BOOL bEnable);
-
-    /* Call to enable/disable logging for a particular block. Having ushBlk equal
-    to FOR_ALL, signifies the operation to be performed for all the blocks */
-    HRESULT FPJ1_EnableFilter(USHORT ushBlk, BOOL bEnable);
-
-    // Query function - current logging status (OFF/ON).
-    BOOL FPJ1_IsLoggingON(void);
-
-    void FPJ1_vCloseLogFile(void);
-
-    // Check if the data is actually logging in
-    BOOL FPJ1_IsDataLogged(void);
-    BOOL FPJ1_IsJ1939DataLogged(void);
-    BOOL FPJ1_IsJ1939ThreadBlocked(void);
-    void FPJ1_DisableJ1939DataLogFlag(void);
-    // Query function - current filtering status
-    BOOL FPJ1_IsFilterON(void);
-
-    // To log a string
-    HRESULT FPJ1_LogString(CString& omStr);
-
-    // To add a logging block; must be in editing mode
-    HRESULT FPJ1_AddLoggingBlock(const SLOGINFO& sLogObject);
-
-    // To remove a logging block by its index in the list; editing mode prerequisite
-    HRESULT FPJ1_RemoveLoggingBlock(USHORT ushBlk);
-
-    // Getter for total number of logging blocks
-    USHORT FPJ1_GetLoggingBlockCount(void);
-
-    // To clear the logging block list
-    HRESULT FPJ1_ClearLoggingBlockList(void);
-
-    // Getter for a logging block by specifying its index in the list
-    HRESULT FPJ1_GetLoggingBlock(USHORT ushBlk, SLOGINFO& sLogObject);
-
-    // Setter for a logging block by specifying its index in the list
-    HRESULT FPJ1_SetLoggingBlock(USHORT ushBlk, const SLOGINFO& sLogObject);
-
-    // To reset or revoke the modifications made
-    HRESULT FPJ1_Reset(void);
-
-    // To confirm the modifications made
-    HRESULT FPJ1_Confirm(void);
-
-    // To start logging block editing session
-    HRESULT FPJ1_StartEditingSession(void);
-
-    // To stop logging block editing session
-    HRESULT FPJ1_StopEditingSession(BOOL bConfirm);
-
-    // Getter for the logging configuration data
-    HRESULT FPJ1_GetConfigData(BYTE** ppvConfigData, UINT& unLength);
-
-    HRESULT FPJ1_GetConfigData(xmlNodePtr pNodePtr);
-
-    // Setter for the logging configuration data
-    HRESULT FPJ1_SetConfigData(BYTE* pvDataStream, const CString& omStrVersion);
-
-    HRESULT FPJ1_SetConfigData(xmlDocPtr pDoc);
-    // To update the associated database list to logger
-    HRESULT FPJ1_SetDatabaseFiles(const CStringArray& omList);
-
-    // To update the channel baud rate info to logger
-    HRESULT FPJ1_SetChannelBaudRateDetails(SCONTROLLER_DETAILS* controllerDetails,
-                                           int nNumChannels);
-
-    /* ENDS IMPLEMENTATION OF THE INTERFACE FUNCTIONS... */
+	/**
+	 * To create the time mode mapping
+	 */
+    void CreateTimeModeMapping(SYSTEMTIME& currentSystemTime, UINT64& unAbsTime);
 };

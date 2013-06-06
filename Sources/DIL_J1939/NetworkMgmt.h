@@ -1,63 +1,35 @@
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-/******************************************************************************
-  Project       :  Frame_McNet
-  FileName      :  NetworkMgmt.h
-  Description   :  Network management layer services
-  $Log:   X:/Archive/Sources/DIL_J1939/NetworkMgmt.h_v  $
+/**
+ * @file   NetworkMgmt.h
+ * @brief  Network management layer services
+ * @author Anish Kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
  *
- *    Rev 1.7   15 Apr 2011 18:48:38   CANMNTTM
- * Added RBEI Copyright information.
- *
- *    Rev 1.6   02 Mar 2011 11:36:44   CANMNTTM
- * SetCallBackFuncPtr function is added.
- *
- *    Rev 1.5   13 Jan 2011 14:47:00   CANMNTTM
- * GoOnline() return value is used.
- *
- *    Rev 1.4   22 Dec 2010 19:23:42   CANMNTTM
- * 1. Implemented Call back mechanism.
- * 2. Exported function SetClBckFnPtrs and GetTimeOut added.
- *
- *    Rev 1.3   15 Dec 2010 16:22:58   CANMNTTM
- * Added new function to remove all the register nodes.
- *
- *    Rev 1.2   13 Dec 2010 18:46:54   CANMNTTM
- * New API DILJ_bIsOnline(void) added
- *
- *    Rev 1.1   13 Dec 2010 16:37:06   CANMNTTM
- * Nodes are made independent of channel.
- * Now nodes can send message in any channel.
- *
- *    Rev 1.0   06 Dec 2010 18:47:22   rac2kor
- *
- *
- *    Rev 1.4   12 Jan 2010 14:22:46   mcnetpl
- * Bugfixing
- *
- *    Rev 1.3   04 Jan 2010 14:46:12   mcnetpl
- *
- *
- *    Rev 1.1   07 Dec 2009 13:02:00   mcnetpl
- * Bugfix
- *
- *    Rev 1.0   02 Dec 2009 17:53:04   mcnetpl
- * Initial version
-
-  Author(s)     :  Anish Kumar
-  Date Created  :  15/09/2009
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
+ * Network management layer services
+ */
 
 #pragma once
 
+/* Project includes */
 #include "NodeConManager.h"
 #include "DIL_J1939_Extern.h"
 #include "DIL_Interface/BaseDIL_CAN.h"
 #include "ConnectionDet.h"
 #include "ReadCanMsg.h"
-
-
 
 typedef enum
 {
@@ -72,19 +44,10 @@ typedef CMap<UINT64, UINT64, BYTE, BYTE> CNameAddressMap;
 
 class CNetworkMgmt
 {
-private:
-    CNetworkMgmt(void);
-    CReadCanMsg m_ouReadCANMsg;
-    Base_WrapperErrorLogger* m_pILog;
-    CBaseDIL_CAN* m_pIDIL_CAN;
-    CNodeConManager* m_ConMgrArr[DEF_MAX_SIMULATED_NODE];
-    CCombineLCsToConNoMap m_LCsToConMap;
-    int m_nConMgrCnt;
-    CNameAddressMap m_odClaimedAdresMap;
-    BOOL m_bOnline;
-    DWORD m_dwCANMonitorNodeClientId;
-
 public:
+    CNetworkMgmt(void);
+    ~CNetworkMgmt(void);
+
     static UINT sg_unTO_BROADCAST;
     static UINT sg_unTO_RESPONSE;
     static UINT sg_unTO_HOLDING;
@@ -92,8 +55,6 @@ public:
     static UINT sg_unTO_T2;
     static UINT sg_unTO_T3;
     static UINT sg_unTO_T4;
-
-    ~CNetworkMgmt(void);
 
     void vDoInit(void);
     void vDoExit(void);
@@ -108,7 +69,7 @@ public:
     void vMBaudRateChange(unsigned short BaudTemp);
     void vMConnectionCon(short sLocalLc, short sRemoteLc, eCON_STATUS eConStatus);
     void vMConnectionInd(short sLocalLc, short sRemoteLc, eCON_STATUS eConStatus);
-    ////////////////////////////////////////////////////////////////////
+
     CNodeConManager* pouGetConMagrObj(DWORD dwClientId);
     CNodeConManager* pouGetConMagrObj(char* pacClientName);
     CNodeConManager* pouGetConMagrObj(BYTE byIndex);
@@ -139,4 +100,15 @@ public:
     CBaseDIL_CAN* GetICANDIL(void);
     HRESULT GoOnline(BOOL bStart);
     BOOL bIsOnline(void);
+
+private:
+    CReadCanMsg m_ouReadCANMsg;
+    Base_WrapperErrorLogger* m_pILog;
+    CBaseDIL_CAN* m_pIDIL_CAN;
+    CNodeConManager* m_ConMgrArr[DEF_MAX_SIMULATED_NODE];
+    CCombineLCsToConNoMap m_LCsToConMap;
+    int m_nConMgrCnt;
+    CNameAddressMap m_odClaimedAdresMap;
+    BOOL m_bOnline;
+    DWORD m_dwCANMonitorNodeClientId;
 };

@@ -24,6 +24,7 @@
 
 #pragma once
 
+/* Project includes */
 #include "Utility/Utility_Thread.h"
 #include "include/BaseDefs.h"
 
@@ -31,18 +32,11 @@ typedef void (*MSG_RX_CALL_BK)(void* pParam, ETYPE_BUS eBusType);
 
 class CMsgContainerBase
 {
-
-protected:
-    CMsgContainerBase(void);
-    CPARAM_THREADPROC       m_sDataCopyThread;
-    MSG_RX_CALL_BK          m_pRxMsgCallBack;
-
 public:
     ~CMsgContainerBase(void);
     virtual void InitTimeParams(void) = 0;
     virtual void vRetrieveDataFromBuffer() = 0;
 
-    virtual void vInit(void* pParam) = 0;
     virtual void vEditClearAll() = 0;
     virtual int nGetAppendBufferCount() = 0;
     virtual int nGetOWBufferCount() = 0;
@@ -71,10 +65,13 @@ public:
     virtual __int64 nCreateMapIndexKey(LPVOID pMsgData) = 0;
     virtual HRESULT hToggleDILBufferRead(BOOL bRead) = 0;
 
-public:
-    //Exported functions
     void vSetRxMsgCallBkPtr(MSG_RX_CALL_BK pFuncPtr);
     BOOL bStartReadThread(HANDLE hActionEvent);
     BOOL bStopReadThread();
     BOOL bCopyStringTocharArr(char acDesStr[], CString omSrc, int MaxDesLen);
+
+protected:
+    CMsgContainerBase(void);
+    CPARAM_THREADPROC       m_sDataCopyThread;
+    MSG_RX_CALL_BK          m_pRxMsgCallBack;
 };

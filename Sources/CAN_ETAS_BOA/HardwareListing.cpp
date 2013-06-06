@@ -63,7 +63,7 @@
  Modifications  : Raja N on 17.3.2005
                   Implemented code review comments
 *******************************************************************************/
-CHardwareListing::CHardwareListing( INTERFACE_HW* psIntrHw,
+CHardwareListing::CHardwareListing( InterfaceHardware* psIntrHw,
                                     int nSize, int* pnSelList, CWnd* pParent /*=NULL*/)
     : CDialog(CHardwareListing::IDD, pParent),
       m_nSize( nSize ),
@@ -145,7 +145,7 @@ END_MESSAGE_MAP()
  Modifications  : Raja N on 14.03.2005, Create list control to hold selected
                   hardware items
 *******************************************************************************/
-void CHardwareListing::vSetHardwareList(INTERFACE_HW* /*psHwIntr*/, int nSize)
+void CHardwareListing::vSetHardwareList(InterfaceHardware* /*psHwIntr*/, int nSize)
 {
     //all the application related to UI shall be performed only if
     //BUSMASTER is not called from COM
@@ -282,12 +282,12 @@ void CHardwareListing::vUpdateHwDetails(int nIndex)
     {
         //Driver Id
         CString omStr;
-        omStr.Format("%d", m_psHwInterface[nIndex].m_dwIdInterface);
+        omStr.Format("%d", m_psHwInterface[nIndex].interfaceId);
         m_omDriverID.SetWindowText(omStr);
         //Firmware
-        m_omFirmware.SetWindowText(m_psHwInterface[nIndex].m_acDeviceName.c_str());
+        m_omFirmware.SetWindowText(m_psHwInterface[nIndex].deviceName.c_str());
         //Description
-        m_omNetName.SetWindowText( m_psHwInterface[nIndex].m_acDescription.c_str() );
+        m_omNetName.SetWindowText( m_psHwInterface[nIndex].description.c_str() );
 
     }
 }

@@ -279,7 +279,6 @@ exit 0
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='busmaster_debug|Win32'">parser.c;parser.h;%(Outputs)</Outputs>
     </CustomBuild>
-    <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TestSuiteExecutorGUI.rc" />

@@ -1,58 +1,31 @@
-/******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  MonitorNode.cpp
-  Description   :
-  $Log:   X:/Archive/Sources/DIL_J1939/MonitorNode.cpv  $
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-      Rev 1.11   07 Jun 2011 11:11:16   CANMNTTM
+/**
+ * @file      MonitorNode.cpp
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ */
 
-
-      Rev 1.10   15 Apr 2011 18:48:38   CANMNTTM
-   Added RBEI Copyright information.
-
-      Rev 1.9   23 Mar 2011 14:58:04   CANMNTTM
-   Support for PDU format 2 message
-
-      Rev 1.8   02 Mar 2011 11:36:44   CANMNTTM
-   SetCallBackFuncPtr function is added.
-
-      Rev 1.7   30 Dec 2010 18:48:48   CANMNTTM
-
-
-      Rev 1.6   29 Dec 2010 19:32:38   CANMNTTM
-   Connection mode for both transmission and reception added.
-
-      Rev 1.5   23 Dec 2010 16:52:20   CANMNTTM
-   Macro MAX_MSG_LEN_J1939
-    instead of MAX_DATA_LEN_J1939 wherever applicable.
-
-      Rev 1.4   22 Dec 2010 19:23:42   CANMNTTM
-   1. Implemented Call back mechanism.
-   2. Exported function SetClBckFnPtrs and GetTimeOut added.
-
-      Rev 1.3   14 Dec 2010 17:53:04   CANMNTTM
-   Defined a virtual function vTransmitMessage.
-
-      Rev 1.1   13 Dec 2010 16:37:06   CANMNTTM
-   Nodes are made independent of channel.
-   Now nodes can send message in any channel.
-
-      Rev 1.0   06 Dec 2010 18:47:22   rac2kor
-
-
-  Author(s)     :  Pradeep Kadoor
-  Date Created  :  23/11/2010
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
+/* Project includes */
 #include "DIL_J1939_stdafx.h"
-
 #include "J1939_UtilityFuncs.h"
 #include "MonitorNode.h"
 #include "TransferLayer.h"
 #include "NetworkMgmt.h"
 #include "Utility/MultiLanguageSupport.h"
-
 
 CMonitorNode::CMonitorNode(int nNodeNo, char* pacNodeName,
                            UINT64 un64ECUName, BYTE byPrefAdres):CNodeConManager(nNodeNo, pacNodeName, un64ECUName, byPrefAdres, TRUE)

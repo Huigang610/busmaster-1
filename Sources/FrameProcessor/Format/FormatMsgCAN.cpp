@@ -22,17 +22,10 @@
  * Source of CFormatMsgCAN class.
  */
 
+/* Project include */
 #include "../FrameProcessor_stdafx.h"
 #include "FormatMsgCAN.h"
 #include "include/Utils_macro.h"
-
-CFormatMsgCAN::CFormatMsgCAN(void)
-{
-}
-
-CFormatMsgCAN::~CFormatMsgCAN(void)
-{
-}
 
 void CFormatMsgCAN::vFormatTime(BYTE bExprnFlag,
                                 SFORMATTEDDATA_CAN* CurrDataCAN)
@@ -69,7 +62,6 @@ void CFormatMsgCAN::vFormatTime(BYTE bExprnFlag,
                               CurrDataCAN->m_acTimeSys);
     }
 }
-
 
 void CFormatMsgCAN::vFormatDataAndId(BYTE bExprnFlag,
                                      SFORMATTEDDATA_CAN* CurrDataCAN)

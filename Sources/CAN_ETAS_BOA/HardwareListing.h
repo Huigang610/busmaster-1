@@ -38,7 +38,7 @@ public:
     /**
      * Constructor
      */
-    CHardwareListing(INTERFACE_HW*, int , int*, CWnd* pParent = NULL);
+    CHardwareListing(InterfaceHardware*, int , int*, CWnd* pParent = NULL);
 
     /**
      * standard constructor
@@ -58,7 +58,7 @@ public:
     /**
      * To set List of hardware handles
      */
-    void vSetHardwareList(INTERFACE_HW*, int );
+    void vSetHardwareList(InterfaceHardware*, int );
 
     /**
      * Get selection list
@@ -99,7 +99,7 @@ private:
     /**
      * Pointer to hardware list
      */
-    INTERFACE_HW* m_psHwInterface;
+    InterfaceHardware* m_psHwInterface;
 
     /**
      * Size of the array

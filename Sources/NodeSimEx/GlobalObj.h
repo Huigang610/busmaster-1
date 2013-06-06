@@ -32,7 +32,7 @@
 #include "Include/BaseDefs.h"
 #include "DIL_Interface/BaseDIL_Can.h"
 #include "DIL_Interface/BaseDIL_J1939.h"
-class CBaseAppServices;
+class BaseAppServices;
 
 class CGlobalObj
 {
@@ -58,9 +58,7 @@ public:
     CString m_omObjWrapperName;
     CStringArray m_omDefinedMsgHeaders;
     CMsgNameMsgCodeListDataBase m_odMsgNameMsgCodeListDb;       //CAPL_DB_NAME_CHANGE
-    //CMsgNameMsgCodeList m_odMsgNameMsgCodeList;
     CMapStringToPtr* m_podNodeToDllMap;
-    //static CKeyPanelEntryList* g_podKeyPanelEntryList;
     WINDOWPLACEMENT m_wWindowPlacement;
     CFunctionEditorDoc* pGetDocPtrOfFile(CString);
     static CBaseDIL_CAN* GetICANDIL(void);
@@ -86,7 +84,7 @@ public:
     BYTE* m_pSimSysDataPtr;
     int   m_nSimSysDataSize;
     //static variables
-    static CBaseAppServices* sm_pouITraceWndPtr;
+    static BaseAppServices* sm_pouITraceWndPtr;
     static HWND sm_hWndMDIParentFrame;
 
     //Static functions

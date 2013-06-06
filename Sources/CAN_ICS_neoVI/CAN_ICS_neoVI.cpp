@@ -226,7 +226,7 @@ const int ENTRIES_IN_GBUF       = 2000;
 static int sg_nFRAMES = 128;
 static STCANDATA sg_asMsgBuffer[ENTRIES_IN_GBUF];
 static SCONTROLLER_DETAILS sg_ControllerDetails[defNO_OF_CHANNELS];
-static INTERFACE_HW sg_HardwareIntr[defNO_OF_CHANNELS];
+static InterfaceHardware sg_HardwareIntr[defNO_OF_CHANNELS];
 
 /**
  * Network for actual hardware
@@ -327,7 +327,7 @@ static UCHAR m_unWarningCount[defNO_OF_CHANNELS] = {0};
 static UCHAR m_unRxError = 0;
 static UCHAR m_unTxError = 0;
 const int MAX_DEVICES  = 255;
-static BYTE m_bytNetworkIDs[MAX_DEVICES] = {0};
+static BYTE networkIds[MAX_DEVICES] = {0};
 static unsigned char m_ucNetworkID[NETWORKS_COUNT] = {0};
 static int m_anhObject[MAX_DEVICES][NETWORKS_COUNT+1] = {0};
 static int m_anhWriteObject[MAX_DEVICES] = {0};
@@ -411,8 +411,6 @@ static STARTSOCKSERVER icsneoStartSockServer;
 typedef int (__stdcall* STOPSOCKSERVER)(int hObject);
 static STOPSOCKSERVER icsneoStopSockServer;
 
-#define MAX_CHAR_SHORT 128
-#define MAX_CHAR_LONG  512
 #define CAN_USBMSGTYPE_DATA 2
 
 /* Function pointers ends*/
@@ -434,8 +432,8 @@ public:
     HRESULT performInitOperations(void);
     HRESULT performClosureOperations(void);
     HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const InterfaceHardwareList& sSelHwInterface, INT nCount);
     HRESULT deselectHardwareInterface(void);
     HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
     HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length);
@@ -510,7 +508,7 @@ static void vRetrieveAndLog(DWORD /*dwErrorCode*/, char* File, int Line)
     // Get the error text for the corresponding error code
     //if ((*pfCAN_GetErrText)(dwErrorCode, acErrText) == CAN_USB_OK)
     {
-        sg_pIlog->vLogAMessage(A2T(File), Line, A2T(acErrText));
+        sg_pIlog->logMessage(A2T(File), Line, A2T(acErrText));
 
         size_t nStrLen = strlen(acErrText);
         if (nStrLen > CAN_MAX_ERRSTR)
@@ -1383,15 +1381,15 @@ static int nAddChanneltoHWInterfaceList(int narrNetwordID[], int nCntNtwIDs, int
 
     for ( int i=0; i<nCntNtwIDs; i++ )
     {
-        sg_HardwareIntr[nChannels].m_dwIdInterface = sg_ndNeoToOpen[nDevID].Handle;
-        sg_HardwareIntr[nChannels].m_dwVendor = sg_ndNeoToOpen[nDevID].SerialNumber;
-        sg_HardwareIntr[nChannels].m_bytNetworkID = narrNetwordID[i];
-        sg_HardwareIntr[nChannels].m_acDeviceName = acFirmware;
+        sg_HardwareIntr[nChannels].interfaceId = sg_ndNeoToOpen[nDevID].Handle;
+        sg_HardwareIntr[nChannels].vendor = sg_ndNeoToOpen[nDevID].SerialNumber;
+        sg_HardwareIntr[nChannels].networkId = narrNetwordID[i];
+        sg_HardwareIntr[nChannels].deviceName = acFirmware;
         _stprintf_s(acTempStr, 512, "%d", sg_ndNeoToOpen[nDevID].DeviceType);
-        sg_HardwareIntr[nChannels].m_acNameInterface = acTempStr;
-        _stprintf(acTempStr, "SN: %d, Port ID: %d-CAN%d", sg_HardwareIntr[nChannels].m_dwVendor,
-                  sg_HardwareIntr[nChannels].m_dwIdInterface, narrNetwordID[i]);
-        sg_HardwareIntr[nChannels].m_acDescription = acTempStr;
+        sg_HardwareIntr[nChannels].interfaceName = acTempStr;
+        _stprintf(acTempStr, "SN: %d, Port ID: %d-CAN%d", sg_HardwareIntr[nChannels].vendor,
+                  sg_HardwareIntr[nChannels].interfaceId, narrNetwordID[i]);
+        sg_HardwareIntr[nChannels].description = acTempStr;
 
         nChannels++;
     }
@@ -1427,7 +1425,7 @@ static int nCreateSingleHardwareNetwork()
     sg_odHardwareNetwork.m_aodChannels[ 0 ].m_hHardwareHandle = (BYTE)sg_ndNeoToOpen[0].Handle;
 
     // Assign Net Handle
-    sg_odHardwareNetwork.m_aodChannels[ 0 ].m_hNetworkHandle = m_bytNetworkIDs[0] = NETID_HSCAN;
+    sg_odHardwareNetwork.m_aodChannels[ 0 ].m_hNetworkHandle = networkIds[0] = NETID_HSCAN;
 
 
     return defERR_OK;
@@ -1435,14 +1433,14 @@ static int nCreateSingleHardwareNetwork()
 
 /**
 * @brief         This function will popup hardware selection dialog and gets the user selection of channels.
-* @param[in]     psInterfaces, is INTERFACE_HW structue
+* @param[in]     psInterfaces, is InterfaceHardware structue
 * @param[out]    pnSelList, contains channels selected array
 * @param[out]    nCount, contains selected channel count
 * @return        returns 0 if success, else -1
 * @authors       Arunkumar Karri
 * \date          07.10.2011 Created
 */
-int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, INTERFACE_HW* psInterfaces, int* pnSelList, int& nCount)
+int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, InterfaceHardware* psInterfaces, int* pnSelList, int& nCount)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
@@ -1573,10 +1571,10 @@ static int nCreateMultipleHardwareNetwork(UINT unDefaultChannelCnt = 0)
     //Reorder hardware interface as per the user selection
     for (int nCount = 0; nCount < sg_ucNoOfHardware; nCount++)
     {
-        sg_ndNeoToOpen[nCount].Handle       = (int)sg_HardwareIntr[sg_anSelectedItems[nCount]].m_dwIdInterface;
-        sg_ndNeoToOpen[nCount].SerialNumber = (int)sg_HardwareIntr[sg_anSelectedItems[nCount]].m_dwVendor;
-        _stscanf_s(sg_HardwareIntr[sg_anSelectedItems[nCount]].m_acNameInterface.c_str(), "%d", &sg_ndNeoToOpen[nCount].DeviceType);
-        m_bytNetworkIDs[nCount]             =  sg_HardwareIntr[sg_anSelectedItems[nCount]].m_bytNetworkID;
+        sg_ndNeoToOpen[nCount].Handle       = (int)sg_HardwareIntr[sg_anSelectedItems[nCount]].interfaceId;
+        sg_ndNeoToOpen[nCount].SerialNumber = (int)sg_HardwareIntr[sg_anSelectedItems[nCount]].vendor;
+        _stscanf_s(sg_HardwareIntr[sg_anSelectedItems[nCount]].interfaceName.c_str(), "%d", &sg_ndNeoToOpen[nCount].DeviceType);
+        networkIds[nCount]             =  sg_HardwareIntr[sg_anSelectedItems[nCount]].networkId;
     }
     for (int nIndex = 0; nIndex < sg_ucNoOfHardware; nIndex++)
     {
@@ -1592,7 +1590,7 @@ static int nCreateMultipleHardwareNetwork(UINT unDefaultChannelCnt = 0)
         sg_odHardwareNetwork.m_aodChannels[ nIndex ].m_hHardwareHandle = (BYTE)sg_ndNeoToOpen[nIndex].Handle;
 
         // Assign Net Handle
-        sg_odHardwareNetwork.m_aodChannels[ nIndex ].m_hNetworkHandle = sg_HardwareIntr[nIndex].m_bytNetworkID;
+        sg_odHardwareNetwork.m_aodChannels[ nIndex ].m_hNetworkHandle = sg_HardwareIntr[nIndex].networkId;
     }
     return defERR_OK;
 }
@@ -1733,7 +1731,7 @@ static int nSetBaudRate()
         int nBitRate = (INT)(fBaudRate);
 
         // Set the baudrate
-        nReturn = (*icsneoSetBitRate)(m_anhWriteObject[unIndex], nBitRate, m_bytNetworkIDs[unIndex]);
+        nReturn = (*icsneoSetBitRate)(m_anhWriteObject[unIndex], nBitRate, networkIds[unIndex]);
         if (nReturn != NEOVI_OK)
         {
             unIndex = sg_odHardwareNetwork.m_nNoOfDevices;
@@ -2004,7 +2002,7 @@ static void vMapDeviceChannelIndex()
         {
             if ( m_anhObject[j][0] ==  m_anhWriteObject[i] )
             {
-                m_anhObject[j][m_bytNetworkIDs[i]+1] = i+1; //Assigning Channel Index
+                m_anhObject[j][networkIds[i]+1] = i+1; //Assigning Channel Index
                 break;
             }
         }
@@ -2206,7 +2204,7 @@ HRESULT CDIL_CAN_ICSNeoVI::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& T
  * Function to List Hardware interfaces connect to the system and requests to the
  * user to select
  */
-HRESULT CDIL_CAN_ICSNeoVI::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN_ICSNeoVI::listHardwareInterfaces(InterfaceHardwareList& asSelHwInterface, INT& nCount)
 {
     USES_CONVERSION;
     HRESULT hResult = S_FALSE;
@@ -2217,23 +2215,23 @@ HRESULT CDIL_CAN_ICSNeoVI::listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInte
             nCount = sg_ucNoOfHardware;
             for (UINT i = 0; i < sg_ucNoOfHardware; i++)
             {
-                asSelHwInterface[i].m_dwIdInterface = (DWORD)sg_ndNeoToOpen[i].Handle;
+                asSelHwInterface[i].interfaceId = (DWORD)sg_ndNeoToOpen[i].Handle;
                 std::ostringstream oss;
                 oss << std::dec << sg_ndNeoToOpen[i].SerialNumber;
-                asSelHwInterface[i].m_acDescription = oss.str();
-                asSelHwInterface[i].m_bytNetworkID = m_bytNetworkIDs[i];
+                asSelHwInterface[i].description = oss.str();
+                asSelHwInterface[i].networkId = networkIds[i];
                 hResult = S_OK;
                 sg_bCurrState = STATE_HW_INTERFACE_LISTED;
             }
         }
         else
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, "Error connecting to driver");
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, "Error connecting to driver");
         }
     }
     else
     {
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, "Error in getting driver status");
+        sg_pIlog->logMessage(A2T(__FILE__), __LINE__, "Error in getting driver status");
     }
     return hResult;
 }
@@ -2255,7 +2253,7 @@ HRESULT CDIL_CAN_ICSNeoVI::deselectHardwareInterface(void)
 /**
  * Function to select hardware interface chosen by the user
  */
-HRESULT CDIL_CAN_ICSNeoVI::selectHardwareInterface(const INTERFACE_HW_LIST& asSelHwInterface, INT /*nCount*/)
+HRESULT CDIL_CAN_ICSNeoVI::selectHardwareInterface(const InterfaceHardwareList& asSelHwInterface, INT /*nCount*/)
 {
     USES_CONVERSION;
 
@@ -2270,9 +2268,9 @@ HRESULT CDIL_CAN_ICSNeoVI::selectHardwareInterface(const INTERFACE_HW_LIST& asSe
         //Select the interface
         for (UINT i = 0; i < sg_ucNoOfHardware; i++)
         {
-            sg_ndNeoToOpen[i].Handle       = (INT)asSelHwInterface[i].m_dwIdInterface;
-            sg_ndNeoToOpen[i].SerialNumber = _ttoi(asSelHwInterface[i].m_acDescription.c_str());
-            m_bytNetworkIDs[i]             = asSelHwInterface[i].m_bytNetworkID;
+            sg_ndNeoToOpen[i].Handle       = (INT)asSelHwInterface[i].interfaceId;
+            sg_ndNeoToOpen[i].SerialNumber = _ttoi(asSelHwInterface[i].description.c_str());
+            networkIds[i]             = asSelHwInterface[i].networkId;
         }
         //Check for the success
         sg_bCurrState = STATE_HW_INTERFACE_SELECTED;
@@ -2281,7 +2279,7 @@ HRESULT CDIL_CAN_ICSNeoVI::selectHardwareInterface(const INTERFACE_HW_LIST& asSe
     else
     {
         hResult = S_FALSE;
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, "Driver is not running...");
+        sg_pIlog->logMessage(A2T(__FILE__), __LINE__, "Driver is not running...");
     }
     return hResult;
 }
@@ -2314,7 +2312,7 @@ HRESULT CDIL_CAN_ICSNeoVI::setConfigurationData(PSCONTROLLER_DETAILS ConfigFile,
     }
     else
     {
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__,
+        sg_pIlog->logMessage(A2T(__FILE__), __LINE__,
                                "Controller configuration failed");
     }
     return hResult;
@@ -2377,7 +2375,7 @@ HRESULT hFillHardwareDesc(PSCONTROLLER_DETAILS pControllerDetails)
         {
                 /* neoVI Blue */
             case NEODEVICE_BLUE:
-                switch (m_bytNetworkIDs[i])
+                switch (networkIds[i])
                 {
                     case NETID_HSCAN:
                         strncpy(&netid_str[0], "HSCAN", sizeof(netid_str));
@@ -2396,7 +2394,7 @@ HRESULT hFillHardwareDesc(PSCONTROLLER_DETAILS pControllerDetails)
 
                 /* ValueCAN */
             case NEODEVICE_DW_VCAN:
-                switch (m_bytNetworkIDs[i])
+                switch (networkIds[i])
                 {
                     case NETID_HSCAN:
                         strncpy(&netid_str[0], "CAN", sizeof(netid_str));
@@ -2406,7 +2404,7 @@ HRESULT hFillHardwareDesc(PSCONTROLLER_DETAILS pControllerDetails)
 
                 /* neoVI Fire/Red */
             case NEODEVICE_FIRE:
-                switch (m_bytNetworkIDs[i])
+                switch (networkIds[i])
                 {
                     case NETID_HSCAN:
                     case NETID_FIRE_HSCAN1:
@@ -2431,7 +2429,7 @@ HRESULT hFillHardwareDesc(PSCONTROLLER_DETAILS pControllerDetails)
             case NEODEVICE_VCAN3:
                 if (nHardwareLic == 8)   // Limited Version with only one channel
                 {
-                    switch (m_bytNetworkIDs[i])
+                    switch (networkIds[i])
                     {
                         case NETID_HSCAN:
                             strncpy(&netid_str[0], "CAN", sizeof(netid_str));
@@ -2440,7 +2438,7 @@ HRESULT hFillHardwareDesc(PSCONTROLLER_DETAILS pControllerDetails)
                 }
                 else     // Two channels
                 {
-                    switch (m_bytNetworkIDs[i])
+                    switch (networkIds[i])
                     {
                         case NETID_HSCAN:
                             strncpy(&netid_str[0], "CAN 1", sizeof(netid_str));
@@ -2456,7 +2454,7 @@ HRESULT hFillHardwareDesc(PSCONTROLLER_DETAILS pControllerDetails)
         /* default case */
         if (strlen(&netid_str[0]) == 0)
         {
-            switch (m_bytNetworkIDs[i])
+            switch (networkIds[i])
             {
                 case NETID_HSCAN:
                     strncpy(&netid_str[0], "HSCAN", sizeof(netid_str));
@@ -2645,7 +2643,7 @@ HRESULT CDIL_CAN_ICSNeoVI::startHardware(void)
         }
         else
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, "Could not start the read thread" );
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, "Could not start the read thread" );
         }
     }
 
@@ -2747,15 +2745,15 @@ HRESULT CDIL_CAN_ICSNeoVI::getCurrentStatus(s_STATUSMSG& StatusData)
 {
     if (sg_ucControllerMode == defUSB_MODE_ACTIVE)
     {
-        StatusData.wControllerStatus = NORMAL_ACTIVE;
+        StatusData.controllerStatus = NORMAL_ACTIVE;
     }
     else if (sg_ucControllerMode == defUSB_MODE_PASSIVE)
     {
-        StatusData.wControllerStatus = NORMAL_PASSIVE;
+        StatusData.controllerStatus = NORMAL_PASSIVE;
     }
     else if (sg_ucControllerMode == defUSB_MODE_SIMULATE)
     {
-        StatusData.wControllerStatus = NOT_DEFINED;
+        StatusData.controllerStatus = NOT_DEFINED;
     }
     return S_OK;
 }
@@ -2801,7 +2799,7 @@ static int nWriteMessage(STCAN_MSG sMessage)
         }
         memcpy(SpyMsg.Data, sMessage.m_ucData, sMessage.m_ucDataLen);
         if ((*icsneoTxMessages)(m_anhWriteObject[(int)(sMessage.m_ucChannel) - 1], &SpyMsg,
-                                m_bytNetworkIDs[(int)(sMessage.m_ucChannel) - 1], 1) != 0)
+                                networkIds[(int)(sMessage.m_ucChannel) - 1], 1) != 0)
         {
             nReturn = 0;
         }
@@ -3048,7 +3046,7 @@ HRESULT CDIL_CAN_ICSNeoVI::loadDriverLibrary(void)
 
     if (sg_hDll != NULL)
     {
-        sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, "icsneo40.dll already loaded");
+        sg_pIlog->logMessage(A2T(__FILE__), __LINE__, "icsneo40.dll already loaded");
         hResult = DLL_ALREADY_LOADED;
     }
 
@@ -3058,14 +3056,14 @@ HRESULT CDIL_CAN_ICSNeoVI::loadDriverLibrary(void)
         sg_hDll = LoadLibrary("ETASneo40.dll");
         if (sg_hDll == NULL)
         {
-            sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, "ETASneo40.dll loading failed");
+            sg_pIlog->logMessage(A2T(__FILE__), __LINE__, "ETASneo40.dll loading failed");
 
             //Load the Old version i.e icsneo40.dll
             sg_hDll = LoadLibrary("icsneo40.dll");
             if (sg_hDll == NULL)
             {
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, "icsneo40.dll loading failed");
-                sg_pIlog->vLogAMessage(A2T(__FILE__), __LINE__, "Please have a look at: https://github.com/rbei-etas/busmaster/wiki/Hardware-support");
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, "icsneo40.dll loading failed");
+                sg_pIlog->logMessage(A2T(__FILE__), __LINE__, "Please have a look at: https://github.com/rbei-etas/busmaster/wiki/Hardware-support");
                 hResult = ERR_LOAD_DRIVER;
             }
         }
@@ -3077,7 +3075,7 @@ HRESULT CDIL_CAN_ICSNeoVI::loadDriverLibrary(void)
             {
                 // Log list of the function pointers non-retrievable
                 // TO DO: specific information on failure in getting function pointer
-                sg_pIlog->vLogAMessage(A2T(__FILE__),
+                sg_pIlog->logMessage(A2T(__FILE__),
                                        __LINE__, "Getting Process address of the APIs failed");
                 hResult = ERR_LOAD_DRIVER;
             }

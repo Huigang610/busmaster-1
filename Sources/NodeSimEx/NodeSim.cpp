@@ -251,10 +251,7 @@ void CNodeSim::NS_UpdateFuncStructsNodeSimEx(PVOID pvFuncStructs, E_UPDATE_TYPE 
                 CGlobalObj::ouGetObj(m_eBus).m_odMsgNameMsgCodeListDb.AddTail(&(psExInitStruct->m_odMsgNameMsgCodeListDB));
                 CGlobalObj::ouGetObj(m_eBus).m_omErrorHandlerList.RemoveAll();
                 CGlobalObj::ouGetObj(m_eBus).m_omErrorHandlerList.Copy(psExInitStruct->m_omErrorHandlerList);
-                //CGlobalObj::g_podNodeToDllMap = psExInitStruct->m_podNodeToDllMap;
-                //CGlobalObj::g_podKeyPanelEntryList = psExInitStruct->m_podKeyPanelEntryList;
                 CGlobalObj::ouGetObj(m_eBus).m_omAppDirectory = psExInitStruct->m_omAppDirectory;
-                //CGlobalObj::TransmitMsg        = psExInitStruct->Send_Msg;
                 CGlobalObj::ouGetObj(m_eBus).m_pfEnableDisableLog = psExInitStruct->EnDisableLog;
                 CGlobalObj::ouGetObj(m_eBus).m_pfDisconnectTool   = psExInitStruct->DisConnectTool;
                 CGlobalObj::ouGetObj(m_eBus).m_pfWriteToLog       = psExInitStruct->WriteToLog;

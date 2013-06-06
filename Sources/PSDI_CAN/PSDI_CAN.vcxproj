@@ -135,7 +135,7 @@
       <AdditionalIncludeDirectories>$(IntDir);C:\WinDDK\7600.16385.1\inc\mfc42;C:\WinDDK\7600.16385.1\inc\atl71;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalOptions>"$(SolutionDir)BIN/Libs/$(OutDir)DataTypes.lib"
+      <AdditionalOptions>"$(SolutionDir)/BIN/Libs/$(OutDir)DataTypes.lib"
 "$(SolutionDir)/BIN/Libs/$(OutDir)DIL_Interface.lib"
 "$(SolutionDir)/BIN/Libs/$(OutDir)Utils.lib"
 "$(SolutionDir)/BIN/Libs/$(OutDir)CommonClass.lib"
@@ -208,7 +208,6 @@
     <ClInclude Include="MsgContainer_CAN.h" />
     <ClInclude Include="MsgContainer_J1939.h" />
     <ClInclude Include="PSDI_CAN.h" />
-    <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx_CAN.h" />
     <ClInclude Include="..\Utility\Utility_Thread.h" />
   </ItemGroup>

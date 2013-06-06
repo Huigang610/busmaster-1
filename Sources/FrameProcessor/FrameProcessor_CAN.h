@@ -24,78 +24,80 @@
 
 #pragma once
 
+/* Project includes */
 #include "Include/BaseDefs.h"
 #include "BaseFrameProcessor_CAN.h"
 #include "FrameProcessor_Common.h"
 #include "Format/FormatMsgCAN.h"
-
 #include "DIL_Interface/DIL_Interface_extern.h"
 #include "DIL_Interface/BaseDIL_CAN.h"
 
 class CFrameProcessor_CAN : public CBaseFrameProcessor_CAN, CFrameProcessor_Common
 {
-private:
-    SCANPROC_PARAMS     m_sCANProcParams;
-    CCANBufFSE          m_ouFSEBufCAN;
-    CFormatMsgCAN       m_ouFormatMsgCAN;
-    CBaseDIL_CAN*       m_pouDilCanInterface;
-    void vEmptyLogObjArray(CLogObjArray& omLogObjArray);
-    // To create a new logging object
-    CBaseLogObject* CreateNewLogObj(const CString& omStrVersion);
-    // To delete a logging object
-    void DeleteLogObj(CBaseLogObject*& pouLogObj);
-
-    // To create the time mode mapping
-    void CreateTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& unAbsTime);
-
-
 public:
-
-    CFrameProcessor_CAN();      // Constructor
-    ~CFrameProcessor_CAN();     // Destructor
+    CFrameProcessor_CAN();
+    ~CFrameProcessor_CAN();
 
     BOOL InitInstance(void);
-    int ExitInstance(void);
-    void vRetrieveDataFromBuffer(void);
 
-    /* STARTS IMPLEMENTATION OF THE INTERFACE FUNCTIONS... */
-    // To initialise this module
+	int ExitInstance(void);
+    
+	void vRetrieveDataFromBuffer(void);
+
+    /**
+	 * To initialise this module
+	 */
     HRESULT FPC_DoInitialisation(SCANPROC_PARAMS* psInitParams);
 
-    // To modify the filtering scheme of a logging block
+    /**
+	 * To modify the filtering scheme of a logging block
+	 */
     HRESULT FPC_ApplyFilteringScheme(USHORT ushLogBlkID,
                                      const SFILTERAPPLIED_CAN& sFilterObj);
 
-    // Getter for the filtering scheme of a logging block
+    /**
+	 * Getter for the filtering scheme of a logging block
+	 */
     HRESULT FPC_GetFilteringScheme(USHORT ushLogBlk,
                                    SFILTERAPPLIED_CAN& sFilterObj);
 
-    // To enable/disable updation of the client flexray frame buffer.
+    /**
+	 * To enable/disable updation of the client flexray frame buffer.
+	 */
     HRESULT FPC_SetClientCANBufON(BOOL bEnable);
 
-    // To get the flexray buffer of this module
+    /**
+	 * To get the flexray buffer of this module
+	 */
     CBaseCANBufFSE* FPC_GetCANBuffer(void);
 
     void FPC_vCloseLogFile();
 
-
-    /* USE COMMON BASE CLASS ALIAS FUNCTIONS */
-
-    /* Call to enable/disable logging for a particular block. Having ushBlk equal
-    to FOR_ALL, signifies the operation to be performed for all the blocks */
+    /**
+	 * Call to enable/disable logging for a particular block. Having ushBlk equal
+     * to FOR_ALL, signifies the operation to be performed for all the blocks
+	 */
     HRESULT FPC_EnableLoggingBlock(USHORT ushBlk, BOOL bEnable);
 
-    // To enable/disable logging
+    /**
+	 * To enable/disable logging
+	 */
     HRESULT FPC_EnableLogging(BOOL bEnable);
 
-    /* Call to enable/disable logging for a particular block. Having ushBlk equal
-    to FOR_ALL, signifies the operation to be performed for all the blocks */
+    /**
+	 * Call to enable/disable logging for a particular block. Having ushBlk equal
+     * to FOR_ALL, signifies the operation to be performed for all the blocks
+	 */
     HRESULT FPC_EnableFilter(USHORT ushBlk, BOOL bEnable);
 
-    // Query function - client flexray buffer updation status (OFF/ON)
+    /**
+	 * Query function - client flexray buffer updation status (OFF/ON)
+	 */
     BOOL FPC_IsClientCANBufON(void);
 
-    // Query function - current logging status (OFF/ON).
+    /**
+	 * Query function - current logging status (OFF/ON).
+	 */
     BOOL FPC_IsLoggingON(void);
 
     BOOL FPC_IsDataLogged(void);
@@ -104,57 +106,117 @@ public:
 
     void FPC_DisableDataLogFlag(void);
 
-    // Query function - current filtering status
+    /**
+	 * Query function - current filtering status
+	 */
     BOOL FPC_IsFilterON(void);
 
-    // To log a string
+    /**
+	 * To log a string
+	 */
     HRESULT FPC_LogString(CString& omStr);
 
-    // To add a logging block; must be in editing mode
+    /**
+	 * To add a logging block; must be in editing mode
+	 */
     HRESULT FPC_AddLoggingBlock(const SLOGINFO& sLogObject);
 
-    // To remove a logging block by its index in the list; editing mode prerequisite
+    /**
+	 * To remove a logging block by its index in the list; editing mode prerequisite
+	 */
     HRESULT FPC_RemoveLoggingBlock(USHORT ushBlk);
 
-    // Getter for total number of logging blocks
+    /**
+	 * Getter for total number of logging blocks
+	 */
     USHORT FPC_GetLoggingBlockCount(void);
 
-    // To clear the logging block list
+    /**
+	 * To clear the logging block list
+	 */
     HRESULT FPC_ClearLoggingBlockList(void);
 
-    // Getter for a logging block by specifying its index in the list
+    /**
+	 * Getter for a logging block by specifying its index in the list
+	 */
     HRESULT FPC_GetLoggingBlock(USHORT ushBlk, SLOGINFO& sLogObject);
 
-    // Setter for a logging block by specifying its index in the list
+    /**
+	 * Setter for a logging block by specifying its index in the list
+	 */
     HRESULT FPC_SetLoggingBlock(USHORT ushBlk, const SLOGINFO& sLogObject);
 
-    // To reset or revoke the modifications made
+    /**
+	 * To reset or revoke the modifications made
+	 */
     HRESULT FPC_Reset(void);
 
-    // To confirm the modifications made
+    /**
+	 * To confirm the modifications made
+	 */
     HRESULT FPC_Confirm(void);
 
-    // To start logging block editing session
+    /**
+	 * To start logging block editing session
+	 */
     HRESULT FPC_StartEditingSession(void);
 
-    // To stop logging block editing session
+    /**
+	 * To stop logging block editing session
+	 */
     HRESULT FPC_StopEditingSession(BOOL bConfirm);
 
-    // Getter for the logging configuration data
+    /**
+	 * Getter for the logging configuration data
+	 */
     HRESULT FPC_GetConfigData(BYTE** ppvConfigData, UINT& unLength);
 
-    // For writing in to XML
+    /**
+	 * For writing in to XML
+	 */
     HRESULT FPC_GetConfigData(xmlNodePtr pxmlNodePtr);
-    // Setter for the logging configuration data
-    HRESULT FPC_SetConfigData(BYTE* pvDataStream, const CString& omStrVersion);
-    HRESULT FPC_SetConfigData(xmlDocPtr pDoc);
 
-    // To update the associated database list to logger
+	/**
+	 * Setter for the logging configuration data
+	 */
+    HRESULT FPC_SetConfigData(BYTE* pvDataStream, const CString& omStrVersion);
+
+	/**
+	 * Setter for the logging configuration data
+	 */
+	HRESULT FPC_SetConfigData(xmlDocPtr pDoc);
+
+    /**
+	 * To update the associated database list to logger
+	 */
     HRESULT FPC_SetDatabaseFiles(const CStringArray& omList);
 
-    // To update the channel baud rate info to logger
+    /**
+	 * To update the channel baud rate info to logger
+	 */
     HRESULT FPC_SetChannelBaudRateDetails(SCONTROLLER_DETAILS* controllerDetails,
                                           int nNumChannels);
 
-    /* ENDS IMPLEMENTATION OF THE INTERFACE FUNCTIONS... */
+private:
+    SCANPROC_PARAMS     m_sCANProcParams;
+    CCANBufFSE          m_ouFSEBufCAN;
+    CFormatMsgCAN       m_ouFormatMsgCAN;
+    CBaseDIL_CAN*       m_pouDilCanInterface;
+
+	void vEmptyLogObjArray(CLogObjArray& omLogObjArray);
+    
+	/**
+	 * To create a new logging object
+	 */
+    CBaseLogObject* CreateNewLogObj(const CString& omStrVersion);
+
+	/**
+	 * To delete a logging object
+	 */
+    void DeleteLogObj(CBaseLogObject*& pouLogObj);
+
+    /**
+	 * To create the time mode mapping
+	 */
+    void CreateTimeModeMapping(SYSTEMTIME& currentSystemTime, UINT64& unAbsTime);
 };

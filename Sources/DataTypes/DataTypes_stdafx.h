@@ -24,7 +24,11 @@
 
 #pragma once
 
+/* C++ includes */
+#include <string>
+#include <list>
 
+/* MFC includes */
 #define WIN32_LEAN_AND_MEAN     // Exclude rarely-used stuff from Windows headers
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS  // some CString constructors will be explicit
 
@@ -38,7 +42,5 @@
 #include <afxcmn.h>
 
 #include <wtypes.h>
-#include <string>
-#include <list>
 #include "Utility/XMLUtils.h"
 #include <locale.h>

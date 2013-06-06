@@ -267,7 +267,7 @@ BOOL CLogObjectJ1939::bToBeLogged(SFRAMEINFO_BASIC_J1939& J1939Info_Basic)
         break;
         case START:
         {
-            if ((m_sLogInfo.m_sLogTrigger.m_unStartID == J1939Info_Basic.m_dwPGN)
+            if ((m_sLogInfo.m_sLogTrigger.startId == J1939Info_Basic.m_dwPGN)
                     && (J1939Info_Basic.m_eDrctn  == DIR_RX))
             {
                 m_CurrTriggerType = NONE;
@@ -280,7 +280,7 @@ BOOL CLogObjectJ1939::bToBeLogged(SFRAMEINFO_BASIC_J1939& J1939Info_Basic)
         break;
         case STOP:
         {
-            if ((m_sLogInfo.m_sLogTrigger.m_unStopID == J1939Info_Basic.m_dwPGN)
+            if ((m_sLogInfo.m_sLogTrigger.stopId == J1939Info_Basic.m_dwPGN)
                     && (J1939Info_Basic.m_eDrctn  == DIR_RX))
             {
                 m_CurrTriggerType = STOPPED;
@@ -290,7 +290,7 @@ BOOL CLogObjectJ1939::bToBeLogged(SFRAMEINFO_BASIC_J1939& J1939Info_Basic)
 
         case BOTH:
         {
-            if ((m_sLogInfo.m_sLogTrigger.m_unStartID == J1939Info_Basic.m_dwPGN)
+            if ((m_sLogInfo.m_sLogTrigger.startId == J1939Info_Basic.m_dwPGN)
                     && (J1939Info_Basic.m_eDrctn  == DIR_RX))
             {
                 m_CurrTriggerType = STOP;

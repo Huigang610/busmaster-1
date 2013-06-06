@@ -22,55 +22,18 @@
  * Implementation of CFormatMsgCommon class
  */
 
+/* Project includes */
 #include "CommonClass_stdafx.h"
-
 #include "GUI_FormatMsgCommon.h"
 #include "RefTimeKeeper.h"
 #include "include/Utils_Macro.h"
 
-/******************************************************************************
-    Function Name    :  CFormatMsgCommon
-    Input(s)         :
-    Output           :
-    Functionality    :  Default Constructor
-    Member of        :  CFormatMsgCommon
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 CFormatMsgCommon::CFormatMsgCommon(void)
 {
-
-    m_qwAbsBaseTime = 0;
-    m_qwRefSysTime  = 0;
+    absoluteBaseTime = 0;
+    referenceSystemTime  = 0;
 }
 
-/******************************************************************************
-    Function Name    :  ~CFormatMsgCommon
-    Input(s)         :
-    Output           :
-    Functionality    :  Destructor
-    Member of        :  CFormatMsgCommon
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
-CFormatMsgCommon::~CFormatMsgCommon(void)
-{
-}
-
-/******************************************************************************
-    Function Name    :  vCalculateAndFormatTM
-    Input(s)         :  bExprnFlag - Details of time mode
-                        TimeStamp - Msg time stamp, Rel time in case of Rel. mode
-                        acTime - Buffer to store formatted time
-    Output           :
-    Functionality    :  Format time details
-    Member of        :  CFormatMsgCommon
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 void CFormatMsgCommon::vCalculateAndFormatTM(BYTE bExprnFlag, UINT64 TimeStamp,
         char acTime[])
 {
@@ -81,7 +44,7 @@ void CFormatMsgCommon::vCalculateAndFormatTM(BYTE bExprnFlag, UINT64 TimeStamp,
 
     if (IS_TM_SYS_SET(bExprnFlag))
     {
-        dwTSTmp = (DWORD) ((TimeStamp - m_qwAbsBaseTime) + m_qwRefSysTime);
+        dwTSTmp = (DWORD) ((TimeStamp - absoluteBaseTime) + referenceSystemTime);
     }
     else if (IS_TM_REL_SET(bExprnFlag))
     {
@@ -90,7 +53,7 @@ void CFormatMsgCommon::vCalculateAndFormatTM(BYTE bExprnFlag, UINT64 TimeStamp,
     }
     else if (IS_TM_ABS_SET(bExprnFlag))
     {
-        dwTSTmp = (DWORD) (TimeStamp - m_qwAbsBaseTime);
+        dwTSTmp = (DWORD) (TimeStamp - absoluteBaseTime);
     }
     else
     {
@@ -99,13 +62,6 @@ void CFormatMsgCommon::vCalculateAndFormatTM(BYTE bExprnFlag, UINT64 TimeStamp,
     vFormatTimeStamp(dwTSTmp, acTime);
 }
 
-/**
- * @brief      Format Time Stamp
- * @param[in]  dwTimeStamp time stamp to be formatted
- * @param[out] acTime Buffer to store formatted time
- *
- * Format Time Stamp
- */
 void CFormatMsgCommon::vFormatTimeStamp(DWORD dwTimeStamp, char acTime[])
 {
     // Static variables to reduce the creation time
@@ -119,20 +75,3 @@ void CFormatMsgCommon::vFormatTimeStamp(DWORD dwTimeStamp, char acTime[])
     nHour = nTemp / 60;         // expressed in hours
     sprintf(acTime, "%02d:%02d:%02d:%04d", nHour, nMinute, nSec, nMicSec);
 }
-
-/******************************************************************************
-    Function Name    :  vFormatTimeStamp
-    Input(s)         :  dwTimeStamp - time stamp to be formatted
-                        acTime - Buffer to store formatted time
-    Output           :
-    Functionality    :  Format time details
-    Member of        :  CFormatMsgCommon
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
-//void CFormatMsgCommon::vSetRelBaseTime(INT64 qwRelBaseTime)
-//{
-//    m_qwRelBaseTime = qwRelBaseTime;
-//}
-

@@ -65,7 +65,7 @@ CTSEditorChildFrame::CTSEditorChildFrame()
     m_omMenu.LoadMenu(IDR_TSEDITORMENU);
     m_hMenuShared = m_omMenu.GetSafeHmenu();
     m_bQueryConfirm = TRUE;
-    m_pomImageList = NULL;
+    imageList = NULL;
     m_bInit = TRUE;
     vInitialise();
 
@@ -93,11 +93,11 @@ CTSEditorChildFrame::~CTSEditorChildFrame()
     m_omMenu.DestroyMenu();
     vInitialise();
     //Not rewuired in initialisation
-    if(m_pomImageList != NULL)
+    if(imageList != NULL)
     {
-        delete m_pomImageList;
+        delete imageList;
     }
-    m_pomImageList = NULL;
+    imageList = NULL;
 }
 
 /******************************************************************************
@@ -177,18 +177,18 @@ BOOL CTSEditorChildFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/, CCreateContext
     m_odPropertyView = (CPropertyView*)m_omSplitterWnd.GetPane(def_ROW_INDEX, def_INDEX_PROPVIEW);
 
     //Setting TreeView Item Images
-    m_pomImageList = new CImageList();
-    m_pomImageList->Create(def_HEIGHT_IMAGE, def_WIDTH_IMAGE, ILC_COLOR32|ILC_MASK, def_NUM_IMAGE, def_NUM_IMAGE);
-    m_pomImageList->SetBkColor(def_COLOR_TREE_BKG);
+    imageList = new CImageList();
+    imageList->Create(def_HEIGHT_IMAGE, def_WIDTH_IMAGE, ILC_COLOR32|ILC_MASK, def_NUM_IMAGE, def_NUM_IMAGE);
+    imageList->SetBkColor(def_COLOR_TREE_BKG);
     CBitmap omBitmap;
 
     for (int nID = IDI_ICONTESTCASE; nID <= IDI_ICONREPLAY; nID++)  // load bitmaps
     {
         HICON hIcon = AfxGetApp()->LoadIcon(MAKEINTRESOURCE(nID));
-        m_pomImageList->Add(hIcon);
+        imageList->Add(hIcon);
     }
 
-    m_odTreeView->GetTreeCtrl().SetImageList(m_pomImageList, TVSIL_NORMAL);
+    m_odTreeView->GetTreeCtrl().SetImageList(imageList, TVSIL_NORMAL);
     m_bInit = FALSE;
 
     //SSH + issue #438

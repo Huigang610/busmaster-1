@@ -1,30 +1,23 @@
-/******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  ConnectionDet.cpp
-  Description   :
-  $Log:   X:/Archive/Sources/DIL_J1939/ConnectionDet.cpv  $
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-      Rev 1.4   15 Apr 2011 18:48:34   CANMNTTM
-   Added RBEI Copyright information.
-
-      Rev 1.3   23 Mar 2011 14:58:04   CANMNTTM
-   Support for PDU format 2 message
-
-      Rev 1.2   29 Dec 2010 19:32:38   CANMNTTM
-   Connection mode for both transmission and reception added.
-
-      Rev 1.1   23 Dec 2010 16:52:20   CANMNTTM
-   Macro MAX_MSG_LEN_J1939
-    instead of MAX_DATA_LEN_J1939 wherever applicable.
-
-      Rev 1.0   06 Dec 2010 18:47:20   rac2kor
-
-
-  Author(s)     :  Pradeep Kadoor
-  Date Created  :  23/11/2010
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
+/**
+ * @file   ConnectionDet.cpp
+ * @author Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
+ */
 
 #include "DIL_J1939_stdafx.h"
 #include "J1939_UtilityFuncs.h"

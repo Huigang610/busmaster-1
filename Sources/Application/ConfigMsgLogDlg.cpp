@@ -192,13 +192,13 @@ SLOGTRIGGER CConfigMsgLogDlg::GetLogTriggerFromGUI(void)
 
     if (IsDlgButtonChecked(IDC_CHKB_STARTTRIGGER))
     {
-        sTrigger.m_unStartID = (UINT) m_odStartMsgID.lGetValue();
-        sTrigger.m_unTriggerType = START;
+        sTrigger.startId = (UINT) m_odStartMsgID.lGetValue();
+        sTrigger.triggerType = START;
     }
     if (IsDlgButtonChecked(IDC_CHKB_STOPTRIGGER))
     {
-        sTrigger.m_unStopID = (UINT) m_odStopMsgID.lGetValue();
-        sTrigger.m_unTriggerType = (START == sTrigger.m_unTriggerType) ? BOTH : STOP;
+        sTrigger.stopId = (UINT) m_odStopMsgID.lGetValue();
+        sTrigger.triggerType = (START == sTrigger.triggerType) ? BOTH : STOP;
     }
     return sTrigger;
 }
@@ -430,32 +430,32 @@ void CConfigMsgLogDlg::vUpdate_GUI_From_Datastore(USHORT usIndex)
         m_ChkbResetTimeStamp.SetCheck(0);
     }
 
-    if (sTrigger.m_unTriggerType != NONE)
+    if (sTrigger.triggerType != NONE)
     {
-        if (sTrigger.m_unTriggerType == BOTH) // Start and stop trigger edit
+        if (sTrigger.triggerType == BOTH) // Start and stop trigger edit
         {
             // control
             CheckDlgButton(IDC_CHKB_STARTTRIGGER, BST_CHECKED);
             CheckDlgButton(IDC_CHKB_STOPTRIGGER, BST_CHECKED);
-            m_odStartMsgID.vSetValue((__int64) sTrigger.m_unStartID);
-            m_odStopMsgID.vSetValue((__int64) sTrigger.m_unStopID);
+            m_odStartMsgID.vSetValue((__int64) sTrigger.startId);
+            m_odStopMsgID.vSetValue((__int64) sTrigger.stopId);
         }
         else
         {
-            if (sTrigger.m_unTriggerType == START) // Start trigger edit control
+            if (sTrigger.triggerType == START) // Start trigger edit control
             {
                 CheckDlgButton(IDC_CHKB_STARTTRIGGER, BST_CHECKED);
-                m_odStartMsgID.vSetValue((__int64) sTrigger.m_unStartID);
+                m_odStartMsgID.vSetValue((__int64) sTrigger.startId);
             }
             else
             {
                 vUpdateControl(IDC_CHKB_STARTTRIGGER, CHECKBOX, CActionFlag::ENABLE_CTRL);
                 vUpdateControl(IDC_EDIT_STARTMSGID, EDITCTRL, CActionFlag::CLEAR_CTRL);
             }
-            if (sTrigger.m_unTriggerType == STOP) // Stop trigger edit control
+            if (sTrigger.triggerType == STOP) // Stop trigger edit control
             {
                 CheckDlgButton(IDC_CHKB_STOPTRIGGER, BST_CHECKED);
-                m_odStopMsgID.vSetValue((__int64) sTrigger.m_unStopID);
+                m_odStopMsgID.vSetValue((__int64) sTrigger.stopId);
             }
             else
             {
@@ -554,12 +554,12 @@ void CConfigMsgLogDlg::vUpdate_Datastore_From_GUI(USHORT ushIndex, int CtrlID)
         break;
         case IDC_EDIT_STARTMSGID:
         {
-            sLogStruct.m_sLogTrigger.m_unStartID = (UINT) m_odStartMsgID.lGetValue();
+            sLogStruct.m_sLogTrigger.startId = (UINT) m_odStartMsgID.lGetValue();
         }
         break;
         case IDC_EDIT_STOPMSGID:
         {
-            sLogStruct.m_sLogTrigger.m_unStopID = (UINT) m_odStopMsgID.lGetValue();
+            sLogStruct.m_sLogTrigger.stopId = (UINT) m_odStopMsgID.lGetValue();
         }
         break;
         case IDC_CHKB_STARTTRIGGER:

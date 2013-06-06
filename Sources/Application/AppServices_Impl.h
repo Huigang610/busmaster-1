@@ -26,7 +26,7 @@
 
 #include "DataTypes/BaseAppServices.h"
 
-class CAppServices_Impl : public CBaseAppServices
+class CAppServices_Impl : public BaseAppServices
 {
 public:
     // Variables
@@ -37,5 +37,5 @@ public:
     ~CAppServices_Impl();      // Destructor
 
     // Functions
-    bool bWriteToTrace(const char* pcTraceStr);
+    bool writeToTrace(const char* pcTraceStr);
 };

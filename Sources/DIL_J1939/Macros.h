@@ -1,27 +1,26 @@
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-/******************************************************************************
-  Project       :  Frame_McNet
-  FileName      :  Macros.h
-  Description   :  All the macro definitions
-  $Log:   X:/Archive/Sources/DIL_J1939/Macros.h_v  $
+/**
+ * @file   Macros.h
+ * @brief  All the macro definitions
+ * @author Anish Kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
  *
- *    Rev 1.1   15 Apr 2011 18:48:38   CANMNTTM
- * Added RBEI Copyright information.
- *
- *    Rev 1.0   06 Dec 2010 18:47:22   rac2kor
- *
- *
- *    Rev 1.1   04 Jan 2010 14:46:12   mcnetpl
- *
- *
- *    Rev 1.0   02 Dec 2009 17:53:04   mcnetpl
- * Initial version
-
-  Author(s)     :  Anish Kumar
-  Date Created  :  15/09/2009
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
+ * All the macro definitions
+ */
 
 #pragma once
 
@@ -40,13 +39,11 @@
 #define Def_TPCI_WD_DEFAULT_TIME          0x0A  //eq. to 2pow10 = 1024 ms
 #define Def_TPCI_RXR_MASK                 0x20
 
-
 #define defCS_STD_FIRST_BYTE_VAL               0xA0
 #define defCS_ENHANCE_FIRST_BYTE_VAL           0xE0
 #define defCA_STD_FIRST_BYTE_VAL               0xA1
 #define defCA_ENHANCE_FIRST_BYTE_VAL           0xE1
 #define defALL_MSG_CT_FIRST_BYTE_VAL           0xA3
-
 
 #define GET_SEQ_NUMBER(byTPCI)((byTPCI) & Def_TPCI_SEQ_NO_MASK)
 #define GET_BLOCKSIZE(byTPCI)((byTPCI) & Def_TPCI_BLK_SIZE_MASK)

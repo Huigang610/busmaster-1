@@ -56,8 +56,8 @@ public:
     HRESULT performInitOperations(void);
     HRESULT performClosureOperations(void);
     HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL);
-    HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount);
-    HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount);
+    HRESULT listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount);
+    HRESULT selectHardwareInterface(const InterfaceHardwareList& sSelHwInterface, INT nCount);
     HRESULT deselectHardwareInterface(void);
     //HRESULT displayConfigurationDialog(PCHAR& InitData, int& Length);
     HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length);
@@ -107,10 +107,10 @@ protected:
     CIxxatCanChannel m_arrIxxatCanChannels[CHANNEL_CAN_MAX];    ///< internal can channel list
     CIxxatCanChannel m_arrTmpIxxatCanChannels[CHANNEL_CAN_MAX];  ///< internal can channel list Temp
 
-    INTERFACE_HW_LIST m_sSelHwInterface;
+    InterfaceHardwareList m_sSelHwInterface;
     INT m_anSelectedItems[CHANNEL_ALLOWED];
 
-    int  VciDeviceInfoAddToArray(int iStartPosArray, VCIDEVICEINFO* pVciDevInfo, INTERFACE_HW_LIST& sSelHwInterface);
+    int  VciDeviceInfoAddToArray(int iStartPosArray, VCIDEVICEINFO* pVciDevInfo, InterfaceHardwareList& sSelHwInterface);
 
 private:
     SYSTEMTIME    m_sCurrSysTime; ///< Current system time, set in setApplicationParameters()

@@ -24,6 +24,7 @@
 
 #pragma once
 
+/* Project includes */
 #include "DataTypes/DIL_DataTypes.h"
 #include "DataTypes/MsgBufAll_DataTypes.h"
 #include "Datatypes/Base_WrapperErrorLogger.h"
@@ -121,7 +122,7 @@ public:
      * @req RSI_14_009 listHardwareInterfaces
      * @req RS_23_11 Listing of the controllers for the current driver
      */
-    virtual HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& asSelHwInterface, INT& nCount) = 0;
+    virtual HRESULT listHardwareInterfaces(InterfaceHardwareList& asSelHwInterface, INT& nCount) = 0;
 
     /**
      * Call this function to select a particular hardware interface.
@@ -129,7 +130,7 @@ public:
      * @req RSI_14_010 selectHardwareInterfaces
      * @req RS_23_12 Selection of a controller from the hardware interface list
      */
-    virtual HRESULT selectHardwareInterfaces(const INTERFACE_HW_LIST& asSelHwInterface, INT nCount) = 0;
+    virtual HRESULT selectHardwareInterfaces(const InterfaceHardwareList& asSelHwInterface, INT nCount) = 0;
 
     /**
      * Call this function to deselect the selected hardware interface.

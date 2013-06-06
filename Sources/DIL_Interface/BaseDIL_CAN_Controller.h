@@ -31,8 +31,8 @@ public:
     virtual HRESULT performInitOperations(void) = 0;
     virtual HRESULT performClosureOperations(void) = 0;
     virtual HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount = NULL) = 0;
-    virtual HRESULT listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount) = 0;
-    virtual HRESULT selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount) = 0;
+    virtual HRESULT listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount) = 0;
+    virtual HRESULT selectHardwareInterface(const InterfaceHardwareList& sSelHwInterface, INT nCount) = 0;
     virtual HRESULT deselectHardwareInterface(void) = 0;
     virtual HRESULT displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length) = 0;
     virtual HRESULT setConfigurationData(PSCONTROLLER_DETAILS InitData, int Length) = 0;

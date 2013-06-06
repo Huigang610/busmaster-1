@@ -24,24 +24,30 @@
 
 #pragma once
 
+/* Project includes */
 #include "include/BaseDefs.h"
 
-// Triggering means the state to which logging operation should transit.
-typedef enum eLogTriggerState
+/**
+ * Log Trigger State.
+ * Triggering means the state to which logging operation should transit.
+ */
+typedef enum LogTriggerState
 {
     NONE    = 0,
-    START   = 1,    // To start logging
-    STOP    = 2,    // To stop logging
-    BOTH    = 3,    // Shuttle.
-    STOPPED = 4     // Logging already stopped
-} ELOGTRIGGERSTATE;
+    START   = 1,    /**< To start logging */
+    STOP    = 2,    /**< To stop logging */
+    BOTH    = 3,    /**< Shuttle */
+    STOPPED = 4     /**< Logging already stopped */
+} LogTriggerState;
 
-// Triggering operation with all the necessary parameters.
+/**
+ * Triggering operation with all the necessary parameters.
+ */
 typedef struct tagLogTrigger
 {
-    ELOGTRIGGERSTATE m_unTriggerType; // 0 - None, 1 - Start, 2 - Stop, 3 - Both
-    UINT             m_unStartID;     // Start Trigger Id
-    UINT             m_unStopID;      // Stop Trigger Id
+    LogTriggerState triggerType;
+    UINT             startId;     /**< Start Trigger ID */
+    UINT             stopId;      /**< Stop Trigger ID */
 } SLOGTRIGGER,*PSLOGTRIGGER;
 
 const USHORT ID_INVALID = (USHORT) -1;
@@ -71,4 +77,4 @@ typedef struct tagLogInfo
     BYTE* pbSetConfigData(BYTE* pbTarget, BYTE bytLogVersion); // To set configuration data
     INT nSetConfigData(xmlNodePtr pNode);
 
-} SLOGINFO,*PSLOGINFO;
+} SLOGINFO;

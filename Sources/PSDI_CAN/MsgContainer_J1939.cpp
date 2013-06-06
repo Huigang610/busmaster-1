@@ -36,8 +36,8 @@ const int nBitsIn5Bytes          = 40;
 const int nBitsIn6Bytes          = 48;
 const int nBitsIn7Bytes          = 56;
 
-const int TX_MESSAGE = 0x20000000;  // bitwise OR to make it a Tx message
-const int RX_MESSAGE = 0xdfffffff;  // bitwise AND to make it a Rx message
+const int TX_MESSAGE = 0x20000000;  /**< bitwise OR to make it a Tx message */
+const int RX_MESSAGE = 0xdfffffff;  /**< bitwise AND to make it a Rx message */
 
 #define MAKE_RTR_MESSAGE_TYPE(MSGID)         (MSGID | 0x80000000)
 #define MAKE_EXTENDED_MESSAGE_TYPE(MSGID)    (MSGID | 0x40000000)
@@ -49,16 +49,6 @@ const int RX_MESSAGE = 0xdfffffff;  // bitwise AND to make it a Rx message
 #define MAKE_DEST_SPECIFIC_MESSAGE(MSGID, DEST) ( ((unsigned __int64)((MSGID))) | (((__int64)(DEST)) << nBitsIn6Bytes) )
 #define MAKE_TYPE_SPECIFIC_MESSAGE(MSGID, TYPE) ( ((unsigned __int64)((MSGID))) | (((__int64)(TYPE)) << nBitsIn7Bytes) )
 
-/******************************************************************************
-    Function Name    :  CMsgContainerJ1939
-    Input(s)         :
-    Output           :
-    Functionality    :  Constructor
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 CMsgContainerJ1939::CMsgContainerJ1939(void)
 {
     InitializeCriticalSection(&m_sCritSecDataSync);
@@ -82,37 +72,17 @@ CMsgContainerJ1939::CMsgContainerJ1939(void)
     memset(m_sOutFormattedData.m_pcDataDec, '\0', Length * sizeof(char));
 }
 
-/******************************************************************************
-    Function Name    :  ~CMsgContainerJ1939
-    Input(s)         :
-    Output           :
-    Functionality    :  Destructor
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 CMsgContainerJ1939::~CMsgContainerJ1939(void)
 {
     DeleteCriticalSection(&m_sCritSecDataSync);
     DeleteCriticalSection(&m_omCritSecFilter);
-    //m_sDataCopyThread.bTerminateThread();
-    DELETE_ARRAY(m_pbyJ1939Data);
+
+	DELETE_ARRAY(m_pbyJ1939Data);
     DELETE_ARRAY(m_sJ1939Data.m_pbyData);
     DELETE_ARRAY(m_sOutFormattedData.m_pcDataDec);
     DELETE_ARRAY(m_sOutFormattedData.m_pcDataHex);
 }
 
-/******************************************************************************
-    Function Name    :  InitTimeParams
-    Input(s)         :
-    Output           :
-    Functionality    :  Initialize the refrence time
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  04.02.2011
-******************************************************************************/
 USHORT CMsgContainerJ1939::ushCalculateStrLen(bool bForHex, USHORT ushLength)
 {
     USHORT Result = 0;
@@ -129,16 +99,6 @@ USHORT CMsgContainerJ1939::ushCalculateStrLen(bool bForHex, USHORT ushLength)
     return Result;
 }
 
-/******************************************************************************
-    Function Name    :  InitTimeParams
-    Input(s)         :
-    Output           :
-    Functionality    :  Initialize the refrence time
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 void CMsgContainerJ1939::InitTimeParams(void)
 {
     SYSTEMTIME CurrSysTime;
@@ -146,20 +106,10 @@ void CMsgContainerJ1939::InitTimeParams(void)
     if (NULL != m_pouDIL_J1939)
     {
         m_pouDIL_J1939->getTimeModeMapping(CurrSysTime, unAbsTime);
-        m_ouFormatJ1939.vSetTimeParams(CurrSysTime, unAbsTime);
+        m_ouFormatJ1939.setTimeParameters(CurrSysTime, unAbsTime);
     }
 }
 
-/******************************************************************************
-    Function Name    :  bTobeBlocked
-    Input(s)         :
-    Output           :
-    Functionality    :  Check for the block status of J1939 message
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  01.02.2011
-******************************************************************************/
 BOOL CMsgContainerJ1939::bTobeBlocked(STJ1939_MSG& sJ1939Data)
 {
     static SFRAMEINFO_BASIC_J1939 sBasicJ1939Info;
@@ -171,16 +121,6 @@ BOOL CMsgContainerJ1939::bTobeBlocked(STJ1939_MSG& sJ1939Data)
     return bBlock;
 }
 
-/******************************************************************************
-    Function Name    :  vRetrieveDataFromBuffer
-    Input(s)         :
-    Output           :
-    Functionality    :  Read data from DIL buffer
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 void CMsgContainerJ1939::vRetrieveDataFromBuffer()
 {
     EnterCriticalSection(&m_sCritSecDataSync);
@@ -240,16 +180,6 @@ void stJ1939MsgSpl::vGetDataStream(BYTE* pbyData) const
     COPY_DATA(pbyData, &m_nDeltime, sizeof(m_nDeltime));
 }
 
-/******************************************************************************
-    Function Name    :  vProcessNewData
-    Input(s)         :  sJ1939Msg
-    Output           :
-    Functionality    :  Process a new Rx/Tx msg
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  31.01.2010
-******************************************************************************/
 void CMsgContainerJ1939::vProcessNewData(STJ1939_MSG& sJ1939Msg)
 {
 
@@ -288,56 +218,8 @@ void CMsgContainerJ1939::vProcessNewData(STJ1939_MSG& sJ1939Msg)
             }
         }
     }
-    //else //Add the error messages
-    //{
-    //    vProcessCurrErrorEntry(sCanData.m_uDataInfo.m_sErrInfo);
-    //    // Add to append buffer
-    //    // If its the very first entry, the time stamp must
-    //    if (m_sCANReadDataSpl.m_lTickCount.QuadPart != 0) // be 0 and will
-    //    {                                                     // retain such value.
-    //        m_sCANReadDataSpl.m_nDeltime = sCanData.m_lTickCount.QuadPart -
-    //                                       m_sCANReadDataSpl.m_lTickCount.QuadPart;
-    //    }
-    //    STCANDATA *pStcan = &m_sCANReadDataSpl;
-    //    *pStcan = sCanData;
-    //    m_ouAppendCanBuf.WriteIntoBuffer(&m_sCANReadDataSpl);
-
-    //    if (NULL != m_pRxMsgCallBack)
-    //    {
-    //        m_pRxMsgCallBack((void*)&sCanData, CAN);
-    //    }
-    //}
 }
 
-//****************Exported functions*******************************
-
-/******************************************************************************
-    Function Name    :  vInit
-    Input(s)         :  CMcNetMessageMap pointer as void*
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
-void CMsgContainerJ1939::vInit(void* /*pParam*/)
-{
-    //int nSize =sizeof(m_sJ1939ReadMsgSpl)*5000;
-}
-
-
-/**********************************************************************************
-  Function Name :   bStartReadThread
-  Input(s)      :   -
-  Output        :   -
-  Functionality :   -
-  Member of     :   CMsgContainerJ1939
-  Friend of     :   -
-  Author(s)        :  Arun kumar K
-  Date Created     :  20.01.2011
-  Modifications :
-************************************************************************************/
 BOOL CMsgContainerJ1939:: bStartReadThread()
 {
     int bResult = TRUE;
@@ -352,18 +234,7 @@ BOOL CMsgContainerJ1939:: bStartReadThread()
     return bResult;
 }
 
-/**********************************************************************************
-  Function Name :   hToggleDILBufferRead
-  Input(s)      :   -
-  Output        :   -
-  Functionality :   -
-  Member of     :   CMsgContainerJ1939
-  Friend of     :   -
-  Author(s)     :  Arun kumar K
-  Date Created  :  28.03.2011
-  Modifications :
-************************************************************************************/
-HRESULT CMsgContainerJ1939:: hToggleDILBufferRead(BOOL bRead)
+HRESULT CMsgContainerJ1939::hToggleDILBufferRead(BOOL bRead)
 {
     HRESULT hResult =  S_FALSE;
     if (NULL != m_pouDIL_J1939)
@@ -378,16 +249,6 @@ HRESULT CMsgContainerJ1939:: hToggleDILBufferRead(BOOL bRead)
     return hResult;
 }
 
-/******************************************************************************
-    Function Name    :  bStopReadThread
-    Input(s)         :
-    Output           :
-    Functionality    :  Stop the read thread
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 BOOL CMsgContainerJ1939:: bStopReadThread()
 {
     BOOL bReturn = CMsgContainerBase::bStopReadThread();
@@ -400,16 +261,6 @@ BOOL CMsgContainerJ1939:: bStopReadThread()
     return bReturn;
 }
 
-/******************************************************************************
-    Function Name    :  vEditClearAll
-    Input(s)         :
-    Output           :
-    Functionality    :  Clear all the storage for UI
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 void CMsgContainerJ1939::vEditClearAll()
 {
     m_ouOWJ1939Buf.vClearMessageBuffer();
@@ -417,61 +268,21 @@ void CMsgContainerJ1939::vEditClearAll()
     memset(&m_sJ1939ReadMsgSpl, 0, sizeof(m_sJ1939ReadMsgSpl));
 }
 
-/******************************************************************************
-    Function Name    :  nGetAppendBufferCount
-    Input(s)         :
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 int CMsgContainerJ1939::nGetAppendBufferCount()
 {
     return m_ouAppendJ1939Buf.GetMsgCount();
 }
 
-/******************************************************************************
-    Function Name    :  nGetOWBufferCount
-    Input(s)         :
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 int CMsgContainerJ1939::nGetOWBufferCount()
 {
     return m_ouOWJ1939Buf.GetMsgCount();
 }
 
-/******************************************************************************
-    Function Name    :  hReadFromOWBuffer
-    Input(s)         :
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 HRESULT CMsgContainerJ1939::hReadFromOWBuffer(void* psMsg, __int64 nMapIndex)
 {
     return m_ouOWJ1939Buf.ReadFromBuffer((STJ1939_MSG*)psMsg, nMapIndex);
 }
 
-/******************************************************************************
-    Function Name    :  hReadFromAppendBuffer
-    Input(s)         :
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 HRESULT CMsgContainerJ1939::hReadFromAppendBuffer(void* pvMsg, int nMsgIndex)
 {
     EnterCriticalSection(&m_sCritSecDataSync);
@@ -491,18 +302,6 @@ HRESULT CMsgContainerJ1939::hReadFromAppendBuffer(void* pvMsg, int nMsgIndex)
     return hResult;
 }
 
-
-/******************************************************************************
-    Function Name    :  vSaveOWandGetDetails
-    Input(s)         :
-    Output           :
-    Functionality    :  Save to OW buffer and provide the details requested
-                        by receive child/ dll user class
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 void CMsgContainerJ1939::vSaveOWandGetDetails( void* pMsg,
         __int64& dwMapIndex,
         __int64& dwTimeStamp,
@@ -517,16 +316,6 @@ void CMsgContainerJ1939::vSaveOWandGetDetails( void* pMsg,
     m_ouOWJ1939Buf.WriteIntoBuffer(pouJ1939Data, dwMapIndex, nBufferIndex);
 }
 
-/******************************************************************************
-    Function Name    :  nCreateMapIndexKey
-    Input(s)         :
-    Output           :
-    Functionality    :  Creates a key for SmsgDispEntry map
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  01.02.2011
-******************************************************************************/
 __int64 CMsgContainerJ1939::nCreateMapIndexKey( LPVOID pMsgData )
 {
     STJ1939_MSG* pouJ1939Msg = (STJ1939_MSG*) pMsgData;
@@ -553,16 +342,6 @@ __int64 CMsgContainerJ1939::nCreateMapIndexKey( LPVOID pMsgData )
     return n64MapIndex;
 }
 
-/******************************************************************************
-    Function Name    :  ApplyFilterScheme
-    Input(s)         :
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  01.02.2011
-******************************************************************************/
 HRESULT CMsgContainerJ1939::ApplyFilterScheme(void* pvFilterApplied)
 {
     HRESULT hResult = S_FALSE;
@@ -579,16 +358,6 @@ HRESULT CMsgContainerJ1939::ApplyFilterScheme(void* pvFilterApplied)
     return hResult;
 }
 
-/******************************************************************************
-    Function Name    :  GetFilterScheme
-    Input(s)         :
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  01.02.2011
-******************************************************************************/
 HRESULT CMsgContainerJ1939::GetFilterScheme(void* pvFilterApplied)
 {
     HRESULT hResult = S_FALSE;
@@ -603,16 +372,6 @@ HRESULT CMsgContainerJ1939::GetFilterScheme(void* pvFilterApplied)
     return hResult;
 }
 
-/******************************************************************************
-    Function Name    :  EnableFilterApplied
-    Input(s)         :
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  01.02.2011
-******************************************************************************/
 HRESULT CMsgContainerJ1939::EnableFilterApplied(BOOL bEnable)
 {
     EnterCriticalSection(&m_omCritSecFilter);
@@ -621,17 +380,6 @@ HRESULT CMsgContainerJ1939::EnableFilterApplied(BOOL bEnable)
     return S_OK;
 }
 
-/******************************************************************************
-    Function Name    :  hUpdateFormattedMsgStruct
-    Input(s)         :
-    Output           :
-    Functionality    :  Format the requested Msg and save it in Format data
-                        structure which is accessible from the User module
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 HRESULT CMsgContainerJ1939::hUpdateFormattedMsgStruct(int nListIndex,
         int& nMsgCode,
         BYTE bExprnFlag_Disp,
@@ -690,21 +438,12 @@ HRESULT CMsgContainerJ1939::hUpdateFormattedMsgStruct(int nListIndex,
     return hResult;
 }
 
-/******************************************************************************
-    Function Name    :  vSetCurrMsgName
-    Input(s)         :
-    Output           :
-    Functionality    :  Current msg name from DB
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 void CMsgContainerJ1939::vSetCurrMsgName(CString strMsgNameOrCode)
 {
     CMsgContainerBase::bCopyStringTocharArr (m_sOutFormattedData.m_acMsgName, strMsgNameOrCode,
             sizeof(m_sOutFormattedData.m_acMsgName));
 }
+
 void CMsgContainerJ1939::vSetMsgLength(CString strsgLength)
 {
     if(strsgLength.IsEmpty() == FALSE)
@@ -713,16 +452,7 @@ void CMsgContainerJ1939::vSetMsgLength(CString strsgLength)
                 sizeof(m_sOutFormattedData.m_acDataLen));
     }
 }
-/******************************************************************************
-    Function Name    :  vClearFormattedMsgStruct
-    Input(s)         :
-    Output           :
-    Functionality    :  Clear format data structure pointers
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
+
 void CMsgContainerJ1939::vClearFormattedMsgStruct()
 {
     strcpy_s(m_sOutFormattedData.m_acTimeAbs,  sizeof(m_sOutFormattedData.m_acTimeAbs),  "");
@@ -745,16 +475,7 @@ void CMsgContainerJ1939::vClearFormattedMsgStruct()
     strcpy_s(m_sOutFormattedData.m_acPriority, sizeof(m_sOutFormattedData.m_acPriority), "");
     strcpy_s(m_sOutFormattedData.m_acMsgName,  sizeof(m_sOutFormattedData.m_acMsgName),  "");
 }
-/******************************************************************************
-    Function Name    :  vGetUpdatedCurrDataPtrArray
-    Input(s)         :
-    Output           :
-    Functionality    :  Provide format data structure pointers to the user
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
+
 void CMsgContainerJ1939::vGetUpdatedCurrDataPtrArray(SMSGWNDHDRCOL& sHdrColStruct,
         char* pomDataPtrArr[MAX_MSG_WND_COL_CNT],
         BYTE bExprnFlag_Disp)
@@ -802,16 +523,6 @@ void CMsgContainerJ1939::vGetUpdatedCurrDataPtrArray(SMSGWNDHDRCOL& sHdrColStruc
     pomDataPtrArr[sHdrColStruct.m_byCodeNamePos]  = m_sOutFormattedData.m_acMsgName;
 }
 
-/******************************************************************************
-    Function Name    :  bGetDilInterFace
-    Input(s)         :
-    Output           :
-    Functionality    :  Get Dil interface pointer
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 BOOL CMsgContainerJ1939::bGetDilInterFace()
 {
     BOOL bFound = FALSE;
@@ -823,49 +534,17 @@ BOOL CMsgContainerJ1939::bGetDilInterFace()
     return bFound;
 }
 
-/******************************************************************************
-    Function Name    :  SetClientID
-    Input(s)         :
-    Output           :
-    Functionality    :  Get Dil interface pointer
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 void CMsgContainerJ1939::SetClientID(DWORD dwClientID)
 {
     m_dwClientId = dwClientID;
 }
 
-/******************************************************************************
-    Function Name    :  DoSortBuffer
-    Input(s)         :
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 void CMsgContainerJ1939::DoSortBuffer(int nField,bool bAscending)
 {
     m_ouOWJ1939Buf.vDoSortBuffer(nField, bAscending);
-    //m_ouAppendJ1939Buf.vDoSortBuffer(nField, bAscending);
 }
 
-/******************************************************************************
-    Function Name    :  GetMapIndexAtID
-    Input(s)         :
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerJ1939
-    Friend of        :      -
-    Author(s)        :  Arun kumar K
-    Date Created     :  20.01.2011
-******************************************************************************/
 void CMsgContainerJ1939::GetMapIndexAtID(int nIndex,__int64& nMapIndex)
 {
     m_ouOWJ1939Buf.nGetMapIndexAtID(nIndex,nMapIndex);
 }
-

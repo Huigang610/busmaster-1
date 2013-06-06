@@ -278,7 +278,7 @@ void CBaseLogObject::vWriteTextToFile(CString& om_LogText, ETYPE_BUS eBus)
     if ((m_dTotalBytes + dwBytes2Write) >= DEFAULT_FILE_SIZE_IN_BYTES) //megabytes
     {
         //triggering type is saved to be used for next file
-        ELOGTRIGGERSTATE LastTriggerType = m_CurrTriggerType;
+        LogTriggerState LastTriggerType = m_CurrTriggerType;
         bStopLogging();
         //Set the next file name of the series
         vSetNextFileName();
@@ -382,7 +382,7 @@ BOOL CBaseLogObject::bStartLogging(ETYPE_BUS eBus)
     if ((m_pLogFile == NULL) && (m_sLogInfo.m_bEnabled))
     {
         // This function should be called every time logging is started
-        m_CurrTriggerType = m_sLogInfo.m_sLogTrigger.m_unTriggerType;
+        m_CurrTriggerType = m_sLogInfo.m_sLogTrigger.triggerType;
         char Mode[2] =  " ";
         Mode[0] = (m_sLogInfo.m_eFileMode == APPEND_MODE) ? L'a' : L'w';
         EnterCriticalSection(&m_CritSection);
@@ -565,12 +565,12 @@ void CBaseLogObject::vFormatHeader(CString& omHeader, ETYPE_BUS eBus)
     omHeader += L'\n';
 
     // Log current date and time as the start date and time of logging process
-    SYSTEMTIME CurrSysTime;
-    GetLocalTime(&CurrSysTime);
+    SYSTEMTIME currentSystemTime;
+    GetLocalTime(&currentSystemTime);
     CString omBuf;
-    omBuf.Format(BUS_LOG_START_DATE_TIME, CurrSysTime.wDay, CurrSysTime.wMonth,
-                 CurrSysTime.wYear, CurrSysTime.wHour, CurrSysTime.wMinute,
-                 CurrSysTime.wSecond, CurrSysTime.wMilliseconds);
+    omBuf.Format(BUS_LOG_START_DATE_TIME, currentSystemTime.wDay, currentSystemTime.wMonth,
+                 currentSystemTime.wYear, currentSystemTime.wHour, currentSystemTime.wMinute,
+                 currentSystemTime.wSecond, currentSystemTime.wMilliseconds);
     omHeader += omBuf;
     omHeader += L'\n';
 
@@ -637,12 +637,12 @@ void CBaseLogObject::vFormatHeader(CString& omHeader, ETYPE_BUS eBus)
 void CBaseLogObject::vFormatFooter(CString& omFooter)
 {
     // Log current date and time as the stop date and time of logging process
-    SYSTEMTIME CurrSysTime;
-    GetLocalTime(&CurrSysTime);
+    SYSTEMTIME currentSystemTime;
+    GetLocalTime(&currentSystemTime);
     CString omBuf;
-    omBuf.Format(BUS_LOG_END_DATE_TIME, CurrSysTime.wDay, CurrSysTime.wMonth,
-                 CurrSysTime.wYear, CurrSysTime.wHour, CurrSysTime.wMinute,
-                 CurrSysTime.wSecond, CurrSysTime.wMilliseconds);
+    omBuf.Format(BUS_LOG_END_DATE_TIME, currentSystemTime.wDay, currentSystemTime.wMonth,
+                 currentSystemTime.wYear, currentSystemTime.wHour, currentSystemTime.wMinute,
+                 currentSystemTime.wSecond, currentSystemTime.wMilliseconds);
     omFooter += omBuf;
     omFooter += L'\n';
 

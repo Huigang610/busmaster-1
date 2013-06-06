@@ -52,34 +52,6 @@ static SERRORMSGINFO sg_asErrorEntry[ERRORS_DEFINED] =
 };
 
 /*******************************************************************************
-  Function Name  : CFormatMsgJ1939
-  Input(s)       : -
-  Output         : -
-  Functionality  : Constructor
-  Member of      : CFormatMsgJ1939
-  Author(s)      : Ratnadip
-  Date Created   : 8.7.2009
-  Modifications  :
-*******************************************************************************/
-CFormatMsgJ1939::CFormatMsgJ1939(void)
-{
-}
-
-/*******************************************************************************
-  Function Name  : ~CFormatMsgJ1939
-  Input(s)       : -
-  Output         : -
-  Functionality  : Destructor
-  Member of      : CFormatMsgJ1939
-  Author(s)      : Arun kumar K
-  Date Created   : 24.01.2011
-  Modifications  :
-*******************************************************************************/
-CFormatMsgJ1939::~CFormatMsgJ1939(void)
-{
-}
-
-/*******************************************************************************
   Function Name  : vFormatTime
   Input(s)       : -
   Output         : -

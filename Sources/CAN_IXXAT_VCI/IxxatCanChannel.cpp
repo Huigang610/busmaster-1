@@ -894,33 +894,19 @@ void CIxxatCanChannel::ConvertBusmasterToIxxatMsg(CANMSG* pCanMsg, const STCAN_M
  */
 void CIxxatCanChannel::ConvertIxxatStatusToBusmasterStatus(CANCHANSTATUS* pIxxatChannelStatus, s_STATUSMSG* pStatusData)
 {
-    /*
-    typedef struct struct_STATUSMSG
-    {
-      WORD  wControllerStatus;                  // Current controller state
-      // 0 := reset
-      // 1 := stopped / initialized
-      // 2 := started / waiting for startup completion
-      // 3 := started / normal active (running)
-      // 4 := started / normal passiv
-      // 5 := started / halt mode
-      DWORD dwStatusInfoFlags;                  // Flagfield of status information (UCI_FLXSTSINFO_???)
-    } s_STATUSMSG, *ps_STATUSMSG;
-    */
-
     ZeroMemory(pStatusData, sizeof(s_STATUSMSG));
 
     if ( (pIxxatChannelStatus->sLineStatus.dwStatus & CAN_STATUS_ININIT) == CAN_STATUS_ININIT)
     {
-        pStatusData->wControllerStatus = 1;
+        pStatusData->controllerStatus = INITIALISED;
     }
     else if ( (pIxxatChannelStatus->sLineStatus.bOpMode & CAN_OPMODE_LISTONLY) == CAN_STATUS_ININIT)
     {
-        pStatusData->wControllerStatus = 4;
+        pStatusData->controllerStatus = NORMAL_PASSIVE;
     }
     else
     {
-        pStatusData->wControllerStatus = 3;
+        pStatusData->controllerStatus = NORMAL_ACTIVE;
     }
 }
 

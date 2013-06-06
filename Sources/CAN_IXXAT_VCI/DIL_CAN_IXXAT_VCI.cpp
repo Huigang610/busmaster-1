@@ -147,14 +147,14 @@ HRESULT CDIL_CAN_IXXAT_VCI::performClosureOperations(void)
 
 /**
 * @brief         This function will popup hardware selection dialog and gets the user selection of channels.
-* @param[in]     psInterfaces, is INTERFACE_HW structue
+* @param[in]     psInterfaces, is InterfaceHardware structue
 * @param[out]    pnSelList, contains channels selected array
 * @param[out]    nCount, contains selected channel count
 * @return        returns 0 if success, else -1
 * @authors       Arunkumar Karri
 * \date          11.07.2012 Created
 */
-int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, INTERFACE_HW* psInterfaces, int* pnSelList, int& nCount)
+int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, InterfaceHardware* psInterfaces, int* pnSelList, int& nCount)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
@@ -194,7 +194,7 @@ int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, INTERFACE_HW* psInt
  *      E_POINTER - no access to the VCI drivers
  *      NO_HW_INTERFACE - no CAN interface found
  */
-HRESULT CDIL_CAN_IXXAT_VCI::listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInterface, INT& nCount)
+HRESULT CDIL_CAN_IXXAT_VCI::listHardwareInterfaces(InterfaceHardwareList& sSelHwInterface, INT& nCount)
 {
 #ifdef _IXXAT_DEBUG
     LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::listHardwareInterfaces\n");
@@ -309,7 +309,7 @@ HRESULT CDIL_CAN_IXXAT_VCI::listHardwareInterfaces(INTERFACE_HW_LIST& sSelHwInte
  *   Always S_OK.
  *
  */
-HRESULT CDIL_CAN_IXXAT_VCI::selectHardwareInterface(const INTERFACE_HW_LIST& sSelHwInterface, INT nCount)
+HRESULT CDIL_CAN_IXXAT_VCI::selectHardwareInterface(const InterfaceHardwareList& sSelHwInterface, INT nCount)
 {
 #ifdef _IXXAT_DEBUG
     LogMessage(TRUE, "------> CDIL_CAN_IXXAT_VCI::selectHardwareInterface\n");
@@ -330,9 +330,9 @@ HRESULT CDIL_CAN_IXXAT_VCI::selectHardwareInterface(const INTERFACE_HW_LIST& sSe
         }
 #ifdef _IXXAT_DEBUG
         LogMessage( TRUE, "------> Selected CAN controller: %s - %s (%s)\n"
-                    , sSelHwInterface[0].m_acDeviceName.c_str()
-                    , sSelHwInterface[0].m_acNameInterface.c_str()
-                    , sSelHwInterface[0].m_acDescription.c_str() );
+                    , sSelHwInterface[0].deviceName.c_str()
+                    , sSelHwInterface[0].interfaceName.c_str()
+                    , sSelHwInterface[0].description.c_str() );
 #endif
     }
     m_byCurrHardwareState = STATE_HW_INTERFACE_LISTED;
@@ -978,7 +978,7 @@ HRESULT CDIL_CAN_IXXAT_VCI::unloadDriverLibrary(void)
  *      must use this value to increment the current position in
  *      the hardware array.
  */
-int CDIL_CAN_IXXAT_VCI::VciDeviceInfoAddToArray(int iStartPosArray, VCIDEVICEINFO* pVciDevInfo, INTERFACE_HW_LIST& sSelHwInterface)
+int CDIL_CAN_IXXAT_VCI::VciDeviceInfoAddToArray(int iStartPosArray, VCIDEVICEINFO* pVciDevInfo, InterfaceHardwareList& sSelHwInterface)
 {
     int iNumOfCANController = 0;
     HANDLE hDevice = NULL;
@@ -1002,47 +1002,44 @@ int CDIL_CAN_IXXAT_VCI::VciDeviceInfoAddToArray(int iStartPosArray, VCIDEVICEINF
                     // store the current information in our class internal structure
                     m_arrTmpIxxatCanChannels[iStartPosArray].SetHardwareParams(pVciDevInfo->VciObjectId.AsInt64, i, &m_ClientList);
 
-                    sSelHwInterface[iStartPosArray].m_dwIdInterface = iStartPosArray;
-                    sSelHwInterface[iStartPosArray].m_bytNetworkID = (BYTE) i;    ///< Controller number inside this device.
-                    sSelHwInterface[iStartPosArray].m_dwVendor = 0; // always 0
-
-                    //strcpy_s(sSelHwInterface[iStartPosArray].m_acDeviceName, MAX_CHAR_SHORT, pVciDevInfo->Description); // the name of the device
-                    sSelHwInterface[iStartPosArray].m_acDeviceName = pVciDevInfo->Description; // the name of the device
-
+                    sSelHwInterface[iStartPosArray].interfaceId = iStartPosArray;
+                    sSelHwInterface[iStartPosArray].networkId = (BYTE) i;    ///< Controller number inside this device.
+                    sSelHwInterface[iStartPosArray].vendor = 0; // always 0
+                    sSelHwInterface[iStartPosArray].deviceName = pVciDevInfo->Description; // the name of the device
 
                     std::ostringstream oss;
                     oss << "CAN " <<i;
-                    sSelHwInterface[iStartPosArray].m_acNameInterface = oss.str();
+                    sSelHwInterface[iStartPosArray].interfaceName = oss.str();
 
                     // if the cantype.h from IXXAT was enhanced then add the new hardware descriptions here
                     switch (VCI_CTL_TYPE(sVciDeviceCaps.BusCtrlTypes[i]))
                     {
                         case CAN_CTRL_82527:
-                            sSelHwInterface[iStartPosArray].m_acDescription = "Intel 82527";
+                            sSelHwInterface[iStartPosArray].description = "Intel 82527";
                             break;
                         case CAN_CTRL_82C200:
-                            sSelHwInterface[iStartPosArray].m_acDescription = "Intel 82C200";
+                            sSelHwInterface[iStartPosArray].description = "Intel 82C200";
                             break;
                         case CAN_CTRL_82C90:
-                            sSelHwInterface[iStartPosArray].m_acDescription = "Intel 82C90";
+                            sSelHwInterface[iStartPosArray].description = "Intel 82C90";
                             break;
                         case CAN_CTRL_82C92:
-                            sSelHwInterface[iStartPosArray].m_acDescription = "Intel 82C92";
+                            sSelHwInterface[iStartPosArray].description = "Intel 82C92";
                             break;
                         case CAN_CTRL_SJA1000:
-                            sSelHwInterface[iStartPosArray].m_acDescription = "Philips SJA 1000";
+                            sSelHwInterface[iStartPosArray].description = "Philips SJA 1000";
                             break;
                         case CAN_CTRL_82C900:
-                            sSelHwInterface[iStartPosArray].m_acDescription = "Infinion 82C900 (TwinCAN)";
+                            sSelHwInterface[iStartPosArray].description = "Infinion 82C900 (TwinCAN)";
                             break;
                         case CAN_CTRL_TOUCAN:
-                            sSelHwInterface[iStartPosArray].m_acDescription = "Motorola TOUCAN";
+                            sSelHwInterface[iStartPosArray].description = "Motorola TOUCAN";
                             break;
                         case CAN_CTRL_IFI:
-                            sSelHwInterface[iStartPosArray].m_acDescription = "IFI-CAN";
+                            sSelHwInterface[iStartPosArray].description = "IFI-CAN";
                             break;
                         default:
-                            sSelHwInterface[iStartPosArray].m_acDescription = "unknown CAN controller";
+                            sSelHwInterface[iStartPosArray].description = "unknown CAN controller";
                             break;
                     }
                     // jump to the next array entry
@@ -1096,7 +1093,7 @@ void CDIL_CAN_IXXAT_VCI::LogMessage(BOOL bShowOnlyInDebug, LPCTSTR pFormat, ...)
         OutputDebugString(buffer);
         if (NULL != m_pILog)
         {
-            m_pILog->vLogAMessage(A2T(__FILE__), __LINE__, buffer);
+            m_pILog->logMessage(A2T(__FILE__), __LINE__, buffer);
         }
     }
 
@@ -1107,7 +1104,7 @@ void CDIL_CAN_IXXAT_VCI::LogMessage(BOOL bShowOnlyInDebug, LPCTSTR pFormat, ...)
     {
         if (NULL != m_pILog)
         {
-            m_pILog->vLogAMessage(A2T(__FILE__), __LINE__, buffer);
+            m_pILog->logMessage(A2T(__FILE__), __LINE__, buffer);
         }
     }
 

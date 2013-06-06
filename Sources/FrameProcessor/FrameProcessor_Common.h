@@ -24,7 +24,7 @@
 
 #pragma once
 
-//#include "FrameProcessor_resource.h"      // main symbols
+/* Project includes */
 #include "Utility/Utility_Thread.h"
 #include "include/BaseDefs.h"
 #include "BaseLogObject.h"
@@ -35,48 +35,21 @@ typedef CArray<CBaseLogObject*, CBaseLogObject*&> CLogObjArray;
 
 class CFrameProcessor_Common
 {
-private:
+public:
+    CFrameProcessor_Common();
+    ~CFrameProcessor_Common();
 
-    BOOL    m_bFilterON;
-    USHORT  m_ushLastBlkID;
-    BOOL    m_bEditingON;
-    BYTE    m_bLogFlagTmp;
-    CString m_omStrVersion;
+    // To be used by the read thread
+    virtual void vRetrieveDataFromBuffer(void) = 0;
+    void InitTimeParams(void);
 
-    void vCopyLogObjArray(CLogObjArray& omLogObjArrayTarget,
-                          const CLogObjArray& omLogObjArraySrc);
-    UINT unGetBufSize(void);
-    void vUpdateLoggingFlag(void);
-    USHORT GetUniqueID(void);
-    CLogObjArray* GetActiveLogObjArray(void);
+    virtual BOOL InitInstance(void);
 
-protected:
-    CPARAM_THREADPROC   m_sDataCopyThread;
-    BOOL                m_bLogEnabled;
-    BOOL                m_bResetAbsTime;
-    BOOL                m_bClientBufferON;
-    CLogObjArray        m_omLogObjectArray;
-    CLogObjArray        m_omLogListTmp;
-    SYSTEMTIME          m_LogSysTime;
-    BOOL                m_bIsDataLogged;
-    BOOL                m_bIsJ1939DataLogged;
-
-    BYTE     m_bExprnFlag_Log;
-
-    HRESULT DoInitialisation(void);
-    virtual void vEmptyLogObjArray(CLogObjArray& omLogObjArray) = 0;
-    CBaseLogObject* FindLoggingBlock(USHORT ushID);
-    BOOL bIsEditingON(void);
-    // To create a new logging object
-    virtual CBaseLogObject* CreateNewLogObj(const CString& omStrVersion) = 0;
-    // To delete a logging object
-    virtual void DeleteLogObj(CBaseLogObject*& pouLogObj) = 0;
-    virtual void CreateTimeModeMapping(SYSTEMTIME& CurrSysTime,
-                                       UINT64& unAbsTime) = 0;
+	virtual int ExitInstance(void);
 
 public:
     BOOL                m_bIsThreadBlocked;
-    // Alias functions - start
+
     HRESULT EnableLoggingBlock(USHORT ushBlk, BOOL bEnable);
     HRESULT EnableLogging(BOOL bEnable, ETYPE_BUS);
     HRESULT EnableFilter(USHORT ushBlk, BOOL bEnable);
@@ -110,17 +83,48 @@ public:
     void GetDatabaseFiles(CStringArray& omList);
     void SetChannelBaudRateDetails(SCONTROLLER_DETAILS* controllerDetails,
                                    int nNumChannels);
-    // Alias functions - end
 
-    // Overrides
-public:
-    CFrameProcessor_Common();
-    ~CFrameProcessor_Common();
+protected:
+    CPARAM_THREADPROC   m_sDataCopyThread;
+    BOOL                m_bLogEnabled;
+    BOOL                m_bResetAbsTime;
+    BOOL                m_bClientBufferON;
+    CLogObjArray        m_omLogObjectArray;
+    CLogObjArray        m_omLogListTmp;
+    SYSTEMTIME          m_LogSysTime;
+    BOOL                m_bIsDataLogged;
+    BOOL                m_bIsJ1939DataLogged;
 
-    // To be used by the read thread
-    virtual void vRetrieveDataFromBuffer(void) = 0;
-    void InitTimeParams(void);
+    BYTE     m_bExprnFlag_Log;
 
-    virtual BOOL InitInstance(void);
-    virtual int ExitInstance(void);
+    HRESULT DoInitialisation(void);
+    virtual void vEmptyLogObjArray(CLogObjArray& omLogObjArray) = 0;
+    CBaseLogObject* FindLoggingBlock(USHORT ushID);
+    BOOL bIsEditingON(void);
+
+	/**
+	 * To create a new logging object
+	 */
+    virtual CBaseLogObject* CreateNewLogObj(const CString& omStrVersion) = 0;
+
+	/**
+	 * To delete a logging object
+	 */
+    virtual void DeleteLogObj(CBaseLogObject*& pouLogObj) = 0;
+    virtual void CreateTimeModeMapping(SYSTEMTIME& currentSystemTime,
+                                       UINT64& unAbsTime) = 0;
+
+private:
+    BOOL    m_bFilterON;
+    USHORT  m_ushLastBlkID;
+    BOOL    m_bEditingON;
+    BYTE    m_bLogFlagTmp;
+    CString m_omStrVersion;
+
+    void vCopyLogObjArray(CLogObjArray& omLogObjArrayTarget,
+                          const CLogObjArray& omLogObjArraySrc);
+    UINT unGetBufSize(void);
+    void vUpdateLoggingFlag(void);
+    USHORT GetUniqueID(void);
+    CLogObjArray* GetActiveLogObjArray(void);
 };

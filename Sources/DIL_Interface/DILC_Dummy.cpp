@@ -46,12 +46,12 @@ HRESULT CDIL_CAN_DUMMY::getTimeModeMapping(SYSTEMTIME& /*CurrSysTime*/, UINT64& 
     return WARN_DUMMY_API;
 }
 
-HRESULT CDIL_CAN_DUMMY::listHardwareInterfaces(INTERFACE_HW_LIST& /*asSelHwInterface*/, INT& /*nCount*/)
+HRESULT CDIL_CAN_DUMMY::listHardwareInterfaces(InterfaceHardwareList& /*asSelHwInterface*/, INT& /*nCount*/)
 {
     return WARN_DUMMY_API;
 }
 
-HRESULT CDIL_CAN_DUMMY::selectHardwareInterface(const INTERFACE_HW_LIST& /*asSelHwInterface*/, INT /*nCount*/)
+HRESULT CDIL_CAN_DUMMY::selectHardwareInterface(const InterfaceHardwareList& /*asSelHwInterface*/, INT /*nCount*/)
 {
     return WARN_DUMMY_API;
 }

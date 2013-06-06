@@ -5284,35 +5284,35 @@ BOOL static bLogFileSerialize(CArchive& omArchive, SLOGFILEDETS& sLogFileDets)
         // Enable Option
         omArchive >> sLogFileDets.m_bEnabled;
         // Copy Trigger List
-        omArchive >> sLogFileDets.m_sLogTrigger.m_unStartID;
-        omArchive >> sLogFileDets.m_sLogTrigger.m_unStopID;
+        omArchive >> sLogFileDets.m_sLogTrigger.startId;
+        omArchive >> sLogFileDets.m_sLogTrigger.stopId;
         int unTrigType = 0;
         omArchive >> unTrigType;
         switch (unTrigType)
         {
             case 0:
             {
-                sLogFileDets.m_sLogTrigger.m_unTriggerType = NONE;
+                sLogFileDets.m_sLogTrigger.triggerType = NONE;
             }
             break;
             case 1:
             {
-                sLogFileDets.m_sLogTrigger.m_unTriggerType = START;
+                sLogFileDets.m_sLogTrigger.triggerType = START;
             }
             break;
             case 2:
             {
-                sLogFileDets.m_sLogTrigger.m_unTriggerType = STOP;
+                sLogFileDets.m_sLogTrigger.triggerType = STOP;
             }
             break;
             case 3:
             {
-                sLogFileDets.m_sLogTrigger.m_unTriggerType = BOTH;
+                sLogFileDets.m_sLogTrigger.triggerType = BOTH;
             }
             break;
             case 4:
             {
-                sLogFileDets.m_sLogTrigger.m_unTriggerType = STOPPED;
+                sLogFileDets.m_sLogTrigger.triggerType = STOPPED;
             }
             break;
         }

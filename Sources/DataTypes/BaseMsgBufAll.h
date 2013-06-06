@@ -141,37 +141,3 @@ public:
     //To read the nEntry'th element.
     virtual HRESULT ReadEntry(int& nType, BYTE* pbyMsg, int& nSize, int nEntry, BOOL bSetNextIndexStartPos) = 0;
 };
-
-//template <typename SMSGBUFFER>
-//class CBaseMsgBufVFSE
-//{
-//public:
-//  CBaseMsgBufVFSE() // Standard constructor
-//  {
-//  };
-//
-//  ~CBaseMsgBufVFSE() // Destructor
-//  {
-//  };
-//
-//    // To read an entry from the circular queue
-//  virtual HRESULT ReadFromBuffer(SMSGBUFFER* psMsgBuffer, __int64 nSlotId)=  0;
-//    virtual HRESULT ReadFromBuffer(SMSGBUFFER* psMsgBuffer, int nIndex)=  0;
-//
-//    // To write an entry into the circular queue
-//  virtual HRESULT WriteIntoBuffer(const SMSGBUFFER* psMsgBuffer,
-//                              __int64 nSlotId, int& nIndex)= 0;
-//
-//    // To get the present queue length (number of entries)
-//    virtual int GetMsgCount(void) const = 0;
-//
-//    // To clear the queue. This doesn't remove the buffer, only clears it.
-//    virtual void vClearMessageBuffer(void)= 0;
-//
-//    // To get handle of the notifying event that will be signalled when there
-//    // is at least one entry in the queue.
-//    virtual HANDLE hGetNotifyingEvent(void) const = 0;
-//
-//    // To set the current queue length
-//  virtual int nSetBufferMsgSize(int nMsgDataSize)= 0;
-//};

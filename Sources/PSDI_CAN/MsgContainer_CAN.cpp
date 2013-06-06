@@ -22,6 +22,7 @@
  * Implementation of CMsgContainerCAN class
  */
 
+/* Project includes */
 #include "PSDI_CAN/stdafx_CAN.h"
 #include "include/Utils_Macro.h"
 #include "include/error.h"
@@ -36,8 +37,8 @@
 
 const int nBitsIn4Bytes          = 32;
 
-const int TX_MESSAGE = 0x20000000;  // bitwise OR to make it a Tx message
-const int RX_MESSAGE = 0xdfffffff;  // bitwise AND to make it a Rx message
+const int TX_MESSAGE = 0x20000000;  /**< bitwise OR to make it a Tx message */
+const int RX_MESSAGE = 0xdfffffff;  /**< bitwise AND to make it a Rx message */
 
 #define MAKE_RTR_MESSAGE_TYPE(MSGID)         (MSGID | 0x80000000)
 #define MAKE_EXTENDED_MESSAGE_TYPE(MSGID)    (MSGID | 0x40000000)
@@ -47,72 +48,29 @@ const int RX_MESSAGE = 0xdfffffff;  // bitwise AND to make it a Rx message
 #define MAKE_CHANNEL_SPECIFIC_MESSAGE(MSGID, CHANNELID) ( ((unsigned __int64)((UINT)(MSGID))) | (((__int64)(CHANNELID)) << nBitsIn4Bytes) )
 #define MAKE_ERROR_MESSAGE_TYPE(ERRID)    (ERRID | 0x40000000)
 
-/******************************************************************************
-    Function Name    :  CMsgContainerCAN
-    Input(s)         :
-    Output           :
-    Functionality    :  Constructor
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 CMsgContainerCAN::CMsgContainerCAN(void)
 {
     InitializeCriticalSection(&m_sCritSecDataSync);
     InitializeCriticalSection(&m_omCritSecFilter);
 }
 
-/******************************************************************************
-    Function Name    :  ~CMsgContainerCAN
-    Input(s)         :
-    Output           :
-    Functionality    :  Destructor
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 CMsgContainerCAN::~CMsgContainerCAN(void)
 {
     DeleteCriticalSection(&m_sCritSecDataSync);
     DeleteCriticalSection(&m_omCritSecFilter);
-    //m_sDataCopyThread.bTerminateThread();
 }
 
-/******************************************************************************
-    Function Name    :  InitTimeParams
-    Input(s)         :
-    Output           :
-    Functionality    :  Initialize the refrence time
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 void CMsgContainerCAN::InitTimeParams(void)
 {
     SYSTEMTIME CurrSysTime;
     UINT64 unAbsTime;
-    //Kadoor HANDLE hReadHandle = m_ouCanBufFSE.hGetNotifyingEvent();
-    //Kadoor WaitForSingleObject(hReadHandle, INFINITE);
     if (NULL != m_pouDIL_CAN_Interface)
     {
         m_pouDIL_CAN_Interface->getTimeModeMapping(CurrSysTime, unAbsTime);
-        m_ouFormatCAN.vSetTimeParams(CurrSysTime, unAbsTime);
+        m_ouFormatCAN.setTimeParameters(CurrSysTime, unAbsTime);
     }
 }
 
-/******************************************************************************
-    Function Name    :  nCreateKeyWithCodeAndType
-    Input(s)         :
-    Output           :
-    Functionality    :  Creates a key for SmsgDispEntry map
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 __int64 CMsgContainerCAN::nCreateMapIndexKey( LPVOID pMsgData )
 {
     STCANDATA* pouCANData = (STCANDATA*)pMsgData;
@@ -143,7 +101,9 @@ __int64 CMsgContainerCAN::nCreateMapIndexKey( LPVOID pMsgData )
     return n64MapIndex;
 }
 
-//converts STCANDATA into SFRAMEINFO_BASIC_CAN
+/**
+ * converts STCANDATA into SFRAMEINFO_BASIC_CAN
+ */
 static void vFormatCANDataMsg(STCANDATA* pMsgCAN,
                               tagSFRAMEINFO_BASIC_CAN* CurrDataCAN)
 
@@ -236,20 +196,11 @@ BOOL CMsgContainerCAN::bIsTransitionInState( UINT unChannel,
 
     return bIsTransition;
 }
+
 void CMsgContainerCAN::vProcessCurrErrorEntry(const SERROR_INFO& /*sErrInfo*/)
 {
 }
 
-/******************************************************************************
-    Function Name    :  vProcessNewData
-    Input(s)         :
-    Output           :
-    Functionality    :  Process a new Rx/Tx msg
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 void CMsgContainerCAN::vProcessNewData(STCANDATA& sCanData)
 {
 
@@ -308,16 +259,7 @@ void CMsgContainerCAN::vProcessNewData(STCANDATA& sCanData)
     }
 
 }
-/******************************************************************************
-    Function Name    :  vRetrieveDataFromBuffer
-    Input(s)         :
-    Output           :
-    Functionality    :  Read data from DIL buffer
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
+
 void CMsgContainerCAN::vRetrieveDataFromBuffer()
 {
     EnterCriticalSection(&m_sCritSecDataSync);
@@ -332,36 +274,6 @@ void CMsgContainerCAN::vRetrieveDataFromBuffer()
     LeaveCriticalSection(&m_sCritSecDataSync);
 }
 
-//****************Exported functions*******************************
-
-/******************************************************************************
-    Function Name    :  vInit
-    Input(s)         :  CMcNetMessageMap pointer as void*
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
-void CMsgContainerCAN::vInit(void* /*pParam*/)
-{
-    //int nSize =sizeof(m_sCANReadDataSpl)*5000;
-    //m_ouAppendCanBuf.nSetBufferSize(nSize);
-}
-
-
-/**********************************************************************************
-//Function Name :   bStartReadThread
-//Input(s)      :   -
-//Output        :   -
-//Functionality :   -
-//Member of     :   CMsgContainerCAN
-//Friend of     :   -
-//Authors       :
-//Date Created  :
-//Modifications :
-************************************************************************************/
 BOOL CMsgContainerCAN:: bStartReadThread()
 {
     int bResult = TRUE;
@@ -373,29 +285,11 @@ BOOL CMsgContainerCAN:: bStartReadThread()
             hResult = m_pouDIL_CAN_Interface->manageMessageBuffer(MSGBUF_ADD, m_dwClientId, &m_ouMCCanBufFSE);
         }
     }
-    //m_sDataCopyThread.m_pBuffer = this;
-    //m_sDataCopyThread.m_hActionEvent = m_ouCanBufFSE.hGetNotifyingEvent();
 
-    //if ( !m_sDataCopyThread.bStartThread(DataCopyThreadProc) )
-    //{
-    //    // Log error message
-    //    bResult = FALSE;
-    //}
     bResult = CMsgContainerBase::bStartReadThread(m_ouMCCanBufFSE.hGetNotifyingEvent());
     return bResult;
 }
 
-/**********************************************************************************
-  Function Name :   hToggleDILBufferRead
-  Input(s)      :   bRead
-  Output        :   -
-  Functionality :   -
-  Member of     :   CMsgContainerCAN
-  Friend of     :   -
-  Author(s)     :  Arun kumar K
-  Date Created  :  28.03.2011
-  Modifications :
-************************************************************************************/
 HRESULT CMsgContainerCAN:: hToggleDILBufferRead(BOOL bRead)
 {
     HRESULT hResult = S_FALSE;
@@ -413,16 +307,6 @@ HRESULT CMsgContainerCAN:: hToggleDILBufferRead(BOOL bRead)
     return hResult;
 }
 
-/******************************************************************************
-    Function Name    :  bStopReadThread
-    Input(s)         :
-    Output           :
-    Functionality    :  Stop the read thread
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 BOOL CMsgContainerCAN:: bStopReadThread()
 {
     BOOL bReturn = CMsgContainerBase::bStopReadThread();
@@ -433,16 +317,6 @@ BOOL CMsgContainerCAN:: bStopReadThread()
     return bReturn;
 }
 
-/******************************************************************************
-    Function Name    :  vEditClearAll
-    Input(s)         :
-    Output           :
-    Functionality    :  Clear all the storage for UI
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 void CMsgContainerCAN::vEditClearAll()
 {
     m_ouOWCanBuf.vClearMessageBuffer();
@@ -450,62 +324,22 @@ void CMsgContainerCAN::vEditClearAll()
     memset(&m_sCANReadDataSpl, 0, sizeof(m_sCANReadDataSpl));
 }
 
-/******************************************************************************
-    Function Name    :  nGetAppendBufferCount
-    Input(s)         :
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 int CMsgContainerCAN::nGetAppendBufferCount()
 {
     return m_ouAppendCanBuf.GetBufferLength();
 }
 
-/******************************************************************************
-    Function Name    :  nGetOWBufferCount
-    Input(s)         :
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 int CMsgContainerCAN::nGetOWBufferCount()
 {
     return m_ouOWCanBuf.GetBufferLength();
 }
 
-/******************************************************************************
-    Function Name    :  hReadFromOWBuffer
-    Input(s)         :
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 HRESULT CMsgContainerCAN::hReadFromOWBuffer(void* psMsg, __int64 nMapIndex)
 {
     //sTMCNET_MSG *psMcNetMsg = (sTMCNET_MSG*)psMsg;
     return m_ouOWCanBuf.ReadFromBuffer((STCANDATA*)psMsg, nMapIndex);
 }
 
-/******************************************************************************
-    Function Name    :  hReadFromAppendBuffer
-    Input(s)         :
-    Output           :
-    Functionality    :
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 HRESULT CMsgContainerCAN::hReadFromAppendBuffer(void* pvMsg, int nMsgIndex)
 {
     STCANDATA* psMsg = (STCANDATA*)pvMsg;
@@ -516,18 +350,6 @@ HRESULT CMsgContainerCAN::hReadFromAppendBuffer(void* pvMsg, int nMsgIndex)
     return hResult;
 }
 
-
-/******************************************************************************
-    Function Name    :  vSaveOWandGetDetails
-    Input(s)         :
-    Output           :
-    Functionality    :  Save to OW buffer and provide the details requested
-                        by receive child/ dll user class
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 void CMsgContainerCAN::vSaveOWandGetDetails( void* pMsg,
         __int64& dwMapIndex,
         __int64& dwTimeStamp,
@@ -559,6 +381,7 @@ HRESULT CMsgContainerCAN::ApplyFilterScheme(void* pvFilterApplied)
     }
     return hResult;
 }
+
 HRESULT CMsgContainerCAN::GetFilterScheme(void* pvFilterApplied)
 {
     HRESULT hResult = S_FALSE;
@@ -574,6 +397,7 @@ HRESULT CMsgContainerCAN::GetFilterScheme(void* pvFilterApplied)
     }
     return hResult;
 }
+
 HRESULT CMsgContainerCAN::EnableFilterApplied(BOOL bEnable)
 {
     EnterCriticalSection(&m_omCritSecFilter);
@@ -581,17 +405,7 @@ HRESULT CMsgContainerCAN::EnableFilterApplied(BOOL bEnable)
     LeaveCriticalSection(&m_omCritSecFilter);
     return S_OK;
 }
-/******************************************************************************
-    Function Name    :  hUpdateFormattedMsgStruct
-    Input(s)         :
-    Output           :
-    Functionality    :  Format the requested Msg and save it in Format data
-                        structure which is accessible from the User module
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
+
 HRESULT CMsgContainerCAN::hUpdateFormattedMsgStruct(int nListIndex,
         int& nMsgCode,
         BYTE bExprnFlag_Disp,
@@ -654,16 +468,6 @@ HRESULT CMsgContainerCAN::hUpdateFormattedMsgStruct(int nListIndex,
     return hResult;
 }
 
-/******************************************************************************
-    Function Name    :  vSetCurrMsgName
-    Input(s)         :
-    Output           :
-    Functionality    :  Current msg name from DB
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 void CMsgContainerCAN::vSetCurrMsgName(CString strMsgNameOrCode)
 {
     CMsgContainerBase::bCopyStringTocharArr (m_sOutFormattedData.m_acMsgDesc, strMsgNameOrCode,
@@ -677,16 +481,7 @@ void CMsgContainerCAN::vSetMsgLength(CString strsgLength)
 
     m_sOutFormattedData.m_byDataLength = atoi(strsgLength);
 }
-/*******************************************************************************
-  Function Name  : usProcessCurrErrorEntry
-  Input(s)       : SERROR_INFO&
-  Output         : Returns Error ID as USHORT.
-  Functionality  : Processes the current Error entry and returns the Error code.
-  Member of      : CMsgContainerCAN
-  Author(s)      : Arunkumar K
-  Date Created   : 14-04-2011
-  Modifications  :
-*******************************************************************************/
+
 USHORT CMsgContainerCAN::usProcessCurrErrorEntry(SERROR_INFO& sErrInfo)
 {
     // Get the Error code
@@ -730,30 +525,11 @@ USHORT CMsgContainerCAN::usProcessCurrErrorEntry(SERROR_INFO& sErrInfo)
     return usErrorID;
 }
 
-/******************************************************************************
-    Function Name    :  vClearFormattedMsgStruct
-    Input(s)         :
-    Output           :
-    Functionality    :  Clear format data structure pointers
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
 void CMsgContainerCAN::vClearFormattedMsgStruct()
 {
     memset(&m_sOutFormattedData, 0, sizeof(m_sOutFormattedData));
 }
-/******************************************************************************
-    Function Name    :  vGetUpdatedCurrDataPtrArray
-    Input(s)         :
-    Output           :
-    Functionality    :  Provide format data structure pointers to the user
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  01.04.2010
-******************************************************************************/
+
 void CMsgContainerCAN::vGetUpdatedCurrDataPtrArray(SMSGWNDHDRCOL& sHdrColStruct,
         char* pomDataPtrArr[MAX_MSG_WND_COL_CNT],
         BYTE bExprnFlag_Disp)
@@ -794,16 +570,6 @@ void CMsgContainerCAN::vGetUpdatedCurrDataPtrArray(SMSGWNDHDRCOL& sHdrColStruct,
     pomDataPtrArr[sHdrColStruct.m_byChannel]      = m_sOutFormattedData.m_acChannel;
 }
 
-/******************************************************************************
-    Function Name    :  bGetDilInterFace
-    Input(s)         :
-    Output           :
-    Functionality    :  Get Dil interface pointer
-    Member of        :  CMsgContainerCAN
-    Friend of        :      -
-    Author(s)        :  Anish kumar
-    Date Created     :  26.05.2010
-******************************************************************************/
 BOOL CMsgContainerCAN::bGetDilInterFace()
 {
     BOOL bFound = FALSE;
@@ -830,4 +596,3 @@ void CMsgContainerCAN::GetMapIndexAtID(int nIndex,__int64& nMapIndex)
 {
     m_ouOWCanBuf.nGetMapIndexAtID(nIndex,nMapIndex);
 }
-

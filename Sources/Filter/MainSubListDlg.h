@@ -35,7 +35,7 @@ class CMainSubListDlg : public CDialog
 {
     // Construction
 public:
-    CMainSubListDlg(CWnd* pParent, CMainEntryList* psMainFrameSignalWatchList, SGUIPARAMS& sGuiParams);   // standard constructor
+    CMainSubListDlg(CWnd* pParent, CMainEntryList* psMainFrameSignalWatchList, GuiParameters& sGuiParams);   // standard constructor
 
     // Dialog Data
     //{{AFX_DATA(CMainSubListDlg)
@@ -76,7 +76,7 @@ protected:
     DECLARE_MESSAGE_MAP()
 private:
     // Pointer to Temp List
-    SGUIPARAMS m_sGuiParams;
+    GuiParameters m_sGuiParams;
     CMainEntryList* m_podTempCallerList;
     CMainEntryList* m_podMainCallerList;
     // CString Array for Data link

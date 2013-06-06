@@ -24,18 +24,9 @@
 
 #pragma once
 
-#include "resource.h"       // main symbols
-
-
-// CPSDI_CANApp
-// See PSDI_CAN.cpp for the implementation of this class
-//
-
 class CPSDI_CANApp : public CWinApp
 {
 public:
-    CPSDI_CANApp();
-
     // Overrides
 public:
     virtual BOOL InitInstance();

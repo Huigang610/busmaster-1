@@ -154,32 +154,32 @@ USAGEMODE HRESULT Filter_ShowSelDlg(CWnd* pParent, CMainEntryList* podMainSubLis
     HINSTANCE hInst = AfxGetResourceHandle();
     AfxSetResourceHandle(FilterDLL.hResource);
 
-    SGUIPARAMS sGuiParams;
+    GuiParameters sGuiParams;
     /* Update GUI related information */
     /* 1. Title Name, Main entry combo box name,
             Name of the list controls */
-    strcpy_s(sGuiParams.m_acTitleName, MAX_PATH, _("Filter Selection Dialog"));
-    strcpy_s(sGuiParams.m_acMainListName, MAX_PATH, _("Bus"));
-    strcpy_s(sGuiParams.m_acUnSelListName, MAX_PATH, _("Configured filters"));
-    strcpy_s(sGuiParams.m_acSelListName, MAX_PATH, _("Selected filters"));
+    strcpy_s(sGuiParams.titleName, MAX_PATH, _("Filter Selection Dialog"));
+    strcpy_s(sGuiParams.mainListName, MAX_PATH, _("Bus"));
+    strcpy_s(sGuiParams.unselectedListName, MAX_PATH, _("Configured filters"));
+    strcpy_s(sGuiParams.selectedListName, MAX_PATH, _("Selected filters"));
     /* Whether to combine main entry Id with sub entry name or not*/
-    sGuiParams.m_bCombine = FALSE;
+    sGuiParams.combine = FALSE;
     /* What image to be loaded */
-    sGuiParams.m_pomImageList = new CImageList;
-    sGuiParams.m_pomImageList->Create(IDB_BMP_FILTER,
+    sGuiParams.imageList = new CImageList;
+    sGuiParams.imageList->Create(IDB_BMP_FILTER,
                                       16,
                                       1,
                                       defCOLOR_WHITE);
     //Icon index to unselected list
-    sGuiParams.m_unUnSelIconIndex = 2;
+    sGuiParams.unselectedIconIndex = 2;
     //Icon index to selected list
-    sGuiParams.m_unSelIconIndex = 2;
+    sGuiParams.selectedIconIndex = 2;
 
     CMainSubListDlg omDlg(pParent, podMainSubList, sGuiParams);
     INT_PTR nReturn = omDlg.DoModal();
     //delete the created list
-    sGuiParams.m_pomImageList->DeleteImageList();
-    delete sGuiParams.m_pomImageList;
+    sGuiParams.imageList->DeleteImageList();
+    delete sGuiParams.imageList;
 
     //Place this at the end of the export function.
     //switch back to previous resource handle.
