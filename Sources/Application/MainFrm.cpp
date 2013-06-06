@@ -15597,17 +15597,17 @@ BOOL CMainFrame::bUpdatePopupMenuDIL(void)
 
     if (bResult == TRUE)
     {
-        CMenu* pConfigMenu = GetSubMenu(_("&Hardware")); // Get the Menu "&Hardware"
+        CMenu* pConfigMenu = GetSubMenu(_("&CAN")); // Get the Menu "&CAN"
         ASSERT(pConfigMenu != NULL);
         if (pConfigMenu == NULL)
         {
-            theApp.bWriteIntoTraceWnd(_("GetSubMenu(\"&Hardware\") failed"));
+            theApp.bWriteIntoTraceWnd(_("GetSubMenu(\"&CAN\") failed"));
         }
         // Added shortcut key
 
         if(pConfigMenu != NULL)
         {
-            pConfigMenu->InsertMenu(3, MF_BYPOSITION | MF_POPUP, (UINT_PTR) (m_pDILSubMenu->m_hMenu), _("&Hardware Interface"));
+            pConfigMenu->InsertMenu(1, MF_BYPOSITION | MF_POPUP, (UINT_PTR) (m_pDILSubMenu->m_hMenu), _("&Driver Selection"));
         }
     }
     if (bResult == FALSE)
