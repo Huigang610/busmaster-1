@@ -38,24 +38,24 @@
       <p>BUSMASTER comes with a <filepath>build.bat</filepath> script that automatically calls Doxygen in the right way. However if doxygen is not in your <filepath>%PATH%</filepath> environment variable you need to adjust the script accordingly. After running Doxygen the output for each module is placed in the folder <filepath>Documents\5 Source Code Documentation\out</filepath>. An <filepath>index.html</filepath> is provided as convenient entry point to the generated documentations.</p>
       <p>The preferred Doxygen file header contains:</p>
       <codeblock>/**
- * \file      &lt;filename&gt;
- * \brief     &lt;brief description&gt;
- * \authors   &lt;author&gt;                    [if there is only one author]
- * \authors   &lt;author 1&gt;, &lt;author 2&gt;, ... [if there are multiple authors]
- * \copyright Copyright (c) 2011, Robert Bosch Engineering
+ * @file      &lt;filename&gt;
+ * @brief     &lt;brief description&gt;
+ * @authors   &lt;author&gt;                    [if there is only one author]
+ * @authors   &lt;author 1&gt;, &lt;author 2&gt;, ... [if there are multiple authors]
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering
  *            and Business Solutions. All rights reserved.
  *
  * &lt;long description&gt;
  */</codeblock>
       <p>The preferred Doxygen function header contains:</p>
       <codeblock>/**
- * \brief         &lt;brief description&gt;
- * \req           &lt;req tag&gt; - &lt;brief tag description&gt;
- * \param[in]     &lt;param name&gt; &lt;description&gt; [if that is inbound]
- * \param[out]    &lt;param name&gt; &lt;description&gt; [if that is outbound]
- * \param[in,out] &lt;param name&gt; &lt;description&gt; [if that is bidirectional]
- * \param         &lt;param name&gt; &lt;description&gt; [if direction is unspecified]
- * \return        &lt;description&gt;
+ * @brief         &lt;brief description&gt;
+ * @req           &lt;req tag&gt; &lt;brief tag description&gt;
+ * @param[in]     &lt;param name&gt; &lt;description&gt; [if that is inbound]
+ * @param[out]    &lt;param name&gt; &lt;description&gt; [if that is outbound]
+ * @param[in,out] &lt;param name&gt; &lt;description&gt; [if that is bidirectional]
+ * @param         &lt;param name&gt; &lt;description&gt; [if direction is unspecified]
+ * @return        &lt;description&gt;
  *
  * &lt;long description&gt;
  */
@@ -67,11 +67,11 @@
 void foobar(void)</codeblock>
       <p>Detailed example:</p>
       <codeblock>/**
- * \brief     Converter from foo to bar
- * \req       RS_12_34 - Converter from foo to bar
- * \param[in] fooFile Input file in foo format
- * \param[in] barFile Output file in bar format
- * \return    Result code
+ * @brief     Converter from foo to bar
+ * @req       RS_12_34 Converter from foo to bar
+ * @param[in] fooFile Input file in foo format
+ * @param[in] barFile Output file in bar format
+ * @return    Result code
  *
  * This function converts the contents of fooFile in foo format to barFile
  * in bar format. fooFile and barFile need to be opened.
