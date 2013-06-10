@@ -104,7 +104,7 @@ CDMGraphCtrl::CDMGraphCtrl()
 	m_ToolTipText[0] = _T('\0');
 
 	m_nCursorCount = 0;	
-	m_nZoomLevel = 1; // Initialize the zoom level as 1 ie., no zoom //KSS
+	m_nZoomLevel = 1; // Initialize the zoom level as 1 ie., no zoom
 
 	m_bIsGrpahWndActive = FALSE; //Indicates if the graph control is clicked and is active
 }
@@ -549,7 +549,7 @@ STDMETHODIMP CDMGraphCtrl::put_TrackMode(TrackModeState newVal)
 	m_bUnzoom = TRUE;
 
 	// Get the range before zooming
-	if (m_nZoomLevel == 1) //KSS
+	if (m_nZoomLevel == 1)
 	{
 		dOldRangeX[MIN]=dRangeX[MIN];
 		dOldRangeY[MIN]=dRangeY[MIN];
@@ -810,7 +810,6 @@ STDMETHODIMP CDMGraphCtrl::AutoRange()
 		dAutoRangeY[MAX]=dRangeY[MAX];
 	}
 
-	//KSS
 	// Set the zoom level to inital value as zoom values are invald now 	
 	HRESULT hResult = SetRange(dAutoRangeX[MIN],dAutoRangeX[MAX],dAutoRangeY[MIN],dAutoRangeY[MAX]);
 	m_nZoomLevel = 1; 
@@ -820,7 +819,6 @@ STDMETHODIMP CDMGraphCtrl::AutoRange()
 	dOldRangeY[MAX]=dRangeY[MAX];
 
 	return hResult;
-	//KSS
 }
 
 STDMETHODIMP CDMGraphCtrl::ShowProperties()
@@ -2498,7 +2496,7 @@ LRESULT CDMGraphCtrl::OnRButtonDown(UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 	if(m_eTrackMode == Zoom || m_eTrackMode == ZoomX || m_eTrackMode == ZoomY)
 	{
 		// If zoomed already then reset the zoom
-		if (m_nZoomLevel > 1) //KSS
+		if (m_nZoomLevel > 1)
 		{
 			SetRange(dOldRangeX[MIN],dOldRangeX[MAX],dOldRangeY[MIN],dOldRangeY[MAX]);
 

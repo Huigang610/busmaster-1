@@ -892,7 +892,7 @@ HRESULT CTSExecutorLIB::SetConfigurationData(xmlNodePtr pXmlNode)
         char* pchKey = (char*)xmlNodeListGetString(pTempNode->doc, pTempNode->children, 1);
         if(pchKey != NULL)
         {
-            m_bTestSuiteStatus = xmlUtils::bGetBooleanValue(pchKey);
+            m_bTestSuiteStatus = xmlUtils::getBooleanValue(pchKey);
             xmlFree(pchKey);
         }
         xmlXPathFreeObject(pObjectPtr);
@@ -1014,7 +1014,7 @@ int CTSExecutorLIB::nParseTestSuite(xmlNodePtr pXmlNode, sTestSuiteConfigInfo& s
         if( NULL != pObjectPtr)
         {
             pTempNode = pObjectPtr->nodesetval->nodeTab[0];
-            sConfigInfo.m_bEnable = xmlUtils::bGetBooleanValue((char*)xmlNodeListGetString(pTempNode->doc, pTempNode->children, 1));
+            sConfigInfo.m_bEnable = xmlUtils::getBooleanValue((char*)xmlNodeListGetString(pTempNode->doc, pTempNode->children, 1));
             xmlXPathFreeObject(pObjectPtr);
             pObjectPtr = NULL;
         }

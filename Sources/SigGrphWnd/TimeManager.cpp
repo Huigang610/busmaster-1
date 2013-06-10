@@ -1,29 +1,26 @@
-/*********************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  TimeManager.cpp
-  Description   :  Implementation file for CTimeManager class
-  $Log:   X:/Archive/Sources/SigGrphWnd/TimeManager.cpv  $
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-      Rev 1.2   06 Jun 2011 11:51:38   CANMNTTM
-
-
-      Rev 1.1   15 Apr 2011 19:43:52   rac2kor
-   Inserted RBEI Copyright information text into the file header.
-
-      Rev 1.0   13 Dec 2010 22:00:52   CANMNTTM
-
-
-      Rev 1.1   03 Sep 2010 20:36:18   rac2kor
-   Removed commented codes and objects that are unreferenced.
-
-      Rev 1.0   16 Aug 2010 21:20:46   rac2kor
-
-
-  Author(s)     :  Raja N
-  Date Created  :  23.06.2004
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
- *********************************************************************/
+/**
+ * @file      TimeManager.cpp
+ * @brief     Implementation file for CTimeManager class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ *
+ * Implementation file for CTimeManager class
+ */
 
 // Standard include header
 #include "SigGrphWnd_stdafx.h"

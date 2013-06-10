@@ -71,7 +71,6 @@ private:
     sMESSAGE* m_psMsgStuctPtr;
     CAlphanumiricEdit m_odMsgNumericEdit;
     SDBPARAMS m_sDbParams;
-    //KSS
     sMESSAGE m_sMessage;
     BOOL bIsDataModified();
 };

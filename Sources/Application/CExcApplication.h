@@ -5,19 +5,9 @@
 class CExcApplication : public COleDispatchDriver
 {
 public:
-    CExcApplication() {} // Calls COleDispatchDriver default constructor
     CExcApplication(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
     CExcApplication(const CExcApplication& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
-    // Attributes
-public:
-
-    // Operations
-public:
-
-
-    // _Application methods
-public:
     LPDISPATCH get_Application()
     {
         LPDISPATCH result;

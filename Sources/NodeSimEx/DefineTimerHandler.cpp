@@ -285,7 +285,6 @@ BOOL CDefineTimerHandler::OnInitDialog()
     // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-//KSS
 /******************************************************************************/
 /*  Function Name    :  SetTimerEdited                                        */
 /*                                                                            */
@@ -322,4 +321,3 @@ BOOL CDefineTimerHandler::bIsTimerEdited()
 {
     return m_bIsTimerEdited;
 }
-//KSS

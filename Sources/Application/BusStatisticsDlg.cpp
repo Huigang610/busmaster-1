@@ -922,7 +922,7 @@ HRESULT CBusStatisticsDlg::SetConfigData(xmlNodePtr pDocPtr)
                                 {
                                     INT nOrder = itr->second.nOrder;
                                     pnOrder[i] = itr->second.nOrder;
-                                    m_omStatList.MakeColumnVisible(i, itr->second.isVisble);
+                                    m_omStatList.MakeColumnVisible(i, itr->second.isVisible);
                                     m_omStatList.SetColumnWidth(i, itr->second.nWidth);
                                 }
                                 xmlFree(ptext);
@@ -956,7 +956,7 @@ HRESULT CBusStatisticsDlg::SetConfigData(xmlNodePtr pDocPtr)
                 //      pnOrder.push_back(ColumnInfo->second.nOrder+1);
                 //
                 //      //COPY_DATA_2(&bColumnVisible, pByteSrc, sizeof(bool));
-                //      bool bColumnVisible = ColumnInfo->second.isVisble;
+                //      bool bColumnVisible = ColumnInfo->second.isVisible;
                 //      if(bColumnVisible == false)
                 //      {
                 //          pnOrder.push_front(ColumnInfo->second.nOrder+1);

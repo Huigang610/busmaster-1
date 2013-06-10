@@ -72,8 +72,8 @@ BOOL CLogObjectCAN::bLogData(const SFORMATTEDDATA_CAN& sDataCAN)
 
     SFRAMEINFO_BASIC_CAN CANInfo_Basic =
     {
-        sDataCAN.m_dwMsgID, sDataCAN.m_eChannel, sDataCAN.m_eDirection,
-        sDataCAN.m_byIDType, sDataCAN.m_byMsgType
+        sDataCAN.m_dwMsgID, sDataCAN.channel, sDataCAN.m_eDirection,
+        sDataCAN.idType, sDataCAN.messageType
     };
 
     // Assign appropriate values to FrameInfo_Basic
@@ -201,7 +201,7 @@ BOOL CLogObjectCAN::bToBeLogged(SFRAMEINFO_BASIC_CAN& CANInfo_Basic)
     // Return if the curent frame occurs in different channel.
     if (CAN_CHANNEL_ALL != m_sLogInfo.m_ChannelSelected)
     {
-        if (m_sLogInfo.m_ChannelSelected != CANInfo_Basic.m_eChannel)
+        if (m_sLogInfo.m_ChannelSelected != CANInfo_Basic.channel)
         {
             return FALSE;
         }
@@ -229,8 +229,8 @@ BOOL CLogObjectCAN::bToBeLogged(SFRAMEINFO_BASIC_CAN& CANInfo_Basic)
         break;
         case START:
         {
-            if ((m_sLogInfo.m_sLogTrigger.startId == CANInfo_Basic.m_dwFrameID)
-                    && (CANInfo_Basic.m_eDrctn == DIR_RX))
+            if ((m_sLogInfo.m_sLogTrigger.startId == CANInfo_Basic.frameId)
+                    && (CANInfo_Basic.direction == DIR_RX))
             {
                 m_CurrTriggerType = NONE;
             }
@@ -242,8 +242,8 @@ BOOL CLogObjectCAN::bToBeLogged(SFRAMEINFO_BASIC_CAN& CANInfo_Basic)
         break;
         case STOP:
         {
-            if ((m_sLogInfo.m_sLogTrigger.stopId == CANInfo_Basic.m_dwFrameID)
-                    && (CANInfo_Basic.m_eDrctn  == DIR_RX))
+            if ((m_sLogInfo.m_sLogTrigger.stopId == CANInfo_Basic.frameId)
+                    && (CANInfo_Basic.direction  == DIR_RX))
             {
                 m_CurrTriggerType = STOPPED;
             }
@@ -252,8 +252,8 @@ BOOL CLogObjectCAN::bToBeLogged(SFRAMEINFO_BASIC_CAN& CANInfo_Basic)
 
         case BOTH:
         {
-            if ((m_sLogInfo.m_sLogTrigger.startId == CANInfo_Basic.m_dwFrameID)
-                    && (CANInfo_Basic.m_eDrctn == DIR_RX))
+            if ((m_sLogInfo.m_sLogTrigger.startId == CANInfo_Basic.frameId)
+                    && (CANInfo_Basic.direction == DIR_RX))
             {
                 m_CurrTriggerType = STOP;
             }

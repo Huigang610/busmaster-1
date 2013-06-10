@@ -24,16 +24,36 @@
 
 #pragma once
 
+/* Project includes */
 #include "BaseMsgBufAll.h"
 
-/////////////////////////////////////////////////////////////////////////////////////
-/**********************************************************************************
-Class Name      :   CMsgBufVVSE
-Authors         :   Pradeep Kadoor
-Date Created    :   22/06/2009
-************************************************************************************/
 class CMsgBufVVSE : public CBaseMsgBufVVSE
 {
+public:
+    CMsgBufVVSE();
+    ~CMsgBufVVSE();
+
+    /* Writes message into the buffer. Caller needs to allocate memory for the
+    out parameter */
+    int WriteIntoBuffer(INT nType, BYTE* ps_Msg, INT nSize);
+    /* Clears the buffer and resets read & write indices */
+    void vClearMessageBuffer(void);
+    /* Caller can set the buffer size */
+    int nSetBufferSize(int& nSize);
+    /* Current message will be skipped and advances to next msg */
+    HRESULT AdvanceToNextMsg(void);
+    /* Gets the message count */
+    int GetMsgCount(void) const;
+    /* Gets the notifying event handler */
+    HANDLE hGetNotifyingEvent(void) const;
+    /* Gets no of skipped msgs because of buffer overrun */
+    //int GetSkippedMsgCount(void) const;
+    /* Sets the start pos to read the msg*/
+    HRESULT SetStartPos(int nEntry);
+    /* Reads the nEntryth Msg from the start position,
+       user will have an option set the next entry as start pos*/
+    HRESULT ReadEntry(int& nType, BYTE* pbyMsg, int& nSize, int nEntry, BOOL bSetNextIndexStartPos);
+
 private:
     BYTE* m_pbyMsgBuffer;
     CRITICAL_SECTION m_CritSectionForGB;
@@ -61,29 +81,5 @@ private:
     void vHandleTempReadIndex();
     /* Handle start index whenever buffer overrun happens*/
     int nHandleStartIndex(int nSize);
-public:
-    CMsgBufVVSE();
-    ~CMsgBufVVSE();
-
-    /* Writes message into the buffer. Caller needs to allocate memory for the
-    out parameter */
-    int WriteIntoBuffer(INT nType, BYTE* ps_Msg, INT nSize);
-    /* Clears the buffer and resets read & write indices */
-    void vClearMessageBuffer(void);
-    /* Caller can set the buffer size */
-    int nSetBufferSize(int& nSize);
-    /* Current message will be skipped and advances to next msg */
-    HRESULT AdvanceToNextMsg(void);
-    /* Gets the message count */
-    int GetMsgCount(void) const;
-    /* Gets the notifying event handler */
-    HANDLE hGetNotifyingEvent(void) const;
-    /* Gets no of skipped msgs because of buffer overrun */
-    //int GetSkippedMsgCount(void) const;
-    /* Sets the start pos to read the msg*/
-    HRESULT SetStartPos(int nEntry);
-    /* Reads the nEntryth Msg from the start position,
-       user will have an option set the next entry as start pos*/
-    HRESULT ReadEntry(int& nType, BYTE* pbyMsg, int& nSize, int nEntry, BOOL bSetNextIndexStartPos);
 };
 

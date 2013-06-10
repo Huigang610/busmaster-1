@@ -24,33 +24,11 @@
 
 #pragma once
 
+/* Project includes */
 #include "BaseMsgBufAll.h"
 
-/////////////////////////////////////////////////////////////////////////////////////
-/**********************************************************************************
-Class Name      :   CMsgBufVSE
-Authors         :   Pradeep Kadoor
-Date Created    :   22/06/2009
-************************************************************************************/
 class CMsgBufVSE : public CBaseMsgBufVSE
 {
-private:
-    BYTE* m_pbyMsgBuffer;
-    CRITICAL_SECTION m_CritSectionForGB;
-    int m_nBufferSize, m_nIndexRead, m_nIndexWrite, m_nMsgCount, m_nMsgSkipped;
-    HANDLE m_hNotifyingEvent;
-    /* Helper function to advance the read index to next msg*/
-    int nAdvanceReadIndex(void);
-    /* Helper function to read current msg from the circular buffer*/
-    HRESULT ReadBuffer(INT& nType, BYTE* pbyMsg, INT& nSize);
-    /* Helper function to write msg into the circular buffer*/
-    int nWriteBuffer(INT nType, BYTE* pbyMsg, INT nSize);
-    /* Helper function construct header with TYPE and DATA LENGTH*/
-    int nConstructHeader(INT nType, INT nSize, BYTE* pbyHeader);
-    /* Helper function to get current message header */
-    int nGetCurrMsgHeader(BYTE* pbyHeader);
-    /* Helper function to handle buffer overrun*/
-    int nHandleBufferOverrun(INT nSize);
 public:
     CMsgBufVSE();
     ~CMsgBufVSE();
@@ -75,5 +53,23 @@ public:
     HANDLE hGetNotifyingEvent(void) const;
     /* Gets no of skipped msgs because of buffer overrun */
     int GetSkippedMsgCount(void) const;
+
+private:
+    BYTE* m_pbyMsgBuffer;
+    CRITICAL_SECTION m_CritSectionForGB;
+    int m_nBufferSize, m_nIndexRead, m_nIndexWrite, m_nMsgCount, m_nMsgSkipped;
+    HANDLE m_hNotifyingEvent;
+    /* Helper function to advance the read index to next msg*/
+    int nAdvanceReadIndex(void);
+    /* Helper function to read current msg from the circular buffer*/
+    HRESULT ReadBuffer(INT& nType, BYTE* pbyMsg, INT& nSize);
+    /* Helper function to write msg into the circular buffer*/
+    int nWriteBuffer(INT nType, BYTE* pbyMsg, INT nSize);
+    /* Helper function construct header with TYPE and DATA LENGTH*/
+    int nConstructHeader(INT nType, INT nSize, BYTE* pbyHeader);
+    /* Helper function to get current message header */
+    int nGetCurrMsgHeader(BYTE* pbyHeader);
+    /* Helper function to handle buffer overrun*/
+    int nHandleBufferOverrun(INT nSize);
 };
 

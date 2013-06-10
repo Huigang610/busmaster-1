@@ -33,15 +33,12 @@ const int SIZE_CHAR = sizeof(CHAR);
 
 class CExpressionExecutor
 {
-    //Member Variables
+public:
+    BOOL bGetExpressionValue(CString omFormula, float fValue);
+
 private:
     CString m_omFormula;
 
-    //Member Functions
     BOOL SubstituteX(CString& omFormula, float fVal);
-public:
-    CExpressionExecutor() {};
-    BOOL bGetExpressionValue(CString omFormula, float fValue);
-    ~CExpressionExecutor() {};
 };
 

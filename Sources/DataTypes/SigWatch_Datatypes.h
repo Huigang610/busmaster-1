@@ -24,7 +24,7 @@
 
 #pragma once
 
-// Structure for Signal Watch Implementation
+/* Structure for Signal Watch Implementation */
 struct tagSignalWatchList
 {
     unsigned int unMsgID;                   // Message ID

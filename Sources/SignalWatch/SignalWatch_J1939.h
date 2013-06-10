@@ -1,14 +1,17 @@
-/******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  SignalWatch_J1939.h
-  Description   :
-  $Log:   X:/Archive/Sources/SignalWatch/SignalWatch_J1939.h_v  $
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *    Rev 1.1   15 Apr 2011 19:18:46   CANMNTTM
- * Added RBEI Copyright information.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
  *
- *    Rev 1.0   01 Mar 2011 17:05:30   CANMNTTM
- *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 /**
  * @file      SignalWatch_J1939.h
@@ -42,18 +45,6 @@
 class CSignalWatch_J1939 : CBaseSignalWatch_J1939
 {
 public:
-    CMsgBufVSE m_ouMsgBufVSE_J;
-
-private:
-    BOOL m_bHex;
-    CSigWatchDlg* m_pouSigWnd;
-    CMsgInterpretationJ1939* m_pMsgInterPretObj_J;
-    CPARAM_THREADPROC m_ouReadThread;
-    CRITICAL_SECTION m_omCritSecSW;
-
-public:
-    CSignalWatch_J1939(void) {};
-    ~CSignalWatch_J1939(void) {};
     BOOL InitInstance(void);
     int ExitInstance(void);
 
@@ -72,7 +63,14 @@ public:
     void vDisplayInSigWatchWnd(STJ1939_MSG& sMsg);
     void vDeleteRemovedListEntries();
 
+	CMsgBufVSE m_ouMsgBufVSE_J;
+
 private:
     BOOL bStartSigWatchReadThread(void);
 
+    BOOL m_bHex;
+    CSigWatchDlg* m_pouSigWnd;
+    CMsgInterpretationJ1939* m_pMsgInterPretObj_J;
+    CPARAM_THREADPROC m_ouReadThread;
+    CRITICAL_SECTION m_omCritSecSW;
 };

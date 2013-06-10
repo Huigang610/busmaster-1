@@ -24,7 +24,9 @@
 
 #pragma once
 
+/* Project includes */
 #include "Include/BaseDefs.h"
+
 //DB params
 typedef struct _tagDBPARAMS
 {

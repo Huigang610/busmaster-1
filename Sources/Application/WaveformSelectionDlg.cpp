@@ -362,7 +362,7 @@ void CWaveformSelectionDlg::DefineUpdateWave(CListCtrl* pListCtrl, UINT nMsgID,
             m_pWaveDataHandler->vSetSamplingTimePeriod(nTimePeriod);
         }
         //Free the BSTR memory allocated
-        //::SysFreeString(bstrName); //KSS
+        //::SysFreeString(bstrName);
     }
 }
 

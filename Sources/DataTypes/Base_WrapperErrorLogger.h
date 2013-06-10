@@ -30,9 +30,9 @@
 class Base_WrapperErrorLogger
 {
 public:
-    Base_WrapperErrorLogger(void) {};
-    ~Base_WrapperErrorLogger(void) {};
-
-    // Maximum characters in File and Msg are FILENAME_MAX and BUFSIZ respectively
+    /**
+	 * Logs a message.
+	 * Maximum characters in File and Msg are FILENAME_MAX and BUFSIZ respectively.
+	 */
     virtual void logMessage(char file[], int line, std::string msg) = 0;
 };

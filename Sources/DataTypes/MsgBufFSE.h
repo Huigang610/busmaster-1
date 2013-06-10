@@ -24,16 +24,17 @@
 
 #pragma once
 
+/* Project includes */
 #include "include/Error.h"
 #include "BaseMsgBufAll.h"
 
-
 const int SIZE_APP_BUFFER       = 20000;
 
-
-/* This is the concrete template class of a circular queue where each entry is
-of fixed size. Implemented as a template class so as to cater to any data type.
-Here SMSGBUFFER is the data type in operation. */
+/**
+ * This is the concrete template class of a circular queue where each entry is
+ * of fixed size. Implemented as a template class so as to cater to any data type.
+ * Here SMSGBUFFER is the data type in operation.
+ */
 template <typename SMSGBUFFER>
 class CMsgBufFSE : public CBaseMsgBufFSE<SMSGBUFFER>
 {

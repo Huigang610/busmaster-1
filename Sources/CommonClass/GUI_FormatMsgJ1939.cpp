@@ -1,21 +1,25 @@
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-/**********************************************************************************
-  Project       :   Auto-SAT_Tools
-  FileName      :   GUI_FormatMsgJ1939.cpp
-  Description   :   Implementation of CRefTimeKeeper class
-  $Log:   X:/Archive/Sources/CommonClass/GUI_FormatMsgJ1939.cpv  $
-
-      Rev 1.3   10 Jun 2011 15:14:36   CANMNTTM
-   All W4 warnings are removed
-
-      Rev 1.2   15 Apr 2011 19:07:08   rac2kor
-   Inserted RBEI Copyright information text into the file header.
-
-  Author(s)     :
-  Date Created  :   04/11/2009
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-**********************************************************************************/
+/**
+ * @file      GUI_FormatMsgJ1939.cpp
+ * @brief     Implementation of CRefTimeKeeper class
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ *
+ * Implementation of CRefTimeKeeper class
+ */
 
 #include "CommonClass_stdafx.h"
 #include "GUI_FormatMsgJ1939.h"

@@ -1,31 +1,26 @@
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-/******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  FormatMsgJ1939.cpp
-  Description   :  Source of CFormatMsgJ1939 class.
-  $Log:   X:/Archive/Sources/FrameProcessor/FormatMsgJ1939.cpv  $
-
-      Rev 1.4   09 Jun 2011 18:00:20   CANMNTTM
-   All errors in VS2005 are removed
-
-      Rev 1.3   15 Apr 2011 19:19:42   rac2kor
-   Inserted RBEI Copyright information text into the file header.
-
-      Rev 1.2   23 Mar 2011 14:59:14   CANMNTTM
-   Support upto 32 channels
-
-      Rev 1.1   13 Dec 2010 21:25:56   rac2kor
-   In the structure PSFORMATTEDATA_J1939, the data member m_dwMsgID
-   is now being assigned value.
-
-      Rev 1.0   06 Dec 2010 18:56:20   rac2kor
-
-
-  Author(s)     :  Ratnadip Choudhury
-  Date Created  :  1.12.2010
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
+/**
+ * @file      FormatMsgJ1939.cpp
+ * @brief     Source of CFormatMsgJ1939 class.
+ * @author    Ratnadip Choudhury
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ *
+ * Source of CFormatMsgJ1939 class.
+ */
 
 /* Project includes */
 #include "../FrameProcessor_stdafx.h"

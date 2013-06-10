@@ -105,7 +105,7 @@ END_MESSAGE_MAP()
 /******************************************************************************/
 void CKeyValue::OnCancel()
 {
-    if (NULL != m_pcKeyVal) //KSS
+    if (NULL != m_pcKeyVal)
     {
         *m_pcKeyVal = NULL;
     }

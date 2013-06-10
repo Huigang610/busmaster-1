@@ -170,11 +170,11 @@ typedef struct tagFormattedData_CAN
     UINT64          m_u64TimeStamp;                 // Time stamp
     DWORD           m_dwMsgID;                      // Message identifier
     EDIRECTION      m_eDirection;                   // Direction (Rx / Tx)
-    TYPE_CHANNEL    m_eChannel;                     // Channel
+    TYPE_CHANNEL    channel;                     // Channel
     BYTE            m_byDataLength;                 // Data length count
     BYTE            m_abData[MAX_DATA_LEN_CAN_FD];  // Message data
-    BYTE            m_byIDType;                     // Type of the ID (STD or EXTENDED)
-    BYTE            m_byMsgType;                    // Type of the message (RTR or NRTR)
+    BYTE            idType;                     // Type of the ID (STD or EXTENDED)
+    BYTE            messageType;                    // Type of the message (RTR or NRTR)
 
     char   m_acMsgDir[LENGTH_STR_DIRECTION_CAN];     // "Tx" or "Rx"
     char   m_acChannel[LENGTH_STR_CHANNEL_CAN];      // "1" or "2"
@@ -212,7 +212,7 @@ typedef struct sMsgWndHdrCol
     BYTE m_byCodeNamePos;
     BYTE m_byIDPos;
     BYTE m_byRxTxPos;
-    BYTE m_byMsgTypePos;
+    BYTE messageTypePos;
     BYTE m_byDLCPos;
     BYTE m_byDataPos;
     BYTE m_byChannel;
@@ -227,7 +227,7 @@ typedef struct sMsgWndHdrCol
         m_byCodeNamePos = (BYTE) -1;
         m_byIDPos       = (BYTE) -1;
         m_byRxTxPos     = (BYTE) -1;
-        m_byMsgTypePos  = (BYTE) -1;
+        messageTypePos  = (BYTE) -1;
         m_byDLCPos      = (BYTE) -1;
         m_byDataPos     = (BYTE) -1;
         m_byChannel     = (BYTE) -1;

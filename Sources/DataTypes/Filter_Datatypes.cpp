@@ -28,23 +28,23 @@
 
 const int SIZE_CHAR = sizeof(char);
 
-/* Starts SFILTERNAME / tagFilterName */
+/* Starts FilterName / FilterName */
 
 /******************************************************************************
-  Function Name    :  tagFilterName
+  Function Name    :  FilterName
   Input(s)         :  -
   Output           :  -
   Functionality    :  Standard constructor
-  Member of        :  tagFilterName
+  Member of        :  FilterName
   Friend of        :  -
   Author(s)        :  Ratnadip Choudhury
   Date Created     :  1.12.2009
   Modification date:
   Modification By  :
 ******************************************************************************/
-tagFilterName::tagFilterName()
+FilterName::FilterName()
 {
-    m_acFilterName[LENGTH_FILTERNAME - 1] = L'\0';
+    filterName[LENGTH_FILTERNAME - 1] = L'\0';
     vClear();
 }
 
@@ -53,35 +53,35 @@ tagFilterName::tagFilterName()
   Input(s)         :  void
   Output           :  void
   Functionality    :  Clears information inthe current filtering block
-  Member of        :  tagFilterName
+  Member of        :  FilterName
   Friend of        :  -
   Author(s)        :  Ratnadip Choudhury
   Date Created     :  1.12.2009
   Modification date:
   Modification By  :
 ******************************************************************************/
-void tagFilterName::vClear(void)
+void FilterName::vClear(void)
 {
-    _tcsset(m_acFilterName, L'\0');
-    m_bFilterType = FALSE;
+    memset(filterName, L'\0', sizeof(filterName));
+    filterType = FALSE;
 }
 
 /******************************************************************************
   Function Name    :  operator=
-  Input(s)         :  const tagFilterName& RefObj - The source object
-  Output           :  tagFilterName& - The current object reference.
+  Input(s)         :  const FilterName& RefObj - The source object
+  Output           :  FilterName& - The current object reference.
   Functionality    :  Copies a source object by '=' operator overloading.
-  Member of        :  tagFilterName
+  Member of        :  FilterName
   Friend of        :  -
   Author(s)        :  Ratnadip Choudhury
   Date Created     :  1.12.2009
   Modification date:
   Modification By  :
 ******************************************************************************/
-tagFilterName& tagFilterName::operator=(const tagFilterName& RefObj)
+FilterName& FilterName::operator=(const FilterName& RefObj)
 {
-    _tcscpy(m_acFilterName, RefObj.m_acFilterName);
-    m_bFilterType = RefObj.m_bFilterType;
+    strncpy(filterName, RefObj.filterName, sizeof(filterName));
+    filterType = RefObj.filterType;
 
     return *this;
 }
@@ -95,29 +95,29 @@ tagFilterName& tagFilterName::operator=(const tagFilterName& RefObj)
   Functionality    :  Saves filtering block information of the current object
                       into the target buffer. Advances the writing pointer to
                       the next byte occurring after the written block.
-  Member of        :  tagFilterName
+  Member of        :  FilterName
   Friend of        :  -
   Author(s)        :  Ratnadip Choudhury
   Date Created     :  1.12.2009
   Modification date:
   Modification By  :
 ******************************************************************************/
-BYTE* tagFilterName::pbGetConfigData(BYTE* pbTarget) const
+BYTE* FilterName::pbGetConfigData(BYTE* pbTarget) const
 {
     BYTE* pbTStream = pbTarget;
 
-    COPY_DATA(pbTStream, m_acFilterName, LENGTH_FILTERNAME * SIZE_CHAR);
-    COPY_DATA(pbTStream, &m_bFilterType, sizeof(m_bFilterType));
+    COPY_DATA(pbTStream, filterName, LENGTH_FILTERNAME * SIZE_CHAR);
+    COPY_DATA(pbTStream, &filterType, sizeof(filterType));
 
     return pbTStream;
 }
 
-void tagFilterName::pbGetConfigData(xmlNodePtr pFilterTag) const
+void FilterName::pbGetConfigData(xmlNodePtr pFilterTag) const
 {
     /*BYTE* pbTStream = pbTarget;
 
-    COPY_DATA(pbTStream, m_acFilterName, LENGTH_FILTERNAME * SIZE_CHAR);
-    COPY_DATA(pbTStream, &m_bFilterType, sizeof(m_bFilterType));
+    COPY_DATA(pbTStream, filterName, LENGTH_FILTERNAME * SIZE_CHAR);
+    COPY_DATA(pbTStream, &filterType, sizeof(filterType));
 
     return pbTStream;*/
 
@@ -125,13 +125,13 @@ void tagFilterName::pbGetConfigData(xmlNodePtr pFilterTag) const
     xmlAddChild(pxmlNodePtr, pFilterTag);*/
 
     // Adding Filter Name to the xml
-    xmlNodePtr pFilterNameNodePtr = xmlNewChild(pFilterTag, NULL, BAD_CAST _(DEF_NAME), BAD_CAST m_acFilterName);
+    xmlNodePtr pFilterNameNodePtr = xmlNewChild(pFilterTag, NULL, BAD_CAST _(DEF_NAME), BAD_CAST filterName);
     xmlAddChild(pFilterTag, pFilterNameNodePtr);
 
     const char* omstrFilterType = "";
 
     // Getting the Filter Type
-    if(m_bFilterType == 1)
+    if(filterType == 1)
     {
         omstrFilterType = "PASS";
     }
@@ -154,24 +154,24 @@ void tagFilterName::pbGetConfigData(xmlNodePtr pFilterTag) const
   Functionality    :  Retrieves filtering block information and copies them
                       into the current object. Advances the reading pointer to
                       the next byte occurring after the block.
-  Member of        :  tagFilterName
+  Member of        :  FilterName
   Friend of        :  -
   Author(s)        :  Ratnadip Choudhury
   Date Created     :  1.12.2009
   Modification date:
   Modification By  :
 ******************************************************************************/
-BYTE* tagFilterName::pbSetConfigData(BYTE* pbTarget)
+BYTE* FilterName::pbSetConfigData(BYTE* pbTarget)
 {
     BYTE* pbTStream = pbTarget;
 
-    COPY_DATA_2(m_acFilterName, pbTStream, LENGTH_FILTERNAME * SIZE_CHAR);
-    COPY_DATA_2(&m_bFilterType, pbTStream, sizeof(m_bFilterType));
+    COPY_DATA_2(filterName, pbTStream, LENGTH_FILTERNAME * SIZE_CHAR);
+    COPY_DATA_2(&filterType, pbTStream, sizeof(filterType));
 
     return pbTStream;
 }
 
-void tagFilterName::pbSetConfigData(xmlNodePtr pNodePtr, xmlDocPtr xmlConfigFiledoc)
+void FilterName::pbSetConfigData(xmlNodePtr pNodePtr, xmlDocPtr xmlConfigFiledoc)
 {
     pNodePtr = pNodePtr->xmlChildrenNode;
 
@@ -184,7 +184,7 @@ void tagFilterName::pbSetConfigData(xmlNodePtr pNodePtr, xmlDocPtr xmlConfigFile
             {
                 if(ptext != NULL)
                 {
-                    strcpy_s(m_acFilterName, 128, ptext);
+                    strcpy_s(filterName, 128, ptext);
                 }
 
                 xmlFree(ptext);
@@ -195,18 +195,18 @@ void tagFilterName::pbSetConfigData(xmlNodePtr pNodePtr, xmlDocPtr xmlConfigFile
 
     /*BYTE* pbTStream = pbTarget;
 
-    COPY_DATA_2(m_acFilterName, pbTStream, LENGTH_FILTERNAME * SIZE_CHAR);
-    COPY_DATA_2(&m_bFilterType, pbTStream, sizeof(m_bFilterType));
+    COPY_DATA_2(filterName, pbTStream, LENGTH_FILTERNAME * SIZE_CHAR);
+    COPY_DATA_2(&filterType, pbTStream, sizeof(filterType));
 
     return pbTStream;*/
 }
 
-INT tagFilterName::nSetXMLConfigData(xmlNodePtr pFilter)
+INT FilterName::nSetXMLConfigData(xmlNodePtr pFilter)
 {
     INT nRetVal = S_OK;
     xmlNodePtr pTempFilter = pFilter->xmlChildrenNode;
-    m_acFilterName[0] = '\0';
-    m_bFilterType = FALSE;
+    filterName[0] = '\0';
+    filterType = FALSE;
     while (pTempFilter != NULL)
     {
         if ((!xmlStrcmp(pTempFilter->name, (const xmlChar*) "Name")))
@@ -214,34 +214,34 @@ INT tagFilterName::nSetXMLConfigData(xmlNodePtr pFilter)
             char* pcTemp = (char*)xmlNodeListGetString(pTempFilter->doc, pTempFilter->xmlChildrenNode, 1);
             if(pcTemp != NULL)
             {
-                strcpy_s(m_acFilterName, 128, pcTemp);
+                strcpy_s(filterName, 128, pcTemp);
             }
         }
         if ((!xmlStrcmp(pTempFilter->name, (const xmlChar*) "Type")))
         {
-            m_bFilterType = nFilterType((char*)xmlNodeListGetString(pTempFilter->doc, pTempFilter->xmlChildrenNode, 1));
+            filterType = nFilterType((char*)xmlNodeListGetString(pTempFilter->doc, pTempFilter->xmlChildrenNode, 1));
         }
         pTempFilter = pTempFilter->next;
     }
-    if( strlen(m_acFilterName ) == 0 )
+    if( strlen(filterName ) == 0 )
     {
         UINT unRand = time(NULL);
-        sprintf_s(m_acFilterName, 128, "Filter_%u", (UINT)time(NULL));
+        sprintf_s(filterName, 128, "Filter_%u", (UINT)time(NULL));
         nRetVal = S_FALSE;
     }
     return nRetVal;
 }
 
-BOOL tagFilterName::nFilterType(std::string strFilteType)
+BOOL FilterName::nFilterType(std::string strFilteType)
 {
-    m_bFilterType = FALSE;
+    filterType = FALSE;
     if(strFilteType == "PASS")
     {
-        m_bFilterType = TRUE;
+        filterType = TRUE;
     }
-    return m_bFilterType;
+    return filterType;
 }
-/* Ends SFILTERNAME / tagFilterName */
+/* Ends FilterName / FilterName */
 
 /* Starts SFILTER / tagSFILTER */
 
@@ -279,7 +279,7 @@ void tagSFILTER::vClear(void)
     m_ucFilterType  = 0;
     m_dwMsgIDFrom   = 0;
     m_dwMsgIDTo     = 0;
-    m_eDrctn        = DIR_ALL;
+    direction        = DIR_ALL;
 }
 
 /******************************************************************************
@@ -299,7 +299,7 @@ tagSFILTER& tagSFILTER::operator=(const tagSFILTER& RefObj)
     m_ucFilterType  = RefObj.m_ucFilterType;
     m_dwMsgIDFrom   = RefObj.m_dwMsgIDFrom;
     m_dwMsgIDTo     = RefObj.m_dwMsgIDTo;
-    m_eDrctn        = RefObj.m_eDrctn;
+    direction        = RefObj.direction;
 
     return *this;
 }
@@ -319,7 +319,7 @@ tagSFILTER& tagSFILTER::operator=(const tagSFILTER& RefObj)
 UINT tagSFILTER::unGetSize(void) const
 {
     return (sizeof(m_ucFilterType) + sizeof(m_dwMsgIDFrom) +
-            sizeof(m_dwMsgIDTo) + sizeof(m_eDrctn));
+            sizeof(m_dwMsgIDTo) + sizeof(direction));
 }
 
 /******************************************************************************
@@ -345,7 +345,7 @@ BYTE* tagSFILTER::pbGetConfigData(BYTE* pbTarget) const
     COPY_DATA(pbTStream, &m_ucFilterType, sizeof(m_ucFilterType));
     COPY_DATA(pbTStream, &m_dwMsgIDFrom, sizeof(m_dwMsgIDFrom));
     COPY_DATA(pbTStream, &m_dwMsgIDTo, sizeof(m_dwMsgIDTo));
-    COPY_DATA(pbTStream, &m_eDrctn, sizeof(m_eDrctn));
+    COPY_DATA(pbTStream, &direction, sizeof(direction));
 
     return pbTStream;
 }
@@ -369,11 +369,11 @@ void tagSFILTER::pbGetConfigData(xmlNodePtr pxmlNodePtr) const
 
     CString omstrDir = "ALL";
 
-    if(m_eDrctn == DIR_RX)
+    if(direction == DIR_RX)
     {
         omstrDir = "Rx";
     }
-    else if(m_eDrctn == DIR_TX)
+    else if(direction == DIR_TX)
     {
         omstrDir = "Tx";
     }
@@ -393,7 +393,7 @@ void tagSFILTER::pbGetConfigData(xmlNodePtr pxmlNodePtr) const
     COPY_DATA(pbTStream, &m_ucFilterType, sizeof(m_ucFilterType));
     COPY_DATA(pbTStream, &m_dwMsgIDFrom, sizeof(m_dwMsgIDFrom));
     COPY_DATA(pbTStream, &m_dwMsgIDTo, sizeof(m_dwMsgIDTo));
-    COPY_DATA(pbTStream, &m_eDrctn, sizeof(m_eDrctn));
+    COPY_DATA(pbTStream, &direction, sizeof(direction));
 
     return pbTStream;*/
 }
@@ -423,7 +423,7 @@ BYTE* tagSFILTER::pbSetConfigData(BYTE* pbTarget)
     COPY_DATA_2(&m_ucFilterType, pbTStream, sizeof(m_ucFilterType));
     COPY_DATA_2(&m_dwMsgIDFrom, pbTStream, sizeof(m_dwMsgIDFrom));
     COPY_DATA_2(&m_dwMsgIDTo, pbTStream, sizeof(m_dwMsgIDTo));
-    COPY_DATA_2(&m_eDrctn, pbTStream, sizeof(m_eDrctn));
+    COPY_DATA_2(&direction, pbTStream, sizeof(direction));
 
     return pbTStream;
 }
@@ -446,7 +446,7 @@ INT tagSFILTER::nSetXMLConfigData(xmlNodePtr pNodePtr)
     INT nRetValue = S_OK;
     m_dwMsgIDFrom = 0;
     m_dwMsgIDTo = 0;
-    m_eDrctn = DIR_ALL;
+    direction = DIR_ALL;
     while (pNodePtr != NULL)
     {
         if ((!xmlStrcmp(pNodePtr->name, (const xmlChar*)"IdFrom")))
@@ -467,7 +467,7 @@ INT tagSFILTER::nSetXMLConfigData(xmlNodePtr pNodePtr)
         {
             if( NULL != pNodePtr->xmlChildrenNode )
             {
-                m_eDrctn = eGetMsgDirection((char*)xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1));
+                direction = eGetMsgDirection((char*)xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1));
             }
         }
         pNodePtr = pNodePtr->next;
@@ -536,9 +536,9 @@ SFILTER_CAN& SFILTER_CAN::operator=(const SFILTER_CAN& RefObj)
 {
     this->SFILTER::operator = (RefObj);
 
-    m_byMsgType = RefObj.m_byMsgType;
-    m_byIDType  = RefObj.m_byIDType;
-    m_eChannel = RefObj.m_eChannel;
+    messageType = RefObj.messageType;
+    idType  = RefObj.idType;
+    channel = RefObj.channel;
 
     return *this;
 }
@@ -557,9 +557,9 @@ SFILTER_CAN& SFILTER_CAN::operator=(const SFILTER_CAN& RefObj)
 ******************************************************************************/
 void SFILTER_CAN::vClear(void)
 {
-    m_byIDType = TYPE_ID_CAN_NONE;
-    m_byMsgType = TYPE_MSG_CAN_NONE;
-    m_eChannel = CAN_CHANNEL_ALL;
+    idType = TYPE_ID_CAN_NONE;
+    messageType = TYPE_MSG_CAN_NONE;
+    channel = CAN_CHANNEL_ALL;
     this->SFILTER::vClear();
 }
 
@@ -586,24 +586,24 @@ BOOL SFILTER_CAN::bDoesFrameOccur(const void* psCurrFrame) const
     if (m_ucFilterType == defFILTER_TYPE_SINGLE_ID)
     {
         // Check for Message ID
-        if (m_dwMsgIDFrom == sCurrFrame.m_dwFrameID)
+        if (m_dwMsgIDFrom == sCurrFrame.frameId)
         {
             // Check for message Channel
-            if ( (CAN_CHANNEL_ALL == m_eChannel) ||
-                    (m_eChannel == sCurrFrame.m_eChannel) )
+            if ( (CAN_CHANNEL_ALL == channel) ||
+                    (channel == sCurrFrame.channel) )
             {
                 // Check for message direction
-                if ( (DIR_ALL == m_eDrctn) ||
-                        (DIR_ALL == sCurrFrame.m_eDrctn) ||
-                        (m_eDrctn == sCurrFrame.m_eDrctn) )
+                if ( (DIR_ALL == direction) ||
+                        (DIR_ALL == sCurrFrame.direction) ||
+                        (direction == sCurrFrame.direction) )
                 {
                     // Check for extended Id
-                    if ((TYPE_ID_CAN_ALL == m_byIDType) ||
-                            (m_byIDType == sCurrFrame.m_byIDType))
+                    if ((TYPE_ID_CAN_ALL == idType) ||
+                            (idType == sCurrFrame.idType))
                     {
                         //Check for RTR
-                        if ((TYPE_MSG_CAN_ALL == m_byMsgType) ||
-                                (m_byMsgType == sCurrFrame.m_byMsgType))
+                        if ((TYPE_MSG_CAN_ALL == messageType) ||
+                                (messageType == sCurrFrame.messageType))
                         {
                             bResult = TRUE;
                         }
@@ -616,25 +616,25 @@ BOOL SFILTER_CAN::bDoesFrameOccur(const void* psCurrFrame) const
     else if (m_ucFilterType == defFILTER_TYPE_ID_RANGE)
     {
         // Check for message falling in the Range
-        if ( (sCurrFrame.m_dwFrameID >= m_dwMsgIDFrom) &&
-                (sCurrFrame.m_dwFrameID <= m_dwMsgIDTo) )
+        if ( (sCurrFrame.frameId >= m_dwMsgIDFrom) &&
+                (sCurrFrame.frameId <= m_dwMsgIDTo) )
         {
             // Check for message Channel
-            if ( (CAN_CHANNEL_ALL == m_eChannel) ||
-                    (m_eChannel == sCurrFrame.m_eChannel) )
+            if ( (CAN_CHANNEL_ALL == channel) ||
+                    (channel == sCurrFrame.channel) )
             {
                 // Check for message Direction
-                if ( (DIR_ALL == m_eDrctn) ||
-                        (DIR_ALL == sCurrFrame.m_eDrctn) ||
-                        (m_eDrctn == sCurrFrame.m_eDrctn) )
+                if ( (DIR_ALL == direction) ||
+                        (DIR_ALL == sCurrFrame.direction) ||
+                        (direction == sCurrFrame.direction) )
                 {
                     // Check for extended Id
-                    if ((TYPE_ID_CAN_ALL == m_byIDType) ||
-                            (m_byIDType == sCurrFrame.m_byIDType))
+                    if ((TYPE_ID_CAN_ALL == idType) ||
+                            (idType == sCurrFrame.idType))
                     {
                         //Check for RTR
-                        if ((TYPE_MSG_CAN_ALL == m_byMsgType) ||
-                                (m_byMsgType == sCurrFrame.m_byMsgType))
+                        if ((TYPE_MSG_CAN_ALL == messageType) ||
+                                (messageType == sCurrFrame.messageType))
                         {
                             bResult = TRUE;
                         }
@@ -666,9 +666,9 @@ BOOL SFILTER_CAN::bDoesFrameOccur(const void* psCurrFrame) const
 UINT SFILTER_CAN::unGetSize(void) const
 {
     UINT Result = this->SFILTER::unGetSize();
-    Result += sizeof(m_byIDType);
-    Result += sizeof(m_byMsgType);
-    Result += sizeof(m_eChannel);
+    Result += sizeof(idType);
+    Result += sizeof(messageType);
+    Result += sizeof(channel);
 
     return Result;
 }
@@ -694,9 +694,9 @@ BYTE* SFILTER_CAN::pbGetConfigData(BYTE* pbTarget) const
     BYTE* pbTStream = pbTarget;
 
     pbTStream = this->SFILTER::pbGetConfigData(pbTStream);
-    COPY_DATA(pbTStream, &m_byIDType, sizeof(m_byIDType));
-    COPY_DATA(pbTStream, &m_byMsgType, sizeof(m_byMsgType));
-    COPY_DATA(pbTStream, &m_eChannel, sizeof(m_eChannel));
+    COPY_DATA(pbTStream, &idType, sizeof(idType));
+    COPY_DATA(pbTStream, &messageType, sizeof(messageType));
+    COPY_DATA(pbTStream, &channel, sizeof(channel));
 
     return pbTStream;
 }
@@ -711,15 +711,15 @@ void SFILTER_CAN::pbGetConfigData(xmlNodePtr pNodePtr) const
     CString omstrMsgType = "";
     CString omstrIdType = "";
 
-    if(m_byIDType == TYPE_ID_CAN_EXTENDED)
+    if(idType == TYPE_ID_CAN_EXTENDED)
     {
         omstrIdType = "EXT";
     }
-    else if(m_byIDType == TYPE_ID_CAN_ALL)
+    else if(idType == TYPE_ID_CAN_ALL)
     {
         omstrIdType = "ALL";
     }
-    else if(m_byIDType == TYPE_ID_CAN_NONE)
+    else if(idType == TYPE_ID_CAN_NONE)
     {
         omstrIdType = "NONE";
     }
@@ -728,15 +728,15 @@ void SFILTER_CAN::pbGetConfigData(xmlNodePtr pNodePtr) const
         omstrIdType = "STD";
     }
 
-    if(m_byMsgType == TYPE_MSG_CAN_RTR)
+    if(messageType == TYPE_MSG_CAN_RTR)
     {
         omstrMsgType = "RTR";
     }
-    else if(m_byMsgType == TYPE_MSG_CAN_ALL)
+    else if(messageType == TYPE_MSG_CAN_ALL)
     {
         omstrMsgType = "ALL";
     }
-    else if(m_byMsgType == TYPE_MSG_CAN_NONE)
+    else if(messageType == TYPE_MSG_CAN_NONE)
     {
         omstrMsgType = "NONE";
     }
@@ -752,13 +752,13 @@ void SFILTER_CAN::pbGetConfigData(xmlNodePtr pNodePtr) const
 
     CString omStrChannel = "";
 
-    omStrChannel.Format("%d", m_eChannel);
+    omStrChannel.Format("%d", channel);
 
     xmlNodePtr pChnlPtr = xmlNewChild(pFltrMsgPtr, NULL, BAD_CAST DEF_CHANNEL, BAD_CAST omStrChannel.GetBuffer(omStrChannel.GetLength()));
     xmlAddChild(pFltrMsgPtr, pChnlPtr);
 }
 
-void SFILTER_CAN::pbSetConfigData(xmlNodePtr xmlNodePtr)
+void SFILTER_CAN::pbSetConfigData(xmlNodePtr /*xmlNodePtr*/)
 {
     vClear();
 }
@@ -786,9 +786,9 @@ BYTE* SFILTER_CAN::pbSetConfigData(BYTE* pbTarget)
     BYTE* pbTStream = pbTarget;
 
     pbTStream = this->SFILTER::pbSetConfigData(pbTStream);
-    COPY_DATA_2(&m_byIDType, pbTStream, sizeof(m_byIDType));
-    COPY_DATA_2(&m_byMsgType, pbTStream, sizeof(m_byMsgType));
-    COPY_DATA_2(&m_eChannel, pbTStream, sizeof(m_eChannel));
+    COPY_DATA_2(&idType, pbTStream, sizeof(idType));
+    COPY_DATA_2(&messageType, pbTStream, sizeof(messageType));
+    COPY_DATA_2(&channel, pbTStream, sizeof(channel));
 
     return pbTStream;
 }
@@ -831,9 +831,9 @@ INT SFILTER_CAN::nSetXMLConfigData(xmlNodePtr pNodePtr)
     //<MsgType>EXT</MsgType>
     //<Channel>2</Channel>
     std::string strTemp;
-    m_byMsgType = TYPE_MSG_CAN_ALL;
-    m_byIDType = TYPE_ID_CAN_ALL;
-    m_eChannel = 0;
+    messageType = TYPE_MSG_CAN_ALL;
+    idType = TYPE_ID_CAN_ALL;
+    channel = 0;
     while (pNodePtr != NULL)
     {
         if ((!xmlStrcmp(pNodePtr->name, (const xmlChar*)"IDType")))
@@ -841,7 +841,7 @@ INT SFILTER_CAN::nSetXMLConfigData(xmlNodePtr pNodePtr)
             if ( NULL != pNodePtr->xmlChildrenNode )
             {
                 strTemp = (char*)xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1); //single node
-                m_byIDType  =  nGetIDType(strTemp);
+                idType  =  nGetIDType(strTemp);
             }
         }
         else if ((!xmlStrcmp(pNodePtr->name, (const xmlChar*)"MsgType")))
@@ -849,17 +849,17 @@ INT SFILTER_CAN::nSetXMLConfigData(xmlNodePtr pNodePtr)
             if ( NULL != pNodePtr->xmlChildrenNode )
             {
                 strTemp = (char*)xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1);
-                m_byMsgType  = nGetMsgType(strTemp);
+                messageType  = nGetMsgType(strTemp);
             }
         }
         else if ((!xmlStrcmp(pNodePtr->name, (const xmlChar*)"Channel")))
         {
             if ( NULL != pNodePtr->xmlChildrenNode )
             {
-                m_eChannel = atoi((char*)xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1));
-                if( m_eChannel < 0 || m_eChannel > CHANNEL_ALLOWED )
+                channel = atoi((char*)xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1));
+                if( channel < 0 || channel > CHANNEL_ALLOWED )
                 {
-                    m_eChannel = 0;
+                    channel = 0;
                 }
             }
         }
@@ -921,7 +921,7 @@ SFILTER_FLEXRAY& SFILTER_FLEXRAY::operator=(const SFILTER_FLEXRAY& RefObj)
 {
     this->SFILTER::operator = (RefObj);
 
-    m_eChannel = RefObj.m_eChannel;
+    channel = RefObj.channel;
 
     return *this;
 }
@@ -940,7 +940,7 @@ SFILTER_FLEXRAY& SFILTER_FLEXRAY::operator=(const SFILTER_FLEXRAY& RefObj)
 ******************************************************************************/
 void SFILTER_FLEXRAY::vClear(void)
 {
-    m_eChannel = FLEXRAY_CHANNEL_AB;
+    channel = FLEXRAY_CHANNEL_AB;
     this->SFILTER::vClear();
 }
 
@@ -966,17 +966,17 @@ BOOL SFILTER_FLEXRAY::bDoesFrameOccur(const void* psCurrFrame) const
     if (m_ucFilterType == defFILTER_TYPE_SINGLE_ID)
     {
         // Check for Message ID
-        if (m_dwMsgIDFrom == sCurrFrame.m_dwFrameID)
+        if (m_dwMsgIDFrom == sCurrFrame.frameId)
         {
             // Check for message Channel
-            if ( (FLEXRAY_CHANNEL_AB == m_eChannel) ||
-                    (FLEXRAY_CHANNEL_AB == sCurrFrame.m_eChannel) ||
-                    (m_eChannel == sCurrFrame.m_eChannel) )
+            if ( (FLEXRAY_CHANNEL_AB == channel) ||
+                    (FLEXRAY_CHANNEL_AB == sCurrFrame.channel) ||
+                    (channel == sCurrFrame.channel) )
             {
                 // Check for message direction
-                if ( (DIR_ALL == m_eDrctn) ||
-                        (DIR_ALL == sCurrFrame.m_eDrctn) ||
-                        (m_eDrctn == sCurrFrame.m_eDrctn) )
+                if ( (DIR_ALL == direction) ||
+                        (DIR_ALL == sCurrFrame.direction) ||
+                        (direction == sCurrFrame.direction) )
                 {
                     bResult = TRUE;
                 }
@@ -987,18 +987,18 @@ BOOL SFILTER_FLEXRAY::bDoesFrameOccur(const void* psCurrFrame) const
     else if (m_ucFilterType == defFILTER_TYPE_ID_RANGE)
     {
         // Check for message falling in the Range
-        if ( (sCurrFrame.m_dwFrameID >= m_dwMsgIDFrom) &&
-                (sCurrFrame.m_dwFrameID <= m_dwMsgIDTo) )
+        if ( (sCurrFrame.frameId >= m_dwMsgIDFrom) &&
+                (sCurrFrame.frameId <= m_dwMsgIDTo) )
         {
             // Check for message Channel
-            if ( (FLEXRAY_CHANNEL_AB == m_eChannel) ||
-                    (FLEXRAY_CHANNEL_AB == sCurrFrame.m_eChannel) ||
-                    (m_eChannel == sCurrFrame.m_eChannel) )
+            if ( (FLEXRAY_CHANNEL_AB == channel) ||
+                    (FLEXRAY_CHANNEL_AB == sCurrFrame.channel) ||
+                    (channel == sCurrFrame.channel) )
             {
                 // Check for message Direction
-                if ( (DIR_ALL == m_eDrctn) ||
-                        (DIR_ALL == sCurrFrame.m_eDrctn) ||
-                        (m_eDrctn == sCurrFrame.m_eDrctn) )
+                if ( (DIR_ALL == direction) ||
+                        (DIR_ALL == sCurrFrame.direction) ||
+                        (direction == sCurrFrame.direction) )
                 {
                     bResult = TRUE;
                 }
@@ -1028,7 +1028,7 @@ BOOL SFILTER_FLEXRAY::bDoesFrameOccur(const void* psCurrFrame) const
 UINT SFILTER_FLEXRAY::unGetSize(void) const
 {
     UINT Result = this->SFILTER::unGetSize();
-    Result += sizeof(m_eChannel);
+    Result += sizeof(channel);
 
     return Result;
 }
@@ -1054,7 +1054,7 @@ BYTE* SFILTER_FLEXRAY::pbGetConfigData(BYTE* pbTarget) const
     BYTE* pbTStream = pbTarget;
 
     pbTStream = this->SFILTER::pbGetConfigData(pbTStream);
-    COPY_DATA(pbTStream, &m_eChannel, sizeof(m_eChannel));
+    COPY_DATA(pbTStream, &channel, sizeof(channel));
 
     return pbTStream;
 }
@@ -1062,7 +1062,7 @@ BYTE* SFILTER_FLEXRAY::pbGetConfigData(BYTE* pbTarget) const
 void SFILTER_FLEXRAY::pbGetConfigData(xmlNodePtr pNodePtr) const
 {
     this->SFILTER::pbGetConfigData(pNodePtr);
-    /* COPY_DATA(pbTStream, &m_eChannel, sizeof(m_eChannel));*/
+    /* COPY_DATA(pbTStream, &channel, sizeof(channel));*/
 
     //return pbTStream;
 }
@@ -1090,7 +1090,7 @@ BYTE* SFILTER_FLEXRAY::pbSetConfigData(BYTE* pbTarget)
     BYTE* pbTStream = pbTarget;
 
     pbTStream = this->SFILTER::pbSetConfigData(pbTStream);
-    COPY_DATA_2(&m_eChannel, pbTStream, sizeof(m_eChannel));
+    COPY_DATA_2(&channel, pbTStream, sizeof(channel));
 
     return pbTStream;
 }
@@ -1191,7 +1191,7 @@ BOOL SFILTER_MCNET::bDoesFrameOccur(const void* psCurrFrame) const
     if (m_ucFilterType == defFILTER_TYPE_SINGLE_ID)
     {
         // Check for Message ID
-        if (m_dwMsgIDFrom == sCurrFrame.m_dwFrameID)
+        if (m_dwMsgIDFrom == sCurrFrame.frameId)
         {
             bResult = TRUE;
         }
@@ -1200,8 +1200,8 @@ BOOL SFILTER_MCNET::bDoesFrameOccur(const void* psCurrFrame) const
     else if (m_ucFilterType == defFILTER_TYPE_ID_RANGE)
     {
         // Check for message falling in the Range
-        if ( (sCurrFrame.m_dwFrameID >= m_dwMsgIDFrom) &&
-                (sCurrFrame.m_dwFrameID <= m_dwMsgIDTo) )
+        if ( (sCurrFrame.frameId >= m_dwMsgIDFrom) &&
+                (sCurrFrame.frameId <= m_dwMsgIDTo) )
         {
             bResult = TRUE;
         }
@@ -1380,7 +1380,7 @@ BOOL SFILTER_J1939::bDoesFrameOccur(const void* psCurrFrame) const
     if (m_ucFilterType == defFILTER_TYPE_SINGLE_ID)
     {
         // Check for Message ID
-        if (m_dwMsgIDFrom == sCurrFrame.m_dwPGN)
+        if (m_dwMsgIDFrom == sCurrFrame.pgn)
         {
             bResult = TRUE;
         }
@@ -1389,8 +1389,8 @@ BOOL SFILTER_J1939::bDoesFrameOccur(const void* psCurrFrame) const
     else if (m_ucFilterType == defFILTER_TYPE_ID_RANGE)
     {
         // Check for message falling in the Range
-        if ( (sCurrFrame.m_dwPGN >= m_dwMsgIDFrom) &&
-                (sCurrFrame.m_dwPGN <= m_dwMsgIDTo) )
+        if ( (sCurrFrame.pgn >= m_dwMsgIDFrom) &&
+                (sCurrFrame.pgn <= m_dwMsgIDTo) )
         {
             bResult = TRUE;
         }
@@ -2202,7 +2202,7 @@ tagFilterSet* tagFilterSet::psGetFilterSetPointer(tagFilterSet* psSet, UINT Coun
     for (UINT i = 0; i < Count; i++)
     {
         tagFilterSet* psTemp = psSet + i;
-        if ((psTemp != NULL) &&(_tcscmp(psTemp->m_sFilterName.m_acFilterName, acFilterName) == 0))
+        if ((psTemp != NULL) &&(_tcscmp(psTemp->m_sFilterName.filterName, acFilterName) == 0))
         {
             return psTemp;
         }

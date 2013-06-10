@@ -1199,11 +1199,11 @@ BEGIN
             MENUITEM "Build and L&oad All",         ID_USERPROGRAM_BUILDANDLOADALL
             MENUITEM "&Build All",                  ID_USERPROGRAM_BUILDALL
             MENUITEM SEPARATOR
-            MENUITEM "All &Message Handlers",       ID_EXECUTE_ALLMESSAGEHANDLERS, CHECKED
-            MENUITEM "All &Key Handlers ",          ID_EXECUTE_ALLKEYHANDLERS, CHECKED
-            MENUITEM "All &Timer Handlers",         ID_EXECUTE_ALLTIMERHANDLERS, CHECKED
-            MENUITEM "All &Event Handlers",         ID_EXECUTE_ALLEVENTHANDLERS, CHECKED
             MENUITEM "&All Handlers",               ID_EXECUTE_ALLHANDLERS, CHECKED
+            MENUITEM "&Message Handlers",           ID_EXECUTE_ALLMESSAGEHANDLERS, CHECKED
+            MENUITEM "&Key Handlers",               ID_EXECUTE_ALLKEYHANDLERS, CHECKED
+            MENUITEM "&Timer Handlers",             ID_EXECUTE_ALLTIMERHANDLERS, CHECKED
+            MENUITEM "&Event Handlers",             ID_EXECUTE_ALLEVENTHANDLERS, CHECKED
         END
     END
     POPUP "&View"

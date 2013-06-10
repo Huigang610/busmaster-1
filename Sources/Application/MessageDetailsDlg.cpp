@@ -43,16 +43,12 @@ CMessageDetailsDlg::CMessageDetailsDlg(const SDBPARAMS& sDbParams,sMESSAGE* pMsg
                                        CWnd* pParent /*=NULL*/)
     : CDialog(CMessageDetailsDlg::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CMessageDetailsDlg)
     m_omStrMessageName = "";
     m_omStrMessageCode = "";
     m_unMessageLength = 0;
     m_nFrameFormat = -1;
-    //m_nDataFormat = -1;
-    //}}AFX_DATA_INIT
     m_psMsgStuctPtr = pMsg;
     m_sDbParams = sDbParams;
-    //KSS
     m_sMessage.m_omStrMessageName = "";
     m_sMessage.m_unMessageCode = 0;
     m_sMessage.m_unMessageLength = 8;
@@ -126,7 +122,7 @@ BOOL CMessageDetailsDlg::OnInitDialog()
         m_nFrameFormat = 1;
     }
     UpdateData(FALSE);
-    // Update the initial values //KSS
+    // Update the initial values
     m_sMessage.m_omStrMessageName = m_omStrMessageName;
     m_sMessage.m_unMessageCode = static_cast <UINT> ( strtol((LPCTSTR )m_omStrMessageCode, NULL, 16) );
     m_sMessage.m_unMessageLength = m_unMessageLength;
@@ -220,7 +216,6 @@ void CMessageDetailsDlg::OnOK()
         bRetVal = FALSE;
     }
 
-    //KSS
     if (bIsDataModified())
     {
         if (bRetVal)
@@ -764,7 +759,7 @@ BOOL CMessageDetailsDlg::bDeleteRedundentSignals()
     return (bReturnValue);
 
 }
-//KSS
+
 BOOL CMessageDetailsDlg::bIsDataModified()
 {
     BOOL bDataChanged = FALSE;

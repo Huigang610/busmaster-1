@@ -116,7 +116,7 @@ void CFormatMsgCAN::vFormatDataAndId(BYTE bExprnFlag,
         sprintf_s(CurrDataCAN->m_acMsgIDHex, FORMAT_STR_ID_HEX, CurrDataCAN->m_dwMsgID);
 
         //If an RTR message, Databyte(s) not required to be displayed
-        if ( ! ( CurrDataCAN->m_byMsgType & TYPE_MSG_CAN_RTR ) )
+        if ( ! ( CurrDataCAN->messageType & TYPE_MSG_CAN_RTR ) )
         {
             int j = 0;  // j declared outside
 
@@ -136,7 +136,7 @@ void CFormatMsgCAN::vFormatDataAndId(BYTE bExprnFlag,
         sprintf_s(CurrDataCAN->m_acMsgIDDec, FORMAT_STR_ID_DEC, CurrDataCAN->m_dwMsgID);
 
         //If an RTR message, Databyte(s) not required to be displayed
-        if ( ! ( CurrDataCAN->m_byMsgType & TYPE_MSG_CAN_RTR ) )
+        if ( ! ( CurrDataCAN->messageType & TYPE_MSG_CAN_RTR ) )
         {
             int j = 0;
 
@@ -261,12 +261,12 @@ void CFormatMsgCAN::vFormatCANDataMsg(STCANDATA* pMsgCAN,
     memset(CurrDataCAN->m_acType,'\0',sizeof(CurrDataCAN->m_acType));
     if (pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucEXTENDED != 0)
     {
-        CurrDataCAN->m_byIDType = TYPE_ID_CAN_EXTENDED;
+        CurrDataCAN->idType = TYPE_ID_CAN_EXTENDED;
         strcpy_s(CurrDataCAN->m_acType, LENGTH_STR_DESCRIPTION_CAN, "x");
     }
     else
     {
-        CurrDataCAN->m_byIDType = TYPE_ID_CAN_STANDARD;
+        CurrDataCAN->idType = TYPE_ID_CAN_STANDARD;
         strcpy_s(CurrDataCAN->m_acType, LENGTH_STR_DESCRIPTION_CAN, "s");
     }
     /* If it is a CAN FD frame */
@@ -276,7 +276,7 @@ void CFormatMsgCAN::vFormatCANDataMsg(STCANDATA* pMsgCAN,
     }
     else if (pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucRTR != 0) // CANFD cannot have RTR frames
     {
-        CurrDataCAN->m_byMsgType |= TYPE_MSG_CAN_RTR;
+        CurrDataCAN->messageType |= TYPE_MSG_CAN_RTR;
         strcpy_s(&CurrDataCAN->m_acType[1], LENGTH_STR_DESCRIPTION_CAN, "r");
     }
 

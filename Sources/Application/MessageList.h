@@ -29,30 +29,16 @@
 
 class CMessageList : public CFFListCtrl
 {
-private:
-    // Row String
-    CString m_omStrInARow;
-    // GDI Objects for background and selection brush
-    HBRUSH m_hWhiteBrush, m_hBlueBrush;
-
-    // Construction
 public:
     CMessageList();
+    virtual ~CMessageList();
 
     void OnChar(UINT nChar, UINT nRepeatCount, UINT nflags);
     void OnKeyDown(UINT nChar, UINT nRepeatCount, UINT nflags);
 
+    bool IsColumnShown(int nCol);
 
-    // Attributes
-public:
-
-    // Operations
-public:
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CMessageList)
-    //}}AFX_VIRTUAL
+    BOOL MakeColumnVisible(int nCol, bool bShow);
 
 protected:
     struct ColumnTitleState
@@ -72,16 +58,7 @@ protected:
     ColumnTitleState& GetColumnTitleState(int nCol);
     int GetColumnTitleStateCount();
     CArray<ColumnTitleState, ColumnTitleState>  m_ColumnTitleStates;
-public:
-    bool IsColumnShown(int nCol);
 
-    // Implementation
-public:
-    virtual ~CMessageList();
-    BOOL MakeColumnVisible(int nCol, bool bShow);
-
-    // Generated message map functions
-protected:
     // Overwride to implement custom draw
     virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
     virtual afx_msg void OnContextMenu(CWnd*, CPoint point);
@@ -95,4 +72,10 @@ protected:
     //}}AFX_MSG
 
     DECLARE_MESSAGE_MAP()
+
+private:
+    // Row String
+    CString m_omStrInARow;
+    // GDI Objects for background and selection brush
+    HBRUSH m_hWhiteBrush, m_hBlueBrush;
 };

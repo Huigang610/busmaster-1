@@ -29,54 +29,63 @@
 #include "include/Utils_macro.h"
 #include "include/XMLDefines.h"
 
-
 #define defFILTER_TYPE_SINGLE_ID            0
 #define defFILTER_TYPE_ID_RANGE             1
 
-// Basic information needed for filtering when the bus is FlexRay.
+/**
+ * Basic information needed for filtering when the bus is FlexRay.
+ */
 typedef struct tagSFRAMEINFO_BASIC_FLEXRAY
 {
-    DWORD        m_dwFrameID;
-    TYPE_CHANNEL m_eChannel;
-    EDIRECTION   m_eDrctn;
+    DWORD        frameId;
+    TYPE_CHANNEL channel;
+    EDIRECTION   direction;
 } SFRAMEINFO_BASIC_FLEXRAY;
 
-// Basic information needed for filtering when the bus is CAN.
+/**
+ * Basic information needed for filtering when the bus is CAN.
+ */
 typedef struct tagSFRAMEINFO_BASIC_CAN
 {
-    DWORD        m_dwFrameID;
-    TYPE_CHANNEL m_eChannel;
-    EDIRECTION   m_eDrctn;
-    BYTE         m_byIDType;
-    BYTE         m_byMsgType;
+    DWORD        frameId;
+    TYPE_CHANNEL channel;
+    EDIRECTION   direction;
+    BYTE         idType;
+    BYTE         messageType;
 } SFRAMEINFO_BASIC_CAN;
 
-// Basic information needed for filtering when the bus is MCNet.
+/**
+ * Basic information needed for filtering when the bus is MCNet.
+ */
 typedef struct tagSFRAMEINFO_BASIC_MCNET
 {
-    DWORD m_dwFrameID;
+    DWORD frameId;
 } SFRAMEINFO_BASIC_MCNET;
 
-// Basic information needed for filtering when the bus is J1939.
+/**
+ * Basic information needed for filtering when the bus is J1939.
+ */
 typedef struct tagSFRAMEINFO_BASIC_J1939
 {
-    DWORD m_dwPGN;
-    TYPE_CHANNEL m_eChannel; //KSS
-    EDIRECTION   m_eDrctn;
+    DWORD pgn;
+    TYPE_CHANNEL channel;
+    EDIRECTION   direction;
 } SFRAMEINFO_BASIC_J1939;
 
 const int LENGTH_FILTERNAME = 128;
 
-// The descriobes a filter name with type.
-typedef struct tagFilterName
+/**
+ * The descriobes a filter name with type.
+ */
+typedef struct FilterName
 {
-    char m_acFilterName[LENGTH_FILTERNAME];                     // Filter name
-    BOOL  m_bFilterType;                    // Filter Type 0 - Stop, 1 for Pass
+    char filterName[LENGTH_FILTERNAME];                     // Filter name
+    BOOL  filterType;                    // Filter Type 0 - Stop, 1 for Pass
 
-    tagFilterName();    // Standard constructor
+    FilterName();    // Standard constructor
 
     // To copy the source object. '=' operator overloaded.
-    tagFilterName& operator=(const tagFilterName& RefObj);
+    FilterName& operator=(const FilterName& RefObj);
 
     // To clear the current object.
     void vClear(void);
@@ -94,16 +103,18 @@ typedef struct tagFilterName
     INT nSetXMLConfigData(xmlNodePtr pFilter);
     BOOL nFilterType(std::string strFilteType);
 
-} SFILTERNAME, *PSFILTERNAME;
+} FilterName;
 
-// Base class for an individual filter data structure.
+/**
+ * Base class for an individual filter data structure.
+ */
 typedef struct tagSFILTER
 {
     UCHAR m_ucFilterType;   // 0 - Message ID and 1 - ID Range
     DWORD m_dwMsgIDFrom;    // From Message ID in case of range.
     // Msg ID in case of Single ID
     DWORD m_dwMsgIDTo;      // To Message ID incase of range.
-    EDIRECTION m_eDrctn;    // Values are: DIR_RX, DIR_TX and DIR_ALL
+    EDIRECTION direction;    // Values are: DIR_RX, DIR_TX and DIR_ALL
 
     tagSFILTER();           // Standard constructor
 
@@ -134,9 +145,9 @@ typedef struct tagSFILTER
 
 struct SFILTER_CAN : public SFILTER
 {
-    BYTE         m_byIDType; //Extended or Standard
-    BYTE         m_byMsgType;//RTR or NON RTR
-    TYPE_CHANNEL m_eChannel;
+    BYTE         idType; //Extended or Standard
+    BYTE         messageType;//RTR or NON RTR
+    TYPE_CHANNEL channel;
 
     SFILTER_CAN();  // Standard constructor
     ~SFILTER_CAN(); // Destructor
@@ -169,10 +180,12 @@ struct SFILTER_CAN : public SFILTER
 };
 typedef SFILTER_CAN* PSFILTER_CAN;
 
-// The below structure describes a filter block for FlexRay frames.
+/**
+ * The below structure describes a filter block for FlexRay frames.
+ */
 struct SFILTER_FLEXRAY : public SFILTER
 {
-    TYPE_CHANNEL m_eChannel;// Current channel
+    TYPE_CHANNEL channel;// Current channel
 
     SFILTER_FLEXRAY();  // Standard constructor
     ~SFILTER_FLEXRAY(); // Destructor
@@ -200,7 +213,9 @@ struct SFILTER_FLEXRAY : public SFILTER
 };
 typedef SFILTER_FLEXRAY* PSFILTER_FLEXRAY;
 
-// The below structure describes a filter block for MCNet frames.
+/**
+ * The below structure describes a filter block for MCNet frames.
+ */
 struct SFILTER_MCNET : public SFILTER
 {
     SFILTER_MCNET();    // Standard constructor
@@ -229,7 +244,9 @@ struct SFILTER_MCNET : public SFILTER
 };
 typedef SFILTER_MCNET* PSFILTER_MCNET;
 
-// The below structure describes a filter block for J1939 frames.
+/**
+ * The below structure describes a filter block for J1939 frames.
+ */
 struct SFILTER_J1939 : public SFILTER
 {
     SFILTER_J1939();    // Standard constructor
@@ -258,10 +275,12 @@ struct SFILTER_J1939 : public SFILTER
 };
 typedef SFILTER_J1939* PSFILTER_J1939;
 
-// This below structure defines a filtering block.
+/**
+ * This below structure defines a filtering block.
+ */
 typedef struct tagFilterSet
 {
-    SFILTERNAME m_sFilterName;  // Filter name and type
+    FilterName m_sFilterName;  // Filter name and type
     BOOL        m_bEnabled;     // Enable status of the filter set
     ETYPE_BUS   m_eCurrBus;     // The type of bus
     USHORT      m_ushFilters;   // Number of filters
@@ -294,8 +313,10 @@ typedef struct tagFilterSet
 
 } SFILTERSET, *PSFILTERSET;
 
-// This structure defines a set of filters along with the sufficient entities
-// to apply this for filtering process. So the necessary member functions.
+/**
+ * This structure defines a set of filters along with the sufficient entities
+ * to apply this for filtering process. So the necessary member functions.
+ */
 template <typename SFRAMEINFO_BASIC_BUS>
 struct SFILTERAPPLIED
 {
@@ -334,18 +355,6 @@ struct SFILTERAPPLIED
     int GetFilterNameIndex(std::string strName);
 };
 
-/******************************************************************************
-  Function Name    :  SFILTERAPPLIED
-  Input(s)         :  -
-  Output           :  -
-  Functionality    :  Standard constructor
-  Member of        :  SFILTERAPPLIED
-  Friend of        :  -
-  Author(s)        :  Ratnadip Choudhury
-  Date Created     :  1.12.2009
-  Modification date:
-  Modification By  :
-******************************************************************************/
 template <typename SFRAMEINFO_BASIC_BUS>
 SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::SFILTERAPPLIED()
 {
@@ -354,18 +363,6 @@ SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::SFILTERAPPLIED()
     m_psFilters = NULL;
 }
 
-/******************************************************************************
-  Function Name    :  ~SFILTERAPPLIED
-  Input(s)         :  -
-  Output           :  -
-  Functionality    :  Destructor
-  Member of        :  SFILTERAPPLIED
-  Friend of        :  -
-  Author(s)        :  Ratnadip Choudhury
-  Date Created     :  1.12.2009
-  Modification date:
-  Modification By  :
-******************************************************************************/
 template <typename SFRAMEINFO_BASIC_BUS>
 SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::~SFILTERAPPLIED()
 {
@@ -494,7 +491,7 @@ BOOL SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::bToBeBlocked(const SFRAMEINFO_BASIC_B
             continue;
         }
 
-        bToBlock = psCurrFilterBlk->m_sFilterName.m_bFilterType;
+        bToBlock = psCurrFilterBlk->m_sFilterName.filterType;
         USHORT ushFilters = psCurrFilterBlk->m_ushFilters;
 
         for (USHORT j = 0; (j < ushFilters) && bToContinue; j++)
@@ -580,7 +577,7 @@ void SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbGetConfigFilterData(xmlNodePtr pNod
 
     for (USHORT i = 0; i < m_ushTotal; i++)
     {
-        CString strFilterName = m_psFilters[i].m_sFilterName.m_acFilterName;
+        CString strFilterName = m_psFilters[i].m_sFilterName.filterName;
 
         xmlNodePtr pFilterPtr = xmlNewChild(pNodePtr, NULL, BAD_CAST DEF_FILTER, BAD_CAST strFilterName.GetBufferSetLength(strFilterName.GetLength()));
         xmlAddChild(pNodePtr, pFilterPtr);
@@ -766,7 +763,7 @@ void SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbSetConfigData(SFILTERAPPLIED& pFilt
         {
             /*for(INT nI = 0; nI < omStrFilters.GetSize(); nI++)
             {
-                CString strFilterName = m_psFilters[nI].m_sFilterName.m_acFilterName;
+                CString strFilterName = m_psFilters[nI].m_sFilterName.filterName;
 
                 for(INT nIFilterInfo = 0; nIFilterInfo < m_psFilters[nI].m_psFilterInfo->unGetSize(); nIFilterInfo++)
                 {
@@ -776,29 +773,6 @@ void SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbSetConfigData(SFILTERAPPLIED& pFilt
             sFilterApplied.nGetFiltersFromName(pFilterAppliedCAN, omStrFilters);
         }
     }
-
-    /*m_ushTotal = pNodeSetPtr->nodeNr;
-
-    if (m_ushTotal > 0)
-    {
-        m_psFilters = new SFILTERSET[m_ushTotal];
-        if (NULL != m_psFilters)
-        {
-            for (USHORT i = 0; (i < m_ushTotal) && Result; i++)
-            {
-                m_psFilters[i].pbSetConfigData(pNodeSetPtr->nodeTab[i],pdocptr, Result);
-            }
-        }
-        else
-        {
-            Result = false;
-        }
-    }
-
-    if (false == Result)
-    {
-        vClear();
-    }*/
 }
 
 template <typename SFRAMEINFO_BASIC_BUS>
@@ -837,7 +811,7 @@ int SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::GetFilterNameIndex(std::string strName
     int nIndex = -1;
     for(int i =0 ; i < m_ushTotal; i++)
     {
-        if(strName == m_psFilters[i].m_sFilterName.m_acFilterName)
+        if(strName == m_psFilters[i].m_sFilterName.filterName)
         {
             nIndex = i;
             break;
@@ -851,12 +825,6 @@ int SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::nSetXMLConfigData(xmlDocPtr& pDocPtr)
 {
     int nRetval = S_OK;
     vClear();
-    //BYTE* pbSStream = pbSource;
-    //BYTE byVersion = 0;
-    //COPY_DATA_2(&byVersion, pbSStream, sizeof(BYTE));
-    //COPY_DATA_2(&m_bEnabled, pbSStream, sizeof(m_bEnabled));
-    //COPY_DATA_2(&m_ushTotal, pbSStream, sizeof(m_ushTotal));
-
 
     xmlNodeSetPtr pNodeSet;
     xmlXPathObjectPtr pPathObject;

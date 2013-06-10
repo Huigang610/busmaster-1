@@ -110,39 +110,39 @@ static void vFormatCANDataMsg(STCANDATA* pMsgCAN,
 {
     if (RX_FLAG == pMsgCAN->m_ucDataType)
     {
-        CurrDataCAN->m_eDrctn = DIR_RX;
+        CurrDataCAN->direction = DIR_RX;
     }
     else
     {
-        CurrDataCAN->m_eDrctn = DIR_TX;
+        CurrDataCAN->direction = DIR_TX;
     }
 
-    CurrDataCAN->m_eChannel = pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucChannel;
+    CurrDataCAN->channel = pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucChannel;
 
     if (pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucEXTENDED != 0)
     {
-        CurrDataCAN->m_byIDType = TYPE_ID_CAN_EXTENDED;
+        CurrDataCAN->idType = TYPE_ID_CAN_EXTENDED;
     }
     else
     {
-        CurrDataCAN->m_byIDType = TYPE_ID_CAN_STANDARD;
+        CurrDataCAN->idType = TYPE_ID_CAN_STANDARD;
     }
 
     if ( pMsgCAN->m_uDataInfo.m_sCANMsg.m_bCANFD )
     {
-        CurrDataCAN->m_byMsgType = TYPE_MSG_CAN_FD;
+        CurrDataCAN->messageType = TYPE_MSG_CAN_FD;
     }
     else if (pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucRTR != 0)
     {
-        CurrDataCAN->m_byMsgType = TYPE_MSG_CAN_RTR;
+        CurrDataCAN->messageType = TYPE_MSG_CAN_RTR;
     }
     else
     {
-        CurrDataCAN->m_byMsgType = TYPE_MSG_CAN_NON_RTR;
+        CurrDataCAN->messageType = TYPE_MSG_CAN_NON_RTR;
     }
 
 
-    CurrDataCAN->m_dwFrameID = pMsgCAN->m_uDataInfo.m_sCANMsg.m_unMsgID;
+    CurrDataCAN->frameId = pMsgCAN->m_uDataInfo.m_sCANMsg.m_unMsgID;
 }
 
 BOOL CMsgContainerCAN::bTobeBlocked(STCANDATA& sCanData)
@@ -564,7 +564,7 @@ void CMsgContainerCAN::vGetUpdatedCurrDataPtrArray(SMSGWNDHDRCOL& sHdrColStruct,
 
     //Rest will always be same
     pomDataPtrArr[sHdrColStruct.m_byDLCPos]       = m_sOutFormattedData.m_acDataLen;
-    pomDataPtrArr[sHdrColStruct.m_byMsgTypePos]   = m_sOutFormattedData.m_acType;
+    pomDataPtrArr[sHdrColStruct.messageTypePos]   = m_sOutFormattedData.m_acType;
     pomDataPtrArr[sHdrColStruct.m_byRxTxPos]      = m_sOutFormattedData.m_acMsgDir;
     pomDataPtrArr[sHdrColStruct.m_byCodeNamePos]  = m_sOutFormattedData.m_acMsgDesc;
     pomDataPtrArr[sHdrColStruct.m_byChannel]      = m_sOutFormattedData.m_acChannel;

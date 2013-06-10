@@ -1,37 +1,26 @@
-/*******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  GraphBottomView.cpp
-  Description   :  Implementation file for CGraphBottomView class
-  $Log:   X:/Archive/Sources/SigGrphWnd/GraphBottomView.cpv  $
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-      Rev 1.5   05 Aug 2011 11:06:56   CANMNTTM
-   Updated with Graph control pointer sharing.
-
-      Rev 1.4   06 Jun 2011 11:51:36   CANMNTTM
-
-
-      Rev 1.3   15 Apr 2011 19:43:30   rac2kor
-   Inserted RBEI Copyright information text into the file header.
-
-      Rev 1.2   24 Dec 2010 13:06:08   CANMNTTM
-   Updated vUpdateSignalData() function
-   to Make the dblDiff to contain only modulus of difference.
-
-      Rev 1.1   23 Dec 2010 18:04:44   CANMNTTM
-   Updated to support cursors feature in
-   graph control.
-
-      Rev 1.0   13 Dec 2010 22:00:34   CANMNTTM
-
-
-      Rev 1.0   16 Aug 2010 21:20:30   rac2kor
-
-
-  Author(s)     :  Raja N
-  Date Created  :  10/12/2004
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved
-*******************************************************************************/
+/**
+ * @file      GraphBottomView.cpp
+ * @brief     Implementation file for CGraphBottomView class
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ *
+ * Implementation file for CGraphBottomView class
+ */
 
 // For Standard Includes
 #include "SigGrphWnd_stdafx.h"

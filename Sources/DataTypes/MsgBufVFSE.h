@@ -24,11 +24,13 @@
 
 #pragma once
 
+/* C++ includes */
+#include <map>
+
+/* Project includes */
 #include "BaseMsgBufAll.h"
 #include "include/Utils_macro.h"
-//#include "DataTypes_stdafx.h"
 #include "include/Error.h"
-#include <map>
 
 typedef std::map<__int64, int> CSlotIndexMapType;
 const int TOTAL_SIZE_APP_BUFFER       = 200;

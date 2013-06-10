@@ -535,10 +535,8 @@ BOOL CSignalDetailsDlg::OnInitDialog()
     m_omStrFirstSignalName = m_omStrSignalName;
     // Save Current type selection
     m_omComboSgType.GetWindowText(m_omStrPrevSignalType);
-    //KSS
     // Save the intial values
     vSetInitialData();
-    //KSS
 
     // Should be true only if the signal length is changed
     m_bLenChanged = FALSE;

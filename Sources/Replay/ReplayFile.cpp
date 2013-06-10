@@ -292,7 +292,7 @@ BOOL CReplayFile::pbySaveConfig(xmlNodePtr pxmlNodePtr)         //replay is the 
     CString     csFilter;
     for(int iCnt=0; iCnt < m_sFilterApplied.m_ushTotal; iCnt++)
     {
-        csFilter.Format("%s",((m_sFilterApplied.m_psFilters)+iCnt)->m_sFilterName.m_acFilterName);
+        csFilter.Format("%s",((m_sFilterApplied.m_psFilters)+iCnt)->m_sFilterName.filterName);
         omcVarChar = csFilter;
         xmlNodePtr pFilter = xmlNewChild(pxmlNodePtr, NULL, BAD_CAST DEF_FILTER,BAD_CAST omcVarChar);
         xmlAddChild(pxmlNodePtr, pFilter);
@@ -381,7 +381,7 @@ int CReplayFile::nLoadXMLConfig(xmlNodePtr pNodePtr)
             xmlChar* key = xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1);
             if(NULL != key)
             {
-                m_bEnabled = xmlUtils::bGetBooleanValue((char*)key);
+                m_bEnabled = xmlUtils::getBooleanValue((char*)key);
                 xmlFree(key);
             }
         }
@@ -392,7 +392,7 @@ int CReplayFile::nLoadXMLConfig(xmlNodePtr pNodePtr)
             xmlChar* key = xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1);
             if(NULL != key)
             {
-                m_nTimeMode = xmlUtils::bGetBooleanValue((char*)key);
+                m_nTimeMode = xmlUtils::getBooleanValue((char*)key);
                 xmlFree(key);
             }
         }
@@ -411,7 +411,7 @@ int CReplayFile::nLoadXMLConfig(xmlNodePtr pNodePtr)
             xmlChar* key = xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1);
             if(NULL != key)
             {
-                m_nReplayMode = (int)xmlUtils::bGetBooleanValue((char*)key);
+                m_nReplayMode = (int)xmlUtils::getBooleanValue((char*)key);
                 xmlFree(key);
             }
         }
@@ -431,7 +431,7 @@ int CReplayFile::nLoadXMLConfig(xmlNodePtr pNodePtr)
             xmlChar* key = xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1);
             if(NULL != key)
             {
-                m_bInteractive = (int)xmlUtils::bGetBooleanValue((char*)key);
+                m_bInteractive = (int)xmlUtils::getBooleanValue((char*)key);
                 xmlFree(key);
             }
         }

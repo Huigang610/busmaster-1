@@ -11086,7 +11086,6 @@ void CMainFrame::OnFileConverter()
     try
     {
         // If window is already created and displayed then just bring it to front
-        //m_hProcess = NULL; //KSS
         CWnd* pWndCreated = IsWindowCreated();
         if (NULL != pWndCreated && pWndCreated->GetSafeHwnd())
         {
@@ -11126,7 +11125,7 @@ void CMainFrame::OnFileConverter()
 }
 CWnd* CMainFrame::IsWindowCreated()
 {
-    if (NULL == m_hProcess) //KSS
+    if (NULL == m_hProcess)
     {
         return NULL;
     }
@@ -11196,7 +11195,7 @@ void CMainFrame::vCloseFormatconverters()
         CWnd* pWnd = NULL;
         DWORD dwExitCode = 0;
 
-        if (NULL != m_hProcess) //KSS
+        if (NULL != m_hProcess)
         {
             pWnd = FindWindow(NULL, _("BUSMASTER Format Conversions"));
             if (NULL != pWnd)
@@ -12435,7 +12434,7 @@ void CMainFrame::vGetCurrentSessionData(eSECTION_ID eSecId, BYTE*& pbyConfigData
             CString     csFilter;
             for(int iCnt=0; iCnt < sMsgWndFilter.m_ushTotal; iCnt++)
             {
-                csFilter.Format("%s",((sMsgWndFilter.m_psFilters)+iCnt)->m_sFilterName.m_acFilterName);
+                csFilter.Format("%s",((sMsgWndFilter.m_psFilters)+iCnt)->m_sFilterName.filterName);
                 omcVarChar = csFilter;
                 xmlNodePtr pFilter = xmlNewChild(pCANMsgWindow, NULL, BAD_CAST DEF_FILTER,BAD_CAST omcVarChar);
                 xmlAddChild(pCANMsgWindow, pFilter);

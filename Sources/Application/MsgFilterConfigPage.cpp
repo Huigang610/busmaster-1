@@ -243,7 +243,7 @@ VOID CMsgFilterConfigPage::vInitFilterUIList()
     for( UINT i = 0; i < nSize; i++ )
     {
         m_omLstcFilterList.InsertItem( i,
-                                       m_sFilterAppliedCan.m_psFilters[i].m_sFilterName.m_acFilterName,
+                                       m_sFilterAppliedCan.m_psFilters[i].m_sFilterName.filterName,
                                        defFILTER_IMAGE_INDEX );
 
         // Update Check box status
@@ -299,7 +299,7 @@ static void vPopulateMainSubList(CMainEntryList& DestList, const SFILTERAPPLIED_
         {
             SSUBENTRY sSubEntry;
             sSubEntry.m_omSubEntryName.Format("%s",
-                                              psFilterConfigured->m_psFilters[i].m_sFilterName.m_acFilterName);
+                                              psFilterConfigured->m_psFilters[i].m_sFilterName.filterName);
             sMainEntry.m_odUnSelEntryList.AddTail(sSubEntry);
         }
     }
@@ -310,7 +310,7 @@ static void vPopulateMainSubList(CMainEntryList& DestList, const SFILTERAPPLIED_
         {
             SSUBENTRY sSubEntry;
             sSubEntry.m_omSubEntryName.Format("%s",
-                                              psFilterConfigured->m_psFilters[i].m_sFilterName.m_acFilterName);
+                                              psFilterConfigured->m_psFilters[i].m_sFilterName.filterName);
             if (SFILTERSET::psGetFilterSetPointer(psFilterApplied->m_psFilters,
                                                   psFilterApplied->m_ushTotal,
                                                   sSubEntry.m_omSubEntryName.GetBuffer(MAX_PATH)) != NULL)
@@ -353,7 +353,7 @@ static void vPopulateFilterApplied(const SFILTERAPPLIED_CAN* psFilterConfigured,
         {
             if((&sTempAppliedFilter.m_psFilters[nTempFilCnt]) != NULL)
             {
-                if(strcmp(sFilterApplied.m_psFilters[nAppFilterCnt].m_sFilterName.m_acFilterName,sTempAppliedFilter.m_psFilters[nTempFilCnt].m_sFilterName.m_acFilterName) == 0)
+                if(strcmp(sFilterApplied.m_psFilters[nAppFilterCnt].m_sFilterName.filterName,sTempAppliedFilter.m_psFilters[nTempFilCnt].m_sFilterName.filterName) == 0)
                 {
                     ((sFilterApplied.m_psFilters)+ nAppFilterCnt) ->m_bEnabled
                         =  ((sTempAppliedFilter.m_psFilters)+ nTempFilCnt) ->m_bEnabled;

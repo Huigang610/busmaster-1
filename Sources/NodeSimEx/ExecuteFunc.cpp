@@ -540,13 +540,11 @@ VOID CExecuteFunc::vExecuteOnKeyHandler(UCHAR ucKey)
         psExecuteKeyHandler->m_ucKeyValue = ucKey;
         psExecuteKeyHandler->m_pFKeyHandler = NULL;
         psExecuteKeyHandler->m_pCExecuteFunc=this;
-        //KSS
         // Initialized to null incase member variables values are retained
         psExecuteKeyHandler->m_pCExecuteFunc->
         m_asUtilThread[defKEY_HANDLER_THREAD].m_hThread = NULL;
         psExecuteKeyHandler->m_pCExecuteFunc->
         m_asUtilThread[defKEY_HANDLER_THREAD].m_pvThread = NULL;
-        //KSS
         if( ( ucKey >= 'A' && ucKey<='Z' )||
                 ( ucKey >= 'a' && ucKey<='z' )||
                 ( ucKey >= '0' && ucKey<='9' ) )

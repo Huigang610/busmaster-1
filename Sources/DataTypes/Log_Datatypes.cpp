@@ -341,7 +341,7 @@ INT tagLogInfo::nSetConfigData(xmlNodePtr pNodePtr)
                 xmlChar* key = xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1);
                 if(NULL != key)
                 {
-                    m_bEnabled = xmlUtils::bGetBooleanValue((char*)key);
+                    m_bEnabled = xmlUtils::getBooleanValue((char*)key);
                     xmlFree(key);
                 }
             }
@@ -369,7 +369,7 @@ INT tagLogInfo::nSetConfigData(xmlNodePtr pNodePtr)
                 xmlChar* key = xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1);
                 if(NULL != key)
                 {
-                    BOOL bValue = xmlUtils::bGetBooleanValue((char*)key);
+                    BOOL bValue = xmlUtils::getBooleanValue((char*)key);
                     m_eFileMode = OVERWRITE_MODE;
                     if(bValue == TRUE)
                     {
@@ -385,7 +385,7 @@ INT tagLogInfo::nSetConfigData(xmlNodePtr pNodePtr)
                 xmlChar* key = xmlNodeListGetString(pNodePtr->doc, pNodePtr->xmlChildrenNode, 1);
                 if(NULL != key)
                 {
-                    m_bResetAbsTimeStamp = xmlUtils::bGetBooleanValue((char*)key);
+                    m_bResetAbsTimeStamp = xmlUtils::getBooleanValue((char*)key);
                     xmlFree(key);
                 }
             }

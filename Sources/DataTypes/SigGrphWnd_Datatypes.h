@@ -21,7 +21,7 @@
 
 #pragma once
 
-// Structure for Signal Graph Window interpreted data.
+/* Structure for Signal Graph Window interpreted data. */
 struct sSigValue
 {
     __int64 m_nRawValue;

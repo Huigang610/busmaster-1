@@ -113,7 +113,7 @@ void CMsgContainerJ1939::InitTimeParams(void)
 BOOL CMsgContainerJ1939::bTobeBlocked(STJ1939_MSG& sJ1939Data)
 {
     static SFRAMEINFO_BASIC_J1939 sBasicJ1939Info;
-    sBasicJ1939Info.m_dwPGN = sJ1939Data.m_sMsgProperties.m_uExtendedID.m_s29BitId.unGetPGN();
+    sBasicJ1939Info.pgn = sJ1939Data.m_sMsgProperties.m_uExtendedID.m_s29BitId.unGetPGN();
 
     EnterCriticalSection(&m_omCritSecFilter);
     BOOL bBlock = m_sFilterJ1939.bToBeBlocked(sBasicJ1939Info);
@@ -516,7 +516,7 @@ void CMsgContainerJ1939::vGetUpdatedCurrDataPtrArray(SMSGWNDHDRCOL& sHdrColStruc
 
     //Rest will always be same
     pomDataPtrArr[sHdrColStruct.m_byDLCPos]       = m_sOutFormattedData.m_acDataLen;
-    pomDataPtrArr[sHdrColStruct.m_byMsgTypePos]   = m_sOutFormattedData.m_acMsgType;
+    pomDataPtrArr[sHdrColStruct.messageTypePos]   = m_sOutFormattedData.m_acMsgType;
     pomDataPtrArr[sHdrColStruct.m_byRxTxPos]      = m_sOutFormattedData.m_acMsgDir;
     pomDataPtrArr[sHdrColStruct.m_byChannel]      = m_sOutFormattedData.m_acChannel;
     pomDataPtrArr[sHdrColStruct.m_byPriorityPos]  = m_sOutFormattedData.m_acPriority;

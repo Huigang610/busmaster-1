@@ -3324,7 +3324,7 @@ HRESULT CTSEditorChildFrame::SetConfigurationData(xmlNodePtr pXmlNode)
         if( NULL != pTempNode )
         {
             xmlNodePtr pNode = pTempNode->nodesetval->nodeTab[0]->children;
-            m_bQueryConfirm = xmlUtils::bGetBooleanValue((char*)xmlNodeListGetString(pNode->doc, pNode, 1));
+            m_bQueryConfirm = xmlUtils::getBooleanValue((char*)xmlNodeListGetString(pNode->doc, pNode, 1));
         }
 
         //Window PlaceMent

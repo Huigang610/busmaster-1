@@ -16,7 +16,7 @@ struct columnInfo
     std::string strId;
     int nOrder;
     int nWidth;
-    bool isVisble;
+    bool isVisible;
 };
 typedef std::map<std::string, columnInfo> ColumnInfoMap;
 typedef std::list<std::string> stringList;
@@ -539,16 +539,16 @@ public:
         }
         return nShowCmd;
     }
-    static BOOL bGetBooleanValue(char* pchBoolValue)
+    static bool getBooleanValue(char* pchBoolValue)
     {
-        BOOL bRetValue = TRUE;
+        bool bRetValue = TRUE;
         if ( NULL != pchBoolValue )
         {
             std::string strTemp = pchBoolValue;
 
             if(strTemp == "FALSE" || strTemp == "0")
             {
-                bRetValue = FALSE;
+                bRetValue = false;
             }
         }
         return bRetValue;
@@ -656,7 +656,7 @@ public:
                     xmlChar* key = xmlNodeListGetString(pNode->doc, pNode->xmlChildrenNode, 1);
                     if(NULL != key)
                     {
-                        Info.isVisble = (bool)bGetBooleanValue((char*)key);
+                        Info.isVisible = getBooleanValue((char*)key);
                         xmlFree(key);
                     }
                 }
@@ -665,7 +665,7 @@ public:
         }
         return nRetVal;
     }
-    static int parseColumnInfoNode(xmlNodePtr pNode, stringList& columnList, columnInfo& Info)
+    static int parseColumnInfoNode(xmlNodePtr pNode, stringList& columnList, columnInfo& /*Info*/)
     {
         int nRetVal = S_OK;
         if (columnList.size() <= 0 || pNode == NULL )

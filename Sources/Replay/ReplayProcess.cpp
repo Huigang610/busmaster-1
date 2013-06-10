@@ -373,35 +373,35 @@ void CReplayProcess::vFormatCANDataMsg(STCANDATA* pMsgCAN,
 {
     if (RX_FLAG == pMsgCAN->m_ucDataType)
     {
-        CurrDataCAN->m_eDrctn = DIR_RX;
+        CurrDataCAN->direction = DIR_RX;
     }
     else
     {
-        CurrDataCAN->m_eDrctn = DIR_TX;
+        CurrDataCAN->direction = DIR_TX;
     }
 
-    CurrDataCAN->m_eChannel = pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucChannel;
+    CurrDataCAN->channel = pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucChannel;
 
     if (pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucEXTENDED != 0)
     {
-        CurrDataCAN->m_byIDType = TYPE_ID_CAN_EXTENDED;
+        CurrDataCAN->idType = TYPE_ID_CAN_EXTENDED;
     }
     else
     {
-        CurrDataCAN->m_byIDType = TYPE_ID_CAN_STANDARD;
+        CurrDataCAN->idType = TYPE_ID_CAN_STANDARD;
     }
 
     if (pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucRTR == 0)
     {
-        CurrDataCAN->m_byMsgType =  TYPE_MSG_CAN_NON_RTR;
+        CurrDataCAN->messageType =  TYPE_MSG_CAN_NON_RTR;
     }
     else
     {
-        CurrDataCAN->m_byMsgType = TYPE_MSG_CAN_RTR;
+        CurrDataCAN->messageType = TYPE_MSG_CAN_RTR;
     }
 
 
-    CurrDataCAN->m_dwFrameID = pMsgCAN->m_uDataInfo.m_sCANMsg.m_unMsgID;
+    CurrDataCAN->frameId = pMsgCAN->m_uDataInfo.m_sCANMsg.m_unMsgID;
 }
 /*******************************************************************************
   Function Name  : bOpenReplayFile
@@ -840,11 +840,11 @@ BOOL CReplayProcess::bMessageTobeBlocked( SFRAMEINFO_BASIC_CAN& sBasicCanInfo )
     {
         bReturn = FALSE;
     }
-    else if(m_ouReplayFile.m_ouReplayMsgType == DIR_RX && sBasicCanInfo.m_eDrctn == DIR_RX)
+    else if(m_ouReplayFile.m_ouReplayMsgType == DIR_RX && sBasicCanInfo.direction == DIR_RX)
     {
         bReturn = FALSE;
     }
-    else if(m_ouReplayFile.m_ouReplayMsgType == DIR_TX && sBasicCanInfo.m_eDrctn == DIR_TX)
+    else if(m_ouReplayFile.m_ouReplayMsgType == DIR_TX && sBasicCanInfo.direction == DIR_TX)
     {
         bReturn = FALSE;
     }

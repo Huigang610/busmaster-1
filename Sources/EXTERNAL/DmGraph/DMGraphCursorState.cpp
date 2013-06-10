@@ -1,73 +1,38 @@
-/*******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  CGCtrlStateMachine.cpp
-  Description   :  
-  $Log:   X:/Archive/Sources/CGCtrl/CGCtrlStateMachine.cpv  $
-   
-      Rev 1.1   15 Apr 2011 19:29:16   rac2kor
-   Inserted RBEI Copyright information text into the file header.
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-  Author(s)     :  
-  Date Created  :  
-  Modified By   :  
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-*******************************************************************************/
+/**
+ * @file      CGCtrlStateMachine.cpp
+ * @author    Raja N
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ */
 
+/* Project includes */
 #include "stdafx.h"
 #include ".\DMGraphCursorState.h"
 
-
-/******************************************************************************
-    Function Name    :  eGetCurrState
-    Input(s)         :  -
-    Output           :  -
-    Functionality    :  Constructor
-    Member of        :  CDMGraphCursorState    
-    Author(s)        :  ArunKumar K
-    Date Created     :  20.12.2010
-******************************************************************************/
 CDMGraphCursorState::CDMGraphCursorState(void)
 {
 	m_eCursorState = NO_GRAPH_DRAWN;
 }
 
-
-/******************************************************************************
-    Function Name    :  ~CCGCtrlStateMachine
-    Input(s)         :  -
-    Output           :  -
-    Functionality    :  Destructor
-    Member of        :  CDMGraphCursorState    
-    Author(s)        :  ArunKumar K
-    Date Created     :  20.12.2010
-******************************************************************************/
-CDMGraphCursorState::~CDMGraphCursorState(void)
-{
-}
-
-/******************************************************************************
-    Function Name    :  eGetCurrState
-    Input(s)         :  -
-    Output           :  EDMGRAPHCURSORSTATE
-    Functionality    :  Gets the current state of the cursor display.
-    Member of        :  CDMGraphCursorState    
-    Author(s)        :  ArunKumar K
-    Date Created     :  20.12.2010
-******************************************************************************/
 EDMGRAPHCURSORSTATE CDMGraphCursorState::eGetCurrState(void)
 {
 	return m_eCursorState;
 }
 
-/******************************************************************************
-    Function Name    :  eApplyEvents
-    Input(s)         :  EDMGRAPHEVENT eEvent
-    Output           :  EDMGRAPHCURSORSTATE
-    Functionality    :  Modifies the cursor state depending on input event type.
-    Member of        :  CDMGraphCursorState    
-    Author(s)        :  ArunKumar K
-    Date Created     :  20.12.2010
-******************************************************************************/
 EDMGRAPHCURSORSTATE CDMGraphCursorState::eApplyEvents(EDMGRAPHEVENT eEvent)
 {
 	if(eEvent == ADDED_GRAPH_ELEM)
@@ -93,17 +58,4 @@ EDMGRAPHCURSORSTATE CDMGraphCursorState::eApplyEvents(EDMGRAPHEVENT eEvent)
 	}
 
 	return m_eCursorState;
-}
-
-/******************************************************************************
-    Function Name    :  vReset
-    Input(s)         :  -
-    Output           :  -
-    Functionality    :  Resets the cursor state.
-    Member of        :  CDMGraphCursorState    
-    Author(s)        :  ArunKumar K
-    Date Created     :  20.12.2010
-******************************************************************************/
-void CDMGraphCursorState::vReset(void)
-{
 }

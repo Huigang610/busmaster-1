@@ -2894,11 +2894,11 @@ static void vPopulateFilterCan(SFILTER_CAN& Dest, const SFILTER_OLD& Src)
 
     if (Src.m_ucChannel == 0)
     {
-        Dest.m_eChannel = CAN_CHANNEL_ALL;
+        Dest.channel = CAN_CHANNEL_ALL;
     }
     else if ((Src.m_ucChannel >= 1) && (Src.m_ucChannel <= 2))
     {
-        Dest.m_eChannel = Src.m_ucChannel;
+        Dest.channel = Src.m_ucChannel;
     }
     else
     {
@@ -2909,17 +2909,17 @@ static void vPopulateFilterCan(SFILTER_CAN& Dest, const SFILTER_OLD& Src)
     {
         case 0:
         {
-            Dest.m_eDrctn = DIR_RX;
+            Dest.direction = DIR_RX;
         }
         break;
         case 1:
         {
-            Dest.m_eDrctn = DIR_TX;
+            Dest.direction = DIR_TX;
         }
         break;
         case 2:
         {
-            Dest.m_eDrctn = DIR_ALL;
+            Dest.direction = DIR_ALL;
         }
         break;
         default:
@@ -2934,17 +2934,17 @@ static void vPopulateFilterCan(SFILTER_CAN& Dest, const SFILTER_OLD& Src)
     {
         case 0:
         {
-            Dest.m_byMsgType = TYPE_MSG_CAN_NON_RTR;
+            Dest.messageType = TYPE_MSG_CAN_NON_RTR;
         }
         break;
         case 1:
         {
-            Dest.m_byMsgType = TYPE_MSG_CAN_RTR;
+            Dest.messageType = TYPE_MSG_CAN_RTR;
         }
         break;
         case 2:
         {
-            Dest.m_byMsgType = TYPE_MSG_CAN_ALL;
+            Dest.messageType = TYPE_MSG_CAN_ALL;
         }
         break;
         default:
@@ -2958,17 +2958,17 @@ static void vPopulateFilterCan(SFILTER_CAN& Dest, const SFILTER_OLD& Src)
     {
         case 0:
         {
-            Dest.m_byIDType = TYPE_ID_CAN_STANDARD;
+            Dest.idType = TYPE_ID_CAN_STANDARD;
         }
         break;
         case 1:
         {
-            Dest.m_byIDType = TYPE_ID_CAN_EXTENDED;
+            Dest.idType = TYPE_ID_CAN_EXTENDED;
         }
         break;
         case 2:
         {
-            Dest.m_byIDType = TYPE_ID_CAN_ALL;
+            Dest.idType = TYPE_ID_CAN_ALL;
         }
         break;
         default:
@@ -3028,10 +3028,10 @@ static BOOL bLoadFilterDets(CArchive& romArchive, SFILTERAPPLIED_CAN& sFilterCon
         // Get Filter Name
         CString omStrFilterName = STR_EMPTY;
         romArchive >> omStrFilterName;
-        strcpy_s(sFilterConfigured.m_psFilters[nIndex].m_sFilterName.m_acFilterName, LENGTH_FILTERNAME,
+        strcpy_s(sFilterConfigured.m_psFilters[nIndex].m_sFilterName.filterName, LENGTH_FILTERNAME,
                  omStrFilterName.GetBuffer(LENGTH_FILTERNAME));
         // Read Filter Type first
-        romArchive >> sFilterConfigured.m_psFilters[nIndex].m_sFilterName.m_bFilterType;
+        romArchive >> sFilterConfigured.m_psFilters[nIndex].m_sFilterName.filterType;
         // Serialize filter array
         CArray<SFILTER_OLD, SFILTER_OLD&> omFilterList;
         omFilterList.Serialize( romArchive );

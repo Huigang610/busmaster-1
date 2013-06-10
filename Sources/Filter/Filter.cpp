@@ -193,8 +193,8 @@ static INT nGetFilterIndexInSrc(SFILTERSET& DestSet, const SFILTERAPPLIED_CAN& s
     UINT SrcCount = sSrcFilter.m_ushTotal;
     for (UINT i = 0; i < SrcCount; i++)
     {
-        if (_tcscmp(DestSet.m_sFilterName.m_acFilterName,
-                    sSrcFilter.m_psFilters[i].m_sFilterName.m_acFilterName) == 0)
+        if (_tcscmp(DestSet.m_sFilterName.filterName,
+                    sSrcFilter.m_psFilters[i].m_sFilterName.filterName) == 0)
         {
             nIndex = i;
             break;

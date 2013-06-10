@@ -1443,8 +1443,8 @@ void CFnsTreeView::vOnNewTimerHandler()
         omStrFooter.Replace( "PLACE_HOLDER_FOR_FUNCTIONNAME",
                              od_Dlg.m_omStrTimerFunctionName );
 
-        od_Dlg.vSetTimerEdited(FALSE); //New timer is created //KSS
-        od_Dlg.m_omStrCurrentTimerName = ""; //KSS
+        od_Dlg.vSetTimerEdited(FALSE); //New timer is created
+        od_Dlg.m_omStrCurrentTimerName = "";
 
         if ( pDoc != NULL )
         {
@@ -1527,8 +1527,8 @@ void CFnsTreeView::vEditTimerHandler(HTREEITEM hItem)
         od_Dlg.m_unEditTimerValue = StrToInt(omStrTimerVal);
         CString omOldFuncProtoType =
             omStrVariable.Mid(nSpaceIndex+1, nParanthesisIndex-nSpaceIndex-1);
-        od_Dlg.vSetTimerEdited(TRUE); //Edit timer is invoked //KSS
-        od_Dlg.m_omStrCurrentTimerName = omOldFuncProtoType; //KSS
+        od_Dlg.vSetTimerEdited(TRUE); //Edit timer is invoked
+        od_Dlg.m_omStrCurrentTimerName = omOldFuncProtoType;
 
         if (od_Dlg.DoModal() == IDOK)
         {
@@ -1746,7 +1746,7 @@ void CFnsTreeView::vOnNewKeyHandler()
             }
         }
     }
-    delete [] pcCharacter; //KSS
+    delete [] pcCharacter;
     pcCharacter = NULL;
 }
 void CFnsTreeView::vOnNewEventHandler()

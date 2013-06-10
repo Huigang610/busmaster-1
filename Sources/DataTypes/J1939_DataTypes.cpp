@@ -1,36 +1,28 @@
-/******************************************************************************
-  Project       :  Auto-SAT_Tools
-  FileName      :  DataTypes_J1939.cpp
-  Description   :
-  $Log:   X:/Archive/Sources/DataTypes/J1939_DataTypes.cpv  $
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-      Rev 1.5   15 Apr 2011 18:55:06   rac2kor
-   Inserted RBEI Copyright information text into the file header.
+/**
+ * @file      J1939_Datatypes.cpp
+ * @brief     Definition file for J1939 data types.
+ * @author    Pradeep Kadoor
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ *
+ * Definition file for J1939 data types.
+ */
 
-      Rev 1.4   04 Mar 2011 17:30:38   CANMNTTM
-   Updated to solve the issues in J1939 MsgWnd:
-   1. Sorting issues in J1939 Msg Wnd.
-   2. Problem with J1939 messages with DLC > 150.
-
-      Rev 1.3   18 Feb 2011 12:06:46   CANMNTTM
-   Updated to suite multiple message windows for buses.
-
-      Rev 1.2   14 Dec 2010 17:52:16   CANMNTTM
-   Added a member function vSetPGN for STRUCT_29_BIT_ID.
-
-
-      Rev 1.1   13 Dec 2010 21:21:46   rac2kor
-   1. Added a data member for message type in SFORMATTEDATA_J1939
-   2. Added a helper function to get the associated text for a type.
-
-      Rev 1.0   06 Dec 2010 18:34:32   rac2kor
-
-
-  Author(s)     :  Pradeep Kadoor
-  Date Created  :  23/11/2010
-  Modified By   :
-  Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
-******************************************************************************/
+/* Project includes */
 #include "Datatypes_stdafx.h"
 #include "Include/BaseDefs.h"
 #include "Include/Utils_Macro.h"

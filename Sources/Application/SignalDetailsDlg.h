@@ -114,8 +114,8 @@ private:
     BOOL bIsEditMinMaxValueValid();
     BOOL bIsMaximumValueValid();
     BOOL bIsMinimumValueValid();
-    BOOL bIsDataModified(); //KSS
-    void vSetInitialData(); //KSS
+    BOOL bIsDataModified();
+    void vSetInitialData();
     BOOL SaveSigLength();   //added to save length and calculate range of data
 
     CString m_omStrSgType;
@@ -134,7 +134,6 @@ private:
     BOOL m_bNameChanged;
     afx_msg void OnBnClickedRadioIntel();
     afx_msg void OnBnClickedRadioMotorola();
-    //KSS
     // Member variables to store the intial values for omparison later
     int     m_nDataFormatInitial;
     UINT    m_unSgLenInitial;
@@ -147,5 +146,4 @@ private:
     CString m_omStrOffsetInitial;
     CString m_omStrScaleInitial;
     CString m_omStrSgTypeInitial;
-    //KSS
 };

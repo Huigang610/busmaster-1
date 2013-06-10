@@ -115,31 +115,31 @@ void CFormatMsgCAN::vFormatCANDataMsg(STCANDATA* pMsgCAN,
         ASSERT(FALSE);
     }
 
-    CurrDataCAN->m_eChannel = pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucChannel;
-    if ((CurrDataCAN->m_eChannel >= CHANNEL_CAN_MIN) && (CurrDataCAN->m_eChannel <= CHANNEL_CAN_MAX ))
+    CurrDataCAN->channel = pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucChannel;
+    if ((CurrDataCAN->channel >= CHANNEL_CAN_MIN) && (CurrDataCAN->channel <= CHANNEL_CAN_MAX ))
     {
-        _stprintf(CurrDataCAN->m_acChannel, "%d", CurrDataCAN->m_eChannel);
+        _stprintf(CurrDataCAN->m_acChannel, "%d", CurrDataCAN->channel);
     }
 
     if (pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucEXTENDED != 0)
     {
-        CurrDataCAN->m_byIDType = TYPE_ID_CAN_EXTENDED;
+        CurrDataCAN->idType = TYPE_ID_CAN_EXTENDED;
         CurrDataCAN->m_acType[0] = L'x';
     }
     else
     {
-        CurrDataCAN->m_byIDType = TYPE_ID_CAN_STANDARD;
+        CurrDataCAN->idType = TYPE_ID_CAN_STANDARD;
         CurrDataCAN->m_acType[0] = L's';
     }
 
     if (pMsgCAN->m_uDataInfo.m_sCANMsg.m_ucRTR != 0)
     {
-        CurrDataCAN->m_byMsgType = TYPE_MSG_CAN_RTR;
+        CurrDataCAN->messageType = TYPE_MSG_CAN_RTR;
         CurrDataCAN->m_acType[1] = L'r';
     }
     else
     {
-        CurrDataCAN->m_byMsgType = TYPE_MSG_CAN_NON_RTR;
+        CurrDataCAN->messageType = TYPE_MSG_CAN_NON_RTR;
         CurrDataCAN->m_acType[1] = L'\0';
     }
 

@@ -513,7 +513,7 @@ typedef ETXMSGVIEWTYPE* PETXMSGVIEWTYPE;
 struct tagNamedFilter
 {
     CArray<SFILTER_CAN,SFILTER_CAN> m_omFilterList; // List of Filters
-    BOOL                    m_bFilterType;  // Filter Type 0 - Stop, 1 for Pass
+    BOOL                    filterType;  // Filter Type 0 - Stop, 1 for Pass
 };
 
 typedef tagNamedFilter  sNamedFilter;

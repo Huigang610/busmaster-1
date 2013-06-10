@@ -78,5 +78,5 @@ private:
     CString m_omStrMessageCode;
     BOOL m_bIsCanceled;
     INT m_nIndex;
-    BOOL bIsDataModified(); //KSS
+    BOOL bIsDataModified();
 };
