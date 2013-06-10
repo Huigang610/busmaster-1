@@ -65,7 +65,7 @@ CSignal::~CSignal()
  *
  * Copies the contents of signal into the local object.
  */
-CSignal& CSignal::operator=(CSignal& signal)
+CSignal& CSignal::operator=(const CSignal& signal)
 {
     // copy all the data members except the list
     m_sName = signal.m_sName;

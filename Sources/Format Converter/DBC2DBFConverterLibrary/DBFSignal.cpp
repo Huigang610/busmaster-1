@@ -92,7 +92,7 @@ CSignal::~CSignal()
  * list and copy contents of the argument's list to this signal. The rest of the
  * members are copied by value
  */
-CSignal& CSignal::operator=(CSignal& signal)
+CSignal& CSignal::operator=(const CSignal& signal)
 {
     m_listValueDescriptor.clear(); // clear the list first
     // copy all the data members except the list
