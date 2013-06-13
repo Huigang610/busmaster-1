@@ -76,7 +76,7 @@ public:
     // Copy the defined waveform signal list data structure
     void GetSigGenerationInfoList(CSigGenerationInfoList& Target);
     //Set Complete list of messages.
-    void vSetCompleteMsgList(CMainEntryList* podMsgIDList);
+    void vSetCompleteMsgList(SignalWatchListMainEntries* podMsgIDList);
 
     //Get Sampling Time Period.
     short shGetSamplingTimePeriod();
@@ -102,7 +102,7 @@ private:
     CSigGenerationInfoList m_lstTempSignalWaveformInfo;
     sWaveformInfo m_sDefaultWaveInfo;
     CStringArray m_omMsgIDList;
-    CMainEntryList* m_podMsgEntyList;
+    SignalWatchListMainEntries* m_podMsgEntyList;
     short m_shSamplingTP;
 
     // Given the waveform code, this returns the waveform name string

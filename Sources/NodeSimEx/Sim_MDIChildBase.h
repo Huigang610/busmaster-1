@@ -24,50 +24,36 @@
 
 #pragma once
 
+/* Project includes */
 #include "Hashdefines.h"
+
 #define eCONFIGDETAILS int
 
 class CMDIChildBase : public CMDIChildWnd
 {
     DECLARE_DYNCREATE(CMDIChildBase)
+	DECLARE_MESSAGE_MAP()
+
 public:
     // Constructor with Window Identity
     CMDIChildBase(eACONFIGDETAILS eWindowIdentity);
     // Default constructor
     CMDIChildBase();
-    virtual ~CMDIChildBase();
     // To Update window with co-ordinates from Configuration module
     void vUpdateWndCo_Ords();
     // To save window co-ordinates in to Configuration module
     void vUpdateWinStatus();
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CMDIChildBase)
-    //}}AFX_VIRTUAL
 
-    // Implementation
 protected:
     // helping function to Save and loading window postion from
     // configuration module
     void vSaveWinStatus();
     void vGetWinStatus( );
-    // Generated message map functions
-    //{{AFX_MSG(CMDIChildBase)
     afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
 
-    // Attributes
-    // Make members as protected so that derivation of this class shall use
-    // if it wants
     // Window placement Attribute
     WINDOWPLACEMENT m_sWindowPlacement;
     // Set the window identity parameter
     eCONFIGDETAILS  m_eWindowIdentity;
 };
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

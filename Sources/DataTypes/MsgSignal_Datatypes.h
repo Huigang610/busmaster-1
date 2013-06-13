@@ -27,7 +27,9 @@
 /* Project includes */
 #include "Include/BaseDefs.h"
 
-//DB params
+/**
+ * Database parameters
+ */
 typedef struct _tagDBPARAMS
 {
     ETYPE_BUS   m_eBus;
@@ -74,14 +76,12 @@ struct sINTERPRETSIGNALINFO
         m_omStrUnit(""),
         m_ucSigLength(0)
     {
-        // Do Additional Init here
     }
 };
 
 typedef sINTERPRETSIGNALINFO SINTERPRETSIGNALINFO;
 typedef SINTERPRETSIGNALINFO* PINTERPRETSIGNALINFO;
 typedef CArray<SINTERPRETSIGNALINFO,SINTERPRETSIGNALINFO> CSignalInfoArray;
-
 
 typedef union _SIG_VALUE
 {
@@ -97,19 +97,35 @@ public:
     CSignalDescVal& operator=(const CSignalDescVal& RefObj);
     void vClearNext(void);
 
-    CString m_omStrSignalDescriptor;                // Name of the Signal ID
-    SIG_VALUE m_DescValue;
-    CSignalDescVal* m_pouNextSignalSignalDescVal;   // Next Signal desc and value
+	/**
+	 * Name of the Signal ID
+	 */
+    CString m_omStrSignalDescriptor;
+    
+	SIG_VALUE m_DescValue;
+    
+	/**
+	 * Next Signal desc and value
+	 */
+	CSignalDescVal* m_pouNextSignalSignalDescVal;
 };
-
 
 struct sWaveformInfo
 {
     eWAVEFORMTYPE m_eSignalWaveType;
-    float m_fAmplitude;   // Maximum amplitude
-    float m_fFrequency;
-    float m_fGranularity; // Of each time amplitude calculation. Value depends
-    // on the sampling frequency.
+	
+	/**
+	 * Maximum amplitude
+	 */
+    float m_fAmplitude;
+    
+	float m_fFrequency;
+    
+	/**
+	 * Of each time amplitude calculation. Value depends
+	 * on the sampling frequency.
+	 */
+	float m_fGranularity;
 
     sWaveformInfo();
 
@@ -148,42 +164,120 @@ typedef CList<SSigGeneration, SSigGeneration&> CSigGenerationInfoList;
 
 struct sSIGNALS
 {
-    CString m_omStrSignalName;      // Signal Name
-    UINT    m_unStartByte;          // Signal definition start byte in Msg, Zero index
-    UINT    m_unSignalLength;       // Signal Length, One indexed
-    BYTE    m_byStartBit;           // Signal start bit, Zero indexed
-    BYTE    m_bySignalType;         // Signal Type
+	/**
+	 * Signal Name
+	 */
+    CString m_omStrSignalName;
+
+	/**
+	 * Signal definition start byte in Msg, Zero index
+	 */
+    UINT m_unStartByte;
+
+	/**
+	 * Signal Length, One indexed
+	 */
+    UINT m_unSignalLength;
+
+	/**
+	 * Signal start bit, Zero indexed
+	 */
+    BYTE m_byStartBit;
+
+	/**
+	 * Signal Type
+	 */
+    BYTE m_bySignalType;
 
     SIG_VALUE m_SignalMinValue;
-    SIG_VALUE m_SignalMaxValue;
 
-    float       m_fSignalFactor;    // Signal Multiplication Factor
-    float       m_fSignalOffset;    // Signal Offset value.
-    CString m_omStrSignalUnit;      // Signal Measurement Unit
-    EFORMAT_DATA m_eFormat;         // Signal endianness.
+	SIG_VALUE m_SignalMaxValue;
 
-    CSignalDescVal*  m_oSignalIDVal;// Signal Type ID and value List
-    sSIGNALS* m_psNextSignalList;   // Next Signal
+	/**
+	 * Signal Multiplication Factor
+	 */
+    float m_fSignalFactor;
 
-    // Call this function to set the data bits of a signal with the given value
+	/**
+	 * Signal Offset value.
+	 */
+    float m_fSignalOffset;
+
+	/**
+	 * Signal Measurement Unit
+	 */
+    CString m_omStrSignalUnit;
+
+	/**
+	 * Signal endianness.
+	 */
+    EFORMAT_DATA m_eFormat;
+
+	/**
+	 * Signal Type ID and value List
+	 */
+    CSignalDescVal* m_oSignalIDVal;
+
+	/**
+	 * Next Signal
+	 */
+    sSIGNALS* m_psNextSignalList;
+
+    /**
+	 * Call this function to set the data bits of a signal with the given value
+	 */
     static void vSetSignalValue(sSIGNALS* pouCurrSignal, UCHAR aucData[8],
                                 UINT64 u64SignVal);
-    // Call this function to get the bit mask for a signal. In a bit mask all
-    // bits petaining to but this signal is 0.
+    
+	/**
+	 * Call this function to get the bit mask for a signal. In a bit mask all
+	 * bits petaining to but this signal is 0.
+	 */
     static UINT64 un64GetBitMask(sSIGNALS* pouCurrSignal);
 };
 
 
 struct sMESSAGE
 {
-    CString m_omStrMessageName; // Message Name
-    UINT m_unMessageCode;       // Message Code
-    UINT m_unNumberOfSignals;   // Number Of Signals a Message has
-    UINT m_unMessageLength;     // Message Length
-    BOOL m_bMessageFrameFormat; // Message Frame Format
-    sSIGNALS* m_psSignals;      // Signal associated with Message
-    BYTE m_bySignalMatrix[1785];   // Matrix to validate overlapping signals
-    int m_nMsgDataFormat;       // 1-Intel, 0-Motorola
+	/**
+	 * Message Name
+	 */
+    CString m_omStrMessageName;
+
+	/**
+	 * Message Code
+	 */
+    UINT m_unMessageCode;
+
+	/**
+	 * Number Of Signals a Message has
+	 */
+    UINT m_unNumberOfSignals;
+
+	/**
+	 * Message Length
+	 */
+    UINT m_unMessageLength;
+
+	/**
+	 * Message Frame Format
+	 */
+    BOOL m_bMessageFrameFormat;
+
+	/**
+	 * Signal associated with Message
+	 */
+    sSIGNALS* m_psSignals;
+
+	/**
+	 * Matrix to validate overlapping signals
+	 */
+    BYTE m_bySignalMatrix[1785];
+
+	/**
+	 * 1-Intel, 0-Motorola
+	 */
+	int m_nMsgDataFormat;
 };
 
 typedef struct tagSSIGNALINFO
@@ -213,6 +307,4 @@ typedef struct tagSMSGENTRY
     static BOOL bUpdateMsgList(tagSMSGENTRY*& Root, sMESSAGE* psMsg);
     static sSIGNALS* psCopySignalList(sSIGNALS* psSignal);
     static BOOL bGetMsgPtrFromMsgId(const tagSMSGENTRY* psRoot,UINT unMsgId, sMESSAGE*& pMsg);
-
-
 } SMSGENTRY;

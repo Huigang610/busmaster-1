@@ -21,59 +21,44 @@
  *
  * This header file contains the defintion of class
  */
-/////////////////////////////////////////////////////////////////////////////
 
 #pragma once
 
+/* Project includes */
 #include "HashDefines.h"    // #define file
 #include "NodeSimEx_resource.h"
 
 class CEditFrameWnd : public CMDIChildWnd
 {
     DECLARE_DYNCREATE(CEditFrameWnd)
-private:
-    ETYPE_BUS m_eBus;
+    DECLARE_MESSAGE_MAP()
+
 public:
     CEditFrameWnd();
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CEditFrameWnd)
-public:
     virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
     virtual void ActivateFrame(int nCmdShow);
+
+    static ETYPE_BUS sm_eBus;
+
 protected:
     virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
-    //}}AFX_VIRTUAL
     void vCalculateSplitterPos(CSize&);
     virtual ~CEditFrameWnd();
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
-    // Generated message map functions
-protected:
-    //{{AFX_MSG(CEditFrameWnd)
-    // NOTE - the ClassWizard will add and remove member functions here.
-    //    DO NOT EDIT what you see in these blocks of generated code!
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-
 private:
+    ETYPE_BUS m_eBus;
+
     // Horizontal splitter
     CSplitterWnd m_omSplitterWndTwo;
     // Vertical splitter
     CSplitterWnd m_omSplitterWndOne;
     // Flag for successfull spliter creation
     BOOL m_bIsSplitterCreated;
-public:
-    static ETYPE_BUS sm_eBus;
-    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 };
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

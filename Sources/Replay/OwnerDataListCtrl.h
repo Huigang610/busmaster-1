@@ -24,6 +24,7 @@
 
 #pragma once
 
+/* Project includes */
 #include "Utility/FFListCtrl.h" // For flicker free list class
 
 #define WM_OWNER_GET_DATA         WM_USER + 151
@@ -31,34 +32,10 @@
 
 class COwnerDataListCtrl : public CFFListCtrl
 {
-    // Construction
-public:
-    COwnerDataListCtrl();
-    // Attributes
-public:
+    DECLARE_MESSAGE_MAP()
 
-    // Operations
-public:
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(COwnerDataListCtrl)
-    //}}AFX_VIRTUAL
-
-    // Implementation
-public:
-    virtual ~COwnerDataListCtrl();
-
-    // Generated message map functions
 protected:
-    //{{AFX_MSG(COwnerDataListCtrl)
     afx_msg void OnGetdispinfo(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
-    //}}AFX_MSG
-
-    DECLARE_MESSAGE_MAP()
-private:
-    // Methods
-    // Data
 };

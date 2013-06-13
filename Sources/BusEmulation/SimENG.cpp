@@ -140,13 +140,13 @@ DWORD WINAPI MsgDelegatingThread(LPVOID pParam)
             case INVOKE_FUNCTION:
             {
                 // Retrieve message from the circular buffer
-                while (sg_MessageBuf.GetMsgCount() > 0)
+                while (sg_MessageBuf.getMessageCount() > 0)
                 {
                     EnterCriticalSection(&sg_CriticalSection);
 
                     BYTE* pbCurrEntry = sg_pbEntry2;
                     INT CurrLength = sg_nEntryLen2;
-                    sg_MessageBuf.ReadFromBuffer(Type, pbCurrEntry, CurrLength);
+                    sg_MessageBuf.readFromBuffer(Type, pbCurrEntry, CurrLength);
 
                     // Save the sender id for reference
                     memcpy(&TimeStamp, pbCurrEntry + 1, SIZE_TIMESTAMP);
@@ -236,7 +236,7 @@ DWORD WINAPI MsgDelegatingThread(LPVOID pParam)
     CurrMsgDat.stcStatusMsg.controllerStatus = (sg_ClientMap.size() > 1) ?
                                                 NORMAL_ACTIVE : NORMAL_PASSIVE;
 
-    sg_MessageBuf.WriteIntoBuffer(&CurrMsgDat);
+    sg_MessageBuf.writeIntoBuffer(&CurrMsgDat);
 }*/
 
 static void vCreateTimeModeMapping()
@@ -283,7 +283,7 @@ HRESULT CSimENG::FinalConstruct()
 
     // To create the worker thread that relays messages to other nodes
     // First initialise the parameters
-    sg_sThreadCtrlObj.m_hActionEvent = sg_MessageBuf.hGetNotifyingEvent();
+    sg_sThreadCtrlObj.m_hActionEvent = sg_MessageBuf.getNotifyEvent();
     sg_sThreadCtrlObj.m_pBuffer = &sg_MessageBuf;
     sg_sThreadCtrlObj.m_unActionCode = INVOKE_FUNCTION;
 
@@ -355,7 +355,7 @@ STDMETHODIMP CSimENG::SendMessage(USHORT ClientID, USHORT CurrDataLength,
             memcpy(pbFrame + 1 + SIZE_TIMESTAMP, pbCurrDataByte, CurrDataLength);
 
             // Add to the internal buffer
-            sg_MessageBuf.WriteIntoBuffer(itr->second.m_nBus, pbFrame, TotalLength);
+            sg_MessageBuf.writeIntoBuffer(itr->second.m_nBus, pbFrame, TotalLength);
 
             LeaveCriticalSection(&sg_CSMsgEntry);
 

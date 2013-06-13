@@ -21,23 +21,18 @@
  *
  * This header file contains the defintion of class
  */
+
 #pragma once
-
-
-// CAlphanumiricEdit
 
 class CAlphanumiricEdit : public CEdit
 {
     DECLARE_DYNAMIC(CAlphanumiricEdit)
+    DECLARE_MESSAGE_MAP()
 
 public:
     CAlphanumiricEdit();
     virtual ~CAlphanumiricEdit();
 
 protected:
-    DECLARE_MESSAGE_MAP()
-public:
     afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
-
-

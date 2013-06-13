@@ -39,12 +39,12 @@ Modifications  :
 int ReadTSXDataBuffer(CTSExecutionCAN* pTSXCan)
 {
     ASSERT(pTSXCan != NULL);
-    while (pTSXCan->m_ouCanBufFSE.GetMsgCount() > 0)
+    while (pTSXCan->m_ouCanBufFSE.getMessageCount() > 0)
     {
         static STCANDATA sCanData;
 
         sCanData.m_lTickCount.QuadPart;
-        int Result = pTSXCan->m_ouCanBufFSE.ReadFromBuffer(&sCanData);
+        int Result = pTSXCan->m_ouCanBufFSE.readFromBuffer(&sCanData);
         if (Result == ERR_READ_MEMORY_SHORT)
         {
             TRACE("ERR_READ_MEMORY_SHORT");
@@ -56,7 +56,7 @@ int ReadTSXDataBuffer(CTSExecutionCAN* pTSXCan)
         else
         {
             INT nIndex;
-            pTSXCan->m_ouCanBufVFSE.WriteIntoBuffer(&sCanData, sCanData.m_uDataInfo.m_sCANMsg.m_unMsgID, nIndex);
+            pTSXCan->m_ouCanBufVFSE.writeIntoBuffer(&sCanData, sCanData.m_uDataInfo.m_sCANMsg.m_unMsgID, nIndex);
         }
     }
     return 0;
@@ -124,12 +124,12 @@ HRESULT VerifyCurrentMessage(STCANDATA& sCanData, CTSExecutionCAN* pTSXCan)
 int ReadVerifyTSXDataBuffer(CTSExecutionCAN* pTSXCan)
 {
     ASSERT(pTSXCan != NULL);
-    while (pTSXCan->m_ouCanBufFSE.GetMsgCount() > 0)
+    while (pTSXCan->m_ouCanBufFSE.getMessageCount() > 0)
     {
         static STCANDATA sCanData;
 
         sCanData.m_lTickCount.QuadPart;
-        int Result = pTSXCan->m_ouCanBufFSE.ReadFromBuffer(&sCanData);
+        int Result = pTSXCan->m_ouCanBufFSE.readFromBuffer(&sCanData);
         if (Result == ERR_READ_MEMORY_SHORT)
         {
             TRACE("ERR_READ_MEMORY_SHORT");
@@ -141,7 +141,7 @@ int ReadVerifyTSXDataBuffer(CTSExecutionCAN* pTSXCan)
         else
         {
             INT nIndex;
-            pTSXCan->m_ouCanBufVFSE.WriteIntoBuffer(&sCanData, sCanData.m_uDataInfo.m_sCANMsg.m_unMsgID, nIndex);
+            pTSXCan->m_ouCanBufVFSE.writeIntoBuffer(&sCanData, sCanData.m_uDataInfo.m_sCANMsg.m_unMsgID, nIndex);
         }
         if(IS_RX_MESSAGE(sCanData.m_ucDataType))
         {
@@ -229,7 +229,7 @@ Modifications  :
 ******************************************************************************/
 CTSExecutionCAN::CTSExecutionCAN(void)
 {
-    m_ouReadThread.m_hActionEvent = m_ouCanBufFSE.hGetNotifyingEvent();
+    m_ouReadThread.m_hActionEvent = m_ouCanBufFSE.getNotifyEvent();
     InitializeCriticalSection(&m_omCritSecTS);
     m_pCurrentVerify= NULL;
     m_ouVerifyEvent.ResetEvent();
@@ -252,7 +252,7 @@ Modifications  :
 CTSExecutionCAN::~CTSExecutionCAN(void)
 {
     m_ouReadThread.bTerminateThread();      // Terminate read thread
-    m_ouCanBufVFSE.vClearMessageBuffer();    // clear can buffer
+    m_ouCanBufVFSE.clearMessageBuffer();    // clear can buffer
 }
 
 /******************************************************************************
@@ -297,7 +297,7 @@ HRESULT CTSExecutionCAN::TSX_bStartStopReadThread(BOOL bStart)
     {
         //First stop the thread if running
         m_ouReadThread.m_pBuffer = this;
-        m_ouReadThread.m_hActionEvent = m_ouCanBufFSE.hGetNotifyingEvent();
+        m_ouReadThread.m_hActionEvent = m_ouCanBufFSE.getNotifyEvent();
         m_ouReadThread.bStartThread(TSDataReadThreadProc);
         TSX_Reset();
     }
@@ -318,7 +318,7 @@ Modifications  :
 ******************************************************************************/
 HRESULT CTSExecutionCAN::TSX_Reset(void)
 {
-    m_ouCanBufVFSE.vClearMessageBuffer();
+    m_ouCanBufVFSE.clearMessageBuffer();
     return S_OK;
 }
 
@@ -424,7 +424,7 @@ HRESULT CTSExecutionCAN::TSX_VerifyMessage(CBaseEntityTA* pEntity, CResultVerify
         pEntity->GetSubEntityObj(j, &pVerifyEntity);
         pVerifyEntity->GetEntityData(VERIFY_MESSAGE, &ouVerifyData);
 
-        if(m_ouCanBufVFSE.ReadFromBuffer(&sCanData, (__int64)ouVerifyData.m_dwMessageID)==0)
+        if(m_ouCanBufVFSE.readFromBuffer(&sCanData, (__int64)ouVerifyData.m_dwMessageID)==0)
         {
             pucData = new UCHAR[sCanData.m_uDataInfo.m_sCANMsg.m_ucDataLen];
             memcpy(pucData, &sCanData.m_uDataInfo.m_sCANMsg.m_ucData, sCanData.m_uDataInfo.m_sCANMsg.m_ucDataLen);

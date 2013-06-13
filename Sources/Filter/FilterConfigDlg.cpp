@@ -66,10 +66,6 @@ CFilterConfigDlg::CFilterConfigDlg( SFILTERAPPLIED_CAN* psSrcList,
     m_psMsgSignal(pMsgDBDetails)
 
 {
-
-    //{{AFX_DATA_INIT(CFilterConfigDlg)
-    //}}AFX_DATA_INIT
-
     m_bDisableFilterCompUpdate = FALSE;
     m_bUpdating = FALSE;
 
@@ -91,7 +87,6 @@ CFilterConfigDlg::CFilterConfigDlg( SFILTERAPPLIED_CAN* psSrcList,
 void CFilterConfigDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CFilterConfigDlg)
     DDX_Control(pDX, IDC_BTN_ADD_FILTER_TO_LIST, m_omAddFilter);
     DDX_Control(pDX, IDC_STAT_STATUS, m_omStatusText);
     DDX_Control(pDX, IDC_EDIT_RANGE_TO, m_omMsgIDRangeTo);
@@ -104,12 +99,9 @@ void CFilterConfigDlg::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_COMB_MSG_ID_FROM, m_omMsgIDFrom);
     DDX_Control(pDX, IDC_LSTC_FILTER_DETAILS, m_omLstcFilterDetails);
     DDX_Control(pDX, IDC_LSTC_FILTER_NAMES, m_omLstcFilterList);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CFilterConfigDlg, CDialog)
-    //{{AFX_MSG_MAP(CFilterConfigDlg)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LSTC_FILTER_NAMES, OnItemchangedLstcFilterNames)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LSTC_FILTER_DETAILS, OnItemchangedLstcFilterDetails)
     ON_CBN_SELCHANGE(IDC_COMB_MSG_ID_FROM, OnSelchangeCombMsgIdFrom)
@@ -129,7 +121,6 @@ BEGIN_MESSAGE_MAP(CFilterConfigDlg, CDialog)
     ON_CBN_SELCHANGE(IDC_COMB_MSG_DIRECTION, OnSelchangeFilterComponentCombo)
     ON_CBN_SELCHANGE(IDC_COMB_MSG_CHANNEL, OnSelchangeFilterComponentCombo)
     ON_BN_CLICKED(ID_OK, OnOkPress)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /**

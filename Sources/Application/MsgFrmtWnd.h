@@ -19,6 +19,7 @@
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 #pragma once
+
 #include "RxMsgList.h"
 #include "include/BaseDefs.h"
 //#include "PSDIHandler.h"
@@ -60,10 +61,8 @@ typedef struct sMsgDispMapEntry
 class CMsgFrmtWnd : public CMDIChildWnd
 {
     DECLARE_DYNAMIC(CMsgFrmtWnd)
+    DECLARE_MESSAGE_MAP()
 
-protected:
-    CMsgFrmtWnd();
-    static CMenu NEAR menu;
 public:
     CMsgFrmtWnd(ETYPE_BUS eBusType);
     virtual ~CMsgFrmtWnd();
@@ -94,6 +93,73 @@ public:
     void vSetMsgDataBasePtr(void** ppvMsgDBPtr);
     void vSetDILInterfacePointer(void** ppvJ1939DIL);
     void vSetDefaultWindowPosition(CRect omrect);
+
+protected:
+    CMsgFrmtWnd();
+    static CMenu NEAR menu;
+
+    UINT m_unDispUpdateTimerId;
+
+    //List ctrl Msg Identifier(ID + TYPE + ...) to index in list control MAP
+    CMap<__int64, __int64, SMSGDISPMAPENTRY, SMSGDISPMAPENTRY> m_omMsgDispMap;
+    //Array of SMSGDISPMAPENTRY on overwrite display
+    std::vector<__int64> m_omMgsIndexVec;
+    BOOL m_bUpdate;
+
+    HWND m_hMainWnd;
+    //BOOL m_bLogON;
+    BOOL m_bSignalWatchON;
+    STCAN_MSG& m_sCurrEntry;
+    SERROR_INFO m_sErrorInfo;
+    CRxMsgList m_lstMsg;
+    ETYPE_BUS m_eBusType;
+    UINT m_nColCount;
+    CStringArray m_omArrColTitle;
+    //CHeaderCtrlEx m_wndHeader;
+    //CPSDIHandler m_ouPsdiHandler;
+    static CMsgFrmtWnd* pThisPtr[nMaxProtocol];
+    BYTE m_bExprnFlag_Disp; // expression flag for message display
+    int m_nField;
+    bool m_bAscending;
+    __int64* m_pExpandedMapIndexes;
+
+    WINDOWPLACEMENT m_sMsgIntrpWndPlacement;
+
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg LRESULT vNotificationFromOtherWin(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT vUpdateFormattedMsgStruct(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT vSortMsgWndColumn(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT vUpdateMsgClr(WPARAM wParam, LPARAM lParam);
+    afx_msg void OnTimer(UINT nIDEvent);
+    afx_msg LRESULT ModifyMsgWndProperty(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT ProvideMsgWndProperty(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT SetFilterDetails(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT GetFilterDetails(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT EnableFilterApplied(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT vLCtrlDoubleClick(WPARAM wParam, LPARAM lParam);
+    afx_msg void OnParentNotify(UINT message, LPARAM lParam);
+    afx_msg void OnEditClearAll();
+    afx_msg void OnSendSelectedMessageEntry();
+    afx_msg void OnExpandSelectedMessageEntry();
+    afx_msg LRESULT vInvalidateListDisplay(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT vOnGetInterpretState(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT vOnClearSortColumns(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT vOnUpdateConnectionStatus(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT vOnExpandCollapseMsg(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT vOnSetFocusMsgList(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT vOnGetNextPrevMsgIndex(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnListCtrlMsgDblClick(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnUpdateMsgIntrpWndPlcmnt(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnUpdateMsgTreeItemsPositions(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnClearAll(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnShowHideMessageWindow(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnToggleInterpretStatusAllEntries(WPARAM wParam, LPARAM lParam);
+    afx_msg void OnUpdateShowHideMessageWindow(CCmdUI* pCmdUI);
+    afx_msg void OnClose();
+    afx_msg void OnMsgwndResetColumns();
+    afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
 
 private:
     CMessageAttrib& m_ouMsgAttr;
@@ -155,75 +221,6 @@ private:
 
     //Client Id from the DIL
     DWORD m_dwClientID;
-
-protected:
-    DECLARE_MESSAGE_MAP()
-
-    UINT m_unDispUpdateTimerId;
-
-    //List ctrl Msg Identifier(ID + TYPE + ...) to index in list control MAP
-    CMap<__int64, __int64, SMSGDISPMAPENTRY, SMSGDISPMAPENTRY> m_omMsgDispMap;
-    //Array of SMSGDISPMAPENTRY on overwrite display
-    std::vector<__int64> m_omMgsIndexVec;
-    BOOL m_bUpdate;
-
-    HWND m_hMainWnd;
-    //BOOL m_bLogON;
-    BOOL m_bSignalWatchON;
-    STCAN_MSG& m_sCurrEntry;
-    SERROR_INFO m_sErrorInfo;
-    CRxMsgList m_lstMsg;
-    ETYPE_BUS m_eBusType;
-    UINT m_nColCount;
-    CStringArray m_omArrColTitle;
-    //CHeaderCtrlEx m_wndHeader;
-    //CPSDIHandler m_ouPsdiHandler;
-    static CMsgFrmtWnd* pThisPtr[nMaxProtocol];
-    BYTE m_bExprnFlag_Disp; // expression flag for message display
-    //kadoor CSigWatchDlg *m_podSignalWatchDlg;
-    int m_nField;
-    bool m_bAscending;
-    __int64* m_pExpandedMapIndexes;
-
-    WINDOWPLACEMENT m_sMsgIntrpWndPlacement;
-
-public:
-    afx_msg void OnSize(UINT nType, int cx, int cy);
-    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-    afx_msg LRESULT vNotificationFromOtherWin(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT vUpdateFormattedMsgStruct(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT vSortMsgWndColumn(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT vUpdateMsgClr(WPARAM wParam, LPARAM lParam);
-    afx_msg void OnTimer(UINT nIDEvent);
-    afx_msg LRESULT ModifyMsgWndProperty(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT ProvideMsgWndProperty(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT SetFilterDetails(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT GetFilterDetails(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT EnableFilterApplied(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT vLCtrlDoubleClick(WPARAM wParam, LPARAM lParam);
-    afx_msg void OnParentNotify(UINT message, LPARAM lParam);
-    afx_msg void OnEditClearAll();
-    afx_msg void OnSendSelectedMessageEntry();
-    afx_msg void OnExpandSelectedMessageEntry();
-    //kadoorafx_msg LRESULT vOpenCloseSignalWatchWnd(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT vInvalidateListDisplay(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT vOnGetInterpretState(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT vOnClearSortColumns(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT vOnUpdateConnectionStatus(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT vOnExpandCollapseMsg(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT vOnSetFocusMsgList(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT vOnGetNextPrevMsgIndex(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT OnListCtrlMsgDblClick(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT OnUpdateMsgIntrpWndPlcmnt(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT OnUpdateMsgTreeItemsPositions(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT OnClearAll(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT OnShowHideMessageWindow(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT OnToggleInterpretStatusAllEntries(WPARAM wParam, LPARAM lParam);
-    afx_msg void OnUpdateShowHideMessageWindow(CCmdUI* pCmdUI);
-    afx_msg void OnClose();
-    afx_msg void OnMsgwndResetColumns();
-    afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
-    virtual BOOL PreTranslateMessage(MSG* pMsg);
 };
 
 

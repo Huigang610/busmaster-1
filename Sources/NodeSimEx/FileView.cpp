@@ -34,24 +34,16 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// CFileView
-
 IMPLEMENT_DYNCREATE(CFileView, CScrollView)
 
 BEGIN_MESSAGE_MAP(CFileView, CScrollView)
-    //{{AFX_MSG_MAP(CFileView)
     ON_WM_ERASEBKGND()
-    //}}AFX_MSG_MAP
-    // Standard printing commands
     ON_COMMAND(ID_FILE_PRINT, CScrollView::OnFilePrint)
     ON_COMMAND(ID_FILE_PRINT_DIRECT, CScrollView::OnFilePrint)
     ON_COMMAND(ID_FILE_PRINT_PREVIEW, CScrollView::OnFilePrintPreview)
     ON_WM_MOUSEWHEEL()
 END_MESSAGE_MAP()
 
-/////////////////////////////////////////////////////////////////////////////
-// CFileView construction/destruction
 /******************************************************************************
   Function Name    :  CFileView
 

@@ -406,7 +406,7 @@ DWORD WINAPI SignalDataPlotterThread(LPVOID pVoid)
     }
 
     //Clear the buffer with previous contents if any.
-    m_ouMsgInterpretBuffer.vClearMessageBuffer();
+    m_ouMsgInterpretBuffer.clearMessageBuffer();
 
     LONGLONG g_nInitTimeStamp[MAX_PROTOCOLS] = {0};
     double g_dElapsdTime[MAX_PROTOCOLS] = {0};
@@ -427,14 +427,14 @@ DWORD WINAPI SignalDataPlotterThread(LPVOID pVoid)
         {
             bLoopON = false;
         }
-        while(m_ouMsgInterpretBuffer.GetMsgCount() > 0)
+        while(m_ouMsgInterpretBuffer.getMessageCount() > 0)
         {
             INT nType = 0;
             INT nSize = MAX_DATA_LEN_J1939;
             SINTERPRETDATA_LIST sInterpretList;
             sInterpretList.m_unValue.m_dPhysical = 0;
             sInterpretList.m_unValue.m_nRawValue = 0;
-            HRESULT hResult = m_ouMsgInterpretBuffer.ReadFromBuffer(nType,
+            HRESULT hResult = m_ouMsgInterpretBuffer.readFromBuffer(nType,
                               (BYTE*)&sInterpretList, nSize);
 
             //Get access to the Graph control
@@ -593,7 +593,7 @@ BOOL bStartGraphReadThread()
     m_ouGraphReadThread.m_hActionEvent = NULL;
     m_ouGraphReadThread.m_unActionCode = IDLE;
     m_ouGraphReadThread.m_pBuffer = NULL;
-    m_ouGraphReadThread.m_hActionEvent = m_ouMsgInterpretBuffer.hGetNotifyingEvent();
+    m_ouGraphReadThread.m_hActionEvent = m_ouMsgInterpretBuffer.getNotifyEvent();
     bReturn = m_ouGraphReadThread.bStartThread(SignalDataPlotterThread);
     return bReturn;
 }

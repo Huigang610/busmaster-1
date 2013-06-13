@@ -86,11 +86,9 @@ IMPLEMENT_DYNCREATE(CTxMsgDetailsView, CFormView)
 CTxMsgDetailsView::CTxMsgDetailsView() : CFormView(CTxMsgDetailsView::IDD),
     m_odSignalMatrix(8)
 {
-    //{{AFX_DATA_INIT(CTxMsgDetailsView)
     m_bIsRTR = FALSE;
     m_nRBTNFrameFormat = 0;
     m_nChannelID = 0;
-    //}}AFX_DATA_INIT
     m_psSelectedMsgDetails = NULL;
     m_bIsMsgDirty = FALSE;
 
@@ -127,7 +125,6 @@ CTxMsgDetailsView::~CTxMsgDetailsView()
 void CTxMsgDetailsView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CTxMsgDetailsView)
     DDX_Control(pDX, IDC_COMB_CHANNEL_ID, m_omComboChannelID);
     DDX_Control(pDX, IDC_STAT_MATRIX_RECT, m_odSignalMatrix);
     DDX_Control(pDX, IDC_LSTC_SIG_DETAILS, m_omLctrSigList);
@@ -146,12 +143,9 @@ void CTxMsgDetailsView::DoDataExchange(CDataExchange* pDX)
     DDX_CBString(pDX, IDC_COMB_MSG_ID_NAME, m_omStrMsgIDorName);
     DDX_Radio(pDX, IDC_RBTN_MSGTYPE_STD, m_nRBTNFrameFormat);
     DDX_CBIndex(pDX, IDC_COMB_CHANNEL_ID, m_nChannelID);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CTxMsgDetailsView, CFormView)
-    //{{AFX_MSG_MAP(CTxMsgDetailsView)
     ON_CBN_EDITCHANGE(IDC_COMB_MSG_ID_NAME, OnEditchangeCombMsgIdName)
     ON_CBN_SELCHANGE(IDC_COMB_MSG_ID_NAME, OnSelchangeCombMsgIdName)
     ON_EN_UPDATE(IDC_EDIT_DLC, OnUpdateEditDLC)
@@ -169,7 +163,6 @@ BEGIN_MESSAGE_MAP(CTxMsgDetailsView, CFormView)
     ON_EN_UPDATE(IDC_EDIT_DB8, OnUpdateEditDataBytes)
     ON_BN_CLICKED(IDC_RBTN_MSGTYPE_EXTD, OnRbtnMsgtypeStd)
     ON_CBN_SELCHANGE(IDC_COMB_CHANNEL_ID, OnSelchangeCombChannelId)
-
     ON_EN_KILLFOCUS(IDC_EDIT_DLC, /*&CTxMsgDetailsView::*/vAutoUpdateModifyChanges)
     ON_EN_KILLFOCUS(IDC_EDIT_DB1, /*&CTxMsgDetailsView::*/vAutoUpdateModifyChanges)
     ON_EN_KILLFOCUS(IDC_EDIT_DB2, /*&CTxMsgDetailsView::*/vAutoUpdateModifyChanges)
@@ -2818,7 +2811,6 @@ void CTxMsgDetailsView::vUpdateFromRawValue(int nItem, int nSubItem)
         sSIGNALS::vSetSignalValue(psSignal, ucData, nI64SignVal);
         //copy the data
         memcpy(m_unData, ucData, sizeof(UCHAR) * defMAX_BYTE);
-        //commented by kadoor vUpdateSignalData( psSignal, nI64SignVal );
         vUpdateDataBytes();
         BOOL bFound = FALSE;
         // Set the Raw Value
@@ -3100,7 +3092,6 @@ void CTxMsgDetailsView::vUpdateFromPhysicalValue(int nItem, int nSubItem)
         //copy to the memeber variable
         memcpy(m_unData, ucData, sizeof(BYTE) * defMAX_BYTE);
 
-        //commented by kadoor vUpdateSignalData( psSignal, n64SigVal );
         vUpdateDataBytes();
         // Calculate Physical Value and update
         // Set the Raw Value

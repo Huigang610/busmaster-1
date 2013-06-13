@@ -28,10 +28,10 @@
 int ReadCANDataBuffer(CSignalWatch_CAN* pSWCan)
 {
     ASSERT(pSWCan != NULL);
-    while (pSWCan->m_ouCanBufFSE.GetMsgCount() > 0)
+    while (pSWCan->m_ouCanBufFSE.getMessageCount() > 0)
     {
         static STCANDATA sCanData;
-        INT Result = pSWCan->m_ouCanBufFSE.ReadFromBuffer(&sCanData);
+        INT Result = pSWCan->m_ouCanBufFSE.readFromBuffer(&sCanData);
         if (Result == ERR_READ_MEMORY_SHORT)
         {
             TRACE("ERR_READ_MEMORY_SHORT");
@@ -100,14 +100,14 @@ BOOL CSignalWatch_CAN::InitInstance(void)
     InitializeCriticalSection(&m_omCritSecSW);
     m_pouSigWnd = NULL;
     m_pMsgInterPretObj = NULL;
-    m_ouReadThread.m_hActionEvent = m_ouCanBufFSE.hGetNotifyingEvent();
+    m_ouReadThread.m_hActionEvent = m_ouCanBufFSE.getNotifyEvent();
     return TRUE;
 }
 
 int CSignalWatch_CAN::ExitInstance(void)
 {
     m_ouReadThread.bTerminateThread(); // Terminate read thread
-    m_ouCanBufFSE.vClearMessageBuffer();//clear can buffer
+    m_ouCanBufFSE.clearMessageBuffer();//clear can buffer
 
     if (m_pMsgInterPretObj != NULL) // clear interpretation object
     {
@@ -236,7 +236,7 @@ HRESULT CSignalWatch_CAN::SW_DoInitialization()
  * Signal watch configuration dialog box
  * lists frames / messages from the loaded database (combo box / list box).
  */
-HRESULT CSignalWatch_CAN::SW_ShowAddDelSignalsDlg(CWnd* pParent, CMainEntryList* podMainSubList)
+HRESULT CSignalWatch_CAN::SW_ShowAddDelSignalsDlg(CWnd* pParent, SignalWatchListMainEntries* podMainSubList)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 

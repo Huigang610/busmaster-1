@@ -11,8 +11,6 @@
 #define MAX_FREQUENCY            125
 const float SINE_COEFF = (8 / (M_PI* M_PI));
 
-// CSignalDefinerDlg dialog
-
 IMPLEMENT_DYNAMIC(CSignalDefinerDlg, CDialog)
 
 CSignalDefinerDlg::CSignalDefinerDlg(CWnd* pParent /*=NULL*/)
@@ -27,10 +25,6 @@ CSignalDefinerDlg::CSignalDefinerDlg(CWnd* pParent /*=NULL*/)
     AfxEnableControlContainer();
     m_poDMGraphCtrl = NULL;
     m_strSignalName = L"";
-}
-
-CSignalDefinerDlg::~CSignalDefinerDlg()
-{
 }
 
 void CSignalDefinerDlg::DoDataExchange(CDataExchange* pDX)
@@ -48,7 +42,6 @@ void CSignalDefinerDlg::DoDataExchange(CDataExchange* pDX)
     DDX_CBIndex(pDX, IDC_COMBO_SIGNAL_TYPE, m_nSignalType);
 }
 
-
 BEGIN_MESSAGE_MAP(CSignalDefinerDlg, CDialog)
     ON_CBN_SELCHANGE(IDC_COMBO_SIGNAL_TYPE, OnCbnSelchangeComboSignalType)
     ON_CBN_SELCHANGE(IDC_COMBO_CYCLES, OnCbnSelchangeComboCycles)
@@ -62,7 +55,6 @@ BEGIN_MESSAGE_MAP(CSignalDefinerDlg, CDialog)
     ON_WM_CLOSE()
     ON_CONTROL_RANGE(EN_KILLFOCUS, IDC_COMBO_SIGNAL_TYPE, IDCB_AUTOCORRECT, OnKillFocus)
 END_MESSAGE_MAP()
-
 
 BOOL CSignalDefinerDlg::OnInitDialog()
 {

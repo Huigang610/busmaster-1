@@ -208,7 +208,6 @@ HRESULT CSend_MessageEntity::GetData(MSXML2::IXMLDOMNodePtr& pIDomNode)
         m_ouData.m_odSignalDataList.AddTail(ouSignalData);
         pSig = pSig->m_psNextSignalList;
     }
-    //////////////////////////////////////////////////////////////////////////////////////
     return S_OK;
 }
 

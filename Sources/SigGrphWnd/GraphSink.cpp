@@ -17,11 +17,6 @@ CGraphSink::CGraphSink()
     m_pParentWnd = NULL;
 }
 
-CGraphSink::~CGraphSink()
-{
-}
-
-
 void CGraphSink::OnFinalRelease()
 {
     // When the last reference for an automation object is released
@@ -31,9 +26,6 @@ void CGraphSink::OnFinalRelease()
 
     CCmdTarget::OnFinalRelease();
 }
-
-BEGIN_MESSAGE_MAP(CGraphSink, CCmdTarget)
-END_MESSAGE_MAP()
 
 BEGIN_DISPATCH_MAP(CGraphSink, CCmdTarget)
     DISP_FUNCTION_ID(CGraphSink,"CursorPosition",1,OnCursorPosition,VT_EMPTY,VTS_R8 VTS_R8 VTS_I2)

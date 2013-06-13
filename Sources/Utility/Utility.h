@@ -47,9 +47,6 @@ void vExtendSignBit( __int64& n64Val, int nSize);
 bool bGetSystemErrorString(HRESULT hResult, char acErrStr[256]);
 //bool bGetSystemErrorString(CHAR acErrStr[256]);
 
-//// To copy the text into the clipboard
-//BOOL CopyTextToClipboard(LPCTSTR lpctstrText, HWND hWND = NULL);
-
 // To copy the text into the clipboard
 BOOL CopyTextToClipboard(LPSTR lpstrText, HWND hWND = NULL);
 

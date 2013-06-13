@@ -54,10 +54,6 @@ CMsgFilterConfigPage::CMsgFilterConfigPage(const SFILTERAPPLIED_CAN* psFilterCon
     m_psFilterConfigured(psFilterConfigured),
     m_hMsgWnd(hMsgWnd)
 {
-    //{{AFX_DATA_INIT(CMsgFilterConfigPage)
-    // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
-
 }
 
 /*******************************************************************************
@@ -72,12 +68,10 @@ CMsgFilterConfigPage::CMsgFilterConfigPage(const SFILTERAPPLIED_CAN* psFilterCon
 CMsgFilterConfigPage::CMsgFilterConfigPage() :
     CPropertyPage(CMsgFilterConfigPage::IDD, IDS_PPAGE_TITLE_MSG_FILTER )
 {
-    //{{AFX_DATA_INIT(CMsgFilterConfigPage)
-    // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
     m_hMsgWnd = NULL;
     m_psFilterConfigured = NULL;
 }
+
 /*******************************************************************************
   Function Name  : ~CMsgFilterConfigPage
   Description    : Standard Destructor
@@ -105,16 +99,11 @@ CMsgFilterConfigPage::~CMsgFilterConfigPage()
 void CMsgFilterConfigPage::DoDataExchange(CDataExchange* pDX)
 {
     CPropertyPage::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CMsgFilterConfigPage)
     DDX_Control(pDX, IDC_LST_DISPLAY_FILTER_LIST, m_omLstcFilterList);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CMsgFilterConfigPage, CPropertyPage)
-    //{{AFX_MSG_MAP(CMsgFilterConfigPage)
     ON_BN_CLICKED(IDC_BTN_CONFIGURE, OnBtnConfigure)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /*******************************************************************************
@@ -283,22 +272,22 @@ VOID CMsgFilterConfigPage::vUpdateDataFromUI()
     }
 }
 
-static void vPopulateMainSubList(CMainEntryList& DestList, const SFILTERAPPLIED_CAN* psFilterConfigured,
+static void vPopulateMainSubList(SignalWatchListMainEntries& DestList, const SFILTERAPPLIED_CAN* psFilterConfigured,
                                  const SFILTERAPPLIED_CAN* psFilterApplied)
 {
     ASSERT(psFilterConfigured != NULL);
     DestList.RemoveAll();
 
-    SMAINENTRY sMainEntry;
-    sMainEntry.m_omMainEntryName = "CAN";
+    SignalWatchListMainEntry sMainEntry;
+    sMainEntry.mainEntryName = "CAN";
     if (psFilterApplied == NULL)
     {
-        SMAINENTRY sMainEntry;
-        sMainEntry.m_omMainEntryName = "FILTER_SELECTION_CAN";
+        SignalWatchListMainEntry sMainEntry;
+        sMainEntry.mainEntryName = "FILTER_SELECTION_CAN";
         for (INT i = 0; i < psFilterConfigured->m_ushTotal; i++)
         {
-            SSUBENTRY sSubEntry;
-            sSubEntry.m_omSubEntryName.Format("%s",
+            SignalWatchListSubEntry sSubEntry;
+            sSubEntry.subEntryName.Format("%s",
                                               psFilterConfigured->m_psFilters[i].m_sFilterName.filterName);
             sMainEntry.m_odUnSelEntryList.AddTail(sSubEntry);
         }
@@ -308,12 +297,12 @@ static void vPopulateMainSubList(CMainEntryList& DestList, const SFILTERAPPLIED_
 
         for (INT i = 0; i < psFilterConfigured->m_ushTotal; i++)
         {
-            SSUBENTRY sSubEntry;
-            sSubEntry.m_omSubEntryName.Format("%s",
+            SignalWatchListSubEntry sSubEntry;
+            sSubEntry.subEntryName.Format("%s",
                                               psFilterConfigured->m_psFilters[i].m_sFilterName.filterName);
             if (SFILTERSET::psGetFilterSetPointer(psFilterApplied->m_psFilters,
                                                   psFilterApplied->m_ushTotal,
-                                                  sSubEntry.m_omSubEntryName.GetBuffer(MAX_PATH)) != NULL)
+                                                  sSubEntry.subEntryName.GetBuffer(MAX_PATH)) != NULL)
             {
                 sMainEntry.m_odSelEntryList.AddTail(sSubEntry);
             }
@@ -325,9 +314,9 @@ static void vPopulateMainSubList(CMainEntryList& DestList, const SFILTERAPPLIED_
     }
     DestList.AddTail(sMainEntry);
 }
-static void vPopulateFilterApplied(const SFILTERAPPLIED_CAN* psFilterConfigured, SFILTERAPPLIED_CAN& sFilterApplied, CMainEntryList& SrcList)
+static void vPopulateFilterApplied(const SFILTERAPPLIED_CAN* psFilterConfigured, SFILTERAPPLIED_CAN& sFilterApplied, SignalWatchListMainEntries& SrcList)
 {
-    const SMAINENTRY& sMainEntry = SrcList.GetHead();
+    const SignalWatchListMainEntry& sMainEntry = SrcList.GetHead();
     int nCount  = sMainEntry.m_odSelEntryList.GetCount();
 
     SFILTERAPPLIED_CAN    sTempAppliedFilter;
@@ -338,9 +327,9 @@ static void vPopulateFilterApplied(const SFILTERAPPLIED_CAN* psFilterConfigured,
     POSITION pos = sMainEntry.m_odSelEntryList.GetHeadPosition();
     while (pos)
     {
-        SSUBENTRY sSubEntry = sMainEntry.m_odSelEntryList.GetNext(pos);
+        SignalWatchListSubEntry sSubEntry = sMainEntry.m_odSelEntryList.GetNext(pos);
         const PSFILTERSET psTemp = SFILTERSET::psGetFilterSetPointer(psFilterConfigured->m_psFilters,
-                                   psFilterConfigured->m_ushTotal, sSubEntry.m_omSubEntryName.GetBuffer(MAX_PATH));
+                                   psFilterConfigured->m_ushTotal, sSubEntry.subEntryName.GetBuffer(MAX_PATH));
         ASSERT (psTemp != NULL);
         sFilterApplied.m_psFilters[sFilterApplied.m_ushTotal].bClone(*psTemp);
         sFilterApplied.m_ushTotal++;
@@ -376,7 +365,7 @@ void CMsgFilterConfigPage::OnBtnConfigure()
 {
     // Update User Modifications
     vUpdateDataFromUI();
-    CMainEntryList DestList;
+    SignalWatchListMainEntries DestList;
     vPopulateMainSubList(DestList, m_psFilterConfigured, &m_sFilterAppliedCan);
     //Show dialog
     if (Filter_ShowSelDlg(this, &DestList) == IDOK)

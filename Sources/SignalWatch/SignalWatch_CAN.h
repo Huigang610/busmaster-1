@@ -56,7 +56,7 @@ public:
     int ExitInstance(void);
 
     HRESULT SW_DoInitialization(void);
-    HRESULT SW_ShowAddDelSignalsDlg(CWnd* pParent, CMainEntryList* podMainSubList);
+    HRESULT SW_ShowAddDelSignalsDlg(CWnd* pParent, SignalWatchListMainEntries* podMainSubList);
     HRESULT SW_ShowSigWatchWnd(CWnd* pParent, INT nCmd);
     HRESULT SW_SetDisplayMode(BOOL bHex);
     HRESULT SW_GetConfigSize(void);

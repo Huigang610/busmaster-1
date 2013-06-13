@@ -25,7 +25,7 @@ class CBaseSignalWatch_J1939
 {
 public:
     virtual HRESULT SW_DoInitialization(void) = 0;
-    virtual HRESULT SW_ShowAddDelSignalsDlg(CWnd* pParent, CMainEntryList* podMainSubList) = 0;
+    virtual HRESULT SW_ShowAddDelSignalsDlg(CWnd* pParent, SignalWatchListMainEntries* podMainSubList) = 0;
     virtual HRESULT SW_ShowSigWatchWnd(CWnd* pParent, INT nCmd) = 0;
     virtual HRESULT SW_GetConfigSize(void) = 0;
     virtual HRESULT SW_GetConfigData(void* pbyConfigData) = 0;

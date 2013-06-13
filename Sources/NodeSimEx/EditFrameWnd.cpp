@@ -38,18 +38,13 @@ static char THIS_FILE[] = __FILE__;
 
 ETYPE_BUS CFunctionView::sm_eBus = CAN;
 ETYPE_BUS CFnsTreeView::sm_eBus  = CAN;
+
 IMPLEMENT_DYNCREATE(CEditFrameWnd, CMDIChildWnd)
 
 BEGIN_MESSAGE_MAP(CEditFrameWnd, CMDIChildWnd)
-    //{{AFX_MSG_MAP(CEditFrameWnd)
-    // NOTE - the ClassWizard will add and remove mapping macros here.
-    //    DO NOT EDIT what you see in these blocks of generated code !
-    //}}AFX_MSG_MAP
     ON_WM_CREATE()
 END_MESSAGE_MAP()
 
-/////////////////////////////////////////////////////////////////////////////
-// CEditFrameWnd construction/destruction
 /******************************************************************************/
 /*  Function Name    :  CEditFrameWnd                                         */
 /*                                                                            */
@@ -147,8 +142,6 @@ void CEditFrameWnd::Dump(CDumpContext& dc) const
 
 #endif //_DEBUG
 
-/////////////////////////////////////////////////////////////////////////////
-// CEditFrameWnd message handlers
 /******************************************************************************/
 /*  Function Name    :  OnCreateClient                                        */
 /*                                                                            */

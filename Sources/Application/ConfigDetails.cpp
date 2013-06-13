@@ -116,7 +116,6 @@ CConfigDetails::~CConfigDetails()
     m_psMsgBlockList = NULL;
     vReleaseSignalWatchListMemory();
     vReleaseSimSysListMemory();
-    vReleaseSimSysInfo();
     vReleaseMsgAttrib(&m_sMessageAttributes);
     vReleaseMsgFilterDetails(&m_sMsgFilterDetails);
     if (m_pomaStrDatabaseFilename != NULL)
@@ -1123,7 +1122,6 @@ BOOL CConfigDetails::bSetData(eCONFIGDETAILS  eParam, LPVOID lpVoid)
                     }
                     else
                     {
-                        ///////////////////////////// Modified List/////////////////////////////////////////////////
                         //Copy the entire linked list into a new linked list "m_psSimSysArray"
                         if (m_psSimSysArray == NULL)
                         {
@@ -1387,12 +1385,6 @@ nLoadConfiguration(CString& omStrFilename/*= defDEFAULTCFGFILE*/)
         vReleaseSignalWatchListMemory();
         // Release simulated system list memory
         vReleaseSimSysListMemory();
-        //m_pSimSysNodeInfo = theApp.pomGetSimSysNodeInfo();
-        //// Release simulated system info memory
-        //if (m_pSimSysNodeInfo != NULL)
-        //{
-        //    m_pSimSysNodeInfo->vReleaseSimSysInfo();
-        //}
         vReleaseMsgAttrib(&m_sMessageAttributes);
         vReleaseMsgFilterDetails(&m_sMsgFilterDetails);
 
@@ -1609,23 +1601,6 @@ INT  CConfigDetails::nNewConfiguration(CString& omStrFilename)
         // this is the name of the configuration file whose information is
         // currently loaded...
         m_omstrConfigFilename = omStrFilename;
-        //if (m_pSimSysNodeInfo != NULL)
-        //    m_pSimSysNodeInfo->bPopulateSimSysInfo();
-        //
-        //
-        //if (pMainFrm != NULL)
-        //{
-        //    pSimSysWnd = pMainFrm->pomGetSimSysWnd();
-        //    pSimSysTree = pMainFrm->podGetSimSysTreeView();
-        //}
-        //// to indicate to the tree view about the new dlls built.
-        //if (pSimSysWnd != NULL)
-        //{
-        //
-        //    if (pSimSysTree != NULL)
-        //        pSimSysTree->bPopulateTree();
-        //}
-        //CExecuteManager::ouGetExecuteManager().vClearOutputWnd();
     }
 
     return nError;
@@ -3719,61 +3694,6 @@ void CConfigDetails::vReleaseMultiMsgInfo(PSMSGBLOCKLIST psMsgBlockList)
         }
         while(psNextMsgBlockList != NULL);
     }
-}
-
-/******************************************************************************/
-/*  Function Name    :  vReleaseSimSysInfo                                    */
-/*                                                                            */
-/*  Input(s)         :                                                        */
-/*                                                                            */
-/*  Output           :                                                        */
-/*                                                                            */
-/*  Functionality    :  This method releases all the memory allocated for the */
-/*                      sim sys info structure.                              */
-/*                                                                            */
-/*  Member of        :  CConfigDetails                                        */
-/*  Friend of        :      -                                                 */
-/*                                                                            */
-/*  Author(s)        :  Harika M                                              */
-/*  Date Created     :  22.12.2005                                            */
-/*  Modifications By :
-/******************************************************************************/
-
-void CConfigDetails::vReleaseSimSysInfo()
-{
-    // CSimSysNodeInfo::PSSIMSYSINFO psNextSimSysInfo    = NULL;
-    // CSimSysNodeInfo::PSNODELIST psNextNodeList    = NULL;
-    // CSimSysNodeInfo::PSSIMSYSINFO psCurrentSimSysInfo = NULL;
-    // CSimSysNodeInfo::PSNODELIST psCurrentNodeList = NULL;
-    // CSimSysNodeInfo::PSSIMSYSINFO psTempSimSysInfo = theApp.psReturnSimsysInfoPtr();
-    // if (psTempSimSysInfo != NULL)
-    // {
-    //     psCurrentSimSysInfo = psTempSimSysInfo;
-    //     do
-    //     {
-    //         if (psCurrentSimSysInfo->m_unNumberOfNodesAdded > 0)
-    //         {
-    //             psCurrentNodeList =
-    //                 psCurrentSimSysInfo->m_psNodesList;
-    //             do
-    //             {
-    //                 psNextNodeList    =
-    //                     psCurrentNodeList->m_psNextNode;
-    //                 delete psCurrentNodeList;
-    //                 psCurrentNodeList = NULL;
-    //                 psCurrentNodeList = psNextNodeList;
-    //             }while(psNextNodeList != NULL);
-    //
-    //         }
-    //         psNextSimSysInfo = psCurrentSimSysInfo->m_psSimsysNext;
-    //         delete psCurrentSimSysInfo;
-    //         psCurrentSimSysInfo = NULL;
-    //         psCurrentSimSysInfo = psNextSimSysInfo;
-    //     }while(psNextSimSysInfo != NULL);
-    // }
-    // psTempSimSysInfo = NULL;
-    //// m_psSimSysInfo = NULL;
-    //// m_unSimSysCount = 0;
 }
 
 /******************************************************************************/

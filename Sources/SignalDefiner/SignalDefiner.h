@@ -24,21 +24,11 @@
 
 #pragma once
 
+/* Project includes */
 #include "SignalDefiner_Resource.h"     // main symbols
-
-
-// CSignalDefinerApp
-// See SignalDefiner.cpp for the implementation of this class
-//
 
 class CSignalDefinerApp : public CWinApp
 {
 public:
-    CSignalDefinerApp();
-
-    // Overrides
-public:
     virtual BOOL InitInstance();
-
-    DECLARE_MESSAGE_MAP()
 };

@@ -39,22 +39,15 @@ CEventHandlerDlg::CEventHandlerDlg(CTreeCtrl& omTreeCtrl, CFunctionEditorDoc* pD
     m_pDoc = pDoc;
 }
 
-CEventHandlerDlg::~CEventHandlerDlg()
-{
-}
-
 void CEventHandlerDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
 }
 
-
 BEGIN_MESSAGE_MAP(CEventHandlerDlg, CDialog)
     ON_BN_CLICKED(IDOK, OnBnClickedOk)
 END_MESSAGE_MAP()
 
-
-// CEventHandlerDlg message handlers
 BOOL CEventHandlerDlg::OnInitDialog()
 {
     BOOL bAvailable = TRUE;

@@ -28,13 +28,10 @@
 
 class CNVTCToolBar : public CToolBar
 {
-private:
-    BOOL bSetCNVTCToolBar(UINT uToolBarType, UINT uToolBar, int nWidth, COLORREF colMask);
 public:
     BOOL bLoadCNVTCToolBar(int nWidth, UINT unNormal, UINT unHot,   UINT unDisabled);
     BOOL bLoadCNVTCToolBar(int nWidth, UINT unNormal, UINT unHot,   UINT unDisabled, COLORREF clrMask);
 
-public:
-    CNVTCToolBar();
-    virtual ~CNVTCToolBar();
+private:
+    BOOL bSetCNVTCToolBar(UINT uToolBarType, UINT uToolBar, int nWidth, COLORREF colMask);
 };

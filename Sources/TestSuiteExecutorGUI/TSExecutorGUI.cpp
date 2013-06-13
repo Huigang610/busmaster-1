@@ -132,7 +132,7 @@ USAGEMODE HRESULT TS_vShowTSExecutorWindow(void* pParentWnd)
         g_pomTSExecutorChildWindow = new CTSExecutorChildFrame;
         if( g_pomTSExecutorChildWindow != NULL )
         {
-            //// Register Window Class
+            // Register Window Class
             //TODO::ICON
             LPCTSTR strMDIClass = AfxRegisterWndClass(
                                       CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS,

@@ -24,20 +24,18 @@
 
 #pragma once
 
+/* Project includes */
 #include "Tx_MDIChildBase.h"       // For Common base class defintion
 #include "TxFunctionsView.h"    // For CTxFunctionsView class defintions
 #include "TxMsgBlocksView.h"    // For CTxFunctionsView class defintions
 #include "TxMsgDetailsView.h"   // For CTxMsgDetailsView class defintions
 #include "TxMsgListView.h"      // For CTxMsgListView class defintions
 
-
 class CTxMsgChildFrame : public CMDIChildBase
 {
     DECLARE_DYNCREATE(CTxMsgChildFrame)
-    // Attributes
-public:
+    DECLARE_MESSAGE_MAP()
 
-    // Operations
 public:
     // To update window size and splitter after loading a conf file
     void vUpdateWinStatus();
@@ -45,10 +43,7 @@ public:
     void vUpdateWndCo_Ords();
     // Default constructor
     CTxMsgChildFrame();
-    // Standard destructor
-    virtual ~CTxMsgChildFrame();
 
-    afx_msg void OnClose();
     // To Set View Pointers
     void vSetTxMsgViewPointers(ETXMSGVIEWTYPE eViewIdentity, CWnd* pomWnd);
     // To get View pointers
@@ -56,32 +51,27 @@ public:
 
     void vSetMsgDBPtrInDetailsView(void* pMsgDB);
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CTxMsgChildFrame)
+    void vChangeConnectionStatus(BOOL bConnect);
+
+    void vCallAutoUpdate();
+
 protected:
     virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
-    //}}AFX_VIRTUAL
 
-    // Implementation
-
-
-    // Generated message map functions
-    //{{AFX_MSG(CTxMsgChildFrame)
-    afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    afx_msg void OnSizing(UINT fwSide, LPRECT pRect);
+    afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
+    afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+    afx_msg void OnClose();
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
     afx_msg void OnDestroy();
     afx_msg LRESULT vUserCommand(WPARAM wParam, LPARAM lParam);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-    // Members
-protected:
+
     CSplitterWnd m_omRootSplitter;
     CSplitterWnd m_omLeftViewSplitter;
     CSplitterWnd m_omRightViewSplitter;
 
 private:
-
-    // Attributes
     // Structure to hold splitter window postion
     STXMSGSPLITTERDATA m_sSplitterPosition;
     // Pointers to all views
@@ -94,19 +84,10 @@ private:
     CTxMsgDetailsView* m_pomTxMsgDetailsView;
     BOOL m_bInit;
 
-    // Methods
     // Function to set splitter postion.
     void vSetSplitterPostion();
     // Function to get splitter postion from configuration file
     void vGetSplitterStatus();
     // To save splitter position from configuration file
     void vSaveSplitterPostion();
-public:
-    void vChangeConnectionStatus(BOOL bConnect);
-public:
-    afx_msg void OnSize(UINT nType, int cx, int cy);
-    afx_msg void OnSizing(UINT fwSide, LPRECT pRect);
-    afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
-    afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
-    void vCallAutoUpdate();
 };

@@ -34,17 +34,10 @@
 #include <atlconv.h>
 #include "Utility/MultiLanguageSupport.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// CWaveformSelectionDlg dialog
-
-
 CWaveformSelectionDlg::CWaveformSelectionDlg(CWnd* pParent, CWaveFormDataHandler* pWaveDataHandler, UINT nHardware)
     : CDialog(CWaveformSelectionDlg::IDD, pParent)
     , m_fDefAmplitude(0)
 {
-    //{{AFX_DATA_INIT(CWaveformSelectionDlg)
-    // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
     m_pWaveDataHandler = pWaveDataHandler;
     m_nHardware = nHardware;
 }
@@ -53,18 +46,14 @@ CWaveformSelectionDlg::CWaveformSelectionDlg(CWnd* pParent, CWaveFormDataHandler
 void CWaveformSelectionDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CWaveformSelectionDlg)
     DDX_Control(pDX, IDC_LSTC_SIGNAL_WATCH, m_omListCtrlSignalWatch);
     DDX_Control(pDX, IDC_LSTC_SIGNAL, m_omListCtrlSignal);
     DDX_Control(pDX, IDC_COMB_MSGNAME, m_omCombMessage);
-    //}}AFX_DATA_MAP
     DDX_Text(pDX, IDC_EDIT_DEFAULT_SIGNAL_VALUE, m_fDefAmplitude);
     DDX_Control(pDX, IDC_COMB_MSG_CHANNEL, m_omMsgChannel);
 }
 
-
 BEGIN_MESSAGE_MAP(CWaveformSelectionDlg, CDialog)
-    //{{AFX_MSG_MAP(CWaveformSelectionDlg)
     ON_WM_DESTROY()
     ON_CBN_SELCHANGE(IDC_COMB_MSGNAME, OnSelChangeMessageName)
     ON_BN_CLICKED(IDM_SIGNALDLG_ADD, OnBtnAddSubEntries)
@@ -75,16 +64,12 @@ BEGIN_MESSAGE_MAP(CWaveformSelectionDlg, CDialog)
     ON_COMMAND(IDM_SIGNALDLG_ADD, OnBtnAddSubEntries)
     ON_COMMAND(IDM_SIGNALDLG_DELETE, OnBtnDelSubEntires)
     ON_WM_HELPINFO()
-    //}}AFX_MSG_MAP
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LSTC_SIGNAL, OnLvnItemchangedLstcSignal)
     ON_NOTIFY(NM_DBLCLK, IDC_LSTC_SIGNAL_WATCH, OnNMDblclkLstcSignalWatch)
     ON_BN_CLICKED(IDCANCEL, OnBnClickedCancel)
     ON_BN_CLICKED(IDOK, OnBnClickedOk)
     ON_EN_CHANGE(IDC_EDIT_DEFAULT_SIGNAL_VALUE, OnEnChangeEditDefaultSignalValue)
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CWaveformSelectionDlg message handlers
 
 /*******************************************************************************
 Function Name    : OnInitDialog

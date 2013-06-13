@@ -24,9 +24,6 @@
 
 #pragma once
 
-/////////////////////////////////////////////////////////////////////////////
-// CRightView form view
-
 #ifndef __AFXEXT_H__
 #include <afxext.h>
 #endif
@@ -36,46 +33,38 @@
 
 class CGraphRightView : public CFormView
 {
+    DECLARE_DYNCREATE(CGraphRightView)
+    DECLARE_EVENTSINK_MAP()
+    DECLARE_MESSAGE_MAP()
+
+public:
+    enum { IDD = IDD_DLG_GRAPH_RIGHT_TOP };
+
+    void CursorPositionGraphCtrl(double X, double Y, short shCursorID);
+    IDMGraphCtrl* m_pDMGraphCtrl;
+
+    void vHandleConnectionStatusChange(BOOL bConnectStatus);
+
+    virtual void OnInitialUpdate();
+
 protected:
     // protected constructor used by dynamic creation
     CGraphRightView();
-    DECLARE_DYNCREATE(CGraphRightView)
 
-    // Form Data
-public:
-    //{{AFX_DATA(CGraphRightView)
-    enum { IDD = IDD_DLG_GRAPH_RIGHT_TOP };
-    //}}AFX_DATA
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-    // Attributes
-public:
+	virtual ~CGraphRightView();
 
-    // Operations
-public:
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CRightView)
-public:
-    virtual void OnInitialUpdate();
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
-
-    // Implementation
-protected:
-    virtual ~CGraphRightView();
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
     // Generated message map functions
-    //{{AFX_MSG(CGraphRightView)
+	afx_msg void OnDestroy();
     afx_msg void OnSize(UINT nType, int cx, int cy);
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     // To get parent window pointer
     CWnd* pomGetParentWindow() const;
@@ -86,11 +75,4 @@ private:
     //Get hold of the Sink cookie ID
     DWORD m_dwCookie;
     CWnd* m_pWndGraphCtrl;
-public:
-    DECLARE_EVENTSINK_MAP()
-    void CursorPositionGraphCtrl(double X, double Y, short shCursorID);
-    IDMGraphCtrl* m_pDMGraphCtrl;
-public:
-    afx_msg void OnDestroy();
-    void vHandleConnectionStatusChange(BOOL bConnectStatus);
 };

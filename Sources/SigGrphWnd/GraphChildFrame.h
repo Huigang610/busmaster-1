@@ -24,6 +24,7 @@
 
 #pragma once
 
+/* Project includes */
 #include "MDIChildBase.h"
 #include "SigGrphWnd_Defines.h"
 #include "GraphList.h"
@@ -31,19 +32,15 @@
 class CGraphChildFrame : public CMDIChildBase
 {
     DECLARE_DYNCREATE(CGraphChildFrame)
+    DECLARE_MESSAGE_MAP()
+
 public:
-    // Operations
     // Default Constructor
     CGraphChildFrame();
     // Destructor
     virtual ~CGraphChildFrame();
-public:
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CGraphChildFrame)
-    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-    //}}AFX_VIRTUAL
 
+    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
 #ifdef _DEBUG
     virtual void AssertValid() const;
@@ -51,9 +48,7 @@ public:
 #endif
 
     // Generated message map functions
-public:
     void vSetSplitterConfig(SGRAPHSPLITTERDATA& sSplitterPostion);
-
     void vGetSplitterConfig(SGRAPHSPLITTERDATA& sSplitterPostion);
     // To update window size and splitter after loading a conf file
     void vUpdateWinStatus();
@@ -80,13 +75,11 @@ public:
     virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
     void vSetSignalListDetails(CGraphList* pGraphList);
     CGraphList* pGetSignalListDetails();
-    //{{AFX_MSG(CGraphChildFrame)
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
     afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
     afx_msg void OnClose();
     afx_msg LRESULT vUserCommand(WPARAM wParam, LPARAM lParam);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     // To save splitter postion
     void vSaveSplitterPostion();

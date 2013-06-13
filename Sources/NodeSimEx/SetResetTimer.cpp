@@ -73,12 +73,7 @@ CSetResetTimer::CSetResetTimer(ETYPE_BUS eBus, CWnd* pParent /*=NULL*/)
       m_unTimerID(0)
 {
     m_eBus = eBus;
-    //{{AFX_DATA_INIT(CSetResetTimer)
     m_omStrNodeName = "";
-    //}}AFX_DATA_INIT
-    //   m_omApptEvent = CreateEvent(NULL,TRUE,FALSE,NULL);
-
-
 }
 
 /******************************************************************************/
@@ -99,17 +94,13 @@ CSetResetTimer::CSetResetTimer(ETYPE_BUS eBus, CWnd* pParent /*=NULL*/)
 void CSetResetTimer::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CSetResetTimer)
     DDX_Control(pDX, IDC_COMB_NODENAME, m_omComboNodeName);
     DDX_Control(pDX, IDC_LSTC_TIMER_HANDLER, m_omTimerList);
     DDX_CBString(pDX, IDC_COMB_NODENAME, m_omStrNodeName);
     DDV_MaxChars(pDX, m_omStrNodeName, 20);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CSetResetTimer, CDialog)
-    //{{AFX_MSG_MAP(CSetResetTimer)
     ON_WM_HELPINFO()
     ON_BN_CLICKED(IDC_BTN_APPLY, OnBtnApply)
     ON_BN_CLICKED(IDC_CHCK_MONOSHOT, OnChckMonoshot)
@@ -117,7 +108,6 @@ BEGIN_MESSAGE_MAP(CSetResetTimer, CDialog)
     ON_BN_CLICKED(IDC_BTN_OK, OnBtnOk)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LSTC_TIMER_HANDLER, OnItemchangedLstcTimerHandler)
     ON_CBN_SELCHANGE(IDC_COMB_NODENAME, OnSelchangeNodeList)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /******************************************************************************/

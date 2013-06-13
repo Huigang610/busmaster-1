@@ -29,9 +29,10 @@
 
 class CMessageList : public CFFListCtrl
 {
+    DECLARE_MESSAGE_MAP()
+
 public:
     CMessageList();
-    virtual ~CMessageList();
 
     void OnChar(UINT nChar, UINT nRepeatCount, UINT nflags);
     void OnKeyDown(UINT nChar, UINT nRepeatCount, UINT nflags);
@@ -66,12 +67,7 @@ protected:
     virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
     virtual afx_msg BOOL OnHeaderEndDrag(UINT id, NMHDR* pNmhdr, LRESULT* pResult);
     virtual afx_msg BOOL OnHeaderBeginResize(UINT id, NMHDR* pNmhdr, LRESULT* pResult);
-
-    //{{AFX_MSG(CMessageList)
     afx_msg void OnDestroy();
-    //}}AFX_MSG
-
-    DECLARE_MESSAGE_MAP()
 
 private:
     // Row String

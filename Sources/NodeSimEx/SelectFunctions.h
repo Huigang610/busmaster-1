@@ -24,51 +24,31 @@
 
 #pragma once
 
-// SelectFunctions.h : header file
-//
+/* Project includes */
 #include "NodeSimEx_resource.h"
 #include "Include/BaseDefs.h"
-/////////////////////////////////////////////////////////////////////////////
-// CSelectFunctions dialog
 
 class CSelectFunctions : public CDialog
 {
-    // Construction
-private:
-    ETYPE_BUS m_eBus;
+    DECLARE_MESSAGE_MAP()
+
 public:
     CString m_omSelectedFunctionPrototype;
     CString m_omStrSelectedText;
     CSelectFunctions(ETYPE_BUS eBus, CWnd* pParent = NULL);   // standard constructor
 
-    // Dialog Data
-    //{{AFX_DATA(CSelectFunctions)
     enum { IDD = IDD_DLG_SELECT_FNS };
     CListBox    m_omFnListBox;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CSelectFunctions)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CSelectFunctions)
-    afx_msg void OnDblclkListFunctions();
-    afx_msg void OnSelect();
     virtual BOOL OnInitDialog();
+	afx_msg void OnDblclkListFunctions();
+    afx_msg void OnSelect();
     afx_msg void OnCancel();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
+    ETYPE_BUS m_eBus;
     BOOL bFormatFunctionPrototype(CString& omStrFunctionPrototype);
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

@@ -69,11 +69,11 @@ BOOL CMonitorNode::bAddConDetObj(CConnectionDet* pConDet)
 void CMonitorNode::vReadCANdataBuffer()
 {
     static sTCANDATA CurrMsgCAN;
-    while (m_ouCANBuff.GetMsgCount() > 0)
+    while (m_ouCANBuff.getMessageCount() > 0)
     {
         //Now broadcast frames to each of the connection det obj
         //They should filter it out and work
-        m_ouCANBuff.ReadFromBuffer(&CurrMsgCAN);
+        m_ouCANBuff.readFromBuffer(&CurrMsgCAN);
         //If the message is either RX or TX then only process it
         //If Error then notify user ****TBD****
         if ((CurrMsgCAN.m_ucDataType == RX_FLAG) ||

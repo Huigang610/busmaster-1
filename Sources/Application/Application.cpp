@@ -25,9 +25,6 @@
 
 IMPLEMENT_DYNCREATE(CApplication, CCmdTarget)
 
-BEGIN_MESSAGE_MAP(CApplication, CCmdTarget)
-END_MESSAGE_MAP()
-
 BEGIN_DISPATCH_MAP(CApplication, CCmdTarget)
     DISP_FUNCTION_ID(CApplication, "Connect",               dispidConnect,                  Connect,                VT_EMPTY, VTS_BOOL)
     DISP_FUNCTION_ID(CApplication, "GetMsgInfo",            dispidGetMsgInfo,               GetMsgInfo,             VT_EMPTY, VTS_BSTR VTS_PVARIANT )
@@ -64,7 +61,7 @@ BEGIN_DISPATCH_MAP(CApplication, CCmdTarget)
     DISP_FUNCTION_ID(CApplication, "DeleteTxBlock",         dispidDeleteTxBlock,            DeleteTxBlock,          VT_EMPTY, VTS_I2)
     DISP_FUNCTION_ID(CApplication, "ClearTxBlockList",      dispidClearTxBlockList,         ClearTxBlockList,       VT_EMPTY, VTS_NONE)
     DISP_FUNCTION_ID(CApplication, "AddMsgToTxBlock",       dispidAddMsgToTxBlock,          AddMsgToTxBlock,        VT_EMPTY, VTS_I2 VTS_PVARIANT)
-    DISP_FUNCTION_ID(CApplication, "GetMsgCount",           dispidGetMsgCount,              GetMsgCount,            VT_EMPTY, VTS_I2 VTS_PI2)
+    DISP_FUNCTION_ID(CApplication, "GetMsgCount",           dispidGetMsgCount,              getMessageCount,        VT_EMPTY, VTS_I2 VTS_PI2)
     DISP_FUNCTION_ID(CApplication, "GetMsgFromTxBlock",     dispidGetMsgFromTxBlock,        GetMsgFromTxBlock,      VT_EMPTY, VTS_I2 VTS_I2 VTS_PVARIANT)
     DISP_FUNCTION_ID(CApplication, "DeleteMsgFromTxBlock",  dispidDeleteMsgFromTxBlock,     DeleteMsgFromTxBlock,   VT_EMPTY, VTS_I2 VTS_PI2)
     DISP_FUNCTION_ID(CApplication, "ClearMsgList",          dispidClearMsgList,             ClearMsgList,           VT_EMPTY, VTS_I2)
@@ -177,9 +174,9 @@ void CApplication::ReadCOMDataBuffer()
     BOOL bRet = FALSE;
     DWORD dwCount = 0;
 
-    while (g_ouCanBufForCOM.GetMsgCount())
+    while (g_ouCanBufForCOM.getMessageCount())
     {
-        if (g_ouCanBufForCOM.ReadFromBuffer(&sCanData) == CALL_SUCCESS)
+        if (g_ouCanBufForCOM.readFromBuffer(&sCanData) == CALL_SUCCESS)
         {
             static CAN_MSGS sMsg;
             sMsg.m_bEXTENDED = sCanData.m_uDataInfo.m_sCANMsg.m_ucEXTENDED;
@@ -211,7 +208,7 @@ BOOL CApplication::bStartCOMReadThread()
     //First stop the thread if running
     bStopCOMReadThread();
     g_ouCOMReadThread.m_pBuffer = this;
-    g_ouCOMReadThread.m_hActionEvent = g_ouCanBufForCOM.hGetNotifyingEvent();
+    g_ouCOMReadThread.m_hActionEvent = g_ouCanBufForCOM.getNotifyEvent();
     bReturn = g_ouCOMReadThread.bStartThread(COMReadThreadProc);
 
     return bReturn;
@@ -523,7 +520,7 @@ STDMETHODIMP CApplication::XLocalClass::AddMsgToTxBlock (USHORT BlockIndex, CAN_
 STDMETHODIMP CApplication::XLocalClass::GetMsgCount (USHORT BlockIndex, USHORT* Result)
 {
     METHOD_PROLOGUE(CApplication, LocalClass)
-    return pThis->GetMsgCount (BlockIndex, Result);
+    return pThis->getMessageCount (BlockIndex, Result);
 }
 STDMETHODIMP CApplication::XLocalClass::GetMsgFromTxBlock  ( USHORT BlockIndex, USHORT MsgIndex, CAN_MSGS* psMsg)
 {

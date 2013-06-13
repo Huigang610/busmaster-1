@@ -1,4 +1,3 @@
-//////////////////////////////////////////////////////////////////////
 /* Multiple language support class: CMultiLanguage
     Copyright (c) 2005 - Herbert Yu
     yuhaian@hotmail.com
@@ -56,10 +55,9 @@ Usage:
   - FreeLibrary when ExitInstance() or in DLL_PROCESS_DETACH process.
   - Insert resource-only dll files for each dll/exe and each new language.
 */
-// MultiLanguage.cpp: implementation of the CMultiLanguage class.
-//
-//////////////////////////////////////////////////////////////////////
+
 #pragma once
+
 #include "stdAfx.h"
 #include "MultiLanguage.h"
 
@@ -74,21 +72,6 @@ static char THIS_FILE[]=__FILE__;
 
 LCID    CMultiLanguage::m_alcidSearch[MAX_NUM_LCID] = { 0*MAX_NUM_LCID };
 int     CMultiLanguage::m_nLocales = 0;
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
-CMultiLanguage::CMultiLanguage()
-{
-
-}
-
-CMultiLanguage::~CMultiLanguage()
-{
-
-}
-
 
 LCID    CMultiLanguage::AddLangId( LANGID langidIn )
 {

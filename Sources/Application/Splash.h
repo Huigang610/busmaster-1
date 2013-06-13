@@ -23,27 +23,15 @@
 
 class CSplashScreen : public CWnd
 {
-    // Construction
-protected:
-    CSplashScreen();
+	DECLARE_MESSAGE_MAP()
 
-    // Attributes:
 public:
-    CBitmap m_ouBitMapImage;
+	CBitmap m_ouBitMapImage;
 
-    // Operations
-public:
     static void ActivateSplashScreen(BOOL bActivate = TRUE);
     static void DisplaySplashScreen(CWnd* pParentWnd = NULL, INT nShow = SW_SHOW);
     static BOOL PreTranslateAppMessage(MSG* pMsg);
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CSplashWnd)
-    //}}AFX_VIRTUAL
-
-    // Implementation
-public:
     ~CSplashScreen();
     virtual void PostNcDestroy();
 
@@ -53,11 +41,7 @@ protected:
     static CSplashScreen* sm_pouSplashScreen;
 
     // Generated message map functions
-protected:
-    //{{AFX_MSG(CSplashWnd)
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     afx_msg void OnPaint();
     afx_msg void OnTimer(UINT nIDEvent);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
 };

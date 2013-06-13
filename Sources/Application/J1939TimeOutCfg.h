@@ -27,6 +27,7 @@
 class CJ1939TimeOutCfg : public CDialog
 {
     DECLARE_DYNAMIC(CJ1939TimeOutCfg)
+    DECLARE_MESSAGE_MAP()
 
 public:
     CJ1939TimeOutCfg(CWnd* pParent = NULL);   // standard constructor
@@ -36,12 +37,6 @@ public:
     // Dialog Data
     enum { IDD = IDD_TIMEOUT };
 
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    BOOL bVerifyTimeoutValue(UINT nValue);
-
-    DECLARE_MESSAGE_MAP()
-public:
     CRadixEdit m_omBroadcast;
     CRadixEdit m_omResponse;
     CRadixEdit m_omHolding;
@@ -49,6 +44,10 @@ public:
     CRadixEdit m_omT2;
     CRadixEdit m_omT3;
     CRadixEdit m_omT4;
+
+protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    BOOL bVerifyTimeoutValue(UINT nValue);
     afx_msg void OnBnClickedCheckBroadcast();
     afx_msg void OnBnClickedCheckResponse();
     afx_msg void OnBnClickedCheckHolding();

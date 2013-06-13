@@ -21,19 +21,19 @@
 
 #pragma once
 
-// CResultView view
-
 class CResultView : public CListView
 {
-    //Member Variables
-private:
-    CImageList m_omImageList;
-
-    //Member functions
-private:
     DECLARE_DYNCREATE(CResultView)
+
+public:
+    virtual void OnInitialUpdate(void);
+
+#ifdef _DEBUG
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
+#endif
+
 protected:
-    DECLARE_MESSAGE_MAP()
     // protected constructor used by dynamic creation
     CResultView(void);
     //Pre Create window handles
@@ -41,12 +41,6 @@ protected:
     //Proeteced Constructor
     virtual ~CResultView(void);
 
-public:
-    virtual void OnInitialUpdate(void);
-
-public:
-#ifdef _DEBUG
-    virtual void AssertValid() const;
-    virtual void Dump(CDumpContext& dc) const;
-#endif
+private:
+    CImageList m_omImageList;
 };

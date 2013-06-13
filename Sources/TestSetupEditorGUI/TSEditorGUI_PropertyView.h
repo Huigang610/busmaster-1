@@ -21,28 +21,21 @@
 
 #pragma once
 
+/* Project includes */
 #include "TSEditorGUI_resource.h"
 #include "afxcmn.h"
 #include "ListCtrlEx.h"
 
-// CPropertyView form view
 class CTSEditorChildFrame;
+
 class CPropertyView : public CFormView
 {
-    //Member Variables
     DECLARE_DYNCREATE(CPropertyView)
-    CRect m_rectList;
-    CRect m_rectHelp;
-    CRect m_rectCancel;
-    CRect m_rectConfirm;
-    BOOL m_bSizeAvailable;
-    CImageList m_omImageList;
-    CListCtrlEx m_omPropertyList;
+    DECLARE_MESSAGE_MAP()
+
 public:
     enum { IDD = IDD_PROPERTYVIEW };
 
-    //Member Functions
-public:
     void vShowHelpInfo(CString& omHelpString);
 
 #ifdef _DEBUG
@@ -50,19 +43,28 @@ public:
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
+	CListCtrlEx m_omPropertyList;
+
+protected:
     virtual void OnInitialUpdate();
     afx_msg void OnSize(UINT nType, int cx, int cy);
     afx_msg void OnBnClickedCancel();
     afx_msg void OnBnClickedConfirm();
     afx_msg void OnLvnItemchanged(NMHDR* pNMHDR, LRESULT* pResult);
     HRESULT onMsg(LPARAM,WPARAM);
-protected:
-    CPropertyView();           // protected constructor used by dynamic creation
+
+	CPropertyView();           // protected constructor used by dynamic creation
     virtual ~CPropertyView();
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    DECLARE_MESSAGE_MAP()
 
 private:
     CTSEditorChildFrame* GetEditorWindow();
     CString m_omstrHelpString;
+
+    CRect m_rectList;
+    CRect m_rectHelp;
+    CRect m_rectCancel;
+    CRect m_rectConfirm;
+    BOOL m_bSizeAvailable;
+    CImageList m_omImageList;
 };

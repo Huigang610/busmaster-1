@@ -36,15 +36,14 @@
 
 class CFilterConfigDlg : public CDialog
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     // Constructor with Filter List
     CFilterConfigDlg( SFILTERAPPLIED_CAN* psSrcList,
                       const SMSGENTRY* pMsgDBDetails, UINT nHardware,
                       CWnd* pParent = NULL);   // standard constructor
 
-    // Dialog Data
-    //{{AFX_DATA(CFilterConfigDlg)
     enum { IDD = IDD_DLG_CREATE_FILTER };
     CButton m_omAddFilter;
     CStatic     m_omStatusText;
@@ -58,21 +57,12 @@ public:
     CComboBox   m_omMsgIDFrom;
     CListCtrl   m_omLstcFilterDetails;
     CFlexListCtrl   m_omLstcFilterList;
-    //}}AFX_DATA
 
+	SFILTERAPPLIED_CAN* m_psFilterApplied; // Reference to Filter List
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CFilterConfigDlg)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CFilterConfigDlg)
     virtual BOOL OnInitDialog();
     virtual void OnOK();
     afx_msg void OnItemchangedLstcFilterNames(NMHDR* pNMHDR, LRESULT* pResult);
@@ -90,8 +80,7 @@ protected:
     afx_msg void OnBtnDelete();
     afx_msg void OnBtnAdd();
     afx_msg void OnOkPress();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     /*BYTE m_byJunk[100];               // Facing a bug in FlexListCntrl.cpp.
                                       // This memory will be corrupted  */
@@ -103,10 +92,7 @@ private:
     int m_nSelecetedFilterIndex;      // Selected index of filter
     const SMSGENTRY* m_psMsgSignal;         // Database information
     UINT m_nHardware;
-public:
-    SFILTERAPPLIED_CAN* m_psFilterApplied; // Reference to Filter List
 
-private:
     // To create named filter UI List
     BOOL bCreateNamedFilterList();
     // To Create Filtet Details UI List
@@ -155,5 +141,4 @@ private:
     void vEnableDisableFilterComps( BOOL bEnable );
     // To adjust the width of the combo box based on its data
     void vAdjustWidthMessageComboBox();
-
 };

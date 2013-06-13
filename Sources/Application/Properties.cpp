@@ -50,8 +50,6 @@ extern CCANMonitorApp theApp;
 CProperties::CProperties(const SPROPERTIESLIST& sProperties)
     : CDialog(CProperties::IDD, NULL)
 {
-    //{{AFX_DATA_INIT(CProperties)
-    //}}AFX_DATA_INIT
     // Copy One after another as CString Array might be using dynamic allocation
     // So structure copy will simply copy the location
     // Copy Baud Rate
@@ -87,16 +85,8 @@ CProperties::CProperties(const SPROPERTIESLIST& sProperties)
 void CProperties::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CProperties)
     DDX_Control(pDX, IDC_TREE_PROPERTIES, m_omPropertyTree);
-    //}}AFX_DATA_MAP
 }
-
-
-BEGIN_MESSAGE_MAP(CProperties, CDialog)
-    //{{AFX_MSG_MAP(CProperties)
-    //}}AFX_MSG_MAP
-END_MESSAGE_MAP()
 
 /******************************************************************************/
 /*  Function Name    :  OnInitDialog                                          */

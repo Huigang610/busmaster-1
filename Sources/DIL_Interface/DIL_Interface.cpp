@@ -34,9 +34,6 @@
 static CDIL_CAN* sg_pouDIL_CAN = NULL;
 static CDILI_J1939* sg_pouDILI_J1939 = NULL;
 
-BEGIN_MESSAGE_MAP(CDILApp, CWinApp)
-END_MESSAGE_MAP()
-
 /**
  * The one and only CDILApp object
  */

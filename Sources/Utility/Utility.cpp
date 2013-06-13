@@ -22,8 +22,6 @@
  * This file contains utility function definitions
  */
 
-/// All the utility function defined here
-
 #include "Utils_stdafx.h"
 #include <math.h>
 #include <shlwapi.h>

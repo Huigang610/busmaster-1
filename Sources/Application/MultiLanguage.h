@@ -1,4 +1,3 @@
-//////////////////////////////////////////////////////////////////////
 /* Multiple language support class: CMultiLanguage
     Copyright (c) 2005 - Herbert Yu
     yuhaian@hotmail.com
@@ -58,7 +57,6 @@ Usage:
 */
 // MultiLanguage.h: interface for the CMultiLanguage class.
 //
-//////////////////////////////////////////////////////////////////////
 
 #pragma once
 

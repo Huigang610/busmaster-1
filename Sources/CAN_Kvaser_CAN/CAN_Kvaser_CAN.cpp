@@ -44,31 +44,16 @@
 #define USAGE_EXPORT
 #include "CAN_Kvaser_CAN_Extern.h"
 
-// CCAN_Kvaser_CAN
-
-BEGIN_MESSAGE_MAP(CCAN_Kvaser_CAN, CWinApp)
-END_MESSAGE_MAP()
-
-
 /**
- * CCAN_Kvaser_CAN construction
+ * The one and only CCAN_Kvaser_CAN object
  */
-CCAN_Kvaser_CAN::CCAN_Kvaser_CAN()
-{
-    // TODO: add construction code here,
-    // Place all significant initialization in InitInstance
-}
-
-
-// The one and only CCAN_Kvaser_CAN object
 CCAN_Kvaser_CAN theApp;
 
+static HINSTANCE ghLangInst=NULL;
 
 /**
  * CCAN_Kvaser_CAN initialization
  */
-static HINSTANCE ghLangInst=NULL;
-
 BOOL CCAN_Kvaser_CAN::InitInstance()
 {
     // Begin of Multiple Language support
@@ -1207,7 +1192,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& sCanData)
                 sCanData.m_ucDataType = TX_FLAG;
                 for (UINT j = 0; j < sg_asClientToBufMap[i].unBufCount; j++)
                 {
-                    sg_asClientToBufMap[i].pClientBuf[j]->WriteIntoBuffer(&sCanData);
+                    sg_asClientToBufMap[i].pClientBuf[j]->writeIntoBuffer(&sCanData);
                 }
             }
             else
@@ -1218,7 +1203,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& sCanData)
                     static STCANDATA sTempCanData;
                     sTempCanData = sCanData;
                     sTempCanData.m_ucDataType = RX_FLAG;
-                    sg_asClientToBufMap[i].pClientBuf[j]->WriteIntoBuffer(&sTempCanData);
+                    sg_asClientToBufMap[i].pClientBuf[j]->writeIntoBuffer(&sTempCanData);
                 }
             }
         }
@@ -1229,7 +1214,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& sCanData)
         {
             for (UINT j = 0; j < sg_asClientToBufMap[i].unBufCount; j++)
             {
-                sg_asClientToBufMap[i].pClientBuf[j]->WriteIntoBuffer(&sCanData);
+                sg_asClientToBufMap[i].pClientBuf[j]->writeIntoBuffer(&sCanData);
             }
         }
     }

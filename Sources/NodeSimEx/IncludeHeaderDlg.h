@@ -28,38 +28,21 @@
 
 class CIncludeHeaderDlg : public CDialog
 {
-private:
-    CFunctionEditorDoc* m_pDoc;
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     CIncludeHeaderDlg(CFunctionEditorDoc* pDoc, CWnd* pParent = NULL);   // standard constructor
 
-    // Dialog Data
-    //{{AFX_DATA(CIncludeHeaderDlg)
     enum { IDD = IDD_DLG_INCLUDE_HEADERS };
     CString m_omStrIncludeFilename;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CIncludeHeaderDlg)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CIncludeHeaderDlg)
     afx_msg void OnOk();
     afx_msg void OnBrowse();
     afx_msg void OnCancel();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-private:
-};
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
+private:
+	CFunctionEditorDoc* m_pDoc;
+};

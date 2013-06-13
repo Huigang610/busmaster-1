@@ -24,16 +24,16 @@
 
 #pragma once
 
+/* Project includes */
 #include "HashDefines.h"
 #include "Utility/RadixEdit.h"
 #include "MsgSignal.h"
 #include "Utility/AlphanumiricEdit.h"
-/////////////////////////////////////////////////////////////////////////////
-// CSignalDetailsDlg dialog
 
 class CSignalDetailsDlg : public CDialog
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     CSignalDetailsDlg( const SDBPARAMS& sParams,
                        eMODES eMode,
@@ -48,8 +48,8 @@ public:
                        CWnd* pParent = NULL);   // standard constructor
     CSignalDetailsDlg( eMODES eMode, sSIGNALS* psSigInfo,
                        CWnd* pParent /*=NULL*/);
-    // Dialog Data
-    //{{AFX_DATA(CSignalDetailsDlg)
+
+	// Dialog Data
     enum { IDD = IDD_DLG_SIGNAL };
     CRadixEdit  m_odScale;
     CRadixEdit  m_odOffset;
@@ -65,27 +65,20 @@ public:
     CString m_omStrSignalName;
     BYTE    m_byStartBit;
     CString m_omStrUnit;
-    //}}AFX_DATA
 
     CAlphanumiricEdit m_odNumericEdit;
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CSignalDetailsDlg)
-public:
-    virtual BOOL PreTranslateMessage(MSG* pMsg);
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-public:
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+
     bool IsRangeChanged();
 
     BOOL ValidateSignalShortName(CString omStrSignalShortName);
     // Implementation
+
 protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
     // Generated message map functions
-    //{{AFX_MSG(CSignalDetailsDlg)
     virtual BOOL OnInitDialog();
     afx_msg void OnKillfocusEditSgname();
     afx_msg void OnKillfocusEditByindex();
@@ -95,12 +88,13 @@ protected:
     afx_msg void OnKillfocusEditStbit();
     afx_msg void OnKillfocusEditUnit();
     afx_msg void OnSelchangeCombSgtype();
-    virtual void OnCancel();
-    virtual void OnOK();
     afx_msg void OnChangeEditSglen();
     afx_msg void OnChangeEditSgname();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+    afx_msg void OnBnClickedRadioIntel();
+    afx_msg void OnBnClickedRadioMotorola();
+    virtual void OnCancel();
+    virtual void OnOK();
+
 private:
     SDBPARAMS m_sDbParams;
     BOOL m_bLenChanged;
@@ -132,8 +126,6 @@ private:
     CString m_omStrOffset;
     CString m_omStrScale;
     BOOL m_bNameChanged;
-    afx_msg void OnBnClickedRadioIntel();
-    afx_msg void OnBnClickedRadioMotorola();
     // Member variables to store the intial values for omparison later
     int     m_nDataFormatInitial;
     UINT    m_unSgLenInitial;

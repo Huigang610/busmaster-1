@@ -138,7 +138,6 @@ BEGIN_MESSAGE_MAP(CConfigMsgLogDlg, CDialog)
     ON_BN_CLICKED(IDOK, OnBnClickedOk)
 END_MESSAGE_MAP()
 
-
 // Helper functions: start
 void CConfigMsgLogDlg::vCreateFileList(void)
 {
@@ -816,7 +815,7 @@ BOOL CConfigMsgLogDlg::OnInitDialog()
                     BOOL bFileOpen = omStdiofile.Open(strTempLog,
                                                       CFile::modeCreate | CFile::modeWrite | CFile::typeBinary);
 
-                    if(bFileOpen == TRUE)///file created, add in the list
+                    if(bFileOpen == TRUE) //file created, add in the list
                     {
                         omStdiofile.Close();
                         AddNewItem_GUI(sLogObject, i);
@@ -833,7 +832,7 @@ BOOL CConfigMsgLogDlg::OnInitDialog()
                     LogBlocks = GetLoggingBlockCount(); //refresh the log count
                 }
             }
-            else ///file found add in the list
+            else //file found add in the list
             {
                 AddNewItem_GUI(sLogObject, i);
             }
@@ -931,22 +930,22 @@ void CConfigMsgLogDlg::vSetLogFileONOFF(BOOL bLogON)
     m_bLogON = bLogON;
 }
 
-static void vPopulateMainSubList(CMainEntryList& DestList, const SFILTERAPPLIED_CAN* psFilterConfigured,
+static void vPopulateMainSubList(SignalWatchListMainEntries& DestList, const SFILTERAPPLIED_CAN* psFilterConfigured,
                                  const SFILTERAPPLIED_CAN* psFilterApplied)
 {
     ASSERT(psFilterConfigured != NULL);
     DestList.RemoveAll();
 
-    SMAINENTRY sMainEntry;
-    sMainEntry.m_omMainEntryName = "CAN";
+    SignalWatchListMainEntry sMainEntry;
+    sMainEntry.mainEntryName = "CAN";
     if (psFilterApplied == NULL)
     {
-        SMAINENTRY sMainEntry;
-        sMainEntry.m_omMainEntryName = "FILTER_SELECTION_CAN";
+        SignalWatchListMainEntry sMainEntry;
+        sMainEntry.mainEntryName = "FILTER_SELECTION_CAN";
         for (INT i = 0; i < psFilterConfigured->m_ushTotal; i++)
         {
-            SSUBENTRY sSubEntry;
-            sSubEntry.m_omSubEntryName.Format("%s",
+            SignalWatchListSubEntry sSubEntry;
+            sSubEntry.subEntryName.Format("%s",
                                               psFilterConfigured->m_psFilters[i].m_sFilterName.filterName);
             sMainEntry.m_odUnSelEntryList.AddTail(sSubEntry);
         }
@@ -956,12 +955,12 @@ static void vPopulateMainSubList(CMainEntryList& DestList, const SFILTERAPPLIED_
 
         for (INT i = 0; i < psFilterConfigured->m_ushTotal; i++)
         {
-            SSUBENTRY sSubEntry;
-            sSubEntry.m_omSubEntryName.Format("%s",
+            SignalWatchListSubEntry sSubEntry;
+            sSubEntry.subEntryName.Format("%s",
                                               psFilterConfigured->m_psFilters[i].m_sFilterName.filterName);
             if (SFILTERSET::psGetFilterSetPointer(psFilterApplied->m_psFilters,
                                                   psFilterApplied->m_ushTotal,
-                                                  sSubEntry.m_omSubEntryName.GetBuffer(MAX_PATH)) != NULL)
+                                                  sSubEntry.subEntryName.GetBuffer(MAX_PATH)) != NULL)
             {
                 sMainEntry.m_odSelEntryList.AddTail(sSubEntry);
             }
@@ -974,9 +973,9 @@ static void vPopulateMainSubList(CMainEntryList& DestList, const SFILTERAPPLIED_
     DestList.AddTail(sMainEntry);
 }
 
-static void vPopulateFilterApplied(const SFILTERAPPLIED_CAN* psFilterConfigured, SFILTERAPPLIED_CAN& sFilterApplied, CMainEntryList& SrcList)
+static void vPopulateFilterApplied(const SFILTERAPPLIED_CAN* psFilterConfigured, SFILTERAPPLIED_CAN& sFilterApplied, SignalWatchListMainEntries& SrcList)
 {
-    SMAINENTRY& sMainEntry = SrcList.GetHead();
+    SignalWatchListMainEntry& sMainEntry = SrcList.GetHead();
     int nCount  = sMainEntry.m_odSelEntryList.GetCount();
     sFilterApplied.vClear();
     sFilterApplied.m_psFilters = new SFILTERSET[nCount];
@@ -984,9 +983,9 @@ static void vPopulateFilterApplied(const SFILTERAPPLIED_CAN* psFilterConfigured,
     POSITION pos = sMainEntry.m_odSelEntryList.GetHeadPosition();
     while (pos)
     {
-        SSUBENTRY& sSubEntry = sMainEntry.m_odSelEntryList.GetNext(pos);
+        SignalWatchListSubEntry& sSubEntry = sMainEntry.m_odSelEntryList.GetNext(pos);
         const PSFILTERSET psTemp = SFILTERSET::psGetFilterSetPointer(psFilterConfigured->m_psFilters,
-                                   psFilterConfigured->m_ushTotal, sSubEntry.m_omSubEntryName.GetBuffer(MAX_PATH));
+                                   psFilterConfigured->m_ushTotal, sSubEntry.subEntryName.GetBuffer(MAX_PATH));
         ASSERT (psTemp != NULL);
         sFilterApplied.m_psFilters[sFilterApplied.m_ushTotal].bClone(*psTemp);
         sFilterApplied.m_ushTotal++;
@@ -997,7 +996,7 @@ void CConfigMsgLogDlg::OnBnClickedLogFilter(void)
 {
     if (CAN == m_eCurrBus)
     {
-        CMainEntryList DestList;
+        SignalWatchListMainEntries DestList;
         SFILTERAPPLIED_CAN sFilterApplied;
         m_pouFProcCAN->FPC_GetFilteringScheme((USHORT)m_nLogIndexSel, sFilterApplied);
         vPopulateMainSubList(DestList, m_psFilterConfigured, &sFilterApplied);

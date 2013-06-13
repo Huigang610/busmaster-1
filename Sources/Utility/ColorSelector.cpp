@@ -3,12 +3,6 @@
 #include "Utils_StdAfx.h"
 #include "ColorSelector.h"
 
-
-// CColorSelector
-
-//IMPLEMENT_DYNAMIC(CColorSelector, CButton)
-
-
 CColorSelector::CColorSelector()
 {
     m_MapMsgIdToClr.RemoveAll();
@@ -19,16 +13,9 @@ CColorSelector::~CColorSelector()
     m_MapMsgIdToClr.RemoveAll();
 }
 
-
 BEGIN_MESSAGE_MAP(CColorSelector, CButton)
     ON_CONTROL_REFLECT(BN_CLICKED, OnBnClicked)
 END_MESSAGE_MAP()
-
-
-
-// CColorSelector message handlers
-
-
 
 void CColorSelector::PreSubclassWindow()
 {

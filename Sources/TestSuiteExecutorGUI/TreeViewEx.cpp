@@ -46,11 +46,6 @@ CTreeViewEx::CTreeViewEx()
     m_hOrigCursor = ::GetCursor();
 }
 
-CTreeViewEx::~CTreeViewEx()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CTreeViewEx, CTreeView)
     ON_WM_LBUTTONDOWN()
     ON_NOTIFY_REFLECT(TVN_BEGINDRAG, OnTvnBegindrag)
@@ -68,9 +63,6 @@ BEGIN_MESSAGE_MAP(CTreeViewEx, CTreeView)
     ON_NOTIFY_REFLECT(TVN_ENDLABELEDIT, OnTvnEndlabeledit)
     ON_NOTIFY_REFLECT(TVN_KEYDOWN, OnTvnKeyPress)
 END_MESSAGE_MAP()
-
-
-// CTreeViewEx diagnostics
 
 #ifdef _DEBUG
 void CTreeViewEx::AssertValid() const

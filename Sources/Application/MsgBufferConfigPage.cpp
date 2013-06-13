@@ -26,8 +26,6 @@
 #include "MsgBufferConfigPage.h"    // For class definition
 
 extern CCANMonitorApp theApp;
-/////////////////////////////////////////////////////////////////////////////
-// CMsgBufferConfigPage property page
 
 IMPLEMENT_DYNCREATE(CMsgBufferConfigPage, CPropertyPage)
 
@@ -73,25 +71,17 @@ CMsgBufferConfigPage::~CMsgBufferConfigPage()
 void CMsgBufferConfigPage::DoDataExchange(CDataExchange* pDX)
 {
     CPropertyPage::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CMsgBufferConfigPage)
     DDX_Text(pDX, IDC_EDIT_APPEND_SIZE, m_unAppendSize);
     DDV_MinMaxUInt(pDX, m_unAppendSize, defMIN_BUFFER_SIZE, defMAX_BUFFER_SIZE);
     DDX_Text(pDX, IDC_EDIT_OVERWRITE_SIZE, m_unOverWriteSize);
     DDV_MinMaxUInt(pDX, m_unOverWriteSize, defMIN_BUFFER_SIZE, defMAX_BUFFER_SIZE);
     DDX_Text(pDX, IDC_EDIT_DISPLAY_UPDATE, m_unDisplayUpdateRate);
     DDV_MinMaxUInt(pDX, m_unDisplayUpdateRate, defMIN_DISPLAY_UPDATE_TIME, defMAX_DISPLAY_UPDATE_TIME);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CMsgBufferConfigPage, CPropertyPage)
-    //{{AFX_MSG_MAP(CMsgBufferConfigPage)
     ON_BN_CLICKED(IDC_CBTN_SET_DEFAULT, OnCbtnSetDefault)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CMsgBufferConfigPage message handlers
 
 /*******************************************************************************
  Function Name  : OnOK

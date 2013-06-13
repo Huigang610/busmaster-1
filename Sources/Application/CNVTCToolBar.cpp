@@ -18,22 +18,11 @@
  * @authors   Ratnadip Choudhury, Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
-//CNVTCToolBar.cpp: CNVTCToolBar class implementation.
-//////////////////////////////////////////////////////////////////////
 
+/* Project includes */
 #include "stdafx.h"
 #include "CNVTCToolBar.h"
 #include "CNVTCImageList.h"
-
-//Constructor
-CNVTCToolBar::CNVTCToolBar()
-{
-}
-
-//Destructor
-CNVTCToolBar::~CNVTCToolBar()
-{
-}
 
 BOOL CNVTCToolBar::bLoadCNVTCToolBar(int nWidth, UINT unNormal, UINT unHot, UINT unDisabled, COLORREF clrMask)
 {

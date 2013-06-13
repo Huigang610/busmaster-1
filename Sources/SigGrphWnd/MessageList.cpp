@@ -43,26 +43,9 @@ CMessageList::CMessageList()
     m_hBlueBrush = CreateSolidBrush( BLUE_COLOR );
 }
 
-/*******************************************************************************
-  Function Name  : ~CMessageList
-  Description    : Standard Destructor
-  Member of      : CMessageList
-  Functionality  : -
-  Author(s)      : Ratnadip Choudhury
-  Date Created   : 02/12/2004
-  Modifications  :
-*******************************************************************************/
-CMessageList::~CMessageList()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CMessageList, CListCtrl)
-    //{{AFX_MSG_MAP(CMessageList)
     ON_WM_DESTROY()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
 
 /*******************************************************************************
   Function Name  : DrawItem

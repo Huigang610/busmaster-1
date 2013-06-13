@@ -28,13 +28,11 @@
 #include "afxcmn.h"
 class CNumSpinCtrl : public CSpinButtonCtrl
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     CNumSpinCtrl();
-    virtual ~CNumSpinCtrl();
 
-    // Operations
-public:
     // To set the size of the data in terms of bits
     // This is required to get 2s complement value
     void vSetDataSize(short int nSize);
@@ -72,16 +70,10 @@ public:
                                 int nBase);         // Base value
     void vSetValueForBuddy (UINT64 n64Val);
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CNumSpinCtrl)
 protected:
     virtual void PreSubclassWindow();
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-    // To initialise default values
+	// To initialise default values
     void vInitSpinCtrl();
     // To set the position of the scroll bar. Scrollbar will take only int value
     void vSetIntPos (double pos);
@@ -92,17 +84,9 @@ protected:
     // Int 64 version
     void vSetValueForBuddy (__int64 val);
 
-    // Generated message map functions
-protected:
-    //{{AFX_MSG(CNumSpinCtrl)
     afx_msg BOOL OnDeltaPos(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-    //}}AFX_MSG
 
-    DECLARE_MESSAGE_MAP()
-
-    /// Attributes
-protected:
     double m_dMinVal;                 // Minimum Value
     double m_dMaxVal;                 // Maximun Value
     double m_dDelta;                  // Step value

@@ -34,20 +34,12 @@ static const int MINUS_SIGN        = 0x2D;
 static const int BACK_SPACE        = 0x08;
 static const int DECIMAL_POINT     = 0x2E;
 
-
-/////////////////////////////////////////////////////////////////////////////
-// CRadixEdit window
-
 class CRadixEdit : public CEdit
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     CRadixEdit();
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CRadixEdit)
-    //}}AFX_VIRTUAL
 
     void vSetConfigData(int CtrlID);
     // Returns floating point value
@@ -69,16 +61,9 @@ public:
     // Check for signed integer
     bool bIsSigned();
 
-    virtual ~CRadixEdit();
-
-    // Generated message map functions
 protected:
-    //{{AFX_MSG(CRadixEdit)
     afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
     afx_msg void OnChange();
-    //}}AFX_MSG
-
-    DECLARE_MESSAGE_MAP()
 
 private:
     float m_fValue;

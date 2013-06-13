@@ -54,8 +54,6 @@ enum eMODES
 #define MSG_DUPLICATE_SG_NAME               "Signal name already exists!"
 #define MSG_MAX_VAL_LESS                    "Maximum value cannot be less than minimum value!"
 #define MSG_MIN_VAL_MORE                    "Minimum value cannot be more than maximum value!"
-/////////////////////////////////////////////////////////////////////////////
-// CSignalDetailsDlg dialog
 
 /*******************************************************************************
  Function Name    :  CSignalDetailsDlg
@@ -84,7 +82,6 @@ CSignalDetailsDlg::CSignalDetailsDlg(eMODES eMode,
                                      CWnd* pParent /*=NULL*/)
     : CDialog(CSignalDetailsDlg::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CSignalDetailsDlg)
     m_shByteIndex = 0;
     m_unSgLen = 1;
     m_omStrSignalName = "";
@@ -98,8 +95,6 @@ CSignalDetailsDlg::CSignalDetailsDlg(eMODES eMode,
     m_unMode = eMode;
     m_nDataFormat = nDataFormat;
     m_omStrSgType = omStrSignalType;
-    //}}AFX_DATA_INIT
-
     m_omStrMaxVal = omStrMaxVal;
     m_omStrMinVal = omStrMinVal;
     m_omStrOffset = omStrOffset;
@@ -183,7 +178,6 @@ CSignalDetailsDlg::CSignalDetailsDlg( eMODES eMode,
 void CSignalDetailsDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CSignalDetailsDlg)
     DDX_Control(pDX, IDC_EDIT_FACTOR, m_odScale);
     DDX_Control(pDX, IDC_EDIT_OFFSET, m_odOffset);
     DDX_Control(pDX, IDC_EDIT_MIN, m_odMinValue);
@@ -200,12 +194,8 @@ void CSignalDetailsDlg::DoDataExchange(CDataExchange* pDX)
     DDX_Text(pDX, IDC_EDIT_STBIT, m_byStartBit);
     DDV_MinMaxByte(pDX, m_byStartBit, 0, 7);
     DDX_Text(pDX, IDC_EDIT_UNIT, m_omStrUnit);
-    //}}AFX_DATA_MAP
 }
 
-
-/////////////////////////////////////////////////////////////////////////////
-// CSignalDetailsDlg message handlers
 /******************************************************************************/
 /*  Function Name    :  OnInitDialog                                          */
 /*                                                                            */

@@ -29,31 +29,16 @@
 
 class CFileView : public CScrollView
 {
-private:
-    ETYPE_BUS m_eBus;
-protected: // create from serialization only
-    CFileView();
     DECLARE_DYNCREATE(CFileView)
+    DECLARE_MESSAGE_MAP()
 
-    // Attributes
 public:
+    CFileView();
+
     static ETYPE_BUS sm_eBus;
-    // Operations
-public:
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CFileView)
-public:
     virtual void OnDraw(CDC* pDC);  // overridden to draw this view
     virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
-protected:
-    virtual void OnInitialUpdate(); // called first time after construct
 
-    //}}AFX_VIRTUAL
-
-    // Implementation
-public:
     // Takes the cursor to the  specified line number
     void vGoToLine( UINT unLineNo );
 
@@ -64,26 +49,24 @@ public:
     CFunctionEditorDoc* omGetDocument();
 
     virtual ~CFileView();
+
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
-protected:
+protected: // create from serialization only
+    virtual void OnInitialUpdate(); // called first time after construct
 
-    // Generated message map functions
-protected:
-    //{{AFX_MSG(CFileView)
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
     afx_msg void OnPaint();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+    afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 
 private:
     // character height information
     int     m_nCharHeight;
     // character width information
     int     m_nCharWidth;
-public:
-    afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
+
+	ETYPE_BUS m_eBus;
 };

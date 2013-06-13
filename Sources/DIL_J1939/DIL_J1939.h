@@ -24,16 +24,8 @@
 
 #pragma once
 
-#ifndef __AFXWIN_H__
-#error include 'stdafx.h' before including this file for PCH
-#endif
-
 class CJ1939TranslatorApp : public CWinApp
 {
 public:
-    CJ1939TranslatorApp();
-
     virtual BOOL InitInstance();
-
-    DECLARE_MESSAGE_MAP()
 };

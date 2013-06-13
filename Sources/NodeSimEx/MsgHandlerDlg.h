@@ -32,50 +32,18 @@
 #include "FunctionEditorDoc.h"
 #include "SimSysManager.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// CMsgHandlerDlg dialog
-
 class CMsgHandlerDlg : public CDialog
 {
-    // Construction
-private:
-    ETYPE_BUS m_eBus;
+	DECLARE_MESSAGE_MAP()
+
 public:
     CString m_omStrSelectedItemText;
     CString m_omStrFunctionAdded;
     CMsgHandlerDlg(ETYPE_BUS eBus, CWnd* pParent = NULL);   // standard constructor
-private:
-    void vInitDlgWithBusSpecNames(void);
-    void vTokenize(CString strInput, CString strToken, CString& strOutput, int& nStart);
-    // Dialog Data
-    //{{AFX_DATA(CMsgHandlerDlg)
-    enum { IDD = IDD_DLG_MSG_HANDLERS };
-    CListBox    m_omListMsgName;
-    CRadixEdit  m_odEditMsgIDTo;
-    CRadixEdit  m_odEditMsgIDFrom;
-    //VENKATNARAYANA
-    //CRadixEdit    m_odEditMsgID;
-    CEdit m_odEditMsgID;
-    CButton m_omButtonApply;
-    CButton m_omButtonOK;
-    CString m_omStrMsgID;
-    CString m_omStrMsgIDFrom;
-    CString m_omStrMsgIDTo;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CMsgHandlerDlg)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CMsgHandlerDlg)
     afx_msg void OnCbtnMsgCancel();
     afx_msg void OnCbtnMsgOk();
     afx_msg void OnCbtnMsgHandlerApply();
@@ -83,14 +51,28 @@ protected:
     afx_msg void OnRbtnMsgId();
     afx_msg void OnRbtnMsgName();
     afx_msg void OnRbtnMsgRange();
-    virtual BOOL OnInitDialog();
     afx_msg void OnSelchangeLstbMsgHandlerList();
     afx_msg void OnUpdateEditMsgHandlerId();
     afx_msg void OnUpdateEditMsgHandlerIdFrom();
     afx_msg void OnUpdateEditMsgHandlerIdTo();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+    virtual BOOL OnInitDialog();
+
 private:
+    void vInitDlgWithBusSpecNames(void);
+    void vTokenize(CString strInput, CString strToken, CString& strOutput, int& nStart);
+    enum { IDD = IDD_DLG_MSG_HANDLERS };
+    CListBox    m_omListMsgName;
+    CRadixEdit  m_odEditMsgIDTo;
+    CRadixEdit  m_odEditMsgIDFrom;
+    CEdit m_odEditMsgID;
+    CButton m_omButtonApply;
+    CButton m_omButtonOK;
+    CString m_omStrMsgID;
+    CString m_omStrMsgIDFrom;
+    CString m_omStrMsgIDTo;
+
+	ETYPE_BUS m_eBus;
+
     BOOL bAddMessageNameInListBox(const CStringArray* pomStrArray,
                                   const CString& omStrMessageName);
     BOOL bValidateUserSelection(CFunctionEditorDoc* pDoc);
@@ -98,6 +80,3 @@ private:
                                    const CString& omStrHandlerType,
                                    CString omStrMessageNameOrID);
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

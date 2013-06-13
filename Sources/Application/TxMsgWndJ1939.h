@@ -21,6 +21,7 @@
 
 #pragma once
 
+/* Project includes */
 #include "Utility/RadixEdit.h"
 #include "Datatypes/MsgSignal_Datatypes.h"
 
@@ -30,6 +31,7 @@ enum ESTATE_TRANS
     TRANS_TO_BE_STOPPED,
     TRANS_STARTED
 };
+
 typedef struct tagMsgToBeSent
 {
     UINT32 m_unPGN;
@@ -43,11 +45,10 @@ typedef struct tagMsgToBeSent
     UINT m_unTimerVal;
 } SMSGTOBESENT;
 
-// CTxMsgWndJ1939 dialog
-
 class CTxMsgWndJ1939 : public CDialog
 {
     DECLARE_DYNAMIC(CTxMsgWndJ1939)
+    DECLARE_MESSAGE_MAP()
 
 public:
     CTxMsgWndJ1939(CWnd* pParent, SJ1939CLIENTPARAM& sClientParam);   // standard constructor
@@ -56,21 +57,6 @@ public:
     // Dialog Data
     enum { IDD = IDD_DLG_TX };
 
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-
-    DECLARE_MESSAGE_MAP()
-
-public:
-    virtual BOOL OnInitDialog();
-    afx_msg void OnBnClickedSend();
-    afx_msg void OnBnClickedOk();
-    afx_msg void OnBnClickedCancel();
-    afx_msg void OnEnChangeEditDlc();
-    afx_msg void OnEnChangeEditMsg();
-    afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
-
-public:
     CComboBox   m_omMsgTypeCombo;
     CRadixEdit  m_omDLCEdit;
     CRadixEdit  m_omMsgDataEdit;
@@ -84,9 +70,6 @@ public:
     CCriticalSection m_CS_CyclicTrans;
     CCriticalSection m_CS_ConfigData;
 
-public:
-    afx_msg void OnBnClickedRadioNm();
-    afx_msg void OnBnClickedRadioTpf();
     void vSetJ1939ClientParam(SJ1939CLIENTPARAM& sClientParam);
     HRESULT SendSavedMessage(void);
     ESTATE_TRANS eGetTransState(void);
@@ -98,6 +81,41 @@ public:
     static void vUpdateDataStore(const SMSGENTRY* psMsgEntry);
     static void vClearDataStore(void);
     void vUpdateChannelIDInfo();
+
+    // Control variable for ECU NAME
+    CRadixEdit m_omEcuName;
+    CRadixEdit m_omCurAddress;
+    CRadixEdit m_omFromEdit;
+    CRadixEdit m_omPriorityEdit;
+    CRadixEdit m_omTOEdit;
+    //CRadixEdit m_omPGNEdit;
+    CComboBox m_omComboChannel;
+    CRadixEdit m_omMiliSecs;
+    CButton m_omCheckCyclic;
+    CComboBox m_omComboPGN;
+
+protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    virtual BOOL OnInitDialog();
+    afx_msg void OnBnClickedSend();
+    afx_msg void OnBnClickedOk();
+    afx_msg void OnBnClickedCancel();
+    afx_msg void OnEnChangeEditDlc();
+    afx_msg void OnEnChangeEditMsg();
+    afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
+    afx_msg void OnBnClickedRadioNm();
+    afx_msg void OnBnClickedRadioTpf();
+    afx_msg void OnClose();
+    afx_msg void OnBnClickedClaimAddress();
+    afx_msg void OnBnClickedRqstAddress();
+    afx_msg void OnBnClickedCmdAddress();
+    afx_msg void OnCbnSelchangeComboMsgtype();
+    afx_msg void OnEnChangeEditMilliSec();
+    afx_msg void OnBnClickedCheckCyclic();
+    afx_msg LRESULT OnMessageConnect(WPARAM /*lParam*/, LPARAM /*wParam*/);
+    afx_msg void OnCbnSelchangeComboPgn();
+    afx_msg void OnCbnEditChangeComboPgn();
+
 private:
     static SMSGENTRY* m_psMsgRoot;
 
@@ -113,26 +131,4 @@ private:
     void vPopulatePGNComboBox(void);
     void vAdjustWidthMessageComboBox();
     void vVerifyPDUFormatInPGN(UINT unPGN);
-public:
-    // Control variable for ECU NAME
-    CRadixEdit m_omEcuName;
-    CRadixEdit m_omCurAddress;
-    afx_msg void OnClose();
-    afx_msg void OnBnClickedClaimAddress();
-    afx_msg void OnBnClickedRqstAddress();
-    afx_msg void OnBnClickedCmdAddress();
-    afx_msg void OnCbnSelchangeComboMsgtype();
-    afx_msg void OnEnChangeEditMilliSec();
-    CRadixEdit m_omFromEdit;
-    CRadixEdit m_omPriorityEdit;
-    CRadixEdit m_omTOEdit;
-    //CRadixEdit m_omPGNEdit;
-    CComboBox m_omComboChannel;
-    afx_msg void OnBnClickedCheckCyclic();
-    afx_msg LRESULT OnMessageConnect(WPARAM /*lParam*/, LPARAM /*wParam*/);
-    CRadixEdit m_omMiliSecs;
-    CButton m_omCheckCyclic;
-    CComboBox m_omComboPGN;
-    afx_msg void OnCbnSelchangeComboPgn();
-    afx_msg void OnCbnEditChangeComboPgn();
 };

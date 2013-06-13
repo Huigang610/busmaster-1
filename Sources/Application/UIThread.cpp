@@ -31,10 +31,6 @@
 // Interface file for CUIThread class
 #include "UIThread.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// CUIThread
-
-
 IMPLEMENT_DYNCREATE(CUIThread, CWinThread)
 
 /******************************************************************************
@@ -198,16 +194,10 @@ void CUIThread::vClearTraceContents()
 }
 
 BEGIN_MESSAGE_MAP(CUIThread, CWinThread)
-    //{{AFX_MSG_MAP(CUIThread)
-    // NOTE - the ClassWizard will add and remove mapping macros here.
     ON_THREAD_MESSAGE(WM_LOAD_SAVE_WINSTATUS, vUpdateWinStatusFromCfg)
     ON_THREAD_MESSAGE(WM_THREADMSG_PROC, vProcessThreadMsg)
     ON_THREAD_MESSAGE(WM_WRITE_TO_TRACE, vWriteTextToTrace)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CUIThread message handlers
 
 /******************************************************************************
     Function Name    :  vUpdateWinStatusFromCfg

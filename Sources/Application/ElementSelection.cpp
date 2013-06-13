@@ -98,9 +98,6 @@ COLORREF g_dColorTable[] =
 CElementSelection::CElementSelection(UINT nHardware, CWnd* pParent /*=NULL*/)
     : CDialog(CElementSelection::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CElementSelection)
-    // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
     m_pMainFrame = NULL;
     m_hMessageRoot = m_hStatRoot = NULL;
     m_eBusType = CAN;
@@ -120,15 +117,11 @@ CElementSelection::CElementSelection(UINT nHardware, CWnd* pParent /*=NULL*/)
 void CElementSelection::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CElementSelection)
     DDX_Control(pDX, IDC_LSTC_GRAPH_ELEMENTS, m_omElementList);
     DDX_Control(pDX, IDC_TREE_SIGNAL, m_omTreeEntries);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CElementSelection, CDialog)
-    //{{AFX_MSG_MAP(CElementSelection)
     ON_NOTIFY(NM_DBLCLK, IDC_TREE_SIGNAL, OnDblclkTreeSignal)
     ON_BN_CLICKED(IDC_BTN_ADD, OnBtnAdd)
     ON_BN_CLICKED(IDC_BTN_DELETE, OnBtnDelete)
@@ -138,9 +131,7 @@ BEGIN_MESSAGE_MAP(CElementSelection, CDialog)
     ON_NOTIFY(NM_CLICK, IDC_LSTC_GRAPH_ELEMENTS, OnClickLstcGraphElements)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LSTC_GRAPH_ELEMENTS, OnItemchangedLstcGraphElements)
     ON_NOTIFY(TVN_SELCHANGED, IDC_TREE_SIGNAL, OnSelchangedTreeSignal)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
 
 /*******************************************************************************
   Function Name  : OnOK
@@ -299,7 +290,7 @@ void CElementSelection::vPopulateDBTree( CTreeCtrl& omTree,
         UINT unNoOfMsgs = pomDatabase->unGetNumerOfMessages();
         UINT* pIDArray = new UINT[unNoOfMsgs];
 
-        //// Get List of database Messages
+        // Get List of database Messages
         //CStringList omMsgList;
         //pomDatabase->omStrListGetMessageNames( omMsgList );
         if (pIDArray != NULL )

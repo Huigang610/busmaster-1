@@ -155,7 +155,7 @@ struct sTXMSGINFO
     struct sTXMSGINFO* m_psNextTxMsgInfo;
 
 public:
-    int nGetMsgCount()
+    int ngetMessageCount()
     {
         int nCount = 0;
         PSTXCANMSGLIST psCanTemp = m_psTxCANMsgList;
@@ -186,7 +186,7 @@ public:
         //Only those members which should be stored
         nSize = sizeof(m_unTimeInterval) + sizeof (m_bType) + sizeof(m_bSendAllMessages);
         //To store number of msg as int
-        int nMsgCnt = nGetMsgCount();
+        int nMsgCnt = ngetMessageCount();
         nSize += sizeof(nMsgCnt);
         //For each message only the STXCANMSGDETAILS will be saved
         nSize += nMsgCnt * sizeof (STXCANMSGDETAILS);
@@ -202,7 +202,7 @@ public:
         memcpy(pDesBuffer, &m_bSendAllMessages, sizeof(m_bSendAllMessages));
         pDesBuffer += sizeof(m_bSendAllMessages);
         //To store number of msg as int
-        int nMsgCnt = nGetMsgCount();
+        int nMsgCnt = ngetMessageCount();
         memcpy(pDesBuffer, &nMsgCnt, sizeof(nMsgCnt));
         pDesBuffer += sizeof(nMsgCnt);
         PSTXCANMSGLIST psCanTemp = m_psTxCANMsgList;

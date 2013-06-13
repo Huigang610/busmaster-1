@@ -60,12 +60,6 @@ CSplFileDlg::CSplFileDlg(BOOL bOpenFileDialog,
 
 }
 
-
-BEGIN_MESSAGE_MAP(CSplFileDlg, CFileDialog)
-    //{{AFX_MSG_MAP(CSplFileDlg)
-    //}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
 /******************************************************************************/
 /*  Function Name    :  OnInitDialog                                          */
 /*  Input(s)         :  TRUE or FALSE                                         */

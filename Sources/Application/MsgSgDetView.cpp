@@ -32,10 +32,9 @@
 #include "Utility/UtilFunctions.h"      // For Utility Functions
 
 extern CCANMonitorApp theApp;
-/////////////////////////////////////////////////////////////////////////////
-// CMsgSgDetView
 
 IMPLEMENT_DYNCREATE(CMsgSgDetView, CFormView)
+
 /******************************************************************************/
 /*  Function Name    :  CMsgSgDetView                                         */
 /*                                                                            */
@@ -53,40 +52,19 @@ IMPLEMENT_DYNCREATE(CMsgSgDetView, CFormView)
 CMsgSgDetView::CMsgSgDetView()
     : CFormView(CMsgSgDetView::IDD)
 {
-    //{{AFX_DATA_INIT(CMsgSgDetView)
     m_omStrMessageName = "";
     m_unMessageLength = 0;
     m_omStrMessageCode = "";
     m_unNoOfSgs = 0;
     m_nFrameFormat = -1;
     m_nDataFormat = DATA_FORMAT_INTEL;
-    //}}AFX_DATA_INIT
     m_sDbParams = sm_sDbParams;
     m_nSelectedSignalIndex = -1;
-}
-/******************************************************************************/
-/*  Function Name    :  ~CMsgSgDetView                                        */
-/*                                                                            */
-/*  Input(s)         :                                                        */
-/*  Output           :                                                        */
-/*  Functionality    :  Destructor
-/*  Member of        :  CMsgSgDetView                                         */
-/*  Friend of        :      -                                                 */
-/*                                                                            */
-/*  Author(s)        :  Amarnath Shastry                                      */
-/*  Date Created     :  19.02.2002                                            */
-/*  Modifications    :
-/******************************************************************************/
-
-CMsgSgDetView::~CMsgSgDetView()
-{
 }
 
 void CMsgSgDetView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CMsgSgDetView)
-    //  DDX_Control(pDX, IDC_SPIN_MSG_LEN, m_omSpinMsgLen);
     DDX_Control(pDX, IDC_LSTC_SGIDVAL, m_omListCtrlSgIdVal);
     DDX_Control(pDX, IDC_LSTC_SIGNAL_DETAILS, m_omListCtrlSignal);
     DDX_Text(pDX, IDC_EDIT_MSG_NAME, m_omStrMessageName);
@@ -95,12 +73,10 @@ void CMsgSgDetView::DoDataExchange(CDataExchange* pDX)
     DDX_Text(pDX, IDC_EDIT_MSGCODE, m_omStrMessageCode);
     DDV_MaxChars(pDX, m_omStrMessageCode, 8);
     DDX_Text(pDX, IDC_EDIT_NOOFSGS, m_unNoOfSgs);
-    //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(CMsgSgDetView, CFormView)
-    //{{AFX_MSG_MAP(CMsgSgDetView)
     ON_NOTIFY(NM_CLICK, IDC_LSTC_SIGNAL_DETAILS, OnClickListSignal)
     ON_NOTIFY(NM_RCLICK, IDC_LSTC_SIGNAL_DETAILS, OnRclickLstSignalDetails)
     ON_COMMAND(IDM_DELETE_SIGNAL, OnDeleteSignal)
@@ -128,11 +104,7 @@ BEGIN_MESSAGE_MAP(CMsgSgDetView, CFormView)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LSTC_SIGNAL_DETAILS, OnItemchangedLstcSignalDetails)
     ON_NOTIFY(LVN_KEYDOWN, IDC_LSTC_SIGNAL_DETAILS, OnLvnKeydownLstcSignalDetails)
     ON_NOTIFY(LVN_KEYDOWN, IDC_LSTC_SGIDVAL, OnLvnKeydownLstcSgidval)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CMsgSgDetView diagnostics
 
 #ifdef _DEBUG
 void CMsgSgDetView::AssertValid() const
@@ -146,8 +118,6 @@ void CMsgSgDetView::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
-/////////////////////////////////////////////////////////////////////////////
-// CMsgSgDetView message handlers
 /******************************************************************************/
 /*  Function Name    :  OnInitialUpdate                                       */
 /*                                                                            */

@@ -43,7 +43,7 @@ public:
      * @return
      *   Returns number of the DILs implemented
      */
-    virtual DWORD getDriverList(DILLIST* list) = 0;
+    virtual DWORD getDriverList(DriverList* list) = 0;
 
     /**
      * This selects a driver abstraction layer (DAL).

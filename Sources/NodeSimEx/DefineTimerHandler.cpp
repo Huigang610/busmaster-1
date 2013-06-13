@@ -52,12 +52,10 @@ CDefineTimerHandler::CDefineTimerHandler(CFunctionEditorDoc* pDoc, CWnd* pParent
       m_omStrTimerFunctionName(STR_EMPTY)
 
 {
-    //{{AFX_DATA_INIT(CDefineTimerHandler)
     m_omEditStrTimerFuncName = "";
     m_unEditTimerValue = 1;
     m_bIsTimerEdited = FALSE;
     m_omStrCurrentTimerName = "";
-    //}}AFX_DATA_INIT
     m_pDoc = pDoc;
 }
 /******************************************************************************/
@@ -77,18 +75,16 @@ CDefineTimerHandler::CDefineTimerHandler(CFunctionEditorDoc* pDoc, CWnd* pParent
 void CDefineTimerHandler::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CDefineTimerHandler)
     DDX_Control(pDX, IDC_EDIT_TIMER_VALUE, m_omEditTimerValue);
     DDX_Control(pDX, IDC_EDIT_TIMER_FUNCTION_NAME, m_omEditTimerFuncName);
     DDX_Text(pDX, IDC_EDIT_TIMER_FUNCTION_NAME, m_omEditStrTimerFuncName);
     DDX_Text(pDX, IDC_EDIT_TIMER_VALUE, m_unEditTimerValue);
-    //}}AFX_DATA_MAP
 }
+
 BEGIN_MESSAGE_MAP(CDefineTimerHandler, CDialog)
-    //{{AFX_MSG_MAP(CDefineTimerHandler)
     ON_WM_HELPINFO()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
+
 /******************************************************************************/
 /*  Function Name    :  OnHelpInfo                                            */
 /*                                                                            */

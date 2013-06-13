@@ -24,39 +24,19 @@
 
 #pragma once
 
-/////////////////////////////////////////////////////////////////////////////
-// CFFListCtrl window
-
 class CFFListCtrl : public CListCtrl
 {
-    // Screen Rectangle
-    CRect m_rectClient;
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
-    CFFListCtrl();
     VOID vInitMemDCRect();
-    // Attributes
-public:
 
-    // Operations
-public:
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CFFListCtrl)
-    //}}AFX_VIRTUAL
-
-    // Implementation
-public:
-    virtual ~CFFListCtrl();
-
-    // Generated message map functions
 protected:
-    //{{AFX_MSG(CFFListCtrl)
     afx_msg void OnSize(UINT nType, int cx, int cy);
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
     afx_msg void OnPaint();
-    //}}AFX_MSG
 
-    DECLARE_MESSAGE_MAP()
+private:
+    // Screen Rectangle
+    CRect m_rectClient;
 };

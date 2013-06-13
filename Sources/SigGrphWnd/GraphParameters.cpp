@@ -27,10 +27,6 @@
 // For CGraphParameters class declaration
 #include "GraphParameters.h"
 
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
 /*******************************************************************************
  Function Name  : CGraphParameters
  Input(s)       : -

@@ -21,6 +21,7 @@
  *
  * Implementation file for CMessageInterpretation class
  */
+
 // For all standard header file include
 #include "stdafx.h"
 // Interface file for the application class
@@ -31,13 +32,9 @@
 #include "Utility/fflistctrl.h"
 #include "MessageInterpretation.h"
 #include ".\messageinterpretation.h"
-//#include "MsgInterpretation.h"
-
-/////////////////////////////////////////////////////////////////////////////
-// CMessageInterpretation dialog
-
 
 extern CCANMonitorApp theApp;
+
 /******************************************************************************
  Function Name  :   CMessageInterpretation
 
@@ -56,11 +53,8 @@ CMessageInterpretation::CMessageInterpretation(CWnd* pParent /*=NULL*/)
     : CDialog(CMessageInterpretation::IDD, pParent)
     , m_strCaption("  Message")
 {
-    //{{AFX_DATA_INIT(CMessageInterpretation)
     m_omMsgName = STR_EMPTY;
     m_omMsgID = STR_EMPTY;
-    //}}AFX_DATA_INIT
-
     m_hBrushStatic = CreateSolidBrush(RGB(30, 60, 150));
     m_hWndParent = NULL;
 }
@@ -81,28 +75,21 @@ CMessageInterpretation::CMessageInterpretation(CWnd* pParent /*=NULL*/)
 void CMessageInterpretation::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CMessageInterpretation)
     DDX_Control(pDX, IDC_LIST_SIGNAL, m_ctrlSignal);
     DDX_Text(pDX, IDC_EDIT_MSG_NAME, m_omMsgName);
     DDX_Text(pDX, IDC_EDIT_MSG_ID, m_omMsgID);
-    //}}AFX_DATA_MAP
     DDX_Text(pDX, IDC_CAPTION, m_strCaption);
 }
 
-
 BEGIN_MESSAGE_MAP(CMessageInterpretation, CDialog)
-    //{{AFX_MSG_MAP(CMessageInterpretation)
     ON_WM_SIZE()
     ON_WM_CTLCOLOR()
     ON_WM_SHOWWINDOW()
     ON_WM_CLOSE()
     ON_WM_CREATE()
-    //}}AFX_MSG_MAP
     ON_WM_MOVE()
 END_MESSAGE_MAP()
 
-/////////////////////////////////////////////////////////////////////////////
-// CMessageInterpretation message handlers
 /******************************************************************************
  Function Name  :   OnSize
 

@@ -39,52 +39,52 @@ GuiParameters::GuiParameters()
     combine          = TRUE;
 }
 
-BOOL tagSubEntry::operator ==(const tagSubEntry& RefObj) const
+BOOL SignalWatchListSubEntry::operator ==(const SignalWatchListSubEntry& RefObj) const
 {
     BOOL bResult = FALSE;
     if (/*(m_unSubEntryID == RefObj.m_unSubEntryID) || */
-        (m_omSubEntryName == RefObj.m_omSubEntryName))
+        (subEntryName == RefObj.subEntryName))
     {
         bResult = TRUE;
     }
     return bResult;
 }
 
-tagMainEntry::tagMainEntry()
+SignalWatchListMainEntry::SignalWatchListMainEntry()
 {
     vResetAll();
 }
 
-tagMainEntry::~tagMainEntry()
+SignalWatchListMainEntry::~SignalWatchListMainEntry()
 {
     vResetAll();
 }
 
-void tagMainEntry::vResetAll(void)
+void SignalWatchListMainEntry::vResetAll(void)
 {
     m_unMainEntryID = 0;
-    m_omMainEntryName = "";
+    mainEntryName = "";
     m_odUnSelEntryList.RemoveAll();
     m_odSelEntryList.RemoveAll();
 }
 
-tagMainEntry& tagMainEntry::operator=(tagMainEntry& RefObj)
+SignalWatchListMainEntry& SignalWatchListMainEntry::operator=(SignalWatchListMainEntry& RefObj)
 {
     vResetAll();
 
     m_unMainEntryID     = RefObj.m_unMainEntryID;
-    m_omMainEntryName   = RefObj.m_omMainEntryName;
+    mainEntryName   = RefObj.mainEntryName;
     m_odUnSelEntryList.AddTail(&(RefObj.m_odUnSelEntryList));
     m_odSelEntryList.AddTail(&(RefObj.m_odSelEntryList));
 
     return *this;
 }
 
-BOOL tagMainEntry::operator==(const tagMainEntry& RefObj) const
+BOOL SignalWatchListMainEntry::operator==(const SignalWatchListMainEntry& RefObj) const
 {
     BOOL bResult = FALSE;
     if ((m_unMainEntryID == RefObj.m_unMainEntryID) ||
-            (m_omMainEntryName == RefObj.m_omMainEntryName))
+            (mainEntryName == RefObj.mainEntryName))
     {
         bResult = TRUE;
     }

@@ -30,28 +30,14 @@
 #include "Utility/NumEdit.h"
 #include "Utility/FFListctrl.h"             // For Flicker Free List class definition
 #include "Utility/ButtonItem.h"
-/////////////////////////////////////////////////////////////////////////////
-// CListCtrlEx window
+
 class CListCtrlEx : public CFFListCtrl
 {
-    COLORREF m_colRow1;
-    COLORREF m_colRow2;
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     CListCtrlEx();
-    // Attributes
-public:
 
-    // Operations
-public:
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CListCtrlEx)
-    //}}AFX_VIRTUAL
-
-    // Implementation
-public:
     // This is used to map the Row X Column 2d data into
     // one dimentional map key. This value should be greater then the maximum
     // Expected list column count
@@ -90,20 +76,20 @@ public:
     VOID vSetRowColors(COLORREF omcrRow1, COLORREF omcrRow2);
     VOID vGetRowColors(COLORREF& crRow1, COLORREF& crRow2);
     VOID vSetDefaultColors();
-    // Destructor
-    virtual ~CListCtrlEx();
 
-    // Generated message map functions
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+
 protected:
-    //{{AFX_MSG(CListCtrlEx)
+    afx_msg void OnNMCustomdraw(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+    afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
     afx_msg void OnEndlabeledit(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
     afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
     afx_msg void OnDoubleClick(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnClick(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
-private:
 
+private:
     // Signle Click edit or double click edit
     BOOL            m_bSingleClickActivate;
     // CMap for list item types
@@ -122,14 +108,10 @@ private:
 
     CButtonItem*        m_pomDBRowButton;
     CBrowseEditItem*    m_pomDBRowEdit;
-    // Private Functions
+
+    COLORREF m_colRow1;
+    COLORREF m_colRow2;
+
+	// Private Functions
     long lGetMapID(int nRow, int nCol);
-
-
-    DECLARE_MESSAGE_MAP()
-public:
-    afx_msg void OnNMCustomdraw(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-    afx_msg void OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct);
-    virtual BOOL PreTranslateMessage(MSG* pMsg);
 };

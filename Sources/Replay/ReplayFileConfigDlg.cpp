@@ -51,9 +51,7 @@ CReplayFileConfigDlg::CReplayFileConfigDlg( CReplayManager& rouManager,
       m_rouManager( rouManager ),
       m_psFilterConfigured(psFilterConfigured)
 {
-    //{{AFX_DATA_INIT(CReplayFileConfigDlg)
     m_nReplayMode = 0;
-    //}}AFX_DATA_INIT
     m_bUpdating = FALSE;
     m_nSelecetedNamedLogIndex = -1;
     m_omStrMsgType = "Tx Messages";
@@ -68,7 +66,6 @@ CReplayFileConfigDlg::CReplayFileConfigDlg( CReplayManager& rouManager,
 void CReplayFileConfigDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CReplayFileConfigDlg)
     DDX_Control(pDX, IDC_CHK_INTERACTIVE, m_omChkInteractive);
     DDX_Control(pDX, IDC_EDIT_MSG_DELAY, m_omEditMsgDelay);
     DDX_Control(pDX, IDC_EDIT_CYCLE_DELAY, m_omEditCycleDelay);
@@ -77,11 +74,9 @@ void CReplayFileConfigDlg::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_LIST_REPALY_FILES, m_omLstcReplayFiles);
     DDX_Radio(pDX, IDC_RADIO_REPLAY_MODE_MONO, m_nReplayMode);
     DDX_CBString(pDX, IDC_COMBO_MSG_TYPE, m_omStrMsgType);
-    //}}AFX_DATA_MAP
 }
 
 BEGIN_MESSAGE_MAP(CReplayFileConfigDlg, CDialog)
-    //{{AFX_MSG_MAP(CReplayFileConfigDlg)
     ON_NOTIFY(NM_CLICK, IDC_LIST_REPALY_FILES, OnClickListRepalyFiles)
     ON_NOTIFY(NM_DBLCLK, IDC_LIST_REPALY_FILES, OnDblclkListRepalyFiles)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST_REPALY_FILES, OnItemchangedListRepalyFiles)
@@ -96,7 +91,6 @@ BEGIN_MESSAGE_MAP(CReplayFileConfigDlg, CDialog)
     ON_BN_CLICKED(IDC_RADIO_REPLAY_MODE_CYCLIC, OnRadioReplayModeMono)
     ON_BN_CLICKED(IDC_BTN_FILTER, OnBtnFilter)
     ON_CBN_SELCHANGE(IDC_COMBO_MSG_TYPE, OnComboMsgTypeChanged)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /**
@@ -761,22 +755,22 @@ VOID CReplayFileConfigDlg::vEnableReplayComps( BOOL bEnable )
     }
 }
 
-static void vPopulateMainSubList(CMainEntryList& DestList, const SFILTERAPPLIED_CAN* psFilterConfigured,
+static void vPopulateMainSubList(SignalWatchListMainEntries& DestList, const SFILTERAPPLIED_CAN* psFilterConfigured,
                                  const SFILTERAPPLIED_CAN* psFilterApplied)
 {
     ASSERT(psFilterConfigured != NULL);
     DestList.RemoveAll();
 
-    SMAINENTRY sMainEntry;
-    sMainEntry.m_omMainEntryName = "CAN";
+    SignalWatchListMainEntry sMainEntry;
+    sMainEntry.mainEntryName = "CAN";
     if (psFilterApplied == NULL)
     {
-        SMAINENTRY sMainEntry;
-        sMainEntry.m_omMainEntryName = "FILTER_SELECTION_CAN";
+        SignalWatchListMainEntry sMainEntry;
+        sMainEntry.mainEntryName = "FILTER_SELECTION_CAN";
         for (INT i = 0; i < psFilterConfigured->m_ushTotal; i++)
         {
-            SSUBENTRY sSubEntry;
-            sSubEntry.m_omSubEntryName.Format("%s",
+            SignalWatchListSubEntry sSubEntry;
+            sSubEntry.subEntryName.Format("%s",
                                               psFilterConfigured->m_psFilters[i].m_sFilterName.filterName);
             sMainEntry.m_odUnSelEntryList.AddTail(sSubEntry);
         }
@@ -786,12 +780,12 @@ static void vPopulateMainSubList(CMainEntryList& DestList, const SFILTERAPPLIED_
 
         for (INT i = 0; i < psFilterConfigured->m_ushTotal; i++)
         {
-            SSUBENTRY sSubEntry;
-            sSubEntry.m_omSubEntryName.Format("%s",
+            SignalWatchListSubEntry sSubEntry;
+            sSubEntry.subEntryName.Format("%s",
                                               psFilterConfigured->m_psFilters[i].m_sFilterName.filterName);
             if (SFILTERSET::psGetFilterSetPointer(psFilterApplied->m_psFilters,
                                                   psFilterApplied->m_ushTotal,
-                                                  sSubEntry.m_omSubEntryName.GetBuffer(MAX_PATH)) != NULL)
+                                                  sSubEntry.subEntryName.GetBuffer(MAX_PATH)) != NULL)
             {
                 sMainEntry.m_odSelEntryList.AddTail(sSubEntry);
             }
@@ -804,9 +798,9 @@ static void vPopulateMainSubList(CMainEntryList& DestList, const SFILTERAPPLIED_
     DestList.AddTail(sMainEntry);
 }
 
-static void vPopulateFilterApplied(const SFILTERAPPLIED_CAN* psFilterConfigured, SFILTERAPPLIED_CAN& sFilterApplied, CMainEntryList& SrcList)
+static void vPopulateFilterApplied(const SFILTERAPPLIED_CAN* psFilterConfigured, SFILTERAPPLIED_CAN& sFilterApplied, SignalWatchListMainEntries& SrcList)
 {
-    const SMAINENTRY& sMainEntry = SrcList.GetHead();
+    const SignalWatchListMainEntry& sMainEntry = SrcList.GetHead();
     int nCount  = (int)sMainEntry.m_odSelEntryList.GetCount();
     sFilterApplied.vClear();
     sFilterApplied.m_psFilters = new SFILTERSET[nCount];
@@ -814,9 +808,9 @@ static void vPopulateFilterApplied(const SFILTERAPPLIED_CAN* psFilterConfigured,
     POSITION pos = sMainEntry.m_odSelEntryList.GetHeadPosition();
     while (pos)
     {
-        SSUBENTRY sSubEntry = sMainEntry.m_odSelEntryList.GetNext(pos);
+        SignalWatchListSubEntry sSubEntry = sMainEntry.m_odSelEntryList.GetNext(pos);
         const PSFILTERSET psTemp = SFILTERSET::psGetFilterSetPointer(psFilterConfigured->m_psFilters,
-                                   psFilterConfigured->m_ushTotal, sSubEntry.m_omSubEntryName.GetBuffer(MAX_PATH));
+                                   psFilterConfigured->m_ushTotal, sSubEntry.subEntryName.GetBuffer(MAX_PATH));
         ASSERT (psTemp != NULL);
         sFilterApplied.m_psFilters[sFilterApplied.m_ushTotal].bClone(*psTemp);
         sFilterApplied.m_ushTotal++;
@@ -842,7 +836,7 @@ void CReplayFileConfigDlg::OnBtnFilter()
         CString omStrTitle;
         omStrTitle.Format( _(defSTR_REPALY_FILTER_DLG_TITLE),
                            ouReplayFile.m_omStrFileName );
-        CMainEntryList DestList;
+        SignalWatchListMainEntries DestList;
         vPopulateMainSubList(DestList, m_psFilterConfigured, &(ouReplayFile.m_sFilterApplied) );
         //Show dialog
         if (Filter_ShowSelDlg(this, &DestList) == IDOK)

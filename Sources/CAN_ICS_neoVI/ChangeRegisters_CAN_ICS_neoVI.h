@@ -96,7 +96,8 @@ typedef struct tagSCOLUMNS
 
 class CChangeRegisters_CAN_ICS_neoVI : public CDialog
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     // To Fill controller information taken from configuration module
     BOOL   bFillControllerConfig();
@@ -110,15 +111,16 @@ public:
     BOOL bGetFilterFromCom(BOOL& bExtended, double& dBeginMsgId, double& dEndMsgId);
     INT nGetInitStatus();
 
+    CComboBox m_omCtrlPropDelay;
+    CComboBox m_omCtrlSJW;
+    CComboBox m_omCtrlClock;
+
 protected:
-    // Dialog Data
-    //{{AFX_DATA(CChangeRegisters_CAN_ICS_neoVI)
     enum { IDD = IDD_DLG_CHANGE_REGISTERS_CAN_ICS_NEOVI };
     CListCtrl   m_omChannelList;
     CRadixEdit  m_omEditWarningLimit;
     CComboBox   m_omCombSampling;
     CListCtrl   m_omListCtrlBitTime;
-    /*CRadixEdit  m_omEditBaudRate;*/
     CComboBox   m_omCombBaudRate;
     CString m_omStrEditBTR0;
     CString m_omStrEditBTR1;
@@ -126,31 +128,21 @@ protected:
     CString m_omStrEditCNF2;
     CString m_omStrEditCNF3;
     CString m_omStrComboSampling;
-    /*CString m_omStrEditBaudRate;*/
     CString m_omStrcombBaudRate;
     CString m_omStrComboClock;
     CString m_omStrEditWarningLimit;
     CString m_omStrPropDelay;
     CString m_omStrSJW;
-    //}}AFX_DATA
     DOUBLE  m_dEditBaudRate;
     UINT    m_unCombClock;
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CChangeRegisters_CAN_ICS_neoVI)
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
-
-    // Implementation
-private:
-    sCOLUMNS m_asColListCtrl[defREG_VALUE_LIST_COUNT_MAX];
 
     // Generated message map functions
-    //{{AFX_MSG(CChangeRegisters_CAN_ICS_neoVI)
     virtual void OnCancel();
     virtual void OnOK();
     virtual BOOL OnInitDialog();
+    afx_msg void OnHdnItemclickLstcBtrList(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnCbnSelchangeCombSjw();
+    afx_msg void OnCbnSelchangeCombPropdelay();
     afx_msg void OnKillfocusEditBaudRate();
     afx_msg void OnSelchangeCombBaudRate();
     afx_msg void OnSelchangeCombSampling();
@@ -161,10 +153,13 @@ private:
     afx_msg void OnClickListChannels(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnItemchangedListChannels(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnDblclkListChannels(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+
 private:
-    // Pointer to hold controller information
+    sCOLUMNS m_asColListCtrl[defREG_VALUE_LIST_COUNT_MAX];
+
+	// Pointer to hold controller information
     PSCONTROLLER_DETAILS  m_pControllerDetails;
     int m_nLastSelection;
     CImageList m_omChannelImageList;
@@ -204,13 +199,4 @@ private:
     BOOL GetRegisterValues(BYTE& bCNF1, BYTE& bCNF2, BYTE& bCNF3);
     int GetSelectedEntryIndex(void);
     BOOL bUpdateControllerDataMembers(void);
-
-public:
-    afx_msg void OnHdnItemclickLstcBtrList(NMHDR* pNMHDR, LRESULT* pResult);
-    //int m_nCurrSJW;
-    afx_msg void OnCbnSelchangeCombSjw();
-    afx_msg void OnCbnSelchangeCombPropdelay();
-    CComboBox m_omCtrlPropDelay;
-    CComboBox m_omCtrlSJW;
-    CComboBox m_omCtrlClock;
 };

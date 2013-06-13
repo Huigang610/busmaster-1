@@ -139,6 +139,7 @@ CTSExecutorChildFrame::~CTSExecutorChildFrame(void)
 {
     m_ouExecutionThread.bTerminateThread();
 }
+
 BEGIN_MESSAGE_MAP(CTSExecutorChildFrame, CMDIChildWnd)
     ON_WM_DESTROY()
     ON_WM_CREATE()

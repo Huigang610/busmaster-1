@@ -29,36 +29,25 @@
 
 class CElementSelection : public CDialog
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     // Pointer to Main Frame
     CMainFrame* m_pMainFrame;
     eTYPE_BUS m_eBusType;
 
-    // standard constructor
     CElementSelection(UINT nHardware = defNO_OF_CHANNELS, CWnd* pParent = NULL);
-    // Dialog Data
-    //{{AFX_DATA(CElementSelection)
-    enum { IDD = IDD_DLG_MSG_LIST };
+
+	enum { IDD = IDD_DLG_MSG_LIST };
     CListCtrl   m_omElementList;
     CTreeCtrl   m_omTreeEntries;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CElementSelection)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CElementSelection)
     virtual void OnOK();
     virtual BOOL OnInitDialog();
+	afx_msg void OnBnClickedOk();
     afx_msg void OnDblclkTreeSignal(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnBtnAdd();
     afx_msg void OnBtnDelete();
@@ -68,8 +57,7 @@ protected:
     afx_msg void OnClickLstcGraphElements(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnItemchangedLstcGraphElements(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnSelchangedTreeSignal(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     // Get the statistics channel handle
     HTREEITEM hGetChannelHandle(const CString& omStrChannel);
@@ -116,7 +104,4 @@ private:
     // Graph element array
     CArray<CGraphElement, CGraphElement&> m_odElementList;
     UINT m_nHardware;
-
-public:
-    afx_msg void OnBnClickedOk();
 };

@@ -44,12 +44,10 @@
 IMPLEMENT_DYNCREATE(CGraphChildFrame, CMDIChildBase)
 
 BEGIN_MESSAGE_MAP(CGraphChildFrame, CMDIChildBase)
-    //{{AFX_MSG_MAP(CGraphChildFrame)
     ON_WM_ERASEBKGND()
     ON_WM_SHOWWINDOW()
     ON_WM_CLOSE()
     ON_MESSAGE(WM_USER_CMD,vUserCommand)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /*******************************************************************************

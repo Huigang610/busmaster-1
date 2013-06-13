@@ -40,28 +40,10 @@
 #define USAGE_EXPORT
 #include "CAN_VSCOM_Extern.h"
 
-
-//#define CAN_DRIVER_DEBUG
-
-// CCAN_VSCOM
-
-BEGIN_MESSAGE_MAP(CCAN_VSCOM, CWinApp)
-END_MESSAGE_MAP()
-
-
 /**
- * CCAN_VSCOM construction
+ * The one and only CCAN_VSCOM object
  */
-CCAN_VSCOM::CCAN_VSCOM()
-{
-    // TODO: add construction code here,
-    // Place all significant initialization in InitInstance
-}
-
-
-// The one and only CCAN_VSCOM object
 CCAN_VSCOM theApp;
-
 
 /**
  * CCAN_VSCOM initialization
@@ -776,7 +758,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& can_data)
                 {
                     for (j = 0; j < sg_asClientToBufMap[i].m_unBufCount; j++)
                     {
-                        sg_asClientToBufMap[i].m_pClientBuf[j]->WriteIntoBuffer(&can_data);
+                        sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&can_data);
                     }
                 }
                 else
@@ -786,7 +768,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& can_data)
                     {
                         sTempCanData = can_data;
                         sTempCanData.m_ucDataType = RX_FLAG;
-                        sg_asClientToBufMap[i].m_pClientBuf[j]->WriteIntoBuffer(&sTempCanData);
+                        sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&sTempCanData);
                     }
                 }
             }
@@ -798,7 +780,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& can_data)
         {
             for (j = 0; j < sg_asClientToBufMap[i].m_unBufCount; j++)
             {
-                sg_asClientToBufMap[i].m_pClientBuf[j]->WriteIntoBuffer(&can_data);
+                sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&can_data);
             }
         }
     }

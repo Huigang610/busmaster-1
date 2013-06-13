@@ -24,48 +24,33 @@
 
 #pragma once
 
+/* Project includes */
 #include "CFilesDefs_CAN.h"
 #include "MsgSgDetView.h"       // Forms the right pane
-/////////////////////////////////////////////////////////////////////////////
-// CMsgSignalDBWnd frame
 
 class CMsgSignalDBWnd : public CMDIChildWnd
 {
     DECLARE_DYNCREATE(CMsgSignalDBWnd)
-protected:
-    // protected constructor used by dynamic creation
+    DECLARE_MESSAGE_MAP()
 
-    // Attributes
 public:
     static BOOL sm_bValidJ1939Wnd;
-public:
+
     SDBPARAMS m_sDbParams;
-    // Operations
-public:
+
     CMsgSignalDBWnd();
     CMsgSignalDBWnd(const SDBPARAMS& sDbParams);
-    virtual ~CMsgSignalDBWnd();
     void vSetDBName(CString& omDBName);
-    afx_msg LRESULT OnSaveDBJ1939(WPARAM wParam, LPARAM lParam);
     void vSaveModifiedDBs(CMsgSignal**& ppTempMsgSg);
     CWnd* GetWorkingView();
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CMsgSignalDBWnd)
-public:
+
 protected:
     virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
     virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CMsgSignalDBWnd)
+    afx_msg LRESULT OnSaveDBJ1939(WPARAM wParam, LPARAM lParam);
     afx_msg void OnClose();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     void vCalculateSplitterPosition(CSize& cSize);
     BOOL m_bSplitWndCreated;

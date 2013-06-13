@@ -35,14 +35,7 @@
 class CDIL_CAN : public CBaseDIL_CAN
 {
 public:
-    /**
-     * Constructor
-     */
     CDIL_CAN();
-
-    /**
-     * Destructor
-     */
     ~CDIL_CAN();
 
     /**
@@ -87,7 +80,7 @@ public:
     HMODULE m_hOldDll;
 
     /* Overloaded functions */
-    DWORD getDriverList(DILLIST* List);
+    DWORD getDriverList(DriverList* List);
     HRESULT selectDriver(DWORD dwDriverID, HWND hWndParent, Base_WrapperErrorLogger* pILog);
     HRESULT registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName);
     HRESULT manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj);

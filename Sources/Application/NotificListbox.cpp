@@ -22,60 +22,19 @@
  * Inplementation file for CNotificListbox class.
  */
 
-// For all standard header file include
-#include "stdafx.h"
-// Definition of App class
-#include "resource.h"
-// Definition of CNotificListbox
-#include "NotificListbox.h"
-// Utility functions
-#include "Utility/Utility.h"
-
-/////////////////////////////////////////////////////////////////////////////
-// CNotificListbox
-
-/******************************************************************************
- Function Name  :   CNotificListbox
-
- Description    :   Standard default constructor for list box
- Member of      :   CNotificListbox
-
- Author(s)      :   Ravikumar Patil
- Date Created   :   27-03-2003
-******************************************************************************/
-
-CNotificListbox::CNotificListbox()
-{
-}
-
-
-/******************************************************************************
- Function Name  :   ~CNotificListbox
-
- Description    :   Standard destructor
- Member of      :   CNotificListbox
-
- Author(s)      :   Ravikumar Patil
- Date Created   :   27-03-2003
-******************************************************************************/
-CNotificListbox::~CNotificListbox()
-{
-}
-
+/* Project includes */
+#include "stdafx.h"	// For all standard header file include
+#include "resource.h"	// Definition of App class
+#include "NotificListbox.h"	// Definition of CNotificListbox
+#include "Utility/Utility.h"	// Utility functions
 
 BEGIN_MESSAGE_MAP(CNotificListbox, CListBox)
-    //{{AFX_MSG_MAP(CNotificListbox)
     ON_WM_RBUTTONDOWN()
     ON_COMMAND(IDM_OPRTN_CLEAR, OnTraceWndClear)
     ON_COMMAND(IDM_OPRTN_DELETE, OnTraceWndDelete)
-    //}}AFX_MSG_MAP
     ON_COMMAND(ID_NOTIFICWND_SELECTALL, OnNotificwndSelectall)
     ON_COMMAND(ID_NOTIFICWND_COPYTOCLIPBOARD, OnNotificwndCopytoclipboard)
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CNotificListbox message handlers
-
 
 /******************************************************************************
  Function Name  :   OnRButtonDown

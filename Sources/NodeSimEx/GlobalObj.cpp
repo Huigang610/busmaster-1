@@ -282,7 +282,7 @@ BOOL CGlobalObj::bOpenFunctioneditorfile(CString omStrNewCFileName)
         }
         if (bFileFound == TRUE)
         {
-            //// Now open the selected file
+            // Now open the selected file
             pDoc->OnOpenDocument(omStrNewCFileName);
             CMultiDocTemplate* pTemplate = m_pEditorDocTemplate;
             m_pEditFrameWnd = (CEditFrameWnd*)(pTemplate->CreateNewFrame(pDoc, NULL));

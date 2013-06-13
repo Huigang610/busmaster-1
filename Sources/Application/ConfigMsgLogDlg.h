@@ -67,10 +67,11 @@ public:
         return (bFlag | CLEAR_CTRL);
     };
 };
-// CConfigMsgLogDlg dialog
+
 class CConfigMsgLogDlg : public CDialog
 {
     DECLARE_DYNAMIC(CConfigMsgLogDlg)
+    DECLARE_MESSAGE_MAP()
 
 public:
     CConfigMsgLogDlg(ETYPE_BUS eCurrBus, void* pouBaseLogger, BOOL& bLogOnConnect,
@@ -78,15 +79,29 @@ public:
     virtual ~CConfigMsgLogDlg();
     enum { IDD = IDD_DLG_CONFIG_MSG_LOG };
 
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    DECLARE_MESSAGE_MAP()
-
-public:
     // Init Log File Control
     virtual BOOL OnInitDialog();
     void vSetLogFileONOFF(BOOL bLogON);
 
+protected:
+    afx_msg void OnTimer(UINT nIDEvent);
+    afx_msg void OnBnClickedOk();
+    afx_msg void OnBnClickedCbtnAddlog(void);
+    afx_msg void OnBnClickedCbtnLogFilePath(void);
+    afx_msg void OnBnClickedCbtnRemovelog(void);
+    afx_msg void OnLvnItemchangedLogBlockLst(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnNumRButtonClick(UINT);
+    afx_msg void OnFileRButtonClick(UINT);
+    afx_msg void OnChkbTriggerClick(UINT);
+    afx_msg void OnSelChangeComb(UINT);
+    afx_msg void OnStartStopMsgIDEnChange(UINT);
+    afx_msg void OnBnClickedLogFilter(void);
+    virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
+
+    CString m_omControlParam;
+    CString m_omControlParam2;
+
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 private:
     // Dialog control variables
@@ -111,7 +126,7 @@ private:
     ETYPE_BUS m_eCurrBus;
     BOOL& m_bLogOnConnect;
     UINT m_unChannelCount;
-private:
+
     void vEnableDisableControls(BOOL);
     SLOGTRIGGER GetLogTriggerFromGUI(void);
     void vCreateFileList(void);
@@ -133,24 +148,4 @@ private:
     HRESULT RemoveLoggingBlock(USHORT ushBlk);
     HRESULT ApplyFilteringScheme(USHORT ushLogBlkID, const void* psFilterObj);
     HRESULT GetFilteringScheme(USHORT ushLogBlk, void* psFilterObj);
-
-protected:
-    afx_msg void OnBnClickedCbtnAddlog(void);
-    afx_msg void OnBnClickedCbtnLogFilePath(void);
-    afx_msg void OnBnClickedCbtnRemovelog(void);
-    afx_msg void OnLvnItemchangedLogBlockLst(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnNumRButtonClick(UINT);
-    afx_msg void OnFileRButtonClick(UINT);
-    afx_msg void OnChkbTriggerClick(UINT);
-    afx_msg void OnSelChangeComb(UINT);
-    afx_msg void OnStartStopMsgIDEnChange(UINT);
-    afx_msg void OnBnClickedLogFilter(void);
-    virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
-public:
-    afx_msg void OnTimer(UINT nIDEvent);
-protected:
-    CString m_omControlParam;
-    CString m_omControlParam2;
-public:
-    afx_msg void OnBnClickedOk();
 };

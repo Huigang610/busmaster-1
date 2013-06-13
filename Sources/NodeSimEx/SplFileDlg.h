@@ -24,12 +24,6 @@
 
 #pragma once
 
-// SplFileDlg.h : header file
-//
-
-/////////////////////////////////////////////////////////////////////////////
-// CSplFileDlg dialog
-
 class CSplFileDlg : public CFileDialog
 {
     DECLARE_DYNAMIC(CSplFileDlg)
@@ -44,13 +38,8 @@ public:
                 CString omStrButtonCaption = "Select");
 
 protected:
-    //{{AFX_MSG(CSplFileDlg)
     virtual BOOL OnInitDialog();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     CString m_omStrButtonCaption;
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

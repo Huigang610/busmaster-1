@@ -74,7 +74,7 @@
 #include "afxtempl.h"
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
-#include <windows.h>
+//#include <windows.h>
 // C RunTime Header Files
 #include <stdlib.h>
 #include <malloc.h>
@@ -91,19 +91,25 @@
 #include <locale.h>
 #include <string>
 
-/*To enable CANFD - uncomment the BOA_FD_VERSION define*/
-//#define BOA_FD_VERSION
+#define BOA_VERSION 0x0104	/* 1.4 */
+//#define BOA_VERSION 0x0105	/* 1.5 */
+//#define BOA_VERSION 0x0106	/* 1.6 */
 
-// TODO: reference additional headers your program requires here
+#if BOA_VERSION == 0x0105
+/* To enable support for experimental CANFD extension in BOA v1.5 define the following */
+#undef BOA_VERSION_1_5_FD
+#endif
+
 const int ERR_INVALID_PROCDIL       = -1;
 const int ERR_INVALID_PARENTHANDLE  = -2;
 const int INFO_RETAINED_CONFDATA    = 0;
 const int INFO_CHANGED_CONFDATA     = 1;
-
 const int WARNING_NOTCONFIRMED      = -3;
 const int ERR_CONFIRMED_CONFIGURED  = -4;
 const int INFO_INIT_DATA_CONFIRMED  = 2;
 const int INFO_CONFIRMED_CONFIGURED = 3;
 
-// First define the callback function type
+/**
+ * Callback function type
+ */
 typedef BOOL (*DILCALLBACK)(BYTE Argument, PSCONTROLLER_DETAILS pDatStream, int Length);

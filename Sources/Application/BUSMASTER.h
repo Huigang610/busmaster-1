@@ -31,13 +31,10 @@
 #include "ConfigDetails.h"  // Added by ClassView, reqd for CConfigDetails obj
 #include "Utility/MultiLanguageSupport.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// CCANMonitorApp:
-// See BUSMASTER.cpp for the implementation of this class
-//
-
 class CCANMonitorApp : public CWinApp
 {
+    DECLARE_MESSAGE_MAP()
+
 public:
     // Wrapper around CConfigDetails::vSetConfigurationModified()
     void vSetConfigurationModified(BOOL bModified = TRUE);
@@ -62,7 +59,9 @@ public:
 
     //PSSIMSYSARRAY psReturnSimsysArrayPtr();
 
-public:
+	INT COM_nSaveConfiguration(CString omStrCfgFilename);
+    bool bWriteIntoTraceWnd(const char* omText);
+
     //CExecutefunc
     STHREADINFO m_asUtilThread[defEVENT_TOTAL-defOFFSET_TXMSG];
     CEvent m_aomState[defEVENT_TOTAL];
@@ -82,25 +81,15 @@ public:
     //CString m_omStrUnionPath;
     BOOL m_bFromAutomation;
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CCANMonitorApp)
-public:
-    virtual BOOL InitInstance();
+	virtual BOOL InitInstance();
     virtual void WinHelp(DWORD dwData, UINT nCmd = HELP_CONTEXT);
     virtual int ExitInstance();
     virtual CWnd* GetMainWnd();
-    //}}AFX_VIRTUAL
 
-    // Implementation
-    //{{AFX_MSG(CCANMonitorApp)
-    afx_msg void OnAppAbout();
+	afx_msg void OnAppAbout();
     afx_msg void OnFileOpen();
     afx_msg void OnFileNew();
-    // NOTE - the ClassWizard will add and remove member functions here.
-    //    DO NOT EDIT what you see in these blocks of generated code !
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     BOOL bInitialiseConfiguration(BOOL bFromCom);
     void vSetFileStorageInfo(CString oCfgFilename);
@@ -116,10 +105,4 @@ private:
     sTOOLBAR_BUTTON_STATUS m_sToolbarInfo;
     CString m_omMRU_C_FileName;
     WINDOWPLACEMENT m_sNotificWndPlacement;
-
-protected:
-    //CConfigDetails m_oConfigDetails;
-public:
-    INT COM_nSaveConfiguration(CString omStrCfgFilename);
-    bool bWriteIntoTraceWnd(const char* omText);
 };

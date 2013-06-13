@@ -34,9 +34,10 @@
 
 class CTxMsgBlocksView : public CFormView
 {
-    // Form Data
+    DECLARE_DYNCREATE(CTxMsgBlocksView)
+    DECLARE_MESSAGE_MAP()
+
 public:
-    //{{AFX_DATA(CTxMsgBlocksView)
     enum { IDD = IDD_DLG_TX_MSG_BLOCKS };
     bool        m_bNewBlock;    //used to check whether its new block is added or not
     bool        m_bDelayBtnBlocks;      //this will store the value of delay between blocks locally,
@@ -63,11 +64,8 @@ public:
     CRadixEdit   m_omTimeDelayBtwnBlocks;
     BOOL    m_bListItemChange;
     //BOOL    m_bTXAllFrame;
-    //}}AFX_DATA
 
-    // Attributes
-public:
-    // To denote modifications after connect
+	// To denote modifications after connect
     BOOL m_bModified;
     // To store selected message block index
     int m_nSelectedMsgBlockIndex;
@@ -79,9 +77,7 @@ public:
     // To keep track of message block count
     UINT m_unMsgBlockCount;
 
-    // Operations
-public:
-    // To get message block pointer denoted by the index from the given
+	// To get message block pointer denoted by the index from the given
     // list of blocks
     SMSGBLOCKLIST* psGetMsgBlockPointer(INT nIndexCurBlock,
                                         SMSGBLOCKLIST* psMsgBlockList);
@@ -96,22 +92,13 @@ public:
     //Updates the contents of listview to list
     void UpdateList(NM_LISTVIEW* pNMListView);
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CTxMsgBlocksView)
-public:
-    virtual void OnInitialUpdate();
+    CComboBox m_omComboAllMsgs;
+    CTxMsgBlocksView();
+    afx_msg void AutoUpdateChanges();
+
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-protected:
-    // protected constructor used by dynamic creation
-    CTxMsgBlocksView();
-    DECLARE_DYNCREATE(CTxMsgBlocksView)
-
-    // Implementation
-protected:
     virtual ~CTxMsgBlocksView();
 
 #ifdef _DEBUG
@@ -119,8 +106,13 @@ protected:
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
-    // Generated message map functions
-    //{{AFX_MSG(CTxMsgBlocksView)
+    virtual void OnInitialUpdate();
+
+	afx_msg void OnBnClickedRadiomonoshot();
+    afx_msg void OnBnClickedRadiocyclic();
+    afx_msg void OnCbnSelchangeComboMsgs();
+    afx_msg void OnBnClickedCheckMsgBlockDelay();
+    afx_msg void OnEnUpdateEditBlockTrgTimerVal();
     afx_msg void OnAddMsgBlock();
     afx_msg void OnDeleteSelectedMsgBlock();
     afx_msg void OnItemchangedLstcMsgBlocksName(NMHDR* pNMHDR, LRESULT* pResult);
@@ -132,8 +124,6 @@ protected:
     afx_msg void OnUpdateEditTrgKeyVal();
     afx_msg void OnChkbTxAllFrame();
     afx_msg void OnRclickLstcMsgBlocksName(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
 
 private:
     // To keep the block deletion flag
@@ -166,13 +156,4 @@ private:
     BOOL bDisplayPopMenu(CListCtrl& omList, UINT nIDResource );
     // Save the current msg block
     void vSaveCurrentBlockFirst(void);
-public:
-    afx_msg void OnBnClickedRadiomonoshot();
-    afx_msg void OnBnClickedRadiocyclic();
-    CComboBox m_omComboAllMsgs;
-    afx_msg void OnCbnSelchangeComboMsgs();
-    afx_msg void AutoUpdateChanges();
-public:
-    afx_msg void OnBnClickedCheckMsgBlockDelay();
-    afx_msg void OnEnUpdateEditBlockTrgTimerVal();
 };

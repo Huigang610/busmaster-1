@@ -37,7 +37,9 @@
 class CGraphList;
 class CMsgBufVSE;
 
-////Graph window splitter details
+/**
+ * Graph window splitter details
+ */
 struct tagGraphWndSplitterData
 {
     int m_nRootSplitterData[2][2];

@@ -26,14 +26,9 @@
 
 class CFrameProcessorApp : public CWinApp
 {
-public:
-    CFrameProcessorApp();
-    ~CFrameProcessorApp();
-
-    // To be used by the read thread
-    virtual BOOL InitInstance();
-
-	virtual int ExitInstance();
-
 	DECLARE_MESSAGE_MAP()
+
+public:
+    virtual BOOL InitInstance();
+	virtual int ExitInstance();
 };

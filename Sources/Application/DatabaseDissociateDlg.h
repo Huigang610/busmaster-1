@@ -22,29 +22,28 @@
  * This header file contains the defintion of class
  */
 #pragma once
-#include "Datatypes/MsgSignal_Datatypes.h"
 
-// CDatabaseDissociateDlg dialog
+/* Project includes */
+#include "Datatypes/MsgSignal_Datatypes.h"
 
 class CDatabaseDissociateDlg : public CDialog
 {
     DECLARE_DYNAMIC(CDatabaseDissociateDlg)
+    DECLARE_MESSAGE_MAP()
 
 public:
     CDatabaseDissociateDlg(const SDBPARAMS& sDbParams, CWnd* pParent = NULL);
-    virtual ~CDatabaseDissociateDlg();
 
     // Dialog Data
     enum { IDD = IDD_DLG_DISSOCIATE_DB };
 
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-
-    DECLARE_MESSAGE_MAP()
-private:
-    SDBPARAMS m_sDbParams;
-public:
     CListBox m_omDissociateDbLst;
+
+protected:
     virtual BOOL OnInitDialog();
     afx_msg void OnBnClickedCbtnDissociate();
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+
+private:
+    SDBPARAMS m_sDbParams;
 };

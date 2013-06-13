@@ -21,14 +21,11 @@
  *
  * Exports API functions for ETAS-BOA CAN Hardware interface
  */
+
 #pragma once
 
 class CCAN_ETAS_BOA : public CWinApp
 {
 public:
-    CCAN_ETAS_BOA();
-
     virtual BOOL InitInstance();
-
-    DECLARE_MESSAGE_MAP()
 };

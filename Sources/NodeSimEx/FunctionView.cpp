@@ -67,30 +67,7 @@ CFunctionView::CFunctionView()
     m_eBus             = sm_eBus;
 }
 
-/*****************************************************************************/
-/*                                                                           */
-/*  Function Name   : CFunctionView                                          */
-/*                                                                           */
-/*  Input(s)        : None.                                                  */
-/*  Output          : None                                                   */
-/*  Functionality   : Destructor                                             */
-/*                                                                           */
-/*  Member of       : CFunctionView                                          */
-/*  Friend of       : None                                                   */
-/*                                                                           */
-/*  Author(s)       : Soj Thomas                                             */
-/*  Date Created    : 25th February 2002                                     */
-/*  Modifications   :                                                        */
-/*                                                                           */
-/*****************************************************************************/
-CFunctionView::~CFunctionView()
-{
-
-}
-
-
 BEGIN_MESSAGE_MAP(CFunctionView, CRichEditView)
-    //{{AFX_MSG_MAP(CFunctionView)
     ON_WM_CONTEXTMENU()
     ON_WM_RBUTTONUP()
     ON_UPDATE_COMMAND_UI(ID_EDIT_PASTE, OnUpdatePaste)
@@ -103,12 +80,7 @@ BEGIN_MESSAGE_MAP(CFunctionView, CRichEditView)
     ON_COMMAND(IDM_CONTEXT_INSERTSIGNAL, OnInsertSignal)
     ON_COMMAND(IDM_CONTEXT_INSERTFUNCTION, OnInsertFunction)
     ON_COMMAND(ID_EDIT_CUT, OnCut)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CFunctionView message handlers
-
 
 /*****************************************************************************/
 /*                                                                           */

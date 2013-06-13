@@ -38,7 +38,7 @@
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
 // Windows Header Files:
-#include <windows.h>
+//#include <windows.h>
 //#include <afxwin.h>
 // C RunTime Header Files
 #include <stdlib.h>

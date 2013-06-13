@@ -77,12 +77,9 @@ long lFromCString_2_Long(CString omStr, char** pccEndPtr, int nBase)
 /*  Modifications    :  Raja N on 14.03.2005, Added init of member variable   */
 /*                      m_pControllerDetails                                  */
 /******************************************************************************/
-//IMPLEMENT_DYNAMIC(CChangeRegisters, CPropertyPage)
 CChangeRegisters::CChangeRegisters(CWnd* pParent /*=NULL*/, PSCONTROLLER_DETAILS psControllerDetails, UINT nCount)
     : CDialog(CChangeRegisters::IDD, pParent)
-    //: CPropertyPage(CChangeRegisters::IDD, IDS_PPAGE_CHANGE_REGISTER)
 {
-    //{{AFX_DATA_INIT(CChangeRegisters)
     m_byEditBRP = 1;
     m_omStrEditBTR0 = "";
     m_omStrEditBTR1 = "";
@@ -90,7 +87,6 @@ CChangeRegisters::CChangeRegisters(CWnd* pParent /*=NULL*/, PSCONTROLLER_DETAILS
     m_omStrEditBaudRate = "";
     m_omStrComboClock = defCLOCK;
     m_omStrEditWarningLimit = "";
-    //}}AFX_DATA_INIT
     m_unCombClock      = 0;
     m_bDialogCancel    = FALSE;
     m_ucWarningLimit    = defWARNING_LIMIT_MIN;
@@ -123,7 +119,6 @@ CChangeRegisters::CChangeRegisters(CWnd* pParent /*=NULL*/, PSCONTROLLER_DETAILS
 void CChangeRegisters::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CChangeRegisters)
     DDX_Control(pDX, IDC_LIST_CHANNELS, m_omChannelList);
     DDX_Control(pDX, IDC_EDIT_WARNING_LIMIT, m_omEditWarningLimit);
     DDX_Control(pDX, IDC_COMB_SAMPLING, m_omCombSampling);
@@ -144,12 +139,9 @@ void CChangeRegisters::DoDataExchange(CDataExchange* pDX)
     DDX_Text(pDX, IDC_EDIT_BAUD_RATE, m_omStrEditBaudRate);
     DDX_CBString(pDX, IDC_COMB_CLOCK, m_omStrComboClock);
     DDX_Text(pDX, IDC_EDIT_WARNING_LIMIT, m_omStrEditWarningLimit);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CChangeRegisters, CDialog)
-    //{{AFX_MSG_MAP(CChangeRegisters)
     ON_EN_KILLFOCUS(IDC_EDIT_BAUD_RATE, OnKillfocusEditBaudRate)
     ON_EN_KILLFOCUS(IDC_EDIT_BTR0, OnKillfocusEditBTR0)
     ON_EN_KILLFOCUS(IDC_EDIT_BTR1, OnKillfocusEditBTR1)
@@ -167,7 +159,6 @@ BEGIN_MESSAGE_MAP(CChangeRegisters, CDialog)
     ON_NOTIFY(NM_CLICK, IDC_LIST_CHANNELS, OnClickListChannels)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST_CHANNELS, OnItemchangedListChannels)
     ON_NOTIFY(NM_DBLCLK, IDC_LIST_CHANNELS, OnDblclkListChannels)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /******************************************************************************/

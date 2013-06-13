@@ -35,9 +35,6 @@
 
 #define defSTR_DEFAULT_FORMAT_STRING    "%g"
 
-/////////////////////////////////////////////////////////////////////////////
-// CNumSpinCtrl
-
 /******************************************************************************
  Function Name  :   CNumSpinCtrl
 
@@ -64,30 +61,10 @@ CNumSpinCtrl::CNumSpinCtrl()
     vSetFormatString(NULL);
 }
 
-/******************************************************************************
- Function Name  :   ~CNumSpinCtrl
-
- Description    :   Standard destructor
- Member of      :   CNumSpinCtrl
-
- Author(s)      :   Raja N
- Date Created   :   22.07.2004
- Modifications  :
-******************************************************************************/
-CNumSpinCtrl::~CNumSpinCtrl()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CNumSpinCtrl, CSpinButtonCtrl)
-    //{{AFX_MSG_MAP(CNumSpinCtrl)
     ON_NOTIFY_REFLECT_EX(UDN_DELTAPOS, OnDeltaPos)
     ON_WM_CREATE()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CNumSpinCtrl message handlers
 
 /*******************************************************************************
  Function Name  : vSetValueForBuddy

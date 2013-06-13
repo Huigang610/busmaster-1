@@ -26,8 +26,8 @@
 
 class CCGCtrl : public CWnd
 {
-protected:
     DECLARE_DYNCREATE(CCGCtrl)
+
 public:
     CLSID const& GetClsid()
     {

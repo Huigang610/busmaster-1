@@ -44,9 +44,6 @@ char* pcHandlerNames[] =                   { "Message Handlers",
 #define defStrEnabled                    "Enabled"
 #define defStrDisabled                   "Disabled"
 
-/////////////////////////////////////////////////////////////////////////////
-// CSimSysDetView
-
 IMPLEMENT_DYNCREATE(CSimSysDetView, CFormView)
 /******************************************************************************/
 /*  Function Name    :  CSimSysDetView                                        */
@@ -68,39 +65,17 @@ CSimSysDetView::CSimSysDetView(): CFormView(CSimSysDetView::IDD)
     m_bIsDllLoadSuccess = FALSE;
     bConnected = FALSE;
     m_omSourceCodeTextList.RemoveAll();
-
     m_bIsTimerHanEnabled = FALSE;
     m_bIsKeyHanEnabled = FALSE;
     m_bIsMsgHanEnabled = FALSE;
     m_bIsErrorHanEnabled = FALSE;
-
-
-    //{{AFX_DATA_INIT(CSimSysDetView)
     m_omStrNodeName = "";
     m_omStrCFile = "";
-    //}}AFX_DATA_INIT
-}
-/******************************************************************************/
-/*  Function Name    :  ~CSimSysDetView                                       */
-/*                                                                            */
-/*  Input(s)         :                                                        */
-/*  Output           :                                                        */
-/*  Functionality    :  Destructor
-/*  Member of        :  CSimSysDetView                                        */
-/*  Friend of        :      -                                                 */
-/*                                                                            */
-/*  Author(s)        :  Harika M                                              */
-/*  Date Created     :  20.12.2005                                            */
-/*  Modifications    :
-/******************************************************************************/
-CSimSysDetView::~CSimSysDetView()
-{
 }
 
 void CSimSysDetView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CSimSysDetView)
     DDX_Control(pDX, IDC_LSTC_HANDLER_DETAILS, m_omListCtrlHanDet);
     DDX_Control(pDX, IDC_LSTC_HANVAL, m_omListCtrlHanVal);
     DDX_Control(pDX, IDC_EDIT_PREF_ADRES, m_omPrefAdres);
@@ -108,12 +83,9 @@ void CSimSysDetView::DoDataExchange(CDataExchange* pDX)
     DDX_Text(pDX, IDC_EDIT_NODE_NAME, m_omStrNodeName);
     DDV_MaxChars(pDX, m_omStrNodeName, 15);
     DDX_Text(pDX, IDC_EDIT_FILE_NAME, m_omStrCFile);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CSimSysDetView, CFormView)
-    //{{AFX_MSG_MAP(CSimSysDetView)
     ON_BN_CLICKED(IDC_BUTTON_BUILD, OnButtonBuild)
     ON_BN_CLICKED(IDC_BUTTON_BUILDANDLOAD, OnButtonBuildandload)
     ON_BN_CLICKED(IDC_BUTTON_EDITFILE, OnButtonEditfile)
@@ -123,12 +95,7 @@ BEGIN_MESSAGE_MAP(CSimSysDetView, CFormView)
     ON_BN_CLICKED(IDC_BUTTON_OPENFILE, OnButtonOpenfile)
     ON_NOTIFY(NM_CLICK, IDC_LSTC_HANDLER_DETAILS, OnClickLstcHandlerDetails)
     ON_NOTIFY(HDN_ITEMCHANGED, IDC_LSTC_HANDLER_DETAILS, OnItemchangedLstcHandlerDetails)
-
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CSimSysDetView diagnostics
 
 #ifdef _DEBUG
 void CSimSysDetView::AssertValid() const
@@ -142,8 +109,6 @@ void CSimSysDetView::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
-/////////////////////////////////////////////////////////////////////////////
-// CSimSysDetView message handlers
 /******************************************************************************/
 /*  Function Name    :  OnButtonBuild
 /*  Input(s)         :  -

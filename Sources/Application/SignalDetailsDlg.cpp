@@ -31,8 +31,6 @@
 #include ".\signaldetailsdlg.h"
 
 extern CCANMonitorApp theApp;
-/////////////////////////////////////////////////////////////////////////////
-// CSignalDetailsDlg dialog
 
 /*******************************************************************************
  Function Name    :  CSignalDetailsDlg
@@ -62,7 +60,6 @@ CSignalDetailsDlg::CSignalDetailsDlg(const SDBPARAMS& sDbParams,
                                      CWnd* pParent /*=NULL*/)
     : CDialog(CSignalDetailsDlg::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CSignalDetailsDlg)
     m_unMinVal = 1;
     m_shByteIndex = 0;
     m_unSgLen = 1;
@@ -77,8 +74,6 @@ CSignalDetailsDlg::CSignalDetailsDlg(const SDBPARAMS& sDbParams,
     m_unMode = eMode;
     m_nDataFormat = nDataFormat;
     m_omStrSgType = omStrSignalType;
-    //}}AFX_DATA_INIT
-
     m_omStrMaxVal = omStrMaxVal;
     m_omStrMinVal = omStrMinVal;
     m_omStrOffset = omStrOffset;
@@ -159,7 +154,6 @@ CSignalDetailsDlg::CSignalDetailsDlg( eMODES eMode,
 void CSignalDetailsDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CSignalDetailsDlg)
     DDX_Control(pDX, IDC_EDIT_FACTOR, m_odScale);
     DDX_Control(pDX, IDC_EDIT_OFFSET, m_odOffset);
     DDX_Control(pDX, IDC_EDIT_MIN, m_odMinValue);
@@ -169,19 +163,16 @@ void CSignalDetailsDlg::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_SPIN_BIT, m_omSpinStartBit);
     DDX_Control(pDX, IDC_COMB_SGTYPE, m_omComboSgType);
     DDX_Text(pDX, IDC_EDIT_BYINDEX, m_shByteIndex);
-    DDV_MinMaxShort(pDX, m_shByteIndex, 0, (SHORT)m_nMsgLength-1);          //VENKAT
+    DDV_MinMaxShort(pDX, m_shByteIndex, 0, (SHORT)m_nMsgLength-1);
     DDX_Text(pDX, IDC_EDIT_SGLEN, m_unSgLen);
     DDV_MinMaxUInt(pDX, m_unSgLen, m_unMinVal, min (64, m_nMsgLength*8));
     DDX_Text(pDX, IDC_EDIT_SGNAME, m_omStrSignalName);
     DDX_Text(pDX, IDC_EDIT_STBIT, m_byStartBit);
     DDV_MinMaxByte(pDX, m_byStartBit, 0, 7);
     DDX_Text(pDX, IDC_EDIT_UNIT, m_omStrUnit);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CSignalDetailsDlg, CDialog)
-    //{{AFX_MSG_MAP(CSignalDetailsDlg)
     ON_EN_KILLFOCUS(IDC_EDIT_SGNAME, OnKillfocusEditSgname)
     ON_EN_KILLFOCUS(IDC_EDIT_BYINDEX, OnKillfocusEditByindex)
     ON_EN_KILLFOCUS(IDC_EDIT_FACTOR, OnKillfocusEditFactor)
@@ -192,13 +183,10 @@ BEGIN_MESSAGE_MAP(CSignalDetailsDlg, CDialog)
     ON_CBN_SELCHANGE(IDC_COMB_SGTYPE, OnSelchangeCombSgtype)
     ON_EN_CHANGE(IDC_EDIT_SGLEN, OnChangeEditSglen)
     ON_EN_CHANGE(IDC_EDIT_SGNAME, OnChangeEditSgname)
-    //}}AFX_MSG_MAP
     ON_BN_CLICKED(IDC_RADIO_INTEL, OnBnClickedRadioIntel)
     ON_BN_CLICKED(IDC_RADIO_MOTOROLA, OnBnClickedRadioMotorola)
 END_MESSAGE_MAP()
 
-/////////////////////////////////////////////////////////////////////////////
-// CSignalDetailsDlg message handlers
 /******************************************************************************/
 /*  Function Name    :  OnInitDialog                                          */
 /*                                                                            */

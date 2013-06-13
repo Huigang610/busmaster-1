@@ -72,45 +72,28 @@ static LONG GetEntitlementID(CString& omEntitlementId)
 }
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// CAboutDlg dialog used for App About
-
 class CAboutDlg : public CDialog
 {
 public:
     CAboutDlg();
 
     // Dialog Data
-    //{{AFX_DATA(CAboutDlg)
     enum { IDD = IDD_ABOUTBOX };
-    //}}AFX_DATA
 
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CAboutDlg)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
-
-    // Implementation
-protected:
-    //{{AFX_MSG(CAboutDlg)
-    virtual BOOL OnInitDialog();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+	virtual BOOL OnInitDialog();
 };
 
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
 {
-    //{{AFX_DATA_INIT(CAboutDlg)
-    //}}AFX_DATA_INIT
 }
 
 void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CAboutDlg)
-    //}}AFX_DATA_MAP
 }
+
 BOOL CAboutDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
@@ -127,27 +110,10 @@ BOOL CAboutDlg::OnInitDialog()
     // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
-    //{{AFX_MSG_MAP(CAboutDlg)
-    //}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CCANMonitorApp
-
 BEGIN_MESSAGE_MAP(CCANMonitorApp, CWinApp)
-    //{{AFX_MSG_MAP(CCANMonitorApp)
     ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
-    // NOTE - the ClassWizard will add and remove mapping macros here.
-    //    DO NOT EDIT what you see in these blocks of generated code!
-    //}}AFX_MSG_MAP
-    // Standard file based document commands
-    //ON_COMMAND(ID_FILE_NEW,  OnFileNew)
-    //ON_COMMAND( ID_FILE_OPEN, OnFileOpen )
-    // Standard print setup command
     ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
 END_MESSAGE_MAP()
-
 
 CCANMonitorApp::CCANMonitorApp()
 {
@@ -160,8 +126,9 @@ CCANMonitorApp::CCANMonitorApp()
     m_bIsConfigFileLoaded = false;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// The one and only CCANMonitorApp object
+/**
+ * The one and only CCANMonitorApp object
+ */
 
 CCANMonitorApp theApp;
 
@@ -313,7 +280,7 @@ BOOL CCANMonitorApp::InitInstance()
     // show main frame
     m_pMainWnd->ShowWindow(m_nCmdShow);
     m_pMainWnd->UpdateWindow();
-    //// Create message window
+    // Create message window
     pMainFrame->bCreateMsgWindow();
     // In-Active Database
     m_pouMsgSgInactive  = new CMsgSignal(sg_asDbParams[CAN], m_bFromAutomation);
@@ -481,7 +448,6 @@ int CCANMonitorApp::ExitInstance()
     CoUninitialize();
     return CWinApp::ExitInstance();
 }
-
 
 void CCANMonitorApp::OnAppAbout()
 {

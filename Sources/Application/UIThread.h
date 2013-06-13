@@ -24,19 +24,14 @@
 
 #pragma once
 
+/* Project includes */
 #include "NotificWnd.h"
 
 class CUIThread : public CWinThread
 {
     DECLARE_DYNCREATE(CUIThread)
-protected:
-    CUIThread();           // protected constructor used by dynamic creation
-    CNotificWnd* m_podTraceWinObj;
+    DECLARE_MESSAGE_MAP()
 
-    // Attributes
-private:
-
-    // Operations
 public:
     BOOL bCreateTraceWindow(CMDIFrameWnd*);
     void vUpdateWndCo_Ords(WINDOWPLACEMENT& wndPlacement, BOOL bLoadIntoTrace);
@@ -47,29 +42,18 @@ public:
     BOOL bIsTraceWindowVisible(void);
     HWND hGetHandleTraceWnd();
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CUIThread)
-public:
     virtual BOOL InitInstance();
     virtual int ExitInstance();
-    //}}AFX_VIRTUAL
 
-    // Implementation
 protected:
+    CUIThread();           // protected constructor used by dynamic creation
+    CNotificWnd* m_podTraceWinObj;
+
     virtual ~CUIThread();
 
     // To update the window status from the configuration file
     afx_msg void vUpdateWinStatusFromCfg(UINT, LONG);
-    // To process thread messages
     afx_msg void vWriteTextToTrace(UINT, LONG);
+	// To process thread messages
     afx_msg void vProcessThreadMsg(UINT, LONG);
-
-
-    // Generated message map functions
-    //{{AFX_MSG(CUIThread)
-    // NOTE - the ClassWizard will add and remove member functions here.
-    //}}AFX_MSG
-
-    DECLARE_MESSAGE_MAP()
 };

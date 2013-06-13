@@ -46,35 +46,103 @@ typedef enum LogTriggerState
 typedef struct tagLogTrigger
 {
     LogTriggerState triggerType;
-    UINT             startId;     /**< Start Trigger ID */
-    UINT             stopId;      /**< Stop Trigger ID */
-} SLOGTRIGGER,*PSLOGTRIGGER;
+
+	/**
+	 * Start Trigger ID
+	 */
+    UINT startId;
+
+	/**
+	 * Stop Trigger ID
+	 */
+    UINT stopId;
+} SLOGTRIGGER, *PSLOGTRIGGER;
 
 const USHORT ID_INVALID = (USHORT) -1;
 const USHORT ID_MAX = (USHORT) ~0;
 
-// The below structure describes a logging block fulfilling the condition of
-// necessity and sufficience.
+/**
+ * The below structure describes a logging block fulfilling the condition of
+ * necessity and sufficience.
+ */
 typedef struct tagLogInfo
 {
-    USHORT       m_ushID;            // Logging block identifier
-    BOOL         m_bIsUpdated;       // To indicate if it needs updation
-    BOOL         m_bEnabled;         // To indicate if its enabled
-    eTimerMode   m_eLogTimerMode;    // The time mode - system / relative
-    eFormat      m_eNumFormat;       // Numeric mode - hexadecimal / decimal
-    eMode        m_eFileMode;        // Mode - overwrite / append
-    BOOL         m_bResetAbsTimeStamp; // To indicate if Absolute Time Stamp is Reseted
-    TYPE_CHANNEL m_ChannelSelected;  // The current channel
-    char         m_sLogFileName[_MAX_PATH]; // Log file name with absolute path
-    SLOGTRIGGER  m_sLogTrigger;      // The triggering condition
+    tagLogInfo();
 
-    tagLogInfo();                    // Standard constructor
-    void vClear(void);               // To clear the logging information
-    UINT unGetSize(void) const;      // To get the size of the block in bytes
-    BYTE* pbGetConfigData(BYTE* pbTarget) const; // To get configuration data
-    BOOL pbGetConfigData(xmlNodePtr pxmlNodePtr) const; // To get configuration data
+	/**
+	 * Logging block identifier
+	 */
+    USHORT m_ushID;
 
-    BYTE* pbSetConfigData(BYTE* pbTarget, BYTE bytLogVersion); // To set configuration data
-    INT nSetConfigData(xmlNodePtr pNode);
+	/**
+	 * To indicate if it needs updation
+	 */
+    BOOL m_bIsUpdated;
 
+	/**
+	 * To indicate if its enabled
+	 */
+    BOOL m_bEnabled;
+
+	/**
+	 * The time mode - system / relative
+	 */
+    eTimerMode m_eLogTimerMode;
+
+	/**
+	 * Numeric mode - hexadecimal / decimal
+	 */
+    eFormat m_eNumFormat;
+
+	/**
+	 * Mode - overwrite / append
+	 */
+    eMode m_eFileMode;
+
+	/**
+	 * To indicate if Absolute Time Stamp is Reseted
+	 */
+    BOOL m_bResetAbsTimeStamp;
+
+	/**
+	 * The current channel
+	 */
+    TYPE_CHANNEL m_ChannelSelected;
+
+	/**
+	 * Log file name with absolute path
+	 */
+    char m_sLogFileName[_MAX_PATH];
+
+	/**
+	 * The triggering condition
+	 */
+    SLOGTRIGGER m_sLogTrigger;
+
+	/**
+	 * To clear the logging information
+	 */
+    void vClear(void);
+
+	/**
+	 * To get the size of the block in bytes
+	 */
+    UINT unGetSize(void) const;
+
+	/**
+	 * To get configuration data
+	 */
+    BYTE* pbGetConfigData(BYTE* pbTarget) const;
+
+	/**
+	 * To get configuration data
+	 */
+    BOOL pbGetConfigData(xmlNodePtr pxmlNodePtr) const;
+
+	/**
+	 * To set configuration data
+	 */
+    BYTE* pbSetConfigData(BYTE* pbTarget, BYTE bytLogVersion);
+
+	INT nSetConfigData(xmlNodePtr pNode);
 } SLOGINFO;

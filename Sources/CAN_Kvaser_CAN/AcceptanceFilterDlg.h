@@ -24,21 +24,19 @@
 
 #pragma once
 
+/* Project includes */
 #include "CAN_Kvaser_CAN_Resource.h"
-/////////////////////////////////////////////////////////////////////////////
-// CAcceptanceFilterDlg dialog
 
-class CAcceptanceFilterDlg : public CDialog//CPropertyPage
+class CAcceptanceFilterDlg : public CDialog
 {
-    //DECLARE_DYNCREATE(CAcceptanceFilterDlg)
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
-    // standard constructor
     CAcceptanceFilterDlg(CWnd* pParent = NULL,
                          PSCONTROLLER_DETAILS psAccFilterInfo = NULL);
     virtual ~CAcceptanceFilterDlg();
-    // Dialog Data
-    //{{AFX_DATA(CAcceptanceFilterDlg)
+
+	// Dialog Data
     enum { IDD = IDD_DLG_ACCEPTANCE };
     CRadixEdit  m_omEditAccMaskByte4;
     CRadixEdit  m_omEditAccMaskByte3;
@@ -65,25 +63,15 @@ public:
     CString m_omStrLocalAccMaskByte2[CAN_MSG_IDS];
     CString m_omStrLocalAccMaskByte3[CAN_MSG_IDS];
     CString m_omStrLocalAccMaskByte4[CAN_MSG_IDS];
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CAcceptanceFilterDlg)
-public:
     virtual void OnOK();
+
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
-
-    // Implementation
-protected:
 
     // Generated message map functions
-    //{{AFX_MSG(CAcceptanceFilterDlg)
-    afx_msg void OnCbtnAccetanceOk();
     virtual BOOL OnInitDialog();
+    afx_msg void OnCbtnAccetanceOk();
     afx_msg void OnMaxtextEditAcceptanceCode1();
     afx_msg void OnMaxtextEditAcceptanceCode2();
     afx_msg void OnMaxtextEditAcceptanceCode3();
@@ -91,17 +79,16 @@ protected:
     afx_msg void OnMaxtextEditAcceptanceMask1();
     afx_msg void OnMaxtextEditAcceptanceMask2();
     afx_msg void OnMaxtextEditAcceptanceMask3();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-private:
-    BOOL m_bAccFilterMode;
-    eHW_FILTER_TYPES m_enmHWFilterType[CAN_MSG_IDS];
-    PSCONTROLLER_DETAILS m_psControllerInfo;
     afx_msg void OnBnClickedRbtnDualFilterMode();
     afx_msg void OnBnClickedRbtnSingleFilterMode();
     afx_msg void OnBnClickedRbtnFilterAcceptAll();
     afx_msg void OnBnClickedRbtnFilterRejectAll();
     afx_msg void OnBnClickedRbtnFilterManualSet();
+
+private:
+    BOOL m_bAccFilterMode;
+    eHW_FILTER_TYPES m_enmHWFilterType[CAN_MSG_IDS];
+    PSCONTROLLER_DETAILS m_psControllerInfo;
 
     void vSetFilterDetails(bool bSave);
     void vSaveFilterDetails(BOOL bAccFilterMode);

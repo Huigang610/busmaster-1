@@ -53,7 +53,6 @@ CChangeRegisters_CAN_ICS_neoVI::CChangeRegisters_CAN_ICS_neoVI(CWnd* pParent /*=
     , m_omStrPropDelay("")
     , m_omStrSJW("")
 {
-    //{{AFX_DATA_INIT(CChangeRegisters_CAN_ICS_neoVI)
     m_omStrEditCNF1 = "";
     m_omStrEditCNF2 = "";
     m_omStrEditCNF3 = "";
@@ -61,7 +60,6 @@ CChangeRegisters_CAN_ICS_neoVI::CChangeRegisters_CAN_ICS_neoVI(CWnd* pParent /*=
     m_omStrcombBaudRate = "";
     m_omStrComboClock = "32";
     m_omStrEditWarningLimit = "";
-    //}}AFX_DATA_INIT
     m_unCombClock      = 32;
     m_bDialogCancel    = FALSE;
     memset(&m_sAccFilterInfo, 0, sizeof(m_sAccFilterInfo));
@@ -97,7 +95,6 @@ CChangeRegisters_CAN_ICS_neoVI::CChangeRegisters_CAN_ICS_neoVI(CWnd* pParent /*=
 void CChangeRegisters_CAN_ICS_neoVI::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CChangeRegisters_CAN_ICS_neoVI)
     DDX_Control(pDX, IDC_LIST_CHANNELS, m_omChannelList);
     DDX_Control(pDX, IDC_EDIT_WARNING_LIMIT, m_omEditWarningLimit);
     DDX_Control(pDX, IDC_COMB_SAMPLING, m_omCombSampling);
@@ -113,12 +110,9 @@ void CChangeRegisters_CAN_ICS_neoVI::DoDataExchange(CDataExchange* pDX)
     DDX_Text(pDX,IDC_COMB_PROPDELAY, m_omStrPropDelay);
     DDX_Control(pDX, IDC_COMB_SJW, m_omCtrlSJW);
     DDX_Control(pDX, IDC_COMB_CLOCK, m_omCtrlClock);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CChangeRegisters_CAN_ICS_neoVI, CDialog)
-    //{{AFX_MSG_MAP(CChangeRegisters_CAN_ICS_neoVI)
     ON_CBN_SELCHANGE(IDC_COMB_BAUD_RATE, OnSelchangeCombBaudRate)
     ON_CBN_SELCHANGE(IDC_COMB_SAMPLING, OnSelchangeCombSampling)
     ON_BN_CLICKED(IDC_ButtonOK, OnClickedOK)
@@ -131,7 +125,6 @@ BEGIN_MESSAGE_MAP(CChangeRegisters_CAN_ICS_neoVI, CDialog)
     ON_NOTIFY(HDN_ITEMCLICK, 0, OnHdnItemclickLstcBtrList)
     ON_CBN_SELCHANGE(IDC_COMB_SJW, OnCbnSelchangeCombSjw)
     ON_CBN_SELCHANGE(IDC_COMB_PROPDELAY, OnCbnSelchangeCombPropdelay)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /******************************************************************************/
@@ -1316,17 +1309,6 @@ BOOL CChangeRegisters_CAN_ICS_neoVI::bSetBaudRateFromCom(int nChannel,BYTE bBTR0
 
     m_nLastSelection = nChannel-1;
 
-    // Update Configuration file
-    //kadoor theApp.bSetData( CONTROLLER_DETAILS, m_pControllerDetails);
-    //// Update Hardware Interface Layer
-    //if (g_podHardwareInterface->bLoadDataFromConfig() == TRUE)
-    //{
-    //    int nApply = g_podHardwareInterface->nSetApplyConfiguration();
-    //    if (nApply ==defERR_OK)
-    //    {
-    //        bReturn =TRUE;
-    //    }
-    //}
     return bReturn;
 
 }
@@ -1412,18 +1394,6 @@ BOOL CChangeRegisters_CAN_ICS_neoVI::bSetFilterFromCom(BOOL  bExtended, DWORD  d
         m_pControllerDetails[ unIndex ].m_bAccFilterMode = bExtended;
     }
 
-
-    //kadoor // Update Configuration file
-    //theApp.bSetData( CONTROLLER_DETAILS, m_pControllerDetails);
-    //// Update Hardware Interface Layer
-    //if (g_podHardwareInterface->bLoadDataFromConfig() == TRUE)
-    //{
-    //    int nApply = g_podHardwareInterface->nSetApplyConfiguration();
-    //    if (nApply ==defERR_OK)
-    //    {
-    //        bReturn =TRUE;
-    //    }
-    //}
 
     return bReturn;
 

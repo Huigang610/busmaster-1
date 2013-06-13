@@ -44,12 +44,10 @@
 CGraphExportDlg::CGraphExportDlg(CWnd* pParent /*=NULL*/)
     : CDialog(CGraphExportDlg::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CGraphExportDlg)
     m_omStrCSVFileName = STR_EMPTY;
     m_omStrHTMLFileName = STR_EMPTY;
     m_omStrBMPFileName = STR_EMPTY;
     m_pDMGraphCtrl = NULL;
-    //}}AFX_DATA_INIT
 }
 
 /*******************************************************************************
@@ -64,23 +62,18 @@ CGraphExportDlg::CGraphExportDlg(CWnd* pParent /*=NULL*/)
 void CGraphExportDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CGraphExportDlg)
     DDX_Text(pDX, IDC_EDIT_CSV_FILE_NAME, m_omStrCSVFileName);
     DDX_Text(pDX, IDC_EDIT_HTML_FILE_NAME, m_omStrHTMLFileName);
     DDX_Text(pDX, IDC_EDIT_IMAGE_FILE_NAME, m_omStrBMPFileName);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CGraphExportDlg, CDialog)
-    //{{AFX_MSG_MAP(CGraphExportDlg)
     ON_BN_CLICKED(IDC_BTN_BROWSE_CSV, OnBtnBrowseCsv)
     ON_BN_CLICKED(IDC_BTN_SAVE_CSV, OnBtnSaveCsv)
     ON_BN_CLICKED(IDC_BTN_BROWSE_HTML, OnBtnBrowseHtml)
     ON_BN_CLICKED(IDC_BTN_SAVE_HTML, OnBtnSaveHtml)
     ON_BN_CLICKED(IDC_BTN_BROWSE_BMP, OnBtnBrowseBmp)
     ON_BN_CLICKED(IDC_BTN_SAVE_IMAGE, OnBtnSaveImage)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /*******************************************************************************

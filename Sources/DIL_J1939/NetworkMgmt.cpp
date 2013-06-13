@@ -349,34 +349,16 @@ HRESULT CNetworkMgmt::GoOnline(BOOL bStart)
 
 void CNetworkMgmt::vMDisconnectInd(short /*sLocalLc*/, short /*sRemoteLc*/, eREASON /*eReason*/)
 {
-    /*if (m_pfDisconInd != NULL)
-    {
-        (*m_pfDisconInd)(sLocalLc, sRemoteLc, eReason);
-    }kadoor*/
 }
 
 void CNetworkMgmt::vMConnectionCon(short /*sLocalLc*/, short /*sRemoteLc*/,
-                                   eCON_STATUS eConStatus)
+                                   eCON_STATUS /*eConStatus*/)
 {
-    if (eConStatus == T_DISCONNECTED)
-    {
-        //SHORT shConNo = shGetConNo(sLocalLc, sRemoteLc);
-        //bRemoveConnectionFromConMap(shConNo);
-    }
-    /*if (m_pfConConf != NULL)
-    {
-
-        (*m_pfConConf)(sLocalLc, sRemoteLc, eWdStatus, eConStatus);
-    }kadoor*/
 }
 
 void CNetworkMgmt::vMConnectionInd(short /*sLocalLc*/, short /*sRemoteLc*/,
                                    eCON_STATUS /*eConStatus*/)
 {
-    /*if (m_pfConInd != NULL)
-    {
-        (*m_pfConInd)(sLocalLc, sRemoteLc, eWdStatus, eConStatus);
-    }kadoor*/
 }
 
 void CNetworkMgmt::vMErrorInd(short /*sLocalLc*/,short /*sRemoteLc*/,char /*cError*/)
@@ -541,7 +523,7 @@ LONG CNetworkMgmt::lCreateNodeConManager(char* pacNodeName,
                 if (hResult == S_OK)
                 {
                     pNodeConMgr->m_dwClientID = dwClientId;
-                    m_ouReadCANMsg.AddEventHandle(pouBuffer->hGetNotifyingEvent(), (BYTE)nEmptyPos);
+                    m_ouReadCANMsg.AddEventHandle(pouBuffer->getNotifyEvent(), (BYTE)nEmptyPos);
                 }
                 //Join this node to network if started.
                 if (m_bOnline == TRUE)
@@ -577,7 +559,7 @@ LONG CNetworkMgmt::lRemoveNodeConManager(DWORD dwClientId)
                 CBaseCANBufFSE* pouBuffer = m_ConMgrArr[i]->pouGetBuf();
                 if (NULL != pouBuffer)
                 {
-                    HANDLE handle = pouBuffer->hGetNotifyingEvent();
+                    HANDLE handle = pouBuffer->getNotifyEvent();
                     TRACE(_("Going to call bDeleteEventHandle\n"));
                     m_ouReadCANMsg.bDeleteEventHandle(handle);
                     TRACE(_("Called bDeleteEventHandle\n"));
@@ -617,7 +599,7 @@ void CNetworkMgmt::vRemoveAllNodes(void)
             CBaseCANBufFSE* pouBuffer = m_ConMgrArr[i]->pouGetBuf();
             if (NULL != pouBuffer)
             {
-                HANDLE handle = pouBuffer->hGetNotifyingEvent();
+                HANDLE handle = pouBuffer->getNotifyEvent();
                 TRACE(_("Going to call bDeleteEventHandle\n"));
                 m_ouReadCANMsg.bDeleteEventHandle(handle);
                 TRACE(_("Called bDeleteEventHandle\n"));

@@ -34,6 +34,8 @@
 
 class CHardwareListing : public CDialog
 {
+    DECLARE_MESSAGE_MAP()
+
 public:
     /**
      * Constructor
@@ -82,16 +84,15 @@ protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
     virtual BOOL OnInitDialog();
+    virtual void OnOK();
+    virtual void OnCancel();
+
     afx_msg void OnItemchangedHWList(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnButtonSelect();
     afx_msg void OnButtonRemove();
-    virtual void OnOK();
-    virtual void OnCancel();
     afx_msg void OnItemchangedLstcSelectedHwList(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnNMClickLstcHwList(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnNMClickLstcSelectedHwList(NMHDR* pNMHDR, LRESULT* pResult);
-
-    DECLARE_MESSAGE_MAP()
 
 private:
     void vEnableDisableButtons();

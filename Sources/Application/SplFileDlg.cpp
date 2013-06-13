@@ -52,14 +52,7 @@ CSplFileDlg::CSplFileDlg(BOOL bOpenFileDialog,
     CFileDialog(bOpenFileDialog,lpszDefExt,lpszFileName,dwFlags,lpszFilter,
                 pParentWnd),m_omStrButtonCaption(omStrButtonCaption)
 {
-
 }
-
-
-BEGIN_MESSAGE_MAP(CSplFileDlg, CFileDialog)
-    //{{AFX_MSG_MAP(CSplFileDlg)
-    //}}AFX_MSG_MAP
-END_MESSAGE_MAP()
 
 /******************************************************************************/
 /*  Function Name    :  OnInitDialog                                          */

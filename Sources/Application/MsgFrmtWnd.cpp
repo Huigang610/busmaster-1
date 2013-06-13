@@ -246,9 +246,8 @@ CMsgFrmtWnd::CMsgFrmtWnd(ETYPE_BUS eBusType): m_sCurrEntry(sDummy0002), m_ouMsgA
     m_anMsgBuffSize[defDISPLAY_UPDATE_DATA_INDEX] = defDEF_DISPLAY_UPDATE_TIME;
 
     m_nPrevToolCol = m_nPrevToolRow = -1;
-
-
 }
+
 CMsgFrmtWnd::~CMsgFrmtWnd()
 {
     DeleteCriticalSection(&m_omCritSecForMapArr);
@@ -260,7 +259,6 @@ CMsgFrmtWnd::~CMsgFrmtWnd()
         m_podMsgIntprtnDlg = NULL;
     }
 }
-
 
 BEGIN_MESSAGE_MAP(CMsgFrmtWnd, CWnd)
     ON_WM_SIZE()
@@ -278,7 +276,6 @@ BEGIN_MESSAGE_MAP(CMsgFrmtWnd, CWnd)
     ON_MESSAGE(WM_ENABLE_FILTER_APPLIED, EnableFilterApplied)
     ON_MESSAGE(IDM_CLEAR_MSG_WINDOW, OnClearAll)
     ON_MESSAGE(WM_SHOW_MESSAGE_WINDOW, OnShowHideMessageWindow)
-    //ON_MESSAGE(WM_OPEN_CLOSE_SIG_WATCH, vOpenCloseSignalWatchWnd)
     ON_MESSAGE(WM_INVALIDATE_LIST_DISPLAY, vInvalidateListDisplay)
     ON_MESSAGE(WM_GET_INTERPRET_STATE, vOnGetInterpretState)
     ON_MESSAGE(WM_CLEAR_SORT_COLUMN, vOnClearSortColumns)
@@ -297,9 +294,6 @@ BEGIN_MESSAGE_MAP(CMsgFrmtWnd, CWnd)
     ON_MESSAGE(WM_DATABASE_CHANGE, OnToggleInterpretStatusAllEntries)
     ON_WM_MDIACTIVATE()
 END_MESSAGE_MAP()
-
-
-// CMsgFrmtWnd message handlers
 
 /*******************************************************************************
   Function Name  : Create
@@ -1033,7 +1027,7 @@ void CMsgFrmtWnd::OnExpandSelectedMessageEntry()
   Date Created   : 12-05-2010
   Modifications  :
 *******************************************************************************/
-void CMsgFrmtWnd::vInit(void* pParam)
+void CMsgFrmtWnd::vInit(void* /*pParam*/)
 {
     PSDI_GetInterface(m_eBusType, (void**)&m_pouMsgContainerIntrf);
     m_pouMsgContainerIntrf->bGetDilInterFace();
@@ -3021,62 +3015,6 @@ void CMsgFrmtWnd::vFormatSignalInfo (const SSignalInfoArray& omSigInfoArray,
         omSigStrArray.Add(omTemp);
     }
 }
-//
-///*******************************************************************************
-//  Function Name  : vOpenCloseSignalWatchWnd
-//  Input(s)       : wParam and lParam
-//  Output         : Returns 0 as LRESULT
-//  Functionality  : Toggles the between the state of Creation and showing/
-//                 Destruction of Signal Watch Dialog.
-//  Member of      : CMsgFrmtWnd
-//  Author(s)      : Arunkumar K
-//  Date Created   : 12-05-2010
-//  Modifications  :
-//*******************************************************************************/
-//LRESULT CMsgFrmtWnd::vOpenCloseSignalWatchWnd(WPARAM wParam, LPARAM lParam)
-//{
-//    BOOL bCreateWnd = (BOOL) wParam;
-//
-//    if (bCreateWnd == TRUE)
-//    {
-//        if (m_podSignalWatchDlg == NULL)
-//        {
-//            m_podSignalWatchDlg = new CSigWatchDlg;
-//        }
-//
-//        if (m_podSignalWatchDlg != NULL)
-//        {
-//            CWnd *pomGrandParent = GetParent()->GetParent();
-//            m_podSignalWatchDlg->Create(IDD_DLG_SIGNAL_WATCH, pomGrandParent);
-//
-//            // Show the window
-//            m_podSignalWatchDlg->ShowWindow(SW_SHOW);
-//            // Size the list control
-//            m_podSignalWatchDlg->SendMessage(WM_SIZE, nZERO, nZERO);
-//            // Repaint Non-Client area
-//            m_podSignalWatchDlg->SendMessage(WM_NCPAINT, nONE, nZERO);
-//
-//            m_bSignalWatchON = TRUE;
-//        }
-//    }
-//    else // Window should be closed
-//    {
-//        if (m_podSignalWatchDlg != NULL)
-//        {
-//             // Set the Focus to Main Frame
-//            //theApp.m_pMainWnd->SetFocus();
-//          ::SetFocus(g_hMainGUI);
-//            // This is required to update wnd co-ordinates
-//            if( m_podSignalWatchDlg->GetSafeHwnd())
-//            {
-//                m_podSignalWatchDlg->ShowWindow(SW_HIDE);
-//                m_podSignalWatchDlg->DestroyWindow();
-//            }
-//            m_bSignalWatchON = FALSE;
-//        }
-//    }
-//return 0;
-//}
 
 /*******************************************************************************
   Function Name  : vChangeStateOfInterpretableMsgs
@@ -4106,134 +4044,6 @@ HRESULT CMsgFrmtWnd::SetConfigDataJ1939(xmlDocPtr pDocPtr)
     //Clear all the previous messages.
     OnEditClearAll();
 
-    //BYTE* pByteSrc = NULL;
-    //pByteSrc = pvDataStream;
-
-    //if (pByteSrc != NULL)
-    //{
-    //    //Reading Version.
-    //    BYTE byVer = 0;
-    //    COPY_DATA_2(&byVer, pByteSrc, sizeof(BYTE));
-    //    UINT nSize= 0;
-    //    //Reading Buffer Size.
-    //    COPY_DATA_2(&nSize, pByteSrc, sizeof(UINT));
-    //    if ((byVer == MSG_FRMT_WND_VERSION) && (nSize > 0))
-    //    {
-    //        //Reading column Header Positions.
-    //        CHeaderCtrl* pHeaderCtrl = m_lstMsg.GetHeaderCtrl();
-    //        if (pHeaderCtrl != NULL)
-    //        {
-    //            int  nColumnCount=0;
-    //            //Reading column count.
-    //            COPY_DATA_2(&nColumnCount, pByteSrc, sizeof(UINT));
-
-    //            LPINT pnOrder = (LPINT) malloc(nColumnCount*sizeof(int));
-    //            for (int i = 0 ; i < nColumnCount; i++)
-    //            {
-    //                COPY_DATA_2(&pnOrder[i], pByteSrc, sizeof(int));
-    //                bool bColumnVisible = false;
-    //                COPY_DATA_2(&bColumnVisible, pByteSrc, sizeof(bool));
-    //                m_lstMsg.ShowColumn(i, bColumnVisible);
-
-    //                INT nColWidth = 0;
-    //                COPY_DATA_2(&nColWidth, pByteSrc, sizeof(INT));
-    //                m_lstMsg.SetColumnWidth(i, nColWidth);
-    //            }
-    //            m_lstMsg.SetColumnOrderArray(nColumnCount, pnOrder);
-    //            free(pnOrder);
-    //        }
-
-
-    //        //Reading Hex/Dec Display.
-    //        bool bHexDec = false;
-    //        COPY_DATA_2(&bHexDec, pByteSrc, sizeof(bool));
-
-    //        CLEAR_EXPR_NUM_BITS(m_bExprnFlag_Disp);
-    //        //m_bExprnFlag_Disp |= (wArguments & BITS_NUM);
-    //        if(bHexDec)
-    //        {
-    //            SET_NUM_HEX(m_bExprnFlag_Disp);
-    //        }
-    //        else
-    //        {
-    //            SET_NUM_DEC(m_bExprnFlag_Disp);
-    //        }
-
-    //        //Reading Overwrite/Append Mode.
-    //        bool bOvrwAppend = false;
-    //        COPY_DATA_2(&bOvrwAppend, pByteSrc, sizeof(bool));
-    //        if(bOvrwAppend)
-    //        {
-    //            SET_MODE_APPEND(m_bExprnFlag_Disp);
-    //        }
-    //        else
-    //        {
-    //            SET_MODE_OVER(m_bExprnFlag_Disp);
-    //        }
-
-    //        //Reading Interpret Status if in overwrite Mode.
-    //        COPY_DATA_2(&m_bInterPretMsg, pByteSrc, sizeof(bool));
-
-    //        if(m_bInterPretMsg)
-    //        {
-    //            SET_MODE_INTRP(m_bExprnFlag_Disp);
-    //        }
-
-    //        //Reading Time Display.
-    //        BYTE byTimeDisplay;
-    //        COPY_DATA_2(&byTimeDisplay, pByteSrc, sizeof(bool));
-    //        CLEAR_EXPR_TM_BITS(m_bExprnFlag_Disp);
-
-    //        if(byTimeDisplay == BIT_TM_ABS)
-    //        {
-    //            SET_TM_ABS(m_bExprnFlag_Disp);
-    //        }
-    //        else if(byTimeDisplay == BIT_TM_REL)
-    //        {
-    //            SET_TM_REL(m_bExprnFlag_Disp);
-    //        }
-    //        else if(byTimeDisplay == BIT_TM_SYS)
-    //        {
-    //            SET_TM_SYS(m_bExprnFlag_Disp);
-    //        }
-
-    //        WINDOWPLACEMENT sMsgWndPlacement;
-
-    //        COPY_DATA_2(&sMsgWndPlacement, pByteSrc, sizeof(WINDOWPLACEMENT));
-
-    //        //Save the window visibility status.
-    //        BOOL bVisible = IsWindowVisible();
-
-    //        //SetWindowPlacement function call makes the window visible.
-    //        SetWindowPlacement(&sMsgWndPlacement);
-
-    //        //Regain the window's visibility status.
-    //        if(!bVisible)
-    //        {
-    //            ShowWindow(SW_HIDE);
-    //        }
-
-    //        COPY_DATA_2(&m_sMsgIntrpWndPlacement, pByteSrc, sizeof(WINDOWPLACEMENT));
-    //    }
-    //    else
-    //    {
-    //        //load default values
-    //        vSetDefaultConfigValues();
-    //        vSetDefaultPlacement();
-    //    }
-    //}
-    //else
-    //{
-    //    //load default values
-    //    vSetDefaultConfigValues();
-    //    vSetDefaultPlacement();
-    //}
-    //vUpdatePtrInLstCtrl();
-    //m_lstMsg.vShowHideBlankcolumn(m_bInterPretMsg);
-
-    ////Clear all the previous messages.
-    //OnEditClearAll();
-
     return S_OK;
 }
 
@@ -4692,7 +4502,6 @@ HRESULT CMsgFrmtWnd::SetConfigData(xmlDocPtr pDocPtr)
                     }
                 }
             }
-            //COPY_DATA_2(&m_sMsgIntrpWndPlacement, pByteSrc, sizeof(WINDOWPLACEMENT));
         }
         else
         {
@@ -4713,136 +4522,9 @@ HRESULT CMsgFrmtWnd::SetConfigData(xmlDocPtr pDocPtr)
     //Clear all the previous messages.
     OnEditClearAll();
 
-    //BYTE* pByteSrc = NULL;
-    //pByteSrc = pvDataStream;
-
-    //if (pByteSrc != NULL)
-    //{
-    //    //Reading Version.
-    //    BYTE byVer = 0;
-    //    COPY_DATA_2(&byVer, pByteSrc, sizeof(BYTE));
-    //    UINT nSize= 0;
-    //    //Reading Buffer Size.
-    //    COPY_DATA_2(&nSize, pByteSrc, sizeof(UINT));
-    //    if ((byVer == MSG_FRMT_WND_VERSION) && (nSize > 0))
-    //    {
-    //        //Reading column Header Positions.
-    //        CHeaderCtrl* pHeaderCtrl = m_lstMsg.GetHeaderCtrl();
-    //        if (pHeaderCtrl != NULL)
-    //        {
-    //            int  nColumnCount=0;
-    //            //Reading column count.
-    //            COPY_DATA_2(&nColumnCount, pByteSrc, sizeof(UINT));
-
-    //            LPINT pnOrder = (LPINT) malloc(nColumnCount*sizeof(int));
-    //            for (int i = 0 ; i < nColumnCount; i++)
-    //            {
-    //                COPY_DATA_2(&pnOrder[i], pByteSrc, sizeof(int));
-    //                bool bColumnVisible = false;
-    //                COPY_DATA_2(&bColumnVisible, pByteSrc, sizeof(bool));
-    //                m_lstMsg.ShowColumn(i, bColumnVisible);
-
-    //                INT nColWidth = 0;
-    //                COPY_DATA_2(&nColWidth, pByteSrc, sizeof(INT));
-    //                m_lstMsg.SetColumnWidth(i, nColWidth);
-    //            }
-    //            m_lstMsg.SetColumnOrderArray(nColumnCount, pnOrder);
-    //            free(pnOrder);
-    //        }
-
-
-    //        //Reading Hex/Dec Display.
-    //        bool bHexDec = false;
-    //        COPY_DATA_2(&bHexDec, pByteSrc, sizeof(bool));
-
-    //        CLEAR_EXPR_NUM_BITS(m_bExprnFlag_Disp);
-    //        //m_bExprnFlag_Disp |= (wArguments & BITS_NUM);
-    //        if(bHexDec)
-    //        {
-    //            SET_NUM_HEX(m_bExprnFlag_Disp);
-    //        }
-    //        else
-    //        {
-    //            SET_NUM_DEC(m_bExprnFlag_Disp);
-    //        }
-
-    //        //Reading Overwrite/Append Mode.
-    //        bool bOvrwAppend = false;
-    //        COPY_DATA_2(&bOvrwAppend, pByteSrc, sizeof(bool));
-    //        if(bOvrwAppend)
-    //        {
-    //            SET_MODE_APPEND(m_bExprnFlag_Disp);
-    //        }
-    //        else
-    //        {
-    //            SET_MODE_OVER(m_bExprnFlag_Disp);
-    //        }
-
-    //        //Reading Interpret Status if in overwrite Mode.
-    //        COPY_DATA_2(&m_bInterPretMsg, pByteSrc, sizeof(bool));
-
-    //        if(m_bInterPretMsg)
-    //        {
-    //            SET_MODE_INTRP(m_bExprnFlag_Disp);
-    //        }
-
-    //        //Reading Time Display.
-    //        BYTE byTimeDisplay;
-    //        COPY_DATA_2(&byTimeDisplay, pByteSrc, sizeof(bool));
-    //        CLEAR_EXPR_TM_BITS(m_bExprnFlag_Disp);
-
-    //        if(byTimeDisplay == BIT_TM_ABS)
-    //        {
-    //            SET_TM_ABS(m_bExprnFlag_Disp);
-    //        }
-    //        else if(byTimeDisplay == BIT_TM_REL)
-    //        {
-    //            SET_TM_REL(m_bExprnFlag_Disp);
-    //        }
-    //        else if(byTimeDisplay == BIT_TM_SYS)
-    //        {
-    //            SET_TM_SYS(m_bExprnFlag_Disp);
-    //        }
-
-    //        WINDOWPLACEMENT sMsgWndPlacement;
-
-    //        COPY_DATA_2(&sMsgWndPlacement, pByteSrc, sizeof(WINDOWPLACEMENT));
-
-    //        //Save the window visibility status.
-    //        BOOL bVisible = IsWindowVisible();
-
-    //        //SetWindowPlacement function call makes the window visible.
-    //        SetWindowPlacement(&sMsgWndPlacement);
-
-    //        //Regain the window's visibility status.
-    //        if(!bVisible)
-    //        {
-    //            ShowWindow(SW_HIDE);
-    //        }
-
-    //        COPY_DATA_2(&m_sMsgIntrpWndPlacement, pByteSrc, sizeof(WINDOWPLACEMENT));
-    //    }
-    //    else
-    //    {
-    //        //load default values
-    //        vSetDefaultConfigValues();
-    //        vSetDefaultPlacement();
-    //    }
-    //}
-    //else
-    //{
-    //    //load default values
-    //    vSetDefaultConfigValues();
-    //    vSetDefaultPlacement();
-    //}
-    //vUpdatePtrInLstCtrl();
-    //m_lstMsg.vShowHideBlankcolumn(m_bInterPretMsg);
-
-    ////Clear all the previous messages.
-    //OnEditClearAll();
-
     return S_OK;
 }
+
 /*******************************************************************************
   Function Name  : GetConfigData
   Input(s)       : xmlNodePtr
@@ -4952,47 +4634,6 @@ bool CMsgFrmtWnd::GetConfigData(xmlNodePtr pxmlNodePtr)
     GetWindowPlacement(&sMsgWndPlacement);
 
     xmlUtils::CreateXMLNodeFrmWindowsPlacement(pNodeWindowsPos, sMsgWndPlacement);
-    ////visibility
-    //CString csVisibility;
-    //csVisibility.Format("%d",  sMsgWndPlacement.flags);
-    //omcVarChar = csVisibility;
-    //xmlNodePtr pVisibility = xmlNewChild(pNodeWindowsPos, NULL, BAD_CAST DEF_VISIBILITY,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeWindowsPos, pVisibility);
-
-    ////WindowPlacement
-    //CString csWindowPlacement;
-    //csWindowPlacement.Format("%d",  sMsgWndPlacement.flags);
-    //omcVarChar = csWindowPlacement;
-    //xmlNodePtr pWindowPlacement = xmlNewChild(pNodeWindowsPos, NULL, BAD_CAST DEF_MWND_PLACEMENT,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeWindowsPos, pWindowPlacement);
-
-    ////Top
-    //CString csTop;
-    //csTop.Format("%d",  sMsgWndPlacement.rcNormalPosition.top);
-    //omcVarChar = csTop;
-    //xmlNodePtr pTop= xmlNewChild(pNodeWindowsPos, NULL, BAD_CAST DEF_MWND_TOP,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeWindowsPos, pTop);
-
-    ////Left
-    //CString csLeft;
-    //csLeft.Format("%d",  sMsgWndPlacement.rcNormalPosition.left);
-    //omcVarChar = csLeft;
-    //xmlNodePtr pLeft = xmlNewChild(pNodeWindowsPos, NULL, BAD_CAST DEF_MWND_LEFT,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeWindowsPos, pLeft);
-
-    ////Bottom
-    //CString csBottom;
-    //csBottom.Format("%d",  sMsgWndPlacement.rcNormalPosition.bottom);
-    //omcVarChar = csBottom;
-    //xmlNodePtr pBottom= xmlNewChild(pNodeWindowsPos, NULL, BAD_CAST DEF_BOTTOM,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeWindowsPos, pBottom);
-
-    ////Right
-    //CString csRight;
-    //csRight.Format("%d",  sMsgWndPlacement.rcNormalPosition.right);
-    //omcVarChar = csRight;
-    //xmlNodePtr pRight = xmlNewChild(pNodeWindowsPos, NULL, BAD_CAST DEF_RIGHT,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeWindowsPos, pRight);
 
     //Interpretation_Window_Position-------------------------------------------------------
     xmlNodePtr pNodeInterpretationWndPos = xmlNewNode(NULL, BAD_CAST DEF_INTPRET_WND_POS);
@@ -5002,42 +4643,6 @@ bool CMsgFrmtWnd::GetConfigData(xmlNodePtr pxmlNodePtr)
 
     xmlUtils::CreateXMLNodeFrmWindowsPlacement(pNodeInterpretationWndPos, m_sMsgIntrpWndPlacement);
 
-    ////visibility
-    //csVisibility.Format("%d",  sMsgWndPlacement.flags);
-    //omcVarChar = csVisibility;
-    //xmlNodePtr pInterpretVisibility = xmlNewChild(pNodeInterpretationWndPos, NULL, BAD_CAST DEF_VISIBILITY,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeInterpretationWndPos, pInterpretVisibility);
-
-    ////WindowPlacement
-    //csWindowPlacement.Format("%d",  sMsgWndPlacement.flags);
-    //omcVarChar = csWindowPlacement;
-    //xmlNodePtr pInterpretWindowPlacement = xmlNewChild(pNodeInterpretationWndPos, NULL, BAD_CAST DEF_MWND_PLACEMENT,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeInterpretationWndPos, pInterpretWindowPlacement);
-
-    ////Top
-    //csTop.Format("%d",  m_sMsgIntrpWndPlacement.rcNormalPosition.top);
-    //omcVarChar = csTop;
-    //xmlNodePtr pInterpretTop= xmlNewChild(pNodeInterpretationWndPos, NULL, BAD_CAST DEF_MWND_TOP,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeInterpretationWndPos, pInterpretTop);
-
-    ////Left
-    //csLeft.Format("%d",  m_sMsgIntrpWndPlacement.rcNormalPosition.left);
-    //omcVarChar = csLeft;
-    //xmlNodePtr pInterpretLeft = xmlNewChild(pNodeInterpretationWndPos, NULL, BAD_CAST DEF_MWND_LEFT,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeInterpretationWndPos, pInterpretLeft);
-
-    ////Bottom
-    //csBottom.Format("%d", m_sMsgIntrpWndPlacement.rcNormalPosition.bottom);
-    //omcVarChar = csBottom;
-    //xmlNodePtr pInterpretBottom= xmlNewChild(pNodeInterpretationWndPos, NULL, BAD_CAST DEF_BOTTOM,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeInterpretationWndPos, pInterpretBottom);
-
-    ////Right
-    //csRight.Format("%d", m_sMsgIntrpWndPlacement.rcNormalPosition.right);
-    //omcVarChar = csRight;
-    //xmlNodePtr pInterpretRight = xmlNewChild(pNodeInterpretationWndPos, NULL, BAD_CAST DEF_RIGHT,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeInterpretationWndPos, pInterpretRight);
-    //---------------------------------------------------------------------------------------
     return TRUE;
 }
 

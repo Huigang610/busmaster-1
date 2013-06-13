@@ -37,21 +37,15 @@ CDatabaseDissociateDlg::CDatabaseDissociateDlg(const SDBPARAMS& sDbParams, CWnd*
     m_sDbParams = sDbParams;
 }
 
-CDatabaseDissociateDlg::~CDatabaseDissociateDlg()
-{
-}
-
 void CDatabaseDissociateDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_LSTB_DISSOCIATE_DBNAMES, m_omDissociateDbLst);
 }
 
-
 BEGIN_MESSAGE_MAP(CDatabaseDissociateDlg, CDialog)
     ON_BN_CLICKED(IDC_CBTN_DISSOCIATE, OnBnClickedCbtnDissociate)
 END_MESSAGE_MAP()
-
 
 /******************************************************************************
   Function Name    :  OnInitDialog
@@ -186,9 +180,8 @@ void CDatabaseDissociateDlg::OnBnClickedCbtnDissociate()
             eUSERSELCTION eUserSel = eDATABASEIMPORTCMD;
             pMainFrame->m_objTxHandler.vPostMessageToTxWnd(WM_USER_CMD, (WPARAM)eUserSel,0);
         }
-        ////Delete Signal watch list and Graph window list
-        //// Check for Signal Watch & DLL load Condition
-        //
+        //Delete Signal watch list and Graph window list
+        // Check for Signal Watch & DLL load Condition
         BOOL bUserOption = FALSE;
         if(pMainFrame->m_psSignalWatchList != NULL)
         {

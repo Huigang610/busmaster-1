@@ -690,14 +690,7 @@ BOOL CMsgSignal::bDeAllocateMemory(CString strDBName)
         if (m_sDbParams.m_eBus == CAN)
         {
             CFlags::ouGetFlagObj().vSetFlagStatus(SELECTDATABASEFILE, FALSE);
-            //theApp.pouGetFlagsPtr()->vSetFlagStatus(SELECTDATABASEFILE, FALSE);
         }
-        // Clear Message Interpretation Window Content
-        //pMainFrm->vClearInterpretationWindow();
-        //// Clear Signal Watch List
-        //pMainFrm->vEmptySignalWatchList();
-        //// Clear Graph List
-        //pMainFrm->m_podGraphList->m_omElementList.RemoveAll();
     }
     m_omDBMapCritSec.Unlock();
     return bReturn;

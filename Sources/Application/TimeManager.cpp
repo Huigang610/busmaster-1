@@ -36,10 +36,6 @@
 #include "DataTypes/DIL_Datatypes.h"
 #include "DIL_Interface/BaseDIL_CAN.h"
 
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
 //DIL Interface
 extern CBaseDIL_CAN* g_pouDIL_CAN_Interface;
 // Initialise the static members

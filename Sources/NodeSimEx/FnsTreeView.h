@@ -31,38 +31,27 @@
 
 class CFnsTreeView : public CTreeView
 {
-protected:
-    CFnsTreeView();           // protected constructor used by dynamic creation
     DECLARE_DYNCREATE(CFnsTreeView)
+    DECLARE_MESSAGE_MAP()
 
-    // Operations
 public:
+    CFnsTreeView();           // protected constructor used by dynamic creation
     static ETYPE_BUS sm_eBus;
     void vSetItemName( CString );
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CFnsTreeView)
-public:
     virtual void OnInitialUpdate();
-protected:
-    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-    virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
-    //}}AFX_VIRTUAL
 
-    // Implementation
 protected:
-    virtual ~CFnsTreeView();
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+    virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
+
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
-    // Generated message map functions
-protected:
-    //{{AFX_MSG(CFnsTreeView)
+    afx_msg void OnFunctionEditorSave();
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-    //afx_msg void OnTreeItemDoubleClick(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnTreeItemSelectionChanged(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnItemLeftClick(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
@@ -72,8 +61,7 @@ protected:
     afx_msg void OnAddHandle();
     afx_msg void OnKeydown(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnEditFunctionHeader();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     ETYPE_BUS m_eBus;
     // Add new header
@@ -122,11 +110,4 @@ private:
     // Populate tree with function prototypes
     // and global variables
     BOOL bPopulateTree();
-public:
-    afx_msg void OnFunctionEditorSave();
 };
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

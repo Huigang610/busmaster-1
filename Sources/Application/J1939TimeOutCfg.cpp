@@ -61,7 +61,6 @@ void CJ1939TimeOutCfg::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_EDIT_T4, m_omT4);
 }
 
-
 BEGIN_MESSAGE_MAP(CJ1939TimeOutCfg, CDialog)
     ON_BN_CLICKED(IDC_CHECK_BROADCAST, OnBnClickedCheckBroadcast)
     ON_BN_CLICKED(IDC_CHECK_RESPONSE, OnBnClickedCheckResponse)

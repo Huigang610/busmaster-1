@@ -66,31 +66,15 @@ static CFrameProcessor_J1939* sg_pouFP_J1939 = NULL;
 //      details.
 //
 
-// CFrameProcessorApp
-
 BEGIN_MESSAGE_MAP(CFrameProcessorApp, CWinApp)
 END_MESSAGE_MAP()
 
-
-// CFrameProcessorApp construction
-
-CFrameProcessorApp::CFrameProcessorApp()
-{
-    // TODO: add construction code here,
-}
-
-CFrameProcessorApp::~CFrameProcessorApp()
-{
-    // TODO: add construction code here,
-}
-
-// The one and only CFrameProcessorApp object
-
+/**
+ * The one and only CFrameProcessorApp object
+ */
 CFrameProcessorApp theApp;
 
-
 // CFrameProcessorApp initialization
-
 BOOL CFrameProcessorApp::InitInstance()
 {
     CWinApp::InitInstance();

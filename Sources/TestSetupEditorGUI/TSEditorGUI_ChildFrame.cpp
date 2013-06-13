@@ -123,7 +123,6 @@ void CTSEditorChildFrame::vInitialise()
     m_ouTSEntity.vInitialise();
 }
 
-
 BEGIN_MESSAGE_MAP(CTSEditorChildFrame, CMDIChildWnd)
     ON_WM_DESTROY()
     ON_MESSAGE(WM_TS_SELCHANGED, OnSelectionChanged)

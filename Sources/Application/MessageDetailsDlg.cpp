@@ -59,22 +59,13 @@ CMessageDetailsDlg::CMessageDetailsDlg(const SDBPARAMS& sDbParams,sMESSAGE* pMsg
 void CMessageDetailsDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CMessageDetailsDlg)
     DDX_Control(pDX, IDC_SPIN_MSG_LEN, m_omSpinMsgLen);
     DDX_Text(pDX, IDC_EDIT_MSG_NAME, m_omStrMessageName);
     DDX_Text(pDX, IDC_EDIT_MSGCODE, m_omStrMessageCode);
     DDV_MaxChars(pDX, m_omStrMessageCode, 8);
     DDX_Text(pDX, IDC_EDIT_MSG_LENGTH, m_unMessageLength);
     DDX_Radio(pDX, IDC_RBTN_STD, m_nFrameFormat);
-    //DDX_Radio(pDX, IDC_RBTN_MOTOROLA, m_nDataFormat);
-    //}}AFX_DATA_MAP
 }
-
-
-BEGIN_MESSAGE_MAP(CMessageDetailsDlg, CDialog)
-    //{{AFX_MSG_MAP(CMessageDetailsDlg)
-    //}}AFX_MSG_MAP
-END_MESSAGE_MAP()
 
 /******************************************************************************
   Function Name    :  OnInitDialog

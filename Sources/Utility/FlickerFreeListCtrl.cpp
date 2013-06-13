@@ -42,29 +42,10 @@ CFlickerFreeListCtrl::CFlickerFreeListCtrl()
     m_rectClient = CRect(0,0,0,0);
 }
 
-
-/**********************************************************************************
-Function Name   :   ~CFlickerFreeListCtrl
-Input(s)        :   -
-Output          :   -
-Functionality   :   Destructor
-Member of       :   CFlickerFreeListCtrl
-Friend of       :   -
-Authors         :   Ravi D
-Date Created    :   19/09/2006
-Modifications   :   -
-************************************************************************************/
-CFlickerFreeListCtrl::~CFlickerFreeListCtrl()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CFlickerFreeListCtrl, CListCtrl)
     ON_WM_ERASEBKGND()
     ON_WM_PAINT()
     ON_WM_SIZE()
-    //ON_NOTIFY_REFLECT(LVN_GETDISPINFO, OnGetdispinfo)
-    //ON_WM_LBUTTONDBLCLK()
     ON_WM_GETDLGCODE()
 END_MESSAGE_MAP()
 

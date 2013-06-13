@@ -39,9 +39,7 @@
 #include "BusStatisticsDlg.h"
 #include ".\busstatisticsdlg.h"
 #define  BUS_STATICS_CONFIG_PATH     "//BUSMASTER_CONFIGURATION/Module_Configuration/CAN_Bus_Statistics/COLUMN"
-/////////////////////////////////////////////////////////////////////////////
-// CBusStatisticsDlg dialog
-//extern SBUSSTATISTICS g_sBusStatistics[ defNO_OF_CHANNELS];
+
 // For application object
 extern CCANMonitorApp theApp;
 // DIL CAN interface
@@ -105,8 +103,6 @@ CBusStatisticsDlg::CBusStatisticsDlg(CBaseBusStatisticCAN* pouBSCAN, CWnd* pPare
       m_omStrAvgBusLoad( STR_EMPTY )
 
 {
-    //{{AFX_DATA_INIT(CBusStatisticsDlg)
-    //}}AFX_DATA_INIT
     m_nChannelCount = nChannelCount;
 }
 
@@ -131,16 +127,11 @@ CBusStatisticsDlg::CBusStatisticsDlg(CBaseBusStatisticCAN* pouBSCAN, CWnd* pPare
 void CBusStatisticsDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CBusStatisticsDlg)
     DDX_Control(pDX, IDC_LIST_STAT, m_omStatList);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CBusStatisticsDlg, CDialog)
-    //{{AFX_MSG_MAP(CBusStatisticsDlg)
     ON_WM_ERASEBKGND()
-    //}}AFX_MSG_MAP
     ON_MESSAGE(WM_DISPLAY_MESSAGE, vUpdateFields)
     ON_WM_SIZE()
 END_MESSAGE_MAP()
@@ -933,59 +924,6 @@ HRESULT CBusStatisticsDlg::SetConfigData(xmlNodePtr pDocPtr)
                     }
                 }
 
-                //std::list<int> pnOrder;
-
-                //char chString[255];
-                //pnOrder.push_front(0);
-                ////pnOrder[0] = 0;
-                //m_omStatList.MakeColumnVisible(0, true);
-                //m_omStatList.SetColumnWidth(0, 200);
-                //for (int i = 1 ; i <= ColumnMap.size(); i++)
-                //            {
-                //  sprintf(chString, "Channel %d", i);
-
-                //  ColumnInfoMap::const_iterator ColumnInfo = ColumnMap.find(chString);
-                //  if(ColumnInfo == ColumnMap.end())
-                //  {
-                //      nRetVal = S_FALSE;
-                //      break;
-                //  }
-                //  else
-                //  {
-                //      //COPY_DATA_2(&pnOrder[i], ColumnMap, sizeof(int));
-                //      pnOrder.push_back(ColumnInfo->second.nOrder+1);
-                //
-                //      //COPY_DATA_2(&bColumnVisible, pByteSrc, sizeof(bool));
-                //      bool bColumnVisible = ColumnInfo->second.isVisible;
-                //      if(bColumnVisible == false)
-                //      {
-                //          pnOrder.push_front(ColumnInfo->second.nOrder+1);
-                //      }
-                //      m_omStatList.MakeColumnVisible(i, bColumnVisible);
-
-                //      INT nColWidth = 0;
-                //      //COPY_DATA_2(&nColWidth, pByteSrc, sizeof(int));
-                //      nColWidth = ColumnInfo->second.nWidth;
-                //
-                //      m_omStatList.SetColumnWidth(i, nColWidth);
-                //      //m_omStatList.MakeColumnVisible(i, bColumnVisible);
-                //
-                //  }
-                //            }
-                //if(S_OK == nRetVal)
-                //{
-                //   list <int>::iterator IntIterator;
-                //  int i = 0;
-                //  int *pnColOrder = new int[ColumnMap.size()+1];
-                //  for(IntIterator = pnOrder.begin(); IntIterator != pnOrder.end(); IntIterator++)
-                //  {
-                //      pnColOrder[i] = *IntIterator;
-                //      i++;
-                //  }
-                //  m_omStatList.SetColumnOrderArray(ColumnMap.size()+1, pnColOrder);
-                //  free(pnColOrder);
-                //}
-
                 LPINT pnOrderTemp = (LPINT) malloc(ColumnMap.size()*sizeof(int));
                 for(INT nIndex = 0; nIndex < ColumnMap.size(); nIndex++)
                 {
@@ -1277,21 +1215,12 @@ void CBusStatisticsDlg::vGetDataFromStore(xmlNodePtr pxmlNodePtr)
         xmlNodePtr pNodeColumn = xmlNewNode(NULL, BAD_CAST DEF_COLUMN);
         xmlAddChild(pxmlNodePtr, pNodeColumn);
 
-
-        ////  <ID>Channel 1</ID>
-        //CString csColumnName;
-        //csColumnName.Format("%s", oCol.pszText);
-        //omcVarChar = csColumnName;
-        //xmlNodePtr pColName = xmlNewChild(pNodeColumn, NULL, BAD_CAST DEF_ID,BAD_CAST omcVarChar);
-        //xmlAddChild(pNodeColumn, pColName);
-
         //<Order>1</Order>
         CString csOrder;
         csOrder.Format("%d", sm_sBusSerializationData.m_arrnOrder[iItr]);
         omcVarChar = csOrder;
         xmlNodePtr pOrder = xmlNewChild(pNodeColumn, NULL, BAD_CAST DEF_MWND_ORDER,BAD_CAST omcVarChar);
         xmlAddChild(pNodeColumn, pOrder);
-
 
         //<IsVisible>bool</IsVisible>
         CString csWidth;

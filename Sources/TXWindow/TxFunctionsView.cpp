@@ -49,9 +49,6 @@ IMPLEMENT_DYNCREATE(CTxFunctionsView, CFormView)
 CTxFunctionsView::CTxFunctionsView()
     : CFormView(CTxFunctionsView::IDD)
 {
-    //{{AFX_DATA_INIT(CTxFunctionsView)
-    // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
 }
 
 /*******************************************************************************
@@ -81,22 +78,16 @@ CTxFunctionsView::~CTxFunctionsView()
 void CTxFunctionsView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CTxFunctionsView)
     DDX_Control(pDX, IDC_BTN_UPDATE, m_omButtonApply);
-    //}}AFX_DATA_MAP
     DDX_Control(pDX, IDC_CHECK_AUTO_UPDATE, m_CheckBoxAutoUpdate);
 }
 
-
 BEGIN_MESSAGE_MAP(CTxFunctionsView, CFormView)
-    //{{AFX_MSG_MAP(CTxFunctionsView)
     ON_WM_SIZE()
     ON_BN_CLICKED(IDC_BTN_UPDATE, OnButtonApply)
     ON_BN_CLICKED(IDC_BTN_CLOSE, OnBtnClose)
-    //}}AFX_MSG_MAP
     ON_BN_CLICKED(IDC_CHECK_AUTO_UPDATE, /*&CTxFunctionsView::*/OnBnClickedCheckAutoUpdate)
 END_MESSAGE_MAP()
-
 
 #ifdef _DEBUG
 void CTxFunctionsView::AssertValid() const

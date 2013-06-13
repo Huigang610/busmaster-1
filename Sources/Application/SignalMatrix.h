@@ -24,8 +24,7 @@
 
 #pragma once
 
-// SignalMatrix.h : header file
-//
+/* Project includes */
 #include "hashdefines.h"
 
 #define MAX_SIGNALS 64
@@ -34,9 +33,9 @@ typedef enum { GRAYED, HIGHLIGHT, NO_HIGHLIGHT } USER_BGTYPE;
 
 class CSignalMatrix : public CStatic
 {
+    DECLARE_MESSAGE_MAP()
 
 public:
-    // Construction
     CSignalMatrix();
     CSignalMatrix(int nMessageLength);
 
@@ -53,27 +52,13 @@ public:
     //Resets all the values in the cells to '0'
     void vResetValues();
 
-
-    // Attributes
-public:
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CSignalMatrix)
-    //}}AFX_VIRTUAL
-
-    // Implementation
-public:
     virtual ~CSignalMatrix();
 
-    // Generated message map functions
 protected:
-    //{{AFX_MSG(CSignalMatrix)
+    // Generated message map functions
     afx_msg void OnPaint();
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-    //}}AFX_MSG
 
-    DECLARE_MESSAGE_MAP()
 private:
     // To initialise highlight bits
     void vResetHighlight();
@@ -90,8 +75,3 @@ private:
     // Signal data
     BOOL m_abSignalData[MAX_SIGNALS];
 };
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

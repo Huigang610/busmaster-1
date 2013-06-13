@@ -24,38 +24,25 @@
 
 #pragma once
 
-// For Flicker Free List Control Definiton
-#include "Utility/FFListCtrl.h"
-
-/////////////////////////////////////////////////////////////////////////////
-// CSignalWatchListBox window
+/* Project includes */
+#include "Utility/FFListCtrl.h"	// For Flicker Free List Control Definiton
 
 class CSignalWatchListBox : public CFFListCtrl
 {
-    // Construction
-private:
-    HWND m_hParentWnd;
+	DECLARE_MESSAGE_MAP()
+
 public:
     CSignalWatchListBox();
-    void vUpdateParentWnd(HWND hParentWnd);
+
+	void vUpdateParentWnd(HWND hParentWnd);
 
     void OnChar(UINT nChar, UINT nRepeatCount, UINT nflags);
     void OnKeyDown(UINT nChar, UINT nRepeatCount, UINT nflags);
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CSignalWatchListBox)
-    //}}AFX_VIRTUAL
-
-    // Implementation
-    virtual ~CSignalWatchListBox();
-
-    // Generated message map functions
+	
 protected:
-    //{{AFX_MSG(CSignalWatchListBox)
     afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
     afx_msg void OnSgWatchClear();
-    //}}AFX_MSG
 
-    DECLARE_MESSAGE_MAP()
+private:
+	HWND m_hParentWnd;
 };

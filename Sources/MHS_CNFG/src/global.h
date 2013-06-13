@@ -9,8 +9,7 @@
 #define DLL_NAME "mhsbmcfg.dll"
 
 #ifdef __WIN32__
-// ****** Windows
-#include <windows.h>
+//#include <windows.h>
 
 #define int32_t __int32
 #define uint32_t unsigned __int32

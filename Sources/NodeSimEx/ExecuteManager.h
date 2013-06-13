@@ -105,7 +105,6 @@ public:
     BOOL bDllLoadAll(CStringArray* pomStrErrorFiles);
     BOOL bDllUnloadAll(CStringArray* pomStrErrorFiles);
     BOOL bDLLBuildLoadAll(CStringArray* pomStrErrorFiles);
-    ///////////////////
     BOOL bActivateDeactivateHandlers(bool bActive,HMODULE hModule);
     void vUpdateHandlerDetailsInDetView();
     CExecuteFunc* pouGetExecuteFunc(DWORD dwClient);

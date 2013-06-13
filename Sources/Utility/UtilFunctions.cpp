@@ -31,9 +31,7 @@
 #define MAX_LEN 512
 #define ABS_START 3
 #define SLASH '\\'
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+
 /*******************************************************************************
  Function Name  : CUtilFunctions
  Description    : Standard default constructor. This is not required as it is

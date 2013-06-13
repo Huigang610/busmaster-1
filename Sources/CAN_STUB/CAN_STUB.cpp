@@ -47,9 +47,6 @@
 #define USAGE_EXPORT
 #include "CAN_STUB_Extern.h"
 
-BEGIN_MESSAGE_MAP(CCAN_STUBApp, CWinApp)
-END_MESSAGE_MAP()
-
 /**
  * CCAN_STUBApp construction
  */
@@ -375,7 +372,7 @@ static void ProcessCanMsg(HANDLE hClientHandle, UINT unIndex)
             }
             for (UINT i = 0; i < sg_asClientToBufMap[unIndex].unBufCount; i++)
             {
-                sg_asClientToBufMap[unIndex].pClientBuf[i]->WriteIntoBuffer(&sCanData);
+                sg_asClientToBufMap[unIndex].pClientBuf[i]->writeIntoBuffer(&sCanData);
             }
         }
     }
@@ -732,10 +729,6 @@ HRESULT CDIL_CAN_STUB::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCA
                     sClientObj.unBufCount = 0;
                 }
                 hResult = S_OK;
-            }
-            else
-            {
-                ////ASSERT(FALSE);
             }
         }
         else

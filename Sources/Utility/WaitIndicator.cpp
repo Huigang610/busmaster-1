@@ -22,11 +22,9 @@
  * This is the implementation file for CWaitIndicator class.
  */
 
+/* Project includes */
 #include "Utils_stdafx.h"         // For standard include
 #include "WaitIndicator.h"
-
-
-// CWaitIndicator
 
 IMPLEMENT_DYNAMIC(CWaitIndicator, CWnd)
 

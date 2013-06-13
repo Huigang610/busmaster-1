@@ -18,28 +18,24 @@
  * @author    Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
+
 #pragma once
-
-
-// CEventHandlerDlg dialog
 
 class CEventHandlerDlg : public CDialog
 {
     DECLARE_DYNAMIC(CEventHandlerDlg)
+    DECLARE_MESSAGE_MAP()
 
 public:
     CEventHandlerDlg(CTreeCtrl& omTreeCtrl, CFunctionEditorDoc* pDoc, CWnd* pParent = NULL);   // standard constructor
-    virtual ~CEventHandlerDlg();
 
-    // Dialog Data
     enum { IDD = IDD_EVENT_HANDLER };
 
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     virtual BOOL OnInitDialog();
-    DECLARE_MESSAGE_MAP()
-public:
     afx_msg void OnBnClickedOk();
+
 private:
     CFunctionEditorDoc* m_pDoc;
     CTreeCtrl& m_omTreeCtrl;

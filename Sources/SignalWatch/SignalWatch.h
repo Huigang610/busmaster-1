@@ -21,23 +21,12 @@
 
 #pragma once
 
+/* Project includes */
 #include "SignalWatch_resource.h"       // main symbols
-
-
-// CSignalWatchApp
-// See SignalWatch.cpp for the implementation of this class
-//
 
 class CSignalWatchApp : public CWinApp
 {
 public:
-    CSignalWatchApp();
-
-    // Overrides
-public:
     virtual BOOL InitInstance();
     virtual INT ExitInstance();
-
-    DECLARE_MESSAGE_MAP()
-
 };

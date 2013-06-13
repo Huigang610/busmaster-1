@@ -14,7 +14,7 @@
  all rights reserved
 *****************************************************************************/
 #include "CAN_IXXAT_VCI_stdafx.h"
-#include <windows.h>
+//#include <windows.h>
 #include "vcinpldynl.h"
 
 /*****************************************************************************

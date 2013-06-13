@@ -347,7 +347,7 @@ bool CWaveFormDataHandler::bIsSignalInMsgFoundInDB(UINT& nMsgID, CString& strSig
 {
     if (m_podMsgEntyList != NULL)
     {
-        SMAINENTRY sMainEntry;
+        SignalWatchListMainEntry sMainEntry;
         sMainEntry.m_unMainEntryID = nMsgID;
         POSITION pos = m_podMsgEntyList->Find(sMainEntry);
         if ( pos != NULL)
@@ -356,9 +356,9 @@ bool CWaveFormDataHandler::bIsSignalInMsgFoundInDB(UINT& nMsgID, CString& strSig
             POSITION SubPos = sMainEntry.m_odUnSelEntryList.GetHeadPosition();
             while (SubPos != NULL)
             {
-                SSUBENTRY& sSubEntry = sMainEntry.m_odUnSelEntryList.GetNext(SubPos);
+                SignalWatchListSubEntry& sSubEntry = sMainEntry.m_odUnSelEntryList.GetNext(SubPos);
 
-                if( strSignalName.Compare(sSubEntry.m_omSubEntryName) == 0)
+                if( strSignalName.Compare(sSubEntry.subEntryName) == 0)
                 {
                     return true;
                 }
@@ -887,7 +887,7 @@ void CWaveFormDataHandler::vGetCompleteMsgList(CStringArray& arrMsgList) const
     arrMsgList.Copy(m_omMsgIDList);
 }
 
-void CWaveFormDataHandler::vSetCompleteMsgList(CMainEntryList* podMsgIDList)
+void CWaveFormDataHandler::vSetCompleteMsgList(SignalWatchListMainEntries* podMsgIDList)
 {
     m_omMsgIDList.RemoveAll();
     if (podMsgIDList != NULL)
@@ -901,8 +901,8 @@ void CWaveFormDataHandler::vSetCompleteMsgList(CMainEntryList* podMsgIDList)
             POSITION pos = podMsgIDList->GetHeadPosition();
             while (pos != NULL)
             {
-                SMAINENTRY& sMainEntry = podMsgIDList->GetNext(pos);
-                CString omMainEntryName = sMainEntry.m_omMainEntryName;
+                SignalWatchListMainEntry& sMainEntry = podMsgIDList->GetNext(pos);
+                CString omMainEntryName = sMainEntry.mainEntryName;
                 CString omMainEntryId;
                 omMainEntryId.Format(defSTR_MSG_ID_IN_HEX,sMainEntry.m_unMainEntryID);
                 omMainEntryName = omMainEntryId + omMainEntryName;
@@ -917,7 +917,7 @@ void CWaveFormDataHandler::vGetAvailableSignalsInMsgID(UINT& nMsgID,
 {
     if (m_podMsgEntyList != NULL)
     {
-        SMAINENTRY sMainEntry;
+        SignalWatchListMainEntry sMainEntry;
         sMainEntry.m_unMainEntryID = nMsgID;
         POSITION pos = m_podMsgEntyList->Find(sMainEntry);
         if ( pos != NULL)
@@ -926,19 +926,19 @@ void CWaveFormDataHandler::vGetAvailableSignalsInMsgID(UINT& nMsgID,
             POSITION SubPos = sMainEntry.m_odUnSelEntryList.GetHeadPosition();
             while (SubPos != NULL)
             {
-                SSUBENTRY& sSubEntry = sMainEntry.m_odUnSelEntryList.GetNext(SubPos);
+                SignalWatchListSubEntry& sSubEntry = sMainEntry.m_odUnSelEntryList.GetNext(SubPos);
 
                 //If the Signal Name for nMsgID is not defined, then only add it.
                 if(bExcludeDefinedSignals )
                 {
-                    if(! bIsSignalInMsgIDDefined(nMsgID, sSubEntry.m_omSubEntryName))
+                    if(! bIsSignalInMsgIDDefined(nMsgID, sSubEntry.subEntryName))
                     {
-                        arrAvailableSignals.Add(sSubEntry.m_omSubEntryName);
+                        arrAvailableSignals.Add(sSubEntry.subEntryName);
                     }
                 }
                 else
                 {
-                    arrAvailableSignals.Add(sSubEntry.m_omSubEntryName);
+                    arrAvailableSignals.Add(sSubEntry.subEntryName);
                 }
             }
         }

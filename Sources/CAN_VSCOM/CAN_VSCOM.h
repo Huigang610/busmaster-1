@@ -21,10 +21,7 @@
 
 #pragma once
 
-#ifndef __AFXWIN_H__
-#error include 'stdafx.h' before including this file for PCH
-#endif
-
+/* Project includes */
 #include "EXTERNAL/vs_can_api.h"
 
 struct _VSCanCfg
@@ -45,9 +42,5 @@ int WINAPI ShowCanVsComSetup(HWND hwnd, _VSCanCfg* cfg);
 class CCAN_VSCOM : public CWinApp
 {
 public:
-    CCAN_VSCOM();
-
     virtual BOOL InitInstance();
-
-    DECLARE_MESSAGE_MAP()
 };

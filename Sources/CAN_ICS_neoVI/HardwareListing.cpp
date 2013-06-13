@@ -74,8 +74,6 @@ CHardwareListing::CHardwareListing( InterfaceHardware* psIntrHw,
       m_nSize( nSize ),
       m_nSelectedItem( -1)
 {
-    //{{AFX_DATA_INIT(CHardwareListing)
-    //}}AFX_DATA_INIT
     // Create Image List for Hardware
     m_omImageList.Create(IDR_BMP_NET, defSIGNAL_ICON_SIZE, 1, WHITE_COLOR);
     m_psHwInterface = psIntrHw;
@@ -115,23 +113,18 @@ CHardwareListing::CHardwareListing()
 void CHardwareListing::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CHardwareListing)
     DDX_Control(pDX, IDC_LSTC_SELECTED_HW_LIST, m_omSelectedHwList);
     DDX_Control(pDX, IDC_EDIT_NET_NAME, m_omNetName);
     DDX_Control(pDX, IDC_EDIT_FIRMWARE, m_omFirmware);
     DDX_Control(pDX, IDC_EDIT_DRIVER_ID, m_omDriverID);
     DDX_Control(pDX, IDC_LSTC_HW_LIST, m_omHardwareList);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CHardwareListing, CDialog)
-    //{{AFX_MSG_MAP(CHardwareListing)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LSTC_HW_LIST, OnItemchangedHWList)
     ON_BN_CLICKED(IDC_BUT_SELECT, OnButtonSelect)
     ON_BN_CLICKED(IDC_BUT_REMOVE, OnButtonRemove)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LSTC_SELECTED_HW_LIST, OnItemchangedLstcSelectedHwList)
-    //}}AFX_MSG_MAP
     ON_NOTIFY(NM_CLICK, IDC_LSTC_HW_LIST, OnNMClickLstcHwList)
     ON_NOTIFY(NM_CLICK, IDC_LSTC_SELECTED_HW_LIST, OnNMClickLstcSelectedHwList)
 END_MESSAGE_MAP()

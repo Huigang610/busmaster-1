@@ -34,8 +34,6 @@ extern CCANMonitorApp theApp;
 
 SDBPARAMS CMsgSgTreeView::sm_sDbParams = sg_asDbParams[CAN];
 SDBPARAMS CMsgSgDetView::sm_sDbParams  = sg_asDbParams[CAN];
-/////////////////////////////////////////////////////////////////////////////
-// CMsgSignalDBWnd
 
 IMPLEMENT_DYNCREATE(CMsgSignalDBWnd, CMDIChildWnd)
 /******************************************************************************/
@@ -61,34 +59,12 @@ CMsgSignalDBWnd::CMsgSignalDBWnd(const SDBPARAMS& sDbParams)
     m_sDbParams = sDbParams;
     m_bSplitWndCreated = FALSE; // Splitter not created yet!
 }
-/******************************************************************************/
-/*  Function Name    :  ~CMsgSignalDBWnd                                      */
-/*                                                                            */
-/*  Input(s)         :                                                        */
-/*  Output           :                                                        */
-/*  Functionality    :  Destructor
-/*  Member of        :  CMsgSignalDBWnd                                      */
-/*  Friend of        :      -                                                 */
-/*                                                                            */
-/*  Author(s)        :  Amarnath Shastry                                      */
-/*  Date Created     :  15.02.2002                                            */
-/*  Modifications    :
-/******************************************************************************/
-
-CMsgSignalDBWnd::~CMsgSignalDBWnd()
-{
-}
-
 
 BEGIN_MESSAGE_MAP(CMsgSignalDBWnd, CMDIChildWnd)
-    //{{AFX_MSG_MAP(CMsgSignalDBWnd)
     ON_WM_CLOSE()
     ON_MESSAGE(WM_SAVE_DBJ1939, OnSaveDBJ1939)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-/////////////////////////////////////////////////////////////////////////////
-// CMsgSignalDBWnd message handlers
 /******************************************************************************/
 /*  Function Name    :  PreCreateWindow                                   */
 /*                                                                            */

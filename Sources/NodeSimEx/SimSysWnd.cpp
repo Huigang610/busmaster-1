@@ -35,8 +35,6 @@ static char THIS_FILE[] = __FILE__;
 
 ETYPE_BUS CSimSysDetView::sm_eBus = CAN;
 ETYPE_BUS CSimSysTreeView::sm_eBus = CAN;
-/////////////////////////////////////////////////////////////////////////////
-// CSimSysWnd
 
 IMPLEMENT_DYNCREATE(CSimSysWnd, CMDIChildBase)
 /******************************************************************************/
@@ -57,35 +55,13 @@ CSimSysWnd::CSimSysWnd(ETYPE_BUS eBus) : CMDIChildBase( SIMSYS_WND_PLACEMENT )
     m_bSplitWndCreated = FALSE; // Splitter not created yet!
     m_eBus  = eBus;
 }
-/******************************************************************************/
-/*  Function Name    :  ~CSimSysWnd                                           */
-/*                                                                            */
-/*  Input(s)         :                                                        */
-/*  Output           :                                                        */
-/*  Functionality    :  Destructor
-/*  Member of        :  CSimSysWnd                                            */
-/*  Friend of        :      -                                                 */
-/*                                                                            */
-/*  Author(s)        :  Harika.M                                              */
-/*  Date Created     :  15.12.2005                                            */
-/*  Modifications    :
-/******************************************************************************/
-CSimSysWnd::~CSimSysWnd()
-{
-
-}
-
 
 BEGIN_MESSAGE_MAP(CSimSysWnd, CMDIChildWnd)
-    //{{AFX_MSG_MAP(CSimSysWnd)
     ON_WM_CLOSE()
     ON_WM_DESTROY()
-    //}}AFX_MSG_MAP
     ON_WM_SHOWWINDOW()
 END_MESSAGE_MAP()
 
-/////////////////////////////////////////////////////////////////////////////
-// CSimSysWnd message handlers
 /***********************************************************************************/
 /*  Function Name    :  PreCreateWindow
 /*

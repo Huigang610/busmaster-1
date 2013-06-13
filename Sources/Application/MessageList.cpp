@@ -21,6 +21,7 @@
  *
  * Implementation file for CMessageList class
  */
+
 #include "stdafx.h"
 #include "BUSMASTER.h"
 #include "MessageList.h"
@@ -42,24 +43,8 @@ CMessageList::CMessageList()
     m_hBlueBrush = CreateSolidBrush( BLUE_COLOR );
 }
 
-/*******************************************************************************
-  Function Name  : ~CMessageList
-  Description    : Standard Destructor
-  Member of      : CMessageList
-  Functionality  : -
-  Author(s)      : Ratnadip Choudhury
-  Date Created   : 02/12/2004
-  Modifications  :
-*******************************************************************************/
-CMessageList::~CMessageList()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CMessageList, CListCtrl)
-    //{{AFX_MSG_MAP(CMessageList)
     ON_WM_DESTROY()
-    //}}AFX_MSG_MAP
     ON_WM_CONTEXTMENU()    // OnContextMenu
     ON_MESSAGE(LVM_INSERTCOLUMN, OnInsertColumn)
     ON_NOTIFY_EX(HDN_ENDDRAG, 0, OnHeaderEndDrag)
@@ -68,7 +53,6 @@ BEGIN_MESSAGE_MAP(CMessageList, CListCtrl)
     ON_WM_CHAR()
     ON_WM_KEYDOWN()
 END_MESSAGE_MAP()
-
 
 /*******************************************************************************
   Function Name  : DrawItem
@@ -529,12 +513,12 @@ BOOL CMessageList::OnHeaderBeginResize(UINT, NMHDR* /*pNMHDR*/, LRESULT* pResult
     return TRUE;        // Block event
 }
 
-void CMessageList::OnChar(UINT nChar, UINT nRepeatCount, UINT nflags)
+void CMessageList::OnChar(UINT nChar, UINT /*nRepeatCount*/, UINT /*nflags*/)
 {
     GetParent()->GetParent()->SendMessage(WM_KEYBOARD_CHAR, nChar, 0);
 }
 
-void CMessageList::OnKeyDown(UINT nChar, UINT nRepeatCount, UINT nflags)
+void CMessageList::OnKeyDown(UINT nChar, UINT /*nRepeatCount*/, UINT /*nflags*/)
 {
     GetParent()->GetParent()->SendMessage(WM_KEYBOARD_KEYDOWN, nChar, 0);
 }

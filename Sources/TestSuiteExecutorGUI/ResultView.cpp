@@ -18,15 +18,12 @@
  * @author    Venkatanarayana makam
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
+
+/* Project includes */
 #include "TSExecutorGUI_stdafx.h"
 #include "ResultView.h"
 
 IMPLEMENT_DYNCREATE(CResultView, CListView)
-
-BEGIN_MESSAGE_MAP(CResultView, CListView)
-END_MESSAGE_MAP()
-
-// CResultView diagnostics
 
 #ifdef _DEBUG
 void CResultView::AssertValid() const

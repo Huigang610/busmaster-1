@@ -45,8 +45,6 @@ IMPLEMENT_DYNCREATE(CGraphRightView, CFormView)
 CGraphRightView::CGraphRightView()
     : CFormView(CGraphRightView::IDD)
 {
-    //{{AFX_DATA_INIT(CGraphRightView)
-    //}}AFX_DATA_INIT
     m_pGraphSink = NULL;
     m_dwCookie = 0;
     m_pDMGraphCtrl = NULL;
@@ -87,22 +85,14 @@ void CGraphRightView::DoDataExchange(CDataExchange* pDX)
     if( pWnd != NULL )
     {
         CFormView::DoDataExchange(pDX);
-        //{{AFX_DATA_MAP(CGraphRightView)
-        //}}AFX_DATA_MAP
     }
 }
 
-
 BEGIN_MESSAGE_MAP(CGraphRightView, CFormView)
-    //{{AFX_MSG_MAP(CGraphRightView)
     ON_WM_SIZE()
     ON_WM_ERASEBKGND()
-    //}}AFX_MSG_MAP
     ON_WM_DESTROY()
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CGraphRightView diagnostics
 
 #ifdef _DEBUG
 void CGraphRightView::AssertValid() const

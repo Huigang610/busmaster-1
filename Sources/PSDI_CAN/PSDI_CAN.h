@@ -27,12 +27,5 @@
 class CPSDI_CANApp : public CWinApp
 {
 public:
-    // Overrides
-public:
     virtual BOOL InitInstance();
-
-    DECLARE_MESSAGE_MAP()
 };
-
-BEGIN_MESSAGE_MAP(CPSDI_CANApp, CWinApp)
-END_MESSAGE_MAP()

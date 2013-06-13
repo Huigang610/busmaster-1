@@ -58,12 +58,10 @@ CGraphBottomView::CGraphBottomView()
     : CFormView(CGraphBottomView::IDD)
     , m_dblDeltaTime(0)
 {
-    //{{AFX_DATA_INIT(CGraphBottomView)
     m_nAxis = -1;
     m_nAction = -1;
     m_dRangeFrom = 0.0;
     m_dRangeTo = 0.0;
-    //}}AFX_DATA_INIT
     // Initialise Graph control interface pointer
     m_pDMGraphCtrl = NULL;
     // Set update timer Id to invalid
@@ -99,7 +97,6 @@ CGraphBottomView::~CGraphBottomView()
 void CGraphBottomView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CGraphBottomView)
     DDX_Control(pDX, IDC_BTN_RIGHT, m_omBtnRight);
     DDX_Control(pDX, IDC_BTN_LEFT, m_omBtnLeft);
     DDX_Control(pDX, IDC_BTN_DOWN, m_omBtnDown);
@@ -108,16 +105,13 @@ void CGraphBottomView::DoDataExchange(CDataExchange* pDX)
     DDX_Radio(pDX, IDC_RADIO_ACTION_MOVE, m_nAction);
     DDX_Text(pDX, IDC_EDIT_RANGE_FROM, m_dRangeFrom);
     DDX_Text(pDX, IDC_EDIT_RANGE_TO, m_dRangeTo);
-    //}}AFX_DATA_MAP
     DDX_Text(pDX, IDC_EDIT_T1, m_dblarrTime[0]);
     DDX_Text(pDX, IDC_EDIT_T2, m_dblarrTime[1]);
     DDX_Text(pDX, IDC_EDIT_DELTA_T, m_dblDeltaTime);
     DDX_Control(pDX, IDC_LIST_SIG_VALUES, m_lstSignalDetails);
 }
 
-
 BEGIN_MESSAGE_MAP(CGraphBottomView, CFormView)
-    //{{AFX_MSG_MAP(CGraphBottomView)
     ON_BN_CLICKED(IDC_BTN_EXPORT, OnBtnExport)
     ON_BN_CLICKED(IDC_BTN_AUTO_FIT, OnBtnAutoFit)
     ON_BN_CLICKED(IDC_BTN_CONFIGURE, OnBtnConfigure)
@@ -138,10 +132,7 @@ BEGIN_MESSAGE_MAP(CGraphBottomView, CFormView)
     ON_BN_CLICKED(IDC_BTN_RIGHT, OnBtnRight)
     ON_WM_TIMER()
     ON_MESSAGE(WM_CONFIG_CHANGE, vHandleConfigFileChange)
-
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
 
 #ifdef _DEBUG
 void CGraphBottomView::AssertValid() const

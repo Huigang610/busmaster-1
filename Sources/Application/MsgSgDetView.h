@@ -26,8 +26,6 @@
 
 #include "Datatypes/MsgSignal_Datatypes.h"
 #include "MsgSignal.h"
-/////////////////////////////////////////////////////////////////////////////
-// CMsgSgDetView form view
 
 #ifndef __AFXEXT_H__
 #include <afxext.h>
@@ -35,13 +33,10 @@
 
 class CMsgSgDetView : public CFormView
 {
-protected:
-    CMsgSgDetView();           // protected constructor used by dynamic creation
     DECLARE_DYNCREATE(CMsgSgDetView)
+    DECLARE_MESSAGE_MAP()
 
-    // Form Data
 public:
-    //{{AFX_DATA(CMsgSgDetView)
     enum { IDD = IDD_DLG_MSGSGDETVIEW };
     CSpinButtonCtrl m_omSpinMsgLen;
     CListCtrl   m_omListCtrlSgIdVal;
@@ -50,19 +45,10 @@ public:
     UINT    m_unMessageLength;
     CString m_omStrMessageCode;
     UINT    m_unNoOfSgs;
-    //int       m_nFrameFormat;
-    //int       m_nDataFormat;
-    //}}AFX_DATA
 
-    // Attributes
-private:
-    SDBPARAMS m_sDbParams;
-    int     m_nSelectedSignalIndex;   //stores the curent selection index in m_omListCtrlSignal AUC
-public:
     static SDBPARAMS sm_sDbParams;
-    // Operations
-public:
-    void vEnableButtons (BOOL bEnable );
+
+	void vEnableButtons (BOOL bEnable );
     BOOL bUpdateEditedMesageDetails();
     BOOL bGetControlStatus();
     void vHideControls(UINT unEnableHide);
@@ -70,26 +56,21 @@ public:
     void vDisplayMsgSgInformation(sMESSAGE* pMsg);
     void vEditSignalName();
     UINT nCheckTotalBitsUsed(sSIGNALS* pSg);
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CMsgSgDetView)
-public:
-    virtual void OnInitialUpdate();
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    virtual void PostNcDestroy();
-    //}}AFX_VIRTUAL
 
-    // Implementation
+    virtual void OnInitialUpdate();
+
 protected:
-    virtual ~CMsgSgDetView();
+    CMsgSgDetView();           // protected constructor used by dynamic creation
+
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    virtual void PostNcDestroy();
+
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
     // Generated message map functions
-    //{{AFX_MSG(CMsgSgDetView)
     afx_msg void OnClickListSignal(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnRclickLstSignalDetails(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnDeleteSignal();
@@ -117,10 +98,12 @@ protected:
     afx_msg void OnItemchangedLstcSignalDetails(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnLvnKeydownLstcSignalDetails(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnLvnKeydownLstcSgidval(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
-    void vEnableNewDescButton(CString );
+    SDBPARAMS m_sDbParams;
+    int     m_nSelectedSignalIndex;   //stores the curent selection index in m_omListCtrlSignal AUC
+
+	void vEnableNewDescButton(CString );
     void vEnableControls(CString OmStr);
     void vDeleteRedundentSignalDesc(int nRow, sSIGNALS* pSg);
     void vAddItemToSignalList( int nRow, sMESSAGE* pMsg, sSIGNALS* pSg );
@@ -130,5 +113,4 @@ private:
     void vUpDownArrowKeySelection(int nSel);
     int     m_nFrameFormat;
     int     m_nDataFormat;
-
 };

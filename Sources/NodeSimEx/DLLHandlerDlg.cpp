@@ -35,9 +35,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// CDLLHandlerDlg dialog
-
 /******************************************************************************
 Function Name    :  CDLLHandlerDlg
 Input(s)         :  byType - Dialog type, (0)Load_Unload dialog or (1)EventIndication Dialog
@@ -56,10 +53,8 @@ Modifications    :  Ratnadip Choudhury, 27/05/2009. Updated function header.
 CDLLHandlerDlg::CDLLHandlerDlg(BYTE byType, CFunctionEditorDoc* pDoc, CWnd* pParent /*=NULL*/, BOOL bIsDelete /*FALSE*/)
     : CDialog(CDLLHandlerDlg::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CDLLHandlerDlg)
     m_bCheckDLLLoad = FALSE;
     m_bCheckDLLUnLoad = FALSE;
-    //}}AFX_DATA_INIT
     m_bIsDelete = bIsDelete;
     m_pDoc      = pDoc;
     m_byType    = byType;
@@ -80,24 +75,16 @@ Modifications    :  Ratnadip Choudhury, 27/05/2009. Removed control variable
 void CDLLHandlerDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CDLLHandlerDlg)
     DDX_Control(pDX, IDC_CHKB_DLL_UNLOAD_HANDLER, m_omCheckDLLUnLoad);
     DDX_Control(pDX, IDC_CHKB_DLL_LOAD_HANDLER, m_omCheckDLLLoad);
     DDX_Check(pDX, IDC_CHKB_DLL_LOAD_HANDLER, m_bCheckDLLLoad);
     DDX_Check(pDX, IDC_CHKB_DLL_UNLOAD_HANDLER, m_bCheckDLLUnLoad);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CDLLHandlerDlg, CDialog)
-    //{{AFX_MSG_MAP(CDLLHandlerDlg)
     ON_BN_CLICKED(IDC_CBTN__DLL_OK, OnBnClickedOk)
     ON_BN_CLICKED(IDC_CBTN__DLL_CANCEL, OnCbtnDllCancel)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CDLLHandlerDlg message handlers
 
 /******************************************************************************
 Function Name    :  OnBnClickedOk
@@ -241,8 +228,6 @@ BOOL CDLLHandlerDlg::OnInitDialog()
     // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// CDLLHandlerDlg message handlers
 /******************************************************************************/
 /*  Function Name    : OnCbtnDllCancel                                        */
 /*  Input(s)         :                                                        */

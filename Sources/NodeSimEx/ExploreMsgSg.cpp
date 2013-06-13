@@ -59,9 +59,7 @@ CExploreMsgSg::CExploreMsgSg( CFunctionEditorDoc* pDoc,
     : CDialog(CExploreMsgSg::IDD, pParent),
       m_odMsgNameCodeListDb(odMsgNameCodeListDb)            //CAPL_DB_NAME_CHANGE
 {
-    //{{AFX_DATA_INIT(CExploreMsgSg)
     m_bWantStructure = FALSE;
-    //}}AFX_DATA_INIT
     m_eSelectType       = eSelType;
     m_bWantStructure    = FALSE;
     m_bCheckRequired    = bCheckRequired;
@@ -74,27 +72,19 @@ CExploreMsgSg::CExploreMsgSg( CFunctionEditorDoc* pDoc,
 void CExploreMsgSg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CExploreMsgSg)
     DDX_Control(pDX, IDC_LSTB_SIGNAL, m_omSignalListBox);
     DDX_Control(pDX, IDC_LSTC_MSGS, m_omMsgList);
     DDX_Check(pDX, IDC_CHKB_WANT_STRUCTURE, m_bWantStructure);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CExploreMsgSg, CDialog)
-    //{{AFX_MSG_MAP(CExploreMsgSg)
     ON_NOTIFY(NM_DBLCLK, IDC_LSTC_MSGS, OnDblclkListMsgs)
     ON_LBN_DBLCLK(IDC_LSTB_SIGNAL, OnDblclkListSignals)
     ON_BN_CLICKED(IDC_CBTN_OK, OnSelect)
     ON_BN_CLICKED(IDC_CBTN_CANCEL, OnCbtnCancel)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LSTC_MSGS, OnItemchangedLstcMsgs)
     ON_NOTIFY(NM_CLICK, IDC_LSTC_MSGS, OnClickLstcMsgs)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CExploreMsgSg message handlers
 
 /******************************************************************************/
 /*  Function Name    :  OnDblclkListMsgs                                      */
@@ -259,7 +249,7 @@ void CExploreMsgSg::OnSelect()
             {
                 omStrSgName.Insert( 0, (char)PERIOD );
 
-                ////To pass the actual name of message
+                //To pass the actual name of message
                 int nIndex = omStrMsg.ReverseFind(defMSGID_NAME_START_CHAR);
                 if( nIndex!=NULL )
                 {

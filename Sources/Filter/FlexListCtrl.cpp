@@ -36,8 +36,6 @@
 // ID for Combobox
 #define IDC_CONTROL 0x12345
 
-/////////////////////////////////////////////////////////////////////////////
-// CFlexListCtrl
 /******************************************************************************
  Function Name  :   CFlexListCtrl
 
@@ -66,33 +64,13 @@ CFlexListCtrl::CFlexListCtrl() : m_bSingleClickActivate(FALSE)
     m_nVirtualColumnCount = defVIRTUAL_COL_COUNT;
 }
 
-/******************************************************************************
- Function Name  :   ~CFlexListCtrl
-
- Description    :   Standard destructor
- Member of      :   CFlexListCtrl
-
- Author(s)      :   Raja N
- Date Created   :   22.07.2004
- Modifications  :
-******************************************************************************/
-CFlexListCtrl::~CFlexListCtrl()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CFlexListCtrl, CListCtrl)
-    //{{AFX_MSG_MAP(CFlexListCtrl)
     ON_NOTIFY_REFLECT(LVN_ENDLABELEDIT, OnEndlabeledit)
     ON_WM_HSCROLL()
     ON_WM_VSCROLL()
     ON_NOTIFY_REFLECT(NM_DBLCLK, OnDoubleClick)
     ON_NOTIFY_REFLECT(NM_CLICK, OnClick)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CFlexListCtrl message handlers
 
 /******************************************************************************
  Function Name  : OnEndlabeledit

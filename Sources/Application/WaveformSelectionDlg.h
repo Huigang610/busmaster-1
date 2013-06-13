@@ -24,39 +24,37 @@
 
 #pragma once
 
+/* Project includes */
 #include "Resource.h"
 #include "WaveFormDataHandler.h"
 #include "afxwin.h"
 
 class CWaveformSelectionDlg : public CDialog
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     CWaveformSelectionDlg(CWnd* pParent, CWaveFormDataHandler* pWaveDataHandler, UINT nHardware);   // standard constructor
 
     // Dialog Data
-    //{{AFX_DATA(CWaveformSelectionDlg)
     enum { IDD = IDD_DLG_WAVEFORM_CONFIG };
     CListCtrl   m_omListCtrlSignalWatch;
     CListCtrl   m_omListCtrlSignal;
     CComboBox   m_omCombMessage;
-    //}}AFX_DATA
+    CComboBox m_omMsgChannel;
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CWaveformSelectionDlg)
 protected:
+    float m_fDefAmplitude;
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
-
-    // Implementation
-protected:
 
     // Generated message map functions
-    //{{AFX_MSG(CWaveformSelectionDlg)
-    afx_msg void OnDestroy();
     virtual BOOL OnInitDialog();
+    afx_msg void OnDestroy();
+    afx_msg void OnLvnItemchangedLstcSignal(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnNMDblclkLstcSignalWatch(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnBnClickedCancel();
+    afx_msg void OnBnClickedOk();
+    afx_msg void OnEnChangeEditDefaultSignalValue();
     afx_msg void OnSelChangeMessageName();
     afx_msg void OnBtnAddSubEntries();
     afx_msg void OnBtnDelSubEntires();
@@ -64,14 +62,13 @@ protected:
     afx_msg void OnDblclkUnSelSubEntryList(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnClickSelSubEntryList(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     //Pointer to CWaveFormDataHandler object
     CWaveFormDataHandler* m_pWaveDataHandler;
     // Pointer to Temp List
-    CMainEntryList* m_podTempCallerList;
-    CMainEntryList* m_podMainCallerList;
+    SignalWatchListMainEntries* m_podTempCallerList;
+    SignalWatchListMainEntries* m_podMainCallerList;
     // Image list
     CImageList m_omImageList;
     // CString Array for Data link
@@ -111,14 +108,4 @@ private:
     void vInterPretSignalNameMsgID(CString strInterpretData, CString& strSigName, UINT& nMsgID);
     // to adjust the width of the combo box based on its contents
     void vAdjustWidthMessageComboBox();
-public:
-    afx_msg void OnLvnItemchangedLstcSignal(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnNMDblclkLstcSignalWatch(NMHDR* pNMHDR, LRESULT* pResult);
-protected:
-    float m_fDefAmplitude;
-public:
-    afx_msg void OnBnClickedCancel();
-    afx_msg void OnBnClickedOk();
-    afx_msg void OnEnChangeEditDefaultSignalValue();
-    CComboBox m_omMsgChannel;
 };

@@ -147,7 +147,7 @@ USAGEMODE HRESULT Filter_ShowConfigDlg(void* pExistingFilter, const SMSGENTRY* p
     return hResult;
 }
 
-USAGEMODE HRESULT Filter_ShowSelDlg(CWnd* pParent, CMainEntryList* podMainSubList)
+USAGEMODE HRESULT Filter_ShowSelDlg(CWnd* pParent, SignalWatchListMainEntries* podMainSubList)
 {
     //Place this code at the beginning of the export function.
     //Save previous resource handle and switch to current one.

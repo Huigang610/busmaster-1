@@ -24,56 +24,33 @@
 
 #pragma once
 
-/////////////////////////////////////////////////////////////////////////////
-// CKeyValue dialog
-
 #include "NodeSimEx_resource.h"
 
 class CKeyValue : public CDialog
 {
-private:
-    CFnsTreeView* m_pFnsTreeView;
-    CFunctionEditorDoc* m_pDoc;
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
-    // standard constructor
     CKeyValue(CFnsTreeView* pFnsTreeView, CFunctionEditorDoc* pDoc,
               CWnd* pParent = NULL,char* pcKeyVal = (char*)NULL);
 
-    // Dialog Data
-    //{{AFX_DATA(CKeyValue)
     enum { IDD = IDD_DLG_KEY_VALUE };
-    // NOTE: the ClassWizard will add data members here
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CKeyValue)
-public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
+
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
-    // Implementation
-protected:
 
-    // Generated message map functions
-    //{{AFX_MSG(CKeyValue)
     virtual void OnCancel();
-    afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
     virtual void OnOK();
     virtual BOOL OnInitDialog();
+    afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
     afx_msg void OnCbtnKeyApply();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
+    CFnsTreeView* m_pFnsTreeView;
+    CFunctionEditorDoc* m_pDoc;
     char* m_pcKeyVal;
     bool m_bDataSaved;
     BOOL bValidateDuplicateKeyHandler(CFunctionEditorDoc* pDoc);
-
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before
-// the previous line.

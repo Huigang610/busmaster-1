@@ -340,7 +340,7 @@ BYTE* CReplayFile::pbyLoadConfig(BYTE* pSrcBuffer, INT nSectionVersion)
         memcpy(&m_ouReplayMsgType, pSrcBuffer, sizeof(m_ouReplayMsgType));
         pSrcBuffer += sizeof(m_ouReplayMsgType);
     }
-    ////To store filters
+    //To store filters
     bool bRet = false;
     pSrcBuffer = m_sFilterApplied.pbSetConfigData(pSrcBuffer, bRet);
     return pSrcBuffer;

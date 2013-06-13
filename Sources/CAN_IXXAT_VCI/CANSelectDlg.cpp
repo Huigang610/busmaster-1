@@ -32,15 +32,11 @@
 #include "CAN_IXXAT_VCI.h"
 #include "CANSelectDlg.h"
 
-
-
 IMPLEMENT_DYNAMIC(CCANSelectDlg, CDialog)
-
 
 BEGIN_MESSAGE_MAP(CCANSelectDlg, CDialog)
     ON_BN_CLICKED(IDOK, OnBnClickedOk)
 END_MESSAGE_MAP()
-
 
 /**
  * @brief

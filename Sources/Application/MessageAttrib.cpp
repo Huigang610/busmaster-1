@@ -34,11 +34,6 @@ extern CCANMonitorApp theApp;
 // Message Attribute singleton
 CMessageAttrib CMessageAttrib::sm_ouMsgAttrib[BUS_TOTAL];
 
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
-
 /******************************************************************************
  Function Name  :   CMessageAttrib
 

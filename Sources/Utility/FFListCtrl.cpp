@@ -29,28 +29,11 @@
 // For Double Buffer Definition
 #include "OffScreenDC.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// CFFListCtrl
-
-CFFListCtrl::CFFListCtrl()
-{
-}
-
-CFFListCtrl::~CFFListCtrl()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CFFListCtrl, CListCtrl)
-    //{{AFX_MSG_MAP(CFFListCtrl)
     ON_WM_SIZE()
     ON_WM_ERASEBKGND()
     ON_WM_PAINT()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CFFListCtrl message handlers
 
 /******************************************************************************
  Function Name  :   OnSize

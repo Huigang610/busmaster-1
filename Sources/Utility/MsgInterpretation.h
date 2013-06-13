@@ -90,7 +90,6 @@ public:
     BOOL vInterpretMsgs(UINT unMsgCode,
                         const UCHAR* ucData, CSignalInfoArray& omSignalInfo );
 
-    //VENKAT
     BOOL bInterpretMsgs(UINT unMsgCode,
                         const UCHAR* ucData,
                         CSignalInfoArray& omSignalInfo );

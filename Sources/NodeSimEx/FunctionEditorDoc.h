@@ -29,30 +29,17 @@
 
 class CFunctionEditorDoc : public CDocument
 {
-protected: // create from serialization only
-    CFunctionEditorDoc();
     DECLARE_DYNCREATE(CFunctionEditorDoc)
 
-    // Attributes
 public:
+    CFunctionEditorDoc();
     CStringList m_omSourceCodeTextList;
 
-    // Operations
-public:
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CFunctionEditorDoc)
-public:
     virtual BOOL OnNewDocument();
     virtual void Serialize(CArchive& ar);
     virtual BOOL OnSaveDocument(LPCTSTR lpszPathName);
     virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);
     virtual void OnCloseDocument();
-    //}}AFX_VIRTUAL
-
-    // Implementation
-public:
 
     // Function to get initialised string for database messages
     CString omStrGetInitialisedMessage( UINT unMsgID,
@@ -90,6 +77,7 @@ public:
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
+
 private:
     CStringArray m_omErrorHandlerArray;
     CStringArray m_omDLLHandlerArray;
@@ -111,18 +99,4 @@ private:
     CString GetApplicationVersion();
     void vInitialiseBusSpecStructure(CString& omStrTemp, UCHAR unChannel,
                                      SMSG_NAME_CODE& sMsgNameCode, BOOL bInitData);
-protected:
-
-    // Generated message map functions
-protected:
-    //{{AFX_MSG(CFunctionEditorDoc)
-    // NOTE - the ClassWizard will add and remove member functions here.
-    //    DO NOT EDIT what you see in these blocks of generated code !
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
 };
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

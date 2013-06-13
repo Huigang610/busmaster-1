@@ -39,9 +39,6 @@ static const GUID guidProjectConfig =
 
 static DataStorageInformation sdataStorageInfo;
 
-BEGIN_MESSAGE_MAP(CProjectConfigurationApp, CWinApp)
-END_MESSAGE_MAP()
-
 /**
  * The one and only CProjectConfigurationApp object
  */

@@ -63,7 +63,7 @@ CMsgBufVSE::CMsgBufVSE(void)
 {
     m_nBufferSize = MIN_BUFFER_SIZE;
     m_pbyMsgBuffer = new BYTE[MIN_BUFFER_SIZE];// allocate memory first
-    vClearMessageBuffer(); // Clear the message buffer
+    clearMessageBuffer(); // Clear the message buffer
     InitializeCriticalSection(&m_CritSectionForGB);
     m_hNotifyingEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
 }
@@ -81,7 +81,7 @@ CMsgBufVSE::~CMsgBufVSE(void)
     DeleteCriticalSection(&m_CritSectionForGB);
 }
 /**********************************************************************************
-Function Name   :   vClearMessageBuffer()
+Function Name   :   clearMessageBuffer()
 Input           :
 Output          :
 Functionality   :   Clears msg buffer and initializes all variables.
@@ -91,7 +91,7 @@ Authors         :   Pradeep Kadoor
 Date Created    :   22/06/2009
 Modifications   :   -
 ************************************************************************************/
-void CMsgBufVSE::vClearMessageBuffer(void)
+void CMsgBufVSE::clearMessageBuffer(void)
 {
     memset(m_pbyMsgBuffer, 0, m_nBufferSize);
     m_nIndexRead = 0;
@@ -101,7 +101,7 @@ void CMsgBufVSE::vClearMessageBuffer(void)
 }
 
 /**********************************************************************************
-Function Name   :   ReadFromBuffer()
+Function Name   :   readFromBuffer()
 Input           :   TYPE, SIZE, pointer to msg.
 Output          :   CALL_SUCCESS for success.
                     ERR_READ_MEMORY_SHORT when caller specifies size of the msg
@@ -113,7 +113,7 @@ Authors         :   Pradeep Kadoor
 Date Created    :   22/06/2009
 Modifications   :   -
 ************************************************************************************/
-HRESULT CMsgBufVSE::ReadFromBuffer(INT& nType, BYTE* pbyMsg, INT& nSize)
+HRESULT CMsgBufVSE::readFromBuffer(INT& nType, BYTE* pbyMsg, INT& nSize)
 {
     HRESULT Result = CALL_SUCCESS;
 
@@ -144,7 +144,7 @@ HRESULT CMsgBufVSE::ReadFromBuffer(INT& nType, BYTE* pbyMsg, INT& nSize)
 }
 
 /**********************************************************************************
-Function Name   :   WriteIntoBuffer()
+Function Name   :   writeIntoBuffer()
 Input           :   TYPE, SIZE, pointer to msg.
 Output          :   CALL_SUCCESS for success.
                     ERR_WRITE_MSG_TOO_LARGE when caller specifies size of the msg
@@ -156,7 +156,7 @@ Authors         :   Pradeep Kadoor
 Date Created    :   22/06/2009
 Modifications   :   -
 ************************************************************************************/
-int CMsgBufVSE::WriteIntoBuffer(INT nType, BYTE* pbyMsg, INT nSize)
+int CMsgBufVSE::writeIntoBuffer(INT nType, BYTE* pbyMsg, INT nSize)
 {
     int nResult = CALL_SUCCESS;
 
@@ -184,23 +184,23 @@ int CMsgBufVSE::WriteIntoBuffer(INT nType, BYTE* pbyMsg, INT nSize)
     return nResult;
 }
 
-int CMsgBufVSE::GetMsgCount(void) const
+int CMsgBufVSE::getMessageCount(void) const
 {
     return m_nMsgCount;
 }
 
-HANDLE CMsgBufVSE::hGetNotifyingEvent(void) const
+HANDLE CMsgBufVSE::getNotifyEvent(void) const
 {
     return m_hNotifyingEvent;
 }
 
-int CMsgBufVSE::GetBufferLength(void) const
+int CMsgBufVSE::getBufferLength(void) const
 {
     return m_nBufferSize;
 }
 
 /**********************************************************************************
-Function Name   :   nSetBufferSize()
+Function Name   :   setBufferSize()
 Output          :   CALL_SUCCESS for success.
                     WARN_BUFFER_SIZE_MIN_ASSUMED when caller specifies less than
                     minimum buffer size.
@@ -214,7 +214,7 @@ Date Created    :   22/06/2009
 Modifications   :   -
 ************************************************************************************/
 
-int CMsgBufVSE::nSetBufferSize(int& nSize)
+int CMsgBufVSE::setBufferSize(int& nSize)
 {
     int nResult = CALL_SUCCESS;
     if (nSize < MIN_BUFFER_SIZE)
@@ -243,7 +243,7 @@ int CMsgBufVSE::nSetBufferSize(int& nSize)
     }
     else
     {
-        vClearMessageBuffer();
+        clearMessageBuffer();
     }
 
     LeaveCriticalSection(&m_CritSectionForGB);

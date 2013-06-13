@@ -27,9 +27,6 @@
 // Interface file for CSignalWatchListBox
 #include "SignalWatchListBox.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// CSigWatchDlg dialog
-
 struct sSIGENTRY
 {
     CString m_omMsgName;
@@ -50,41 +47,29 @@ struct sSIGENTRY
 typedef CList<sSIGENTRY, sSIGENTRY&> CSigEntryList;
 class CSigWatchDlg : public CDialog
 {
+	DECLARE_MESSAGE_MAP()
+
 public:
     void vInitSignalWatchList();
     LRESULT vRemoveSignalFromMap(WPARAM wParam, LPARAM lParam);
 
-    // Dialog Data
-    //{{AFX_DATA(CSigWatchDlg)
     enum { IDD = IDD_DLG_SIGNAL_WATCH };
     CSignalWatchListBox m_omSignalList;
-    //}}AFX_DATA
 
-    // Construction
-    CSigWatchDlg(CWnd* pParent = NULL);   // standard constructor
+	CSigWatchDlg(CWnd* pParent = NULL);   // standard constructor
 
-    // Operation
     void vAddMsgSigIntoList(const CString& omStrMsgName,
                             const CStringArray& omSASignals,
                             const CStringArray& omSARaw,
                             const CStringArray& omSAPhysical,
                             BOOL bIntptrDone);
-    //void vUpdateWndCo_Ords();
     void vSaveDefaultWinStatus( );
     void vSetDefaultWinStatus( );
-    //void vUpdateWinStatus();
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CSigWatchDlg)
+
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CSigWatchDlg)
+	afx_msg void OnTimer(UINT nIDEvent);
     afx_msg void OnSize(UINT nType, int cx, int cy);
     afx_msg void OnCancel();
     afx_msg void OnOK();
@@ -95,8 +80,7 @@ protected:
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
     afx_msg LRESULT OnReceiveKeyBoardData(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT OnReceiveKeyDown(WPARAM wParam, LPARAM lParam);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     bool m_bEscape;
     CSigEntryList m_odSigEntryList;
@@ -105,10 +89,8 @@ private:
     INT m_anColWidth[defSW_LIST_COLUMN_COUNT];
     CImageList m_omSigImageList;
     CWnd* m_pParent;
-private:
+
     void vDisplayMsgSigList(void);
     CCriticalSection m_omCSDispEntry;
     UINT m_unTimerId;
-public:
-    afx_msg void OnTimer(UINT nIDEvent);
 };

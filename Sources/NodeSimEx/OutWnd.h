@@ -29,13 +29,10 @@
 class COutWnd : public CMDIChildBase
 {
     DECLARE_DYNCREATE(COutWnd)
+    DECLARE_MESSAGE_MAP()
+
 public:
     COutWnd(ETYPE_BUS eBus = CAN);           // public constructor used by dynamic creation
-    // Attributes
-public:
-
-    // Operations
-public:
     BOOL bCreateOutputWindow();
     // Add string items to the list box of output window
     BOOL bAddString(CStringArray& omStrArray);
@@ -43,26 +40,16 @@ public:
     VOID vResetContent();
     // Set the content of list box.
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(COutWnd)
-public:
 protected:
     virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-    virtual ~COutWnd();
+	virtual ~COutWnd();
 
-    // Generated message map functions
-    //{{AFX_MSG(COutWnd)
     afx_msg void OnDestroy();
     afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
     afx_msg void OnSize(UINT nType, int cx, int cy);
     afx_msg void OnDbClick();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     ETYPE_BUS m_eBus;
     void vGetWinStatus(WINDOWPLACEMENT& sWinCurrStatus);
@@ -73,8 +60,3 @@ private:
     // Set the font of window
     VOID vSetWindowFont();
 };
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

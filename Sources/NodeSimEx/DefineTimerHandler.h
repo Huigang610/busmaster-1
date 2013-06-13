@@ -24,22 +24,19 @@
 
 #pragma once
 
-// costomised edit control class definition
+/* Project includes */
 #include "Utility/RadixEdit.h"
 #include "FunctionEditorDoc.h"
 #include "NodeSimEx_resource.h"
-/////////////////////////////////////////////////////////////////////////////
-// CDefineTimerHandler dialog
 
 class CDefineTimerHandler : public CDialog
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     CString m_omStrTimerFunctionName;
     CDefineTimerHandler(CFunctionEditorDoc* pDoc, CWnd* pParent = NULL);   // standard constructor
 
-    // Dialog Data
-    //{{AFX_DATA(CDefineTimerHandler)
     enum { IDD = IDD_DLG_DEFINE_TIMER_HANDLER };
     CRadixEdit  m_omEditTimerValue;
     CEdit   m_omEditTimerFuncName;
@@ -51,31 +48,14 @@ public:
     void vSetTimerEdited(BOOL bEdited);
     BOOL bIsTimerEdited();
 
-    //}}AFX_DATA
-
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CDefineTimerHandler)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CDefineTimerHandler)
     afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
     virtual void OnOK();
     virtual BOOL OnInitDialog();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     CFunctionEditorDoc* m_pDoc;
     BOOL    m_bIsTimerEdited;
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before
-// the previous line.

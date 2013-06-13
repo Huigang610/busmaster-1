@@ -114,7 +114,7 @@ UINT CReplayProcess::sunReplayMonoshotThreadFunc( LPVOID pParam )
             pWnd->m_omMessageList.EnableWindow( FALSE );
         }
         // Replay code here
-        /// Get the number of messages to play
+        // Get the number of messages to play
         int nCount = pReplayDetails->m_nNoOfMessagesToPlay;
         int nOffset = pReplayDetails->m_nUserSelectionIndex;
 
@@ -253,7 +253,7 @@ UINT CReplayProcess::sunReplayCyclicThreadFunc( LPVOID pParam )
             pWnd->m_omMessageList.EnableWindow( FALSE );
         }
         // Replay code here
-        /// Get the number of messages to play
+        // Get the number of messages to play
         int nCount = pReplayDetails->m_nNoOfMessagesToPlay;
 
         // Time Calculation

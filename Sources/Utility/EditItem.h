@@ -27,33 +27,15 @@
 
 #pragma once
 
-/////////////////////////////////////////////////////////////////////////////
-// CEditItem window
-
 class CEditItem : public CEdit
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     CEditItem(int nItem, int nSubItem, const CString& sContent);
 
-    // Attributes
-public:
-
-    // Operations
-public:
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CEditItem)
-public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
-    //}}AFX_VIRTUAL
 
-    // Implementation
-public:
-    virtual ~CEditItem();
-
-    // Generated message map functions
 protected:
     // To keep the Item index
     int     m_nItem;
@@ -63,12 +45,8 @@ protected:
     CString m_sContent;
     // Canceled through ESCAPE key
     BOOL    m_bVK_ESCAPE;
-    //{{AFX_MSG(CEditItem)
     afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
     afx_msg void OnNcDestroy();
     afx_msg void OnKillFocus(CWnd* pNewWnd);
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-    //}}AFX_MSG
-
-    DECLARE_MESSAGE_MAP()
 };

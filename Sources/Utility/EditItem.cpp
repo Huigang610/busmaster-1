@@ -28,8 +28,6 @@
 #include "Utils_stdafx.h"         // For standard include
 #include "EditItem.h"       // Definition of class
 
-/////////////////////////////////////////////////////////////////////////////
-// CEditItem
 /*******************************************************************************
  Function Name    : CEditItem
  Input(s)         : nItem - Item Index
@@ -52,33 +50,12 @@ CEditItem::CEditItem(int nItem, int nSubItem, const CString& sContent )
     m_bVK_ESCAPE = FALSE;
 }
 
-/*******************************************************************************
- Function Name    : ~CEditItem
- Input(s)         :
- Output           :
- Functionality    : Destructor
- Member of        : CEditItem
- Friend of        :  -
- Author(s)        : Raja N
- Date Created     : 21.07.2004
- Modifications    :
-*******************************************************************************/
-CEditItem::~CEditItem()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CEditItem, CEdit)
-    //{{AFX_MSG_MAP(CEditItem)
     ON_WM_CHAR()
     ON_WM_NCDESTROY()
     ON_WM_KILLFOCUS()
     ON_WM_CREATE()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CEditItem message handlers
 
 /*******************************************************************************
  Function Name    : PreTranslateMessage

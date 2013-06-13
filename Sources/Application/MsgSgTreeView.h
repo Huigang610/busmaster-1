@@ -29,21 +29,11 @@
 
 class CMsgSgTreeView : public CTreeView
 {
-private:
-
-    CString m_omCurrDbName;
-protected:
-    CMsgSgTreeView();           // protected constructor used by dynamic creation
     DECLARE_DYNCREATE(CMsgSgTreeView)
+    DECLARE_MESSAGE_MAP()
 
-    // Attributes
-private:
-    SDBPARAMS m_sDbParams;
 public:
     static SDBPARAMS sm_sDbParams;
-
-    // Operations
-public:
 
     CString m_omSelectedItemText;
     void vSetAllItemsNormal();
@@ -52,27 +42,17 @@ public:
     BOOL m_bIsNewMessage;
     void vSetMessageName(CString omStrMsgName);
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CMsgSgTreeView)
-public:
     virtual void OnInitialUpdate();
+
 protected:
     virtual void OnDraw(CDC* pDC);      // overridden to draw this view
     virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-    virtual ~CMsgSgTreeView();
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
-    // Generated message map functions
-protected:
-    //{{AFX_MSG(CMsgSgTreeView)
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     afx_msg void OnItemexpanding(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
@@ -84,10 +64,15 @@ protected:
     afx_msg void OnEditMsg();
     afx_msg void OnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnTvnKeydown(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
+    CMsgSgTreeView();           // protected constructor used by dynamic creation
+
 private:
-    void vAddEditMessage(BOOL bMode);
+    SDBPARAMS m_sDbParams;
+
+    CString m_omCurrDbName;
+
+	void vAddEditMessage(BOOL bMode);
     //  CToolTipCtrl* m_pomToolTip;
     CPoint m_omRightClickPoint;
     CPoint m_omLeftCLickPoint;

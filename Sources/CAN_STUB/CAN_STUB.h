@@ -31,17 +31,10 @@ const int ERR_CONFIRMED_CONFIGURED  = -4;
 const int INFO_INIT_DATA_CONFIRMED  = 2;
 const int INFO_CONFIRMED_CONFIGURED = 3;
 
-/**
- * See CAN_STUB.cpp for the implementation of this class
- */
 class CCAN_STUBApp : public CWinApp
 {
 public:
     CCAN_STUBApp();
 
-    // Overrides
-public:
     virtual BOOL InitInstance();
-
-    DECLARE_MESSAGE_MAP()
 };

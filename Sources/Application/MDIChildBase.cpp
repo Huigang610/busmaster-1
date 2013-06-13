@@ -66,25 +66,9 @@ CMDIChildBase::CMDIChildBase(eCONFIGDETAILS eWindowIdentity)
     m_eWindowIdentity =  eWindowIdentity;
 }
 
-/*******************************************************************************
-  Function Name  : ~CMDIChildBase
-  Description    : Standard Destructor
-  Member of      : CMDIChildBase
-  Functionality  : -
-  Author(s)      : Raja N
-  Date Created   : 15.4.2005
-  Modifications  :
-*******************************************************************************/
-CMDIChildBase::~CMDIChildBase()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CMDIChildBase, CMDIChildWnd)
-    //{{AFX_MSG_MAP(CMDIChildBase)
     ON_WM_SHOWWINDOW()
     ON_WM_CREATE()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /*******************************************************************************

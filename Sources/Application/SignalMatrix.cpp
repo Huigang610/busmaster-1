@@ -128,12 +128,9 @@ CSignalMatrix::~CSignalMatrix()
     }
 }
 
-
 BEGIN_MESSAGE_MAP(CSignalMatrix, CStatic)
-    //{{AFX_MSG_MAP(CSignalMatrix)
     ON_WM_PAINT()
     ON_WM_ERASEBKGND()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /*******************************************************************************

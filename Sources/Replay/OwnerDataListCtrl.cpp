@@ -25,39 +25,10 @@
 #include "Replay_stdafx.h"                 // For Standard Includes
 #include "OwnerDataListCtrl.h"      // For Owner data class declaration
 
-/*******************************************************************************
-  Function Name  : COwnerDataListCtrl
-  Description    : Standard default constructor
-  Member of      : COwnerDataListCtrl
-  Functionality  : This will initialise local variables
-  Author(s)      : Raja N
-  Date Created   : 20.7.2005
-  Modifications  :
-*******************************************************************************/
-COwnerDataListCtrl::COwnerDataListCtrl()
-{
-}
-
-/*******************************************************************************
-  Function Name  : ~COwnerDataListCtrl
-  Description    : Standard Destructor
-  Member of      : COwnerDataListCtrl
-  Functionality  : -
-  Author(s)      : Raja N
-  Date Created   : 20.7.2005
-  Modifications  :
-*******************************************************************************/
-COwnerDataListCtrl::~COwnerDataListCtrl()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(COwnerDataListCtrl, CFFListCtrl)
-    //{{AFX_MSG_MAP(COwnerDataListCtrl)
     ON_NOTIFY_REFLECT(LVN_GETDISPINFO, OnGetdispinfo)
     ON_WM_CREATE()
     ON_WM_LBUTTONDBLCLK()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /*******************************************************************************

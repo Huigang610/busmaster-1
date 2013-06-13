@@ -55,10 +55,6 @@ CSigGrphConfigDlg::CSigGrphConfigDlg(UINT nHardware , CWnd* pParent /*=NULL*/)
     m_nSelectedIndex = -1;
 }
 
-CSigGrphConfigDlg::~CSigGrphConfigDlg()
-{
-}
-
 void CSigGrphConfigDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
@@ -72,7 +68,6 @@ void CSigGrphConfigDlg::DoDataExchange(CDataExchange* pDX)
     DDX_CBIndex(pDX, IDC_COMBO_TYPE, m_nLineType);
 }
 
-
 BEGIN_MESSAGE_MAP(CSigGrphConfigDlg, CDialog)
     ON_BN_CLICKED(IDC_LINE_COLOR, OnBnClickedBtnLineColor)
     ON_BN_CLICKED(IDC_BTN_VISIBLE, OnBnClickedBtnVisible)
@@ -85,9 +80,6 @@ BEGIN_MESSAGE_MAP(CSigGrphConfigDlg, CDialog)
     ON_CBN_SELCHANGE(IDC_COMBO_SYMBOL, OnCbnSelchangeComboSymbol)
     ON_MESSAGE( WM_CPN_COLORSELECTED, OnColorChange)
 END_MESSAGE_MAP()
-
-
-// CSigGrphConfigDlg message handlers
 
 BOOL CSigGrphConfigDlg::OnInitDialog()
 {

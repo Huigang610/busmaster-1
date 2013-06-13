@@ -39,15 +39,6 @@
 #define new DEBUG_NEW
 #endif
 
-BEGIN_MESSAGE_MAP(CJ1939TranslatorApp, CWinApp)
-END_MESSAGE_MAP()
-
-CJ1939TranslatorApp::CJ1939TranslatorApp()
-{
-    // TODO: add construction code here,
-    // Place all significant initialization in InitInstance
-}
-
 CJ1939TranslatorApp theApp;
 
 BOOL CJ1939TranslatorApp::InitInstance()

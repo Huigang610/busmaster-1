@@ -34,6 +34,4 @@ public:
      * Initialization
      */
     virtual BOOL InitInstance();
-
-    DECLARE_MESSAGE_MAP()
 };

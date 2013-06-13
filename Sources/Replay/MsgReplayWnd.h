@@ -24,29 +24,19 @@
 
 #pragma once
 
-// For Replay File Definition
-#include "ReplayFile.h"
+/* Project includes */
+#include "ReplayFile.h"	// For Replay File Definition
 #include "OwnerDataListCtrl.h"
-// For replay process class
-#include "ReplayProcess.h"
-
-
-
+#include "ReplayProcess.h"	// For replay process class
 
 class CMsgReplayWnd : public CMDIChildWnd
 {
-    //DECLARE_DYNCREATE(CMsgReplayWnd)
+    DECLARE_MESSAGE_MAP()
+
 public:
     // constructor used by dynamic creation
-    //CMsgReplayWnd();
     CMsgReplayWnd(CReplayFile ouReplayFile, WINDOWPLACEMENT& sWndPlacement);
-    virtual ~CMsgReplayWnd();
 
-    // Attributes
-public:
-
-    // Operations
-public:
     // Replay Operations
     VOID vCmdSkip();
     VOID vCmdStop();
@@ -71,19 +61,9 @@ public:
     // Replay process information
     CReplayProcess  m_ouReplayDetails;
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CMsgReplayWnd)
-public:
 protected:
     virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CMsgReplayWnd)
     afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
     afx_msg void OnDestroy();
     afx_msg void OnSize(UINT nType, int cx, int cy);
@@ -92,8 +72,7 @@ protected:
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
     afx_msg LRESULT vHandleListControlDataReq(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT vListDoubleClick(WPARAM wParam, LPARAM lParam);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     // To set list control font
     VOID SetWindowFont();

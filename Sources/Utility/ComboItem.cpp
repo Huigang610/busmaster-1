@@ -25,9 +25,6 @@
 #include "Utils_stdafx.h"       // For standard include
 #include "ComboItem.h"          // Definition of class
 
-/////////////////////////////////////////////////////////////////////////////
-// CComboItem
-
 /*******************************************************************************
  Function Name    : CComboItem
  Input(s)         : nItem           - Item Index
@@ -57,34 +54,13 @@ CComboItem::CComboItem( int nItem,
 
 }
 
-/*******************************************************************************
- Function Name    : ~CComboItem
- Input(s)         :
- Output           :
- Functionality    : Destructor
- Member of        : CComboItem
- Friend of        :  -
- Author(s)        : Raja N
- Date Created     : 22.07.2004
- Modifications    :
-*******************************************************************************/
-CComboItem::~CComboItem()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CComboItem, CComboBox)
-    //{{AFX_MSG_MAP(CComboItem)
     ON_WM_NCDESTROY()
     ON_WM_CHAR()
     ON_WM_KILLFOCUS()
     ON_CONTROL_REFLECT(CBN_CLOSEUP, OnCloseup)
     ON_WM_CREATE()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CComboItem message handlers
 
 /*******************************************************************************
  Function Name    : PreTranslateMessage

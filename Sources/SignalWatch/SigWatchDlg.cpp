@@ -38,9 +38,6 @@ extern HWND GUI_hDisplayWindow;
 extern VOID vConvStrtoByteArray(
     CByteArray* pomByteArrayBufTx,
     CHAR* pctempBuf,BOOL bHexON);
-/////////////////////////////////////////////////////////////////////////////
-// CSigWatchDlg dialog
-
 
 /******************************************************************************
  Function Name  :   CSigWatchDlg
@@ -55,10 +52,6 @@ extern VOID vConvStrtoByteArray(
 CSigWatchDlg::CSigWatchDlg(CWnd* pParent /*=NULL*/)
     : CDialog(CSigWatchDlg::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CSigWatchDlg)
-    // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
-
     m_pParent = pParent;
     m_bEscape = false;
 }
@@ -77,28 +70,20 @@ void CSigWatchDlg::DoDataExchange(CDataExchange* pDX)
 {
     m_omSignalList.vUpdateParentWnd(GetSafeHwnd());
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CSigWatchDlg)
     DDX_Control(pDX, IDC_LIST_SIGNAL_WATCH, m_omSignalList);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CSigWatchDlg, CDialog)
-    //{{AFX_MSG_MAP(CSigWatchDlg)
     ON_WM_SIZE()
     ON_WM_CLOSE()
     ON_WM_SHOWWINDOW()
     ON_WM_CREATE()
     ON_WM_ERASEBKGND()
     ON_MESSAGE(WM_REMOVE_SIGNAL,vRemoveSignalFromMap)
-    //}}AFX_MSG_MAP
     ON_WM_TIMER()
     ON_MESSAGE(WM_KEYBOARD_CHAR, OnReceiveKeyBoardData)
     ON_MESSAGE(WM_KEYBOARD_KEYDOWN, OnReceiveKeyDown)
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CSigWatchDlg message handlers
 
 /******************************************************************************
  Function Name  :   OnSize

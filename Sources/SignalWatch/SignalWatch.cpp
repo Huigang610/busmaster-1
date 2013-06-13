@@ -61,23 +61,9 @@ static CSignalWatch_J1939* sg_pouSW_J1939 = NULL;
 //      details.
 //
 
-// CSignalWatchApp
-
-BEGIN_MESSAGE_MAP(CSignalWatchApp, CWinApp)
-END_MESSAGE_MAP()
-
-
-// CSignalWatchApp construction
-
-CSignalWatchApp::CSignalWatchApp()
-{
-    // TODO: add construction code here,
-    // Place all significant initialization in InitInstance
-}
-
-
-// The one and only CSignalWatchApp object
-
+/**
+ * The one and only CSignalWatchApp object
+ */
 CSignalWatchApp theApp;
 
 

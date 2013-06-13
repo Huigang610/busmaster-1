@@ -9,7 +9,7 @@
 #include <math.h>
 #include <IO.H>             // i/0 header definitions
 #include <stdlib.h>         // standard library definitions
-#include <windows.h>
+//#include <windows.h>
 #include <WinDef.h>
 #include <locale.h>
 

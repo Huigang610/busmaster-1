@@ -9,9 +9,7 @@
 
 class CColorSelector : public CButton
 {
-    //DECLARE_DYNAMIC(CColorSelector)
-    COLORREF m_omColorBkg;
-    INT m_nSelIndex;
+    DECLARE_MESSAGE_MAP()
 
 public:
     CColorSelector();
@@ -28,10 +26,11 @@ public:
 
     COLORREF GetColourForSelectedIndex(INT nSelectedIndex);
 
+    COLORREF m_omColorBkg;
+    INT m_nSelIndex;
+
 protected:
-    DECLARE_MESSAGE_MAP()
     virtual void PreSubclassWindow();
-public:
     afx_msg virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
     afx_msg void OnBnClicked();
 };

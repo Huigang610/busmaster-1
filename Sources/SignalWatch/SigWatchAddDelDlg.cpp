@@ -30,22 +30,14 @@
 
 // Critical Section for Signal Watch
 extern CRITICAL_SECTION g_CritSectionForSW;
-/////////////////////////////////////////////////////////////////////////////
-// CSigWatchAddDelDlg dialog
 
-
-
-
-CSigWatchAddDelDlg::CSigWatchAddDelDlg(CWnd* pParent, CMainEntryList* psMainFrameSignalWatchList)
+CSigWatchAddDelDlg::CSigWatchAddDelDlg(CWnd* pParent, SignalWatchListMainEntries* psMainFrameSignalWatchList)
     : CDialog(CSigWatchAddDelDlg::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CSigWatchAddDelDlg)
-    // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
     m_podMainCallerList = psMainFrameSignalWatchList;
     if (m_podMainCallerList != NULL)
     {
-        m_podTempCallerList = new CMainEntryList;
+        m_podTempCallerList = new SignalWatchListMainEntries;
         m_podTempCallerList->AddTail(psMainFrameSignalWatchList);
     }
 
@@ -55,16 +47,12 @@ CSigWatchAddDelDlg::CSigWatchAddDelDlg(CWnd* pParent, CMainEntryList* psMainFram
 void CSigWatchAddDelDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CSigWatchAddDelDlg)
     DDX_Control(pDX, IDC_LSTC_SIGNAL_WATCH, m_omListCtrlSignalWatch);
     DDX_Control(pDX, IDC_LSTC_SIGNAL, m_omListCtrlSignal);
     DDX_Control(pDX, IDC_COMB_MSGNAME, m_omCombMessage);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CSigWatchAddDelDlg, CDialog)
-    //{{AFX_MSG_MAP(CSigWatchAddDelDlg)
     ON_WM_DESTROY()
     ON_CBN_SELCHANGE(IDC_COMB_MSGNAME, OnSelChangeMessageName)
     ON_BN_CLICKED(IDM_SIGNALDLG_ADD, OnBtnAddSubEntries)
@@ -81,11 +69,7 @@ BEGIN_MESSAGE_MAP(CSigWatchAddDelDlg, CDialog)
     ON_COMMAND(IDM_SIGNALDLG_DELETE, OnBtnDelSubEntires)
     ON_COMMAND(IDM_SIGNALDLG_DELETEALL, OnBtnDelAllSubEntires)
     ON_WM_HELPINFO()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CSigWatchAddDelDlg message handlers
 
 /*******************************************************************************
 Function Name    : OnInitDialog
@@ -121,8 +105,8 @@ BOOL CSigWatchAddDelDlg::OnInitDialog()
             POSITION pos = m_podTempCallerList->GetHeadPosition();
             while (pos != NULL)
             {
-                SMAINENTRY& sMainEntry = m_podTempCallerList->GetNext(pos);
-                CString omMainEntryName = sMainEntry.m_omMainEntryName;
+                SignalWatchListMainEntry& sMainEntry = m_podTempCallerList->GetNext(pos);
+                CString omMainEntryName = sMainEntry.mainEntryName;
                 CString omMainEntryId;
                 omMainEntryId.Format(defSTR_MSG_ID_IN_HEX,sMainEntry.m_unMainEntryID);
                 omMainEntryName = omMainEntryId + omMainEntryName;
@@ -176,11 +160,11 @@ Modifications    : Raja N
 *******************************************************************************/
 void CSigWatchAddDelDlg::vPopulateUnSelSubEntryList(UINT unMainEntryID)
 {
-    //CMainEntryList* psTemp = m_podTempCallerList;
+    //SignalWatchListMainEntries* psTemp = m_podTempCallerList;
     m_omListCtrlSignal.DeleteAllItems();
     if (m_podTempCallerList != NULL)
     {
-        SMAINENTRY sMainEntry;
+        SignalWatchListMainEntry sMainEntry;
         sMainEntry.m_unMainEntryID = unMainEntryID;
         POSITION pos = m_podTempCallerList->Find(sMainEntry);
         if ( pos != NULL)
@@ -191,14 +175,14 @@ void CSigWatchAddDelDlg::vPopulateUnSelSubEntryList(UINT unMainEntryID)
             UINT unMaxLen = 0;
             while (SubPos != NULL)
             {
-                SSUBENTRY& sSubEntry = sMainEntry.m_odUnSelEntryList.GetNext(SubPos);
-                UINT unLen = m_omListCtrlSignal.GetStringWidth(sSubEntry.m_omSubEntryName);
+                SignalWatchListSubEntry& sSubEntry = sMainEntry.m_odUnSelEntryList.GetNext(SubPos);
+                UINT unLen = m_omListCtrlSignal.GetStringWidth(sSubEntry.subEntryName);
                 // Save the length if it is the max.
                 if(unMaxLen < unLen )
                 {
                     unMaxLen = unLen;
                 }
-                m_omListCtrlSignal.InsertItem(unCountItem++, sSubEntry.m_omSubEntryName);
+                m_omListCtrlSignal.InsertItem(unCountItem++, sSubEntry.subEntryName);
             }
             // Set the column width if it is valid
             if( unMaxLen > 0 )
@@ -280,17 +264,17 @@ void CSigWatchAddDelDlg::vAddSelSubEntries(BOOL bAllSignals)
     if( (m_omCSAData.GetSize() > 0) && (m_podTempCallerList != NULL))
     {
         UINT unMainEntryId = unGetSelectedMainEntryID();
-        SMAINENTRY sMainEntry;
+        SignalWatchListMainEntry sMainEntry;
         sMainEntry.m_unMainEntryID = unMainEntryId;
         POSITION pos = m_podTempCallerList->Find(sMainEntry);
         if (pos != NULL)
         {
-            SMAINENTRY& sPointEntry = m_podTempCallerList->GetAt(pos);
+            SignalWatchListMainEntry& sPointEntry = m_podTempCallerList->GetAt(pos);
             for (int i = 0; i < m_omCSAData.GetSize(); i++)
             {
                 CString omSubEntryName = m_omCSAData.GetAt(i);
-                SSUBENTRY sSubEntry;
-                sSubEntry.m_omSubEntryName = omSubEntryName;
+                SignalWatchListSubEntry sSubEntry;
+                sSubEntry.subEntryName = omSubEntryName;
                 POSITION SubPos = sPointEntry.m_odUnSelEntryList.Find(sSubEntry);
                 if (SubPos != NULL)
                 {
@@ -358,12 +342,12 @@ void CSigWatchAddDelDlg::vDelSelSubEntries(BOOL bAllEntries)
             POSITION pos = m_podTempCallerList->GetHeadPosition();
             while (pos)
             {
-                SMAINENTRY& sMainEntry = m_podTempCallerList->GetNext(pos);
+                SignalWatchListMainEntry& sMainEntry = m_podTempCallerList->GetNext(pos);
                 POSITION SubPos = sMainEntry.m_odSelEntryList.GetHeadPosition();
                 while (SubPos != NULL)
                 {
                     POSITION TempPos = SubPos;
-                    SSUBENTRY& sSubEntry = sMainEntry.m_odSelEntryList.GetNext(SubPos);
+                    SignalWatchListSubEntry& sSubEntry = sMainEntry.m_odSelEntryList.GetNext(SubPos);
                     sMainEntry.m_odUnSelEntryList.AddTail(sSubEntry);
                     sMainEntry.m_odSelEntryList.RemoveAt(TempPos);
                 }
@@ -556,14 +540,14 @@ BOOL CSigWatchAddDelDlg::bDeleteSubEntry(UINT unMainEntryID, const CString& omSu
     BOOL bSuccess = FALSE;
     if (m_podTempCallerList != NULL)
     {
-        SMAINENTRY sMainEntry;
+        SignalWatchListMainEntry sMainEntry;
         sMainEntry.m_unMainEntryID = unMainEntryID;
         POSITION pos = m_podTempCallerList->Find(sMainEntry);
         if (pos != NULL)
         {
-            SMAINENTRY& sPointEntry = m_podTempCallerList->GetAt(pos);
-            SSUBENTRY sSubEntry;
-            sSubEntry.m_omSubEntryName = omSubEntry;
+            SignalWatchListMainEntry& sPointEntry = m_podTempCallerList->GetAt(pos);
+            SignalWatchListSubEntry sSubEntry;
+            sSubEntry.subEntryName = omSubEntry;
             POSITION SubPos = sPointEntry.m_odSelEntryList.Find(sSubEntry);
             if (SubPos != NULL)
             {
@@ -1110,21 +1094,21 @@ void CSigWatchAddDelDlg::vPopulateSelSubEntryList()
         POSITION pos = m_podTempCallerList->GetHeadPosition();
         while (pos)
         {
-            SMAINENTRY& sMainEntry = m_podTempCallerList->GetNext(pos);
-            if( sMainEntry.m_omMainEntryName != STR_EMPTY)
+            SignalWatchListMainEntry& sMainEntry = m_podTempCallerList->GetNext(pos);
+            if( sMainEntry.mainEntryName != STR_EMPTY)
             {
                 CString omNameWithId;
                 omNameWithId.Format(defSTR_MSG_ID_IN_HEX,sMainEntry.m_unMainEntryID);
-                omNameWithId = omNameWithId + sMainEntry.m_omMainEntryName;// + omNameWithId;
+                omNameWithId = omNameWithId + sMainEntry.mainEntryName;// + omNameWithId;
                 CString omStrEntry;
                 POSITION SubPos = sMainEntry.m_odSelEntryList.GetHeadPosition();
                 while (SubPos != NULL)
                 {
-                    SSUBENTRY& sSubEntry = sMainEntry.m_odSelEntryList.GetNext(SubPos);
+                    SignalWatchListSubEntry& sSubEntry = sMainEntry.m_odSelEntryList.GetNext(SubPos);
                     // Use format instead of multiple operator '+' call
                     omStrEntry.Format(defSTR_FORMAT_SW_LIST,omNameWithId,
                                       defSTR_MSG_SIG_SEPERATER,
-                                      sSubEntry.m_omSubEntryName);
+                                      sSubEntry.subEntryName);
                     // Get current entry size
                     UINT unSize =
                         m_omListCtrlSignalWatch.GetStringWidth( omStrEntry );

@@ -28,15 +28,13 @@
 
 class CReplayFileConfigDlg : public CDialog
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
-    // Constructor
     CReplayFileConfigDlg( CReplayManager& rouManager,
                           const SFILTERAPPLIED_CAN* psFilterConfigured,
                           CWnd* pParent = NULL);
 
-    // Dialog Data
-    //{{AFX_DATA(CReplayFileConfigDlg)
     enum { IDD = IDD_DLG_REPLAY };
     CButton m_omChkInteractive;
     CRadixEdit  m_omEditMsgDelay;
@@ -46,21 +44,11 @@ public:
     CListCtrl   m_omLstcReplayFiles;
     int     m_nReplayMode;
     CString m_omStrMsgType;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CReplayFileConfigDlg)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
-
-    // Implementation
-protected:
 
     // Generated message map functions
-    //{{AFX_MSG(CReplayFileConfigDlg)
     virtual BOOL OnInitDialog();
     afx_msg void OnClickListRepalyFiles(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnDblclkListRepalyFiles(NMHDR* pNMHDR, LRESULT* pResult);
@@ -75,8 +63,7 @@ protected:
     afx_msg void OnBtnDeleteFile();
     afx_msg void OnBtnFilter();
     afx_msg void OnComboMsgTypeChanged();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     // Methods
     // To Create Image Lists used in this dialog
@@ -100,8 +87,6 @@ private:
     //Update Replay Msg Type
     VOID vUpdateReplayMsgType();
 
-
-private:
     // Members
     //filter applied
     const SFILTERAPPLIED_CAN* m_psFilterConfigured;
@@ -113,5 +98,4 @@ private:
     BOOL            m_bUpdating;
     // To keep track of selected item
     int             m_nSelecetedNamedLogIndex;
-
 };

@@ -38,8 +38,6 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
-/////////////////////////////////////////////////////////////////////////////
-// COutWnd
 
 IMPLEMENT_DYNCREATE(COutWnd, CMDIChildBase)
 /******************************************************************************/
@@ -80,15 +78,12 @@ COutWnd::~COutWnd()
     CExecuteManager::ouGetExecuteManager(m_eBus).m_pouBuildProgram->m_podOutWnd=NULL;
 }
 
-
 BEGIN_MESSAGE_MAP(COutWnd, CMDIChildBase)
-    //{{AFX_MSG_MAP(COutWnd)
     ON_WM_DESTROY()
     ON_WM_HELPINFO()
     ON_WM_SIZE()
     ON_LBN_DBLCLK(IDC_LSTB_OUTPUT,OnDbClick)
     ON_WM_SHOWWINDOW()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /******************************************************************************/

@@ -21,6 +21,7 @@
 
 #pragma once
 
+/* Project includes */
 #include "TSEditorGUI_resource.h"
 #include "Utility/ColorSelector.h"
 #include "afxwin.h"
@@ -28,6 +29,8 @@
 class CTSEditorSettingsDlg : public CDialog
 {
     DECLARE_DYNCREATE(CTSEditorSettingsDlg)
+    DECLARE_MESSAGE_MAP()
+
 public:
     CColorSelector m_ouBkColorBtn;
     CColorSelector m_ouTxtColorBtn;
@@ -36,16 +39,13 @@ public:
     CColorSelector m_Row2Color;
     CButton m_omDefaultVal;
 
-    // Dialog Data
     enum { IDD = IDD_SETTINGS};
-public:
+
     CTSEditorSettingsDlg(CWnd* pParent = NULL);   // standard constructor
     virtual ~CTSEditorSettingsDlg();
-    afx_msg void OnBnClickedDefault();
 
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     virtual BOOL OnInitDialog();
-
-    DECLARE_MESSAGE_MAP()
+    afx_msg void OnBnClickedDefault();
 };

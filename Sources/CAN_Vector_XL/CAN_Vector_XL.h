@@ -24,17 +24,8 @@
 
 #pragma once
 
-/**
- * See CAN_Vector_XL.cpp for the implementation of this class
- */
 class CCAN_Vector_XL : public CWinApp
 {
 public:
-    CCAN_Vector_XL();
-
-    // Overrides
-public:
     virtual BOOL InitInstance();
-
-    DECLARE_MESSAGE_MAP()
 };

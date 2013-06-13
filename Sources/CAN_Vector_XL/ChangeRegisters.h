@@ -24,17 +24,16 @@
 
 #pragma once
 
-// CChangeRegisters dialog
+/* Project includes */
 #include "CAN_Vector_XL_Resource.h"
 #include "Utility/RadixEdit.h"
 #include "ChangeRegDefines.h"
 #include "Include/CanUsbDefs.h"
 
-
-class CChangeRegisters : public CDialog//CPropertyPage
+class CChangeRegisters : public CDialog
 {
-    //DECLARE_DYNCREATE(CChangeRegisters)
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     // To Fill controller information taken from configuration module
     BOOL   bFillControllerConfig();
@@ -51,7 +50,6 @@ public:
 
 protected:
     // Dialog Data
-    //{{AFX_DATA(CChangeRegisters)
     enum { IDD = IDD_DLG_CHANGE_REGISTERS };
     CListCtrl   m_omChannelList;
     CRadixEdit  m_omEditWarningLimit;
@@ -69,17 +67,11 @@ protected:
     CString m_omStrEditBaudRate;
     CString m_omStrComboClock;
     CString m_omStrEditWarningLimit;
-    //}}AFX_DATA
     DOUBLE  m_dEditBaudRate;
     UINT    m_unCombClock;
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CChangeRegisters)
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+
 private:
 
     // Defination of BTR0 Register
@@ -119,7 +111,8 @@ private:
         USHORT usSampling;
         USHORT usSJW;
     } ;
-    // structure defination of all five columns in the list control
+
+	// structure defination of all five columns in the list control
     struct sCOLUMNS
     {
         uBTR1                uBTRReg1;
@@ -128,7 +121,6 @@ private:
     } m_asColListCtrl[defREG_VALUE_LIST_COUNT_MAX];
 
     // Generated message map functions
-    //{{AFX_MSG(CChangeRegisters)
     virtual void OnCancel();
     virtual void OnOK();
     virtual BOOL OnInitDialog();
@@ -149,9 +141,7 @@ private:
     afx_msg void OnClickListChannels(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnItemchangedListChannels(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnDblclkListChannels(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-private:
+
     // Pointer to hold controller information
     PSCONTROLLER_DETAILS  m_pControllerDetails;
     int m_nLastSelection;

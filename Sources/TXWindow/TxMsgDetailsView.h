@@ -34,11 +34,14 @@
 #include "CMsgSignalTemp.h"
 #include "Utility/SignalMatrix.h"
 #include "Utility/MsgInterpretation.h"  // For message interpretation
+
 class CTxMsgDetailsView : public CFormView
 {
-    // Form Data
+    DECLARE_DYNCREATE(CTxMsgDetailsView)
+    DECLARE_MESSAGE_MAP()
+
 public:
-    //{{AFX_DATA(CTxMsgDetailsView)
+    CTxMsgDetailsView();
     enum { IDD = IDD_DLG_TX_MSG_DETAILS };
     CComboBox   m_omComboChannelID;
     CSignalMatrix    m_odSignalMatrix;
@@ -58,11 +61,8 @@ public:
     CString m_omStrMsgIDorName;
     int     m_nRBTNFrameFormat;
     int     m_nChannelID;
-    //}}AFX_DATA
 
-    // Operations
-public:
-    CMsgSignal* m_pouDBPtr;
+	CMsgSignal* m_pouDBPtr;
     void vSetMsgDBPtr(void* pMsgDB);
     // To set given CAN values in to GUI
     void vSetValues(STXCANMSGDETAILS* psTxMsg);
@@ -82,35 +82,23 @@ public:
     void vUpdateChannelIDInfo();
 
     void vUpdateAllBlocksFrmDB();
-    afx_msg void vCallApplyChanges();
-    afx_msg void vAutoUpdateModifyChanges();
 
-protected:
-    // protected constructor used by dynamic creation
-    CTxMsgDetailsView();
-    DECLARE_DYNCREATE(CTxMsgDetailsView)
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CTxMsgDetailsView)
-public:
     virtual void OnInitialUpdate();
     virtual BOOL PreTranslateMessage(MSG* pMsg);
+
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
     virtual ~CTxMsgDetailsView();
+
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
-    // Generated message map functions
-    //{{AFX_MSG(CTxMsgDetailsView)
-    afx_msg void OnEditchangeCombMsgIdName();
+    afx_msg void vCallApplyChanges();
+    afx_msg void vAutoUpdateModifyChanges();
+	afx_msg void OnEditchangeCombMsgIdName();
     afx_msg void OnSelchangeCombMsgIdName();
     afx_msg void OnUpdateEditDLC();
     afx_msg void OnUpdateEditDataBytes();
@@ -119,8 +107,6 @@ protected:
     afx_msg void OnButtonAddMsg();
     afx_msg void OnItemchangedLstcSigDetails(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnSelchangeCombChannelId();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
 
 private:
     // Image List for Signal List
@@ -136,8 +122,6 @@ private:
     // Dirty Flag
     BOOL m_bIsMsgDirty;
 
-
-    // Methods
     // To initialise signal list control
     void vInitSignalListCtrl();
     // To set up signal name double click handler procedure
@@ -187,5 +171,4 @@ private:
     // To set default values for Message ID, DLC, databytes and Channel ID
     void vSetDefaultValues();
     void vUpdateSignalMatrix(void);
-
 };

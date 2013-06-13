@@ -27,6 +27,7 @@
 #ifndef __AFXEXT_H__
 #include <afxext.h>
 #endif
+
 #include "afxcmn.h"
 // For Color ListCtrl class definition
 #include "MessageList.h"
@@ -35,9 +36,10 @@
 
 class CGraphBottomView : public CFormView
 {
-    // Form Data
+    DECLARE_DYNCREATE(CGraphBottomView)
+    DECLARE_MESSAGE_MAP()
+
 public:
-    //{{AFX_DATA(CGraphBottomView)
     enum { IDD = IDD_DLG_GRAPH_RIGHT_BOTTOM };
     CButton m_omBtnRight;
     CButton m_omBtnLeft;
@@ -47,39 +49,35 @@ public:
     int     m_nAction;
     double  m_dRangeFrom;
     double  m_dRangeTo;
-    //}}AFX_DATA
 
-    // Attributes
-public:
-
-    // Operations
-public:
-    // To Initialise graph control with view style parameters
+	// To Initialise graph control with view style parameters
     void vInitGraphControl();
     // To Handle Connection change event
     void vHandleConnectionStatusChange(BOOL bConnectStatus);
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CGraphBottomView)
-public:
-    virtual void OnInitialUpdate();
+
+	virtual void OnInitialUpdate();
+
+    void vUpdateCursordetails(double X, double Y, short shCursorID);
+    void vUpdateSignalData();
+    double dRound(double val, unsigned int decimals);
+    void vInsertSignalData();
+    double m_dblarrTime[2];
+    double m_dblDeltaTime;
+    CMessageList m_lstSignalDetails;
+
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
     // protected constructor used by dynamic creation
     CGraphBottomView();
-    DECLARE_DYNCREATE(CGraphBottomView)
     virtual ~CGraphBottomView();
+
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
     // Generated message map functions
-    //{{AFX_MSG(CGraphBottomView)
     afx_msg void OnBtnExport();
     afx_msg void OnBtnAutoFit();
     afx_msg void OnBtnConfigure();
@@ -100,8 +98,7 @@ protected:
     afx_msg void OnBtnRight();
     afx_msg void OnTimer(UINT nIDEvent);
     afx_msg LRESULT vHandleConfigFileChange( WPARAM wParam,LPARAM lParam);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     // To Update the changes in Configuration Module
     void vSaveChangedInToConfig();
@@ -128,12 +125,4 @@ private:
     //Gets text extent for a string
     int nGetListCtrlTextExtent(CString omColTitle);
     void vCreateColumns();
-public:
-    void vUpdateCursordetails(double X, double Y, short shCursorID);
-    void vUpdateSignalData();
-    double dRound(double val, unsigned int decimals);
-    void vInsertSignalData();
-    double m_dblarrTime[2];
-    double m_dblDeltaTime;
-    CMessageList m_lstSignalDetails;
 };

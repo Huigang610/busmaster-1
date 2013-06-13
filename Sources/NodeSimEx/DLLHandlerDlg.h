@@ -24,57 +24,29 @@
 
 #pragma once
 
-// DLLHandlerDlg.h : header file
-//
-
-/////////////////////////////////////////////////////////////////////////////
-// CDLLHandlerDlg dialog
-
 class CDLLHandlerDlg : public CDialog
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     CStringArray m_omStrArrayDLLHandler;
 
     CDLLHandlerDlg(BYTE byType, CFunctionEditorDoc* pDoc, CWnd* pParent = NULL, BOOL bIsDelete = FALSE);   // standard constructor
 
-    // Dialog Data
-    //{{AFX_DATA(CDLLHandlerDlg)
     enum { IDD = IDD_DLG_DLL_HANDLER };
     CButton m_omCheckDLLUnLoad;
     CButton m_omCheckDLLLoad;
-    //CButton m_omButtonOK;
     BOOL    m_bCheckDLLLoad;
     BOOL    m_bCheckDLLUnLoad;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CDLLHandlerDlg)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
+	virtual BOOL OnInitDialog();
+    afx_msg void OnBnClickedOk();
+    afx_msg void OnCbtnDllCancel();
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CDLLHandlerDlg)
-    //    afx_msg void OnCbtnDllCancel();
-    //    afx_msg void OnCbtnDllOk();
-    virtual BOOL OnInitDialog();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
 private:
     CFunctionEditorDoc* m_pDoc;
     BOOL m_bIsDelete;
     BYTE m_byType;
-
-public:
-    afx_msg void OnBnClickedOk();
-    afx_msg void OnCbtnDllCancel();
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

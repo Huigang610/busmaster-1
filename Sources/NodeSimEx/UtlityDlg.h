@@ -24,58 +24,35 @@
 
 #pragma once
 
-// UtlityDlg.h : header file
-//
-
 #include "NodeSimEx_resource.h"
-
-/////////////////////////////////////////////////////////////////////////////
-// CUtlityDlg dialog
 
 class CUtlityDlg : public CDialog
 {
-    // Construction
-private:
-    CFunctionEditorDoc* m_pDoc;
+    DECLARE_MESSAGE_MAP()
+
 public:
     CString m_omStrFunPrototype;
     CUtlityDlg(CFunctionEditorDoc* pDoc, CWnd* pParent = NULL);   // standard constructor
     void vSetUtilFuncChange(CString omStrReturnType);
 
-    // Dialog Data
-    //{{AFX_DATA(CUtlityDlg)
     enum { IDD = IDD_DLG_DEFINE_UTILITY_FN };
     CEdit   m_omEditUtilsFunText;
     CComboBox   m_omComboRetType;
     CString m_omStrFunctionName;
     CString m_omStrUtilsFunText;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CUtlityDlg)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CUtlityDlg)
-    afx_msg void OnOk();
-    virtual BOOL OnInitDialog();
+	afx_msg void OnOk();
+    afx_msg void OnCbnSelchangeCombFnReturnType();
     afx_msg void OnChangeEditFnPrototype();
     afx_msg void OnCancel();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-private:
-    BOOL m_bChangeUtilFunc;
-    CString m_omStrTempReturnType;
-public:
-    afx_msg void OnCbnSelchangeCombFnReturnType();
-};
+    virtual BOOL OnInitDialog();
 
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
+private:
+    CFunctionEditorDoc* m_pDoc;
+
+	BOOL m_bChangeUtilFunc;
+    CString m_omStrTempReturnType;
+};

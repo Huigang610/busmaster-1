@@ -14,11 +14,7 @@
  *                                                                         *
  ***************************************************************************/
 
-/**
-    Library to talk to Tiny-CAN devices. You find the latest versions at
-       http://www.tiny-can.com/
-**/
-#include <windows.h>
+//#include <windows.h>
 #include <basetyps.h>
 #include <commctrl.h>
 #include <windowsx.h>

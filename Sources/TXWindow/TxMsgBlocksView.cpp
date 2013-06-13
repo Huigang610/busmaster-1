@@ -54,13 +54,9 @@ IMPLEMENT_DYNCREATE(CTxMsgBlocksView, CFormView)
 CTxMsgBlocksView::CTxMsgBlocksView()
     : CFormView(CTxMsgBlocksView::IDD)
 {
-    //{{AFX_DATA_INIT(CTxMsgBlocksView)
     m_omStrMsgBlockName = STR_EMPTY;
     m_omStrTimeIntervalVal = STR_EMPTY;
     m_omStrKeyVal = STR_EMPTY;
-    //m_bIsMonoshot = FALSE;
-    //m_bTriggerType = FALSE;
-    //}}AFX_DATA_INIT
     // Number of message blocks in the Tx List
     m_unMsgBlockCount = 0;
     // Tx Message List Pointer
@@ -112,42 +108,31 @@ CTxMsgBlocksView::~CTxMsgBlocksView()
 void CTxMsgBlocksView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CTxMsgBlocksView)
     DDX_Text(pDX, IDC_EDIT_MSG_BLOCK_NAME, m_omStrMsgBlockName);
     DDX_Text(pDX, IDC_EDIT_TRG_TIME_VAL, m_omStrTimeIntervalVal);
     DDX_Control(pDX, IDC_LSTC_MSG_BLOCKS_NAME, m_omLctrMsgBlockName);
     DDX_Control(pDX, IDC_EDIT_MSG_BLOCK_NAME, m_omEditMsgBlockName);
-    //DDX_Control(pDX, IDC_CHKB_TRIGGER_TYPE, m_omButtonTriggerType);
     DDX_Control(pDX, IDC_EDIT_TRG_TIME_VAL, m_omEditTrgTimeIntervalVal);
     DDX_Control(pDX, IDC_EDIT_TRG_KEY_VAL, m_omEditTrgKeyVal);
     DDX_Control(pDX, IDC_CHKB_ON_KEY_TRIGGER, m_omButtonKeyTrigger);
     DDX_Control(pDX, IDC_CHKB_ON_TIME_TRIGGER, m_omButtonTimeTrigger);
     DDX_Control(pDX, IDC_CBTN_ADD_MSG_BLOCK, m_omButtonAddMsgBlock);
-    //DDX_Control(pDX, IDC_CHKB_TX_ALL_FRAME, m_omButtonTxAllFrame);
     DDX_Control(pDX, IDC_CBTN_DELETE_MSG_BLOCK, m_omButtonDeleteMsgBlock);
     DDX_Control(pDX, IDC_CHECK_MSG_BLOCK_DELAY, m_omDelayBtwnBlocks);
     DDX_Control(pDX, IDC_EDIT_BLOCK_TRG_TIMER_VAL, m_omTimeDelayBtwnBlocks);
-    //DDX_Check(pDX, IDC_CHKB_TX_ALL_FRAME, m_bTXAllFrame);
-    //DDX_Check(pDX, IDC_CHK_MONO, m_bIsMonoshot);
-    //DDX_Check(pDX, IDC_CHKB_TRIGGER_TYPE, m_bTriggerType);
-    //}}AFX_DATA_MAP
     DDX_Control(pDX, IDC_COMBO_MSGS, m_omComboAllMsgs);
     DDV_MaxChars(pDX, m_omStrMsgBlockName, (defBLOCKNAME_SIZE - 1));
 }
 
-
 BEGIN_MESSAGE_MAP(CTxMsgBlocksView, CFormView)
-    //{{AFX_MSG_MAP(CTxMsgBlocksView)
     ON_BN_CLICKED(IDC_CBTN_ADD_MSG_BLOCK, OnAddMsgBlock)
     ON_BN_CLICKED(IDC_CBTN_DELETE_MSG_BLOCK, OnDeleteSelectedMsgBlock)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LSTC_MSG_BLOCKS_NAME, OnItemchangedLstcMsgBlocksName)
     ON_EN_CHANGE(IDC_EDIT_MSG_BLOCK_NAME, OnChangeEditMsgBlockName)
-    //ON_BN_CLICKED(IDC_CHKB_TRIGGER_TYPE, OnChkbTriggerType)
     ON_BN_CLICKED(IDC_CHKB_ON_TIME_TRIGGER, OnChkbOnTimeTrigger)
     ON_BN_CLICKED(IDC_CHKB_ON_KEY_TRIGGER, OnChkbOnKeyTrigger)
     ON_EN_UPDATE(IDC_EDIT_TRG_TIME_VAL, OnUpdateEditTrgTimeVal)
     ON_EN_UPDATE(IDC_EDIT_TRG_KEY_VAL, OnUpdateEditTrgKeyVal)
-    //ON_BN_CLICKED(IDC_CHKB_TX_ALL_FRAME, OnChkbTxAllFrame)
     ON_NOTIFY(NM_RCLICK, IDC_LSTC_MSG_BLOCKS_NAME, OnRclickLstcMsgBlocksName)
     ON_COMMAND(IDM_ADD_MSG_BLOCK, OnAddMsgBlock)
     ON_COMMAND(IDM_DELETE_SEL_MSG_BLOCK, OnDeleteSelectedMsgBlock)
@@ -161,7 +146,6 @@ BEGIN_MESSAGE_MAP(CTxMsgBlocksView, CFormView)
     ON_EN_KILLFOCUS(IDC_EDIT_TRG_KEY_VAL, /*&CTxMsgBlocksView::*/AutoUpdateChanges)
     ON_EN_KILLFOCUS(IDC_EDIT_BLOCK_TRG_TIMER_VAL, /*&CTxMsgBlocksView::*/AutoUpdateChanges)
 END_MESSAGE_MAP()
-
 
 #ifdef _DEBUG
 void CTxMsgBlocksView::AssertValid() const

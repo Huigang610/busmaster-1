@@ -21,30 +21,19 @@
 
 #pragma once
 
+/* Project includes */
 #include "TSEditorGUI_PropertyView.h"
 #include "TestSetupEditorLib/TestSetupEntity.h"
 #include "TestSetupEditorLib/DataBaseMsgList.h"
 #include "TreeViewEx.h"
 
-// CTSEditorChildFrame frame with splitter
 #define szFilter    "Test setup file(s) (*.xml)|*.xml||"
+
 class CTSEditorChildFrame : public CMDIChildWnd
 {
     DECLARE_DYNCREATE(CTSEditorChildFrame)
-    CBaseEntityTA* m_pCurrentEntity;
-    DWORD m_dwCurrentEntityID;
-    HTREEITEM m_hCurrentTreeItem;
-    CTestSetupEntity m_ouTSEntity;
-    CString m_omCurrentTSFile;
-    BOOL    m_bFileSaved;
-    //Cut-copy-paste
-    CBaseEntityTA* m_podCopyEntity;
-    //Backup
-    CSendEntity m_omSendEntity;
-    CVerifyEntity m_ouVerifyEntity;
-    BOOL m_bQueryConfirm;
-    CMenu* m_pMainMenu;
-    WINDOWPLACEMENT m_sTSDefPlacement;
+    DECLARE_MESSAGE_MAP()
+
 public:
     BOOL m_bModified;
     CTreeViewEx* m_odTreeView;
@@ -55,17 +44,6 @@ public:
     BOOL m_bInit;
     CTSEditorChildFrame();
 
-protected:
-    // protected constructor used by dynamic creation
-    virtual ~CTSEditorChildFrame();
-
-    CSplitterWnd m_omSplitterWnd;
-    CImageList*  imageList;
-protected:
-    virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
-
-    DECLARE_MESSAGE_MAP()
-public:
     void vLoadTestSetupFile(CString omFilePath, BOOL bEmptyFile = FALSE);
     void vLoadTestSetupFileTemp(CString omFilePath, BOOL bEmptyFile = FALSE);
     void vSetModifiedFlag(BOOL isModified);
@@ -82,8 +60,63 @@ public:
     bool GetConfigurationData(xmlNodePtr& pxmlNodePtr);
     HRESULT SetConfigurationData(BYTE* pSrcBuffer, UINT unBuffSize);
     HRESULT SetConfigurationData(xmlNodePtr pXmlNode);
+
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+
+    void SetTSEditorMenu();
+
+    afx_msg void OnFileSave(void);
+
+protected:
+    virtual ~CTSEditorChildFrame();
+
+    CSplitterWnd m_omSplitterWnd;
+    CImageList*  imageList;
+
+    afx_msg void OnDestroy(void);
+    afx_msg void OnFileOpen(void);
+    afx_msg void OnHelpAbouttestsetupeditor(void);
+    afx_msg LRESULT OnSelectionChanged(WPARAM pNMTreeView, LPARAM);
+    afx_msg LRESULT OnSelectionChanging(WPARAM pNMTreeView, LPARAM);
+    afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
+    afx_msg void OnFileNew(void);
+    afx_msg void OnFileSaveas(void);
+    afx_msg void OnFileClose(void);
+    afx_msg void OnFileExit(void);
+    afx_msg void OnUpdateFileSaveas(CCmdUI* pCmdUI);
+    afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+    afx_msg void OnEditCopy(void);
+    afx_msg void OnUpdateEditCopy(CCmdUI* pCmdUI);
+    afx_msg void OnEditPaste(void);
+    afx_msg void OnUpdateEditPaste(CCmdUI* pCmdUI);
+    afx_msg void OnEditCut(void);
+    afx_msg void OnUpdateEditCut(CCmdUI* pCmdUI);
+    afx_msg void OnDisplayReset(void);
+    afx_msg void OnDisplaySettings(void);
+    afx_msg void OnFileValidate(void);
+    afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
+    afx_msg void OnHelpTesteditorhelp();
+    afx_msg void OnClose();
+    virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+    virtual void OnUpdateFrameTitle(BOOL bAddToTitle);
+
 private:
-    INT nPromptForSaveFile();
+    CBaseEntityTA* m_pCurrentEntity;
+    DWORD m_dwCurrentEntityID;
+    HTREEITEM m_hCurrentTreeItem;
+    CTestSetupEntity m_ouTSEntity;
+    CString m_omCurrentTSFile;
+    BOOL    m_bFileSaved;
+    //Cut-copy-paste
+    CBaseEntityTA* m_podCopyEntity;
+    //Backup
+    CSendEntity m_omSendEntity;
+    CVerifyEntity m_ouVerifyEntity;
+    BOOL m_bQueryConfirm;
+    CMenu* m_pMainMenu;
+    WINDOWPLACEMENT m_sTSDefPlacement;
+
+	INT nPromptForSaveFile();
     void vSetCurrentFile(CString& omNewFilePath);
     INT nUpdateTreeView();
     INT nDisplayEntity(DWORD dwEntityID);
@@ -127,44 +160,7 @@ private:
     BOOL bEnablePase();
     BOOL bEnableCopy();
 
-
-
     void vCopyTreeItem(CBaseEntityTA** podCopyEntity, CBaseEntityTA* pCurrentEntity);
     void vDisplaySignalInfo(CString& omStrMsg);
     void vSetDefaultWndPlacement(void);
-
-public:
-    afx_msg void OnDestroy(void);
-    //    afx_msg void OnFileNew(void);
-    afx_msg void OnFileOpen(void);
-    afx_msg void OnHelpAbouttestsetupeditor(void);
-    afx_msg LRESULT OnSelectionChanged(WPARAM pNMTreeView, LPARAM);
-    afx_msg LRESULT OnSelectionChanging(WPARAM pNMTreeView, LPARAM);
-    afx_msg void OnFileSave(void);
-    afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
-    afx_msg void OnFileNew(void);
-    afx_msg void OnFileSaveas(void);
-    afx_msg void OnFileClose(void);
-    afx_msg void OnFileExit(void);
-    afx_msg void OnUpdateFileSaveas(CCmdUI* pCmdUI);
-    afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
-
-protected:
-    virtual void OnUpdateFrameTitle(BOOL bAddToTitle);
-public:
-    afx_msg void OnEditCopy(void);
-    afx_msg void OnUpdateEditCopy(CCmdUI* pCmdUI);
-    afx_msg void OnEditPaste(void);
-    afx_msg void OnUpdateEditPaste(CCmdUI* pCmdUI);
-    afx_msg void OnEditCut(void);
-    afx_msg void OnUpdateEditCut(CCmdUI* pCmdUI);
-    afx_msg void OnDisplayReset(void);
-    afx_msg void OnDisplaySettings(void);
-    afx_msg void OnFileValidate(void);
-    virtual BOOL PreTranslateMessage(MSG* pMsg);
-    afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
-    afx_msg void OnHelpTesteditorhelp();
-    afx_msg void OnClose();
-
-    void SetTSEditorMenu();
 };

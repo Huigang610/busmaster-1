@@ -23,46 +23,81 @@
 
 struct GuiParameters
 {
-    char       titleName[MAX_PATH];
+    GuiParameters();
+
+	char       titleName[MAX_PATH];
     char       mainListName[MAX_PATH];
     char       unselectedListName[MAX_PATH];
     char       selectedListName[MAX_PATH];
 
-    CImageList* imageList;           /**< Pointer to loaded imagelist */
-    INT         unselectedIconIndex; /**< Icon will appear in left list control */
-    INT         selectedIconIndex;   /** Icon will appear in right list control */
-    BOOL        combine;             /** Whether Main Entry should be combined with subentry name while displaying in the list */
-    GuiParameters();
+	/**
+	 * Pointer to loaded imagelist
+	 */
+    CImageList* imageList;
+
+	/**
+	 * Icon will appear in left list control
+	 */
+    INT unselectedIconIndex;
+
+	/**
+	 * Icon will appear in right list control
+	 */
+    INT selectedIconIndex;
+
+	/**
+	 * Whether Main Entry should be combined with subentry name while displaying in the list
+	 */
+    BOOL combine;
 };
 
-typedef struct tagSubEntry
+typedef struct SignalWatchListSubEntry
 {
-    unsigned int m_unSubEntryID;    /**< ID */
-    CString m_omSubEntryName;       /**< Name */
+	/**
+	 * ID
+	 */
+    unsigned int m_unSubEntryID;
 
-    BOOL operator ==(const tagSubEntry& RefObj) const;
+	/**
+	 * Name
+	 */
+    CString subEntryName;
 
-} SSUBENTRY;
+    BOOL operator ==(const SignalWatchListSubEntry& RefObj) const;
+} SignalWatchListSubEntry;
 
-typedef CList<SSUBENTRY, SSUBENTRY&> CSubEntryList;
+typedef CList<SignalWatchListSubEntry, SignalWatchListSubEntry&> SignalWatchListSubEntries;
 
 /**
  * Structure for Signal Watch Implementation
  */
-typedef struct tagMainEntry
+typedef struct SignalWatchListMainEntry
 {
-    UINT m_unMainEntryID;             /**< ID */
-    CString m_omMainEntryName;        /**< Name */
-    CSubEntryList m_odUnSelEntryList; /**< Sub entries which are not selected */
-    CSubEntryList m_odSelEntryList;   /**< Sub entries which are selected */
+	/**
+	 * ID
+	 */
+    UINT m_unMainEntryID;
 
-    tagMainEntry();
-    ~tagMainEntry();
+	/**
+	 * Name
+	 */
+    CString mainEntryName;
+
+	/**
+	 * Sub entries which are not selected
+	 */
+    SignalWatchListSubEntries m_odUnSelEntryList;
+
+	/**
+	 * Sub entries which are selected
+	 */
+    SignalWatchListSubEntries m_odSelEntryList;
+
+    SignalWatchListMainEntry();
+    ~SignalWatchListMainEntry();
     void vResetAll(void);
-    tagMainEntry& operator=(tagMainEntry& RefObj);
-    BOOL operator==(const tagMainEntry& RefObj) const;
+    SignalWatchListMainEntry& operator=(SignalWatchListMainEntry& RefObj);
+    BOOL operator==(const SignalWatchListMainEntry& RefObj) const;
+} SignalWatchListMainEntry;
 
-} SMAINENTRY;
-
-typedef CList<SMAINENTRY, SMAINENTRY&> CMainEntryList;
-
+typedef CList<SignalWatchListMainEntry, SignalWatchListMainEntry&> SignalWatchListMainEntries;

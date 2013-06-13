@@ -261,7 +261,6 @@ BOOL CBuildProgram::bBuildProgram(PSNODEINFO psNodeInfo, BOOL bLoadDLL)
             CString omStrMakeFileTemplateName;
             omStrMakeFileTemplateName  = acGCCPath;
             CString omTempGccFile = CGlobalObj::ouGetObj(m_eBus).m_omAppDirectory;
-            /*kadoor*/
             omStrMakeFileTemplateName = omTempGccFile;
             CString omGccMakeFileName = "\\GCCDLLMakeTemplate";
             switch (m_eBus)
@@ -296,10 +295,7 @@ BOOL CBuildProgram::bBuildProgram(PSNODEINFO psNodeInfo, BOOL bLoadDLL)
                 // Create process after giving the command line input
                 omStrGccMakeFile  = acGCCPath;
 
-                /*kadoor*/
                 omStrGccMakeFile = omTempGccFile;
-                /*omStrGccMakeFile += "\\MinGW\\bin";
-                omStrGCCPath      = omStrGccMakeFile;*/
                 omStrGccMakeFile = "mingw32-make.exe";
                 omStrGccParamter  =  "--silent --file=";
                 omStrGccParamter += acStrShortPath;

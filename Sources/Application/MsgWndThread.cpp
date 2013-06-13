@@ -53,22 +53,17 @@ CMsgWndThread::~CMsgWndThread()
 
 BOOL CMsgWndThread::InitInstance()
 {
-    // TODO:  perform and per-thread initialization here
     return TRUE;
 }
 
 int CMsgWndThread::ExitInstance()
 {
-    // TODO:  perform any per-thread cleanup here
     return CWinThread::ExitInstance();
 }
 
 BEGIN_MESSAGE_MAP(CMsgWndThread, CWinThread)
     ON_THREAD_MESSAGE(WM_MODIFY_VISIBILITY, vModifyVisibilityStatus)
-    //ON_THREAD_MESSAGE(WM_SHUTDOWN_MSGWNDTHREAD, vShutdownThread)
 END_MESSAGE_MAP()
-
-// CMsgWndThread message handlers
 
 BOOL CMsgWndThread::CreateMsgWnd(HWND hFrameWnd, eTYPE_BUS eBusType, DWORD dwClientID, void* pParam)
 {

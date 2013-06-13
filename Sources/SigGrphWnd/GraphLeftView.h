@@ -28,23 +28,17 @@
 #include <afxext.h>
 #endif
 
-// For Graph Element class
-#include "GraphElement.h"
-// For Color ListCtrl class definition
-#include "MessageList.h"
-// For Color Pocker class definition
-#include "Utility/ColorSelector.h"
+
+#include "GraphElement.h"	// For Graph Element class
+#include "MessageList.h"	// For Color ListCtrl class definition
+#include "Utility/ColorSelector.h"	// For Color Pocker class definition
 
 class CGraphLeftView : public CFormView
 {
-protected:
-    // protected constructor used by dynamic creation
-    CGraphLeftView();
     DECLARE_DYNCREATE(CGraphLeftView)
+    DECLARE_MESSAGE_MAP()
 
-    // Form Data
 public:
-    //{{AFX_DATA(CGraphLeftView)
     enum { IDD = IDD_DLG_GRAPH_LEFT_TOP };
     CButton m_omBtnVisible;
     CButton m_omBtnEnable;
@@ -54,38 +48,32 @@ public:
     int     m_nLineType;
     int     m_nSymbolType;
     IDMGraphCtrl* m_pDMGraphCtrl;
-    //}}AFX_DATA
 
-    // Attributes
-public:
-
-    // Operations
-public:
     // To handle tool connection change event
     void vHandleConnectionStatusChange(BOOL bConnect);
     // To populate list with graph element details
     void vPopulateElementList();
     // To Populate graph control with list of elements
     void vPopulateGraphControl();
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CGraphLeftView)
-public:
     virtual void OnInitialUpdate();
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
+	int m_nLineDisplay;
+    HRESULT GetCurrentElement(IDMGraphCtrl* pGraphCtrl, IDMGraphElement** ppGraphElement);
+
 protected:
-    virtual ~CGraphLeftView();
+    // protected constructor used by dynamic creation
+    CGraphLeftView();
+
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+
+	virtual ~CGraphLeftView();
+
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
     // Generated message map functions
-    //{{AFX_MSG(CGraphLeftView)
     afx_msg void OnBtnVisible();
     afx_msg void OnItemchangedListSignals(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnSelchangeComboType();
@@ -93,8 +81,7 @@ protected:
     afx_msg void OnBtnEnable();
     afx_msg LRESULT OnColorChange( WPARAM wparam,LPARAM lparam);
     afx_msg LRESULT vHandleConfigFileChange( WPARAM wParam,LPARAM lParam);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     BOOL m_bConnectionStatus;
     void vUpdateGraphControl(int nFromControl, long lIndex);
@@ -108,7 +95,4 @@ private:
     void vEnableDisableControls();
     // To get parent window pointer
     CWnd* pomGetParentWindow() const;
-public:
-    int m_nLineDisplay;
-    HRESULT GetCurrentElement(IDMGraphCtrl* pGraphCtrl, IDMGraphElement** ppGraphElement);
 };

@@ -85,26 +85,10 @@ CTxMsgChildFrame::CTxMsgChildFrame() : CMDIChildBase( TX_WND_PLACEMENT )
     m_bInit = TRUE;
 }
 
-/*******************************************************************************
-  Function Name  : ~CTxMsgChildFrame
-  Description    : Standard Destructor
-  Member of      : CTxMsgChildFrame
-  Functionality  : -
-  Author(s)      : Raja N
-  Date Created   : 19.4.2005
-  Modifications  :
-*******************************************************************************/
-CTxMsgChildFrame::~CTxMsgChildFrame()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CTxMsgChildFrame, CMDIChildBase)
-    //{{AFX_MSG_MAP(CTxMsgChildFrame)
     ON_WM_ERASEBKGND()
     ON_WM_DESTROY()
     ON_WM_CLOSE()
-    //}}AFX_MSG_MAP
     ON_MESSAGE(WM_USER_CMD,vUserCommand)
     ON_WM_SIZE()
     ON_WM_SIZING()

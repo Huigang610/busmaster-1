@@ -32,16 +32,13 @@
 #include <atlcom.h>
 #include <time.h>
 
-/* C++ includes */
-#include <map>
-
 /* Project includes */
 #include "resource_BusSim.h"
 #include "BusEmulation.h"
 
 class CBusEmulationModule : public ATL::CAtlExeModuleT<CBusEmulationModule>
 {
-public :
+public:
     DECLARE_LIBID(LIBID_BusEmulationLib)
     DECLARE_REGISTRY_APPID_RESOURCEID(IDR_BUSEMULATION, "{0937AB35-4C58-4077-9022-B50CB6C42736}")
 };

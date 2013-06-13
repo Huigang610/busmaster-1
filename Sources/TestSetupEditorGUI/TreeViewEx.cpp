@@ -51,34 +51,16 @@ CTreeViewEx::CTreeViewEx(void)
     m_omTextColor = def_COLOR_TREE_TEXT;
 }
 
-/******************************************************************************
-Function Name  :  ~CTreeViewEx
-Input(s)       :  -
-Output         :  -
-Functionality  :  Destructor of CTreeViewEx
-Member of      :  CTreeViewEx
-Friend of      :  -
-Author(s)      :  Venkatanarayana Makam
-Date Created   :  30/03/2011
-Modifications  :
-******************************************************************************/
-CTreeViewEx::~CTreeViewEx()
-{
-}
-
 BEGIN_MESSAGE_MAP(CTreeViewEx, CTreeView)
     ON_WM_LBUTTONUP()
     ON_WM_MOUSEMOVE()
     ON_WM_LBUTTONDOWN()
-
     ON_WM_CTLCOLOR_REFLECT()
-
     ON_COMMAND(IDM_DELETE, vOnDeleteItem)
     ON_COMMAND(IDM_EXPAND_ALL, vExpandFull)
     ON_COMMAND(IDM_SETTINGS_CLR, OnBKGColor)
     ON_COMMAND(IDM_COLLAPSE_ALL, vCollapseFull)
     ON_COMMAND_RANGE(IDM_ADD_TESTCASE, IDM_ADD_REPLAY, OnAddEntityItem)
-
     ON_NOTIFY_REFLECT(NM_RCLICK, OnNMRclick)
     ON_NOTIFY_REFLECT(TVN_BEGINDRAG, OnTvnBegindrag)
     ON_NOTIFY_REFLECT(TVN_SELCHANGED, OnTvnSelchanged)
@@ -86,9 +68,6 @@ BEGIN_MESSAGE_MAP(CTreeViewEx, CTreeView)
     ON_NOTIFY_REFLECT(TVN_ENDLABELEDIT, OnTvnEndlabeledit)
     ON_NOTIFY_REFLECT(TVN_BEGINLABELEDIT, OnTvnBeginlabeledit)
 END_MESSAGE_MAP()
-
-
-// CTreeViewEx diagnostics
 
 #ifdef _DEBUG
 void CTreeViewEx::AssertValid() const

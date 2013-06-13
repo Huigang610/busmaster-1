@@ -34,9 +34,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// CMsgHandlerDlg dialog
-
 /******************************************************************************/
 /*  Function Name    :  CMsgHandlerDlg                                        */
 /*  Input(s)         :  CWnd* pParent: Pointer to parent window               */
@@ -56,8 +53,6 @@ CMsgHandlerDlg::CMsgHandlerDlg(ETYPE_BUS eBus, CWnd* pParent /*=NULL*/)
       m_omStrMsgIDFrom(""),
       m_omStrMsgIDTo("")
 {
-    //{{AFX_DATA_INIT(CMsgHandlerDlg)
-    //}}AFX_DATA_INIT
     m_eBus = eBus;
 }
 
@@ -77,7 +72,6 @@ CMsgHandlerDlg::CMsgHandlerDlg(ETYPE_BUS eBus, CWnd* pParent /*=NULL*/)
 void CMsgHandlerDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CMsgHandlerDlg)
     DDX_Control(pDX, IDC_LSTB_MSG_HANDLER_LIST, m_omListMsgName);
     DDX_Control(pDX, IDC_EDIT_MSG_HANDLER_ID_TO, m_odEditMsgIDTo);
     DDX_Control(pDX, IDC_EDIT_MSG_HANDLER_ID_FROM, m_odEditMsgIDFrom);
@@ -87,12 +81,10 @@ void CMsgHandlerDlg::DoDataExchange(CDataExchange* pDX)
     DDX_Text(pDX, IDC_EDIT_MSG_HANDLER_ID, m_omStrMsgID);
     DDX_Text(pDX, IDC_EDIT_MSG_HANDLER_ID_FROM, m_omStrMsgIDFrom);
     DDX_Text(pDX, IDC_EDIT_MSG_HANDLER_ID_TO, m_omStrMsgIDTo);
-    //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(CMsgHandlerDlg, CDialog)
-    //{{AFX_MSG_MAP(CMsgHandlerDlg)
     ON_BN_CLICKED(IDC_CBTN__MSG_CANCEL, OnCbtnMsgCancel)
     ON_BN_CLICKED(IDC_CBTN__MSG_OK, OnCbtnMsgOk)
     ON_BN_CLICKED(IDC_CBTN_MSG_HANDLDER_APPLY, OnCbtnMsgHandlerApply)
@@ -104,7 +96,6 @@ BEGIN_MESSAGE_MAP(CMsgHandlerDlg, CDialog)
     ON_EN_UPDATE(IDC_EDIT_MSG_HANDLER_ID, OnUpdateEditMsgHandlerId)
     ON_EN_UPDATE(IDC_EDIT_MSG_HANDLER_ID_FROM, OnUpdateEditMsgHandlerIdFrom)
     ON_EN_UPDATE(IDC_EDIT_MSG_HANDLER_ID_TO, OnUpdateEditMsgHandlerIdTo)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /******************************************************************************/
@@ -418,8 +409,6 @@ BOOL CMsgHandlerDlg::OnInitDialog()
     m_odEditMsgID.EnableWindow(TRUE);
     m_omButtonApply.EnableWindow(FALSE);
     m_omButtonOK.EnableWindow(FALSE);
-    //VENKATNARAYANA
-    //    m_odEditMsgID.vSetSigned(FALSE);
 
     m_odEditMsgIDTo.vSetSigned(FALSE);
     m_odEditMsgIDFrom.vSetSigned(FALSE);
@@ -527,8 +516,6 @@ BOOL CMsgHandlerDlg::bValidateUserSelection(CFunctionEditorDoc* pDoc)
             bButtonChecked =  IsDlgButtonChecked(IDC_RBTN_MSG_ID);
             if(bButtonChecked != 0)
             {
-                //VENKATNARAYANA
-                //unMsgID = (UINT)m_odEditMsgID.lGetValue();
                 // Get the corresponding message name from the database
                 /*omStrMsgNameForID = CMsgSignal::ouGetMsgSignal().
                             omStrGetMessageNameFromSlotID(unMsgID);
@@ -681,7 +668,6 @@ BOOL CMsgHandlerDlg::bValidateUserSelection(CFunctionEditorDoc* pDoc)
                             //break;
                         }
                     }
-                    ///////////////////////////////////////////
                     else if (omStrMsgPro.Compare(m_omStrSelectedItemText) == 0)
                     {
                         // Form the message to be dispalyed

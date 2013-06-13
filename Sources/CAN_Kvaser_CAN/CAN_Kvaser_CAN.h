@@ -21,19 +21,11 @@
  *
  * Exports API functions for Kvaser CAN Hardware interface
  */
+
 #pragma once
 
-/**
- * See CAN_Kvaser_CAN.cpp for the implementation of this class
- */
 class CCAN_Kvaser_CAN : public CWinApp
 {
 public:
-    CCAN_Kvaser_CAN();
-
-    // Overrides
-public:
     virtual BOOL InitInstance();
-
-    DECLARE_MESSAGE_MAP()
 };

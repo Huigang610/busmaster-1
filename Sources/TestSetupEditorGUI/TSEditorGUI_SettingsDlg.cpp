@@ -18,16 +18,19 @@
  * @author    Venkatanarayana makam
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
+
+/* Project includes */
 #include "TSEditorGUI_stdafx.h"
 #include "TSEditorGUI_SettingsDlg.h"
 #include "TSEditorGUI_Definitions.h"
-#include ".\tseditorgui_settingsdlg.h"
+#include "tseditorgui_settingsdlg.h"
 
 IMPLEMENT_DYNCREATE(CTSEditorSettingsDlg, CDialog)
 
 BEGIN_MESSAGE_MAP(CTSEditorSettingsDlg, CDialog)
     ON_BN_CLICKED(ID_DEFAULT, OnBnClickedDefault)
 END_MESSAGE_MAP()
+
 /******************************************************************************
 Function Name  :  CTSEditorSettingsDlg
 Input(s)       :

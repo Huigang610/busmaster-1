@@ -79,36 +79,15 @@ CListCtrlEx::CListCtrlEx() : m_bSingleClickActivate(FALSE)
 
 }
 
-/******************************************************************************
- Function Name  :   ~CListCtrlEx
-
- Description    :   Standard destructor
- Member of      :   CListCtrlEx
-
- Author(s)      :   Raja N
- Date Created   :   22.07.2004
- Modifications  :
-******************************************************************************/
-CListCtrlEx::~CListCtrlEx()
-{
-
-}
-
-
 BEGIN_MESSAGE_MAP(CListCtrlEx, CListCtrl)
-    //{{AFX_MSG_MAP(CListCtrlEx)
     ON_NOTIFY_REFLECT(LVN_ENDLABELEDIT, OnEndlabeledit)
     ON_WM_HSCROLL()
     ON_WM_VSCROLL()
     ON_NOTIFY_REFLECT(NM_DBLCLK, OnDoubleClick)
     ON_NOTIFY_REFLECT(NM_CLICK, OnClick)
-    //}}AFX_MSG_MAP
     ON_NOTIFY_REFLECT(NM_CUSTOMDRAW, OnNMCustomdraw)
     ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CListCtrlEx message handlers
 
 /******************************************************************************
  Function Name  : OnEndlabeledit

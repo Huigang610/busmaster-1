@@ -121,9 +121,7 @@ CSimSysTreeView::~CSimSysTreeView()
     CSimSysManager::ouGetSimSysManager(m_eBus).podSetSimSysTreeView(NULL);
 }
 
-
 BEGIN_MESSAGE_MAP(CSimSysTreeView, CTreeView)
-    //{{AFX_MSG_MAP(CSimSysTreeView)
     ON_WM_LBUTTONDOWN()
     ON_WM_RBUTTONDOWN()
     ON_NOTIFY_REFLECT(NM_RCLICK, OnTreeViewRightclick)
@@ -153,22 +151,12 @@ BEGIN_MESSAGE_MAP(CSimSysTreeView, CTreeView)
     ON_COMMAND(IDM_SIMSYS_SAVEAS, OnSimsysSaveAs)
     ON_COMMAND(IDM_SIMSYS_UNLOADALL, OnSimsysUnloadall)
     ON_COMMAND(IDM_SAVE_ALL_SIMSYS, OnSimsysSaveAll)
-
-    //}}AFX_MSG_MAP
-    //    ON_WM_SHOWWINDOW()
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CSimSysTreeView drawing
 
 void CSimSysTreeView::OnDraw(CDC* )
 {
     GetDocument();
-    // TODO: add draw code here
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// CSimSysTreeView diagnostics
 
 #ifdef _DEBUG
 void CSimSysTreeView::AssertValid() const
@@ -182,8 +170,6 @@ void CSimSysTreeView::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
-/////////////////////////////////////////////////////////////////////////////
-// CSimSysTreeView message handlers
 /******************************************************************************/
 /*  Function Name    :  bPopulateTree
 /*
@@ -1055,7 +1041,7 @@ void CSimSysTreeView::OnTreeViewRightclick(NMHDR* , LRESULT* pResult)
         // Get the parent item
         HTREEITEM hParentItem =   om_Tree.GetParentItem(hSelectedItem);
         HTREEITEM hGrandParentItem = om_Tree.GetParentItem(hParentItem);
-        //// when selected item is root "FlexrayBus"
+        // when selected item is root "FlexrayBus"
         if ( hParentItem == NULL )
         {
             vDisplayRootMenu();
@@ -1066,7 +1052,7 @@ void CSimSysTreeView::OnTreeViewRightclick(NMHDR* , LRESULT* pResult)
             {
                 vDisplaySimSysMenu();
             }
-            ///for any node
+            //for any node
             else
             {
                 CString omStrGrandParent = om_Tree.GetItemText(hGrandParentItem);

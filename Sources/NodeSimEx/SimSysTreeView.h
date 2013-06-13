@@ -24,24 +24,17 @@
 
 #pragma once
 
-// SimSysTreeView.h : header file
-//
+/* Project includes */
 #include "Include/Basedefs.h"
 #include "SimSysConfigDetails.h"  // For CSimSysConfigDetails class decl
-/////////////////////////////////////////////////////////////////////////////
-// CSimSysTreeView view
 
 class CSimSysTreeView : public CTreeView
 {
+    DECLARE_DYNCREATE(CSimSysTreeView)
+    DECLARE_MESSAGE_MAP()
+
 public:
     CSimSysTreeView();           // protected constructor used by dynamic creation
-    DECLARE_DYNCREATE(CSimSysTreeView)
-
-    // Attributes
-public:
-
-    // Operations
-public:
 
     CStringList m_omSimsysNames;
     BOOL bSetSimsysName(CString& omStrSimsysName);
@@ -62,28 +55,27 @@ public:
                            BOOL bIsDllLoaded);
 
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CSimSysTreeView)
-public:
     virtual void OnInitialUpdate();
+
+	static ETYPE_BUS CSimSysTreeView::sm_eBus;
+    void vAddSimDetFromFile(CString oCfgFilename);
+    void vDisplayRootMenu();
+    void vDisplaySimSysMenu();
+    void vDisplayNodeMenu();
+    HTREEITEM hInsertAndSelectItem(CString omItemName, HTREEITEM hParent);
+    PSSIMSYSINFO psGetCurrentSimSysInfo();
+
 protected:
     virtual void OnDraw(CDC* pDC);      // overridden to draw this view
     virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
-    //}}AFX_VIRTUAL
-
-    // Implementation
-protected:
     virtual ~CSimSysTreeView();
+
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
-    // Generated message map functions
-protected:
-    //{{AFX_MSG(CSimSysTreeView)
     afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
     afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
     afx_msg void OnTreeViewRightclick(NMHDR* pNMHDR, LRESULT* pResult);
@@ -115,8 +107,7 @@ protected:
     afx_msg void OnSimsysUnloadall();
     afx_msg void OnSimsysSaveAll();
     afx_msg void OnSimsysAllDllHandlers();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     ETYPE_BUS m_eBus;
     CMenu* pomContextMenu;
@@ -137,19 +128,4 @@ private:
     HTREEITEM m_hTreeItem;
     void vAddEditNode(BOOL bMode);
     void vSaveSimsSysIfModified(CString omSimSysName) ;
-
-public:
-    static ETYPE_BUS CSimSysTreeView::sm_eBus;
-    void vAddSimDetFromFile(CString oCfgFilename);
-    void vDisplayRootMenu();
-    void vDisplaySimSysMenu();
-    void vDisplayNodeMenu();
-    HTREEITEM hInsertAndSelectItem(CString omItemName, HTREEITEM hParent);
-    PSSIMSYSINFO psGetCurrentSimSysInfo();
-
 };
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

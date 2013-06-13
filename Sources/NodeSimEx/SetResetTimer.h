@@ -46,12 +46,10 @@ typedef struct tagSCALCEXECTIMETHREAD
 
 } SCALCEXECTIMETHREAD,*PSCALCEXECTIMETHREAD;
 
-/////////////////////////////////////////////////////////////////////////////
-// CSetResetTimer dialog
-
 class CSetResetTimer : public CDialog
 {
-    // Construction
+	DECLARE_MESSAGE_MAP()
+
 public:
     CSetResetTimer(ETYPE_BUS eBus, CWnd* pParent = NULL); // standard constructor
     void vSetResetAllTimers(CString om_StrNode,BOOL bEnable);
@@ -65,40 +63,29 @@ public:
     void vSetSimSysNodeArray(const CStringArray&,BOOL);
     void vRestoreTimerStatus(CString omNodeName,
                              PSTIMERHANDLERLIST psTimerListPtr);
-    // Dialog Data
-    //{{AFX_DATA(CSetResetTimer)
-    enum { IDD = IDD_DLG_SET_RESET_TIMER };
+
+	enum { IDD = IDD_DLG_SET_RESET_TIMER };
     CComboBox   m_omComboNodeName;
     CListCtrl   m_omTimerList;
     CString m_omStrNodeName;
-    //}}AFX_DATA
 
+	static ETYPE_BUS sm_eBus;
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CSetResetTimer)
-public:
     virtual BOOL DestroyWindow();
+
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CSetResetTimer)
     virtual BOOL OnInitDialog();
     afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
     afx_msg void OnBtnApply();
     afx_msg void OnChckMonoshot();
     afx_msg void OnUpdateEditTimerValue();
     afx_msg void OnBtnOk();
-    virtual void OnCancel();
     afx_msg void OnItemchangedLstcTimerHandler(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnSelchangeNodeList();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+    virtual void OnCancel();
+
 private:
     void vSaveUpdatedTimerInformation();
     void vUpdateTimerInformation(PSTIMERHANDLERLIST ps_CurrTimeHandler,
@@ -119,6 +106,4 @@ private:
     BOOL m_bSimSysNodes;                   //if dialog box from simsys or mainframe
     BOOL m_bNodeNameChanged ;
     PSCALCEXECTIMETHREAD m_psCalTimerThreadStruct;
-public:
-    static ETYPE_BUS sm_eBus;
 };

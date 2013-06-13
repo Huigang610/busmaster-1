@@ -38,7 +38,7 @@ CFrameProcessor_CAN::CFrameProcessor_CAN()
     m_sCANProcParams.m_pouCANBuffer = NULL;
     m_bIsDataLogged = FALSE;
 
-    m_sDataCopyThread.m_hActionEvent = m_ouFSEBufCAN.hGetNotifyingEvent();
+    m_sDataCopyThread.m_hActionEvent = m_ouFSEBufCAN.getNotifyEvent();
 }
 
 CFrameProcessor_CAN::~CFrameProcessor_CAN()
@@ -50,7 +50,7 @@ CFrameProcessor_CAN::~CFrameProcessor_CAN()
 BOOL CFrameProcessor_CAN::InitInstance(void)
 {
     BOOL Result = this->CFrameProcessor_Common::InitInstance();
-    //m_sDataCopyThread.m_hActionEvent = m_ouFSEBufCAN.hGetNotifyingEvent();
+    //m_sDataCopyThread.m_hActionEvent = m_ouFSEBufCAN.getNotifyEvent();
 
     return Result;
 }
@@ -58,7 +58,7 @@ BOOL CFrameProcessor_CAN::InitInstance(void)
 int CFrameProcessor_CAN::ExitInstance(void)
 {
     int Result = this->CFrameProcessor_Common::ExitInstance();
-    m_ouFSEBufCAN.vClearMessageBuffer();
+    m_ouFSEBufCAN.clearMessageBuffer();
 
     return Result;
 }
@@ -106,9 +106,9 @@ void CFrameProcessor_CAN::vRetrieveDataFromBuffer(void)
                                             };
     static sTCANDATA CurrMsgCAN;
 
-    while (m_ouFSEBufCAN.GetMsgCount() > 0)
+    while (m_ouFSEBufCAN.getMessageCount() > 0)
     {
-        m_ouFSEBufCAN.ReadFromBuffer(&CurrMsgCAN);
+        m_ouFSEBufCAN.readFromBuffer(&CurrMsgCAN);
 
         if (CurrMsgCAN.m_ucDataType != INTR_FLAG)
         {
@@ -148,7 +148,7 @@ void CFrameProcessor_CAN::vRetrieveDataFromBuffer(void)
         // Add this to the client buffer
         if (m_bClientBufferON)
         {
-            m_sCANProcParams.m_pouCANBuffer->WriteIntoBuffer(&CurrMsgCAN);
+            m_sCANProcParams.m_pouCANBuffer->writeIntoBuffer(&CurrMsgCAN);
         }
     }
 }
@@ -166,8 +166,8 @@ HRESULT CFrameProcessor_CAN::FPC_DoInitialisation(SCANPROC_PARAMS* psInitParams)
         ASSERT(NULL != m_sCANProcParams.m_pouCANBuffer);
         ASSERT(NULL != m_sCANProcParams.m_pILog);
 
-        m_ouFSEBufCAN.vClearMessageBuffer();
-        //m_sDataCopyThread.m_hActionEvent = m_ouFSEBufCAN.hGetNotifyingEvent();
+        m_ouFSEBufCAN.clearMessageBuffer();
+        //m_sDataCopyThread.m_hActionEvent = m_ouFSEBufCAN.getNotifyEvent();
         if (this->CFrameProcessor_Common::DoInitialisation() == S_OK)
         {
             if (m_pouDilCanInterface != NULL)

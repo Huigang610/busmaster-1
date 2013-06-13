@@ -44,15 +44,10 @@
 // Appliction global object
 extern CCANMonitorApp theApp;
 
-/////////////////////////////////////////////////////////////////////////////
-// CPPageMessage property page
-
 IMPLEMENT_DYNCREATE(CPPageMessage, CPropertyPage)
 
 CPPageMessage::CPPageMessage() : CPropertyPage(CPPageMessage::IDD)
 {
-    //{{AFX_DATA_INIT(CPPageMessage)
-    //}}AFX_DATA_INIT
 }
 
 CPPageMessage::CPPageMessage(BOOL bForDBMsg, ETYPE_BUS eBusType, CMsgSignal* pouMsgSigBUS) :
@@ -78,28 +73,20 @@ CPPageMessage::~CPPageMessage()
 void CPPageMessage::DoDataExchange(CDataExchange* pDX)
 {
     CPropertyPage::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CPPageMessage)
     DDX_Control(pDX, IDC_LIST_MESSAGE, m_odMsgList);
     DDX_Control(pDX, IDC_BUTTON_REMOVE, m_ctrlRemove);
     DDX_Control(pDX, IDC_BUTTON_ADD, m_ctrlAdd);
-    //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(CPPageMessage, CPropertyPage)
-    //{{AFX_MSG_MAP(CPPageMessage)
     ON_BN_CLICKED(IDC_BUTTON_ADD, OnButtonAdd)
     ON_BN_CLICKED(IDC_BUTTON_EDIT, OnButtonEdit)
     ON_BN_CLICKED(IDC_BUTTON_REMOVE, OnButtonRemove)
     ON_NOTIFY(NM_DBLCLK, IDC_LIST_MESSAGE, OnDblclkListMessage)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST_MESSAGE, OnItemchangedListMessage)
     ON_NOTIFY(NM_CUSTOMDRAW, IDC_LIST_MESSAGE, OnNMCustomdrawListMessage)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CPPageMessage message handlers
-
 
 BOOL CPPageMessage::OnInitDialog()
 {
@@ -401,15 +388,6 @@ void CPPageMessage::OnItemchangedListMessage(NMHDR* /*pNMHDR*/, LRESULT* pResult
     *pResult = 0;
 }
 
-///*******************************************************************************
-//  Function Name  : OnNMCustomdrawListMessage
-//  Description    :
-//  Member of      : CPPageMessage
-//  Functionality  : Setting the Color for each Message Entry
-//  Author(s)      : ArunKumar K
-//  Date Created   : 09.07.2010
-//  Modifications  :
-//*******************************************************************************/
 void CPPageMessage::OnNMCustomdrawListMessage(NMHDR* pNMHDR, LRESULT* pResult)
 {
     //LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
@@ -458,24 +436,3 @@ void CPPageMessage::OnNMCustomdrawListMessage(NMHDR* pNMHDR, LRESULT* pResult)
         *pResult = CDRF_DODEFAULT;
     }
 }
-///*******************************************************************************
-//  Function Name  : vSetMsgIDList
-//  Description    :
-//  Member of      : CPPageMessage
-//  Functionality  : Provides the list of messages ID contained in the m_odMsgList
-//                 to CanMonitor class
-//  Author(s)      : Anish
-//  Date Created   : 14.12.2006
-//  Modifications  :
-//*******************************************************************************/
-//void CPPageMessage::vSetMsgIDList()
-//{
-//  CString omStrTemp ;
-//  theApp.m_omListOfNDBDisplayMsgID.RemoveAll();
-//  int nItem = m_odMsgList.GetItemCount();
-//  for(int nTemp = 0 ; nTemp < nItem ; nTemp++)
-//  {
-//      omStrTemp = m_odMsgList.GetItemText(nTemp,0);
-//      theApp.m_omListOfNDBDisplayMsgID.AddHead(strtol(omStrTemp,NULL,16));
-//  }
-//}

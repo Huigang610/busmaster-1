@@ -62,13 +62,8 @@ CGraphLeftView::CGraphLeftView()
     : CFormView(CGraphLeftView::IDD)
     , m_nLineDisplay(0)
 {
-    //{{AFX_DATA_INIT(CGraphLeftView)
     m_nLineType = -1;
     m_nSymbolType = -1;
-    //}}AFX_DATA_INIT
-    //SGW Code commented by Arun 21-10-2010
-    //pMainFrame = NULL;
-    //SGW Code commented by Arun 21-10-2010
     m_pDMGraphCtrl = NULL;
     m_bConnectionStatus = FALSE;
 }
@@ -89,7 +84,6 @@ CGraphLeftView::~CGraphLeftView()
 void CGraphLeftView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CGraphLeftView)
     DDX_Control(pDX, IDC_BTN_VISIBLE, m_omBtnVisible);
     DDX_Control(pDX, IDC_BTN_ENABLE, m_omBtnEnable);
     DDX_Control(pDX, IDC_LIST_SIGNALS, m_omSignalList);
@@ -97,12 +91,9 @@ void CGraphLeftView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_LINE_COLOR, m_omLineColor);
     DDX_CBIndex(pDX, IDC_COMBO_TYPE, m_nLineType);
     DDX_CBIndex(pDX, IDC_COMBO_SYMBOL, m_nSymbolType);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CGraphLeftView, CFormView)
-    //{{AFX_MSG_MAP(CGraphLeftView)
     ON_WM_ERASEBKGND()
     ON_WM_PAINT()
     ON_BN_CLICKED(IDC_BTN_VISIBLE, OnBtnVisible)
@@ -112,9 +103,7 @@ BEGIN_MESSAGE_MAP(CGraphLeftView, CFormView)
     ON_BN_CLICKED(IDC_BTN_ENABLE, OnBtnEnable)
     ON_MESSAGE( WM_CPN_COLORSELECTED, OnColorChange)
     ON_MESSAGE(WM_CONFIG_CHANGE, vHandleConfigFileChange)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
 
 #ifdef _DEBUG
 void CGraphLeftView::AssertValid() const

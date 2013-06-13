@@ -28,9 +28,7 @@
 #include "CANControllerConfigDlg.h"
 #include "Utility/MultiLanguageSupport.h"
 
-
 IMPLEMENT_DYNAMIC(CCANControllerConfigDlg, CDialog)
-
 
 BEGIN_MESSAGE_MAP(CCANControllerConfigDlg, CDialog)
     ON_BN_CLICKED(IDC_BUTTON_CANCFG_OK, OnBnClickedButtonCancfgOk)

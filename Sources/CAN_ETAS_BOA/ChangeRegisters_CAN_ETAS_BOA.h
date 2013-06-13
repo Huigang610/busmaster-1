@@ -24,6 +24,7 @@
 
 #pragma once
 
+/* Project includes */
 #include "Utility/RadixEdit.h"
 #include "Math.h"
 #include "Include/Struct_Can.h"
@@ -34,12 +35,15 @@
 
 class CChangeRegisters_CAN_ETAS_BOA : public CDialog
 {
+    DECLARE_MESSAGE_MAP()
+
 public:
-    // standard constructor
     CChangeRegisters_CAN_ETAS_BOA(CWnd* pParent = NULL, PSCONTROLLER_DETAILS psControllerDetails = NULL, UINT nHardwareCount = 0);
     virtual ~CChangeRegisters_CAN_ETAS_BOA();
 
-    // To Fill controller information taken from configuration module
+    /**
+	 * To Fill controller information taken from configuration module
+	 */
     BOOL   bFillControllerConfig();
     BOOL bSetBaudRateFromCom(int nChannel,BYTE bBTR0,BYTE bBTR1);
     BOOL bGetBaudRateFromCom(int nChannel,BYTE& bBTR0,BYTE& bBTR1);
@@ -83,10 +87,6 @@ protected:
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-private:
-    virtual void OnCancel();
-    virtual void OnOK();
-    virtual BOOL OnInitDialog();
     afx_msg void OnKillfocusEditBaudRate();
     afx_msg void OnSelchangeCombSampling();
     afx_msg void OnSetfocusEditBaudRate();
@@ -99,10 +99,14 @@ private:
     afx_msg void OnCbnSelchangeCombDelayCompensation();
     afx_msg void OnCbnSelchangeCombPropdelay();
 
-    DECLARE_MESSAGE_MAP()
-
 private:
-    // Pointer to hold controller information
+    virtual void OnCancel();
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+
+    /**
+	 * Pointer to hold controller information
+	 */
     SCONTROLLER_DETAILS m_pControllerDetails[defNO_OF_CHANNELS];
     PSCONTROLLER_DETAILS psMainContrDets;
     int m_nLastSelection;

@@ -111,7 +111,7 @@ void CDIL_CAN::vSelectInterface_Dummy(void)
     m_pBaseDILCAN_Controller = (CBaseDIL_CAN_Controller*) sg_pouDIL_CAN_DUMMY;
 }
 
-DWORD CDIL_CAN::getDriverList(DILLIST* List)
+DWORD CDIL_CAN::getDriverList(DriverList* List)
 {
     DWORD Result = 0;
 

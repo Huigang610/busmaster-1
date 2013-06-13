@@ -24,17 +24,16 @@
 
 #pragma once
 
-// CChangeRegisters dialog
+/* Project includes */
 #include "CAN_Kvaser_CAN_resource.h"
 #include "Utility/RadixEdit.h"
 #include "ChangeRegDefines.h"
 #include "Include/CanUsbDefs.h"
 
-
-class CChangeRegisters : public CDialog//CPropertyPage
+class CChangeRegisters : public CDialog
 {
-    //DECLARE_DYNCREATE(CChangeRegisters)
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     // To Fill controller information taken from configuration module
     BOOL   bFillControllerConfig();
@@ -51,7 +50,6 @@ public:
 
 protected:
     // Dialog Data
-    //{{AFX_DATA(CChangeRegisters)
     enum { IDD = IDD_DLG_CHANGE_REGISTERS };
     CListCtrl   m_omChannelList;
     CRadixEdit  m_omEditWarningLimit;
@@ -69,19 +67,33 @@ protected:
     CString m_omStrEditBaudRate;
     CString m_omStrComboClock;
     CString m_omStrEditWarningLimit;
-    //}}AFX_DATA
     DOUBLE  m_dEditBaudRate;
     UINT    m_unCombClock;
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CChangeRegisters)
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    // Generated message map functions
+    virtual void OnCancel();
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    afx_msg void OnKillfocusEditBaudRate();
+    afx_msg void OnKillfocusEditBTR0();
+    afx_msg void OnKillfocusEditBTR1();
+    afx_msg void OnSelchangeCombSampling();
+    afx_msg void OnSetfocusEditBaudRate();
+    afx_msg void OnSetfocusEditBTR0();
+    afx_msg void OnSetfocusEditBTR1();
+    afx_msg void OnClickedOK();
+    afx_msg void OnSelchangeCombClock();
+    afx_msg void OnSetfocusCombClock();
+    afx_msg void OnSetfocusCombSampling();
+    afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
+    afx_msg void OnCbtnAcceptance();
+    afx_msg void OnItemchangedLstcBtrList(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnClickListChannels(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnItemchangedListChannels(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnDblclkListChannels(NMHDR* pNMHDR, LRESULT* pResult);
+
 private:
-
     // Defination of BTR0 Register
     struct sBTR0
     {
@@ -119,7 +131,8 @@ private:
         USHORT usSampling;
         USHORT usSJW;
     } ;
-    // structure defination of all five columns in the list control
+
+	// structure defination of all five columns in the list control
     struct sCOLUMNS
     {
         uBTR1                uBTRReg1;
@@ -127,31 +140,6 @@ private:
         sBRP_NBT_SAMP_n_SJW  sBRPNBTSampNSJW ;
     } m_asColListCtrl[defREG_VALUE_LIST_COUNT_MAX];
 
-    // Generated message map functions
-    //{{AFX_MSG(CChangeRegisters)
-    virtual void OnCancel();
-    virtual void OnOK();
-    virtual BOOL OnInitDialog();
-    afx_msg void OnKillfocusEditBaudRate();
-    afx_msg void OnKillfocusEditBTR0();
-    afx_msg void OnKillfocusEditBTR1();
-    afx_msg void OnSelchangeCombSampling();
-    afx_msg void OnSetfocusEditBaudRate();
-    afx_msg void OnSetfocusEditBTR0();
-    afx_msg void OnSetfocusEditBTR1();
-    afx_msg void OnClickedOK();
-    afx_msg void OnSelchangeCombClock();
-    afx_msg void OnSetfocusCombClock();
-    afx_msg void OnSetfocusCombSampling();
-    afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
-    afx_msg void OnCbtnAcceptance();
-    afx_msg void OnItemchangedLstcBtrList(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnClickListChannels(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnItemchangedListChannels(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnDblclkListChannels(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-private:
     // Pointer to hold controller information
     PSCONTROLLER_DETAILS  m_pControllerDetails;
     int m_nLastSelection;

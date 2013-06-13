@@ -24,6 +24,7 @@
 
 #pragma once
 
+/* Project includes */
 #include "Utility/XMLUtils.h"
 #include "include/BaseDefs.h"
 #include "include/Utils_macro.h"
@@ -601,10 +602,6 @@ void SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbGetConfigData(xmlNodePtr pNodePtr) 
 
     for (USHORT i = 0; i < m_ushTotal; i++)
     {
-        //// Adding Filter to the xml
-        //xmlNodePtr pNodeFilterPtr = xmlNewNode(NULL, BAD_CAST  DEF_FILTER);
-        //xmlAddChild(pNodePtr, pNodeFilterPtr);
-
         if(m_psFilters[i].m_eCurrBus == MCNET)
         {
             if(pNodeMCNEtFilterPtr == NULL)

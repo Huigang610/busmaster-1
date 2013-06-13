@@ -52,9 +52,6 @@ CKeyValue::CKeyValue(CFnsTreeView* pFnsTreeView, CFunctionEditorDoc* pDoc,
                      CWnd* pParent/*=NULL*/,char* pcKeyVal )
     : CDialog(CKeyValue::IDD, pParent),m_pcKeyVal(pcKeyVal)
 {
-    //{{AFX_DATA_INIT(CKeyValue)
-    // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
     m_pFnsTreeView  = pFnsTreeView;
     m_pDoc          = pDoc;
 }
@@ -75,17 +72,11 @@ CKeyValue::CKeyValue(CFnsTreeView* pFnsTreeView, CFunctionEditorDoc* pDoc,
 void CKeyValue::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CKeyValue)
-    // NOTE: the ClassWizard will add DDX and DDV calls here
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CKeyValue, CDialog)
-    //{{AFX_MSG_MAP(CKeyValue)
     ON_WM_HELPINFO()
     ON_BN_CLICKED(IDC_CBTN_KEY_APPLY, OnCbtnKeyApply)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /******************************************************************************/

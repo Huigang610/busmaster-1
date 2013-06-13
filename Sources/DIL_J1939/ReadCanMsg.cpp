@@ -159,7 +159,6 @@ DWORD WINAPI ReadDILCANMsg(LPVOID pVoid)
                 dwWaitRet = WaitForMultipleObjects(pCurrObj->m_nEvents,
                                                    pCurrObj->m_ahActionEvent, FALSE, INFINITE);
 
-                ///// TEMP : BEGIN
                 DWORD dwLLimit = WAIT_OBJECT_0;
                 DWORD dwULimit = WAIT_OBJECT_0 + pCurrObj->m_nEvents - 1;
                 DWORD dwLLError = WAIT_ABANDONED_0;
@@ -218,7 +217,6 @@ DWORD WINAPI ReadDILCANMsg(LPVOID pVoid)
                 {
                     TRACE("WAIT_FAILED... %X %d\n", GetLastError(), g_unCount++);
                 }
-                ///// TEMP : END
             }
             SetEvent(pThreadParam->hGetExitNotifyEvent());
         }

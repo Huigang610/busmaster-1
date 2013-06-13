@@ -35,6 +35,42 @@
 class CTSExecutorChildFrame : public CMDIChildWnd
 {
     DECLARE_DYNCREATE(CTSExecutorChildFrame)
+    DECLARE_MESSAGE_MAP()
+
+public:
+    CTSExecutorLIB m_ouTSExecutor;
+    BOOL m_bModified;
+    CTreeViewEx* m_odTreeView;
+    CResultView* m_odResultView;
+    HTREEITEM m_hParentTreeItem;
+    BOOL m_bPasted;
+
+    CTSExecutorChildFrame(void);
+    HRESULT GetConfigurationData(BYTE*& pDesBuffer, UINT& nBuffSize);
+    BOOL GetConfigurationData(xmlNodePtr& pxmlNodePtr);
+    HRESULT SetConfigurationData(BYTE* pSrcBuffer, UINT unBuffSize);
+    HRESULT SetConfigurationData(xmlNodePtr pXmlNode);
+    VOID vEnableItem(DWORD dwID, BOOL& bEnable);
+    VOID vSetBusStatus(BOOL bConnected);
+    VOID vSetBUSMASTERVersionInfo(CString strVersion);
+    BOOL bGetBusStatus(void);
+    UINT unRepisitonEntry(DWORD dwRepositionItemID, DWORD dwInsertAfterItemID);
+
+protected:
+    afx_msg void OnDestroy(void);
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+    afx_msg HRESULT OnAddTestSetup(WPARAM wparam, LPARAM lparam);
+    afx_msg HRESULT OnDeleteTestSetup(WPARAM wparam, LPARAM lparam);
+    afx_msg HRESULT OnUpdate(WPARAM wparam, LPARAM lparam);
+    afx_msg HRESULT OnExecute(WPARAM wparam, LPARAM lparam);
+    afx_msg HRESULT OnExecutionOver(WPARAM wparam, LPARAM lparam);
+    afx_msg void OnClose();
+
+    // protected constructor used by dynamic creation
+    virtual ~CTSExecutorChildFrame(void);
+    virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+
+private:
     CBaseEntityTA* m_pCurrentEntity;
     DWORD m_dwCurrentEntityID;
     HTREEITEM m_hCurrentTreeItem;
@@ -48,46 +84,8 @@ class CTSExecutorChildFrame : public CMDIChildWnd
     CSplitterWnd m_omSplitterWnd;
     CImageList*  imageList;
     CString m_strVersionInfo;
-public:
-    CTSExecutorLIB m_ouTSExecutor;
-    BOOL m_bModified;
-    CTreeViewEx* m_odTreeView;
-    CResultView* m_odResultView;
-    HTREEITEM m_hParentTreeItem;
-    BOOL m_bPasted;
 
-    //Member Functions
-public:
-    CTSExecutorChildFrame(void);
-    HRESULT GetConfigurationData(BYTE*& pDesBuffer, UINT& nBuffSize);
-    BOOL GetConfigurationData(xmlNodePtr& pxmlNodePtr);
-    HRESULT SetConfigurationData(BYTE* pSrcBuffer, UINT unBuffSize);
-    HRESULT SetConfigurationData(xmlNodePtr pXmlNode);
-    VOID vEnableItem(DWORD dwID, BOOL& bEnable);
-    VOID vSetBusStatus(BOOL bConnected);
-    VOID vSetBUSMASTERVersionInfo(CString strVersion);
-    BOOL bGetBusStatus(void);
-    UINT unRepisitonEntry(DWORD dwRepositionItemID, DWORD dwInsertAfterItemID);
-
-protected:
-    // protected constructor used by dynamic creation
-    virtual ~CTSExecutorChildFrame(void);
-    virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
-    DECLARE_MESSAGE_MAP()
-
-private:
-    VOID vInitialise(void);
+	VOID vInitialise(void);
     VOID vUpdateTreeView(void);
     BOOL bParseTestSetup(INT nIndex);
-
-    //Message Handlers
-public:
-    afx_msg void OnDestroy(void);
-    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-    afx_msg HRESULT OnAddTestSetup(WPARAM wparam, LPARAM lparam);
-    afx_msg HRESULT OnDeleteTestSetup(WPARAM wparam, LPARAM lparam);
-    afx_msg HRESULT OnUpdate(WPARAM wparam, LPARAM lparam);
-    afx_msg HRESULT OnExecute(WPARAM wparam, LPARAM lparam);
-    afx_msg HRESULT OnExecutionOver(WPARAM wparam, LPARAM lparam);
-    afx_msg void OnClose();
 };

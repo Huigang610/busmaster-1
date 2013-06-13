@@ -45,12 +45,11 @@ struct sBUSSTATTISTICSDATA
     bool m_bIsDirty;
 };
 
-//BusStatistics Class
 class CBusStatisticsDlg : public CDialog
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
-    // standard constructor
     CBusStatisticsDlg(CBaseBusStatisticCAN*, CWnd* pParent = NULL, int nChannelCount = defNO_OF_CHANNELS);
 
     static sBUSSTATTISTICSDATA sm_sBusSerializationData;
@@ -69,30 +68,17 @@ public:
     static void vSetDefaultsToStore();
     void vUpdateChannelCountInfo(int nChannelCount);
 
-    // Dialog Data
-    //{{AFX_DATA(CBusStatisticsDlg)
     enum { IDD = IDD_DLG_NETWORK_STATISTICS };
     CMessageList m_omStatList;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CBusStatisticsDlg)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CBusStatisticsDlg)
     virtual BOOL OnInitDialog();
+    afx_msg void OnSize(UINT nType, int cx, int cy);
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
     afx_msg LRESULT vUpdateFields(WPARAM wParam, LPARAM lParam);
+
 private:
     CBaseBusStatisticCAN* m_pouBSCAN;
     // String objects to format bus load related parameters
@@ -100,6 +86,4 @@ private:
     CString m_omStrPeakBusLoad;
     CString m_omStrAvgBusLoad;
     int m_nChannelCount;
-public:
-    afx_msg void OnSize(UINT nType, int cx, int cy);
 };

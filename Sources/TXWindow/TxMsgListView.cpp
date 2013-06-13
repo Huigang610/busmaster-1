@@ -55,9 +55,6 @@ IMPLEMENT_DYNCREATE(CTxMsgListView, CFormView)
 CTxMsgListView::CTxMsgListView()
     : CFormView(CTxMsgListView::IDD)
 {
-    //{{AFX_DATA_INIT(CTxMsgListView)
-    // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
     m_nSelectedMsgIndex  = -1;
     m_bInitDlg = FALSE;
 }
@@ -89,17 +86,13 @@ CTxMsgListView::~CTxMsgListView()
 void CTxMsgListView::DoDataExchange(CDataExchange* pDX)
 {
     CFormView::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CTxMsgListView)
     DDX_Control(pDX, IDC_LSTC_MSG_DETAILS, m_omLctrMsgList);
     DDX_Control(pDX, IDC_CBTN_DELETE_ALL_MSG, m_omButtonDeleteAllMsg);
     DDX_Control(pDX, IDC_CBTN_DELETE_SEL_MSG, m_omButtonDeleteSelMsg);
     DDX_Control(pDX, IDC_CBTN_SEND_MSG, m_omButtonSendMsg);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CTxMsgListView, CFormView)
-    //{{AFX_MSG_MAP(CTxMsgListView)
     ON_NOTIFY(LVN_COLUMNCLICK, IDC_LSTC_MSG_DETAILS, OnColumnclickLstcMsgDetails)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_LSTC_MSG_DETAILS, OnItemchangedLstcMsgDetails)
     ON_BN_CLICKED(IDC_CBTN_SEND_MSG, OnSendSelectedMsg)
@@ -109,9 +102,7 @@ BEGIN_MESSAGE_MAP(CTxMsgListView, CFormView)
     ON_COMMAND(IDM_SEND_SEL_MSG, OnSendSelectedMsg)
     ON_COMMAND(IDM_DELETE_SEL_MSG, OnDeleteSelectedMsg)
     ON_NOTIFY(NM_RCLICK, IDC_LSTC_MSG_DETAILS, OnRightClickMsgDetails)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
 
 #ifdef _DEBUG
 void CTxMsgListView::AssertValid() const

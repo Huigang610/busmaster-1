@@ -138,13 +138,8 @@ public:
     BOOL bGetDefaultSplitterPostion( eCONFIGDETAILS eParam,
                                      CRect omWindowSize,
                                      LPVOID* psSplitterData );
+    INT COM_nSaveConfiguration(CString& omStrCfgFilename);
 
-    // releases memory allocated for the simulated system Information
-    void vReleaseSimSysInfo();
-    // Protected memebers
-protected:
-
-    // Private Members
 private:
     SREPLAYDETS m_sReplayDetails;
     SFILTERAPPLIED_CAN m_sFilterConfigured;
@@ -317,8 +312,4 @@ private:
     BOOL bLoadStoreSimSysList(CArchive& roCfgArchive);
     // releases memory allocated for the simulated system list
     void vReleaseSimSysListMemory();
-public:
-    INT COM_nSaveConfiguration(CString& omStrCfgFilename);
-
-
 };

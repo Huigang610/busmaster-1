@@ -34,7 +34,7 @@
 #include "CAN_ETAS_BOA_Resource.h"
 #include "ChangeRegisters_CAN_ETAS_BOA.h"
 #include "Utility/MultiLanguageSupport.h"
-#ifdef BOA_FD_VERSION
+#ifdef BOA_VERSION_1_5_FD
 #include "EXTERNAL_INCLUDE/OCI/ocicanfd.h"
 #endif
 
@@ -46,7 +46,7 @@ public:
     std::string m_acComptName;
 };
 
-#ifdef BOA_FD_VERSION
+#ifdef BOA_VERSION_1_5_FD
 static ENTRY_COMPATIBILITY sg_ListTxCompatibility[] =
 {
     /* Tx Compatibility flags */
@@ -75,14 +75,12 @@ CChangeRegisters_CAN_ETAS_BOA::CChangeRegisters_CAN_ETAS_BOA(CWnd* pParent /*=NU
     , m_omStrSamplePoint("70")
     , m_omStrSJW("")
 {
-    //{{AFX_DATA_INIT(CChangeRegisters_CAN_ETAS_BOA)
     m_omStrEditCNF1 = "";
     m_omStrEditCNF2 = "";
     m_omStrEditCNF3 = "";
     m_omStrComboSampling = "";
     m_omStrEditBaudRate = "";
     m_omStrEditWarningLimit = "";
-    //}}AFX_DATA_INIT
     m_unCombClock      = 32;
     m_bDialogCancel    = FALSE;
     memset(&m_sAccFilterInfo, 0, sizeof(m_sAccFilterInfo));
@@ -131,7 +129,6 @@ CChangeRegisters_CAN_ETAS_BOA::CChangeRegisters_CAN_ETAS_BOA(CWnd* pParent /*=NU
 void CChangeRegisters_CAN_ETAS_BOA::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CChangeRegisters_CAN_ETAS_BOA)
     DDX_Control(pDX, IDC_LIST_CHANNELS, m_omChannelList);
     DDX_Control(pDX, IDC_EDIT_WARNING_LIMIT, m_omEditWarningLimit);
     DDX_Control(pDX, IDC_COMB_SAMPLING, m_omCombSampling);
@@ -144,7 +141,6 @@ void CChangeRegisters_CAN_ETAS_BOA::DoDataExchange(CDataExchange* pDX)
     DDX_CBString(pDX, IDC_COMB_SJW, m_omStrSJW);
     DDX_CBString(pDX,IDC_COMB_SAMPOINT, m_omStrSamplePoint);
     DDX_Control(pDX, IDC_COMB_SJW, m_omCtrlSJW);
-    //}}AFX_DATA_MAP
     DDX_Text(pDX, IDC_EDIT_DATA_BAUD_RATE, m_omstrDataBitRate);
     DDV_MinMaxInt(pDX,atoi(m_omstrDataBitRate.GetBuffer(0)),0,1000000);
     DDX_CBString(pDX,IDC_COMB_DATA_SAMPOINT, m_omstrDataSamplePoint);
@@ -156,9 +152,7 @@ void CChangeRegisters_CAN_ETAS_BOA::DoDataExchange(CDataExchange* pDX)
     DDX_CBString(pDX,IDC_COMB_TX_COMPATIBILITY, m_omstrTxCompatibility);
 }
 
-
 BEGIN_MESSAGE_MAP(CChangeRegisters_CAN_ETAS_BOA, CDialog)
-    //{{AFX_MSG_MAP(CChangeRegisters_CAN_ETAS_BOA)
     ON_EN_KILLFOCUS(IDC_EDIT_BAUD_RATE, OnKillfocusEditBaudRate)
     ON_CBN_SELCHANGE(IDC_COMB_SAMPLING, OnSelchangeCombSampling)
     ON_EN_SETFOCUS(IDC_EDIT_BAUD_RATE, OnSetfocusEditBaudRate)
@@ -170,7 +164,6 @@ BEGIN_MESSAGE_MAP(CChangeRegisters_CAN_ETAS_BOA, CDialog)
     ON_NOTIFY(NM_DBLCLK, IDC_LIST_CHANNELS, OnDblclkListChannels)
     ON_CBN_SELCHANGE(IDC_COMB_SJW, OnCbnSelchangeCombSjw)
     ON_CBN_SELCHANGE(IDC_COMB_DELAY_COMPENSATION, OnCbnSelchangeCombDelayCompensation)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /******************************************************************************/
@@ -329,10 +322,10 @@ BOOL CChangeRegisters_CAN_ETAS_BOA::OnInitDialog()
                                   LVIS_SELECTED | LVIS_FOCUSED,
                                   LVIS_SELECTED | LVIS_FOCUSED);
 
-#ifdef BOA_FD_VERSION
-    vEnableFDParameters(TRUE); /*Enable CANFD controller settings*/
-#else
+#ifndef BOA_VERSION_1_5_FD
     vEnableFDParameters(FALSE); /*Disable CANFD controller settings*/
+#else
+    vEnableFDParameters(TRUE); /*Enable CANFD controller settings*/
 #endif
     return TRUE;  // return TRUE unless you set the focus to a control
     // EXCEPTION: OCX Property Pages should return FALSE
@@ -956,7 +949,7 @@ void CChangeRegisters_CAN_ETAS_BOA::vFillControllerConfigDetails()
     // TO BE FIXED LATER
     m_dEditBaudRate = (FLOAT)_tstof(m_omStrEditBaudRate);
 
-#ifdef BOA_FD_VERSION
+#ifdef BOA_VERSION_1_5_FD
     /*Update CAN FD parameters */
     m_omstrDataBitRate.Format("%d",     m_pControllerDetails[ nIndex ].m_unDataBitRate/1000);
     m_omstrDataSamplePoint.Format("%d", m_pControllerDetails[ nIndex ].m_unDataSamplePoint);
@@ -1042,7 +1035,7 @@ void CChangeRegisters_CAN_ETAS_BOA::vUpdateControllerDetails()
         m_pControllerDetails[m_nLastSelection].m_omStrSamplePercentage = m_omStrSamplePoint.GetBuffer(MAX_PATH);
         m_pControllerDetails[m_nLastSelection].m_omStrSjw = m_omStrSJW.GetBuffer(MAX_PATH);
 
-#ifdef BOA_FD_VERSION
+#ifdef BOA_VERSION_1_5_FD
         /*Update CAN FD parameters */
         m_pControllerDetails[ m_nLastSelection ].m_unDataBitRate        = atoi((LPCTSTR)m_omstrDataBitRate) * 1000;
         m_pControllerDetails[ m_nLastSelection ].m_unDataSamplePoint    = atoi((LPCTSTR)m_omstrDataSamplePoint);
@@ -1172,21 +1165,7 @@ BOOL CChangeRegisters_CAN_ETAS_BOA::bSetFilterFromCom(BOOL  bExtended, DWORD  dB
         m_pControllerDetails[ unIndex ].m_bAccFilterMode = bExtended;
     }
 
-
-    //kadoor // Update Configuration file
-    //theApp.bSetData( CONTROLLER_DETAILS, m_pControllerDetails);
-    //// Update Hardware Interface Layer
-    //if (g_podHardwareInterface->bLoadDataFromConfig() == TRUE)
-    //{
-    //    int nApply = g_podHardwareInterface->nSetApplyConfiguration();
-    //    if (nApply ==defERR_OK)
-    //    {
-    //        bReturn =TRUE;
-    //    }
-    //}
-
     return bReturn;
-
 }
 
 /*******************************************************************************

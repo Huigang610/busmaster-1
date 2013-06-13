@@ -229,7 +229,7 @@ void CMsgContainerCAN::vProcessNewData(STCANDATA& sCanData)
         *pStcan = sCanData;
         if (!bTobeBlocked(sCanData))
         {
-            m_ouAppendCanBuf.WriteIntoBuffer(&m_sCANReadDataSpl);
+            m_ouAppendCanBuf.writeIntoBuffer(&m_sCANReadDataSpl);
 
             if (NULL != m_pRxMsgCallBack)
             {
@@ -250,7 +250,7 @@ void CMsgContainerCAN::vProcessNewData(STCANDATA& sCanData)
         }
         STCANDATA* pStcan = &m_sCANReadDataSpl;
         *pStcan = sCanData;
-        m_ouAppendCanBuf.WriteIntoBuffer(&m_sCANReadDataSpl);
+        m_ouAppendCanBuf.writeIntoBuffer(&m_sCANReadDataSpl);
 
         if (NULL != m_pRxMsgCallBack)
         {
@@ -263,10 +263,10 @@ void CMsgContainerCAN::vProcessNewData(STCANDATA& sCanData)
 void CMsgContainerCAN::vRetrieveDataFromBuffer()
 {
     EnterCriticalSection(&m_sCritSecDataSync);
-    while (m_ouMCCanBufFSE.GetMsgCount() > 0)
+    while (m_ouMCCanBufFSE.getMessageCount() > 0)
     {
         STCANDATA sCanData;
-        if (m_ouMCCanBufFSE.ReadFromBuffer(&sCanData) == CALL_SUCCESS)
+        if (m_ouMCCanBufFSE.readFromBuffer(&sCanData) == CALL_SUCCESS)
         {
             vProcessNewData(sCanData);
         }
@@ -286,7 +286,7 @@ BOOL CMsgContainerCAN:: bStartReadThread()
         }
     }
 
-    bResult = CMsgContainerBase::bStartReadThread(m_ouMCCanBufFSE.hGetNotifyingEvent());
+    bResult = CMsgContainerBase::bStartReadThread(m_ouMCCanBufFSE.getNotifyEvent());
     return bResult;
 }
 
@@ -319,32 +319,32 @@ BOOL CMsgContainerCAN:: bStopReadThread()
 
 void CMsgContainerCAN::vEditClearAll()
 {
-    m_ouOWCanBuf.vClearMessageBuffer();
-    m_ouAppendCanBuf.vClearMessageBuffer();
+    m_ouOWCanBuf.clearMessageBuffer();
+    m_ouAppendCanBuf.clearMessageBuffer();
     memset(&m_sCANReadDataSpl, 0, sizeof(m_sCANReadDataSpl));
 }
 
 int CMsgContainerCAN::nGetAppendBufferCount()
 {
-    return m_ouAppendCanBuf.GetBufferLength();
+    return m_ouAppendCanBuf.getBufferLength();
 }
 
 int CMsgContainerCAN::nGetOWBufferCount()
 {
-    return m_ouOWCanBuf.GetBufferLength();
+    return m_ouOWCanBuf.getBufferLength();
 }
 
 HRESULT CMsgContainerCAN::hReadFromOWBuffer(void* psMsg, __int64 nMapIndex)
 {
     //sTMCNET_MSG *psMcNetMsg = (sTMCNET_MSG*)psMsg;
-    return m_ouOWCanBuf.ReadFromBuffer((STCANDATA*)psMsg, nMapIndex);
+    return m_ouOWCanBuf.readFromBuffer((STCANDATA*)psMsg, nMapIndex);
 }
 
 HRESULT CMsgContainerCAN::hReadFromAppendBuffer(void* pvMsg, int nMsgIndex)
 {
     STCANDATA* psMsg = (STCANDATA*)pvMsg;
     static STCANDATASPL sCanMsgSpl;
-    HRESULT hResult =  m_ouAppendCanBuf.ReadFromBuffer(&sCanMsgSpl, nMsgIndex);
+    HRESULT hResult =  m_ouAppendCanBuf.readFromBuffer(&sCanMsgSpl, nMsgIndex);
     STCANDATA* psTemp = (STCANDATA*)&sCanMsgSpl;
     *psMsg = *psTemp;
     return hResult;
@@ -361,7 +361,7 @@ void CMsgContainerCAN::vSaveOWandGetDetails( void* pMsg,
     nMsgCode   = pouCANData->m_uDataInfo.m_sCANMsg.m_unMsgID;
     dwMapIndex =  nCreateMapIndexKey((LPVOID)pouCANData);
     //Now write into the array
-    m_ouOWCanBuf.WriteIntoBuffer(pouCANData, dwMapIndex, nBufferIndex);
+    m_ouOWCanBuf.writeIntoBuffer(pouCANData, dwMapIndex, nBufferIndex);
 }
 
 HRESULT CMsgContainerCAN::ApplyFilterScheme(void* pvFilterApplied)
@@ -421,8 +421,8 @@ HRESULT CMsgContainerCAN::hUpdateFormattedMsgStruct(int nListIndex,
         //INT nType = 0;
         //INT nSize =sizeof(sCANCurrDataSpl);
         //In append mode providing interpret state is not required
-        //hResult = m_ouAppendCanBuf.ReadEntry(nType, (BYTE*)&sCANCurrDataSpl, nSize, nListIndex, 0);
-        hResult = m_ouAppendCanBuf.ReadFromBuffer(&sCANCurrDataSpl, nListIndex);
+        //hResult = m_ouAppendCanBuf.readEntry(nType, (BYTE*)&sCANCurrDataSpl, nSize, nListIndex, 0);
+        hResult = m_ouAppendCanBuf.readFromBuffer(&sCANCurrDataSpl, nListIndex);
         sCANCurrData = *((STCANDATA*)&sCANCurrDataSpl);
         if (IS_TM_REL_SET(bExprnFlag_Disp))
         {
@@ -432,7 +432,7 @@ HRESULT CMsgContainerCAN::hUpdateFormattedMsgStruct(int nListIndex,
     }
     else
     {
-        hResult = m_ouOWCanBuf.ReadFromBuffer(&sCANCurrData, nListIndex);
+        hResult = m_ouOWCanBuf.readFromBuffer(&sCANCurrData, nListIndex);
         if (hResult == S_OK)
         {
             if (IS_TM_REL_SET(bExprnFlag_Disp))

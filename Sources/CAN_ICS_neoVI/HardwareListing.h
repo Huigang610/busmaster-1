@@ -31,10 +31,10 @@
 #include "Include/CanUsbDefs.h"
 #include <map>
 
-/////////////////////////////////////////////////////////////////////////////
-// CHardwareListing dialog
 class CHardwareListing : public CDialog
 {
+    DECLARE_MESSAGE_MAP()
+
 public:
     // Array of channels
     int m_anSelectedChannels[ CHANNEL_ALLOWED ];
@@ -61,49 +61,7 @@ public:
     CEdit   m_omFirmware;
     CEdit   m_omDriverID;
     CListCtrl   m_omHardwareList;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CHardwareListing)
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
-
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CHardwareListing)
-    virtual BOOL OnInitDialog();
-    afx_msg void OnItemchangedHWList(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnButtonSelect();
-    afx_msg void OnButtonRemove();
-    virtual void OnOK();
-    virtual void OnCancel();
-    afx_msg void OnItemchangedLstcSelectedHwList(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-private:
-    void vEnableDisableButtons();
-    // Pointer to Hardware List
-    InterfaceHardware* m_psHwInterface;
-    // Size of the array
-    int m_nSize;
-    //Number of selected items
-    int m_nNoOfHwSelected;
-    // Image for CListCtrl
-    CImageList m_omImageList;
-    // Selected Item index
-    int m_nSelectedItem;
-    // Pointer to Selected List
-    int* m_pnSelList;
-public:
-    afx_msg void OnNMClickLstcHwList(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnNMClickLstcSelectedHwList(NMHDR* pNMHDR, LRESULT* pResult);
-
-public:
     // Hardware CONTAINER
     typedef struct tagHardwareContainer
     {
@@ -122,5 +80,32 @@ public:
     PHARDWARE_CONTAINER m_pouHardwareContainer;
     void vSortHardwareItems();
 
+protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
+    // Generated message map functions
+    virtual BOOL OnInitDialog();
+    afx_msg void OnNMClickLstcHwList(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnNMClickLstcSelectedHwList(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnItemchangedHWList(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnButtonSelect();
+    afx_msg void OnButtonRemove();
+    afx_msg void OnItemchangedLstcSelectedHwList(NMHDR* pNMHDR, LRESULT* pResult);
+    virtual void OnOK();
+    virtual void OnCancel();
+
+private:
+    void vEnableDisableButtons();
+    // Pointer to Hardware List
+    InterfaceHardware* m_psHwInterface;
+    // Size of the array
+    int m_nSize;
+    //Number of selected items
+    int m_nNoOfHwSelected;
+    // Image for CListCtrl
+    CImageList m_omImageList;
+    // Selected Item index
+    int m_nSelectedItem;
+    // Pointer to Selected List
+    int* m_pnSelList;
 };

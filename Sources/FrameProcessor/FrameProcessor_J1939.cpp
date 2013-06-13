@@ -74,7 +74,7 @@ CFrameProcessor_J1939::CFrameProcessor_J1939()
     m_sCurrFormatDat.m_pcDataDec = new char[Length];
     ASSERT(NULL != m_sCurrFormatDat.m_pcDataDec);
     memset(m_sCurrFormatDat.m_pcDataDec, '\0', Length * sizeof(char));
-    m_sDataCopyThread.m_hActionEvent = m_ouVSEBufJ1939.hGetNotifyingEvent();
+    m_sDataCopyThread.m_hActionEvent = m_ouVSEBufJ1939.getNotifyEvent();
     m_bIsJ1939DataLogged = FALSE;
 }
 
@@ -97,7 +97,7 @@ BOOL CFrameProcessor_J1939::InitInstance(void)
 int CFrameProcessor_J1939::ExitInstance(void)
 {
     int Result = this->CFrameProcessor_Common::ExitInstance();
-    m_ouVSEBufJ1939.vClearMessageBuffer();
+    m_ouVSEBufJ1939.clearMessageBuffer();
 
     return Result;
 }
@@ -143,11 +143,11 @@ void CFrameProcessor_J1939::vRetrieveDataFromBuffer(void)
     static INT nType = 0;
     static HRESULT Result = 0;
 
-    while (m_ouVSEBufJ1939.GetMsgCount() > 0)
+    while (m_ouVSEBufJ1939.getMessageCount() > 0)
     {
         INT nSize = MAX_MSG_LEN_J1939;
         // First read the J1939 message
-        Result = m_ouVSEBufJ1939.ReadFromBuffer(nType, m_pbyJ1939Data, nSize);
+        Result = m_ouVSEBufJ1939.readFromBuffer(nType, m_pbyJ1939Data, nSize);
         if (Result == ERR_READ_MEMORY_SHORT)
         {
             CString omBuf;
@@ -202,8 +202,8 @@ HRESULT CFrameProcessor_J1939::FPJ1_DoInitialisation(CParamLoggerJ1939* psInitPa
         m_sJ1939ProcParams = *psInitParams;
         ASSERT(NULL != m_sJ1939ProcParams.m_pILog);
 
-        m_ouVSEBufJ1939.vClearMessageBuffer();
-        //m_sDataCopyThread.m_hActionEvent = m_ouVSEBufJ1939.hGetNotifyingEvent();
+        m_ouVSEBufJ1939.clearMessageBuffer();
+        //m_sDataCopyThread.m_hActionEvent = m_ouVSEBufJ1939.getNotifyEvent();
 
         if (this->CFrameProcessor_Common::DoInitialisation() == S_OK)
         {

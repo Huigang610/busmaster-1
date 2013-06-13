@@ -42,28 +42,10 @@
 #define USAGE_EXPORT
 #include "CAN_MHS_Extern.h"
 
-
-//#define CAN_DRIVER_DEBUG
-
-// CCAN_MHS
-
-BEGIN_MESSAGE_MAP(CCAN_MHS, CWinApp)
-END_MESSAGE_MAP()
-
-
 /**
- * CCAN_MHS construction
+ * The one and only CCAN_MHS object
  */
-CCAN_MHS::CCAN_MHS()
-{
-    // TODO: add construction code here,
-    // Place all significant initialization in InitInstance
-}
-
-
-// The one and only CCAN_MHS object
 CCAN_MHS theApp;
-
 
 /**
  * CCAN_MHS initialization
@@ -341,8 +323,6 @@ HRESULT CDIL_CAN_MHS::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCAN
                 }
                 hResult = S_OK;
             }
-            ////else
-            ////  ASSERT(FALSE);
         }
         else
         {
@@ -741,7 +721,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& can_data)
                 {
                     for (j = 0; j < sg_asClientToBufMap[i].m_unBufCount; j++)
                     {
-                        sg_asClientToBufMap[i].m_pClientBuf[j]->WriteIntoBuffer(&can_data);
+                        sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&can_data);
                     }
                 }
                 else
@@ -751,7 +731,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& can_data)
                     {
                         sTempCanData = can_data;
                         sTempCanData.m_ucDataType = RX_FLAG;
-                        sg_asClientToBufMap[i].m_pClientBuf[j]->WriteIntoBuffer(&sTempCanData);
+                        sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&sTempCanData);
                     }
                 }
             }
@@ -763,7 +743,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& can_data)
         {
             for (j = 0; j < sg_asClientToBufMap[i].m_unBufCount; j++)
             {
-                sg_asClientToBufMap[i].m_pClientBuf[j]->WriteIntoBuffer(&can_data);
+                sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&can_data);
             }
         }
     }

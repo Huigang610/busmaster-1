@@ -24,44 +24,25 @@
 
 #pragma once
 
-// Definition of Flicker Free List Control
-#include "Utility/FFListCtrl.h"
+/* Project includes */
+#include "Utility/FFListCtrl.h"	// Definition of Flicker Free List Control
 
 class CMessageList : public CFFListCtrl
 {
+    DECLARE_MESSAGE_MAP()
+
+public:
+    CMessageList();
+
+protected:
+    // Overwride to implement custom draw
+    virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
+
+    afx_msg void OnDestroy();
+
 private:
     // Row String
     CString m_omStrInARow;
     // GDI Objects for background and selection brush
     HBRUSH m_hWhiteBrush, m_hBlueBrush;
-
-    // Construction
-public:
-    CMessageList();
-
-    // Attributes
-public:
-
-    // Operations
-public:
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CMessageList)
-    //}}AFX_VIRTUAL
-
-    // Implementation
-public:
-    virtual ~CMessageList();
-
-    // Generated message map functions
-protected:
-    // Overwride to implement custom draw
-    virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
-
-    //{{AFX_MSG(CMessageList)
-    afx_msg void OnDestroy();
-    //}}AFX_MSG
-
-    DECLARE_MESSAGE_MAP()
 };

@@ -67,12 +67,6 @@ CCAN_IXXAT_VCIApp theApp;
 //    details.
 //
 
-// CCAN_IXXAT_VCIApp
-
-BEGIN_MESSAGE_MAP(CCAN_IXXAT_VCIApp, CWinApp)
-END_MESSAGE_MAP()
-
-
 /**
  * @fn  CCAN_IXXAT_VCIApp::CCAN_IXXAT_VCIApp()
  *

@@ -24,39 +24,25 @@
 
 #pragma once
 
-// SimSysDetView.h : header file
-//
 #include "Utility/RadixEdit.h"
 #include "Include/BaseDefs.h"
 #include "SimSysNodeInfo.h"
 #include "NodeSimEx_resource.h"
-/////////////////////////////////////////////////////////////////////////////
-// CSimSysDetView form view
-
 
 class CSimSysDetView : public CFormView
 {
-protected:
-    CSimSysDetView();           // protected constructor used by dynamic creation
     DECLARE_DYNCREATE(CSimSysDetView)
+    DECLARE_MESSAGE_MAP()
 
-    // Form Data
 public:
-    //{{AFX_DATA(CSimSysDetView)
+    CSimSysDetView();           // protected constructor used by dynamic creation
     enum { IDD = IDD_DLG_SIMSYSDETVIEW };
     CListCtrl   m_omListCtrlHanDet;
     CListCtrl   m_omListCtrlHanVal;
     CString m_omStrNodeName;
     CString m_omStrCFile;
-    //}}AFX_DATA
 
-    // Attributes
-public:
-
-    // Operations
-public:
-    //BOOL bCreateNewFile( CString omStrFileName );
-    void vEnableButtons (BOOL bEnable );
+	void vEnableButtons (BOOL bEnable );
     BOOL bGetControlStatus();
     void vHideControls(UINT unEnableHide);
     void vChangeLUButtonText(BOOL bIsLoaded);
@@ -69,26 +55,22 @@ public:
     void vUpdateHandlerList();
     void vSetNodeAddress(BYTE byAddress);
     void vUpdateHandlerEnableDisableStatus(int nItem, BOOL bEnableHandler);
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CSimSysDetView)
-public:
+
+	static ETYPE_BUS CSimSysDetView::sm_eBus;
+    CRadixEdit m_omPrefAdres;
+    CRadixEdit m_omECU_NAME;
+
     virtual void OnInitialUpdate();
+
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     virtual void PostNcDestroy();
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-    virtual ~CSimSysDetView();
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
-    // Generated message map functions
-    //{{AFX_MSG(CSimSysDetView)
     afx_msg void OnButtonBuild();
     afx_msg void OnButtonBuildandload();
     afx_msg void OnButtonEditfile();
@@ -98,8 +80,7 @@ protected:
     afx_msg void OnButtonOpenfile();
     afx_msg void OnClickLstcHandlerDetails(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnItemchangedLstcHandlerDetails(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     ETYPE_BUS m_eBus;
     CStringList m_omSourceCodeTextList;
@@ -124,14 +105,4 @@ private:
     void vChangeEDHanButtonText(BOOL bIsEnabled);
     void vUpdateNodeDetailsAndView();
     void vSetHandlerDetailRowText(int nRow, int nNoOfHandler, BOOL bEnabled);
-public:
-    static ETYPE_BUS CSimSysDetView::sm_eBus;
-    //afx_msg void OnBnClickedStatNodeDetails();
-    CRadixEdit m_omPrefAdres;
-    CRadixEdit m_omECU_NAME;
 };
-
-/////////////////////////////////////////////////////////////////////////////
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

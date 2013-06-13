@@ -28,27 +28,15 @@
 #include "Utility/Utility_Structs.h"                 // For data struct definition
 #include "Utility/ComboItem.h"
 #include "Utility/NumEdit.h"
-/////////////////////////////////////////////////////////////////////////////
-// CFlexListCtrl window
+
 class CFlexListCtrl : public CFFListCtrl
 {
-    // Construction
+	DECLARE_MESSAGE_MAP()
+
 public:
     CFlexListCtrl();
-    // Attributes
-public:
 
-    // Operations
-public:
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CFlexListCtrl)
-    //}}AFX_VIRTUAL
-
-    // Implementation
-public:
-    // This is used to map the Row X Column 2d data into
+	// This is used to map the Row X Column 2d data into
     // one dimentional map key. This value should be greater then the maximum
     // Expected list column count
     void vSetMapColumnCount(int nColumn);
@@ -81,18 +69,14 @@ public:
     // This will set the user program informatrion of a column
     void vSetUserProgInfo( int nRow, int nColunm,
                            const SUSERPROGINFO& sUSerProgInfo);
-    // Destructor
-    virtual ~CFlexListCtrl();
 
-    // Generated message map functions
 protected:
-    //{{AFX_MSG(CFlexListCtrl)
     afx_msg void OnEndlabeledit(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
     afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
     afx_msg void OnDoubleClick(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnClick(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
+
 private:
     // Signle Click edit or double click edit
     BOOL            m_bSingleClickActivate;
@@ -112,5 +96,4 @@ private:
 
     // Private Functions
     long lGetMapID(int nRow, int nCol);
-    DECLARE_MESSAGE_MAP()
 };

@@ -33,11 +33,12 @@ typedef enum { GRAYED, HIGHLIGHT, NO_HIGHLIGHT } USER_BGTYPE;
 
 class CSignalMatrix : public CStatic
 {
+    DECLARE_MESSAGE_MAP()
 
 public:
-    // Construction
     CSignalMatrix();
     CSignalMatrix(int nMessageLength);
+    virtual ~CSignalMatrix();
 
     // To set Message Length
     void vSetMessageLength(UINT unMsgLength);
@@ -52,27 +53,10 @@ public:
     //Resets all the values in the cells to '0'
     void vResetValues();
 
-
-    // Attributes
-public:
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CSignalMatrix)
-    //}}AFX_VIRTUAL
-
-    // Implementation
-public:
-    virtual ~CSignalMatrix();
-
-    // Generated message map functions
 protected:
-    //{{AFX_MSG(CSignalMatrix)
     afx_msg void OnPaint();
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
-    //}}AFX_MSG
 
-    DECLARE_MESSAGE_MAP()
 private:
     // To initialise highlight bits
     void vResetHighlight();

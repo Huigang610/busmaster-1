@@ -249,50 +249,9 @@ bool CSimSysManager::bGetConfigData(xmlNodePtr pNodePtr)
         xmlUtils::CreateXMLNodeFrmWindowsPlacement(pNodeWindowsPos,CGlobalObj::ouGetObj(m_eBus).m_wWindowPlacement);
     }
 
-    ////visibility
-    //CString csVisibility;
-    //csVisibility.Format("%d",  sWndPlacement.flags);
-    //omcVarChar = csVisibility;
-    //xmlNodePtr pVisibility = xmlNewChild(pNodeWindowsPos, NULL, BAD_CAST DEF_VISIBILITY,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeWindowsPos, pVisibility);
-
-    ////WindowPlacement
-    //CString csWindowPlacement;
-    //csWindowPlacement.Format("%d",  sWndPlacement.flags);
-    //omcVarChar = csWindowPlacement;
-    //xmlNodePtr pWindowPlacement = xmlNewChild(pNodeWindowsPos, NULL, BAD_CAST DEF_MWND_PLACEMENT,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeWindowsPos, pWindowPlacement);
-
-    ////Top
-    //CString csTop;
-    //csTop.Format("%d",  sWndPlacement.rcNormalPosition.top);
-    //omcVarChar = csTop;
-    //xmlNodePtr pTop= xmlNewChild(pNodeWindowsPos, NULL, BAD_CAST DEF_MWND_TOP,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeWindowsPos, pTop);
-
-    ////Left
-    //CString csLeft;
-    //csLeft.Format("%d",  sWndPlacement.rcNormalPosition.left);
-    //omcVarChar = csLeft;
-    //xmlNodePtr pLeft = xmlNewChild(pNodeWindowsPos, NULL, BAD_CAST DEF_MWND_LEFT,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeWindowsPos, pLeft);
-
-    ////Bottom
-    //CString csBottom;
-    //csBottom.Format("%d",  sWndPlacement.rcNormalPosition.bottom);
-    //omcVarChar = csBottom;
-    //xmlNodePtr pBottom= xmlNewChild(pNodeWindowsPos, NULL, BAD_CAST DEF_BOTTOM,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeWindowsPos, pBottom);
-
-    ////Right
-    //CString csRight;
-    //csRight.Format("%d",  sWndPlacement.rcNormalPosition.right);
-    //omcVarChar = csRight;
-    //xmlNodePtr pRight = xmlNewChild(pNodeWindowsPos, NULL, BAD_CAST DEF_RIGHT,BAD_CAST omcVarChar);
-    //xmlAddChild(pNodeWindowsPos, pRight);
-
     return true;
 }
+
 /******************************************************************************
     Function Name    :  unGetStoreSIMBufferSize
     Input(s)         :  -

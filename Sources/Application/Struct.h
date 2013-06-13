@@ -590,50 +590,6 @@ typedef sFilterDisplayInfo sFilterDisplayInfo;
 typedef sFilterDisplayInfo SFILTERDISPLAYINFO;
 typedef SFILTERDISPLAYINFO* PSFILTERDISPLAYINFO;
 
-//
-//class CExecuteFunc;
-////New data structure to store  node name and the "CExecuteFunc" pointer associated to that node:
-//struct sNODEOBJECT
-//{
-// CString om_NodeName;
-// CExecuteFunc* m_psExecuteFunc;
-// sNODEOBJECT* m_psNextNode;
-//};
-//typedef  sNODEOBJECT SNODEOBJECT;
-//typedef  SNODEOBJECT* PSNODEOBJECT;
-//
-////structure to store information of the thread
-////calculating the timer's execution time
-//struct sCALCEXECTIMETHREAD
-//{
-// bool  m_bThreadStop;
-// CWinThread* m_pomThreadPtr;
-// CEvent m_omExitThreadEvent;
-//};
-//typedef  sCALCEXECTIMETHREAD SCALCEXECTIMETHREAD;
-//typedef  SCALCEXECTIMETHREAD* PSCALCEXECTIMETHREAD;
-//
-//
-////The structure pass to thread function for load Fn execution
-//struct sEXECUTE_LOAD_HANDLER
-//{
-//    PFDLL_HANDLER pFDllHandler;
-//    CExecuteFunc* m_pCExecuteFunc;
-//};
-//typedef sEXECUTE_LOAD_HANDLER SEXECUTE_LOAD_HANDLER;
-//typedef sEXECUTE_LOAD_HANDLER* PSEXECUTE_LOAD_HANDLER;
-//
-////The structure to store message and hmodule for the messages
-////transmitted from a DLL
-//struct sDLL_MSG
-//{
-//    STCAN_MSG sRxMsg;
-//    HMODULE h_DllHandle;
-//};
-//typedef sDLL_MSG SDLL_MSG;
-//typedef SDLL_MSG* PSDLL_MSG;
-
-
 // Log File States enumaration
 enum eLogFileStates { LOGGING_YET_TO_START, LOGGING_STARTED, LOGGING_STOPPED } ;
 

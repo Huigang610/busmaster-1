@@ -156,13 +156,13 @@ int ReadNodeDataBuffer(PSNODEINFO psNodeInfo)
         {
             case CAN:
             {
-                while (psNodeInfo->m_ouCanBufFSE.GetMsgCount() > 0)
+                while (psNodeInfo->m_ouCanBufFSE.getMessageCount() > 0)
                 {
                     sCanData.m_ucDataType = RX_FLAG;
 
                     if(psNodeInfo != NULL)
                     {
-                        INT Result = psNodeInfo->m_ouCanBufFSE.ReadFromBuffer(&sCanData);
+                        INT Result = psNodeInfo->m_ouCanBufFSE.readFromBuffer(&sCanData);
                         if (Result == ERR_READ_MEMORY_SHORT)
                         {
                             TRACE("ERR_READ_MEMORY_SHORT");
@@ -206,13 +206,13 @@ int ReadNodeDataBuffer(PSNODEINFO psNodeInfo)
             break;
             case J1939:
             {
-                while (psNodeInfo->m_ouMsgBufVSE.GetMsgCount() > 0)
+                while (psNodeInfo->m_ouMsgBufVSE.getMessageCount() > 0)
                 {
                     static STJ1939_MSG sJ1939Msg;
                     static BYTE m_byTempData[MAX_MSG_LEN_J1939] = {0};
                     static int nType = 0;
                     int nSize = MAX_MSG_LEN_J1939;
-                    INT Result = psNodeInfo->m_ouMsgBufVSE.ReadFromBuffer(nType, m_byTempData, nSize);
+                    INT Result = psNodeInfo->m_ouMsgBufVSE.readFromBuffer(nType, m_byTempData, nSize);
                     if (Result == ERR_READ_MEMORY_SHORT)
                     {
                         TRACE("ERR_READ_MEMORY_SHORT");
@@ -341,7 +341,7 @@ sNODEINFO::sNODEINFO(ETYPE_BUS eBus)
     m_eBus = eBus;
     m_byPrefAddress = ADDRESS_NULL;
     m_unEcuName     = 0x0;
-    m_ouCanBufFSE.vClearMessageBuffer();
+    m_ouCanBufFSE.clearMessageBuffer();
     m_dwClientId = 0;
     m_omStrNodeName     = "";
     m_omStrFileName     = "";
@@ -375,11 +375,11 @@ BOOL sNODEINFO::bStartThreadProc()
 {
     if (m_eBus == CAN)
     {
-        m_ThreadProc.m_hActionEvent = m_ouCanBufFSE.hGetNotifyingEvent();
+        m_ThreadProc.m_hActionEvent = m_ouCanBufFSE.getNotifyEvent();
     }
     else //For any other bus
     {
-        m_ThreadProc.m_hActionEvent = m_ouMsgBufVSE.hGetNotifyingEvent();
+        m_ThreadProc.m_hActionEvent = m_ouMsgBufVSE.getNotifyEvent();
     }
     m_ThreadProc.m_unActionCode = INVOKE_FUNCTION;
     m_ThreadProc.m_pBuffer = this;
@@ -390,10 +390,6 @@ BOOL sNODEINFO::bTerminateThreadProc()
     return m_ThreadProc.bTerminateThread();
 }
 
-//SNODEINFO ENDS
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
 /******************************************************************************
 Function Name    :  CSimSysNodeInfo
 

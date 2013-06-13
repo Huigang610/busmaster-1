@@ -125,10 +125,10 @@ DWORD WINAPI TransmitMsgThreadProc(LPVOID pVoid)
         {
             case INVOKE_FUNCTION:
             {
-                while (psNodeConMgr->m_ouMsgBufVSE.GetMsgCount() > 0)
+                while (psNodeConMgr->m_ouMsgBufVSE.getMessageCount() > 0)
                 {
                     int nType = 0, nSize = MAX_MSG_LEN_J1939;
-                    int nResult = psNodeConMgr->m_ouMsgBufVSE.ReadFromBuffer(nType, psNodeConMgr->m_abyData, nSize);
+                    int nResult = psNodeConMgr->m_ouMsgBufVSE.readFromBuffer(nType, psNodeConMgr->m_abyData, nSize);
                     ASSERT(nResult == CALL_SUCCESS);
                     STJ1939_MSG sJ1939Msg;
                     sJ1939Msg.vSetDataStream(psNodeConMgr->m_abyData);
@@ -166,7 +166,7 @@ Modifications  :
 void CNodeConManager::vActivate(void)
 {
     m_bIsActive = TRUE;
-    m_ouMsgBufVSE.vClearMessageBuffer();
+    m_ouMsgBufVSE.clearMessageBuffer();
     /*start threads */
     m_ouTransmitThread.m_hActionEvent = m_hTxActionEvent;
     m_ouReceiveThread.m_hActionEvent = m_hRxActionEvent;
@@ -191,7 +191,7 @@ void CNodeConManager::vDeactivate(void)
     vRemoveAllConnections();
     m_byNodeAddress = ADDRESS_NULL;
     m_bIsActive = FALSE;
-    m_ouMsgBufVSE.vClearMessageBuffer();
+    m_ouMsgBufVSE.clearMessageBuffer();
     /*start threads */
     m_ouReceiveThread.bTerminateThread();
     m_ouTransmitThread.bTerminateThread();
@@ -386,12 +386,12 @@ Modifications  :
 void CNodeConManager::vReadCANdataBuffer()
 {
     static sTCANDATA CurrMsgCAN;
-    while (m_ouCANBuff.GetMsgCount() > 0)
+    while (m_ouCANBuff.getMessageCount() > 0)
     {
-        //int nCnt = m_ouCANBuff.GetBufferLength();
+        //int nCnt = m_ouCANBuff.getBufferLength();
         //Now broadcast frames to each of the connection det obj
         //They should filter it out and work
-        m_ouCANBuff.ReadFromBuffer(&CurrMsgCAN);
+        m_ouCANBuff.readFromBuffer(&CurrMsgCAN);
         //If the message is RX then only process it
         //If Error then notify user ****TBD****
         if ((m_byNodeAddress != ADDRESS_NULL) && (m_bIsActive == TRUE))
@@ -584,7 +584,7 @@ void CNodeConManager::vClearMsgBuffer(CBaseMsgBufVSE* pBufObj)
         pouMsgBuf = m_OutBufArr.GetAt(i);
         if (pouMsgBuf == pBufObj)
         {
-            pouMsgBuf->vClearMessageBuffer();
+            pouMsgBuf->clearMessageBuffer();
             m_OutBufArr.RemoveAt(i);
             i = nCount; //break the loop
         }
@@ -700,7 +700,7 @@ void CNodeConManager::WriteIntoClientsBuffer(STJ1939_MSG& sJ1939Msg)
     {
         CBaseMsgBufVSE* podCurrBuf = m_OutBufArr.GetAt(i);
         sJ1939Msg.vGetDataStream(abyData);
-        podCurrBuf->WriteIntoBuffer(J1939, abyData, sJ1939Msg.unGetSize());
+        podCurrBuf->writeIntoBuffer(J1939, abyData, sJ1939Msg.unGetSize());
     }
 }
 /******************************************************************************
@@ -1822,7 +1822,7 @@ void CNodeConManager::vSendMessage(UINT unChannel, EJ1939_MSG_TYPE eMsgType,
     static BYTE abyData[MAX_MSG_LEN_J1939] = {0xFF};
     m_sTxMsg.vGetDataStream(abyData);
     UINT unSize = m_sTxMsg.unGetSize();
-    m_ouMsgBufVSE.WriteIntoBuffer(J1939, abyData, unSize);
+    m_ouMsgBufVSE.writeIntoBuffer(J1939, abyData, unSize);
     m_ouTransmitThread.m_unActionCode = INVOKE_FUNCTION;
     m_ouTransmitThread.m_pBuffer = this;
     SetEvent(m_ouTransmitThread.m_hActionEvent);

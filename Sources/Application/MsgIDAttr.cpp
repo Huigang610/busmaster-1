@@ -33,11 +33,6 @@
 // Interface file for CMessageAttrib class
 #include "MessageAttrib.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// CMsgIDAttr dialog
-
-
-
 /******************************************************************************
  Function Name  :   CMsgIDAttr
 
@@ -53,14 +48,12 @@
 CMsgIDAttr::CMsgIDAttr(ETYPE_BUS eBusType, CWnd* pParent /*=NULL*/)
     : CDialog(CMsgIDAttr::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CMsgIDAttr)
     m_omStrMsg = "";
     m_sColour = DEFAULT_MSG_COLOUR;
     m_nID = 0x0;
     m_bForEdit = false;
     m_bDBMessage = FALSE;
     m_hClrBtn = NULL;
-    //}}AFX_DATA_INIT
     m_eBusType = eBusType;
 }
 
@@ -79,26 +72,16 @@ CMsgIDAttr::CMsgIDAttr(ETYPE_BUS eBusType, CWnd* pParent /*=NULL*/)
 void CMsgIDAttr::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CMsgIDAttr)
     DDX_Control(pDX, IDC_PBTN_COLOUR, m_omColourBox);
     DDX_Control(pDX, IDC_EDIT_CANID_VAL, m_odCanIDVal);
     DDX_Text(pDX, IDC_EDIT_CANID_STRING, m_omStrMsg);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CMsgIDAttr, CDialog)
-    //{{AFX_MSG_MAP(CMsgIDAttr)
     ON_BN_CLICKED(IDC_PBTN_COLOUR, OnPbtnColour)
     ON_WM_HELPINFO()
     ON_WM_CTLCOLOR()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CMsgIDAttr message handlers
-
-
 
 /******************************************************************************
  Function Name  :   OnOK

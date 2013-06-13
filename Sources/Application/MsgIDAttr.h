@@ -28,7 +28,8 @@ class CRadixEdit;   // forward declaration
 
 class CMsgIDAttr : public CDialog
 {
-    // Construction
+	DECLARE_MESSAGE_MAP()
+
 public:
     bool m_bForEdit;
     BOOL m_bDBMessage;
@@ -38,38 +39,24 @@ public:
     CMsgIDAttr(ETYPE_BUS eBusType, CWnd* pParent = NULL);   // standard constructor
 
     // Dialog Data
-    //{{AFX_DATA(CMsgIDAttr)
     enum { IDD = IDD_DLG_MSGID_ATTRIB };
     CStatic m_omColourBox;
     CRadixEdit  m_odCanIDVal;
     CString m_omStrMsg;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CMsgIDAttr)
-public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
+
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
-
-    // Implementation
-protected:
 
     // Generated message map functions
-    //{{AFX_MSG(CMsgIDAttr)
     virtual void OnOK();
     virtual BOOL OnInitDialog();
     afx_msg void OnPbtnColour();
     afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
     afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     HBRUSH m_hClrBtn;
     ETYPE_BUS m_eBusType;
-    // To draw a solid box with a specified colour
-    //void vDrawColourBox();
 };

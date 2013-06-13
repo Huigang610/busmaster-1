@@ -27,60 +27,42 @@
 // TxFunctionsView.h : header file
 #include "TxWindow_resource.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// CTxFunctionsView form view
-
 #ifndef __AFXEXT_H__
 #include <afxext.h>
 #endif
 
 class CTxFunctionsView : public CFormView
 {
-    // Form Data
+    DECLARE_DYNCREATE(CTxFunctionsView)
+    DECLARE_MESSAGE_MAP()
+
 public:
-    //{{AFX_DATA(CTxFunctionsView)
-    enum { IDD = IDD_DLG_TX_FUNCTIONS };
+    CTxFunctionsView();
+
+	enum { IDD = IDD_DLG_TX_FUNCTIONS };
     CButton m_omButtonApply;
-    //}}AFX_DATA
 
-    // Attributes
-public:
+	void vAccessButtonApply();
+    CButton m_CheckBoxAutoUpdate;
 
-    // Operations
-public:
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CTxFunctionsView)
-public:
     virtual void OnInitialUpdate();
     void OnInvokeClose();
 
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-protected:
-    // protected constructor used by dynamic creation
-    CTxFunctionsView();
-    DECLARE_DYNCREATE(CTxFunctionsView)
-    // Implementation
-protected:
     virtual ~CTxFunctionsView();
-
 
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
-    // Generated message map functions
-    //{{AFX_MSG(CTxFunctionsView)
     afx_msg void OnSize(UINT nType, int cx, int cy);
     afx_msg void OnButtonApply();
     afx_msg void OnBtnClose();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+    afx_msg void OnBnClickedCheckAutoUpdate();
+
 private:
     // To Update Configuration module with the changes done
     void vApplyChanges();
@@ -95,8 +77,4 @@ private:
     // To Get CTxMsgDetailsView Pointer
     CWnd* pomGetDetailsViewPointer() const;
     void SetUpdateBtnChanges();
-    afx_msg void OnBnClickedCheckAutoUpdate();
-public:
-    void vAccessButtonApply();
-    CButton m_CheckBoxAutoUpdate;
 };

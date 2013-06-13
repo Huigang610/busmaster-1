@@ -19,9 +19,9 @@
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
 
+/* Project includes */
 #include "Utils_stdafx.h"
 #include "FlickerFreeTree.h"
-
 
 BEGIN_MESSAGE_MAP(CFlickerFreeTree, CTreeCtrl)
     ON_WM_ERASEBKGND()

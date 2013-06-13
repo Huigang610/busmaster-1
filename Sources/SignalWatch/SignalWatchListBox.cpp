@@ -32,8 +32,6 @@
 #include "..\Application\HashDefines.h"
 
 extern HWND GUI_hDisplayWindow;
-/////////////////////////////////////////////////////////////////////////////
-// CSignalWatchListBox
 
 /******************************************************************************
  Function Name  :   CSignalWatchListBox
@@ -53,32 +51,13 @@ void CSignalWatchListBox::vUpdateParentWnd(HWND hParentWnd)
 {
     m_hParentWnd = hParentWnd;
 }
-//
-/******************************************************************************
- Function Name  :   ~CSignalWatchListBox
-
- Description    :   Standard destructor
- Member of      :   CSignalWatchListBox
-
- Author(s)      :   Ratnadip Choudhury
- Date Created   :   03-04-2002
-******************************************************************************/
-CSignalWatchListBox::~CSignalWatchListBox()
-{
-}
-
 
 BEGIN_MESSAGE_MAP(CSignalWatchListBox, CFFListCtrl)
-    //{{AFX_MSG_MAP(CSignalWatchListBox)
     ON_WM_RBUTTONDOWN()
     ON_COMMAND(IDM_SG_WATCH_CLEAR, OnSgWatchClear)
     ON_WM_CHAR()
     ON_WM_KEYDOWN()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CSignalWatchListBox message handlers
 
 /******************************************************************************
  Function Name  :   OnRButtonDown

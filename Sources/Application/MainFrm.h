@@ -50,8 +50,6 @@
 #include "GraphParameters.h"        // For Graph Parameter Class
 #include "GraphElement.h"           // For Graph Element class
 #include "GraphList.h"              // For CGraphList class declaration
-//#include "GraphChildframe.h"        // For Graph Child Window
-////#include "GraphUIThread.h"          // For Graph UI Thread Definition
 #include "CGCtrl.h"                 // For BUSMASTER Graph Control interface
 #include "UIThread.h"               // For Trace window UI Thread definition
 #include "Utility/FlexListCtrl.h"   // For editable list control implementation
@@ -87,6 +85,8 @@ class CMsgMDIChildWnd;
 class CMainFrame : public CMDIFrameWnd
 {
     DECLARE_DYNAMIC(CMainFrame)
+    DECLARE_MESSAGE_MAP()
+
 public:
     CMainFrame();
 
@@ -155,17 +155,8 @@ public:
     BOOL CompareFile(CString FirstFile,CString SecFile);
 
     int             m_nNumChannels;
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CMainFrame)
-public:
-    virtual BOOL PreTranslateMessage(MSG* pMsg);
-protected:
-    virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
-    //}}AFX_VIRTUAL
 
-    // Implementation
-public:
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 
     void vGettextBusmaster();
     HICON m_hLogIcon1, m_hLogIcon2, m_hLogOffIcon;
@@ -301,7 +292,7 @@ public:
     CWnd* IsWindowCreated();
     void vCloseFormatconverters();
     void vProcessKeyPress(MSG* pMsg);
-    BOOL bParseSignalWatchXMLconfig(ETYPE_BUS eBus, CMainEntryList& odMainEntryList);
+    BOOL bParseSignalWatchXMLconfig(ETYPE_BUS eBus, SignalWatchListMainEntries& odMainEntryList);
     void OnHex_DecButon();
 
     /* API to modify icon for a particular item in toolbar */
@@ -316,7 +307,47 @@ public:
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
+    // To update graph data with statistics parameters
+    void vUpdateGraphStatsData();
+    //To send configuration change command to all signal graph windows
+    void vPostConfigChangeCmdToSigGrphWnds(BOOL bHideGraphWnd = TRUE);
+
+    void vClearSignalInfoList(void);
+    void vUpdateChannelInfo(void);
+    void vUpdateHWStatusInfo(void);
+    BOOL bFillDbStructure(CMsgNameMsgCodeListDataBase& odMsgNameMsgCodeListDB);
+
+	    void vPopulateJ1939PGNList();
+    INT ReadGraphDataBuffer(BOOL bCalcTime);
+    INT nLoadConfigFile(CString omConfigFileName);
+    int  COM_ConnectTool();
+    BOOL COM_SaveConfigFile();
+    BOOL COM_SaveConfigFileAs(CString omCfgFilePath);
+    BOOL COM_bDLLBuild(CStringArray* omStrBuildFiles);
+    BOOL COM_bDLLBuildLoad(CStringArray* omStrBuildFiles);
+    BOOL COM_bDllLoad(CStringArray* omStrBuildFiles);
+    BOOL COM_bDllUnload(CStringArray* omStrBuildFiles);
+    void COM_SendMessage();
+    void COM_EnableAllHandlers(BOOL bEnable);
+
+    BOOL bUpdatePopupMenuDIL(void);
+    CString omStrGetUnionFilePath(CString omStrTemp);
+    void vInitCFileFunctPtrs();
+    void NS_InitJ1939SpecInfo();
+    void vUpdateMsgNameCodeList(CMsgSignal* pMsgSig, CMsgNameMsgCodeListDataBase& odMsgNameMsgCodeListDB);
+    void vPushConfigFilenameDown ( CString omStrConfigFilename );
+    void vUpdateMainEntryListInWaveDataHandler();
+    void vUpdateAllMsgWndInterpretStatus(BOOL bAssociate);
+
+    void ApplyLogFilter();
+    void ApplyReplayFilter();
+    xmlDocPtr m_xmlConfigFiledoc;
+    BOOL m_bIsXmlConfig;
+    afx_msg LRESULT vKeyPressedInMsgWnd(WPARAM wParam, LPARAM lParam);
+
 protected:
+    virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+
     // control bar embedded members
     CStatusBar      m_wndStatusBar; // Status bar
     CNVTCToolBar    m_wndToolBar;   // Tool bar/*WrapFixed*/
@@ -326,10 +357,97 @@ protected:
     CNVTCToolBar    m_wndToolbarJ1939;
     CNVTCToolBar    m_wndToolbarCANDB;
 
+    virtual void WinHelp(DWORD dwData, UINT nCmd = HELP_CONTEXT);
+    void ApplyMessagewindowOverwrite();
 
-    // Generated message map functions
-protected:
-    //{{AFX_MSG(CMainFrame)
+	afx_msg void OnUpdateSelectDriver(CCmdUI* pCmdUI);
+    afx_msg void OnSelectDriver(UINT nID);
+    afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
+    afx_msg void OnDissociateDatabase();
+    afx_msg void OnSaveImportDatabase();
+    afx_msg void OnUpdateSaveImportDatabase(CCmdUI* pCmdUI);
+    afx_msg LRESULT OnProvideMsgDBPtr(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnProvideMsgNameFromCode(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnProvidePGNNameFromCode(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnMessageFromUserDll(WPARAM wParam, LPARAM lParam);
+    afx_msg void OnConfigureModeActive();
+    afx_msg void OnConfigurePassive();
+    afx_msg void OnLogEnable();
+    afx_msg void OnRestartController();
+    afx_msg void OnUpdateCfgnLog(CCmdUI* pCmdUI);
+    afx_msg void OnDisplayEdit();
+    afx_msg void OnUpdateDisplayEdit(CCmdUI* pCmdUI);
+    afx_msg void OnDisplayMain();
+    afx_msg void OnUpdateDisplayMain(CCmdUI* pCmdUI);
+    afx_msg void OnDisplayMsgWnd();
+    afx_msg void OnUpdateDisplayMsgWnd(CCmdUI* pCmdUI);
+    afx_msg void OnDisplayNodeSim();
+    afx_msg void OnUpdateDisplayNodeSim(CCmdUI* pCmdUI);
+    afx_msg void OnDisplayConfig();
+    afx_msg void OnUpdateDisplayConfig(CCmdUI* pCmdUI);
+    afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
+    afx_msg void OnConfigureWaveformMessages();
+    afx_msg void OnStartSignalTransmission();
+    afx_msg void OnUpdateStartSignalTransmission(CCmdUI* pCmdUI);
+    afx_msg void OnConfigureSignalgraphwindow();
+    afx_msg void OnUpdateConfigureSignalgraphwindow(CCmdUI* pCmdUI);
+    afx_msg void OnSignalgraphwindowCAN();
+    afx_msg void OnUpdateSignalgraphwindowCAN(CCmdUI* pCmdUI);
+    afx_msg void OnSignalgraphwindowMcnet();
+    afx_msg void OnUpdateSignalgraphwindowMcnet(CCmdUI* pCmdUI);
+    afx_msg void OnActivateJ1939();
+    afx_msg void OnUpdateActivateJ1939(CCmdUI* pCmdUI);
+    afx_msg void OnJ1939ConfigLog();
+    afx_msg void OnUpdateJ1939ConfigLog(CCmdUI* pCmdUI);
+    afx_msg void OnActionJ1939Online();
+    afx_msg void OnUpdateActionJ1939Online(CCmdUI* pCmdUI);
+    afx_msg void OnActionJ1939TxMessage();
+    afx_msg void OnUpdateActionJ1939TxMessage(CCmdUI* pCmdUI);
+    afx_msg void OnActionJ1939Log();
+    afx_msg void OnUpdateActionJ1939Log(CCmdUI* pCmdUI);
+    afx_msg void OnToolbarJ1939();
+    afx_msg void OnUpdateToolbarJ1939(CCmdUI* pCmdUI);
+    afx_msg void OnJ1939ConfigureTimeouts();
+    afx_msg void OnUpdateJ1939Timeouts(CCmdUI* pCmdUI);
+    afx_msg void OnUpdateJ1939DBNew(CCmdUI* pCmdUI);
+    afx_msg void OnJ1939DBNew();
+    afx_msg void OnJ1939DBOpen();
+    afx_msg void OnJ1939DBClose();
+    afx_msg void OnJ1939DBSave();
+    afx_msg void OnUpdateJ1939DBSave(CCmdUI* pCmdUI);
+    afx_msg void OnJ1939DBAssociate();
+    afx_msg void OnJ1939DBDissociate();
+    afx_msg void OnJ1939CfgSimSys();
+    afx_msg void OnJ1939LoadAll();
+    afx_msg void OnUpdateJ1939LoadAll(CCmdUI* pCmdUI);
+    afx_msg void OnJ1939UnloadAll();
+    afx_msg void OnUpdateJ1939UnloadAll(CCmdUI* pCmdUI);
+    afx_msg void OnJ1939BuildAndLoadAll();
+    afx_msg void OnUpdateJ1939BuildAndLoadAll(CCmdUI* pCmdUI);
+    afx_msg void OnJ1939BuildAll();
+    afx_msg void OnUpdateJ1939BuildAll(CCmdUI* pCmdUI);
+    afx_msg void OnJ1939AllMessageHandlers();
+    afx_msg void OnUpdateJ1939AllMessageHandlers(CCmdUI* pCmdUI);
+    afx_msg void OnJ1939AllKeyHandlers();
+    afx_msg void OnUpdateJ1939AllKeyHandlers(CCmdUI* pCmdUI);
+    afx_msg void OnJ1939AllTimerHandlers();
+    afx_msg void OnUpdateJ1939AllTimerHandlers(CCmdUI* pCmdUI);
+    afx_msg void OnJ1939AllEventHandlers();
+    afx_msg void OnUpdateJ1939AllEventHandlers(CCmdUI* pCmdUI);
+    afx_msg void OnJ1939AllHandlers();
+    afx_msg void OnUpdateJ1939AllHandlers(CCmdUI* pCmdUI);
+    afx_msg void OnUpdateJ1939CfgSimSys(CCmdUI* pCmdUI);
+    afx_msg void OnJ1939SignalwatchAdd();
+    afx_msg void OnJ1939SignalwatchShow();
+    afx_msg void OnUpdateJ1939SignalwatchShow(CCmdUI* pCmdUI);
+    afx_msg void OnConfigureMessagedisplayJ1939();
+    afx_msg void OnJ1939Exportlog();
+    afx_msg void OnShowHideMessageWindow(UINT nID);
+    afx_msg void OnUpdateShowHideMessageWindow(CCmdUI* pCmdUI);
+    afx_msg void OnToolbarCandatabase();
+    afx_msg void OnUpdateToolbarCanDatabase(CCmdUI* pCmdUI);
+    afx_msg LRESULT OnMessageFromUserDllGetAbsoluteTime(WPARAM wParam, LPARAM lParam);
+    afx_msg void OnFileConverter();
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     afx_msg void OnOpenDatabase();
     afx_msg void OnCloseDatabase();
@@ -352,7 +470,6 @@ protected:
     afx_msg void OnDllUnloadJ1939();
     afx_msg void OnMessageInterpretation();
     afx_msg void OnAddSignalToSignalWindow();
-    //afx_msg void OnMessageFilter();
     afx_msg void OnLogFilter();
     afx_msg void OnSelectMessage();
     afx_msg void OnAboutApplication();
@@ -367,19 +484,14 @@ protected:
     afx_msg void OnUpdateExecuteMessagehandlers(CCmdUI* pCmdUI);
     afx_msg void OnUpdateLogFilter(CCmdUI* pCmdUI);
     afx_msg void OnUpdateReplayFilter(CCmdUI* pCmdUI);
-    //afx_msg void OnUpdateMessageFilter(CCmdUI* pCmdUI);
     afx_msg void OnUpdateExecuteMessagehandlersButton(CCmdUI* pCmdUI);
     afx_msg void OnExecuteMessagehandlersButton();
     afx_msg void OnSendMessage();
-    //afx_msg void OnLogFilterButton();
-    //afx_msg void OnUpdateLogFilterButton(CCmdUI* pCmdUI);
     afx_msg void OnMessageFilterButton();
     afx_msg void OnReplayFilter();
-    void ApplyMessageFilterButton();
     afx_msg void OnUpdateMessageFilterButton(CCmdUI* pCmdUI);
     afx_msg void OnUpdateExecuteTimerhandler(CCmdUI* pCmdUI);
     afx_msg void OnDisplayMessagewindowOverwrite();
-    void ApplyMessagewindowOverwrite();
     afx_msg void OnClearMsgWindow();
     afx_msg void OnUpdateDllBuildAll(CCmdUI* pCmdUI);
     afx_msg void OnUpdateDllBuildloadAll(CCmdUI* pCmdUI);
@@ -446,15 +558,10 @@ protected:
     afx_msg void OnAutomationTSExecutor();
     afx_msg void OnConfigChannelSelection();
     afx_msg void OnUpdateConfigChannelSelection(CCmdUI* pCmdUI);
-
     afx_msg LRESULT OnReceiveKeyBoardData(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT OnReceiveKeyDown(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT onGetConfigPath(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT onJ1939TxWndClose(WPARAM wParam, LPARAM lParam);
-
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-
     afx_msg void OnClickMruList( UINT unID );
     afx_msg void OnUpdateMruList(CCmdUI* pCmdUI);
     afx_msg LRESULT OnErrorMessageProc(WPARAM wpParam, LPARAM lParam);
@@ -467,19 +574,9 @@ protected:
     // Handler for creating trace window
     afx_msg LRESULT vCreateTraceWindow(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT vEnableDisableHandlers(WPARAM wParam, LPARAM lParam);
+    void ApplyMessageFilterButton();
     int nCreateToolbar(CWnd* pomParent, CToolBar& omToolbar, UINT unID,CString omTitle);
     void DockControlBarLeftOf(CToolBar* pomCurrBar,CToolBar* pomLeftOf);
-
-public:
-    // To update graph data with statistics parameters
-    void vUpdateGraphStatsData();
-    //To send configuration change command to all signal graph windows
-    void vPostConfigChangeCmdToSigGrphWnds(BOOL bHideGraphWnd = TRUE);
-
-    void vClearSignalInfoList(void);
-    void vUpdateChannelInfo(void);
-    void vUpdateHWStatusInfo(void);
-    BOOL bFillDbStructure(CMsgNameMsgCodeListDataBase& odMsgNameMsgCodeListDB);
 
 private:
     HMODULE m_hModAdvancedUILib;
@@ -487,12 +584,12 @@ private:
     BYTE    m_bytIconSize;
     ProjectData m_sProjData;
     CMenu* m_pExternalTools; // External Tools menu is dynamically created.
-    DILLIST m_ouList;// List of the driver interface layers supported
+    DriverList m_ouList;// List of the driver interface layers supported
     INT m_nDILCount; //Count of the driver interface layers supported
     CMenu* m_pDILSubMenu;
     CWaveFormDataHandler m_objWaveformDataHandler;
-    CMainEntryList m_odResultingList;
-    //CMainEntryList m_odResultingList;
+    SignalWatchListMainEntries m_odResultingList;
+    //SignalWatchListMainEntries m_odResultingList;
 
     INT m_anMsgBuffSize[defDISPLAY_CONFIG_PARAM];
     SMSG_FRMT_WND m_sMsgFrmtWndDets;
@@ -596,7 +693,7 @@ private:
     BOOL bIsToolbarVisible(CToolBar& omToolbar);
     /* Helper function to populate sigwatch list from MainSubEntry
        data structure */
-    void vPopulateSigWatchList(CMainEntryList& odFromList, SMSGENTRY*& psToList, CMsgSignal* pouDatabase);
+    void vPopulateSigWatchList(SignalWatchListMainEntries& odFromList, SMSGENTRY*& psToList, CMsgSignal* pouDatabase);
     /* Helper function to re register all the nodes when driver changes */
     void vReRegisterAllCANNodes(void);
     void vReRegisterAllJ1939Nodes(void);
@@ -639,7 +736,7 @@ private:
     void vSetFileStorageInfo(CString omCfgFileName);
     void vSetCurrProjInfo(float fAppVersion);
 
-    DILINFO* psGetDILEntry(UINT unKeyID, BOOL bKeyMenuItem = TRUE);
+    DriverInfo* psGetDILEntry(UINT unKeyID, BOOL bKeyMenuItem = TRUE);
     void vInitializeBusStatCAN(void);
     BOOL bStartGraphReadThread();
     BOOL bStopGraphReadThread();
@@ -656,126 +753,4 @@ private:
 
     xmlNodePtr m_pCopyBusStsticsNode;
     void vSetGlobalConfiguration(xmlNodePtr& pNodePtr);
-
-public:
-    void vPopulateJ1939PGNList();
-    INT ReadGraphDataBuffer(BOOL bCalcTime);
-    INT nLoadConfigFile(CString omConfigFileName);
-    int  COM_ConnectTool();
-    BOOL COM_SaveConfigFile();
-    BOOL COM_SaveConfigFileAs(CString omCfgFilePath);
-    BOOL COM_bDLLBuild(CStringArray* omStrBuildFiles);
-    BOOL COM_bDLLBuildLoad(CStringArray* omStrBuildFiles);
-    BOOL COM_bDllLoad(CStringArray* omStrBuildFiles);
-    BOOL COM_bDllUnload(CStringArray* omStrBuildFiles);
-    void COM_SendMessage();
-    void COM_EnableAllHandlers(BOOL bEnable);
-
-    BOOL bUpdatePopupMenuDIL(void);
-    CString omStrGetUnionFilePath(CString omStrTemp);
-    void vInitCFileFunctPtrs();
-    void NS_InitJ1939SpecInfo();
-    void vUpdateMsgNameCodeList(CMsgSignal* pMsgSig, CMsgNameMsgCodeListDataBase& odMsgNameMsgCodeListDB);
-    void vPushConfigFilenameDown ( CString omStrConfigFilename );
-    void vUpdateMainEntryListInWaveDataHandler();
-    void vUpdateAllMsgWndInterpretStatus(BOOL bAssociate);
-public:
-    afx_msg void OnUpdateSelectDriver(CCmdUI* pCmdUI);
-    afx_msg void OnSelectDriver(UINT nID);
-
-    afx_msg LRESULT vKeyPressedInMsgWnd(WPARAM wParam, LPARAM lParam);
-    afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
-    virtual void WinHelp(DWORD dwData, UINT nCmd = HELP_CONTEXT);
-    afx_msg void OnDissociateDatabase();
-    afx_msg void OnSaveImportDatabase();
-    afx_msg void OnUpdateSaveImportDatabase(CCmdUI* pCmdUI);
-    //To update the Message DB Pointer
-    afx_msg LRESULT OnProvideMsgDBPtr(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT OnProvideMsgNameFromCode(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT OnProvidePGNNameFromCode(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT OnMessageFromUserDll(WPARAM wParam, LPARAM lParam);
-    afx_msg void OnConfigureModeActive();
-    afx_msg void OnConfigurePassive();
-    afx_msg void OnLogEnable();
-    afx_msg void OnRestartController();
-    afx_msg void OnUpdateCfgnLog(CCmdUI* pCmdUI);
-
-    afx_msg void OnDisplayEdit();
-    afx_msg void OnUpdateDisplayEdit(CCmdUI* pCmdUI);
-    afx_msg void OnDisplayMain();
-    afx_msg void OnUpdateDisplayMain(CCmdUI* pCmdUI);
-    afx_msg void OnDisplayMsgWnd();
-    afx_msg void OnUpdateDisplayMsgWnd(CCmdUI* pCmdUI);
-    afx_msg void OnDisplayNodeSim();
-    afx_msg void OnUpdateDisplayNodeSim(CCmdUI* pCmdUI);
-    afx_msg void OnDisplayConfig();
-    afx_msg void OnUpdateDisplayConfig(CCmdUI* pCmdUI);
-    afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
-    afx_msg void OnConfigureWaveformMessages();
-    afx_msg void OnStartSignalTransmission();
-    afx_msg void OnUpdateStartSignalTransmission(CCmdUI* pCmdUI);
-    afx_msg void OnConfigureSignalgraphwindow();
-    afx_msg void OnUpdateConfigureSignalgraphwindow(CCmdUI* pCmdUI);
-    afx_msg void OnSignalgraphwindowCAN();
-    afx_msg void OnUpdateSignalgraphwindowCAN(CCmdUI* pCmdUI);
-    afx_msg void OnSignalgraphwindowMcnet();
-    afx_msg void OnUpdateSignalgraphwindowMcnet(CCmdUI* pCmdUI);
-    afx_msg void OnActivateJ1939();
-    afx_msg void OnUpdateActivateJ1939(CCmdUI* pCmdUI);
-    afx_msg void OnJ1939ConfigLog();
-    afx_msg void OnUpdateJ1939ConfigLog(CCmdUI* pCmdUI);
-    afx_msg void OnActionJ1939Online();
-    afx_msg void OnUpdateActionJ1939Online(CCmdUI* pCmdUI);
-    afx_msg void OnActionJ1939TxMessage();
-    afx_msg void OnUpdateActionJ1939TxMessage(CCmdUI* pCmdUI);
-    afx_msg void OnActionJ1939Log();
-    afx_msg void OnUpdateActionJ1939Log(CCmdUI* pCmdUI);
-    afx_msg void OnToolbarJ1939();
-    afx_msg void OnUpdateToolbarJ1939(CCmdUI* pCmdUI);
-    afx_msg void OnJ1939ConfigureTimeouts();
-    afx_msg void OnUpdateJ1939Timeouts(CCmdUI* pCmdUI);
-    afx_msg void OnUpdateJ1939DBNew(CCmdUI* pCmdUI);
-    afx_msg void OnJ1939DBNew();
-    afx_msg void OnJ1939DBOpen();
-    afx_msg void OnJ1939DBClose();
-    afx_msg void OnJ1939DBSave();
-    afx_msg void OnUpdateJ1939DBSave(CCmdUI* pCmdUI);
-    afx_msg void OnJ1939DBAssociate();
-    afx_msg void OnJ1939DBDissociate();
-    afx_msg void OnJ1939CfgSimSys();
-    afx_msg void OnJ1939LoadAll();
-    afx_msg void OnUpdateJ1939LoadAll(CCmdUI* pCmdUI);
-    afx_msg void OnJ1939UnloadAll();
-    afx_msg void OnUpdateJ1939UnloadAll(CCmdUI* pCmdUI);
-    afx_msg void OnJ1939BuildAndLoadAll();
-    afx_msg void OnUpdateJ1939BuildAndLoadAll(CCmdUI* pCmdUI);
-    afx_msg void OnJ1939BuildAll();
-    afx_msg void OnUpdateJ1939BuildAll(CCmdUI* pCmdUI);
-    afx_msg void OnJ1939AllMessageHandlers();
-    afx_msg void OnUpdateJ1939AllMessageHandlers(CCmdUI* pCmdUI);
-    afx_msg void OnJ1939AllKeyHandlers();
-    afx_msg void OnUpdateJ1939AllKeyHandlers(CCmdUI* pCmdUI);
-    afx_msg void OnJ1939AllTimerHandlers();
-    afx_msg void OnUpdateJ1939AllTimerHandlers(CCmdUI* pCmdUI);
-    afx_msg void OnJ1939AllEventHandlers();
-    afx_msg void OnUpdateJ1939AllEventHandlers(CCmdUI* pCmdUI);
-    afx_msg void OnJ1939AllHandlers();
-    afx_msg void OnUpdateJ1939AllHandlers(CCmdUI* pCmdUI);
-    afx_msg void OnUpdateJ1939CfgSimSys(CCmdUI* pCmdUI);
-    afx_msg void OnJ1939SignalwatchAdd();
-    afx_msg void OnJ1939SignalwatchShow();
-    afx_msg void OnUpdateJ1939SignalwatchShow(CCmdUI* pCmdUI);
-    afx_msg void OnConfigureMessagedisplayJ1939();
-    afx_msg void OnJ1939Exportlog();
-    afx_msg void OnShowHideMessageWindow(UINT nID);
-    afx_msg void OnUpdateShowHideMessageWindow(CCmdUI* pCmdUI);
-    afx_msg void OnToolbarCandatabase();
-    afx_msg void OnUpdateToolbarCanDatabase(CCmdUI* pCmdUI);
-    afx_msg LRESULT OnMessageFromUserDllGetAbsoluteTime(WPARAM wParam, LPARAM lParam);
-    afx_msg void OnFileConverter();
-
-    void ApplyLogFilter();
-    void ApplyReplayFilter();
-    xmlDocPtr m_xmlConfigFiledoc;
-    BOOL m_bIsXmlConfig;
 };

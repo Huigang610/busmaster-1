@@ -57,10 +57,8 @@ static char THIS_FILE[] = __FILE__;
 CUtlityDlg::CUtlityDlg(CFunctionEditorDoc* pDoc, CWnd* pParent /*=NULL*/)
     : CDialog(CUtlityDlg::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CUtlityDlg)
     m_omStrFunctionName = "";
     m_omStrUtilsFunText = "";
-    //}}AFX_DATA_INIT
     m_bChangeUtilFunc = FALSE;
     m_omStrTempReturnType = STR_EMPTY ;
     m_pDoc = pDoc;
@@ -70,26 +68,18 @@ CUtlityDlg::CUtlityDlg(CFunctionEditorDoc* pDoc, CWnd* pParent /*=NULL*/)
 void CUtlityDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CUtlityDlg)
     DDX_Control(pDX, IDC_EDIT_UTILS_FN, m_omEditUtilsFunText);
     DDX_Control(pDX, IDC_COMB_FN_RETURN_TYPE, m_omComboRetType);
     DDX_Text(pDX, IDC_EDIT_FN_PROTO, m_omStrFunctionName);
     DDX_Text(pDX, IDC_EDIT_UTILS_FN, m_omStrUtilsFunText);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CUtlityDlg, CDialog)
-    //{{AFX_MSG_MAP(CUtlityDlg)
     ON_BN_CLICKED(IDC_CBTN_OK, OnOk)
     ON_EN_CHANGE(IDC_EDIT_FN_PROTO, OnChangeEditFnPrototype)
     ON_BN_CLICKED(IDC_CBTN_CANCEL, OnCancel)
-    //}}AFX_MSG_MAP
     ON_CBN_SELCHANGE(IDC_COMB_FN_RETURN_TYPE, OnCbnSelchangeCombFnReturnType)
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CUtlityDlg message handlers
 
 /******************************************************************************/
 /*  Function Name    :  OnOk                                                  */
@@ -278,36 +268,6 @@ BOOL CUtlityDlg::OnInitDialog()
     m_omComboRetType.AddString( defUNSIGNED_INT );
     m_omComboRetType.AddString( TVOID );
 
-
-    // Get all the message names of active DB
-    // CMsgSignal &ouDatabase = CMsgSignal::ouGetMsgSignal();
-    // If the database pointer is valid
-    //if( ouDatabase != NULL )
-    //{
-    //UINT unNoOfMessages = ouDatabase.unGetNumerOfMessages();
-    // If there are some messages then get the names and add
-    //if ( unNoOfMessages > 0 )
-    //{
-    // To strore database message names
-    //CStringList omMessageNames;
-    //// Get names
-    //ouDatabase.omStrListGetMessageNames( omMessageNames );
-    //// Get the starting position first
-    //POSITION pos = omMessageNames.GetHeadPosition();
-    //// Insert every message name into the message list box
-    //CString omStrMsgName = STR_EMPTY;
-    //// Iterate through the list
-    //while ( pos != NULL )
-    //{
-    //    omStrMsgName = omMessageNames.GetNext(pos);
-    //    // Addition check to ensure there will not be any empty string
-    //    if( omStrMsgName.IsEmpty() == FALSE )
-    //    {
-    //        m_omComboRetType.AddString( omStrMsgName );
-    //    }
-    //}
-    //}
-    //}
     //if the Function prototype has to change display the return type
     m_omComboRetType.SelectString(-1,m_omStrTempReturnType);
     // Disable Ok button initially.

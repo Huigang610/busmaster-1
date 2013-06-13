@@ -24,15 +24,12 @@
 
 #pragma once
 
-//Definition of CNotificListbox class
+/* Project includes */
 #include "NotificListbox.h"
 #include "MDIChildBase.h"   // For Common MDI base class
-//#include "Structs.h"
-/////////////////////////////////////////////////////////////////////////////
-// CNotificWnd
+
 typedef struct tagNOTIFICWNDPARAMS
 {
-    //LOGPARAMS           m_sLogParams;
     WINDOWPLACEMENT     m_sWndPlacement;
     BYTE                m_bSetFlag_Disp;
     BYTE                m_bSetFlag_Log;
@@ -41,40 +38,28 @@ typedef struct tagNOTIFICWNDPARAMS
 class CNotificWnd : public CMDIChildBase
 {
     DECLARE_DYNCREATE(CNotificWnd)
+    DECLARE_MESSAGE_MAP()
+
 public:
     CNotificWnd();           // public constructor used by dynamic creation
-    virtual ~CNotificWnd(); //destructor
-    // Attributes
-public:
-    //CStringArray m_omDispStrArray;
 
-    // Operations
-public:
-    // Set the font of window
+	// Set the font of window
     BOOL bCreateNotificWindow(CMDIFrameWnd* pomParentWnd);
     // To display a string into trace window
     void vDisplayString(const CString& omStr);
     void vClearTraceContents();
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CNotificWnd)
 protected:
     virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CNotificWnd)
+	// Generated message map functions
+    afx_msg void OnDestroy();
+    afx_msg void OnTimer(UINT nIDEvent);
     afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
     afx_msg void OnSize(UINT nType, int cx, int cy);
     afx_msg void OnClose();
     afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
-    //}}AFX_MSG
-    //afx_msg void vAddString(WPARAM wParam, LPARAM lParam);
-    DECLARE_MESSAGE_MAP()
+
 private:
     CCriticalSection m_omCriticalSection;
     UINT_PTR m_unTimer;
@@ -96,8 +81,4 @@ private:
     void SaveNFDataIntoBuffer(BYTE* DesBuffer);
     void CopyNFDataFromBuffer(BYTE* SrcBuffer);
     BOOL bIsConfigChanged();
-
-public:
-    afx_msg void OnDestroy();
-    afx_msg void OnTimer(UINT nIDEvent);
 };

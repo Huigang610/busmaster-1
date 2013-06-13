@@ -22,15 +22,9 @@
  * Implementation of the Class SInfo
  */
 
-///////////////////////////////////////////////////////////
-//  TSDefinitions.cpp
-//  Implementation of the Class SInfo
-//  Created on:      07-Jan-2011 2:30:36 PM
-///////////////////////////////////////////////////////////
+/* Project includes */
 #include "TestSetupEditorLib_stdafx.h"
 #include "TSDefinitions.h"
-
-
 
 /******************************************************************************
 Function Name  :  SInfo

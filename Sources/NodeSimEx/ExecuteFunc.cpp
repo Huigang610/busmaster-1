@@ -1831,7 +1831,7 @@ void CExecuteFunc::vCatagoriseMsgHandlers(const CString& omStrFuncName)
     }
 
 }
-//VENKATANARAYANA
+
 BOOL CExecuteFunc::bAllocateMemoryForMsgListHandler(UINT unMsgListCount )
 {
     BOOL bRetVal = TRUE;
@@ -2483,9 +2483,6 @@ BOOL CExecuteFunc::bActivateDeactivateHandlers(BOOL bCurrStatus)
     BYTE byAction=0;
     if( bCurrStatus == FALSE)
     {
-        /// Stop all executing handlers
-
-
         if( m_sNodeInfo.m_bMsgHandlersEnabled== TRUE)
         {
             m_bStopMsgHandlers = TRUE;

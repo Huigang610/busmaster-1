@@ -132,28 +132,28 @@ public:
 
 typedef InterfaceHardware InterfaceHardwareList[defNO_OF_CHANNELS];
 
-class DILINFO
+class DriverInfo
 {
 public:
 	std::string    name;
     unsigned long  driverId;
     unsigned int   resourceId;
 
-    DILINFO()
+    DriverInfo()
     {
         name = "";
         driverId = 0;
         resourceId = 0;
     }
 
-    DILINFO(const DILINFO& objRef)
+    DriverInfo(const DriverInfo& objRef)
     {
         name = objRef.name;
         driverId = objRef.driverId;
         resourceId = objRef.resourceId;
     }
 
-    DILINFO& operator=(DILINFO& objRef)
+    DriverInfo& operator=(DriverInfo& objRef)
     {
         name = objRef.name;
         driverId = objRef.driverId;
@@ -164,4 +164,4 @@ public:
 
 const int MAX_DILS = 16;
 const int MAX_HW = 32;
-typedef DILINFO DILLIST[MAX_DILS];
+typedef DriverInfo DriverList[MAX_DILS];

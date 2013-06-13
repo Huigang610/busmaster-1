@@ -22,7 +22,6 @@
  * Definition file for the class CTSExecutorChildFrame
  */
 
-
 #pragma once
 
 // CTreeViewEx view
@@ -31,37 +30,59 @@ class CTSExecutorChildFrame;
 //Definitions
 #define def_COLOR_TREE_BKG     RGB(237, 239, 254)
 
-
 class CTreeViewEx : public CTreeView
 {
     DECLARE_DYNCREATE(CTreeViewEx)
-    //Member Variables
-private:
-    CWnd* m_pomMsgTarget;
-    BOOL m_bDragging;
-    BOOL m_bEditing;
-    HTREEITEM m_hDraggingItemgedItem;
-    HCURSOR m_hOrigCursor;
-    HCURSOR m_hCurNoDrop;
-    CImageList* imageList;
-    CImageList* m_pomDragImageList;
-    typedef enum eTYPE_DROPPING
+    DECLARE_MESSAGE_MAP()
+
+public:
+    //Over-written menthods
+    virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
+    virtual void OnInitialUpdate();
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
+    BOOL bIsItemChecked(HTREEITEM hItem);
+
+    //Services
+    HTREEITEM InsertTreeItem(HTREEITEM hParent, CString csItemName, HTREEITEM hInsAfter,
+                             int iSelImage ,int iNonSelImage, long lParam);
+    INT SetImageList(CImageList* pomImageListNormal, CImageList* pomImageListState);
+    void ShowCheckBoxes(BOOL bShow);
+    void vDeleteChildItems(HTREEITEM hItem);
+
+    //Debug Functions
+#ifdef _DEBUG
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
+#endif
+
+    afx_msg void OnTvnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
+    virtual BOOL CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, LPVOID lpParam = NULL);
+
+protected:
+	//Message Handlers
+    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+    afx_msg void OnTvnBegindrag(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+    afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+    afx_msg void OnNMRclick(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnAddEntityItem(UINT nId);
+    afx_msg void vOnDeleteItem();
+    afx_msg HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
+    afx_msg void OnTvnSelchanging(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnTvnBeginlabeledit(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnTvnEndlabeledit(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnCommandRange(UINT unCommandID);
+    afx_msg void onUpdateExecute(CCmdUI* pCmdUI);
+    afx_msg void OnTvnKeyPress(NMHDR* pNMHDR, LRESULT* pResult);
+
+	typedef enum eTYPE_DROPPING
     {
         DROPPING_BELOW,
         DROPPING_ABOVE,
         NO_DROPPING
     };
-    //Methods
-private:
-    UINT unGetIndex(HTREEITEM hTreeItem);
-    CTSExecutorChildFrame* GetExecutorWindow();
 
-protected:
-    DECLARE_MESSAGE_MAP()
-    CTreeViewEx();           // protected constructor used by dynamic creation
-    virtual ~CTreeViewEx();
-
-
+	CTreeViewEx();           // protected constructor used by dynamic creation
 
     BOOL bAnscestor(HTREEITEM hItem, HTREEITEM hCheck);
     BOOL bSuccessor(HTREEITEM hItem, HTREEITEM hCheck);
@@ -94,45 +115,16 @@ protected:
 
     eTYPE_DROPPING GetDroppingPosition(UINT flags);
 
-public:
+private:
+    CWnd* m_pomMsgTarget;
+    BOOL m_bDragging;
+    BOOL m_bEditing;
+    HTREEITEM m_hDraggingItemgedItem;
+    HCURSOR m_hOrigCursor;
+    HCURSOR m_hCurNoDrop;
+    CImageList* imageList;
+    CImageList* m_pomDragImageList;
 
-    //Over-written menthods
-    virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
-    virtual void OnInitialUpdate();
-    virtual BOOL PreTranslateMessage(MSG* pMsg);
-    BOOL bIsItemChecked(HTREEITEM hItem);
-    //Message Handlers
-    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-    afx_msg void OnTvnBegindrag(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-    afx_msg void OnMouseMove(UINT nFlags, CPoint point);
-    afx_msg void OnNMRclick(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnAddEntityItem(UINT nId);
-    afx_msg void vOnDeleteItem();
-    afx_msg HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
-    afx_msg void OnTvnSelchanging(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnTvnBeginlabeledit(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnTvnEndlabeledit(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnCommandRange(UINT unCommandID);
-    afx_msg void onUpdateExecute(CCmdUI* pCmdUI);
-    afx_msg void OnTvnKeyPress(NMHDR* pNMHDR, LRESULT* pResult);
-
-    //Services
-    HTREEITEM InsertTreeItem(HTREEITEM hParent, CString csItemName, HTREEITEM hInsAfter,
-                             int iSelImage ,int iNonSelImage, long lParam);
-    INT SetImageList(CImageList* pomImageListNormal, CImageList* pomImageListState);
-    void ShowCheckBoxes(BOOL bShow);
-    void vDeleteChildItems(HTREEITEM hItem);
-
-    //Debug Functions
-public:
-#ifdef _DEBUG
-    virtual void AssertValid() const;
-    virtual void Dump(CDumpContext& dc) const;
-#endif
-
-    afx_msg void OnTvnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
-    virtual BOOL CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, LPVOID lpParam = NULL);
+    UINT unGetIndex(HTREEITEM hTreeItem);
+    CTSExecutorChildFrame* GetExecutorWindow();
 };
-
-

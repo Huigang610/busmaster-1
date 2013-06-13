@@ -24,17 +24,17 @@
 
 #pragma once
 
+/* Project includes */
 #include "MsgSignal.h"
 #include "Utility/AlphanumiricEdit.h"
 #include "CFilesDefs_CAN.h"
+
 class CMessageDetailsDlg : public CDialog
 {
-    // Construction
 public:
     CMessageDetailsDlg(const SDBPARAMS& sDbParams, sMESSAGE* pMsg = NULL,CWnd* pParent = NULL );   // standard constructor
 
     // Dialog Data
-    //{{AFX_DATA(CMessageDetailsDlg)
     enum { IDD = IDD_MESSAGE_DIALOG };
     CSpinButtonCtrl m_omSpinMsgLen;
     CString m_omStrMessageName;
@@ -42,28 +42,16 @@ public:
     UINT    m_unMessageLength;
     int     m_nFrameFormat;
     BOOL ValidateMessageName(CString );
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CMessageDetailsDlg)
-public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
+
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CMessageDetailsDlg)
-    virtual BOOL OnInitDialog();
+	virtual BOOL OnInitDialog();
     virtual void OnOK();
     virtual void OnCancel();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     BOOL bDeleteRedundentSignals();
     void vConvertToStandard();

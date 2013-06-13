@@ -14,26 +14,20 @@
  */
 
 /**
- * \file      Application.h
- * \brief     CCANMonitorApp class implementation file
- * \author    Anish kumar
- * \copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ * @file      Application.h
+ * @brief     CCANMonitorApp class implementation file
+ * @author    Anish kumar
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * CCANMonitorApp class implementation file
  */
 
 #pragma once
 
-// For DIL Interface Class
+/* Project includes */
 #include "Include/BaseDefs.h"
-// License validator interface, needed to query for other interfaces
 #include "PSDI_Extern.h"
 #include "CommonClass/MsgContainerBase.h"
-//#include "DataTypes/MsgBufAll_Datatypes.h"
-//#include "DataTypes/DIL_Datatypes.h"
-//#include "DIL_Interface/BaseDIL_CAN.h"
-
-// For CAN logger interface
 #include "include/ModuleID.h"
 #include "FrameProcessor/FrameProcessor_extern.h"
 #include "FrameProcessor/BaseFrameProcessor_CAN.h"
@@ -43,7 +37,6 @@
 #include "BUSMASTER.h"
 #include "MainFrm.h"
 #include "DIL_interface/BaseDIL_CAN.h"
-
 #include "InterfaceGetter.h"
 
 extern CCANMonitorApp theApp;
@@ -80,7 +73,6 @@ public:
     void ReadCOMDataBuffer();
 
     DECLARE_DYNCREATE(CApplication)
-    DECLARE_MESSAGE_MAP()
     DECLARE_OLECREATE(CApplication)
     DECLARE_DISPATCH_MAP()
     DECLARE_INTERFACE_MAP()
@@ -155,18 +147,9 @@ public:
         dispidUnRegisterClient        = 58L
     };
 
-
-    /******************************************************************************
-        Function Name    : Connect
-
-        Input(s)         :  BOOL
-        Output           :  -
-        Functionality    :  Connect/disconnect the tool
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+	/**
+	 * Connect/disconnect the tool
+	 */
     HRESULT Connect(BOOL bConnect)
     {
         HRESULT hResult = E_POINTER;
@@ -193,17 +176,9 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  GetErrorCounter
-
-        Input(s)         :
-        Output           :  -
-        Functionality    :  Provide's the error count
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Provide's the error count
+	 */
     HRESULT GetErrorCounter(UCHAR* Tx, UCHAR* Rx, INT nChannel)
     {
         HRESULT hResult = E_POINTER;
@@ -228,17 +203,11 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  vSendCANMsgToClients
-
-        Input(s)         :  message details
-        Output           :  -
-        Functionality    :  sends the message to registered clients
-        Member of        :  CApplication
-        Author(s)        :  Arunkumar Karri
-        Date Created     :  08.01.2013
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * sends the message to registered clients
+	 *
+	 * @param[in] sMsg message details
+	 */
     void vSendCANMsgToClients(CAN_MSGS sMsg)
     {
         const CPtrArray* pConnections = m_xAppEvents.GetConnections ();
@@ -258,17 +227,11 @@ public:
         }
     }
 
-    /******************************************************************************
-        Function Name    :  SendCANMSg
-
-        Input(s)         :  message details
-        Output           :  -
-        Functionality    :  sends the message
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * sends the message
+	 *
+	 * @param[in] psMsg message details
+	 */
     HRESULT SendCANMSg(CAN_MSGS* psMsg)
     {
         HRESULT hResult = E_POINTER;
@@ -297,17 +260,12 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  GetMsgInfo
-
-        Input(s)         :  message name
-        Output           :  message structure
-        Functionality    :  Provides the Message structure
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Provides the Message structure
+	 *
+	 * @param[in] MsgName message name
+	 * @param[out] psMsgStruct message structure
+	 */
     HRESULT GetMsgInfo(BSTR MsgName, sMESSAGESTRUCT* psMsgStruct)
     {
         HRESULT hResult = E_POINTER;
@@ -334,17 +292,12 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  GetNetworkStatistics
-
-        Input(s)         :  Channel no., statistic structure
-        Output           :  Statistics of the channel
-        Functionality    :  Provides all the statistics
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Provides all the statistics
+	 *
+	 * @param[in] nChannel Channel no., statistic structure
+	 * @param[out] psStat Statistics of the channel
+	 */
     HRESULT GetNetworkStatistics(int nChannel, sBUSSTATISTICS_USR* psStat)
     {
         HRESULT hResult = E_POINTER;
@@ -360,19 +313,9 @@ public:
         return hResult;
     }
 
-    // NODE SIMULATION MODULE RELATED FUNCTIONS: START
-
-    /******************************************************************************
-        Function Name    :  LoadAllDll
-
-        Input(s)         :
-        Output           :  -
-        Functionality    :  Post the message to CMainframe LoadAllDll
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Post the message to CMainframe LoadAllDll
+	 */
     HRESULT LoadAllDll()
     {
         HRESULT hResult = E_POINTER;
@@ -395,17 +338,9 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  UnLoadAllDll
-
-        Input(s)         :
-        Output           :  -
-        Functionality    :  Post the message to CMainframe UnLoadAllDll
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Post the message to CMainframe UnLoadAllDll
+	 */
     HRESULT UnLoadAllDll()
     {
         HRESULT hResult = E_POINTER;
@@ -427,17 +362,12 @@ public:
 
         return hResult;
     }
-    /******************************************************************************
-        Function Name    :  SendKeyValue
 
-        Input(s)         :  Key's Ascii value
-        Output           :  -
-        Functionality    :  It post the key message to main frame
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * It post the key message to main frame
+	 *
+	 * @param[in] KeyVal Key's Ascii value
+	 */
     HRESULT SendKeyValue(UCHAR KeyVal)
     {
         HRESULT hResult = E_POINTER;
@@ -452,17 +382,12 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  EnableDisableHandlers
-
-        Input(s)         :  handler type, bool enable/disable
-        Output           :  -
-        Functionality    :
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * enable/disable handlers
+	 *
+	 * @param[in] bEnable enable/disable
+	 * @param[in] eType handler type
+	 */
     HRESULT EnableDisableHandlers(BOOL bEnable, eHandlerType eType)
     {
         HRESULT hResult = E_POINTER;
@@ -537,22 +462,10 @@ public:
 
         return hResult;
     }
-    // NODE SIMULATION MODULE RELATED FUNCTIONS: END
 
-    // CONFIGURATION RELATED FUNCTIONS: START
-
-    /******************************************************************************
-        Function Name    :  LoadConfiguration
-
-        Input(s)         :
-        Output           :  -
-        Functionality    :  Calls the mainframe class function to load the
-                            configuration
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Calls the mainframe class function to load the configuration
+	 */
     HRESULT LoadConfiguration(BSTR FileName)
     {
         HRESULT hResult = E_POINTER;
@@ -586,17 +499,9 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  ImportDatabase
-
-        Input(s)         :  File path
-        Output           :  -
-        Functionality    :  import the database file
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * import the database file
+	 */
     HRESULT ImportDatabase(BSTR DBFilePath)
     {
         HRESULT hResult = E_POINTER;
@@ -613,17 +518,9 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  SaveConfiguration
-
-        Input(s)         :  -
-        Output           :  -
-        Functionality    :  Save the Configurations in file
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  25.09.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Save the Configurations in file
+	 */
     HRESULT SaveConfiguration()
     {
         HRESULT hResult = E_POINTER;
@@ -644,17 +541,11 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  SaveConfigurationAs
-
-        Input(s)         :  Config File path
-        Output           :
-        Functionality    :  Save the configuration to new file
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Save the configuration to new file
+	 *
+	 * @param[in] ConfigPath Config File path
+	 */
     HRESULT SaveConfigurationAs(BSTR ConfigPath)
     {
         char acStr[_MAX_PATH] = {'\0'};
@@ -669,21 +560,10 @@ public:
 
         return hResult;
     }
-    // CONFIGURATION RELATED FUNCTIONS: END
 
-    // TX BLOCK RELATED FUNCTIONS: START
-
-    /******************************************************************************
-        Function Name    :  StartTxMsgBlock
-
-        Input(s)         :
-        Output           :  -
-        Functionality    :  Starts sending messages if tool is connected
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+	/**
+	 * Starts sending messages if tool is connected
+	 */
     HRESULT StartTxMsgBlock()
     {
         HRESULT hResult = E_POINTER;
@@ -698,86 +578,44 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  StopTxMsgBlock
-
-        Input(s)         :
-        Output           :  -
-        Functionality    :  Stops sending messages
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Stops sending messages
+	 */
     HRESULT StopTxMsgBlock()
     {
         return StartTxMsgBlock();
     }
 
-    /******************************************************************************
-        Function Name    :  GetTxBlockCount
-
-        Input(s)         :  -
-        Output           :  No. of Tx blocks available
-        Functionality    :  Get Tx block count
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Get Tx block count
+	 *
+	 * @param[out] Result No. of Tx blocks available
+	 */
     HRESULT GetTxBlockCount (USHORT* Result)
     {
         *Result = (USHORT) TX_unGetTxBlockCount();
         return S_OK;
     }
 
-    /******************************************************************************
-        Function Name    :  DeleteTxBlock
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Delete Tx Block
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Delete Tx Block
+	 */
     HRESULT DeleteTxBlock (USHORT /*BlockIndex*/)
     {
         return TX_vDeleteTxBlockMemory();
     }
 
-    /******************************************************************************
-        Function Name    :  ClearTxBlockList
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Clear Tx Block List
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Clear Tx Block List
+	 */
     HRESULT ClearTxBlockList(void)
     {
         return TX_vDeleteTxBlockMemory();
     }
-    // TX BLOCK RELATED FUNCTIONS: END
 
-
-    // FILTERING RELATED FUNCTIONS: START
-
-    /******************************************************************************
-        Function Name    :  EnableFilterSch
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Enables / disables a filter scheme
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+	/**
+     * Enables / disables a filter scheme
+	 */
     HRESULT EnableFilterSch(EFILTERMODULE eModule, BOOL bEnable)
     {
         HRESULT hResult;
@@ -828,21 +666,10 @@ public:
 
         return hResult;
     }
-    // FILTERING RELATED FUNCTIONS: END
 
-    // LOG RELATED FUNCTIONS: START
-
-    /******************************************************************************
-        Function Name    :  StartLogging
-
-        Input(s)         :
-        Output           :  -
-        Functionality    :  Start logging if it is stopped
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Start logging if it is stopped
+	 */
     HRESULT StartLogging()
     {
         HRESULT hResult = E_POINTER;
@@ -856,17 +683,9 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  StopLogging
-
-        Input(s)         :
-        Output           :  -
-        Functionality    :  disable logging of messages
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * disable logging of messages
+	 */
     HRESULT StopLogging()
     {
         HRESULT hResult = E_POINTER;
@@ -880,17 +699,9 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  WriteToLogFile
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Writes a string to the log file specified
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Writes a string to the log file specified
+	 */
     HRESULT WriteToLogFile(USHORT /*BlockIndex*/, BSTR bstrStr)
     {
         HRESULT hResult = E_POINTER;
@@ -907,17 +718,9 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  RegisterClientForRx
-
-        Input(s)         :  USHORT usUniqueID, BSTR* pEventName, BSTR* pPIPEName
-        Output           :
-        Functionality    :  Registers a client for receiving Rx data through PIPE and event
-        Member of        :  CApplication
-        Author(s)        :  ArunKumar Karri
-        Date Created     :  01.24.2013
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Registers a client for receiving Rx data through PIPE and event
+	 */
     HRESULT RegisterClientForRx(USHORT usUniqueID, BSTR* pEventName, BSTR* pPIPEName)
     {
         HRESULT hResult = S_OK;
@@ -945,17 +748,9 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  UnRegisterClient
-
-        Input(s)         :  USHORT usUniqueID
-        Output           :
-        Functionality    :  Unregisters a client for receiving Rx data
-        Member of        :  CApplication
-        Author(s)        :  ArunKumar Karri
-        Date Created     :  01.25.2013
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Unregisters a client for receiving Rx data
+	 */
     HRESULT UnRegisterClient(USHORT usUniqueID)
     {
         HRESULT hResult = S_OK;
@@ -990,7 +785,9 @@ public:
         return hResult;
     }
 
-    /* Function to create PIPE handle for a client */
+    /**
+	 * Function to create PIPE handle for a client
+	 */
     HRESULT  hCreatePipeAndEventForClient(USHORT usUniqueID, HANDLE& hndPipe, HANDLE& hndEvent, BSTR* pEventName, BSTR* pPIPEName)
     {
         char EventName[32] = {'\0'};
@@ -1058,17 +855,9 @@ public:
         return S_OK;
     }
 
-    /******************************************************************************
-        Function Name    :  GetLoggingBlockCount
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Returns total number of logging blocks defined
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Returns total number of logging blocks defined
+	 */
     HRESULT GetLoggingBlockCount(USHORT* BlockCount)
     {
         HRESULT hResult = E_POINTER;
@@ -1083,17 +872,9 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  RemoveLoggingBlock
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Deletes a logging block
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Deletes a logging block
+	 */
     HRESULT RemoveLoggingBlock(USHORT BlockIndex)
     {
         HRESULT hResult = E_POINTER;
@@ -1107,17 +888,9 @@ public:
         return hResult;
     }
 
-    /******************************************************************************
-        Function Name    :  ClearLoggingBlockList
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Clears the logging block list
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Clears the logging block list
+	 */
     HRESULT ClearLoggingBlockList(void)
     {
         HRESULT hResult = E_POINTER;
@@ -1130,364 +903,189 @@ public:
 
         return hResult;
     }
-    // LOG RELATED FUNCTIONS: END
 
-    /******************************************************************************
-        Function Name    :  ResetSW
-
-        Input(s)         :
-        Output           :  -
-        Functionality    :  REset software
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Reset software
+	 */
     HRESULT ResetSW()
     {
         return E_NOTIMPL;
     }
-    /******************************************************************************
-        Function Name    :  DisplayWindow
 
-        Input(s)         :
-        Output           :  -
-        Functionality    :  Display the windows in BUSMASTER
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  20.06.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Display the windows in BUSMASTER
+	 */
     HRESULT DisplayWindow(eWindow /*eWhichWindow*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  AddLoggingBlock
-
-        Input(s)         :  Log file name,time mode,numeric mode,file mode for logging
-        Output           :
-        Functionality    :  Add a log file
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  06.10.2006
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Add a log file
+	 *
+	 * @param[in] psLoggingBlock Log file name, time mode, numeric mode, file mode for logging
+	 */
     HRESULT AddLoggingBlock(SLOGGINGBLOCK_USR* /*psLoggingBlock*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  AddTxBlock
-
-        Input(s)         :  Tx block details
-        Output           :
-        Functionality    :  Add transmission block
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Add transmission block
+	 *
+	 * @param[in] psTxBlock Tx block details
+	 */
     HRESULT AddTxBlock(STXBLOCK_USR* /*psTxBlock*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  GetTxBlock
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Get Tx block details
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+	/**
+     * Get Tx block details
+	 */
     HRESULT GetTxBlock (USHORT /*BlockIndex*/, STXBLOCK_USR* /*psTxBlock*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  AddMsgToTxBlock
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Add Msg To TxBlock
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Add Msg To TxBlock
+	 */
     HRESULT AddMsgToTxBlock(USHORT /*BlockIndex*/, CAN_MSGS* /*psMsg*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  GetMsgCount
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Get Msg Count of a TxBlock
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
-    HRESULT GetMsgCount(USHORT /*BlockIndex*/, USHORT* /*Result*/)
+    /**
+	 * Get Msg Count of a TxBlock
+	 */
+    HRESULT getMessageCount(USHORT /*BlockIndex*/, USHORT* /*Result*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  GetMsgFromTxBlock
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Get Msg info From TxBlock
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Get Msg info From TxBlock
+	 */
     HRESULT GetMsgFromTxBlock(USHORT /*BlockIndex*/, USHORT /*MsgIndex*/, CAN_MSGS* /*psMsg*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  DeleteMsgFromTxBlock
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Delete MsgFrom TxBlock
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Delete MsgFrom TxBlock
+	 */
     HRESULT DeleteMsgFromTxBlock(USHORT /*BlockIndex*/, USHORT /*FrameIndex*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  ClearMsgList
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Clears the Msg list in a Tx block given its index
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Clears the Msg list in a Tx block given its index
+	 */
     HRESULT ClearMsgList(USHORT /*BlockIndex*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  AddFilterScheme
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Defines a filter scheme which is identified by its name.
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Defines a filter scheme which is identified by its name.
+	 */
     HRESULT AddFilterScheme (BSTR /*pcFilterName*/, VARIANT_BOOL /*FilterType*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  GetFilterScheme
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Given filterscheme index provide filter scheme name and type
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Given filterscheme index provide filter scheme name and type
+	 */
     HRESULT GetFilterScheme(USHORT /*FilterSchINdex*/, BSTR /*pcFilterName*/,
                             VARIANT_BOOL* /*FilterType*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  GetFilterSchCount
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Get Filter Scheme Count
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Get Filter Scheme Count
+	 */
     HRESULT GetFilterSchCount(USHORT* /*pTotal*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  UpdateFilterSch
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Adds / sets a filter in a filter scheme
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Adds / sets a filter in a filter scheme
+	 */
     HRESULT UpdateFilterSch(USHORT /*FilterSchIndex*/, SFILTER_USR* /*psFilter*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  GetFilterCountInSch
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Get Filter Count In a filter Scheme
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Get Filter Count In a filter Scheme
+	 */
     HRESULT GetFilterCountInSch(USHORT /*FilterSchIndex*/, USHORT* /*pTotal*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  GetFilterInFilterSch
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Getter for a filter, given index of the filter scheme
-                            and index of the filter in the filter scheme
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Getter for a filter, given index of the filter scheme
+	 * and index of the filter in the filter scheme
+	 */
     HRESULT GetFilterInFilterSch(USHORT /*FilterSchIndex*/, USHORT /*FilterIndex*/,
                                  SFILTER_USR* /*psFilter*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  DeleteFilterInSch
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Deletes a filter from a filter scheme
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Deletes a filter from a filter scheme
+	 */
     HRESULT DeleteFilterInSch(USHORT /*FilterSchIndex*/, USHORT /*FilterIndex*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  GetLoggingBlock
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Renders a logging block based on its index in the list
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Renders a logging block based on its index in the list
+	 */
     HRESULT GetLoggingBlock(USHORT /*BlockIndex*/, void* /*psLoggingBlock*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  AddSimulatedSystem
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Add Simulated System in the configuration
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Add Simulated System in the configuration
+	 */
     HRESULT AddSimulatedSystem(BSTR /*pcSimPath*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  GetSimulatedSystemCount
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Get Simulated System Count
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Get Simulated System Count
+	 */
     HRESULT GetSimulatedSystemCount(USHORT* /*pSimTotal*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  GetSimulatedSystemName
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Get the Simulated System Name
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Get the Simulated System Name
+	 */
     HRESULT GetSimulatedSystemName(USHORT /*SimSysIndex*/, BSTR* /*pcSimPath*/)
     {
         return E_NOTIMPL;
     }
 
-    /******************************************************************************
-        Function Name    :  DeleteSimulatedSystem
-
-        Input(s)         :  -
-        Output           :
-        Functionality    :  Delete the given Simulated System
-        Member of        :  CApplication
-        Author(s)        :  Anish kumar
-        Date Created     :  01.06.2010
-        Modifications    :
-    ******************************************************************************/
+    /**
+	 * Delete the given Simulated System
+	 */
     HRESULT DeleteSimulatedSystem(USHORT /*SimSysIndex*/)
     {
         return E_NOTIMPL;
     }
-
-
-    ////////////////////////////////////////////////////////////////////////////////
 
     BEGIN_INTERFACE_PART(LocalClass, IApplication)
     STDMETHOD(GetTypeInfoCount)(UINT FAR* pctinfo);

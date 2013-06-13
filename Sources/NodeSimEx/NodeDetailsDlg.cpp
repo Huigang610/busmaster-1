@@ -34,9 +34,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// CNodeDetailsDlg dialog
-
 /******************************************************************************
 Function Name    :  CNodeDetailsDlg
 Input(s)         :
@@ -53,10 +50,8 @@ CNodeDetailsDlg::CNodeDetailsDlg(ETYPE_BUS eBus, PSNODEINFO pNode /*=NULL*/,
     : CDialog(CNodeDetailsDlg::IDD, pParent)
 
 {
-    //{{AFX_DATA_INIT(CNodeDetailsDlg)
     m_omStrDllPath = "";
     m_omStrNodeName = "";
-    //}}AFX_DATA_INIT
     m_psNodeStuctPtr = pNode;
     m_bIsNodeModified = FALSE;
     m_eBus = eBus;
@@ -67,24 +62,17 @@ CNodeDetailsDlg::CNodeDetailsDlg(ETYPE_BUS eBus, PSNODEINFO pNode /*=NULL*/,
 void CNodeDetailsDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CNodeDetailsDlg)
     DDX_Text(pDX, IDC_EDIT_DLL_PATH, m_omStrDllPath);
     DDX_Text(pDX, IDC_EDIT_ANODE_NAME, m_omStrNodeName);
-    //}}AFX_DATA_MAP
     DDX_Control(pDX, IDC_EDIT_ADDRESS, m_omPreferedAddress);
     DDX_Control(pDX, IDC_EDIT_ECU_NAME, m_omEcuName);
 }
 
-
 BEGIN_MESSAGE_MAP(CNodeDetailsDlg, CDialog)
-    //{{AFX_MSG_MAP(CNodeDetailsDlg)
     ON_BN_CLICKED(IDC_BTN_BROWSE, OnBrowse)
     ON_BN_CLICKED(IDC_BTN_CLEAR, OnClear)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-/////////////////////////////////////////////////////////////////////////////
-// CNodeDetailsDlg message handlers
 /******************************************************************************
 Function Name    :  OnCancel
 Input(s)         :

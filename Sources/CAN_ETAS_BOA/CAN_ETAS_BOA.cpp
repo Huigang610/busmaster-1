@@ -48,21 +48,10 @@
 #include "Utility/MultiLanguageSupport.h"
 #define USAGE_EXPORT
 #include "CAN_ETAS_BOA_Extern.h"
-
-/* Including canfd header only if BOA_FD_VERSION is defined */
-#ifdef BOA_FD_VERSION
+/* Including CANFD header only if BOA_VERSION_1_5_FD is defined */
+#ifdef BOA_VERSION_1_5_FD
 #include "EXTERNAL_INCLUDE/OCI/ocicanfd.h"
 #endif
-
-BEGIN_MESSAGE_MAP(CCAN_ETAS_BOA, CWinApp)
-END_MESSAGE_MAP()
-
-/**
- * CCAN_ETAS_BOA construction
- */
-CCAN_ETAS_BOA::CCAN_ETAS_BOA()
-{
-}
 
 /**
  * The one and only CCAN_ETAS_BOA object
@@ -117,8 +106,8 @@ typedef struct tagCHANNEL
     OCI_URIName m_acURI; /*< URI of the Controller */
     OCI_ControllerHandle m_OCI_HwHandle; /*< Controller handle */
     OCI_CANConfiguration m_OCI_CANConfig; /*< Controller configuration */
-    // Creating OCI_CANFD_Configuration only if BOA_FD_VERSION is defined
-#ifdef BOA_FD_VERSION
+    // Creating OCI_CANFD_Configuration only if BOA_VERSION_1_5_FD is defined
+#ifdef BOA_VERSION_1_5_FD
     OCI_CANFD_Configuration m_OCI_CANFDConfig; /*< CAN FD Controller configuration */
 #endif
     OCI_CANControllerProperties m_OCI_CntrlProp; /*< Controller properties */
@@ -242,15 +231,18 @@ typedef CSI_DECLSPEC OCI_ErrorCode (*PROC3)(CSI_Tree* tree, const BOA_UuidVersio
 /**
  * Macro definitions
  */
-/*Updating registry location macros to 1.5 If BOA_FD_VERSION is defined*/
-#ifdef BOA_FD_VERSION
-#define BOA_REGISTRY_LOCATION "SOFTWARE\\ETAS\\BOA\\1.5"
-#define LIB_CSL_NAME    "dll-csiBind_1_5.dll"
-#define LIB_OCI_NAME    "dll-ocdProxy_1_5.dll"
-#else
+#if BOA_VERSION == 0x0104
 #define BOA_REGISTRY_LOCATION "SOFTWARE\\ETAS\\BOA\\1.4"
 #define LIB_CSL_NAME    "dll-csiBind_1_4.dll"
 #define LIB_OCI_NAME    "dll-ocdProxy_1_4.dll"
+#elif BOA_VERSION == 0x0105
+#define BOA_REGISTRY_LOCATION "SOFTWARE\\ETAS\\BOA\\1.5"
+#define LIB_CSL_NAME    "dll-csiBind_1_5.dll"
+#define LIB_OCI_NAME    "dll-ocdProxy_1_5.dll"
+#elif BOA_VERSION == 0x0106
+#define BOA_REGISTRY_LOCATION "SOFTWARE\\ETAS\\BOA\\1.6"
+#define LIB_CSL_NAME    "dll-csiBind_1_6.dll"
+#define LIB_OCI_NAME    "dll-ocdProxy_1_6.dll"
 #endif
 
 /**
@@ -468,7 +460,7 @@ HRESULT GetOCI_API_Pointers(HMODULE hLibOCI)
         {
             hResult = S_FALSE;
         }
-#ifdef BOA_FD_VERSION
+#ifdef BOA_VERSION_1_5_FD
         {
             if ((sBOA_PTRS.m_sOCI.openCANFDController = (PF_OCI_OpenCANFDController)
                     GetProcAddress(hLibOCI, "OCI_OpenCANFDController")) == NULL)
@@ -487,7 +479,7 @@ HRESULT GetOCI_API_Pointers(HMODULE hLibOCI)
         {
             hResult = S_FALSE;
         }
-#ifdef BOA_FD_VERSION
+#ifdef BOA_VERSION_1_5_FD
         {
             if ((sBOA_PTRS.m_sOCI.getCANFDConfiguration = (PF_OCI_GetCANFDConfiguration)
                     GetProcAddress(hLibOCI, "OCI_GetCANFDConfiguration")) == NULL)
@@ -808,42 +800,38 @@ BOOL bRemoveMapEntry(const SACK_MAP& RefObj, UINT& ClientID)
  */
 void vInitializeControllerConfig(UINT nChannel)
 {
-#ifdef BOA_FD_VERSION
-    {
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.can.baudrate = 500000;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.can.samplePoint = 70;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.can.samplesPerBit = OCI_CAN_THREE_SAMPLES_PER_BIT;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.can.BTL_Cycles = 10;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.can.SJW = 4;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.can.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.can.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.can.selfReceptionMode = OCI_SELF_RECEPTION_ON;
-        //Set controller property to SUSPENDED
-        sg_asChannel[nChannel].m_OCI_CntrlProp.mode = OCI_CONTROLLER_MODE_SUSPENDED;
+    sg_asChannel[nChannel].m_OCI_CANConfig.baudrate = 500000;
+    sg_asChannel[nChannel].m_OCI_CANConfig.samplePoint = 70;
+    sg_asChannel[nChannel].m_OCI_CANConfig.samplesPerBit = OCI_CAN_THREE_SAMPLES_PER_BIT;
+    sg_asChannel[nChannel].m_OCI_CANConfig.BTL_Cycles = 10;
+    sg_asChannel[nChannel].m_OCI_CANConfig.SJW = 4;
+    sg_asChannel[nChannel].m_OCI_CANConfig.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
+    sg_asChannel[nChannel].m_OCI_CANConfig.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
+    sg_asChannel[nChannel].m_OCI_CANConfig.selfReceptionMode = OCI_SELF_RECEPTION_ON;
+    //Set controller property to SUSPENDED
+    sg_asChannel[nChannel].m_OCI_CntrlProp.mode = OCI_CONTROLLER_MODE_SUSPENDED;
 
-        /* Set CAN FD default values */
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.dataBitRate                = 2000000;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.dataSamplePoint            = 70;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.dataBTL_Cycles             = 10;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.dataSJW                    = 04;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.txDelayCompensationControl = OCI_CANFD_TX_DELAY_COMPENSATION_OFF;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.txDelayCompensationQuanta  = 0;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.rxCompatibility            = OCI_CANFD_RX_USE_RXFD_MESSAGE_PADDING;
-        sg_asChannel[nChannel].m_OCI_CANFDConfig.txCompatibility            = OCI_CANFD_TX_USE_DBR;
-    }
-#else
-    {
-        sg_asChannel[nChannel].m_OCI_CANConfig.baudrate = 500000;
-        sg_asChannel[nChannel].m_OCI_CANConfig.samplePoint = 70;
-        sg_asChannel[nChannel].m_OCI_CANConfig.samplesPerBit = OCI_CAN_THREE_SAMPLES_PER_BIT;
-        sg_asChannel[nChannel].m_OCI_CANConfig.BTL_Cycles = 10;
-        sg_asChannel[nChannel].m_OCI_CANConfig.SJW = 4;
-        sg_asChannel[nChannel].m_OCI_CANConfig.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
-        sg_asChannel[nChannel].m_OCI_CANConfig.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
-        sg_asChannel[nChannel].m_OCI_CANConfig.selfReceptionMode = OCI_SELF_RECEPTION_ON;
-        //Set controller property to SUSPENDED
-        sg_asChannel[nChannel].m_OCI_CntrlProp.mode = OCI_CONTROLLER_MODE_SUSPENDED;
-    }
+#ifdef BOA_VERSION_1_5_FD
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.baudrate = 500000;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.samplePoint = 70;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.samplesPerBit = OCI_CAN_THREE_SAMPLES_PER_BIT;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.BTL_Cycles = 10;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.SJW = 4;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.selfReceptionMode = OCI_SELF_RECEPTION_ON;
+    //Set controller property to SUSPENDED
+    sg_asChannel[nChannel].m_OCI_CntrlProp.mode = OCI_CONTROLLER_MODE_SUSPENDED;
+
+    /* Set CAN FD default values */
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.dataBitRate                = 2000000;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.dataSamplePoint            = 70;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.dataBTL_Cycles             = 10;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.dataSJW                    = 04;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.txDelayCompensationControl = OCI_CANFD_TX_DELAY_COMPENSATION_OFF;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.txDelayCompensationQuanta  = 0;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.rxCompatibility            = OCI_CANFD_RX_USE_RXFD_MESSAGE_PADDING;
+    sg_asChannel[nChannel].m_OCI_CANFDConfig.txCompatibility            = OCI_CANFD_TX_USE_DBR;
 #endif
 }
 
@@ -1098,7 +1086,7 @@ void vCopyOCI_CAN_RX_2_DATA(const OCI_CANRxMessage* SrcMsg, STCANDATA* DestMsg)
 /**
  * copies from OCI_CANRxMessage struct into STCANDATA struct
  */
-#ifdef BOA_FD_VERSION
+#ifdef BOA_VERSION_1_5_FD
 void vCopyOCI_CAN_FD_RX_2_DATA(const OCI_CANFD_RxMessage* SrcMsg, STCANDATA* DestMsg)
 {
     DestMsg->m_uDataInfo.m_sCANMsg.m_unMsgID = SrcMsg->frameID;
@@ -1173,7 +1161,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& sCanData)
                 {
                     for (UINT j = 0; j < sg_asClientToBufMap[i].m_unBufCount; j++)
                     {
-                        sg_asClientToBufMap[i].m_pClientBuf[j]->WriteIntoBuffer(&sCanData);
+                        sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&sCanData);
                     }
                 }
                 else
@@ -1184,7 +1172,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& sCanData)
                         static STCANDATA sTempCanData;
                         sTempCanData = sCanData;
                         sTempCanData.m_ucDataType = RX_FLAG;
-                        sg_asClientToBufMap[i].m_pClientBuf[j]->WriteIntoBuffer(&sTempCanData);
+                        sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&sTempCanData);
                     }
                 }
             }
@@ -1196,7 +1184,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& sCanData)
         {
             for (UINT j = 0; j < sg_asClientToBufMap[i].m_unBufCount; j++)
             {
-                sg_asClientToBufMap[i].m_pClientBuf[j]->WriteIntoBuffer(&sCanData);
+                sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&sCanData);
             }
         }
     }
@@ -1222,7 +1210,7 @@ void vProcessRxMsg(void* userData, struct OCI_CANMessage* msg)
         vCopyOCI_CAN_RX_2_DATA(&(msg->data.rxMessage), &sCanData);
         sCanData.m_uDataInfo.m_sCANMsg.m_bCANFD = false;
     }
-#ifdef BOA_FD_VERSION
+#ifdef BOA_VERSION_1_5_FD
     /*Check if its a CAN FD message */
     else if ( msg->type ==  OCI_CANFD_RX_MESSAGE )
     {
@@ -1402,7 +1390,7 @@ void vProcessErrMsg(void* userData, struct OCI_CANMessage* msg)
     {
         for (UINT j = 0; j < sg_asClientToBufMap[i].m_unBufCount; j++)
         {
-            sg_asClientToBufMap[i].m_pClientBuf[j]->WriteIntoBuffer(&sCanData);
+            sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&sCanData);
         }
     }
 }
@@ -1416,13 +1404,13 @@ static void (OCI_CALLBACK ProcessCanData)(void* userData, struct OCI_CANMessage*
     switch (msg->type)
     {
         case OCI_CAN_RX_MESSAGE:
-#ifdef BOA_FD_VERSION
+#ifdef BOA_VERSION_1_5_FD
         case OCI_CANFD_RX_MESSAGE:
 #endif
             vProcessRxMsg(userData, msg);
             break;
         case OCI_CAN_TX_MESSAGE:
-#ifdef BOA_FD_VERSION
+#ifdef BOA_VERSION_1_5_FD
         case OCI_CANFD_TX_MESSAGE:
 #endif
             vProcessTxMsg(userData, msg);
@@ -1806,62 +1794,58 @@ static BOOL bLoadDataFromContr(PSCONTROLLER_DETAILS pControllerDetails)
         char* pcStopStr = NULL;
         for( INT i = 0; i < defNO_OF_CHANNELS; i++ )
         {
-#ifdef BOA_FD_VERSION
-            {
-                sg_asChannel[i].m_OCI_CANFDConfig.can.baudrate =
-                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrBaudrate.c_str(),
-                &pcStopStr, 10));
-                sg_asChannel[i].m_OCI_CANFDConfig.can.baudrate
-                = (sg_asChannel[i].m_OCI_CANFDConfig.can.baudrate * 1000);
-                sg_asChannel[i].m_OCI_CANFDConfig.can.samplesPerBit =
-                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSampling.c_str(),
-                &pcStopStr, 10));
-                sg_asChannel[i].m_OCI_CANFDConfig.can.samplePoint =
-                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSamplePercentage.c_str(),
-                &pcStopStr, 10));
-                sg_asChannel[i].m_OCI_CANFDConfig.can.SJW =
-                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSjw.c_str(),
-                &pcStopStr, 10));
-                sg_asChannel[i].m_OCI_CANFDConfig.can.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
-                sg_asChannel[i].m_OCI_CANFDConfig.can.selfReceptionMode = OCI_SELF_RECEPTION_ON;
-                sg_asChannel[i].m_OCI_CANFDConfig.can.BTL_Cycles = 10;
-                sg_asChannel[i].m_OCI_CANFDConfig.can.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
-
-                /* Set CAN FD parameters */
-                sg_asChannel[i].m_OCI_CANFDConfig.dataBitRate                   = pControllerDetails[i].m_unDataBitRate;
-                sg_asChannel[i].m_OCI_CANFDConfig.dataSamplePoint               = pControllerDetails[i].m_unDataSamplePoint;
-                sg_asChannel[i].m_OCI_CANFDConfig.dataBTL_Cycles                = pControllerDetails[i].m_unDataBTL_Cycles;
-                sg_asChannel[i].m_OCI_CANFDConfig.dataSJW                       = pControllerDetails[i].m_unDataSJW;
-                sg_asChannel[i].m_OCI_CANFDConfig.txDelayCompensationControl    = (OCI_CANFD_TxDelayCompensation)
-                pControllerDetails[i].m_bTxDelayCompensationON;
-                sg_asChannel[i].m_OCI_CANFDConfig.txDelayCompensationQuanta     = pControllerDetails[i].m_unTxDelayCompensationQuanta;
-                sg_asChannel[i].m_OCI_CANFDConfig.rxCompatibility               = (OCI_CANFD_RxConfig)
-                pControllerDetails[i].m_bytRxCompatibility;
-                sg_asChannel[i].m_OCI_CANFDConfig.txCompatibility               = (OCI_CANFD_TxConfig)
-                pControllerDetails[i].m_bytTxCompatibility;
-            }
+#ifndef BOA_VERSION_1_5_FD
+            sg_asChannel[i].m_OCI_CANConfig.baudrate =
+            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrBaudrate.c_str(),
+            &pcStopStr, 10));
+            //code commented to resolve the BOA message transmission issue (#389)
+            //sg_asChannel[i].m_OCI_CANConfig.baudrate
+            //= (sg_asChannel[i].m_OCI_CANConfig.baudrate * 1000);
+            sg_asChannel[i].m_OCI_CANConfig.samplesPerBit =
+            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSampling.c_str(),
+            &pcStopStr, 10));
+            sg_asChannel[i].m_OCI_CANConfig.samplePoint =
+            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSamplePercentage.c_str(),
+            &pcStopStr, 10));
+            sg_asChannel[i].m_OCI_CANConfig.SJW =
+            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSjw.c_str(),
+            &pcStopStr, 10));
+            sg_asChannel[i].m_OCI_CANConfig.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
+            sg_asChannel[i].m_OCI_CANConfig.selfReceptionMode = OCI_SELF_RECEPTION_ON;
+            sg_asChannel[i].m_OCI_CANConfig.BTL_Cycles = 10;
+            sg_asChannel[i].m_OCI_CANConfig.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
 #else
-            {
-                sg_asChannel[i].m_OCI_CANConfig.baudrate =
-                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrBaudrate.c_str(),
-                &pcStopStr, 10));
-                //code commented to resolve the BOA message transmission issue (#389)
-                //sg_asChannel[i].m_OCI_CANConfig.baudrate
-                //= (sg_asChannel[i].m_OCI_CANConfig.baudrate * 1000);
-                sg_asChannel[i].m_OCI_CANConfig.samplesPerBit =
-                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSampling.c_str(),
-                &pcStopStr, 10));
-                sg_asChannel[i].m_OCI_CANConfig.samplePoint =
-                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSamplePercentage.c_str(),
-                &pcStopStr, 10));
-                sg_asChannel[i].m_OCI_CANConfig.SJW =
-                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSjw.c_str(),
-                &pcStopStr, 10));
-                sg_asChannel[i].m_OCI_CANConfig.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
-                sg_asChannel[i].m_OCI_CANConfig.selfReceptionMode = OCI_SELF_RECEPTION_ON;
-                sg_asChannel[i].m_OCI_CANConfig.BTL_Cycles = 10;
-                sg_asChannel[i].m_OCI_CANConfig.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
-            }
+            sg_asChannel[i].m_OCI_CANFDConfig.can.baudrate =
+            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrBaudrate.c_str(),
+            &pcStopStr, 10));
+            sg_asChannel[i].m_OCI_CANFDConfig.can.baudrate
+            = (sg_asChannel[i].m_OCI_CANFDConfig.can.baudrate * 1000);
+            sg_asChannel[i].m_OCI_CANFDConfig.can.samplesPerBit =
+            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSampling.c_str(),
+            &pcStopStr, 10));
+            sg_asChannel[i].m_OCI_CANFDConfig.can.samplePoint =
+            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSamplePercentage.c_str(),
+            &pcStopStr, 10));
+            sg_asChannel[i].m_OCI_CANFDConfig.can.SJW =
+            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSjw.c_str(),
+            &pcStopStr, 10));
+            sg_asChannel[i].m_OCI_CANFDConfig.can.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
+            sg_asChannel[i].m_OCI_CANFDConfig.can.selfReceptionMode = OCI_SELF_RECEPTION_ON;
+            sg_asChannel[i].m_OCI_CANFDConfig.can.BTL_Cycles = 10;
+            sg_asChannel[i].m_OCI_CANFDConfig.can.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
+
+            /* Set CAN FD parameters */
+            sg_asChannel[i].m_OCI_CANFDConfig.dataBitRate                   = pControllerDetails[i].m_unDataBitRate;
+            sg_asChannel[i].m_OCI_CANFDConfig.dataSamplePoint               = pControllerDetails[i].m_unDataSamplePoint;
+            sg_asChannel[i].m_OCI_CANFDConfig.dataBTL_Cycles                = pControllerDetails[i].m_unDataBTL_Cycles;
+            sg_asChannel[i].m_OCI_CANFDConfig.dataSJW                       = pControllerDetails[i].m_unDataSJW;
+            sg_asChannel[i].m_OCI_CANFDConfig.txDelayCompensationControl    = (OCI_CANFD_TxDelayCompensation)
+            pControllerDetails[i].m_bTxDelayCompensationON;
+            sg_asChannel[i].m_OCI_CANFDConfig.txDelayCompensationQuanta     = pControllerDetails[i].m_unTxDelayCompensationQuanta;
+            sg_asChannel[i].m_OCI_CANFDConfig.rxCompatibility               = (OCI_CANFD_RxConfig)
+            pControllerDetails[i].m_bytRxCompatibility;
+            sg_asChannel[i].m_OCI_CANFDConfig.txCompatibility               = (OCI_CANFD_TxConfig)
+            pControllerDetails[i].m_bytTxCompatibility;
 #endif
         }
         bReturn = TRUE;
@@ -1883,7 +1867,7 @@ void vCopy_2_OCI_CAN_Data(OCI_CANTxMessage& DestMsg, const STCAN_MSG& SrcMsg)
 }
 
 
-#ifdef BOA_FD_VERSION
+#ifdef BOA_VERSION_1_5_FD
 BOOL vCopy_2_OCI_CANFD_Data(OCI_CANFD_TxMessage& DestMsg, const STCAN_MSG& SrcMsg)
 {
     DestMsg.res     = 0;
@@ -2083,20 +2067,16 @@ HRESULT CDIL_CAN_ETAS_BOA::selectHardwareInterface(const InterfaceHardwareList& 
             sg_asChannel[i].m_OCI_RxQueueCfg.onEvent.userData = (void*)sg_asChannel[i].m_OCI_HwHandle;
             BOA_ResultCode ErrorCode = OCI_FAILURE;
 
-#ifdef BOA_FD_VERSION
-            {
-                //configure the controller first
-                ErrorCode = (*(sBOA_PTRS.m_sOCI.openCANFDController))(sg_asChannel[i].m_OCI_HwHandle,
-                            &(sg_asChannel[i].m_OCI_CANFDConfig),
-                            &(sg_asChannel[i].m_OCI_CntrlProp));
-            }
+#ifndef BOA_VERSION_1_5_FD
+            //configure the controller first
+            ErrorCode = (*(sBOA_PTRS.m_sOCI.openCANController))(sg_asChannel[i].m_OCI_HwHandle,
+                        &(sg_asChannel[i].m_OCI_CANConfig),
+                        &(sg_asChannel[i].m_OCI_CntrlProp));
 #else
-            {
-                //configure the controller first
-                ErrorCode = (*(sBOA_PTRS.m_sOCI.openCANController))(sg_asChannel[i].m_OCI_HwHandle,
-                            &(sg_asChannel[i].m_OCI_CANConfig),
-                            &(sg_asChannel[i].m_OCI_CntrlProp));
-            }
+            //configure the controller first
+            ErrorCode = (*(sBOA_PTRS.m_sOCI.openCANFDController))(sg_asChannel[i].m_OCI_HwHandle,
+                        &(sg_asChannel[i].m_OCI_CANFDConfig),
+                        &(sg_asChannel[i].m_OCI_CntrlProp));
 #endif
             if (ErrorCode == OCI_SUCCESS)
             {
@@ -2219,7 +2199,7 @@ BOOL Callback_DILBOA(BYTE /*Argument*/, PSCONTROLLER_DETAILS pDatStream, INT /*L
  *
  * Displays the configuration dialog for controller
  */
-int DisplayConfigurationDlg(HWND hParent, DILCALLBACK /*ProcDIL*/,
+int DisplayConfigurationDlg(HWND /*hParent*/, DILCALLBACK /*ProcDIL*/,
                             PSCONTROLLER_DETAILS pControllerDetails, UINT nCount)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
@@ -2316,20 +2296,16 @@ HRESULT CDIL_CAN_ETAS_BOA::setConfigurationData(PSCONTROLLER_DETAILS pInitData, 
         ManageQueue(QUEUE_DESTROY, i);
         // if controller is open, close the controller. Do not bother about return value
         ErrCode = (*sBOA_PTRS.m_sOCI.closeCANController)(sg_asChannel[i].m_OCI_HwHandle);
-#ifdef BOA_FD_VERSION
-        {
-            //Now load the controller config and open the controller
-            ErrCode = (*sBOA_PTRS.m_sOCI.openCANFDController)(sg_asChannel[i].m_OCI_HwHandle,
-                      &(sg_asChannel[i].m_OCI_CANFDConfig),
-                      &(sg_asChannel[i].m_OCI_CntrlProp));
-        }
+#ifndef BOA_VERSION_1_5_FD
+        //Now load the controller config and open the controller
+        ErrCode = (*sBOA_PTRS.m_sOCI.openCANController)(sg_asChannel[i].m_OCI_HwHandle,
+                    &(sg_asChannel[i].m_OCI_CANConfig),
+                    &(sg_asChannel[i].m_OCI_CntrlProp));
 #else
-        {
-            //Now load the controller config and open the controller
-            ErrCode = (*sBOA_PTRS.m_sOCI.openCANController)(sg_asChannel[i].m_OCI_HwHandle,
-                      &(sg_asChannel[i].m_OCI_CANConfig),
-                      &(sg_asChannel[i].m_OCI_CntrlProp));
-        }
+        //Now load the controller config and open the controller
+        ErrCode = (*sBOA_PTRS.m_sOCI.openCANFDController)(sg_asChannel[i].m_OCI_HwHandle,
+                    &(sg_asChannel[i].m_OCI_CANFDConfig),
+                    &(sg_asChannel[i].m_OCI_CntrlProp));
 #endif
         /* Fill the hardware description details */
         ((PSCONTROLLER_DETAILS)pInitData)[i].m_omHardwareDesc =
@@ -2509,11 +2485,13 @@ HRESULT CDIL_CAN_ETAS_BOA::sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTx
             sAckMap.m_Channel  = sCanTxMsg.m_ucChannel;
             sAckMap.m_MsgID    = sOciCanMsg.data.txMessage.frameID;
             vMarkEntryIntoMap(sAckMap);
-#ifdef BOA_FD_VERSION
+#ifdef BOA_VERSION_1_5_FD
             if(sCanTxMsg.m_bCANFD == false)
             {
+#endif
                 BOA_ResultCode ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.writeCANData))
                                          (sg_asChannel[sCanTxMsg.m_ucChannel - 1].m_OCI_TxQueueHandle, OCI_NO_TIME, &sOciCanMsg, 1, &nRemaining);
+#ifdef BOA_VERSION_1_5_FD
             }
             else
             {
@@ -2527,9 +2505,6 @@ HRESULT CDIL_CAN_ETAS_BOA::sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTx
                 BOA_ResultCode ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.writeCANData))
                                          (sg_asChannel[sCanTxMsg.m_ucChannel - 1].m_OCI_TxQueueHandle, OCI_NO_TIME, &sOciCanMsg, 1, &nRemaining);
             }
-#else
-            BOA_ResultCode ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.writeCANData))
-                                     (sg_asChannel[sCanTxMsg.m_ucChannel - 1].m_OCI_TxQueueHandle, OCI_NO_TIME, &sOciCanMsg, 1, &nRemaining);
 #endif
             if (ErrCode == OCI_SUCCESS)
             {

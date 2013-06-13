@@ -30,40 +30,31 @@
 class CWaitIndicator : public CWnd
 {
     DECLARE_DYNAMIC(CWaitIndicator)
-    //Attributes
-private:
-    CString m_strTitle;
-    CFont*   m_TitleFont;
+    DECLARE_MESSAGE_MAP()
 
-    //Operations
 public:
-    //Construction
     CWaitIndicator();
+    virtual ~CWaitIndicator();
 
     //To Activater and to Show the Window
     BOOL DisplayWindow(CString strTitle, CWnd* pParentWnd, UINT nID = 0);
     void SetWindowText(char* acText);
     void PaintWindow(CDC& dc);
 
-
     //To Close the window
     void CloseWindow();
-public:
-    //Destruction
-    virtual ~CWaitIndicator();
 
-public:
+protected:
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     afx_msg void OnPaint(void);
 
 private:
-    //To Move the Window to the center of Parent Window
+    CString m_strTitle;
+    CFont* m_TitleFont;
+
+	//To Move the Window to the center of Parent Window
     void MoveToCenter(void);
     //To Register the custom window name
     BOOL RegisterWindowClass(void);
     void Redraw();
-protected:
-    DECLARE_MESSAGE_MAP()
 };
-
-

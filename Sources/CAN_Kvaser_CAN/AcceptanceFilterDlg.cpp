@@ -60,13 +60,10 @@ static char THIS_FILE[] = __FILE__;
 /*                      details. Now this dialog will modifiy this data only  */
 /*                      and will not directly modify the configuration module */
 /******************************************************************************/
-//IMPLEMENT_DYNAMIC(CAcceptanceFilterDlg, CPropertyPage)
 CAcceptanceFilterDlg::CAcceptanceFilterDlg(CWnd* pParent /*=NULL*/,
         PSCONTROLLER_DETAILS psControllerInfo)
     : CDialog(CAcceptanceFilterDlg::IDD, pParent)
-    //: CPropertyPage(CAcceptanceFilterDlg::IDD, IDS_PPAGE_ACCEPTANCE_FILTER)
 {
-    //{{AFX_DATA_INIT(CAcceptanceFilterDlg)
     m_omStrAccCodeByte1 = "";
     m_omStrAccCodeByte2 = "";
     m_omStrAccCodeByte3 = "";
@@ -87,7 +84,6 @@ CAcceptanceFilterDlg::CAcceptanceFilterDlg(CWnd* pParent /*=NULL*/,
         m_omStrLocalAccMaskByte3[i] = "";
         m_omStrLocalAccMaskByte4[i] = "";
     }
-    //}}AFX_DATA_INIT
     // Set the Filter mode to Single
     m_bAccFilterMode = 0;
     // Copy controller information pointer
@@ -110,7 +106,6 @@ CAcceptanceFilterDlg::CAcceptanceFilterDlg(CWnd* pParent /*=NULL*/,
 void CAcceptanceFilterDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CAcceptanceFilterDlg)
     DDX_Control(pDX, IDC_EDIT_ACCEPTANCE_MASK4, m_omEditAccMaskByte4);
     DDX_Control(pDX, IDC_EDIT_ACCEPTANCE_MASK3, m_omEditAccMaskByte3);
     DDX_Control(pDX, IDC_EDIT_ACCEPTANCE_MASK2, m_omEditAccMaskByte2);
@@ -127,12 +122,9 @@ void CAcceptanceFilterDlg::DoDataExchange(CDataExchange* pDX)
     DDX_Text(pDX, IDC_EDIT_ACCEPTANCE_MASK2, m_omStrAccMaskByte2);
     DDX_Text(pDX, IDC_EDIT_ACCEPTANCE_MASK3, m_omStrAccMaskByte3);
     DDX_Text(pDX, IDC_EDIT_ACCEPTANCE_MASK4, m_omStrAccMaskByte4);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CAcceptanceFilterDlg, CDialog)
-    //{{AFX_MSG_MAP(CAcceptanceFilterDlg)
     ON_BN_CLICKED(IDC_CBTN_ACCETANCE_OK, OnCbtnAccetanceOk)
     ON_EN_MAXTEXT(IDC_EDIT_ACCEPTANCE_CODE1, OnMaxtextEditAcceptanceCode1)
     ON_EN_MAXTEXT(IDC_EDIT_ACCEPTANCE_CODE2, OnMaxtextEditAcceptanceCode2)
@@ -141,7 +133,6 @@ BEGIN_MESSAGE_MAP(CAcceptanceFilterDlg, CDialog)
     ON_EN_MAXTEXT(IDC_EDIT_ACCEPTANCE_MASK1, OnMaxtextEditAcceptanceMask1)
     ON_EN_MAXTEXT(IDC_EDIT_ACCEPTANCE_MASK2, OnMaxtextEditAcceptanceMask2)
     ON_EN_MAXTEXT(IDC_EDIT_ACCEPTANCE_MASK3, OnMaxtextEditAcceptanceMask3)
-    //}}AFX_MSG_MAP
     ON_BN_CLICKED(IDC_RBTN_DUAL_FILTER_MODE,   OnBnClickedRbtnDualFilterMode)
     ON_BN_CLICKED(IDC_RBTN_SINGLE_FILTER_MODE, OnBnClickedRbtnSingleFilterMode)
     ON_BN_CLICKED(IDC_RBTN_FILTER_ACCEPT_ALL,  OnBnClickedRbtnFilterAcceptAll)

@@ -24,36 +24,19 @@
 
 #pragma once
 
-/////////////////////////////////////////////////////////////////////////////
-// CComboItem window
-
 class CComboItem : public CComboBox
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     CComboItem( int nItem,              // Row
                 int nSubItem,           // Sub Item
                 const CStringArray& psList,   // List of strings to populate list box
                 const CString& omStrText,      // Selected text
                 BOOL bIsEditable);      // Editable list or not
-    // Attributes
-public:
 
-    // Operations
-public:
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CComboItem)
-public:
-    virtual BOOL PreTranslateMessage(MSG* pMsg);
-    //}}AFX_VIRTUAL
-
-    // Implementation
-public:
-    virtual ~CComboItem();
-
-    // Generated message map functions
 protected:
     CStringArray m_sList;
     int m_nSubItem;
@@ -61,13 +44,9 @@ protected:
     BOOL m_bVK_ESCAPE;
     BOOL m_bIsEditable;
     CString omStrText;
-    //{{AFX_MSG(CComboItem)
     afx_msg void OnNcDestroy();
     afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
     afx_msg void OnKillFocus(CWnd* pNewWnd);
     afx_msg void OnCloseup();
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-    //}}AFX_MSG
-
-    DECLARE_MESSAGE_MAP()
 };

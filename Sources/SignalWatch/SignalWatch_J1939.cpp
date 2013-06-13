@@ -29,13 +29,13 @@
 int ReadJ1939DataBuffer(CSignalWatch_J1939* pSWJ1939)
 {
     VALIDATE_POINTER_RETURN_VAL(pSWJ1939, -1);
-    while (pSWJ1939->m_ouMsgBufVSE_J.GetMsgCount() > 0)
+    while (pSWJ1939->m_ouMsgBufVSE_J.getMessageCount() > 0)
     {
         static STJ1939_MSG sMsg;
         static BYTE abyData[MAX_MSG_LEN_J1939] = {0xFF};
         INT nType = 0;
         INT nSize = MAX_MSG_LEN_J1939;
-        HRESULT Result = pSWJ1939->m_ouMsgBufVSE_J.ReadFromBuffer(nType, abyData, nSize);
+        HRESULT Result = pSWJ1939->m_ouMsgBufVSE_J.readFromBuffer(nType, abyData, nSize);
         if (Result == ERR_READ_MEMORY_SHORT)
         {
             TRACE("ERR_READ_MEMORY_SHORT");
@@ -107,14 +107,14 @@ BOOL CSignalWatch_J1939::InitInstance(void)
     InitializeCriticalSection(&m_omCritSecSW);
     m_pouSigWnd = NULL;
     m_pMsgInterPretObj_J = NULL;
-    m_ouReadThread.m_hActionEvent = m_ouMsgBufVSE_J.hGetNotifyingEvent();
+    m_ouReadThread.m_hActionEvent = m_ouMsgBufVSE_J.getNotifyEvent();
     return TRUE;
 }
 
 int CSignalWatch_J1939::ExitInstance(void)
 {
     m_ouReadThread.bTerminateThread(); // Terminate read thread
-    m_ouMsgBufVSE_J.vClearMessageBuffer();//clear J1939 buffer
+    m_ouMsgBufVSE_J.clearMessageBuffer();//clear J1939 buffer
 
     if (m_pMsgInterPretObj_J != NULL) // clear interpretation object
     {
@@ -254,7 +254,7 @@ HRESULT CSignalWatch_J1939::SW_DoInitialization()
     //Start the read thread
     return bStartSigWatchReadThread()? S_OK: S_FALSE;
 }
-HRESULT CSignalWatch_J1939::SW_ShowAddDelSignalsDlg(CWnd* pParent, CMainEntryList* podMainSubList)
+HRESULT CSignalWatch_J1939::SW_ShowAddDelSignalsDlg(CWnd* pParent, SignalWatchListMainEntries* podMainSubList)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 

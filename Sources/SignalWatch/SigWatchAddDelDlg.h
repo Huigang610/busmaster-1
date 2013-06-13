@@ -26,38 +26,22 @@
 
 #include "SignalWatch_Resource.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// CSigWatchAddDelDlg dialog
-
 class CSigWatchAddDelDlg : public CDialog
 {
-    // Construction
-public:
-    CSigWatchAddDelDlg(CWnd* pParent, CMainEntryList* psMainFrameSignalWatchList);   // standard constructor
+    DECLARE_MESSAGE_MAP()
 
-    // Dialog Data
-    //{{AFX_DATA(CSigWatchAddDelDlg)
+public:
+    CSigWatchAddDelDlg(CWnd* pParent, SignalWatchListMainEntries* psMainFrameSignalWatchList);   // standard constructor
+
     enum { IDD = IDD_DLG_ADD_DEL_SIGNALS };
     CListCtrl   m_omListCtrlSignalWatch;
     CListCtrl   m_omListCtrlSignal;
     CComboBox   m_omCombMessage;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CSigWatchAddDelDlg)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CSigWatchAddDelDlg)
     afx_msg void OnDestroy();
-    virtual BOOL OnInitDialog();
     afx_msg void OnSelChangeMessageName();
     afx_msg void OnBtnAddSubEntries();
     afx_msg void OnBtnAddAllSubEntries();
@@ -68,14 +52,14 @@ protected:
     afx_msg void OnClickSelSubEntryList(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnRClickUnSelSubEntryList(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnRClickSelSubEntryList(NMHDR* pNMHDR, LRESULT* pResult);
-    virtual void OnOK();
     afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+
 private:
     // Pointer to Temp List
-    CMainEntryList* m_podTempCallerList;
-    CMainEntryList* m_podMainCallerList;
+    SignalWatchListMainEntries* m_podTempCallerList;
+    SignalWatchListMainEntries* m_podMainCallerList;
     // Image list
     CImageList m_omImageList;
     // CString Array for Data link

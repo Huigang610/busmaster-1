@@ -56,25 +56,10 @@
 //
 
 
-// CSignalDefinerApp
-
-BEGIN_MESSAGE_MAP(CSignalDefinerApp, CWinApp)
-END_MESSAGE_MAP()
-
-
-// CSignalDefinerApp construction
-
-CSignalDefinerApp::CSignalDefinerApp()
-{
-    // TODO: add construction code here,
-    // Place all significant initialization in InitInstance
-}
-
-
-// The one and only CSignalDefinerApp object
-
+/**
+ * The one and only CSignalDefinerApp object
+ */
 CSignalDefinerApp theApp;
-
 
 // CSignalDefinerApp initialization
 static HINSTANCE ghLangInst=NULL;

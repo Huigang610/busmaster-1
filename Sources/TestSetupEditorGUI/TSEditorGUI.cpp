@@ -130,7 +130,7 @@ USAGEMODE HRESULT TS_vShowTSEditorWindow(void* pParentWnd)
         g_pomTSEditorChildWindow = new CTSEditorChildFrame;
         if( g_pomTSEditorChildWindow != NULL )
         {
-            //// Register Window Class
+            // Register Window Class
             //TODO::ICON
             LPCTSTR strMDIClass = AfxRegisterWndClass(
                                       CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS,

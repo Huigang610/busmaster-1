@@ -31,41 +31,28 @@
 
 // Critical Section for Signal Watch
 extern UINT unGetMainEntryIDFromName(CString omMsgName);
-/////////////////////////////////////////////////////////////////////////////
-// CMainSubListDlg dialog
 
-
-
-
-CMainSubListDlg::CMainSubListDlg(CWnd* pParent, CMainEntryList* psMainFrameSignalWatchList, GuiParameters& sGuiParams)
+CMainSubListDlg::CMainSubListDlg(CWnd* pParent, SignalWatchListMainEntries* psMainFrameSignalWatchList, GuiParameters& sGuiParams)
     : CDialog(CMainSubListDlg::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CMainSubListDlg)
-    // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
     m_podMainCallerList = psMainFrameSignalWatchList;
     if (m_podMainCallerList != NULL)
     {
-        m_podTempCallerList = new CMainEntryList;
+        m_podTempCallerList = new SignalWatchListMainEntries;
         m_podTempCallerList->AddTail(psMainFrameSignalWatchList);
     }
     m_sGuiParams = sGuiParams;
 }
 
-
 void CMainSubListDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CMainSubListDlg)
     DDX_Control(pDX, IDC_LSTC_SIGNAL_WATCH, m_omListCtrlSignalWatch);
     DDX_Control(pDX, IDC_LSTC_SIGNAL, m_omListCtrlSignal);
     DDX_Control(pDX, IDC_COMB_MSGNAME, m_omCombMessage);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CMainSubListDlg, CDialog)
-    //{{AFX_MSG_MAP(CMainSubListDlg)
     ON_WM_DESTROY()
     ON_CBN_SELCHANGE(IDC_COMB_MSGNAME, OnSelChangeMessageName)
     ON_BN_CLICKED(IDM_SIGNALDLG_ADD, OnBtnAddSubEntries)
@@ -82,11 +69,7 @@ BEGIN_MESSAGE_MAP(CMainSubListDlg, CDialog)
     ON_COMMAND(IDM_SIGNALDLG_DELETE, OnBtnDelSubEntires)
     ON_COMMAND(IDM_SIGNALDLG_DELETEALL, OnBtnDelAllSubEntires)
     ON_WM_HELPINFO()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CMainSubListDlg message handlers
 
 /*******************************************************************************
 Function Name    : OnInitDialog
@@ -137,8 +120,8 @@ BOOL CMainSubListDlg::OnInitDialog()
             POSITION pos = m_podTempCallerList->GetHeadPosition();
             while (pos != NULL)
             {
-                SMAINENTRY& sMainEntry = m_podTempCallerList->GetNext(pos);
-                CString omMainEntryName = sMainEntry.m_omMainEntryName;
+                SignalWatchListMainEntry& sMainEntry = m_podTempCallerList->GetNext(pos);
+                CString omMainEntryName = sMainEntry.mainEntryName;
                 CString omMainEntryId = "";
 
                 if (m_sGuiParams.combine == TRUE)
@@ -197,15 +180,15 @@ Modifications    : Raja N
 *******************************************************************************/
 void CMainSubListDlg::vPopulateUnSelSubEntryList(UINT unMainEntryID)
 {
-    //CMainEntryList* psTemp = m_podTempCallerList;
+    //SignalWatchListMainEntries* psTemp = m_podTempCallerList;
     m_omListCtrlSignal.DeleteAllItems();
     if (m_podTempCallerList != NULL)
     {
-        SMAINENTRY sMainEntry;
+        SignalWatchListMainEntry sMainEntry;
         // Check for visible window
         if( m_omCombMessage.GetSafeHwnd() != NULL )
         {
-            m_omCombMessage.GetWindowText(sMainEntry.m_omMainEntryName);
+            m_omCombMessage.GetWindowText(sMainEntry.mainEntryName);
         }
         sMainEntry.m_unMainEntryID = unMainEntryID;
         POSITION pos = m_podTempCallerList->Find(sMainEntry);
@@ -217,14 +200,14 @@ void CMainSubListDlg::vPopulateUnSelSubEntryList(UINT unMainEntryID)
             UINT unMaxLen = 0;
             while (SubPos != NULL)
             {
-                SSUBENTRY& sSubEntry = sMainEntry.m_odUnSelEntryList.GetNext(SubPos);
-                UINT unLen = m_omListCtrlSignal.GetStringWidth(sSubEntry.m_omSubEntryName);
+                SignalWatchListSubEntry& sSubEntry = sMainEntry.m_odUnSelEntryList.GetNext(SubPos);
+                UINT unLen = m_omListCtrlSignal.GetStringWidth(sSubEntry.subEntryName);
                 // Save the length if it is the max.
                 if(unMaxLen < unLen )
                 {
                     unMaxLen = unLen;
                 }
-                m_omListCtrlSignal.InsertItem(unCountItem++, sSubEntry.m_omSubEntryName, m_sGuiParams.unselectedIconIndex);
+                m_omListCtrlSignal.InsertItem(unCountItem++, sSubEntry.subEntryName, m_sGuiParams.unselectedIconIndex);
             }
             // Set the column width if it is valid
             if( unMaxLen > 0 )
@@ -304,18 +287,18 @@ void CMainSubListDlg::vAddSelSubEntries(BOOL bAllSignals)
     if( (m_omCSAData.GetSize() > 0) && (m_podTempCallerList != NULL))
     {
 
-        SMAINENTRY sMainEntry;
-        UINT unMainEntryId = unGetSelectedMainEntryID(&(sMainEntry.m_omMainEntryName));
+        SignalWatchListMainEntry sMainEntry;
+        UINT unMainEntryId = unGetSelectedMainEntryID(&(sMainEntry.mainEntryName));
         sMainEntry.m_unMainEntryID = unMainEntryId;
         POSITION pos = m_podTempCallerList->Find(sMainEntry);
         if (pos != NULL)
         {
-            SMAINENTRY& sPointEntry = m_podTempCallerList->GetAt(pos);
+            SignalWatchListMainEntry& sPointEntry = m_podTempCallerList->GetAt(pos);
             for (int i = 0; i < m_omCSAData.GetSize(); i++)
             {
                 CString omSubEntryName = m_omCSAData.GetAt(i);
-                SSUBENTRY sSubEntry;
-                sSubEntry.m_omSubEntryName = omSubEntryName;
+                SignalWatchListSubEntry sSubEntry;
+                sSubEntry.subEntryName = omSubEntryName;
                 POSITION SubPos = sPointEntry.m_odUnSelEntryList.Find(sSubEntry);
                 if (SubPos != NULL)
                 {
@@ -377,12 +360,12 @@ void CMainSubListDlg::vDelSelSubEntries(BOOL bAllEntries)
             POSITION pos = m_podTempCallerList->GetHeadPosition();
             while (pos)
             {
-                SMAINENTRY& sMainEntry = m_podTempCallerList->GetNext(pos);
+                SignalWatchListMainEntry& sMainEntry = m_podTempCallerList->GetNext(pos);
                 POSITION SubPos = sMainEntry.m_odSelEntryList.GetHeadPosition();
                 while (SubPos != NULL)
                 {
                     POSITION TempPos = SubPos;
-                    SSUBENTRY& sSubEntry = sMainEntry.m_odSelEntryList.GetNext(SubPos);
+                    SignalWatchListSubEntry& sSubEntry = sMainEntry.m_odSelEntryList.GetNext(SubPos);
                     sMainEntry.m_odUnSelEntryList.AddTail(sSubEntry);
                     sMainEntry.m_odSelEntryList.RemoveAt(TempPos);
                 }
@@ -582,15 +565,15 @@ BOOL CMainSubListDlg::bDeleteSubEntry(UINT unMainEntryID,const CString& omMainEn
     BOOL bSuccess = FALSE;
     if (m_podTempCallerList != NULL)
     {
-        SMAINENTRY sMainEntry;
+        SignalWatchListMainEntry sMainEntry;
         sMainEntry.m_unMainEntryID = unMainEntryID;
-        sMainEntry.m_omMainEntryName = omMainEntryName;
+        sMainEntry.mainEntryName = omMainEntryName;
         POSITION pos = m_podTempCallerList->Find(sMainEntry);
         if (pos != NULL)
         {
-            SMAINENTRY& sPointEntry = m_podTempCallerList->GetAt(pos);
-            SSUBENTRY sSubEntry;
-            sSubEntry.m_omSubEntryName = omSubEntry;
+            SignalWatchListMainEntry& sPointEntry = m_podTempCallerList->GetAt(pos);
+            SignalWatchListSubEntry sSubEntry;
+            sSubEntry.subEntryName = omSubEntry;
             POSITION SubPos = sPointEntry.m_odSelEntryList.Find(sSubEntry);
             if (SubPos != NULL)
             {
@@ -1135,8 +1118,8 @@ void CMainSubListDlg::vPopulateSelSubEntryList()
         POSITION pos = m_podTempCallerList->GetHeadPosition();
         while (pos)
         {
-            SMAINENTRY& sMainEntry = m_podTempCallerList->GetNext(pos);
-            if( sMainEntry.m_omMainEntryName != STR_EMPTY)
+            SignalWatchListMainEntry& sMainEntry = m_podTempCallerList->GetNext(pos);
+            if( sMainEntry.mainEntryName != STR_EMPTY)
             {
                 CString omNameWithId = "";
 
@@ -1144,17 +1127,17 @@ void CMainSubListDlg::vPopulateSelSubEntryList()
                 {
                     omNameWithId.Format(defSTR_MSG_ID_IN_HEX,sMainEntry.m_unMainEntryID);
                 }
-                omNameWithId = omNameWithId + sMainEntry.m_omMainEntryName;// + omNameWithId;
+                omNameWithId = omNameWithId + sMainEntry.mainEntryName;// + omNameWithId;
                 CString omStrEntry;
                 POSITION SubPos = sMainEntry.m_odSelEntryList.GetHeadPosition();
                 while (SubPos != NULL)
                 {
-                    SSUBENTRY& sSubEntry = sMainEntry.m_odSelEntryList.GetNext(SubPos);
+                    SignalWatchListSubEntry& sSubEntry = sMainEntry.m_odSelEntryList.GetNext(SubPos);
                     // Use format instead of multiple operator '+' call
 
                     omStrEntry.Format(defSTR_FORMAT_SW_LIST,omNameWithId,
                                       defSTR_MSG_SIG_SEPERATER,
-                                      sSubEntry.m_omSubEntryName);
+                                      sSubEntry.subEntryName);
 
                     // Get current entry size
                     UINT unSize =

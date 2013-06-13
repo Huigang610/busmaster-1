@@ -57,29 +57,16 @@
 #define USAGE_EXPORT
 #include "CAN_Vector_XL_Extern.h"
 
-BEGIN_MESSAGE_MAP(CCAN_Vector_XL, CWinApp)
-END_MESSAGE_MAP()
-
 /**
- * CCAN_Vector_XL construction
+ * The one and only CCAN_Vector_XL object
  */
-CCAN_Vector_XL::CCAN_Vector_XL()
-{
-    // TODO: add construction code here,
-    // Place all significant initialization in InitInstance
-}
-
-
-// The one and only CCAN_Vector_XL object
 CCAN_Vector_XL theApp;
 
+static HINSTANCE ghLangInst=NULL;
 
 /**
  * CCAN_Vector_XL initialization
  */
-
-static HINSTANCE ghLangInst=NULL;
-
 BOOL CCAN_Vector_XL::InitInstance()
 {
     // Begin of Multiple Language support
@@ -236,9 +223,7 @@ static HINSTANCE               hxlDll;
 static HWND sg_hOwnerWnd = NULL;
 static Base_WrapperErrorLogger* sg_pIlog   = NULL;
 
-/////////////////////////////////////////////////////////////////////////////
 // globals
-
 char            g_AppName[XL_MAX_LENGTH+1]  = "BUSMASTER";            //!< Application name which is displayed in VHWconf
 XLportHandle    g_xlPortHandle[MAX_CLIENT_ALLOWED]
     = {XL_INVALID_PORTHANDLE};               //!< Global porthandles
@@ -249,7 +234,6 @@ unsigned int    g_BaudRate                  = 500000;                 //!< Defau
 int             g_silent                    = 0;                      //!< flag to visualize the message events (on/off)
 unsigned int    g_TimerRate                 = 0;                      //!< Global timerrate (to toggel)
 XLhandle        g_hDataEvent[MAX_CLIENT_ALLOWED]  = {0};
-////////////////////////////////////////////////////////////////////////////
 
 /* CDIL_CAN_VectorXL class definition */
 class CDIL_CAN_VectorXL : public CBaseDIL_CAN_Controller
@@ -1323,7 +1307,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& sCanData, UINT unClientIndex)
     /* Write into the respective client's buffer */
     for (UINT j = 0; j < sg_asClientToBufMap[unClientIndex].unBufCount; j++)
     {
-        sg_asClientToBufMap[unClientIndex].pClientBuf[j]->WriteIntoBuffer(&sCanData);
+        sg_asClientToBufMap[unClientIndex].pClientBuf[j]->writeIntoBuffer(&sCanData);
     }
 }
 
@@ -1428,7 +1412,7 @@ static BYTE bClassifyMsgType(XLevent& xlEvent, STCANDATA& sCanData)
             !(xlEvent.tagData.msg.flags & XL_CAN_MSG_FLAG_OVERRUN)     &&
             !(xlEvent.tagData.msg.flags & XL_CAN_MSG_FLAG_NERR)         )
     {
-        ///* Check for RTR Message */
+        /* Check for RTR Message */
         if (xlEvent.tagData.msg.flags & XL_CAN_MSG_FLAG_REMOTE_FRAME)
         {
             sCanData.m_ucDataType = RX_FLAG;

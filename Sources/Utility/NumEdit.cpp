@@ -32,8 +32,6 @@
 // For CNumEdit Class definition
 #include "NumEdit.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// CEditItem
 #define IDC_NUM_CONTROL         0x12345
 /******************************************************************************
  Function Name  :   CNumEdit
@@ -60,32 +58,12 @@ CNumEdit::CNumEdit( int nItem,
     m_pomSpin = NULL;
 }
 
-/******************************************************************************
- Function Name  :   ~CNumEdit
-
- Description    :   Standard destructor
- Member of      :   CNumEdit
-
- Author(s)      :   Raja N
- Date Created   :   22.07.2004
- Modifications  :
-******************************************************************************/
-CNumEdit::~CNumEdit()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CNumEdit, CRadixEdit)
-    //{{AFX_MSG_MAP(CNumEdit)
     ON_WM_CHAR()
     ON_WM_NCDESTROY()
     ON_WM_KILLFOCUS()
     ON_WM_CREATE()
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CEditItem message handlers
 
 /*******************************************************************************
  Function Name  : OnChar

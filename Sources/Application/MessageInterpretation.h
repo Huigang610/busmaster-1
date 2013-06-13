@@ -42,10 +42,8 @@ typedef struct tagSMESSAGE_ENTRY_INFO
 
 class CMessageInterpretation : public CDialog
 {
-    HBRUSH m_hBrushStatic;
-    HWND m_hWndParent;
+	DECLARE_MESSAGE_MAP()
 
-    void vResizeControls(void);
 public:
     void vCreateMsgIntrprtnDlg(CWnd* pomParent, BOOL bShow);
     void vUpdateMessageData(const SMESSAGE_ENTRY_INFO&, BOOL);
@@ -60,6 +58,33 @@ public:
     // Load window status
     void vUpdateWinStatus();
     void vSetCaption(CString strCaption);
+
+    void vClearWindowContent();
+    CMessageInterpretation(CWnd* pParent = NULL);   // standard constructor
+
+    // Dialog Data
+    enum { IDD = IDD_DLG_INTERPRET_MSG };
+    CFFListCtrl   m_ctrlSignal;
+    CString m_omMsgName;
+    CString m_omMsgID;
+
+    virtual BOOL DestroyWindow();
+    CString m_strCaption;
+
+protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+
+    // Generated message map functions
+    virtual BOOL OnInitDialog();
+    afx_msg void OnMove(int x, int y);
+    afx_msg void OnSize(UINT nType, int cx, int cy);
+    afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+    afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
+    afx_msg void OnClose();
+    afx_msg void OnCancel();
+    afx_msg void OnOK();
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+
 private:
     // To keep window co ordinates
     WINDOWPLACEMENT m_sWinCurrStatus;
@@ -67,45 +92,9 @@ private:
     void vSaveWinStatus();
     // Get the status from the config
     void vGetWinStatus();
-    // Construction
-public:
-    void vClearWindowContent();
-    CMessageInterpretation(CWnd* pParent = NULL);   // standard constructor
 
-    // Dialog Data
-    //{{AFX_DATA(CMessageInterpretation)
-    enum { IDD = IDD_DLG_INTERPRET_MSG };
-    CFFListCtrl   m_ctrlSignal;
-    CString m_omMsgName;
-    CString m_omMsgID;
-    //}}AFX_DATA
+	HBRUSH m_hBrushStatic;
+    HWND m_hWndParent;
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CMessageInterpretation)
-public:
-    virtual BOOL DestroyWindow();
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
-
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CMessageInterpretation)
-    afx_msg void OnSize(UINT nType, int cx, int cy);
-    afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
-    afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
-    virtual BOOL OnInitDialog();
-    afx_msg void OnClose();
-    afx_msg void OnCancel();
-    afx_msg void OnOK();
-    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
-public:
-    afx_msg void OnMove(int x, int y);
-    CString m_strCaption;
+    void vResizeControls(void);
 };

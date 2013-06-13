@@ -36,17 +36,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// CFunctionEditorDoc
-
 IMPLEMENT_DYNCREATE(CFunctionEditorDoc, CDocument)
-
-BEGIN_MESSAGE_MAP(CFunctionEditorDoc, CDocument)
-    //{{AFX_MSG_MAP(CFunctionEditorDoc)
-    // NOTE - the ClassWizard will add and remove mapping macros here.
-    //    DO NOT EDIT what you see in these blocks of generated code!
-    //}}AFX_MSG_MAP
-END_MESSAGE_MAP()
 
 /******************************************************************************/
 /*  Function Name    :  CFunctionEditorDoc                                    */
@@ -316,8 +306,6 @@ BOOL CFunctionEditorDoc::OnNewDocument()
 
     return TRUE;
 }
-/////////////////////////////////////////////////////////////////////////////
-// CFunctionEditorDoc serialization
 /******************************************************************************/
 /*  Function Name    :  Serialize                                             */
 /*                                                                            */
@@ -544,9 +532,6 @@ void CFunctionEditorDoc::Serialize(CArchive& ar)
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// CFunctionEditorDoc diagnostics
-
 #ifdef _DEBUG
 void CFunctionEditorDoc::AssertValid() const
 {
@@ -559,8 +544,6 @@ void CFunctionEditorDoc::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
-/////////////////////////////////////////////////////////////////////////////
-// CFunctionEditorDoc commands
 /******************************************************************************/
 /*  Function Name    :  dwGetLineCount                                        */
 /*                                                                            */

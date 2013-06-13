@@ -33,53 +33,95 @@ public:
     CMsgBufVVSE();
     ~CMsgBufVVSE();
 
-    /* Writes message into the buffer. Caller needs to allocate memory for the
-    out parameter */
-    int WriteIntoBuffer(INT nType, BYTE* ps_Msg, INT nSize);
-    /* Clears the buffer and resets read & write indices */
-    void vClearMessageBuffer(void);
-    /* Caller can set the buffer size */
-    int nSetBufferSize(int& nSize);
-    /* Current message will be skipped and advances to next msg */
+    /**
+	 * Writes message into the buffer. Caller needs to allocate memory for the
+     * out parameter
+	 */
+    int writeIntoBuffer(INT nType, BYTE* ps_Msg, INT nSize);
+    
+	/**
+	 * Clears the buffer and resets read & write indices
+	 */
+    void clearMessageBuffer(void);
+    
+	/**
+	 * Caller can set the buffer size
+	 */
+    int setBufferSize(int& nSize);
+    
+	/**
+	 * Current message will be skipped and advances to next msg
+	 */
     HRESULT AdvanceToNextMsg(void);
-    /* Gets the message count */
-    int GetMsgCount(void) const;
-    /* Gets the notifying event handler */
-    HANDLE hGetNotifyingEvent(void) const;
-    /* Gets no of skipped msgs because of buffer overrun */
-    //int GetSkippedMsgCount(void) const;
-    /* Sets the start pos to read the msg*/
+    
+	/**
+	 * Gets the message count
+	 */
+    int getMessageCount(void) const;
+    
+	/**
+	 * Gets the notifying event handler
+	 */
+    HANDLE getNotifyEvent(void) const;
+    
+    /**
+	 * Sets the start pos to read the msg
+	 */
     HRESULT SetStartPos(int nEntry);
-    /* Reads the nEntryth Msg from the start position,
-       user will have an option set the next entry as start pos*/
-    HRESULT ReadEntry(int& nType, BYTE* pbyMsg, int& nSize, int nEntry, BOOL bSetNextIndexStartPos);
+    
+	/**
+	 * Reads the nEntryth Msg from the start position,
+     * user will have an option set the next entry as start pos
+	 */
+    HRESULT readEntry(int& nType, BYTE* pbyMsg, int& nSize, int nEntry, BOOL bSetNextIndexStartPos);
 
 private:
     BYTE* m_pbyMsgBuffer;
     CRITICAL_SECTION m_CritSectionForGB;
-    int m_nBufferSize, m_nIndexWrite, m_nMsgCount;//, m_nMsgSkipped;
+    int m_nBufferSize, m_nIndexWrite, m_nMsgCount;
 
-    // Two special variables to read the Msg at the index
+    /*  Two special variables to read the Msg at the index */
     int m_nStartIndex, m_nReadIndexTmp;
 
-    // holds the msg number for which m_nReadIndexTmp is pointing to.
+    /**
+	 * holds the msg number for which m_nReadIndexTmp is pointing to.
+	 */
     int m_nTmpMsgCount;
 
     HANDLE m_hNotifyingEvent;
 
-    /* Helper function to advance the nIndex to next msg*/
+    /**
+	 * Helper function to advance the nIndex to next msg
+	 */
     int nAdvanceReadIndex(int& nIndex);
-    /* Helper function to read msg from the circular buffer from the index nIndex*/
+    
+	/**
+	 * Helper function to read msg from the circular buffer from the index nIndex
+	 */
     HRESULT ReadBuffer(INT& nType, BYTE* pbyMsg, INT& nSize, INT& nIndex);
-    /* Helper function to write msg into the circular buffer*/
+    
+	/**
+	 * Helper function to write msg into the circular buffer
+	 */
     int nWriteBuffer(INT nType, BYTE* pbyMsg, INT nSize);
-    /* Helper function construct header with TYPE and DATA LENGTH*/
+    
+	/**
+	 * Helper function construct header with TYPE and DATA LENGTH
+	 */
     int nConstructHeader(INT nType, INT nSize, BYTE* pbyHeader);
-    /* Helper function to get header of 'nIndex'th message*/
+    
+	/**
+	 * Helper function to get header of 'nIndex'th message
+	 */
     int nGetCurrMsgHeader(int nIndex, BYTE* pbyHeader);
-    /* Move the temporary read index if required whenever overrun happens*/
+    
+	/**
+	 * Move the temporary read index if required whenever overrun happens
+	 */
     void vHandleTempReadIndex();
-    /* Handle start index whenever buffer overrun happens*/
+    
+	/**
+	 * Handle start index whenever buffer overrun happens
+	 */
     int nHandleStartIndex(int nSize);
 };
-

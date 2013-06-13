@@ -29,7 +29,8 @@
 
 class CExploreMsgSg : public CDialog
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     // Holds selected message name
     CString m_omStrMessageName;
@@ -45,27 +46,14 @@ public:
                   eSELTYPE,
                   CWnd* pParent = NULL);
 
-    // Dialog Data
-    //{{AFX_DATA(CExploreMsgSg)
     enum { IDD = IDD_MSG_SG_DLG };
     CListBox    m_omSignalListBox;
     CListCtrl   m_omMsgList;
     BOOL    m_bWantStructure;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CExploreMsgSg)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CExploreMsgSg)
     afx_msg void OnDblclkListMsgs(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnDblclkListSignals();
     afx_msg void OnSelect();
@@ -73,8 +61,6 @@ protected:
     afx_msg void OnCbtnCancel();
     afx_msg void OnItemchangedLstcMsgs(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnClickLstcMsgs(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
 
 private:
     CFunctionEditorDoc* m_pDoc;
@@ -92,6 +78,3 @@ private:
     //Get Signal Names from Message Id
     void vGetSigNamesFromMsgCode(DWORD dwMsgCode, CStringList& omSignalNames);
 };
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.

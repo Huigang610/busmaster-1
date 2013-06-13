@@ -50,28 +50,22 @@ static char THIS_FILE[] = __FILE__;
 CIncludeHeaderDlg::CIncludeHeaderDlg(CFunctionEditorDoc* pDoc, CWnd* pParent /*=NULL*/)
     : CDialog(CIncludeHeaderDlg::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CIncludeHeaderDlg)
     m_omStrIncludeFilename = "";
-    //}}AFX_DATA_INIT
     m_pDoc = pDoc;
 }
+
 void CIncludeHeaderDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CIncludeHeaderDlg)
     DDX_Text(pDX, IDC_EDIT_FILENAME, m_omStrIncludeFilename);
-    //}}AFX_DATA_MAP
 }
+
 BEGIN_MESSAGE_MAP(CIncludeHeaderDlg, CDialog)
-    //{{AFX_MSG_MAP(CIncludeHeaderDlg)
     ON_BN_CLICKED(IDC_CBTN_OK, OnOk)
     ON_BN_CLICKED(IDC_CBTN_BROWSE, OnBrowse)
     ON_BN_CLICKED(IDC_CBTN_CANCEL, OnCancel)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-/////////////////////////////////////////////////////////////////////////////
-// CIncludeHeaderDlg message handlers
 /******************************************************************************/
 /*  Function Name    :  OnOk                                                  */
 /*                                                                            */

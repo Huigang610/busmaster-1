@@ -696,7 +696,7 @@ void CIxxatCanChannel::DispatchFrameToClients(STCANDATA* pStCanData)
                 CBaseCANBufFSE* pCANBufSE = pClient->GetSEBufferByIndex(iBufIndex);
                 if (pCANBufSE)
                 {
-                    pCANBufSE->WriteIntoBuffer(pStCanData);
+                    pCANBufSE->writeIntoBuffer(pStCanData);
                 }
             }
         }

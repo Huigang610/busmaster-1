@@ -78,12 +78,6 @@
 //      details.
 //
 
-// CCAN_ICS_neoVIApp
-
-BEGIN_MESSAGE_MAP(CCAN_ICS_neoVIApp, CWinApp)
-END_MESSAGE_MAP()
-
-
 /**
  * CCAN_ICS_neoVIApp construction
  */
@@ -1238,7 +1232,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& sCanData)
                 {
                     for (UINT j = 0; j < sg_asClientToBufMap[i].unBufCount; j++)
                     {
-                        sg_asClientToBufMap[i].pClientBuf[j]->WriteIntoBuffer(&sCanData);
+                        sg_asClientToBufMap[i].pClientBuf[j]->writeIntoBuffer(&sCanData);
                     }
                 }
                 else
@@ -1249,7 +1243,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& sCanData)
                         static STCANDATA sTempCanData;
                         sTempCanData = sCanData;
                         sTempCanData.m_ucDataType = RX_FLAG;
-                        sg_asClientToBufMap[i].pClientBuf[j]->WriteIntoBuffer(&sTempCanData);
+                        sg_asClientToBufMap[i].pClientBuf[j]->writeIntoBuffer(&sTempCanData);
                     }
                 }
             }
@@ -1261,7 +1255,7 @@ static void vWriteIntoClientsBuffer(STCANDATA& sCanData)
         {
             for (UINT j = 0; j < sg_asClientToBufMap[i].unBufCount; j++)
             {
-                sg_asClientToBufMap[i].pClientBuf[j]->WriteIntoBuffer(&sCanData);
+                sg_asClientToBufMap[i].pClientBuf[j]->writeIntoBuffer(&sCanData);
             }
         }
     }
@@ -1309,7 +1303,6 @@ DWORD WINAPI CanMsgReadThreadProc_CAN_ICS_neoVI(LPVOID pVoid)
         for (UINT i = 0; i < sg_odHardwareNetwork.m_nNoOfDevices && bLoopON ; i++)
         {
             dwResult = (*icsneoWaitForRxMessagesWithTimeOut)(m_anhObject[i][0], WAITTIME_NEOVI);
-            //kadoor WaitForSingleObject(pThreadParam->m_hActionEvent, INFINITE);
             if (dwResult > 0)
             {
                 switch (pThreadParam->m_unActionCode)
@@ -3009,10 +3002,6 @@ HRESULT CDIL_CAN_ICSNeoVI::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBa
                 }
                 hResult = S_OK;
             }
-            else
-            {
-                ////ASSERT(FALSE);
-            }
         }
         else
         {
@@ -3114,7 +3103,6 @@ HRESULT CDIL_CAN_ICSNeoVI::setControllerParameters(int nValue, ECONTR_PARAM eCon
                 case defMODE_ACTIVE:
                 {
                     char SetFireParms[100];
-                    char Values[500];
                     int iRetVal;
                     int iErrorIndex;
                     unsigned short NetworkEnables = 0xFFFF;
@@ -3129,7 +3117,6 @@ HRESULT CDIL_CAN_ICSNeoVI::setControllerParameters(int nValue, ECONTR_PARAM eCon
                 case defMODE_PASSIVE:
                 {
                     char SetFireParms[100];
-                    char Values[500];
                     int iRetVal;
                     int iErrorIndex;
                     unsigned short NetworkEnables = 0xFFFF;

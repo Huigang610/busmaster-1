@@ -24,35 +24,24 @@
 
 #pragma once
 
-/////////////////////////////////////////////////////////////////////////////
-// CGraphExportDlg dialog
 class CGraphExportDlg : public CDialog
 {
-    // Construction
+    DECLARE_MESSAGE_MAP()
+
 public:
     CGraphExportDlg(CWnd* pParent = NULL);   // standard constructor
-    // Dialog Data
-    //{{AFX_DATA(CGraphExportDlg)
+
+	// Dialog Data
     enum { IDD = IDD_DLG_GRAPH_EXPORT };
     CString m_omStrCSVFileName;
     CString m_omStrHTMLFileName;
     CString m_omStrBMPFileName;
     IDMGraphCtrl* m_pDMGraphCtrl;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CGraphExportDlg)
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
-
-    // Implementation
-protected:
 
     // Generated message map functions
-    //{{AFX_MSG(CGraphExportDlg)
     afx_msg void OnBtnBrowseCsv();
     afx_msg void OnBtnSaveCsv();
     afx_msg void OnBtnBrowseHtml();
@@ -60,6 +49,4 @@ protected:
     afx_msg void OnBtnBrowseBmp();
     afx_msg void OnBtnSaveImage();
     virtual BOOL OnInitDialog();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
 };

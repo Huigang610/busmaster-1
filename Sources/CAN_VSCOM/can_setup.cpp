@@ -22,7 +22,7 @@
  */
 
 #include "CAN_VSCOM_stdafx.h"
-#include <windows.h>
+//#include <windows.h>
 #include <basetyps.h>
 #include <commctrl.h>
 #include <windowsx.h>

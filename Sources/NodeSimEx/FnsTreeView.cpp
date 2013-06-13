@@ -44,9 +44,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// CFnsTreeView
-
 IMPLEMENT_DYNCREATE(CFnsTreeView, CTreeView)
 /******************************************************************************/
 /*  Function Name    :  CFnsTreeView                                          */
@@ -66,28 +63,9 @@ CFnsTreeView::CFnsTreeView()
     m_eBus = sm_eBus;
     m_bFlag = FALSE;
 }
-/******************************************************************************/
-/*  Function Name    :  ~CFnsTreeView                                         */
-/*                                                                            */
-/*  Input(s)         :                                                        */
-/*  Output           :                                                        */
-/*  Functionality    :  Destructor
-/*  Member of        :  CFnsTreeView                                          */
-/*  Friend of        :      -                                                 */
-/*                                                                            */
-/*  Author(s)        :  Amarnath Shastry                                      */
-/*  Date Created     :  05.03.2002                                            */
-/*  Modifications    :
-/******************************************************************************/
-CFnsTreeView::~CFnsTreeView()
-{
-}
-
 
 BEGIN_MESSAGE_MAP(CFnsTreeView, CTreeView)
-    //{{AFX_MSG_MAP(CFnsTreeView)
     ON_WM_CREATE()
-    //ON_NOTIFY_REFLECT(NM_DBLCLK, OnTreeItemDoubleClick)
     ON_NOTIFY_REFLECT(TVN_SELCHANGED, OnTreeItemSelectionChanged)
     ON_NOTIFY_REFLECT(NM_CLICK, OnItemLeftClick)
     ON_WM_LBUTTONDOWN()
@@ -98,16 +76,7 @@ BEGIN_MESSAGE_MAP(CFnsTreeView, CTreeView)
     ON_NOTIFY_REFLECT(TVN_KEYDOWN, OnKeydown)
     ON_COMMAND(IDM_EDIT_HAND, OnEditFunctionHeader)
     ON_COMMAND(ID_FUNCTIONEDITOR_SAVE, OnFunctionEditorSave)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CFnsTreeView drawing
-
-
-
-/////////////////////////////////////////////////////////////////////////////
-// CFnsTreeView diagnostics
 
 #ifdef _DEBUG
 void CFnsTreeView::AssertValid() const
@@ -121,8 +90,6 @@ void CFnsTreeView::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
-/////////////////////////////////////////////////////////////////////////////
-// CFnsTreeView message handlers
 /******************************************************************************/
 /*  Function Name    :  OnInitialUpdate                                       */
 /*                                                                            */
@@ -687,7 +654,6 @@ void CFnsTreeView::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CFnsTreeView::OnTreeViewRightclick(NMHDR* /*pNMHDR*/, LRESULT* pResult)
 {
-    ////AFX_MANAGE_STATE(AfxGetStaticModuleState());
     // Get document
     CFunctionEditorDoc* pDoc =
         (CFunctionEditorDoc*)GetDocument();

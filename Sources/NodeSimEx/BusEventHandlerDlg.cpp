@@ -31,13 +31,9 @@ void CBusEventHandlerDlg::DoDataExchange(CDataExchange* pDX)
     DDX_Check(pDX, IDC_CHKB_BUSEV_DISCONNECT_HANDLER, m_bChkBusEventDisConnect);
 }
 
-
 BEGIN_MESSAGE_MAP(CBusEventHandlerDlg, CDialog)
     ON_BN_CLICKED(IDOK, OnBnClickedOk)
 END_MESSAGE_MAP()
-
-
-// CBusEventHandlerDlg message handlers
 
 BOOL CBusEventHandlerDlg::OnInitDialog()
 {

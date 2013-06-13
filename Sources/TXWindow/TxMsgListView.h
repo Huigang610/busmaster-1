@@ -30,23 +30,19 @@
 
 #include "TxWindow_resource.h"
 
-//struct SMSGBLOCKLIST;
-//struct sTXCANMSGDETAILS;
 class CTxMsgListView : public CFormView
 {
-    // Form Data
+    DECLARE_DYNCREATE(CTxMsgListView)
+    DECLARE_MESSAGE_MAP()
+
 public:
-    //{{AFX_DATA(CTxMsgListView)
     enum { IDD = IDD_DLG_TX_MSG_BLOCK_DETAILS };
     CListCtrl   m_omLctrMsgList;
     CButton m_omButtonDeleteAllMsg;
     CButton m_omButtonDeleteSelMsg;
     CButton m_omButtonSendMsg;
-    //}}AFX_DATA
 
-    // Attributes
-public:
-    // To denote programmed modification of list item to avoid
+	// To denote programmed modification of list item to avoid
     // item change handler execution
     BOOL m_bInitDlg;
     // Selected Message Index
@@ -55,7 +51,7 @@ public:
     //Enable/disable header check
     void vCheckHeaderCtrl(bool bCheck);
     // Operations
-public:
+
     // To clear message block
     BOOL bDeleteAllMsgFromBlock(SMSGBLOCKLIST* psMsgCurrentBlock);
     // To get Message pointer from block pointer
@@ -64,38 +60,26 @@ public:
     // To update list with given details
     VOID vUpdateMsgListDisplay(sTXCANMSGDETAILS sMsgDetail, INT nCurrentIndex);
 
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CTxMsgListView)
-public:
     virtual void OnInitialUpdate();
+
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-    virtual ~CTxMsgListView();
+	virtual ~CTxMsgListView();
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
-    // Generated message map functions
-    //{{AFX_MSG(CTxMsgListView)
-    afx_msg void OnColumnclickLstcMsgDetails(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnColumnclickLstcMsgDetails(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnItemchangedLstcMsgDetails(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnSendSelectedMsg();
     afx_msg void OnDeleteSelectedMsg();
     afx_msg void OnDeleteAllMsg();
     afx_msg void OnRightClickMsgDetails(NMHDR* pNMHDR, LRESULT* pResult);
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
 
-protected:
     // protected constructor used by dynamic creation
     CTxMsgListView();
-    DECLARE_DYNCREATE(CTxMsgListView)
 
 private:
     // To show popup menu item

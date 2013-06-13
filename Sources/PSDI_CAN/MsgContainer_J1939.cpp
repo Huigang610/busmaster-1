@@ -126,12 +126,12 @@ void CMsgContainerJ1939::vRetrieveDataFromBuffer()
     EnterCriticalSection(&m_sCritSecDataSync);
     static INT nType = 0;
     static HRESULT Result = 0;
-    while (m_ouVSEBufJ1939.GetMsgCount() > 0)
+    while (m_ouVSEBufJ1939.getMessageCount() > 0)
     {
         STJ1939_MSG sJ1939Msg;
         INT nSize = MAX_MSG_LEN_J1939;
         // First read the J1939 message
-        Result = m_ouVSEBufJ1939.ReadFromBuffer(nType, m_pbyJ1939Data, nSize);
+        Result = m_ouVSEBufJ1939.readFromBuffer(nType, m_pbyJ1939Data, nSize);
 
         if (Result == ERR_READ_MEMORY_SHORT)
         {
@@ -210,7 +210,7 @@ void CMsgContainerJ1939::vProcessNewData(STJ1939_MSG& sJ1939Msg)
             sJ1939Msg.vGetDataStream(arrBuf);
             m_sJ1939ReadMsgSpl.vSetDataStream(arrBuf);
             m_sJ1939ReadMsgSpl.vGetDataStream(arrBuf);
-            m_ouAppendJ1939Buf.WriteIntoBuffer(J1939, arrBuf/*(BYTE*)&m_sJ1939ReadMsgSpl*/, m_sJ1939ReadMsgSpl.nGetSize());
+            m_ouAppendJ1939Buf.writeIntoBuffer(J1939, arrBuf/*(BYTE*)&m_sJ1939ReadMsgSpl*/, m_sJ1939ReadMsgSpl.nGetSize());
 
             if (NULL != m_pRxMsgCallBack)
             {
@@ -230,7 +230,7 @@ BOOL CMsgContainerJ1939:: bStartReadThread()
                   m_dwClientId, &m_ouVSEBufJ1939);
     }
 
-    bResult = CMsgContainerBase::bStartReadThread(m_ouVSEBufJ1939.hGetNotifyingEvent());
+    bResult = CMsgContainerBase::bStartReadThread(m_ouVSEBufJ1939.getNotifyEvent());
     return bResult;
 }
 
@@ -263,24 +263,24 @@ BOOL CMsgContainerJ1939:: bStopReadThread()
 
 void CMsgContainerJ1939::vEditClearAll()
 {
-    m_ouOWJ1939Buf.vClearMessageBuffer();
-    m_ouAppendJ1939Buf.vClearMessageBuffer();
+    m_ouOWJ1939Buf.clearMessageBuffer();
+    m_ouAppendJ1939Buf.clearMessageBuffer();
     memset(&m_sJ1939ReadMsgSpl, 0, sizeof(m_sJ1939ReadMsgSpl));
 }
 
 int CMsgContainerJ1939::nGetAppendBufferCount()
 {
-    return m_ouAppendJ1939Buf.GetMsgCount();
+    return m_ouAppendJ1939Buf.getMessageCount();
 }
 
 int CMsgContainerJ1939::nGetOWBufferCount()
 {
-    return m_ouOWJ1939Buf.GetMsgCount();
+    return m_ouOWJ1939Buf.getMessageCount();
 }
 
 HRESULT CMsgContainerJ1939::hReadFromOWBuffer(void* psMsg, __int64 nMapIndex)
 {
-    return m_ouOWJ1939Buf.ReadFromBuffer((STJ1939_MSG*)psMsg, nMapIndex);
+    return m_ouOWJ1939Buf.readFromBuffer((STJ1939_MSG*)psMsg, nMapIndex);
 }
 
 HRESULT CMsgContainerJ1939::hReadFromAppendBuffer(void* pvMsg, int nMsgIndex)
@@ -290,7 +290,7 @@ HRESULT CMsgContainerJ1939::hReadFromAppendBuffer(void* pvMsg, int nMsgIndex)
     static STJ1939MSGSPL sJ1939MsgSpl;
     INT nType = 0;
     INT nSize = MAX_MSG_LEN_J1939 + sizeof(__int64);
-    HRESULT hResult =  m_ouAppendJ1939Buf.ReadEntry(nType, m_pbyJ1939Data, nSize,
+    HRESULT hResult =  m_ouAppendJ1939Buf.readEntry(nType, m_pbyJ1939Data, nSize,
                        nMsgIndex, FALSE);
     if(hResult == S_OK)
     {
@@ -313,7 +313,7 @@ void CMsgContainerJ1939::vSaveOWandGetDetails( void* pMsg,
     nMsgCode   = pouJ1939Data->m_sMsgProperties.m_uExtendedID.m_s29BitId.unGetPGN();
     dwMapIndex =  nCreateMapIndexKey((LPVOID)pouJ1939Data);
     //Now write into the array
-    m_ouOWJ1939Buf.WriteIntoBuffer(pouJ1939Data, dwMapIndex, nBufferIndex);
+    m_ouOWJ1939Buf.writeIntoBuffer(pouJ1939Data, dwMapIndex, nBufferIndex);
 }
 
 __int64 CMsgContainerJ1939::nCreateMapIndexKey( LPVOID pMsgData )
@@ -395,7 +395,7 @@ HRESULT CMsgContainerJ1939::hUpdateFormattedMsgStruct(int nListIndex,
         nSize = MAX_MSG_LEN_J1939 + sizeof(__int64);
 
         //In append mode providing interpret state is not required
-        hResult = m_ouAppendJ1939Buf.ReadEntry(nType, m_pbyJ1939Data, nSize,
+        hResult = m_ouAppendJ1939Buf.readEntry(nType, m_pbyJ1939Data, nSize,
                                                nListIndex, FALSE);
 
         if (hResult == S_OK)
@@ -411,7 +411,7 @@ HRESULT CMsgContainerJ1939::hUpdateFormattedMsgStruct(int nListIndex,
     }
     else
     {
-        hResult = m_ouOWJ1939Buf.ReadFromBuffer(&m_sJ1939Data,
+        hResult = m_ouOWJ1939Buf.readFromBuffer(&m_sJ1939Data,
                                                 nListIndex);
         if (hResult == S_OK)
         {

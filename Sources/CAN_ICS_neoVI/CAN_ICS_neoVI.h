@@ -23,17 +23,10 @@
  */
 #pragma once
 
-/**
- * See CAN_ICS_neoVI.cpp for the implementation of this class
- */
 class CCAN_ICS_neoVIApp : public CWinApp
 {
 public:
     CCAN_ICS_neoVIApp();
 
-    // Overrides
-public:
     virtual BOOL InitInstance();
-
-    DECLARE_MESSAGE_MAP()
 };

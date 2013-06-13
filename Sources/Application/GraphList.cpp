@@ -32,10 +32,6 @@
 // For CGraphList class declaration
 #include "GraphList.h"
 
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
-
 /*******************************************************************************
   Function Name  : CGraphList
   Description    : Standard default constructor
@@ -142,38 +138,6 @@ void CGraphList::pbySetConfigData(xmlNodePtr pNodePtr, xmlDocPtr pDocPtr)
     {
         // Temp object
         CGraphElement odTemp;
-        //m_omElementList.RemoveAll();
-        //int nExistingElements = m_omElementList.GetSize();
-
-        //// Reuse existing items in the list
-
-        //// Add / remove extra items
-        //if( nElementCount > nExistingElements )
-        //{
-        //    // Add Extra Elements
-        //    for( int nIndex = nExistingElements;
-        //            nIndex < nElementCount; nIndex++)
-        //    {
-        //        // Add Dummy Element
-        //        m_omElementList.Add( odTemp );
-        //    }
-        //}
-        //// Delete extra elements
-        //else if (nElementCount <  nExistingElements )
-        //{
-        //    // Get the extra elements count
-        //    int nDifference = nExistingElements - nElementCount;
-        //    // Remove extra elements. Removing it from the list.
-        //    // Remove the head element instead of any other index.
-        //    // Because list index might become invalid if the
-        //    // size of the list after deletion comes below the
-        //    // index value
-        //    for( int nIndex = 0; nIndex < nDifference; nIndex++ )
-        //    {
-        //        // Remove the first element
-        //        m_omElementList.RemoveAt( 0 );
-        //    }
-        //}
 
         xmlXPathObjectPtr pOjectPath = NULL;
         xmlChar* pXmlPath = (xmlChar*)"//BUSMASTER_CONFIGURATION/Module_Configuration/CAN_Signal_Graph/GRAPH_ELEMENT";
@@ -229,14 +193,6 @@ void CGraphList::pbySetConfigData(xmlNodePtr pNodePtr, xmlDocPtr pDocPtr)
                 }
             }
         }
-
-        //// Now populate list
-        //for( int nIndex = 0; nIndex < nElementCount;
-        //        nIndex++ )
-        //{
-        //    // Read element from the archive
-        //   m_omElementList[ nIndex ].pbySetConfigData( pbyTemp, byVersion );
-        //}
     }
 }
 

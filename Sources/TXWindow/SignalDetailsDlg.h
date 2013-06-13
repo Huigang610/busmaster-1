@@ -24,25 +24,16 @@
 
 #pragma once
 
+/* Project includes */
 #include "TxWindow_resource.h"
 #include "Utility/RadixEdit.h"
 #include "Utility/AlphanumiricEdit.h"
 #include "CMsgSignalTemp.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// CSignalDetailsDlg dialog
 enum eMODES;
-//{
-//    MD_ADD          =   0,
-//    MD_EDIT,
-//    MD_DELETE,
-//    MD_READ_ONLY,
-//    MD_NONE
-//};
 
 class CSignalDetailsDlg : public CDialog
 {
-    // Construction
 public:
     CSignalDetailsDlg( eMODES eMode,
                        int nDataFormat,
@@ -57,7 +48,6 @@ public:
     CSignalDetailsDlg( eMODES eMode, sSIGNALS* psSigInfo,
                        CWnd* pParent /*=NULL*/);
     // Dialog Data
-    //{{AFX_DATA(CSignalDetailsDlg)
     enum { IDD = IDD_DLG_SIGNAL };
     CRadixEdit  m_odScale;
     CRadixEdit  m_odOffset;
@@ -72,25 +62,14 @@ public:
     CString m_omStrSignalName;
     BYTE    m_byStartBit;
     CString m_omStrUnit;
-    //}}AFX_DATA
 
     CAlphanumiricEdit m_odNumericEdit;
-    // Overrides
-    // ClassWizard generated virtual function overrides
-    //{{AFX_VIRTUAL(CSignalDetailsDlg)
-public:
+
     virtual BOOL PreTranslateMessage(MSG* pMsg);
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
 protected:
-
-    // Generated message map functions
-    //{{AFX_MSG(CSignalDetailsDlg)
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     virtual BOOL OnInitDialog();
-
     virtual void OnCancel();
     virtual void OnOK();
 
@@ -98,11 +77,6 @@ private:
     BOOL m_bLenChanged;
     CString m_omStrFirstSignalName;
     BOOL m_bDupliacateFound;
-    // void vCalculateMaxMinValues(long &minVal, long &maxVal);
-    //  krishnaswamy B.N 28.08.2003
-    //  Validation of minimum and maximum values in OnOk function
-
-
     CString m_omStrSgType;
     int m_nDataFormat;
     UINT m_unMode;
@@ -117,5 +91,4 @@ private:
     CString m_omStrOffset;
     CString m_omStrScale;
     BOOL m_bNameChanged;
-
 };

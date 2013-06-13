@@ -57,6 +57,7 @@
 class CCANControllerConfigDlg : public CDialog
 {
     DECLARE_DYNAMIC(CCANControllerConfigDlg)
+    DECLARE_MESSAGE_MAP()
 
 public:
     CCANControllerConfigDlg(int iBTRRegisters, CWnd* pParent /*=NULL*/);
@@ -65,16 +66,21 @@ public:
     // Dialog Data
     enum { IDD = IDD_IXXAT_CAN_CONFIG_DLG };
 
+    CComboBox m_comboBoxCiABaudSelection;
+
+    CEdit m_editBTR0; ///< A corresponing member for the edit box bit timing register 0
+    CEdit m_editBTR1; ///< A corresponing member for the edit box bit timing register 0
+    afx_msg void OnCbnSelendokComboCiaBaudSelection();
+    int GetBitTimingValue();
+    std::string GetBitTimingName();
+
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     virtual BOOL OnInitDialog();
-
-    DECLARE_MESSAGE_MAP()
-public:
     afx_msg void OnBnClickedButtonCancfgOk();
-    CComboBox m_comboBoxCiABaudSelection;
-
-protected:
+    afx_msg void OnBnClickedButtonCancel();
+    afx_msg void OnEnChangeEditBitreg0();
+    afx_msg void OnEnChangeEditBitreg1();
 
     /**
      * @struct  sCiaBaud
@@ -102,13 +108,4 @@ protected:
     void UpdateBTRFields(int iIndex);
     int  GetListIndexFromBTRRegisters();
     void UpdateComboBoxIndexFromEditFields();
-public:
-    CEdit m_editBTR0; ///< A corresponing member for the edit box bit timing register 0
-    CEdit m_editBTR1; ///< A corresponing member for the edit box bit timing register 0
-    afx_msg void OnCbnSelendokComboCiaBaudSelection();
-    int GetBitTimingValue();
-    std::string GetBitTimingName();
-    afx_msg void OnBnClickedButtonCancel();
-    afx_msg void OnEnChangeEditBitreg0();
-    afx_msg void OnEnChangeEditBitreg1();
 };

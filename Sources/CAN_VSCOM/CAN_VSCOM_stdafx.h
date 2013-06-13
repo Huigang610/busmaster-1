@@ -65,7 +65,7 @@
 #include "afxtempl.h"
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
-#include <windows.h>
+//#include <windows.h>
 // C RunTime Header Files
 #include <stdlib.h>
 #include <malloc.h>

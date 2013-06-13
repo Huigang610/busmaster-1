@@ -29,9 +29,11 @@ CBrowseEditItem::CBrowseEditItem(int nItem, int nSubItem, CString& sContent, CBu
     m_bIsButtonValid = TRUE;
     m_bKillFocus = TRUE;
 }
+
 CBrowseEditItem::~CBrowseEditItem()
 {
 }
+
 BEGIN_MESSAGE_MAP(CBrowseEditItem, CEditItem)
     ON_WM_KILLFOCUS()
 END_MESSAGE_MAP()
@@ -96,13 +98,11 @@ CButtonItem::CButtonItem(CString omStrDefExt, CString omStrFilter)
     m_omStrFilter = omStrFilter;
 }
 
-CButtonItem::~CButtonItem(void)
-{
-}
 void CButtonItem::vSetEditItem(CBrowseEditItem* pomEditItem)
 {
     m_pomEditItem = pomEditItem;
 }
+
 BEGIN_MESSAGE_MAP(CButtonItem, CButton)
     ON_WM_KILLFOCUS()
     ON_CONTROL_REFLECT(BN_CLICKED, OnBnClicked)

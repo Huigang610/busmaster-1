@@ -32,9 +32,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// CSelectFunctions dialog
-
 /******************************************************************************/
 /*  Function Name    :  CSelectFunctions                                      */
 /*                                                                            */
@@ -52,33 +49,22 @@ static char THIS_FILE[] = __FILE__;
 CSelectFunctions::CSelectFunctions(ETYPE_BUS eBus, CWnd* pParent /*=NULL*/)
     : CDialog(CSelectFunctions::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CSelectFunctions)
-    // NOTE: the ClassWizard will add member initialization here
-    //}}AFX_DATA_INIT
     m_omSelectedFunctionPrototype = STR_EMPTY;
     m_eBus = eBus;
 }
 
-
 void CSelectFunctions::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CSelectFunctions)
     DDX_Control(pDX, IDC_LSTB_FUNCTIONS, m_omFnListBox);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CSelectFunctions, CDialog)
-    //{{AFX_MSG_MAP(CSelectFunctions)
     ON_LBN_DBLCLK(IDC_LSTB_FUNCTIONS, OnDblclkListFunctions)
     ON_BN_CLICKED(IDC_CBTN_OK, OnSelect)
     ON_BN_CLICKED(IDC_CBTN_CANCEL, OnCancel)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-/////////////////////////////////////////////////////////////////////////////
-// CSelectFunctions message handlers
 /******************************************************************************/
 /*  Function Name    :  OnDblclkListFunctions                                                 */
 /*                                                                            */

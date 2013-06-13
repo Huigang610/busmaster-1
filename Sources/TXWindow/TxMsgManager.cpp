@@ -840,7 +840,7 @@ UINT CTxMsgManager::s_unSendMsgBlockOnTime(LPVOID pParam )
                 {
                     psTxMsgList = psIntialTxMsgList;
                 }
-                int nMsgCnt =           psTxMsg->nGetMsgCount();
+                int nMsgCnt =           psTxMsg->ngetMessageCount();
                 int nVarMsgCnt = 0;
                 // Go through the list of nodes
                 while( psTxMsgList != NULL &&

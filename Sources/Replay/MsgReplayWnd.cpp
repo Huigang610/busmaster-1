@@ -58,28 +58,7 @@ CMsgReplayWnd::CMsgReplayWnd(CReplayFile ouReplayFile, WINDOWPLACEMENT& sWndPlac
     m_sWndPlacement = sWndPlacement;
 }
 
-
-/******************************************************************************/
-/*  Function Name    :  ~CMsgReplayWnd                                        */
-/*  Input(s)         :                                                        */
-/*  Output           :                                                        */
-/*  Functionality    :  This is default destructor                            */
-/*                                                                            */
-/*  Member of        :  CMsgReplayWnd                                         */
-/*  Friend of        :      -                                                 */
-/*  Author(s)        :  Amitesh Bharti                                        */
-/*  Date Created     :  19.03.2002                                            */
-/*  Modifications    :                                                        */
-/*                                                                            */
-/******************************************************************************/
-CMsgReplayWnd::~CMsgReplayWnd()
-{
-
-}
-
-
 BEGIN_MESSAGE_MAP(CMsgReplayWnd, CMDIChildWnd)
-    //{{AFX_MSG_MAP(CMsgReplayWnd)
     ON_WM_HELPINFO()
     ON_WM_DESTROY()
     ON_WM_SIZE()
@@ -89,7 +68,6 @@ BEGIN_MESSAGE_MAP(CMsgReplayWnd, CMDIChildWnd)
     ON_MESSAGE( WM_OWNER_GET_DATA, vHandleListControlDataReq)
     ON_WM_SHOWWINDOW()
     ON_MESSAGE(WM_OW_LIST_DBLCLK, vListDoubleClick)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /******************************************************************************/

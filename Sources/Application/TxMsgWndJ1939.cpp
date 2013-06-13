@@ -334,7 +334,6 @@ void CTxMsgWndJ1939::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_COMBO_PGN, m_omComboPGN);
 }
 
-
 BEGIN_MESSAGE_MAP(CTxMsgWndJ1939, CDialog)
     ON_BN_CLICKED(IDC_SEND, OnBnClickedSend)
     ON_BN_CLICKED(IDC_OK, OnBnClickedOk)
@@ -355,9 +354,6 @@ BEGIN_MESSAGE_MAP(CTxMsgWndJ1939, CDialog)
     ON_CBN_SELCHANGE(IDC_COMBO_PGN, OnCbnSelchangeComboPgn)
     ON_CBN_EDITCHANGE(IDC_COMBO_PGN, OnCbnEditChangeComboPgn)
 END_MESSAGE_MAP()
-
-
-// CTxMsgWndJ1939 message handlers
 
 BOOL CTxMsgWndJ1939::OnInitDialog()
 {

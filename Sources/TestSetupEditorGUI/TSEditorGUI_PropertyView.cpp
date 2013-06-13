@@ -83,20 +83,19 @@ void CPropertyView::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_PROPERTYLIST, m_omPropertyList);
     DDX_Text(pDX, IDC_EDITHELP, m_omstrHelpString);
 }
+
 HRESULT CPropertyView::onMsg(LPARAM,WPARAM)
 {
     MessageBox("hI");
     return S_OK;
 }
+
 BEGIN_MESSAGE_MAP(CPropertyView, CFormView)
     ON_WM_SIZE()
     ON_BN_CLICKED(IDC_CANCEL, OnBnClickedCancel)
     ON_BN_CLICKED(IDC_CONFIRM, OnBnClickedConfirm)
     ON_NOTIFY(LVN_ITEMCHANGED, IDC_PROPERTYLIST, OnLvnItemchanged)
 END_MESSAGE_MAP()
-
-
-// CPropertyView diagnostics
 
 #ifdef _DEBUG
 void CPropertyView::AssertValid() const

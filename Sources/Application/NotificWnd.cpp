@@ -36,8 +36,6 @@ typedef std::queue<CString> CStringQueue;
 static CStringQueue sg_odStringQueue;
 
 extern CCANMonitorApp theApp;
-/////////////////////////////////////////////////////////////////////////////
-// CNotificWnd
 
 IMPLEMENT_DYNCREATE(CNotificWnd, CMDIChildBase)
 /******************************************************************************/
@@ -52,41 +50,22 @@ IMPLEMENT_DYNCREATE(CNotificWnd, CMDIChildBase)
 /*  Modifications    :  Raja N on 26.04.2005, Changed the base class to       */
 /*                      CMDIChildBase and initialised with window identity    */
 /******************************************************************************/
-CNotificWnd::CNotificWnd():CMDIChildBase( /*NOTIFICATION_WND_PLACEMENT*/(eCONFIGDETAILS)-1 ),
+CNotificWnd::CNotificWnd() :
+    CMDIChildBase( /*NOTIFICATION_WND_PLACEMENT*/(eCONFIGDETAILS)-1 ),
     m_omSizeMaxTxtExtent(0,0)
 {
     m_unTimer = TIMER_INVALID;
 }
 
-/******************************************************************************/
-/*  Function Name    :  ~CNotificWnd                                          */
-/*  Input(s)         :                                                        */
-/*  Output           :                                                        */
-/*  Functionality    :  This function is default destructor                   */
-/*                                                                            */
-/*  Member of        :  CNotificWnd                                           */
-/*  Friend of        :      -                                                 */
-/*  Author(s)        :  Ravikumar Patil                                       */
-/*  Date Created     :  12-Mar-2003                                           */
-/*  Modifications    :                                                        */
-/*                                                                            */
-/******************************************************************************/
-CNotificWnd::~CNotificWnd()
-{
-}
-
 BEGIN_MESSAGE_MAP(CNotificWnd, CMDIChildBase)
-    //{{AFX_MSG_MAP(CNotificWnd)
     ON_WM_HELPINFO()
     ON_WM_SIZE()
     ON_MESSAGE(WM_CONFIG_QUESTION, DoConfigOperation)
     ON_WM_CLOSE()
     ON_WM_SHOWWINDOW()
     ON_WM_DESTROY()
-    //}}AFX_MSG_MAP
     ON_WM_TIMER()
 END_MESSAGE_MAP()
-
 
 /******************************************************************************/
 /*  Function Name    :  vSetWindowFont                                        */

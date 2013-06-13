@@ -39,11 +39,11 @@ void* CBusStatisticCAN:: sm_pouBSCan;
 int ReadBSDataBuffer(CBusStatisticCAN* pBSCan)
 {
     ASSERT(pBSCan != NULL);
-    while (pBSCan->m_ouCanBufFSE.GetMsgCount() > 0)
+    while (pBSCan->m_ouCanBufFSE.getMessageCount() > 0)
     {
         static STCANDATA sCanData;
         //sCanData.m_lTickCount.QuadPart;
-        int Result = pBSCan->m_ouCanBufFSE.ReadFromBuffer(&sCanData);
+        int Result = pBSCan->m_ouCanBufFSE.readFromBuffer(&sCanData);
         if (Result == ERR_READ_MEMORY_SHORT)
         {
             TRACE("ERR_READ_MEMORY_SHORT");
@@ -126,7 +126,7 @@ DWORD WINAPI BSDataReadThreadProc(LPVOID pVoid)
 CBusStatisticCAN::CBusStatisticCAN(void)
 {
     InitializeCriticalSection(&m_omCritSecBS);
-    m_ouReadThread.m_hActionEvent = m_ouCanBufFSE.hGetNotifyingEvent();
+    m_ouReadThread.m_hActionEvent = m_ouCanBufFSE.getNotifyEvent();
     m_nTimerHandle = NULL;
     //Initialise Number of Bits in Standard CAN and FD Messages
     UINT unBitsStdMsg[] = {51, 60, 70, 79, 89, 99, 108, 118, 127};
@@ -166,7 +166,7 @@ CBusStatisticCAN::~CBusStatisticCAN(void)
 {
 
     m_ouReadThread.bTerminateThread();      // Terminate read thread
-    m_ouCanBufFSE.vClearMessageBuffer();    // clear can buffer
+    m_ouCanBufFSE.clearMessageBuffer();    // clear can buffer
     DeleteCriticalSection(&m_omCritSecBS);  // delete critical section
     if( m_nTimerHandle != NULL )
     {

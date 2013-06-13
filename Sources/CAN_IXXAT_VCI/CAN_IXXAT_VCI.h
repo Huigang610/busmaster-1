@@ -24,30 +24,15 @@
 
 #pragma once
 
-#ifndef __AFXWIN_H__
-#error "include 'stdafx.h' before including this file for PCH"
-#endif
-
+/* Project includes */
 #include "resource.h"       // main symbols
 
-
-/**
- * @class CCAN_IXXAT_VCIApp
- *
- * @brief
- *  The DLL application class.
- *
- */
 class CCAN_IXXAT_VCIApp : public CWinApp
 {
 public:
     CCAN_IXXAT_VCIApp();
 
-    // Overrides
-public:
     virtual BOOL InitInstance();
     virtual int  ExitInstance();
-
-    DECLARE_MESSAGE_MAP()
 };
 

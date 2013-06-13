@@ -28,9 +28,6 @@
 // Interface file for CRadixEdit class
 #include "RadixEdit.h"
 
-/////////////////////////////////////////////////////////////////////////////
-// CRadixEdit
-
 /******************************************************************************
  Function Name  :   CRadixEdit
 
@@ -53,32 +50,10 @@ CRadixEdit::CRadixEdit()
     m_nCtrlID       = -1;
 }
 
-/******************************************************************************
- Function Name  :   ~CRadixEdit
-
- Input(s)       :   -
- Output         :   -
- Functionality  :   Destructor
- Member of      :   CRadixEdit
-
- Author(s)      :   Soj Thomas
- Date Created   :   08-03-2002
- Modifications  :   Ratnadip Choudhury, Amarnath Shastry
-******************************************************************************/
-CRadixEdit::~CRadixEdit()
-{
-}
-
-
 BEGIN_MESSAGE_MAP(CRadixEdit, CEdit)
-    //{{AFX_MSG_MAP(CRadixEdit)
     ON_WM_CHAR()
     ON_CONTROL_REFLECT(EN_CHANGE, OnChange)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CRadixEdit message handlers
 
 /******************************************************************************
  Function Name  :   OnChar

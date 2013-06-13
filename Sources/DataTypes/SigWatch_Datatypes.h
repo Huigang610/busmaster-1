@@ -24,13 +24,29 @@
 
 #pragma once
 
-/* Structure for Signal Watch Implementation */
+/**
+ * Structure for Signal Watch Implementation
+ */
 struct tagSignalWatchList
 {
-    unsigned int unMsgID;                   // Message ID
-    CStringArray omCSASignals;              // Signals List
-    tagSignalWatchList* psNextMessageNode; // Pointer to the next node
-    // Init Necessery Values
+	/**
+	 * Message ID
+	 */
+    unsigned int unMsgID;
+
+	/**
+	 * Signals List
+	 */
+    CStringArray omCSASignals;
+
+	/**
+	 * Pointer to the next node
+	 */
+    tagSignalWatchList* psNextMessageNode;
+
+    /**
+	 * Init Necessery Values
+	 */
     tagSignalWatchList()
     {
         unMsgID = 0;

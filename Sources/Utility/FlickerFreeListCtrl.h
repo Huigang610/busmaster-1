@@ -24,31 +24,18 @@
 
 #pragma once
 
-// CFlickerFreeListCtrl
-
 class CFlickerFreeListCtrl : public CListCtrl
 {
     DECLARE_DYNAMIC(CFlickerFreeListCtrl)
+    DECLARE_MESSAGE_MAP()
 
-protected:
-    //Added new function declaration
-#if 0
-    afx_msg void OnGetdispinfo(NMHDR* pNMHDR, LRESULT* pResult);
-    afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
-#endif //These functions have to be added in derived class
-
-    afx_msg UINT OnGetDlgCode( );
 public:
     CFlickerFreeListCtrl();
-    virtual ~CFlickerFreeListCtrl();
+    CRect m_rectClient;
 
 protected:
-    DECLARE_MESSAGE_MAP()
-public:
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
     afx_msg void OnPaint();
     afx_msg void OnSize(UINT nType, int cx, int cy);
-    CRect m_rectClient;
+    afx_msg UINT OnGetDlgCode( );
 };
-
-

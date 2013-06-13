@@ -28,7 +28,7 @@
 #include "Utility/MultiLanguageSupport.h"
 #include <locale.h>
 
-/* TYPES OF TIMEOUT */
+/* Types of Timeout */
 const BYTE DEFAULT_PRIORITY     = 0x7;
 const BYTE ADDRESS_NULL         = 254;
 const BYTE ADDRESS_ALL          = 255;
@@ -220,7 +220,6 @@ typedef struct tagSTJ1939_MSG
 #define LEN_STR_PRIO_J1939      4
 #define LEN_STR_DIR_J1939       3
 #define LEN_STR_DLC_J1939       5
-
 
 typedef struct tagFormattedData_J1939
 {

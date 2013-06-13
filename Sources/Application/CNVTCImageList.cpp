@@ -18,13 +18,11 @@
  * @authors   Ratnadip Choudhury, Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
-// CNVTCImageList.cpp: CNVTCImageList class implementation.
-//////////////////////////////////////////////////////////////////////
 
+/* Project includes */
 #include "stdafx.h"
 #include "CNVTCImageList.h"
 
-//Constructor
 CNVTCImageList::CNVTCImageList()
 {
     m_bUseAdvancedUILib = false;

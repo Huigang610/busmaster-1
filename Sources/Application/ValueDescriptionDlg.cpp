@@ -28,8 +28,7 @@
 #include "HashDefines.h"            // All hash defines sre here
 
 extern CCANMonitorApp theApp;
-/////////////////////////////////////////////////////////////////////////////
-// CValueDescriptionDlg dialog
+
 /******************************************************************************/
 /*  Function Name    :  CValueDescriptionDlg                                  */
 /*  Input(s)         :  eMODES eMode,
@@ -53,7 +52,6 @@ CValueDescriptionDlg::CValueDescriptionDlg(const SDBPARAMS& sDbParams,
         CWnd* pParent /*=NULL*/)
     : CDialog(CValueDescriptionDlg::IDD, pParent)
 {
-    //{{AFX_DATA_INIT(CValueDescriptionDlg)
     m_omStrDescriptor = "";
     m_omStrValue = "";
     m_bIsCanceled = FALSE;
@@ -61,7 +59,6 @@ CValueDescriptionDlg::CValueDescriptionDlg(const SDBPARAMS& sDbParams,
     m_omStrSgName = omStrSgName;
     m_bMode = eMode;
     m_nIndex = nIndex;
-    //}}AFX_DATA_INIT
     bSignalType = "B";
     m_omStrPrevDesc         = STR_EMPTY;
     m_omStrPrevSignalVal    = STR_EMPTY;
@@ -72,21 +69,17 @@ CValueDescriptionDlg::CValueDescriptionDlg(const SDBPARAMS& sDbParams,
 void CValueDescriptionDlg::DoDataExchange(CDataExchange* pDX)
 {
     CDialog::DoDataExchange(pDX);
-    //{{AFX_DATA_MAP(CValueDescriptionDlg)
     DDX_Text(pDX, IDC_EDIT_VALUE_DESC, m_omStrDescriptor);
     DDX_Text(pDX, IDC_EDIT_VAL, m_omStrValue);
     DDX_Control(pDX, IDC_EDIT_VAL, m_ounSigValue);
     DDV_MaxChars(pDX, m_omStrValue, 20);
-    //}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(CValueDescriptionDlg, CDialog)
-    //{{AFX_MSG_MAP(CValueDescriptionDlg)
     ON_BN_CLICKED(IDC_CBTN_OK, OnClickedOk)
     ON_BN_CLICKED(IDC_CBTN_CANCEL, OnCancel)
-    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
+
 /******************************************************************************/
 /*  Function Name    :  OnClickedOk                                           */
 /*  Input(s)         :                                                        */

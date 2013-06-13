@@ -45,10 +45,6 @@ extern UINT unReadDllMsgBuffer(LPVOID pParam);
 
 CExecuteManager* CExecuteManager::sm_pouManager[BUS_TOTAL]= {NULL};
 
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
 /***********************************************************************
     Function Name    :  CExecuteManager
     Input(s)         :

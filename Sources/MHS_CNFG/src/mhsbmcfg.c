@@ -14,12 +14,8 @@
  *                                                                         *
  ***************************************************************************/
 
-/**
-    Library to talk to Tiny-CAN devices. You find the latest versions at
-       http://www.tiny-can.com/
-**/
 #include "global.h"
-#include <windows.h>
+//#include <windows.h>
 #include <string.h>
 #include <stdio.h>
 #include <locale.h>

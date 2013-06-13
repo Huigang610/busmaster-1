@@ -27,8 +27,8 @@
 class CMsgFilterConfigPage : public CPropertyPage
 {
     DECLARE_DYNCREATE(CMsgFilterConfigPage)
+    DECLARE_MESSAGE_MAP()
 
-    // Construction
 public:
     // Standard constructor
     CMsgFilterConfigPage();
@@ -39,29 +39,18 @@ public:
     ~CMsgFilterConfigPage();
 
     // Dialog Data
-    //{{AFX_DATA(CMsgFilterConfigPage)
     enum { IDD = IDD_DLG_MSG_DISPLAY_FILTER };
     CListCtrl   m_omLstcFilterList;
-    //}}AFX_DATA
 
-
-    // Overrides
-    // ClassWizard generate virtual function overrides
-    //{{AFX_VIRTUAL(CMsgFilterConfigPage)
-public:
     virtual void OnOK();
+
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-    //}}AFX_VIRTUAL
 
-    // Implementation
-protected:
-    // Generated message map functions
-    //{{AFX_MSG(CMsgFilterConfigPage)
+	// Generated message map functions
     virtual BOOL OnInitDialog();
     afx_msg void OnBtnConfigure();
-    //}}AFX_MSG
-    DECLARE_MESSAGE_MAP()
+
 private:
     // To create image list
     BOOL bCreateImageList();
@@ -73,12 +62,10 @@ private:
     VOID vInitFilterDataList();
     // To update the filter list with UI changes
     VOID vUpdateDataFromUI();
-private:
+
     // Image list for the filter items
     CImageList m_omImageList;
     HWND m_hMsgWnd; //Msg window handle
     const SFILTERAPPLIED_CAN* m_psFilterConfigured;
     SFILTERAPPLIED_CAN m_sFilterAppliedCan;
-
-
 };
