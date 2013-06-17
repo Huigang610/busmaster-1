@@ -481,7 +481,7 @@ BEGIN
     PUSHBUTTON      "...",IDC_CBTN_LOGFILEPATH,347,19,18,12
     LTEXT           "Channe&l",IDC_CHANNEL,276,41,29,11
     COMBOBOX        IDC_COMB_CHANNEL,310,39,55,64,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Ti&me mode",IDC_STATIC,164,41,35,8
+    LTEXT           "Ti&me Mode",IDC_STATIC,164,41,35,8
     COMBOBOX        IDC_COMB_TIMEMODE,206,40,56,69,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Numeric Format",IDC_NUMERICFORMAT_GROUP,164,58,96,42,WS_GROUP
     CONTROL         "&Decimal",IDC_RBTN_DECIMAL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,171,71,40,10
@@ -492,7 +492,7 @@ BEGIN
     GROUPBOX        "Log Trigger",IDC_LOGTRIGGER_GROUP,163,103,202,45
     CONTROL         "",IDC_CHKB_STARTTRIGGER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,172,116,12,8
     CONTROL         "",IDC_CHKB_STOPTRIGGER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,172,132,11,8
-    CONTROL         "&Enable/Disable logging during tool connect/disconnect",IDC_CHKB_ENABLE_LOG_ONCONNECT,
+    CONTROL         "&Enable/Disable Logging during tool Connect/Disconnect",IDC_CHKB_ENABLE_LOG_ONCONNECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,181,210,10
     PUSHBUTTON      "&Remove",IDC_CBTN_DELETELOG,97,152,50,14
     DEFPUSHBUTTON   "&OK",IDOK,264,177,50,14
@@ -685,13 +685,13 @@ BEGIN
             VALUE "Comments", "Public Copy"
             VALUE "CompanyName", "RBEI, Bangalore"
             VALUE "FileDescription", "BUSMASTER MFC Application"
-            VALUE "FileVersion", "Ver 1.8.0"
+            VALUE "FileVersion", "Ver 1.8.1"
             VALUE "InternalName", "BUSMASTER"
             VALUE "LegalCopyright", "Copyright (C) 2011"
             VALUE "LegalTrademarks", "BOSCH"
             VALUE "OriginalFilename", "BUSMASTER.EXE"
             VALUE "ProductName", "BUSMASTER Application"
-            VALUE "ProductVersion", "Ver 1.8.0"
+            VALUE "ProductVersion", "Ver 1.8.1"
         END
     END
     BLOCK "VarFileInfo"
@@ -1024,7 +1024,7 @@ BEGIN
         MENUITEM "&Load",                    IDM_CONFIG_LOAD
         MENUITEM "&Save",                       IDM_SAVE_CONFIG
         MENUITEM "Save &As",                 IDM_SAVEAS_CONFIG
-        POPUP "Recent Configurations"
+        POPUP "&Recent Configurations"
         BEGIN
             MENUITEM "Empty",                       IDM_REC_CFG_FILE1
         END
@@ -1151,9 +1151,11 @@ BEGIN
         BEGIN
             MENUITEM "&New",                        ID_DATABASE_NEW
             MENUITEM "&Open",                       ID_DATABASE_OPEN
-            MENUITEM "&Close",                      ID_DATABASE_CLOSE
             MENUITEM SEPARATOR
             MENUITEM "&Save",                       ID_DATABASE_SAVE
+            MENUITEM "Save and Im&port",            IDM_SAVE_IMPORT_J1939
+            MENUITEM "Sa&ve As",                 IDM_CONFIGURE_J1939_DB_SAVEAS
+            MENUITEM "&Close",                      ID_DATABASE_CLOSE
             MENUITEM SEPARATOR
             MENUITEM "&Associate",                  33082
             MENUITEM "&Dissociate",                 ID_DATABASE_DISSOCIATE
@@ -1614,7 +1616,7 @@ BEGIN
     IDS_INVALID_DB_PROMPT   "Invalid database filename"
     ID_ACTIVE_DATABASE_NAME " "
     IDS_MESSAGE_NAME        "Message Name"
-    IDS_VERSION             "Ver 1.8.0"
+    IDS_VERSION             "Ver 1.8.1"
     IDS_HEADER              "***NOTE: PLEASE DO NOT EDIT THIS DOCUMENT***\n\n\n***[START LOGGING SESSION]***\n"
     IDS_FOOTER              "***[END LOGGING SESSION]***"
     IDS_CONNECT             "&Connect\tF2"
@@ -1888,7 +1890,12 @@ BEGIN
     ID_DATABASE_SAVE        "Save J1939 Database"
 END
 
-#endif    // English (U.S.) resources
+STRINGTABLE
+BEGIN
+    IDM_SAVE_IMPORT_J1939   "Save and import database file\nSave and import database file"
+END
+
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

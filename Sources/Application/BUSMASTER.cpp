@@ -367,6 +367,7 @@ BOOL CCANMonitorApp::InitInstance()
             bWriteIntoTraceWnd(_(MSG_DEFAULT_DATABASE));
             bWriteIntoTraceWnd(_(MSG_CREATE_UNLOAD_DATABASE));
         }
+        pMainFrame->OnHex_DecButon();           // setting HEX by default
     }
 
     // ********  Filter workaround  ********
@@ -392,7 +393,7 @@ BOOL CCANMonitorApp::InitInstance()
             //CLogManager::ouGetLogManager().vStartStopLogging( TRUE );
         }
     }
-    pMainFrame->OnHex_DecButon();           // setting HEX by default
+    //pMainFrame->OnHex_DecButon();           // setting HEX by default
     //CExecuteManager::ouGetExecuteManager().vStartDllReadThread();
     return TRUE;
 }

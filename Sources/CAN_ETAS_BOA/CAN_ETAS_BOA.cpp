@@ -2485,13 +2485,12 @@ HRESULT CDIL_CAN_ETAS_BOA::sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTx
             sAckMap.m_Channel  = sCanTxMsg.m_ucChannel;
             sAckMap.m_MsgID    = sOciCanMsg.data.txMessage.frameID;
             vMarkEntryIntoMap(sAckMap);
+            BOA_ResultCode ErrCode;
 #ifdef BOA_VERSION_1_5_FD
             if(sCanTxMsg.m_bCANFD == false)
             {
-#endif
-                BOA_ResultCode ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.writeCANData))
-                                         (sg_asChannel[sCanTxMsg.m_ucChannel - 1].m_OCI_TxQueueHandle, OCI_NO_TIME, &sOciCanMsg, 1, &nRemaining);
-#ifdef BOA_VERSION_1_5_FD
+                ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.writeCANData))
+                          (sg_asChannel[sCanTxMsg.m_ucChannel - 1].m_OCI_TxQueueHandle, OCI_NO_TIME, &sOciCanMsg, 1, &nRemaining);
             }
             else
             {
@@ -2505,6 +2504,9 @@ HRESULT CDIL_CAN_ETAS_BOA::sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTx
                 BOA_ResultCode ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.writeCANData))
                                          (sg_asChannel[sCanTxMsg.m_ucChannel - 1].m_OCI_TxQueueHandle, OCI_NO_TIME, &sOciCanMsg, 1, &nRemaining);
             }
+#else
+            ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.writeCANData))
+                      (sg_asChannel[sCanTxMsg.m_ucChannel - 1].m_OCI_TxQueueHandle, OCI_NO_TIME, &sOciCanMsg, 1, &nRemaining);
 #endif
             if (ErrCode == OCI_SUCCESS)
             {

@@ -158,36 +158,38 @@ void vStoreTimers()
         {
             nStart = omStrTimers.Find("\t");
         }
-        CString omStrTimerType;
-        CString omStrTemp;
-        if(nStart >= 0)
-        {
-            omStrTimerType = omStrTimers.Left(nStart);
-            omStrTimerType.TrimLeft(" \t\n");
-            omStrTimerType.TrimRight(" \t\n");
-            omStrTimerType.MakeLower();
-
-            omStrTimers = omStrTimers.Right(omStrTimers.GetLength() - nStart);
-            nStart = 0;
-            vTokenize(omStrTimers, ",;", omStrTemp, nStart);
-            while(omStrTemp != "")
-            {
-                omStrTemp.TrimLeft(" \t\n");
-                omStrTemp.TrimRight(" \t\n");
-                if (omStrTimerType == "mstimer")
-                {
-                    g_ouGlobalVariables.g_omStrMsTimers.Add(omStrTemp);
-                }
-                else if (omStrTimerType == "timer")
-                {
-                    g_ouGlobalVariables.g_omStrSecTimers.Add(omStrTemp);
-                }
-
-                omStrTemp.Empty();
-                vTokenize(omStrTimers, ",;", omStrTemp, nStart);
-            }
-
-        }
+	    CString omStrTimerType;
+	    CString omStrTemp;
+	    if(nStart >= 0)
+	    {
+		    omStrTimerType = omStrTimers.Left(nStart);
+		    omStrTimerType.TrimLeft(" \t\n");
+			omStrTimerType.TrimRight(" \t\n");
+		    omStrTimerType.MakeLower();
+    		
+		    omStrTimers = omStrTimers.Right(omStrTimers.GetLength() - nStart);
+		    nStart = 0;						
+			
+			char *chTemp = new char[omStrTimers.GetLength()+1];
+			strcpy(chTemp, (LPCSTR)omStrTimers);
+			char* token = strtok( chTemp, ",;" );
+			while( token != NULL )
+			{
+				omStrTemp = token;
+			    omStrTemp.TrimLeft(" \t\n");
+				omStrTemp.TrimRight(" \t\n");
+			    if (omStrTimerType == "mstimer")
+			    {
+				    g_ouGlobalVariables.g_omStrMsTimers.Add(omStrTemp);
+			    }
+			    else if (omStrTimerType == "timer")
+			    {
+				    g_ouGlobalVariables.g_omStrSecTimers.Add(omStrTemp);
+			    }
+				token = strtok( NULL, ",;" );
+		    }
+    		
+	    }
     }
     else
     {
@@ -1779,7 +1781,26 @@ void vHandleCaplEvents()
             vHandleOnPreStart();
             g_ouGlobalVariables.g_oucaplEventHandleState = CAPL_EVENT_PRESTART;
         }
-        else if( (nIndex = omStrTemp.Find("stopmeasurement")) >= 0 )
+       
+		else if((nIndex = omStrTemp.Find("envvar")) >= 0 )
+        {
+            CString omStrText = yytext;
+            omStrText.Remove('\n');
+            fprintf(yyout, "%s", defSTR_UnSupportedFunctionStart);
+            fprintf(yyout, "//%s", omStrText);
+			g_ouGlobalVariables.g_nLastParseState = SecondParse;
+			BEGIN(UnsupportedParse);
+        }
+		else if((nIndex = omStrTemp.Find("prestop")) >= 0 )
+        {
+            CString omStrText = yytext;
+            omStrText.Remove('\n');
+            fprintf(yyout, "%s", defSTR_UnSupportedFunctionStart);
+            fprintf(yyout, "//%s", omStrText);
+			g_ouGlobalVariables.g_nLastParseState = SecondParse;
+			BEGIN(UnsupportedParse);
+        }
+		else if( (nIndex = omStrTemp.Find("stopmeasurement")) >= 0 )
         {
             omStrTemp.TrimLeft(" \n\t");
             omStrTemp.TrimRight(" \n\t{");
@@ -1856,13 +1877,6 @@ void vHandleCaplEvents()
             omStrTemp.TrimRight(defSTR_FunctionDefinition);
             omStrTemp = defSTF_Extern + omStrTemp + ";";
             g_ouGlobalVariables.g_omStrFunCalls.Add(omStrTemp);
-        }
-        else if((nIndex = omStrTemp.Find("envvar")) >= 0 )
-        {
-            CString omStrText = yytext;
-            omStrText.Remove('\n');
-            fprintf(yyout, "%s", defSTR_UnSupportedFunctionStart);
-            fprintf(yyout, "//%s", omStrText);
         }
     }
 
@@ -1995,14 +2009,19 @@ void vHandleByte(CString val)
 
 }
 
+void vHandleUnsupportedFunctionEnd()
+{
+	BEGIN(g_ouGlobalVariables.g_nLastParseState);
+}
+void vHandleUnsupportedLine()
+{
+	fprintf(yyout, "\n//");
+}
+
 /**
-* \brief         Replace the CAPL message member variables with BM STCAN_MSG
-                 varible members
-* \param[in]     None
-* \return        void
-* \authors       Venkatanarayana Makam
-* \date
-*/
+ * Replace the CAPL message member variables with BM STCAN_MSG 
+ * varible members
+ */
 void vHandleMessageMembers()
 {
     try
