@@ -31,4 +31,5 @@ class CSignalDefinerApp : public CWinApp
 {
 public:
     virtual BOOL InitInstance();
+    int ExitInstance();
 };
