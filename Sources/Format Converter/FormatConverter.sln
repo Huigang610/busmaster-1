@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C++ Express 2010
+# Visual C++ Express 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FormatConverter", "FormatConverterApp\FormatConverter.vcxproj", "{9374A00F-B768-4724-9B25-7DE7F9467D79}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AscLogConverter", "AscLogConverter\AscLogConverter.vcxproj", "{264D2ACF-4A03-488F-8864-3CB4C52FD010}"
