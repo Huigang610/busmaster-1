@@ -295,6 +295,8 @@ public:
     BOOL bParseSignalWatchXMLconfig(ETYPE_BUS eBus, SignalWatchListMainEntries& odMainEntryList);
     void OnHex_DecButon();
 
+	void bSetHexDecFlags(BOOL bHexOn);
+
     /* API to modify icon for a particular item in toolbar */
     void vModifyToolbarIcon(CNVTCToolBar& objToolbar, BYTE bytItemIndex, BOOL bItemON, UINT nTBIDON, UINT nTBIDOFF);
     /* API to set icon for a particular item in toolbar */
