@@ -1387,14 +1387,13 @@ void CSimSysNodeInfo::vSetEnableAllSimSysErrorHandlers(CString& omStrSimSysName
 
 }
 /**
-* @brief         This function will enable the m_bEventHandlersEnabled
-*                member of all the nodes present under the sim sys.
-* @param[in]     CString &omStrSimSysName
-* @param[in]     bool to indicate enable/disable state
-* @return        void
-* @authors       Arunkumar Karri
-* \date          11.06.2012 Created
-*/
+ * @brief Enable all simulated system event handlers
+ * @param[in] omStrSimSysName Name of simulated system
+ * @param[in] bIsEnabled indicate enable/disable state
+ *
+ * This function will enable the m_bEventHandlersEnabled
+ * member of all the nodes present under the sim sys.
+ */
 void CSimSysNodeInfo::vSetEnableAllSimSysEventHandlers(CString& omStrSimSysName
         , BOOL bIsEnabled)
 {
@@ -1463,13 +1462,11 @@ BOOL CSimSysNodeInfo::bReturnAllErrorHandlersStatus(CString& omStrSimSysName)
     return bIsEnabled;
 }
 /**
-* @brief         Returns TRUE if all the event handlers are enabled for a
-*                given simulated system else FALSE
-* @param[in]     CString &omStrSimSysName
-* @return        BOOL
-* @authors       Arunkumar Karri
-* \date          11.06.2012 Created
-*/
+ * @param[in] omStrSimSysName Name of simulated system
+ * @return    TRUE if all the event handlers are enabled for a given simulated system else FALSE
+ *
+ * Return all event handler status
+ */
 BOOL CSimSysNodeInfo::bReturnAllEventHandlersStatus(CString& omStrSimSysName)
 {
     BOOL bIsEnabled = FALSE;
@@ -1917,15 +1914,13 @@ void CSimSysNodeInfo::vSetEnableNodeErrorHandlers(CString omStrSimSysName ,
 }
 
 /**
-* @brief         This function will enable the m_bEventHandlersEnabled
-*                member of the node.
-* @param[in]     CString &omStrSimSysName
-* @param[in]     CString &omStrNodeName
-* @param[in]     BOOL bIsEnabled
-* @return        void
-* @authors       Arunkumar Karri
-* \date          11.06.2012 Created
-*/
+ * @brief This function will enable the m_bEventHandlersEnabled member of the node.
+ * @param[in] omStrSimSysName Name of simulated system
+ * @param[in] omStrNodeName Node name
+ * @param[in] bIsEnabled indicate Enable/Disable
+ *
+ * This function will enable the m_bEventHandlersEnabled member of the node.
+ */
 void CSimSysNodeInfo::vSetEnableNodeEventHandlers(CString omStrSimSysName ,
         CString& omStrNodeName , BOOL bIsEnabled)
 {
@@ -1987,16 +1982,14 @@ BOOL CSimSysNodeInfo::bReturnNodeErrorHandlersStatus(CString& omStrSimSysName ,
     }
     return bIsEnabled;
 }
+
 /**
-* @brief         Returns TRUE if all the event handlers are enabled for a
-*                given node else FALSE
-* @param[in]     CString &omStrSimSysName
-* @param[in]     CString &omStrNodeName
-* @param[in]     BOOL bIsEnabled
-* @return        void
-* @authors       Arunkumar Karri
-* \date          11.06.2012 Created
-*/
+ * @brief         Returns TRUE if all the event handlers are enabled for a
+ *                given node else FALSE
+ * @param[in]     CString &omStrSimSysName
+ * @param[in]     CString &omStrNodeName
+ * @param[in]     BOOL bIsEnabled
+ */
 BOOL CSimSysNodeInfo::bReturnNodeEventHandlersStatus(CString& omStrSimSysName ,
         CString& omStrNodeName)
 {

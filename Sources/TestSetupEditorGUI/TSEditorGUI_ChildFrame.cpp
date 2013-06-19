@@ -3565,12 +3565,10 @@ void CTSEditorChildFrame::OnClose()
 }
 
 /**
-* @brief         Handler for GetMinMaxInfo event where default window size is validated.
-* @param         void
-* @return        S_OK if CAN_ResetHardware call is success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          31.01.2013 Created
-*/
+ * @brief Handler for GetMinMaxInfo event where default window size is validated.
+ *
+ * Handler for GetMinMaxInfo event where default window size is validated.
+ */
 void CTSEditorChildFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
     if(!m_bInit)

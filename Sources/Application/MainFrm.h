@@ -566,7 +566,6 @@ protected:
     afx_msg LRESULT OnReceiveKeyBoardData(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT OnReceiveKeyDown(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT onGetConfigPath(WPARAM wParam, LPARAM lParam);
-    afx_msg LRESULT onJ1939TxWndClose(WPARAM wParam, LPARAM lParam);
     afx_msg void OnClickMruList( UINT unID );
     afx_msg void OnUpdateMruList(CCmdUI* pCmdUI);
     afx_msg LRESULT OnErrorMessageProc(WPARAM wpParam, LPARAM lParam);
@@ -574,10 +573,8 @@ protected:
     afx_msg void OnUpdateConfigurationFileName(CCmdUI* pCmdUI);
     afx_msg LRESULT vDisconnect(WPARAM wParam, LPARAM lParam);
     afx_msg LRESULT vSetWarningLimitVar(WPARAM wParam, LPARAM lParam);
-    // Notification from trace window
-    afx_msg LRESULT vNotificationFromOtherWin(WPARAM wParam, LPARAM lParam);
-    // Handler for creating trace window
-    afx_msg LRESULT vCreateTraceWindow(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT vNotificationFromOtherWin(WPARAM wParam, LPARAM lParam); // Notification from trace window
+    afx_msg LRESULT vCreateTraceWindow(WPARAM wParam, LPARAM lParam); // Handler for creating trace window
     afx_msg LRESULT vEnableDisableHandlers(WPARAM wParam, LPARAM lParam);
     void ApplyMessageFilterButton();
     int nCreateToolbar(CWnd* pomParent, CToolBar& omToolbar, UINT unID,CString omTitle);

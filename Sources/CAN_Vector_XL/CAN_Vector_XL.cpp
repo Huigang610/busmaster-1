@@ -267,12 +267,12 @@ public:
 CDIL_CAN_VectorXL* g_pouDIL_CAN_VectorXL = NULL;
 
 /**
-* @brief         Returns the CDIL_CAN_VectorXL object
-* @param[out]    ppvInterface, is void pointer to take back the reference to CDIL_CAN_VectorXL object
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Returns the CDIL_CAN_VectorXL object
+ * @param[out] ppvInterface is void pointer to take back the reference to CDIL_CAN_VectorXL object
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Returns the CDIL_CAN_VectorXL object
+ */
 USAGEMODE HRESULT GetIDIL_CAN_Controller(void** ppvInterface)
 {
     HRESULT hResult = S_OK;
@@ -419,13 +419,13 @@ static CChannel sg_aodChannels[ defNO_OF_CHANNELS ];
 static INT sg_anSelectedItems[CHANNEL_ALLOWED];
 
 /**
-* @brief         Sets the application params.
-* @param[in]     hWndOwner, is the main frame HWND value
-* @param[in]     pILog, is pointer to error logger object
-* @return        S_OK (always)
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Sets the application params.
+ * @param[in] hWndOwner is the main frame HWND value
+ * @param[in] pILog is pointer to error logger object
+ * @return S_OK (always)
+ *
+ * Sets the application params.
+ */
 HRESULT CDIL_CAN_VectorXL::setApplicationParameters(HWND hWndOwner, Base_WrapperErrorLogger* pILog)
 {
     sg_hOwnerWnd = hWndOwner;
@@ -447,12 +447,11 @@ HRESULT CDIL_CAN_VectorXL::setApplicationParameters(HWND hWndOwner, Base_Wrapper
 
 
 /**
-* @brief         Unloads verdor's driver lobrary
-* @param         void
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Unloads verdor's driver library
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Unloads verdor's driver library.
+ */
 HRESULT CDIL_CAN_VectorXL::unloadDriverLibrary(void)
 {
     if (hxlDll != NULL)
@@ -465,14 +464,14 @@ HRESULT CDIL_CAN_VectorXL::unloadDriverLibrary(void)
 }
 
 /**
-* @brief         Registers the buffer pBufObj to the client ClientID
-* @param[in]     bAction, contains one of the values MSGBUF_ADD or MSGBUF_CLEAR
-* @param[in]     ClientID, is the client ID
-* @param[in]     pBufObj, is pointer to CBaseCANBufFSE object
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Registers the buffer pBufObj to the client ClientID
+ * @param[in] bAction contains one of the values MSGBUF_ADD or MSGBUF_CLEAR
+ * @param[in] ClientID is the client ID
+ * @param[in] pBufObj is pointer to CBaseCANBufFSE object
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Registers the buffer pBufObj to the client ClientID
+ */
 HRESULT CDIL_CAN_VectorXL::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBaseCANBufFSE* pBufObj)
 {
     HRESULT hResult = S_FALSE;
@@ -543,14 +542,14 @@ HRESULT CDIL_CAN_VectorXL::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBa
 }
 
 /**
-* @brief         Registers a client to the DIL.
-* @param[in]     bRegister, if TRUE signifies 'Register', FALSE indicates 'Unregister'
-* @param[out]    ClientID, is Client ID assigned, will be used for further client related calls
-* @param[in]     pacClientName, is the client name
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Registers a client to the DIL.
+ * @param[in] bRegister if TRUE signifies 'Register', FALSE indicates 'Unregister'
+ * @param[out] ClientID is Client ID assigned, will be used for further client related calls
+ * @param[in] pacClientName is the client name
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Registers a client to the DIL.
+ */
 HRESULT CDIL_CAN_VectorXL::registerClient(BOOL bRegister, DWORD& ClientID, char* pacClientName)
 {
     USES_CONVERSION;
@@ -618,12 +617,11 @@ HRESULT CDIL_CAN_VectorXL::registerClient(BOOL bRegister, DWORD& ClientID, char*
 }
 
 /**
-* @brief         Loads vendor's driver library
-* @param         void
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Loads vendor's driver library
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Loads vendor's driver library.
+ */
 HRESULT CDIL_CAN_VectorXL::loadDriverLibrary(void)
 {
     HRESULT hResult = S_OK;
@@ -724,13 +722,12 @@ HRESULT CDIL_CAN_VectorXL::loadDriverLibrary(void)
 }
 
 /**
-* @brief         Performs intial operations.
-*                Initializes filter, queue, controller config with default values.
-* @param         void
-* @return        S_OK if the open driver call successfull otherwise S_FALSE
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Performs intial operations.
+ * @return S_OK if the open driver call successfull otherwise S_FALSE
+ *
+ * Performs intial operations.
+ * Initializes filter, queue, controller config with default values.
+ */
 HRESULT CDIL_CAN_VectorXL::performInitOperations(void)
 {
     HRESULT hResult = S_FALSE;
@@ -760,12 +757,11 @@ HRESULT CDIL_CAN_VectorXL::performInitOperations(void)
 }
 
 /**
-* @brief         Performs closure operations.
-* @param         void
-* @return        S_OK if the stopHardware call successfull otherwise S_FALSE
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Performs closure operations.
+ * @return S_OK if the stopHardware call successfull otherwise S_FALSE
+ *
+ * Performs closure operations.
+ */
 HRESULT CDIL_CAN_VectorXL::performClosureOperations(void)
 {
     HRESULT hResult = S_OK;
@@ -798,16 +794,16 @@ HRESULT CDIL_CAN_VectorXL::performClosureOperations(void)
 }
 
 /**
-* @brief         Gets the time mode mapping of the hardware. CurrSysTime
-*                will be updated with the system time ref.
-*                TimeStamp will be updated with the corresponding timestamp.
-* @param[out]    CurrSysTime, is SYSTEMTIME structure
-* @param[out]    TimeStamp, is UINT64
-* @param[out]    QueryTickCount, is LARGE_INTEGER
-* @return        S_OK for success
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Gets the time mode mapping of the hardware
+ * @param[out] CurrSysTime, is SYSTEMTIME structure
+ * @param[out] TimeStamp, is UINT64
+ * @param[out] QueryTickCount, is LARGE_INTEGER
+ * @return S_OK for success
+ *
+ * Gets the time mode mapping of the hardware. CurrSysTime
+ * will be updated with the system time ref.
+ * TimeStamp will be updated with the corresponding timestamp.
+ */
 HRESULT CDIL_CAN_VectorXL::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
 {
     memcpy(&CurrSysTime, &sg_CurrSysTime, sizeof(SYSTEMTIME));
@@ -821,13 +817,13 @@ HRESULT CDIL_CAN_VectorXL::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& T
 }
 
 /**
-* @brief         Lists the hardware interface available.
-* @param[out]    asSelHwInterface, is InterfaceHardwareList structure
-* @param[out]    nCount , is INT contains the selected channel count.
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Lists the hardware interface available.
+ * @param[out] asSelHwInterface is InterfaceHardwareList structure
+ * @param[out] nCount is INT contains the selected channel count.
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Lists the hardware interface available.
+ */
 HRESULT CDIL_CAN_VectorXL::listHardwareInterfaces(InterfaceHardwareList& asSelHwInterface, INT& nCount)
 {
     USES_CONVERSION;
@@ -867,13 +863,13 @@ HRESULT CDIL_CAN_VectorXL::listHardwareInterfaces(InterfaceHardwareList& asSelHw
 }
 
 /**
-* @brief         Selects the hardware interface selected by the user.
-* @param[out]    asSelHwInterface, is InterfaceHardwareList structure
-* @param[out]    nCount , is INT contains the selected channel count.
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Selects the hardware interface selected by the user.
+ * @param[out] asSelHwInterface is InterfaceHardwareList structure
+ * @param[out] nCount is INT contains the selected channel count.
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Selects the hardware interface selected by the user.
+ */
 HRESULT CDIL_CAN_VectorXL::selectHardwareInterface(const InterfaceHardwareList& /*asSelHwInterface*/, INT /*nCount*/)
 {
     USES_CONVERSION;
@@ -889,12 +885,11 @@ HRESULT CDIL_CAN_VectorXL::selectHardwareInterface(const InterfaceHardwareList& 
 }
 
 /**
-* @brief         Deselects the selected hardware interface.
-* @param         void
-* @return        S_OK if CAN_ResetHardware call is success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Deselects the selected hardware interface.
+ * @return S_OK if CAN_ResetHardware call is success, S_FALSE for failure
+ *
+ * Deselects the selected hardware interface.
+ */
 HRESULT CDIL_CAN_VectorXL::deselectHardwareInterface(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
@@ -1026,25 +1021,25 @@ static BOOL bLoadDataFromContr(PSCONTROLLER_DETAILS pControllerDetails)
 }
 
 /**
-* @brief         Callback function for configuration dialog
-* @param[in]     pDatStream, contains SCONTROLLER_DETAILS structure
-* @return        TRUE if setConfigurationData call succeeds, else FALSE
-* @authors       Arunkumar Karri
-* \date          12.10.2011 Created
-*/
+ * @brief Callback function for configuration dialog
+ * @param[in] pDatStream contains SCONTROLLER_DETAILS structure
+ * @return TRUE if setConfigurationData call succeeds, else FALSE
+ *
+ * Callback function for configuration dialog
+ */
 BOOL Callback_DILTZM(BYTE /*Argument*/, PSCONTROLLER_DETAILS pDatStream, int /*Length*/)
 {
     return (g_pouDIL_CAN_VectorXL->setConfigurationData(pDatStream, 0) == S_OK);
 }
 
 /**
-* @brief         Helper function to display configuration dialog
-* @param[in]     pControllerDetails, is SCONTROLLER_DETAILS structure
-* @param[in]     nCount , is the channel count
-* @return        returns configuration confirmation status
-* @authors       Arunkumar Karri
-* \date          22.01.2013 Created
-*/
+ * @brief Helper function to display configuration dialog
+ * @param[in] pControllerDetails is SCONTROLLER_DETAILS structure
+ * @param[in] nCount is the channel count
+ * @return returns configuration confirmation status
+ *
+ * Helper function to display configuration dialog
+ */
 int DisplayConfigurationDlg(HWND hParent, DILCALLBACK /*ProcDIL*/,
                             PSCONTROLLER_DETAILS pControllerDetails, UINT nCount)
 {
@@ -1059,13 +1054,13 @@ int DisplayConfigurationDlg(HWND hParent, DILCALLBACK /*ProcDIL*/,
 }
 
 /**
-* @brief         Displays the controller configuration dialog.
-* @param[out]    InitData, is SCONTROLLER_DETAILS structure
-* @param[out]    Length , is INT
-* @return        S_OK for success
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Displays the controller configuration dialog.
+ * @param[out] InitData is SCONTROLLER_DETAILS structure
+ * @param[out] Length is INT
+ * @return S_OK for success
+ *
+ * Displays the controller configuration dialog.
+ */
 HRESULT CDIL_CAN_VectorXL::displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, int& Length)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
@@ -1141,12 +1136,11 @@ HRESULT CDIL_CAN_VectorXL::displayConfigurationDialog(PSCONTROLLER_DETAILS InitD
 }
 
 /**
-* @brief         Function to set the channel baud rate configured by user
-* @param         void
-* @return        canOK if succeeded, else respective error code
-* @authors       Arunkumar Karri
-* \date          12.10.2011 Created
-*/
+ * @brief Function to set the channel baud rate configured by user
+ * @return canOK if succeeded, else respective error code
+ *
+ * Function to set the channel baud rate configured by user
+ */
 static int nSetBaudRate()
 {
     XLstatus xlStatus;
@@ -1183,12 +1177,11 @@ static int nSetBaudRate()
 }
 
 /**
-* @brief         Function to set the channel baud rate configured by user
-* @param         void
-* @return        canOK if succeeded, else respective error code
-* @authors       Arunkumar Karri
-* \date          12.10.2011 Created
-*/
+ * @brief Function to set the channel baud rate configured by user
+ * @return canOK if succeeded, else respective error code
+ *
+ * Function to set the channel baud rate configured by user
+ */
 static int nSetFilter()
 {
     XLstatus xlStatus = XL_SUCCESS;
@@ -1240,12 +1233,11 @@ static int nSetFilter()
 }
 
 /**
-* @brief         Function to apply filters and baud rate to channels
-* @param         void
-* @return        defERR_OK if succeeded, else respective error code
-* @authors       Arunkumar Karri
-* \date          12.10.2011 Created
-*/
+ * @brief Function to apply filters and baud rate to channels
+ * @return defERR_OK if succeeded, else respective error code
+ *
+ * Function to apply filters and baud rate to channels
+ */
 static int nSetApplyConfiguration()
 {
     int nReturn = defERR_OK;
@@ -1267,13 +1259,13 @@ static int nSetApplyConfiguration()
 }
 
 /**
-* @brief         Sets the controller configuration data supplied by ConfigFile.
-* @param[in]     ConfigFile, is SCONTROLLER_DETAILS structure
-* @param[in]     Length , is INT
-* @return        S_OK for success
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Sets the controller configuration data supplied by ConfigFile.
+ * @param[in] ConfigFile is SCONTROLLER_DETAILS structure
+ * @param[in] Length is INT
+ * @return S_OK for success
+ *
+ * Sets the controller configuration data supplied by ConfigFile.
+ */
 HRESULT CDIL_CAN_VectorXL::setConfigurationData(PSCONTROLLER_DETAILS ConfigFile, int Length)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
@@ -1295,13 +1287,12 @@ HRESULT CDIL_CAN_VectorXL::setConfigurationData(PSCONTROLLER_DETAILS ConfigFile,
 }
 
 /**
-* @brief         Writes the message 'sCanData' to the corresponding clients buffer
-* @param[out]    sCanData, is STCANDATA structure
-* @param[out]    unClientIndex , is UINT containing client ID
-* @return        void
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Writes the message 'sCanData' to the corresponding clients buffer
+ * @param[out] sCanData is STCANDATA structure
+ * @param[out] unClientIndex containing client ID
+ *
+ * Writes the message 'sCanData' to the corresponding clients buffer.
+ */
 static void vWriteIntoClientsBuffer(STCANDATA& sCanData, UINT unClientIndex)
 {
     /* Write into the respective client's buffer */
@@ -1312,12 +1303,11 @@ static void vWriteIntoClientsBuffer(STCANDATA& sCanData, UINT unClientIndex)
 }
 
 /**
-* @brief         Function to create time mode mapping
-* @param[in]     hDataEvent, is HANDLE
-* @return        void
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Function to create time mode mapping
+ * @param[in] hDataEvent is HANDLE
+ *
+ * Function to create time mode mapping.
+ */
 static void vCreateTimeModeMapping(HANDLE hDataEvent)
 {
     WaitForSingleObject(hDataEvent, INFINITE);
@@ -1327,14 +1317,14 @@ static void vCreateTimeModeMapping(HANDLE hDataEvent)
 }
 
 /**
-* @brief         This will convert the error code from vector driver format
-*                to the format that is used by BUSMASTER.
-* @param[in]     lError Error code in Peak USB driver format
-* @param[in]     byDir  Error direction Tx/Rx
-* @return        UCHAR which indicates error code
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Get error code
+ * @param[in] lError Error code in Peak USB driver format
+ * @param[in] byDir  Error direction Tx/Rx
+ * @return UCHAR which indicates error code
+ *
+ * This will convert the error code from vector driver format
+ * to the format that is used by BUSMASTER.
+ */
 static UCHAR USB_ucGetErrorCode(LONG lError, BYTE byDir)
 {
     UCHAR ucReturn = 0;
@@ -1376,15 +1366,15 @@ static UCHAR USB_ucGetErrorCode(LONG lError, BYTE byDir)
 }
 
 /**
-* @brief         This will classify the messages, which can be one of Rx, Tx or
-*                Error messages. In case of Err messages this identifies under
-*                what broader category (Rx / Tx) does this occur.
-* @param[in]     XLevent& xlEvent message polled from the bus in XLevent format
-* @param[out]    sCanData Application specific data format
-* @return        TRUE (always)
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Classify message type
+ * @param[in] xlEvent message polled from the bus in XLevent format
+ * @param[out] sCanData Application specific data format
+ * @return TRUE (always)
+ *
+ * This will classify the messages, which can be one of Rx, Tx or
+ * Error messages. In case of Err messages this identifies under
+ * what broader category (Rx / Tx) does this occur.
+ */
 static BYTE bClassifyMsgType(XLevent& xlEvent, STCANDATA& sCanData)
 {
     sCanData.m_lTickCount.QuadPart = (LONGLONG)xlEvent.timeStamp / 100000;
@@ -1484,13 +1474,12 @@ static BYTE bClassifyMsgType(XLevent& xlEvent, STCANDATA& sCanData)
 }
 
 /**
-* @brief         Processing of the received packets from bus
-* @param[in]     XLevent& xlEvent message polled from the bus in XLevent format
-* @param[in]     unClientIndex is the client index
-* @return        void
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Processing of the received packets from bus
+ * @param[in] xlEvent message polled from the bus in XLevent format
+ * @param[in] unClientIndex is the client index
+ *
+ * Processing of the received packets from bus.
+ */
 static void ProcessCANMsg(XLevent& xlEvent, UINT unClientIndex)
 {
     int nSize = sg_nFRAMES;
@@ -1501,12 +1490,11 @@ static void ProcessCANMsg(XLevent& xlEvent, UINT unClientIndex)
 }
 
 /**
-* @brief         Read thread procedure
-* @param[in]     pVoid contains the CPARAM_THREADPROC class object
-* @return        void
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Read thread procedure
+ * @param[in] pVoid contains the CPARAM_THREADPROC class object
+ *
+ * Read thread procedure.
+ */
 DWORD WINAPI CanMsgReadThreadProc_CAN_Vector_XL(LPVOID pVoid)
 {
     USES_CONVERSION;
@@ -1606,12 +1594,11 @@ DWORD WINAPI CanMsgReadThreadProc_CAN_Vector_XL(LPVOID pVoid)
 }
 
 /**
-* @brief         connects to the channels and initiates read thread.
-* @param         void
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Connects to the channels and initiates read thread.
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Connects to the channels and initiates read thread.
+ */
 HRESULT CDIL_CAN_VectorXL::startHardware(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_HW_INTERFACE_SELECTED, ERR_IMPROPER_STATE);
@@ -1651,14 +1638,13 @@ HRESULT CDIL_CAN_VectorXL::startHardware(void)
 }
 
 /**
-* @brief         This will close the connection with the driver. This will be
-*                called before deleting HI layer. This will be called during
-*                application close.
-* @param         void
-* @return        Operation Result. 0 incase of no errors. Failure Error codes(-1) otherwise.
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Disconnect from driver
+ * @return Operation Result. 0 incase of no errors. Failure Error codes(-1) otherwise.
+ *
+ * This will close the connection with the driver. This will be
+ * called before deleting HI layer. This will be called during
+ * application close.
+ */
 static int nDisconnectFromDriver()
 {
     int nReturn = 0;
@@ -1685,12 +1671,10 @@ static int nDisconnectFromDriver()
 }
 
 /**
-* @brief         Function to map device channels with BUSMASTER channel order
-* @param         void
-* @return        void
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Function to map device channels with BUSMASTER channel order
+ *
+ * Function to map device channels with BUSMASTER channel order.
+ */
 static void vMapDeviceChannelIndex()
 {
     //Reset previous channel ID assignment if any
@@ -1701,13 +1685,13 @@ static void vMapDeviceChannelIndex()
 }
 
 /**
-* @brief         This function will connect the tool with hardware. This will
-*                establish the data link between the application and hardware.
-* @param[in]     bConnect TRUE to Connect, FALSE to Disconnect
-* @return        Returns defERR_OK if successful otherwise corresponding Error code.
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Connect
+ * @param[in] bConnect TRUE to Connect, FALSE to Disconnect
+ * @return Returns defERR_OK if successful otherwise corresponding Error code.
+ *
+ * This function will connect the tool with hardware. This will
+ * establish the data link between the application and hardware.
+ */
 static int nConnect(BOOL bConnect)
 {
     int nReturn = -1;
@@ -1785,12 +1769,11 @@ static int nConnect(BOOL bConnect)
 }
 
 /**
-* @brief         Stops the controller.
-* @param         void
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Stops the controller.
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Stops the controller.
+ */
 HRESULT CDIL_CAN_VectorXL::stopHardware(void)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_CONNECTED, ERR_IMPROPER_STATE);
@@ -1817,12 +1800,12 @@ HRESULT CDIL_CAN_VectorXL::stopHardware(void)
 }
 
 /**
-* @brief         Function to get Controller status
-* @param[out]    StatusData, is s_STATUSMSG structure
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Function to get Controller status
+ * @param[out] StatusData is s_STATUSMSG structure
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Function to get Controller status.
+ */
 HRESULT CDIL_CAN_VectorXL::getCurrentStatus(s_STATUSMSG& StatusData)
 {
     StatusData.controllerStatus = NORMAL_ACTIVE;
@@ -1831,18 +1814,18 @@ HRESULT CDIL_CAN_VectorXL::getCurrentStatus(s_STATUSMSG& StatusData)
 }
 
 /**
-* @brief         This will send a CAN message to the driver. In case of USB
-*                this will write the message in to the driver buffer and will
-*                return. In case if parallel port mode this will write the
-*                message and will wait for the ACK event from the driver. If
-*                the event fired this will return 0. Otherwise this will return
-*                wait time out error. In parallel port it is a blocking call
-*                and in case of failure condition this will take 2 seconds.
-* @param[in]     sMessage Message to Transmit
-* @return        Operation Result. 0 incase of no errors. Failure Error codes otherwise.
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Send message to driver
+ * @param[in]     sMessage Message to Transmit
+ * @return        Operation Result. 0 incase of no errors. Failure Error codes otherwise.
+ *
+ * This will send a CAN message to the driver. In case of USB
+ * this will write the message in to the driver buffer and will
+ * return. In case if parallel port mode this will write the
+ * message and will wait for the ACK event from the driver. If
+ * the event fired this will return 0. Otherwise this will return
+ * wait time out error. In parallel port it is a blocking call
+ * and in case of failure condition this will take 2 seconds.
+ */
 static int nWriteMessage(STCAN_MSG sMessage, DWORD dwClientID)
 {
     int nReturn = -1;
@@ -1892,13 +1875,13 @@ static int nWriteMessage(STCAN_MSG sMessage, DWORD dwClientID)
 }
 
 /**
-* @brief         Sends STCAN_MSG structure from the client dwClientID.
-* @param[in]     dwClientID is the client ID
-* @param[in]     sMessage is the application specific CAN message structure
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Sends STCAN_MSG structure from the client dwClientID.
+ * @param[in] dwClientID is the client ID
+ * @param[in] sMessage is the application specific CAN message structure
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Sends STCAN_MSG structure from the client dwClientID.
+ */
 HRESULT CDIL_CAN_VectorXL::sendMessage(DWORD dwClientID, const STCAN_MSG& sMessage)
 {
     VALIDATE_VALUE_RETURN_VAL(sg_bCurrState, STATE_CONNECTED, ERR_IMPROPER_STATE);
@@ -1929,14 +1912,13 @@ HRESULT CDIL_CAN_VectorXL::sendMessage(DWORD dwClientID, const STCAN_MSG& sMessa
 }
 
 /**
-* @brief         This function will check all hardware connectivity by activating selected channels.
-* @param[out]    ucaTestResult Array that will hold test result.
-                 TRUE if hardware present and false if not connected
-* @param[in]     nChannel, indicates channel ID
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Test hardware connection
+ * @param[out] ucaTestResult Array that will hold test result. TRUE if hardware present and false if not connected
+ * @param[in] nChannel indicates channel ID
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * This function will check all hardware connectivity by activating selected channels.
+ */
 static int nTestHardwareConnection(UCHAR& ucaTestResult, UINT nChannel) //const
 {
     int nReturn = 0;
@@ -1961,14 +1943,14 @@ static int nTestHardwareConnection(UCHAR& ucaTestResult, UINT nChannel) //const
 }
 
 /**
-* @brief         Gets the controller parametes of the channel based on the request.
-* @param[out]    lParam, the value of the controller parameter requested.
-* @param[in]     nChannel, indicates channel ID
-* @param[in]     eContrParam, indicates controller parameter
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Gets the controller parametes of the channel based on the request.
+ * @param[out] lParam the value of the controller parameter requested.
+ * @param[in] nChannel indicates channel ID
+ * @param[in] eContrParam indicates controller parameter
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Gets the controller parametes of the channel based on the request.
+ */
 HRESULT CDIL_CAN_VectorXL::getControllerParameters(LONG& lParam, UINT nChannel, ECONTR_PARAM eContrParam)
 {
     HRESULT hResult = S_OK;
@@ -2085,14 +2067,14 @@ HRESULT CDIL_CAN_VectorXL::setControllerParameters(INT nValue, ECONTR_PARAM eCon
 }
 
 /**
-* @brief         Gets the error counter for corresponding channel.
-* @param[out]    sErrorCnt, is SERROR_CNT structure
-* @param[in]     nChannel, indicates channel ID
-* @param[in]     eContrParam, indicates controller parameter
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Gets the error counter for corresponding channel.
+ * @param[out] sErrorCnt is SERROR_CNT structure
+ * @param[in] nChannel indicates channel ID
+ * @param[in] eContrParam indicates controller parameter
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Gets the error counter for corresponding channel.
+ */
 HRESULT CDIL_CAN_VectorXL::getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, ECONTR_PARAM eContrParam)
 {
     HRESULT hResult = S_OK;
@@ -2123,18 +2105,16 @@ HRESULT CDIL_CAN_VectorXL::getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, E
     return hResult;
 }
 
-/* HELPER FUNCTIONS START */
-
 /**
-* @brief         Finds the number of hardware connected.
-* @param         void
-* @return        defERR_OK if successful otherwise corresponding Error code.
-*                0, Query successful, but no device found
-*                > 0, Number of devices found
-*                < 0, query for devices unsuccessful
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Finds the number of hardware connected.
+ * @return
+ *   - defERR_OK if successful otherwise corresponding Error code.
+ *   - 0, Query successful, but no device found
+ *   - > 0, Number of devices found
+ *   - < 0, query for devices unsuccessful
+ *
+ * Finds the number of hardware connected.
+ */
 static int nGetNoOfConnectedHardware(void)
 {
     int nResult = 0;
@@ -2187,14 +2167,14 @@ static int nGetNoOfConnectedHardware(void)
 }
 
 /**
-* @brief         This function will popup hardware selection dialog and gets the user selection of channels.
-* @param[in]     psInterfaces, is InterfaceHardware structue
-* @param[out]    pnSelList, contains channels selected array
-* @param[out]    nCount, contains selected channel count
-* @return        returns 0 if success, else -1
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief This function will popup hardware selection dialog and gets the user selection of channels.
+ * @param[in] psInterfaces is InterfaceHardware structue
+ * @param[out] pnSelList contains channels selected array
+ * @param[out] nCount contains selected channel count
+ * @return returns 0 if success, else -1
+ *
+ * This function will popup hardware selection dialog and gets the user selection of channels.
+ */
 int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, InterfaceHardware* psInterfaces, int* pnSelList, int& nCount)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
@@ -2217,13 +2197,13 @@ int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, InterfaceHardware* 
 }
 
 /**
-* @brief         This function will get the hardware selection from the user
-*                and will create essential networks.
-* @param         unDefaultChannelCnt
-* @return        returns defERR_OK (always)
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Create multiple hardware networks
+ * @param unDefaultChannelCnt Default channel count
+ * @return returns defERR_OK (always)
+ *
+ * This function will get the hardware selection from the user
+ * and will create essential networks.
+ */
 static int nCreateMultipleHardwareNetwork(UINT unDefaultChannelCnt = 0)
 {
     int nHwCount = sg_ucNoOfHardware;
@@ -2280,12 +2260,11 @@ static int nCreateMultipleHardwareNetwork(UINT unDefaultChannelCnt = 0)
 }
 
 /**
-* @brief         This function will create a single network with available single hardware.
-* @param         void
-* @return        returns defERR_OK (always)
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief This function will create a single network with available single hardware.
+ * @return returns defERR_OK (always)
+ *
+ * This function will create a single network with available single hardware.
+ */
 static int nCreateSingleHardwareNetwork()
 {
     g_xlChannelMask = 0;
@@ -2314,14 +2293,14 @@ static int nCreateSingleHardwareNetwork()
 }
 
 /**
-* @brief         This function will find number of hardwares connected.
-*                It will create network as per hardware count.
-*                This will popup hardware selection dialog in case there are more hardwares present.
-* @param         unDefaultChannelCnt
-* @return        Operation Result. 0 incase of no errors. Failure Error codes otherwise.
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Init hardware network
+ * @param unDefaultChannelCnt Default channel count
+ * @return Operation Result. 0 incase of no errors. Failure Error codes otherwise.
+ *
+ * This function will find number of hardwares connected.
+ * It will create network as per hardware count.
+ * This will popup hardware selection dialog in case there are more hardwares present.
+ */
 static int nInitHwNetwork(UINT unDefaultChannelCnt)
 {
     int nChannelCount = 0;
@@ -2370,13 +2349,13 @@ static int nInitHwNetwork(UINT unDefaultChannelCnt)
 }
 
 /**
-* @brief         This function will check if the client exists and gives back the client index.
-* @param[in]     pcClientName, client name as TCHAR*
-* @param[out]    Index, client index if found
-* @return        TRUE if client name is found, else FALSE
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief This function will check if the client exists and gives back the client index.
+ * @param[in] pcClientName client name
+ * @param[out] Index client index if found
+ * @return TRUE if client name is found, else FALSE
+ *
+ * This function will check if the client exists and gives back the client index.
+ */
 static BOOL bClientExist(std::string pcClientName, INT& Index)
 {
     for (UINT i = 0; i < sg_unClientCnt; i++)
@@ -2391,12 +2370,11 @@ static BOOL bClientExist(std::string pcClientName, INT& Index)
 }
 
 /**
-* @brief         This function will get available client slot
-* @param         void
-* @return        Returns the available client ID
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief This function will get available client slot
+ * @return Returns the available client ID
+ *
+ * This function will get available client slot.
+ */
 static DWORD dwGetAvailableClientSlot()
 {
     DWORD nClientId = 2;
@@ -2416,12 +2394,12 @@ static DWORD dwGetAvailableClientSlot()
 }
 
 /**
-* @brief         This function will remove the existing client ID
-* @param[in]     dwClientId, client ID to be removed
-* @return        Returns TRUE if client ID removal is success, else FALSE
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief This function will remove the existing client ID
+ * @param[in] dwClientId client ID to be removed
+ * @return Returns TRUE if client ID removal is success, else FALSE
+ *
+ * This function will remove the existing client ID.
+ */
 static BOOL bRemoveClient(DWORD dwClientId)
 {
     BOOL bResult = FALSE;
@@ -2477,12 +2455,12 @@ static BOOL bRemoveClient(DWORD dwClientId)
 }
 
 /**
-* @brief         This function will check if the client ID exists
-* @param[in]     dwClientId, client ID to be checked for existance
-* @return        Returns TRUE if client ID existance is success, else FALSE
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief This function will check if the client ID exists
+ * @param[in] dwClientId client ID to be checked for existance
+ * @return Returns TRUE if client ID existance is success, else FALSE
+ *
+ * This function will check if the client ID exists.
+ */
 static BOOL bClientIdExist(const DWORD& dwClientId)
 {
     BOOL bReturn = FALSE;
@@ -2498,13 +2476,13 @@ static BOOL bClientIdExist(const DWORD& dwClientId)
 }
 
 /**
-* @brief         This function will return the client index based on clientID
-* @param[in]     dwClientId, client ID whose client index is needed
-* @param[out]    unClientIndex, client index to be returned
-* @return        Returns TRUE if client ID existance is success, else FALSE
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief This function will return the client index based on clientID
+ * @param[in] dwClientId client ID whose client index is needed
+ * @param[out] unClientIndex client index to be returned
+ * @return Returns TRUE if client ID existance is success, else FALSE
+ *
+ * This function will return the client index based on clientID
+ */
 static BOOL bGetClientObj(DWORD dwClientID, UINT& unClientIndex)
 {
     BOOL bResult = FALSE;
@@ -2521,13 +2499,12 @@ static BOOL bGetClientObj(DWORD dwClientID, UINT& unClientIndex)
 }
 
 /**
-* @brief         Function to retreive error occurred and log it
-* @param[in]     File, pointer to log file
-* @param[in]     Line, indicates line number in log file
-* @return        void
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Function to retreive error occurred and log it
+ * @param[in] File pointer to log file
+ * @param[in] Line indicates line number in log file
+ *
+ * Function to retreive error occurred and log it.
+ */
 static void vRetrieveAndLog(DWORD /*dwErrorCode*/, char* File, int Line)
 {
     USES_CONVERSION;
@@ -2546,13 +2523,13 @@ static void vRetrieveAndLog(DWORD /*dwErrorCode*/, char* File, int Line)
 }
 
 /**
-* @brief         Function to check if client buffer exists
-* @param[in]     sClientObj, alias to SCLIENTBUFMAP object
-* @param[in]     pBuf, pointer to CBaseCANBufFSE object
-* @return        TRUE if buffer exists, else FALSE
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Function to check if client buffer exists
+ * @param[in] sClientObj alias to SCLIENTBUFMAP object
+ * @param[in] pBuf pointer to CBaseCANBufFSE object
+ * @return TRUE if buffer exists, else FALSE
+ *
+ * Function to check if client buffer exists
+ */
 static BOOL bIsBufferExists(const SCLIENTBUFMAP& sClientObj, const CBaseCANBufFSE* pBuf)
 {
     BOOL bExist = FALSE;
@@ -2569,14 +2546,12 @@ static BOOL bIsBufferExists(const SCLIENTBUFMAP& sClientObj, const CBaseCANBufFS
 }
 
 /**
-* @brief         Function to remove exissting client buffer
-* @param[in]     RootBufferArray, pointer to CBaseCANBufFSE class array
-* @param[out]    unCount, indicates buffer count which will get reduced
-* @param[in]     BufferToRemove, pointer to the buffer to be removed
-* @return        TRUE if removed
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief Function to remove exissting client buffer
+ * @param[in] RootBufferArray pointer to CBaseCANBufFSE class array
+ * @param[out] unCount indicates buffer count which will get reduced
+ * @param[in] BufferToRemove pointer to the buffer to be removed
+ * @return TRUE if removed
+ */
 static BOOL bRemoveClientBuffer(CBaseCANBufFSE* RootBufferArray[MAX_BUFF_ALLOWED], UINT& unCount, CBaseCANBufFSE* BufferToRemove)
 {
     BOOL bReturn = TRUE;

@@ -375,7 +375,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
     ON_MESSAGE(WM_KEYBOARD_CHAR, OnReceiveKeyBoardData)
     ON_MESSAGE(WM_KEYBOARD_KEYDOWN, OnReceiveKeyDown)
     ON_MESSAGE(MSG_GET_CONFIGPATH, onGetConfigPath)
-    ON_MESSAGE(WM_J1939_TX_CLOSE_MSG, onJ1939TxWndClose)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -1915,26 +1914,11 @@ void CMainFrame::OnConfigBaudrate()
 
 }
 
-/******************************************************************************/
-/*  Function Name    :  OnConfigBaudrate                                      */
-/*  Input(s)         :  BTR0 and BTR1                                         */
-/*  Output           :  baudrate                                              */
-/*  Functionality    :  This function is called to invoke the CChangeRegisters*/
-/*                   dialog box. On selection of menu, this function is called*/
-/*  Member of        :  CChangeRegisters                                      */
-/*  Friend of        :      -                                                 */
-/*  Author(s)        :  Amitesh Bharti                                        */
-/*  Date Created     :  22.02.2002                                            */
-/*  Modifications    :                                                        */
-/******************************************************************************/
-
 /**
-* @brief         This function pops out the hardware selection dialog
-* @param         void
-* @return        void
-* @authors       Arunkumar Karri
-* \date          13.12.2011 Created
-*/
+ * @brief This function pops out the hardware selection dialog.
+ *
+ * This function pops out the hardware selection dialog.
+ */
 void CMainFrame::OnConfigChannelSelection()
 {
     INT nCount = CHANNEL_ALLOWED;
@@ -2198,13 +2182,9 @@ void CMainFrame::OnConfigDatabaseSaveAs()
 }
 
 /**
-* \brief         Called by the framework when user selects SaveAs...
-                 option from the menu for the database editor
-* \param[in]     NULL
-* \return        void
-* \authors       Arunkumar Karri
-* \date          12.06.2013 Created
-*/
+ * Called by the framework when user selects SaveAs...
+ * option from the menu for the database editor
+ */
 void CMainFrame::OnJ1939DBSaveAs()
 {
     // Display a save file dialog
@@ -5193,28 +5173,15 @@ void CMainFrame::OnMessageFilterButton()
 }
 
 /**
-* @brief         Handles the J1939 tx window close notification
-* @param[in]     WPARAM, LPARAM
-* @return        LRESULT
-* @authors       Arunkumar Karri
-* \date          28.02.2013 Created
-*/
-LRESULT CMainFrame::onJ1939TxWndClose(WPARAM wParam, LPARAM lParam)
-{
-    /* Modify filter icon accordingly in J1939 toolbar*/
-    /*BYTE bytTbrItemIndex = 4;
-    vSetToolBarIcon( m_wndToolbarJ1939, bytTbrItemIndex, IDI_ICON_J1939_TRANSMIT_OFF, IDI_ICON_J1939_TRANSMIT_OFF, IDI_ICON_J1939_TRANSMIT_DISABLED );*/
-    return S_OK;
-}
-
-/**
-* @brief         Sets the icon of a particular toolbar item
-* @param[in]     Toolbar object, Item Index, Icon resource IDs for normal, hot and disabled options
-* @param[out]    void
-* @return        void
-* @authors       Arunkumar Karri
-* \date          28.02.2013 Created
-*/
+ * @brief Sets the icon of a particular toolbar item
+ * @param[in] objToolbar Toolbar object
+ * @param[in] bytItemIndex Item Index
+ * @param[in] nTBIDNormal Icon resource IDs for normal
+ * @param[in] nTBIDHot Icon resource IDs for hot
+ * @param[in] nTBIDDisabled Icon resource IDs for disabled options
+ *
+ * Sets the icon of a particular toolbar item
+ */
 void CMainFrame::vSetToolBarIcon(CNVTCToolBar& objToolbar, BYTE bytItemIndex, UINT nTBIDNormal, UINT nTBIDHot, UINT nTBIDDisabled)
 {
     /* Perform this only if resource dll is available */
@@ -5251,12 +5218,12 @@ void CMainFrame::vSetToolBarIcon(CNVTCToolBar& objToolbar, BYTE bytItemIndex, UI
 }
 
 /**
-* @brief         Modifies the toolbar button size
-* @param[in]     Toolbar object, Size object
-* @return        void
-* @authors       Arunkumar Karri
-* \date          01.03.2013 Created
-*/
+ * @brief Modifies the toolbar button size
+ * @param[in] objToolbar Toolbar object
+ * @param[in] objSize Size object
+ *
+ * Modifies the toolbar button size
+ */
 void CMainFrame::vSetToolbarButtonSize(CNVTCToolBar& objToolbar, CSize& objSize)
 {
     /* Get hold of toolbar control */
@@ -5267,13 +5234,15 @@ void CMainFrame::vSetToolbarButtonSize(CNVTCToolBar& objToolbar, CSize& objSize)
 }
 
 /**
-* @brief         Modifies the icon of a particular toolbar item
-* @param[in]     Toolbar object, Item Index, Icon ON and OFF resource IDs and item ON status
-* @param[out]    void
-* @return        void
-* @authors       Arunkumar Karri
-* \date          28.02.2013 Created
-*/
+ * @brief Modifies the icon of a particular toolbar item
+ * @param[in] objToolbar Toolbar object
+ * @param[in] bytItemIndex Item Index
+ * @param[in] bItemON item ON status
+ * @param[in] nTBIDON Icon ON resource IDs 
+ * @param[in] nTBIDOFF Icon OFF resource IDs 
+ *
+ * Modifies the icon of a particular toolbar item
+ */
 void CMainFrame::vModifyToolbarIcon(CNVTCToolBar& objToolbar, BYTE bytItemIndex, BOOL bItemON, UINT nTBIDON, UINT nTBIDOFF)
 {
     /* Perform this only if resource dll is available */
@@ -16329,11 +16298,10 @@ void CMainFrame::OnJ1939AllTimerHandlers()
 }
 
 /**
-* @brief         This function will enable all the event handlers
-* @return        void
-* @authors       Arunkumar Karri
-* \date          11.06.2012 Created
-*/
+ * @brief This function will enable all the event handlers
+ *
+ * This function will enable all the event handlers.
+ */
 void CMainFrame::OnJ1939AllEventHandlers()
 {
     //Get present status
@@ -16350,12 +16318,10 @@ void CMainFrame::OnUpdateJ1939AllTimerHandlers(CCmdUI* pCmdUI)
 }
 
 /**
-* @brief         This function will update the enable status of event handlers
-* @param[in]     CCmdUI *pCmdUI
-* @return        void
-* @authors       Arunkumar Karri
-* \date          11.06.2012 Created
-*/
+ * @brief This function will update the enable status of event handlers
+ *
+ * This function will update the enable status of event handlers.
+ */
 void CMainFrame::OnUpdateJ1939AllEventHandlers(CCmdUI* pCmdUI)
 {
     pCmdUI->SetCheck(GetIJ1939NodeSim()->NS_GetHandlerStatus(H_EVENT_HANDLER));

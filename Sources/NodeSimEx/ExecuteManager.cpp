@@ -537,14 +537,12 @@ void CExecuteManager::vEnableNodeErrorHandler(const PSNODEINFO psNodeInfo,BOOL b
 }
 
 /**
-* @brief         Enable disable event handlers of the node whose NOdeInfo is
-*                passed as parameter
-* @param[in]     PSNODEINFO
-* @param[in]     bool enable/disable
-* @return        void
-* @authors       Arunkumar Karri
-* \date          11.06.2012 Created
-*/
+ * @brief Enable node event handler
+ * @param[in] bState enable/disable
+ *
+ * Enable disable event handlers of the node whose NOdeInfo is
+ * passed as parameter
+ */
 void CExecuteManager::vEnableNodeEventHandler(const PSNODEINFO psNodeInfo,BOOL bState)
 {
     PSNODEOBJECT psTempNodeObject=m_psFirstNodeObject;
@@ -589,13 +587,12 @@ void CExecuteManager::vEnableAllErrorHandler(BOOL bState)
     vUpdateHandlerDetailsInDetView();
 }
 
-/**
-* @brief         enable/disable all event handlers of all the nodes
-* @param[in]     bool to indicate enable/disable state
-* @return        void
-* @authors       Arunkumar Karri
-* \date          11.06.2012 Created
-*/
+ /**
+ * @brief Enable all event handlers
+ * @param[in] bState indicate enable/disable state
+ *
+ * Enable/Disable all event handlers of all the nodes.
+ */
 void CExecuteManager::vEnableAllEventHandler(BOOL bState)
 {
     CWaitCursor omWait;

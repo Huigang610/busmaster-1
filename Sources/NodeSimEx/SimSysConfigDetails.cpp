@@ -508,12 +508,12 @@ BOOL CSimSysConfigDetails:: bLoadStoreSimSysInfo (CArchive& roSimCfgArchive,
 }
 
 /**
-* @brief         Function to convert absolute file path to relative file path based on supplied base path
-* @param         Takes base path and absolute file name
-* @return        void
-* @authors       Arunkumar Karri
-* \date          01.02.2013 Created
-*/
+ * @brief Get relative path
+ * @param[in] omStrBasePath Base path
+ * @param[in] strFileName   Absolute file name
+ *
+ * Function to convert absolute file path to relative file path based on supplied base path
+ */
 void CSimSysConfigDetails::vGetRelativePath(std::string& omStrBasePath, CString& strFileName)
 {
     if ( !strFileName.IsEmpty() )

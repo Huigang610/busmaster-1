@@ -720,12 +720,10 @@ void CTxMsgWndJ1939::vInitializeTpfFields(void)
 }
 
 /**
-* @brief         Updates channel information
-* @param         void
-* @return        void
-* @authors       Arunkumar Karri
-* \date          27.09.2012 Created
-*/
+ * @brief Updates channel information
+ *
+ * Updates channel information
+ */
 void CTxMsgWndJ1939::vUpdateChannelIDInfo()
 {
     /* Clear existing channel info */
@@ -1078,12 +1076,10 @@ void CTxMsgWndJ1939::OnCbnSelchangeComboPgn()
 }
 
 /**
-* @brief         Called when editing PGN combobox
-* @param[in]     void
-* @return        void
-* @authors       Arunkumar Karri
-* \date          17.07.2012 Created
-*/
+ * @brief Called when editing PGN combobox
+ *
+ * Called when editing PGN combobox
+ */
 void CTxMsgWndJ1939::OnCbnEditChangeComboPgn()
 {
     CString omPGN;
@@ -1105,12 +1101,11 @@ void CTxMsgWndJ1939::OnCbnEditChangeComboPgn()
 }
 
 /**
-* @brief         Verifies the PGN's PDU format field and updates message type combobox
-* @param[in]     unPGN, is the PGN ID
-* @return        void
-* @authors       Arunkumar Karri
-* \date          06.06.2012 Created
-*/
+ * @brief Verifies the PGN's PDU format field and updates message type combobox
+ * @param[in] unPGN is the PGN ID
+ *
+ * Verifies the PGN's PDU format field and updates message type combobox.
+ */
 void CTxMsgWndJ1939::vVerifyPDUFormatInPGN(UINT unPGN)
 {
     UNION_PGN uPGN;

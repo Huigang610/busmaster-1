@@ -941,13 +941,10 @@ BOOL CMsgHandlerDlg::bValidateMessageNameAndID(const CStringArray* pomStrArray,
 }
 
 /**
-* @brief         This function finds the next token in the target string
-
-* @param[in]     None Takes input from yytext
-* @return        Void
-* @authors       Saravanan K S
-* \date
-*/
+ * @brief         This function finds the next token in the target string
+ *
+ * This function finds the next token in the target string
+ */
 void CMsgHandlerDlg::vTokenize(CString strInput, CString strToken, CString& strOutput, int& nStart)
 {
     int nIdx = strInput.Find(strToken, nStart);

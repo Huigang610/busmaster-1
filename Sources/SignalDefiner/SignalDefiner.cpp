@@ -139,13 +139,11 @@ int CSignalDefinerApp::ExitInstance()
 CSignalDefinerDlg g_objSignalDefiner;
 
 /**
-* @brief         Shows the signal definer dialog
-* @param[out]    -
-* @param[in]     -
-* @return        S_OK on success and if USER presses OK button, S_FALSE otherwise
-* @authors       Arunkumar Karri
-* \date          03.02.2012 Created
-*/
+ * @brief Shows the signal definer dialog
+ * @return S_OK on success and if USER presses OK button, S_FALSE otherwise
+ *
+ * Shows the signal definer dialog.
+ */
 USAGEMODE HRESULT SignalDefiner_ShowDlg()
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
@@ -154,13 +152,12 @@ USAGEMODE HRESULT SignalDefiner_ShowDlg()
 }
 
 /**
-* @brief         Gets the Signal details to display in Signal definer dialog
-* @param[out]    -
-* @param[in]     Signal Name as 'CString'
-* @return        S_OK on success and if USER presses OK button, S_FALSE otherwise
-* @authors       Arunkumar Karri
-* \date          03.02.2012 Created
-*/
+ * @brief Gets the Signal details to display in Signal definer dialog
+ * @param[in] Signal Name as 'CString'
+ * @return S_OK on success and if USER presses OK button, S_FALSE otherwise
+ *
+ * Gets the Signal details to display in Signal definer dialog.
+ */
 USAGEMODE HRESULT SignalDefiner_SetSignalDetails(BSTR strSignalName)
 {
     g_objSignalDefiner.m_strSignalName = strSignalName;
@@ -168,13 +165,12 @@ USAGEMODE HRESULT SignalDefiner_SetSignalDetails(BSTR strSignalName)
 }
 
 /**
-* @brief         Setter for signal type
-* @param[out]    -
-* @param[in]     Gets the signal type in enum 'eSignalType'
-* @return        S_OK on success , S_FALSE otherwise
-* @authors       Arunkumar Karri
-* \date          03.02.2012 Created
-*/
+ * @brief Setter for signal type
+ * @param[in] Gets the signal type in enum 'eSignalType'
+ * @return S_OK on success , S_FALSE otherwise
+ *
+ * Setter for signal type
+ */
 USAGEMODE HRESULT SignalDefiner_SetType(SIGNAL_TYPE eSignalType)
 {
     g_objSignalDefiner.m_nSignalType = eSignalType;
@@ -183,13 +179,12 @@ USAGEMODE HRESULT SignalDefiner_SetType(SIGNAL_TYPE eSignalType)
 }
 
 /**
-* @brief         Getter for signal type
-* @param[out]    Gives back the signal type in enum 'peSignalType'
-* @param[in]     -
-* @return        S_OK on success , S_FALSE otherwise
-* @authors       Arunkumar Karri
-* \date          03.02.2012 Created
-*/
+ * @brief Getter for signal type
+ * @param[out] pSignalType Gives back the signal type in enum 'peSignalType'
+ * @return S_OK on success, S_FALSE otherwise
+ *
+ * Getter for signal type.
+ */
 USAGEMODE HRESULT SignalDefiner_GetType(SIGNAL_TYPE* peSignalType)
 {
     *peSignalType = (SIGNAL_TYPE)g_objSignalDefiner.m_nSignalType;
@@ -198,13 +193,12 @@ USAGEMODE HRESULT SignalDefiner_GetType(SIGNAL_TYPE* peSignalType)
 }
 
 /**
-* @brief         Setter for signal amplitude
-* @param[out]    -
-* @param[in]     Gets the signal amplitude in float 'fAmplitude'
-* @return        S_OK on success , S_FALSE otherwise
-* @authors       Arunkumar Karri
-* \date          03.02.2012 Created
-*/
+ * @brief Setter for signal amplitude
+ * @param[in] fAmplitude Gets the signal amplitude in float 'fAmplitude'
+ * @return S_OK on success , S_FALSE otherwise
+ *
+ * Setter for signal amplitude.
+ */
 USAGEMODE HRESULT SignalDefiner_SetAmplitude(float fAmplitude)
 {
     g_objSignalDefiner.m_fAmplitude = fAmplitude;
@@ -213,13 +207,12 @@ USAGEMODE HRESULT SignalDefiner_SetAmplitude(float fAmplitude)
 }
 
 /**
-* @brief         Getter for signal amplitude
-* @param[out]    Gives back the signal amplitude in float 'pfAmplitude'
-* @param[in]     -
-* @return        S_OK on success , S_FALSE otherwise
-* @authors       Arunkumar Karri
-* \date          03.02.2012 Created
-*/
+ * @brief Getter for signal amplitude
+ * @param[out] pfAmplitude Gives back the signal amplitude in float 'pfAmplitude'
+ * @return S_OK on success, S_FALSE otherwise
+ *
+ * Getter for signal amplitude
+ */
 USAGEMODE HRESULT SignalDefiner_GetAmplitude(float* pfAmplitude)
 {
     *pfAmplitude = g_objSignalDefiner.m_fAmplitude;
@@ -228,13 +221,12 @@ USAGEMODE HRESULT SignalDefiner_GetAmplitude(float* pfAmplitude)
 }
 
 /**
-* @brief         Setter for signal Sampling TimePeriod
-* @param[out]    -
-* @param[in]     Gets the signal Sampling TimePeriod in int 'nSamplingTime'
-* @return        S_OK on success , S_FALSE otherwise
-* @authors       Arunkumar Karri
-* \date          03.02.2012 Created
-*/
+ * @brief Setter for signal Sampling TimePeriod
+ * @param[in] nSamplingTime Gets the signal Sampling TimePeriod in int 'nSamplingTime'
+ * @return S_OK on success, S_FALSE otherwise
+ *
+ * Setter for signal Sampling TimePeriod.
+ */
 USAGEMODE HRESULT SignalDefiner_SetSamplingTimePeriod(int nSamplingTime)
 {
     g_objSignalDefiner.m_dblSamplingTimePeriod = nSamplingTime;
@@ -251,14 +243,14 @@ USAGEMODE HRESULT SignalDefiner_SetAutoCorrect(bool bChecked)
     g_objSignalDefiner.m_bAutoCorrect = bChecked;
     return S_OK;
 }
+
 /**
-* @brief         Getter for signal Sampling TimePeriod
-* @param[out]    Gives back the signal Sampling TimePeriod in int 'pnSamplingTime'
-* @param[in]     -
-* @return        S_OK on success , S_FALSE otherwise
-* @authors       Arunkumar Karri
-* \date          03.02.2012 Created
-*/
+ * @brief Getter for signal Sampling TimePeriod
+ * @param[out] pnSamplingTime Gives back the signal Sampling TimePeriod in int 'pnSamplingTime'
+ * @return S_OK on success, S_FALSE otherwise
+ *
+ * Getter for signal Sampling TimePeriod.
+ */
 USAGEMODE HRESULT SignalDefiner_GetSamplingTimePeriod(int* pnSamplingTime)
 {
 
@@ -268,13 +260,12 @@ USAGEMODE HRESULT SignalDefiner_GetSamplingTimePeriod(int* pnSamplingTime)
 }
 
 /**
-* @brief         Setter for signal Frequency
-* @param[out]    -
-* @param[in]     Gets the signal Frequency in double 'dblFrequency'
-* @return        S_OK on success , S_FALSE otherwise
-* @authors       Arunkumar Karri
-* \date          03.02.2012 Created
-*/
+ * @brief Setter for signal Frequency
+ * @param[in] dblFrequency Gets the signal Frequency in double 'dblFrequency'
+ * @return S_OK on success, S_FALSE otherwise
+ *
+ * Setter for signal Frequency.
+ */
 USAGEMODE HRESULT SignalDefiner_SetFrequency(float dblFrequency)
 {
     g_objSignalDefiner.m_fFrequency = dblFrequency;
@@ -283,13 +274,12 @@ USAGEMODE HRESULT SignalDefiner_SetFrequency(float dblFrequency)
 }
 
 /**
-* @brief         Getter for signal Frequency
-* @param[out]    Gives back the signal Frequency in double 'pdblFrequency'
-* @param[in]     -
-* @return        S_OK on success , S_FALSE otherwise
-* @authors       Arunkumar Karri
-* \date          03.02.2012 Created
-*/
+ * @brief Getter for signal Frequency
+ * @param[out] pdblFrequency Gives back the signal Frequency in double 'pdblFrequency'
+ * @return S_OK on success, S_FALSE otherwise
+ *
+ * Getter for signal Frequency.
+ */
 USAGEMODE HRESULT SignalDefiner_GetFrequency(float* pdblFrequency)
 {
     *pdblFrequency = g_objSignalDefiner.m_fFrequency;

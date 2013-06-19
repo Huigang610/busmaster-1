@@ -1,6 +1,24 @@
-// SignalDefinerDlg.cpp : implementation file
-//
+/*
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
+/**
+ * @file      SignalDefinerDlg.h
+ * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ */
+
+/* Project includes */
 #include "SignalDefiner_stdafx.h"
 #include "SignalDefiner.h"
 #include "SignalDefinerDlg.h"
@@ -198,28 +216,28 @@ void CSignalDefinerDlg::OnBnClickedAutoCorrect()
     }
     vGenerateWave();
 }
-/**
-* @brief         Helper to convert degrees to radians
-* @param[out]    -
-* @param[in]     Degrees as double
-* @return        Radians as double
-* @authors       Arunkumar Karri
-* \date          03.02.2012 Created
-*/
 
+/**
+ * @brief Helper to convert degrees to radians
+ * @param[in] dblDegress Degrees as double
+ * @return Radians as double
+ *
+ * Helper to convert degrees to radians
+ */
 double DegreesToRadians(double dblDegrees)
 {
     return 2 * M_PI * dblDegrees / 360.0;
 }
 
 /**
-* @brief         Helper function to get the Triangle values calculated
-* @param[out]    -
-* @param[in]     dblXSamplingPoint, fAmplitude, dblTimePeriod
-* @return        double is the Y value calculated
-* @authors       Arunkumar Karri
-* \date          07.02.2012 Created
-*/
+ * @brief Helper function to get the Triangle values calculated
+ * @param[in] dblXSamplingPoint X sampling point
+ * @param[in] fAmplitude Amplitude
+ * @param[in] dblTimePeriod Time period
+ * @return double is the Y value calculated
+ *
+ * Helper function to get the Triangle values calculated
+ */
 double CalculateYatXForTriangleWave(double dblXSamplingPoint,float fAmplitude,double dblTimePeriod)
 {
     double dblYResult = 0;
@@ -244,13 +262,10 @@ double CalculateYatXForTriangleWave(double dblXSamplingPoint,float fAmplitude,do
 }
 
 /**
-* @brief         Generates points based on selected signal type
-* @param[out]    -
-* @param[in]     Signal Type
-* @return        void
-* @authors       Arunkumar Karri
-* \date          03.02.2012 Created
-*/
+ * @brief Generates points based on selected signal type
+ *
+ * Generates points based on selected signal type.
+ */
 void CSignalDefinerDlg::vGenerateWave()
 {
     UpdateData();
@@ -396,13 +411,12 @@ void CSignalDefinerDlg::vGenerateWave()
 }
 
 /**
-* @brief         Plots the element points available onto the Graph
-* @param[out]    -
-* @param[in]     pvarrX, pvarrY; Takes the element points in the form of VARIANT array
-* @return        void
-* @authors       Arunkumar Karri
-* \date          03.02.2012 Created
-*/
+ * @brief Plots the element points available onto the Graph
+ * @param[in] pvarrX Takes the element points in the form of VARIANT array
+ * @param[in] pvarrY Takes the element points in the form of VARIANT array
+ *
+ * Plots the element points available onto the Graph
+ */
 void CSignalDefinerDlg::SetGraphData(VARIANT* pvarrX, VARIANT* pvarrY)
 {
     CComBSTR bsName("Signal");

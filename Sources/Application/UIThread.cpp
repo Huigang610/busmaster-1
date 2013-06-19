@@ -181,13 +181,12 @@ void CUIThread::vUpdateWndCo_Ords(WINDOWPLACEMENT& wndPlacement, BOOL bLoadIntoT
         }
     }
 }
+
 /**
-* @brief         Clears Trace window contents
-* @param         void
-* @return        void
-* @authors       Arunkumar Karri
-* \date          17.12.2012 Created
-*/
+ * @brief Clears Trace window contents
+ *
+ * Clears Trace window contents.
+ */
 void CUIThread::vClearTraceContents()
 {
     m_podTraceWinObj->vClearTraceContents();

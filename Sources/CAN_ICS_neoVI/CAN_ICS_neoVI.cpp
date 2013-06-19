@@ -1425,14 +1425,14 @@ static int nCreateSingleHardwareNetwork()
 }
 
 /**
-* @brief         This function will popup hardware selection dialog and gets the user selection of channels.
-* @param[in]     psInterfaces, is InterfaceHardware structue
-* @param[out]    pnSelList, contains channels selected array
-* @param[out]    nCount, contains selected channel count
-* @return        returns 0 if success, else -1
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief This function will popup hardware selection dialog and gets the user selection of channels.
+ * @param[in] psInterfaces is InterfaceHardware structue
+ * @param[out] pnSelList contains channels selected array
+ * @param[out] nCount contains selected channel count
+ * @return 0 if success, else -1
+ *
+ * This function will popup hardware selection dialog and gets the user selection of channels.
+ */
 int ListHardwareInterfaces(HWND hParent, DWORD /*dwDriver*/, InterfaceHardware* psInterfaces, int* pnSelList, int& nCount)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());

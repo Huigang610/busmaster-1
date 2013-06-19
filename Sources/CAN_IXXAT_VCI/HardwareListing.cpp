@@ -641,12 +641,11 @@ INT CHardwareListing::nGetSelectedList(int* pnList)
 }
 
 /**
-* @brief         This function will set the selected channel list
-* @param[in]     pnList, contains the list of selected channels
-* @return        void
-* @authors       Arunkumar Karri
-* \date          13.12.2011 Created
-*/
+ * @brief This function will set the selected channel list
+ * @param[in] pnList contains the list of selected channels
+ *
+ * This function will set the selected channel list.
+ */
 void CHardwareListing::vSetSelectedList()
 {
     int nSelected = m_nSelectedItem;

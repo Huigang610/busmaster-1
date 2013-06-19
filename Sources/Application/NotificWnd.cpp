@@ -433,12 +433,10 @@ LRESULT CNotificWnd::DoConfigOperation(WPARAM WParam, LPARAM LParam)
 }
 
 /**
-* @brief         Clears Trace window contents
-* @param         void
-* @return        void
-* @authors       Arunkumar Karri
-* \date          17.12.2012 Created
-*/
+ * @brief Clears Trace window contents
+ *
+ * Clears Trace window contents
+ */
 void CNotificWnd ::vClearTraceContents()
 {
     /* Clear contents */

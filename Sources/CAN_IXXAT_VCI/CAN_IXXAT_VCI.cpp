@@ -147,12 +147,12 @@ int CCAN_IXXAT_VCIApp::ExitInstance( )
 
 
 /**
-* @brief         Returns the CDIL_CAN_IXXAT_VCI object
-* @param[out]    ppvInterface, is void pointer to take back the reference to CDIL_CAN_IXXAT_VCI object
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Copied from Arunkumar Karri / updated by Peter Wucherer
-* \date          07.10.2011 Created / 17.03.2012 Updated
-*/
+ * @brief Returns the CDIL_CAN_IXXAT_VCI object
+ * @param[out] ppvInterface is void pointer to take back the reference to CDIL_CAN_IXXAT_VCI object
+ * @return S_OK for success, S_FALSE for failure
+ *
+ * Returns the CDIL_CAN_IXXAT_VCI object.
+ */
 USAGEMODE HRESULT GetIDIL_CAN_Controller(void** ppvInterface)
 //HRESULT __stdcall GetIDIL_CAN_Controller(void** ppvInterface)
 {

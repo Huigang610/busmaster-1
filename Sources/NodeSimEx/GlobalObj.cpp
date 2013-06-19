@@ -141,12 +141,11 @@ CFunctionEditorDoc* CGlobalObj::podGetFunctionEditorDoc()
 }
 
 /**
-* @brief         Callback function which can be used to close windows during configuration switching
-* @param[in]     HWND hwnd, LPARAM lParam
-* @return        TRUE
-* @authors       Arunkumar Karri
-* \date          14.02.2013 Created
-*/
+ * Callback function which can be used to close windows during configuration switching.
+ *
+ * @param[in] hwnd   window handle
+ * @param[in] lParam parameters
+ */
 BOOL CALLBACK EnumChildProc( HWND hwnd, LPARAM lParam )
 {
     if ( hwnd )
@@ -205,12 +204,11 @@ BOOL CALLBACK EnumChildProc( HWND hwnd, LPARAM lParam )
 }
 
 /**
-* @brief         Closes the function editor frame window if open
-* @param[in]     -
-* @return        true if window is closed and false in other case
-* @authors       Arunkumar Karri
-* \date          07.10.2011 Created
-*/
+ * @brief  Closes the function editor frame window if open
+ * @return true if window is closed and false in other case
+ *
+ * Closes the function editor frame window if open
+ */
 bool CGlobalObj::bCloseFunctionEditorFrame()
 {
     g_bReqUserConfirmation = true;

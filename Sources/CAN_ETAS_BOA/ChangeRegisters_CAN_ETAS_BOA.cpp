@@ -1241,12 +1241,8 @@ void CChangeRegisters_CAN_ETAS_BOA::OnCbnSelchangeCombSjw()
 }
 
 /**
-* @brief         Handler when user switches the Delay compensation ON\OFF state
-* @param[out]    void
-* @return        void
-* @authors       Arunkumar Karri
-* \date          07.09.2012 Created
-*/
+ * Handler when user switches the Delay compensation ON\OFF state
+ */
 void CChangeRegisters_CAN_ETAS_BOA::OnCbnSelchangeCombDelayCompensation()
 {
     UpdateData();

@@ -2633,14 +2633,13 @@ BOOL CExecuteFunc::bEnableDisableErrorHandlers(BOOL bEnable)
 }
 
 /**
-* @brief         This function enable/disable all error handlers according
-*                to the input.While disabling handler it will stop the
-*                threads executing them.
-* @param[in]     bool to indicate enable/disable state
-* @return        BOOL
-* @authors       Arunkumar Karri
-* \date          11.06.2012 Created
-*/
+ * @brief Enable/Disable event handlers
+ * @param[in] bEnable indicates enable/disable state
+ *
+ * This function enable/disable all error handlers according
+ * to the input. While disabling handler it will stop the
+ * threads executing them.
+ */
 BOOL CExecuteFunc::bEnableDisableEventHandlers(BOOL bEnable)
 {
     //if( bEnable == FALSE)
@@ -3815,13 +3814,8 @@ void CExecuteFunc::vCopyHandlersArrayToUI(sNODEINFO* psNodeInfo)
 }
 
 /**
-* @brief         This function finds the next token in the target string
-
-* @param[in]     None Takes input from yytext
-* @return        Void
-* @authors       Saravanan K S
-* \date
-*/
+ * This function finds the next token in the target string
+ */
 void CExecuteFunc::vTokenize(CString strInput, CString strToken, CString& strOutput, int& nStart)
 {
     int nIdx = strInput.Find(strToken, nStart);

@@ -2213,14 +2213,13 @@ BOOL CMsgSignal::bFillDataStructureFromDatabaseFile( CString strFileName, eProto
 }
 
 /**
-* @brief         Replaces first occurance of a character in a char array with a new character
-* @param[out]    Char array to be used
-* @param[in]     character to be replaced
-* @param[in]     new character used for replacement
-* @return        S_OK for success, S_FALSE for failure
-* @authors       Arunkumar Karri
-* \date          03.01.2013 Created
-*/
+ * @brief Replaces first occurance of a character in a char array with a new character
+ * @param[out] str Char array to be used
+ * @param[in] chOld character to be replaced
+ * @param[in] chNew new character used for replacement
+ *
+ * Replaces first occurance of a character in a char array with a new character
+ */
 void vReplaceChar(char str[], char chOld, char chNew)
 {
     char* ptrOccured = NULL;
