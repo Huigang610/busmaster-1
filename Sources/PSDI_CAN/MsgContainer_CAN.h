@@ -170,8 +170,6 @@ private:
 	 */
     void vProcessNewData(STCANDATA& sCanData);
 
-	void vProcessCurrErrorEntry(const SERROR_INFO& sErrInfo);
-    
 	BOOL bIsTransitionInState( UINT unChannel,
                                BYTE byRxError,
                                BYTE byTxError );

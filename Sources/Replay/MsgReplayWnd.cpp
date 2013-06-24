@@ -21,16 +21,14 @@
  *
  * This file contain the definition all member function of
  */
-// For all standard header file include
+
+/* Project includes */
 #include "Replay_stdafx.h"
 #include "Replay_resource.h"
 #include "MsgReplayWnd.h"
 #include <locale.h>
 #include "Utility/MultiLanguageSupport.h"
-// Definition of CSplFileDlg class
-//#include "Utility/SplFileDlg.h"
-// For replay manager class declaration
-#include "ReplayManager.h"
+#include "ReplayManager.h"	// For replay manager class declaration
 
 extern BOOL bGetMsgInfoFromMsgStr(CONST CString& omSendMsgLine,
                                   PSTCANDATA psCANData,
