@@ -92,7 +92,7 @@ private:
     //Initialise or resets the bus statistics.
     void vInitialiseTSXData(void);
     //Starts the BS Read Thread
-    BOOL bStartBSReadThread(void);
+    BOOL startBusStatisticsReadThread(void);
     //Constructs the Can Message From the CSend_MessageData
     BOOL bMakeCanMessage(sMESSAGE*& pMsg, CSend_MessageData& ouSendData, UCHAR aucData[8], STCAN_MSG& stCanMsg);
 

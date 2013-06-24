@@ -168,7 +168,7 @@ LRESULT CBusStatisticsDlg::vUpdateFields(WPARAM /*wParam*/, LPARAM /*lParam*/)
         for( int nChannel = 0; nChannel < m_nChannelCount; nChannel++ )
         {
             SBUSSTATISTICS sBusStatistics;
-            m_pouBSCAN->BSC_GetBusStatistics(nChannel, sBusStatistics);
+            m_pouBSCAN->getBusStatistics(nChannel, sBusStatistics);
             // Update Window Text
             CString omDispText;
             int nIndex = 0;

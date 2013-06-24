@@ -24,28 +24,13 @@
 
 /* Project includes */
 #include "PSDI_CAN/stdafx_CAN.h"
-#include "PSDI_CAN.h"
 #include "MsgContainer_CAN.h"
 #include "MsgContainer_J1939.h"
 
 #define USAGE_EXPORT
 #include "Application/PSDI_Extern.h"
 
-/**
- * The one and only CPSDI_CANApp object
- */
-CPSDI_CANApp theApp;
-
-// CPSDI_CANApp initialization
-BOOL CPSDI_CANApp::InitInstance()
-{
-    CWinApp::InitInstance();
-
-    return TRUE;
-}
-
 static CMsgContainerCAN* sg_pouMsgContainer_CAN = NULL;
-
 static CMsgContainerJ1939* sg_pouMsgContainer_J1939 = NULL;
 
 USAGEMODE HRESULT PSDI_GetInterface(ETYPE_BUS eBus, void** ppvInterface)

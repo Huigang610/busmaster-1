@@ -197,10 +197,6 @@ BOOL CMsgContainerCAN::bIsTransitionInState( UINT unChannel,
     return bIsTransition;
 }
 
-void CMsgContainerCAN::vProcessCurrErrorEntry(const SERROR_INFO& /*sErrInfo*/)
-{
-}
-
 void CMsgContainerCAN::vProcessNewData(STCANDATA& sCanData)
 {
 
@@ -239,7 +235,6 @@ void CMsgContainerCAN::vProcessNewData(STCANDATA& sCanData)
     }
     else //Add the error messages
     {
-        vProcessCurrErrorEntry(sCanData.m_uDataInfo.m_sErrInfo);
         // Add to append buffer
         // If its the very first entry, the time stamp must
         if (m_sCANReadDataSpl.m_lTickCount.QuadPart != 0) // be 0 and will

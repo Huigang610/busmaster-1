@@ -29,10 +29,6 @@ class CAlphanumiricEdit : public CEdit
     DECLARE_DYNAMIC(CAlphanumiricEdit)
     DECLARE_MESSAGE_MAP()
 
-public:
-    CAlphanumiricEdit();
-    virtual ~CAlphanumiricEdit();
-
 protected:
     afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 };

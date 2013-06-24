@@ -115,7 +115,7 @@ CBaseDILI_J1939* GetIJ1939DIL(void)
 CBaseBusStatisticCAN* GetICANBusStat(void)
 {
     CBaseBusStatisticCAN* Result = NULL;
-    if (BS_GetInterface(CAN, (void**) &Result) == S_OK)
+    if (getInterface(CAN, (void**) &Result) == S_OK)
     {
         ASSERT(NULL != Result);
     }

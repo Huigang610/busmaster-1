@@ -306,7 +306,7 @@ public:
         if ((NULL != pBusStatCAN) && (NULL != psStat))
         {
             SBUSSTATISTICS sBusStat = {'\0'};
-            hResult = pBusStatCAN->BSC_GetBusStatistics((UINT) nChannel, sBusStat);
+            hResult = pBusStatCAN->getBusStatistics((UINT) nChannel, sBusStat);
             memcpy(psStat, &sBusStat, sizeof(SBUSSTATISTICS));
         }
 

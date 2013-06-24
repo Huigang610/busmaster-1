@@ -370,19 +370,13 @@ SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::~SFILTERAPPLIED()
     vClear();
 }
 
-/******************************************************************************
-  Function Name    :  bClone
-  Input(s)         :  Source - The source object.
-  Output           :  true if cloning is successful, else false.
-  Functionality    :  Called to clone a filter object to copy its contents
-                      into the current object.
-  Member of        :  SFILTERAPPLIED
-  Friend of        :  -
-  Author(s)        :  Ratnadip Choudhury
-  Date Created     :  1.12.2009
-  Modification date:
-  Modification By  :
-******************************************************************************/
+/**
+ * @param[in] Source The source object.
+ * @return true if cloning is successful, else false.
+ *
+ * Called to clone a filter object to copy its contents
+ * into the current object.
+ */
 template <typename SFRAMEINFO_BASIC_BUS>
 bool SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::bClone(
     const SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>& Source)
@@ -425,18 +419,9 @@ bool SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::bClone(
     return bResult;
 }
 
-/******************************************************************************
-  Function Name    :  vClear
-  Input(s)         :  void
-  Output           :  void
-  Functionality    :  Called to clear the current object.
-  Member of        :  SFILTERAPPLIED
-  Friend of        :  -
-  Author(s)        :  Ratnadip Choudhury
-  Date Created     :  1.12.2009
-  Modification date:
-  Modification By  :
-******************************************************************************/
+/**
+ * Called to clear the current object.
+ */
 template <typename SFRAMEINFO_BASIC_BUS>
 void SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::vClear(void)
 {
@@ -450,19 +435,13 @@ void SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::vClear(void)
     }
 }
 
-/******************************************************************************
-  Function Name    :  bToBeBlocked
-  Input(s)         :  sCurrFrame - The current frame entry
-  Output           :  TRUE if this is to be blocked.
-  Functionality    :  This function tells if the filter object will block the
-                      frame entry passed as argument.
-  Member of        :  SFILTERAPPLIED
-  Friend of        :  -
-  Author(s)        :  Ratnadip Choudhury
-  Date Created     :  1.12.2009
-  Modification date:
-  Modification By  :
-******************************************************************************/
+/**
+ * @param[in] sCurrFrame The current frame entry
+ * @return TRUE if this is to be blocked.
+ *
+ * This function tells if the filter object will block the
+ * frame entry passed as argument.
+ */
 template <typename SFRAMEINFO_BASIC_BUS>
 BOOL SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::bToBeBlocked(const SFRAMEINFO_BASIC_BUS& sCurrFrame) const
 {
@@ -515,18 +494,11 @@ BOOL SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::bToBeBlocked(const SFRAMEINFO_BASIC_B
     return bToBlock;
 }
 
-/******************************************************************************
-  Function Name    :  unGetSize
-  Input(s)         :  void
-  Output           :  UINT
-  Functionality    :  Returns size of the object in bytes
-  Member of        :  SFILTERAPPLIED
-  Friend of        :  -
-  Author(s)        :  Ratnadip Choudhury
-  Date Created     :  1.12.2009
-  Modification date:
-  Modification By  :
-******************************************************************************/
+/**
+ * @return size
+ *
+ * Returns size of the object in bytes
+ */
 template <typename SFRAMEINFO_BASIC_BUS>
 UINT SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::unGetSize(void) const
 {
@@ -541,18 +513,12 @@ UINT SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::unGetSize(void) const
     return Result;
 }
 
-/******************************************************************************
-  Function Name    :  pbGetConfigData
-  Input(s)         :  pbSource - Target stream to copy data into.
-  Output           :  Address of the next available byte to write data.
-  Functionality    :  This copies current object data into the target byte stream
-  Member of        :  SFILTERAPPLIED
-  Friend of        :  -
-  Author(s)        :  Ratnadip Choudhury
-  Date Created     :  1.12.2009
-  Modification date:
-  Modification By  :
-******************************************************************************/
+/**
+ * @param[in] pbSource Target stream to copy data into.
+ * @return Address of the next available byte to write data.
+ *
+ * This copies current object data into the target byte stream.
+ */
 template <typename SFRAMEINFO_BASIC_BUS>
 BYTE* SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbGetConfigData(BYTE* pbTarget) const
 {
@@ -583,9 +549,8 @@ void SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbGetConfigFilterData(xmlNodePtr pNod
         xmlNodePtr pFilterPtr = xmlNewChild(pNodePtr, NULL, BAD_CAST DEF_FILTER, BAD_CAST strFilterName.GetBufferSetLength(strFilterName.GetLength()));
         xmlAddChild(pNodePtr, pFilterPtr);
     }
-
-    //return pbTStream;
 }
+
 template <typename SFRAMEINFO_BASIC_BUS>
 void SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbGetConfigData(xmlNodePtr pNodePtr) const
 {
@@ -668,24 +633,16 @@ void SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbGetConfigData(xmlNodePtr pNodePtr) 
             m_psFilters[i].pbGetConfigData(pNodeCanFilterPtr);
         }
     }
-
-    //return pbTStream;
 }
 
-/******************************************************************************
-  Function Name    :  pbSetConfigData
-  Input(s)         :  pbSource - Source stream to copy data from.
-                      Result - [out] parameter. true if operation is successful.
-  Output           :  Address of the byte next to the already read block.
-  Functionality    :  This copies an applied filter block from a byte stream
-                      and initialises the current object.
-  Member of        :  SFILTERAPPLIED
-  Friend of        :  -
-  Author(s)        :  Ratnadip Choudhury
-  Date Created     :  1.12.2009
-  Modification date:
-  Modification By  :
-******************************************************************************/
+/**
+ * @param[in] pbSource Source stream to copy data from.
+ * @param[in] Result true if operation is successful.
+ * @return Address of the byte next to the already read block.
+ *
+ * This copies an applied filter block from a byte stream
+ * and initialises the current object.
+ */
 template <typename SFRAMEINFO_BASIC_BUS>
 BYTE* SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbSetConfigData(BYTE* pbSource, bool& Result)
 {
@@ -728,11 +685,6 @@ void SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbSetConfigData(SFILTERAPPLIED& pFilt
     vClear();
 
     Result = true;
-    //BYTE* pbSStream = pbSource;
-    //BYTE byVersion = 0;
-    //COPY_DATA_2(&byVersion, pbSStream, sizeof(BYTE));
-    //COPY_DATA_2(&m_bEnabled, pbSStream, sizeof(m_bEnabled));
-    //COPY_DATA_2(&m_ushTotal, pbSStream, sizeof(m_ushTotal));
 
     m_ushTotal = pNodeSetPtr->nodeNr;
     CStringArray omStrFilters;
@@ -758,15 +710,6 @@ void SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::pbSetConfigData(SFILTERAPPLIED& pFilt
         SFILTERAPPLIED_CAN sFilterApplied;
         if( sFilterApplied.nSetXMLConfigData(pdocptr) == S_OK)
         {
-            /*for(INT nI = 0; nI < omStrFilters.GetSize(); nI++)
-            {
-                CString strFilterName = m_psFilters[nI].m_sFilterName.filterName;
-
-                for(INT nIFilterInfo = 0; nIFilterInfo < m_psFilters[nI].m_psFilterInfo->unGetSize(); nIFilterInfo++)
-                {
-                    m_psFilters[nI].m_psFilterInfo[nIFilterInfo].m_dwMsgIDFrom;
-                }
-            }*/
             sFilterApplied.nGetFiltersFromName(pFilterAppliedCAN, omStrFilters);
         }
     }
@@ -802,6 +745,7 @@ int SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::nGetFiltersFromName(SFILTERAPPLIED& sF
     }
     return S_OK;
 }
+
 template <typename SFRAMEINFO_BASIC_BUS>
 int SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::GetFilterNameIndex(std::string strName)
 {
@@ -860,8 +804,6 @@ int SFILTERAPPLIED<SFRAMEINFO_BASIC_BUS>::nSetXMLConfigData(xmlDocPtr& pDocPtr)
     {
         nRetval = S_FALSE;
     }
-
-
 
     if (S_FALSE == nRetval)
     {

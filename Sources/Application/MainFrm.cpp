@@ -1911,7 +1911,7 @@ void CMainFrame::OnConfigBaudrate()
     //update baudrate details in global statistics buffer
     for (int i = 0; i < defNO_OF_CHANNELS; i++)
     {
-        GetICANBusStat()->BSC_SetBaudRate(i, _tstof(m_asControllerDetails[i].m_omStrBaudrate.c_str()));
+        GetICANBusStat()->setBaudRate(i, _tstof(m_asControllerDetails[i].m_omStrBaudrate.c_str()));
     }
 
 }
@@ -7014,17 +7014,17 @@ void CMainFrame::OnFileConnect()
                     }
                 }
             }
-            GetICANBusStat()->BSC_bStartUpdation(FALSE);
-            GetICANBusStat()->BSC_ResetBusStatistic();
+            GetICANBusStat()->startUpdation(FALSE);
+            GetICANBusStat()->resetBusStatistics();
             for (UINT i = 0; i < defNO_OF_CHANNELS; i++)
             {
 #ifdef BOA_FD_VERSION
-                GetICANBusStat()->BSC_SetBaudRate(i, m_asControllerDetails[i].m_unDataBitRate);
+                GetICANBusStat()->setBaudRate(i, m_asControllerDetails[i].m_unDataBitRate);
 #else
-                GetICANBusStat()->BSC_SetBaudRate(i, _tstof(m_asControllerDetails[i].m_omStrBaudrate.c_str()));
+                GetICANBusStat()->setBaudRate(i, _tstof(m_asControllerDetails[i].m_omStrBaudrate.c_str()));
 #endif
             }
-            GetICANBusStat()->BSC_bStartUpdation(TRUE);
+            GetICANBusStat()->startUpdation(TRUE);
 
 
             //send time to nodesim for calculation
@@ -10090,7 +10090,7 @@ void CMainFrame::vUpdateGraphStatsData()
                 // Channel Index starts from 0. So sub 1 from the index value
                 odTemp.m_nFrameFormat -= 1;
                 SBUSSTATISTICS sBusStats;
-                GetICANBusStat()->BSC_GetBusStatistics(odTemp.m_nFrameFormat, sBusStats);
+                GetICANBusStat()->getBusStatistics(odTemp.m_nFrameFormat, sBusStats);
 
                 strcpy_s(sInterpretList.m_acSigName , 64, "");
                 sInterpretList.m_shType = eSTAT_PARAM;
@@ -15288,13 +15288,13 @@ LRESULT CMainFrame::OnMessageFromUserDll(WPARAM wParam, LPARAM lParam)
 //initializes Busstatistics for can where user selects different driver.
 void CMainFrame::vInitializeBusStatCAN(void)
 {
-    GetICANBusStat()->BSC_DoInitialization();
+    GetICANBusStat()->doInitialization();
     for (int i = 0; i < defNO_OF_CHANNELS; i++)
     {
 #ifdef BOA_FD_VERSION
-        GetICANBusStat()->BSC_SetBaudRate(i, m_asControllerDetails[i].m_unDataBitRate);
+        GetICANBusStat()->setBaudRate(i, m_asControllerDetails[i].m_unDataBitRate);
 #else
-        GetICANBusStat()->BSC_SetBaudRate(i, _tstof(m_asControllerDetails[i].m_omStrBaudrate.c_str()));
+        GetICANBusStat()->setBaudRate(i, _tstof(m_asControllerDetails[i].m_omStrBaudrate.c_str()));
 #endif
     }
 }

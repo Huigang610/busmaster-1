@@ -18,20 +18,13 @@
  * @author    Venkatanarayana makam
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
-#include "stdafx.h"             // Standard include header
-#include "BusStatisticCAN.h"
+
 #include "BusStatistics.h"
+#include "BusStatisticCAN.h"
+
 static CBusStatisticCAN* sg_pouBS_CAN = NULL;
 
-/**
- * @param[in] eBus specifies the Type of bus,Either CAN or FRAME
- * @param[in] ppvInterface on function return it will have the pointer of BusStatistics.
- * @return gives the function return status.
- *
- * This function will return the valid busstatistics class
- * pointer according to the ETYPE_BUS.
- */
-HRESULT BS_GetInterface(ETYPE_BUS eBus, void** ppvInterface)
+HRESULT getInterface(ETYPE_BUS eBus, void** ppvInterface)
 {
     HRESULT hResult = S_OK;
 
