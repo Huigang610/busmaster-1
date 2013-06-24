@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      DIL_CommonDefs.h
  * @brief     Some macro definitions necessary
  * @authors   Ratnadip Choudhury, Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

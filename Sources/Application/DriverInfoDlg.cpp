@@ -14,13 +14,13 @@
  */
 
 /**
- * @file      DriverInfoDlg.cpp
  * @brief     This file contain the definition all member function of
  * @author    Amarnath Shastry
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain the definition all member function of
  */
+
 #include "stdafx.h"
 #include "BUSMASTER.h"
 #include "DriverInfoDlg.h"

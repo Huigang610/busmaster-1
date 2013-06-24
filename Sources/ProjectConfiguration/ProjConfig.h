@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ProjConfig.h
  * @brief     This contains project configuration class definition.
  * @authors   Anish Kumar, Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

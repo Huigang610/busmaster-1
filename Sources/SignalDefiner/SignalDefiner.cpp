@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      SignalDefiner.cpp
  * @brief     Defines the initialization routines for the DLL.
  * @author    Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.

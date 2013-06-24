@@ -14,9 +14,8 @@
  */
 
 /**
- * @file      MessageAttrib.h
  * @brief     Interface for the CMessageAttrib class
- * @authors   RBIN/EMC2 - Ratnadip Choudhury, Krishnaswamy B.N.
+ * @authors   Ratnadip Choudhury, Krishnaswamy B.N.
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface for the CMessageAttrib class

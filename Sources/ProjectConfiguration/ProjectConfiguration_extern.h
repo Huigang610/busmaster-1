@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ProjectConfiguration_extern.h
  * @brief     This contains exported function declarations, that can be
  * @authors   Anish Kumar, Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

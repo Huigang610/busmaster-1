@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      MsgBufferConfigPage.h
  * @brief     This file contain the definition of CMsgBufferConfigPage
  * @author    Raja N
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

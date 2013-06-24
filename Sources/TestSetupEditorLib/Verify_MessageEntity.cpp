@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Verify_MessageEntity.cpp
  * @brief     This File Contains Verify_MessageEntity, CVerify_MessageData,
  * @author    Venkatanarayana makam
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

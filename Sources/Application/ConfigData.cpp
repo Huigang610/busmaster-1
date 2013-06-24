@@ -14,10 +14,10 @@
  */
 
 /**
- * @file      ConfigData.cpp
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
+
 #include "StdAfx.h"
 #include "ProjectConfiguration/ProjectConfiguration_extern.h"
 #include "ConfigData.h"

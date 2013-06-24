@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Logger_CommonDataTypes.h
  * @brief     Definition of CParamLoggerBUS class.
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ConfigMsgLogDlg.h
  * @brief     This is the class definition file for log configuration
  * @author    Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

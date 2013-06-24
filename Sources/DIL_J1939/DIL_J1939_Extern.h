@@ -14,7 +14,6 @@
  */
 
 /**
- * @file   DIL_J1939_Extern.h
  * @brief  All the exported functions from J1939 DIL DLL
  * @author Pradeep Kadoor
  * @copyricht Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      BaseLogObject.cpp
  * @brief     Source file for CBaseLogObject class
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

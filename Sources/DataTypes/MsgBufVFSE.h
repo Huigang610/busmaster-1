@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      MsgBufVFSE.h
  * @brief     Defines a variant of circular queue class in FSE.
  * @author    Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

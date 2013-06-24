@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      FormatMsgJ1939.h
  * @author    Anish Kumar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */

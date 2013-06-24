@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ListCtrlEx.cpp
  * @brief     Implementation file for CListCtrlEx
  * @author    Venkatanarayana Makam
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

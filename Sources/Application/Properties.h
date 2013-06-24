@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Properties.h
  * @brief     This file contain the definition of CProperties class
  * @author    Amitesh Bharti
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

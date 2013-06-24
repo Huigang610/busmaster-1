@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ProjConfig_DataTypes.cpp
  * @brief     Source file for project configuration data types.
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

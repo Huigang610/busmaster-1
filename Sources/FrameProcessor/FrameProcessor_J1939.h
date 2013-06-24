@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      FrameProcessor_J1939.h
  * @brief     Definition file for CFrameProcessor_J1939 class
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

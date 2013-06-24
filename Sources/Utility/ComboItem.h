@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ComboItem.h
  * @brief     This file contains definition of CComboItem class
  * @author    Ravi D
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

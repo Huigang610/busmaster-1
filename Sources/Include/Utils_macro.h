@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Utils_macro.h
  * @brief     This contains various necessary macro definitions.
  * @authors   Ratnadip Choudhury, Anish Kumar, Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

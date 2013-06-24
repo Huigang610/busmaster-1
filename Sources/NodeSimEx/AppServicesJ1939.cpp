@@ -14,7 +14,6 @@
  */
 
 /**
- * @file AppServicesJ1939.cpp
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
  */
 

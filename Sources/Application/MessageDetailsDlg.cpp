@@ -14,13 +14,14 @@
  */
 
 /**
- * @file      MessageDetailsDlg.cpp
  * @brief     Implementation file for MessageDetailsDlg class
- * @authors   RBIN/EMC2 - Amarnath Shastry, Amarnath Shastry
+ * @authors   Amarnath Shastry, Amarnath Shastry
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation file for MessageDetailsDlg class
  */
+
+/* Project includes */
 #include "stdafx.h"
 #include "BUSMASTER.h"
 #include "MessageDetailsDlg.h"

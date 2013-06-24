@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      MsgHandlerDlg.h
  * @brief     This file contain the definition of CMsgHandlerDlg class
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

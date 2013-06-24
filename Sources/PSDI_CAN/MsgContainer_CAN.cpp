@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      MsgContainer_CAN.cpp
  * @brief     Implementation of CMsgContainerCAN class
  * @authors   Anish Kumar, Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

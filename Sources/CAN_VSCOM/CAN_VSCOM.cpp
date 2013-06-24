@@ -14,8 +14,6 @@
  */
 
 /**
- * @file      CAN_VSCOM.cpp
- * @author
  * @copyright Copyright (c) 2012, ETAS GmbH. All rights reserved.
  */
 // CAN_VSCOM.cpp : Defines the initialization routines for the DLL.

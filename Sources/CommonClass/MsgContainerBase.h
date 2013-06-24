@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      MsgContainerBase.h
  * @brief     Definition of MCsgContainer class
  * @author    Anish kumar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

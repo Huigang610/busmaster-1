@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ConfigDetails.h
  * @brief     This header file contains the definition of the class
  * @authors   Gopinath R. Majumdar, Amitesh Bharti
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

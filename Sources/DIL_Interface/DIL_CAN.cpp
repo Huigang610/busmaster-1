@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      DIL_CAN.cpp
  * @brief     Interface file for CAN BUS
  * @author    Pradeep Kadoor, Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

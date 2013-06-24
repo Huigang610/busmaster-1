@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      SigWatchDlg.cpp
  * @brief     Implementation file for CSigWatchDlg class
  * @authors   Amarnath Shastri, Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

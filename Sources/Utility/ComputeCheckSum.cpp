@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ComputeCheckSum.cpp
  * @brief     This file contains implementation of CComputeCheckSum class
  * @author    Anish Kumar, Tobias Lorenz
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

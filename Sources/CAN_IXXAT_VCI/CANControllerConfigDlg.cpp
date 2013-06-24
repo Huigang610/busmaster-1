@@ -14,9 +14,6 @@
  */
 
 /**
- * @file
- *  CANControllerConfigDlg.cpp
- *
  * @brief
  *  Implements the configuration dialog to select the baud rate of the CAN controller.
  *  It's a MFC dialog.

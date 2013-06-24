@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Export_UserDllCAN.h
  * @brief     This header file contains name and prototype of the
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

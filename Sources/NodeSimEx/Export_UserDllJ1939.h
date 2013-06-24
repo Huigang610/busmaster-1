@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Export_UserDllJ1939.h
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This header file contains name and prototype of the

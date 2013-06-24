@@ -14,9 +14,6 @@
  */
 
 /**
- * @file
- *  CAN_IXXAT_VCI.h
- *
  * @brief
  *  The main header file for the DLL. The corresponding
  *  CPP file exports the DLL C-function.

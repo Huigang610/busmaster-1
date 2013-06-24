@@ -14,10 +14,10 @@
  */
 
 /**
- * @file      TSEditorGUI_ChildFrame.cpp
  * @author    Venkatanarayana makam
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
+
 #include "TSEditorGUI_stdafx.h"
 #include "TreeViewEx.h"
 #include "TSEditorGUI_PropertyView.h"

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      TSDefinitions.h
  * @brief     Definition of the Class SInfo
  * @author    Venkatanarayana makam
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

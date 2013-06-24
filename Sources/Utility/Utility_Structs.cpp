@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Utility_Structs.cpp
  * @brief     This file contains implementations of utility structures
  * @authors   Ravi D., Anish Kumar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

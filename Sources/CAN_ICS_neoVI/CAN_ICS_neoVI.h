@@ -14,13 +14,13 @@
  */
 
 /**
- * @file      CAN_ICS_neoVI.h
  * @brief     Exports API functions for IntrepidCS neoVI CAN Hardware interface
  * @author    Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Exports API functions for IntrepidCS neoVI CAN Hardware interface
  */
+
 #pragma once
 
 class CCAN_ICS_neoVIApp : public CWinApp

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      CAN_Vector_XL/CAN_Vector_XL_stdafx.h
  * @author    Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *

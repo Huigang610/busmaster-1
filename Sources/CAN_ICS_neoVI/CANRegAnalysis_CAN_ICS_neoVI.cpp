@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      CANRegAnalysis_CAN_ICS_neoVI.cpp
  * @brief     This file contains the function which implements the
  * @author    Pradeep Kadoor, Tobias Lorenz
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

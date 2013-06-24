@@ -14,7 +14,6 @@
  */
 
 /**
- * @file   J1939Translator.h
  * @brief  J1939 Translator application class
  * @author Pradeep Kadoor
  * @copyricht Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.

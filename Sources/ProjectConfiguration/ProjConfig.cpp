@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ProjConfig.cpp
  * @brief     This contains project configuration class implementation.
  * @authors   Anish Kumar, Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

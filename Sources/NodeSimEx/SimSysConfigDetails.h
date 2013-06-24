@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      SimSysConfigDetails.h
  * @brief     This header file contains the definition of the class
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

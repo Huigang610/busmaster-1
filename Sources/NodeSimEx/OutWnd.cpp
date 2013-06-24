@@ -14,13 +14,13 @@
  */
 
 /**
- * @file      OutWnd.cpp
  * @brief     This file contain the definition all member function of
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain the definition all member function of
  */
+
 // For all standard header file include
 #include "NodeSimEx_stdafx.h"
 //definition of CMainFrame class

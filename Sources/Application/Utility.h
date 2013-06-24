@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Utility.h
  * @brief     This file contain the definition of all global utility function
  * @author    Amitesh Bharti
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

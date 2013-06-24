@@ -14,13 +14,13 @@
  */
 
 /**
- * @file      MsgFrmtWnd.cpp
  * @authors   Ratnadip Choudhury, Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ *
+ * implementation file
  */
-// MsgFrmtWnd.cpp : implementation file
-//
 
+/* Project includes */
 #include "stdafx.h"
 #include "BUSMASTER.h"
 #include "include/utils_macro.h"

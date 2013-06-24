@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Filter_Datatypes.cpp
  * @brief     Source file for filter data types.
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

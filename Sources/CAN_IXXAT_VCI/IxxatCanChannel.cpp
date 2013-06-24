@@ -15,9 +15,6 @@
 
 
 /**
- * @file
- *  IxxatCanChannel.cpp
- *
  * @brief
  *  This class represent one IXXAT CAN channel. It allows
  *  to open, configure, receive and transmit CAN messages.

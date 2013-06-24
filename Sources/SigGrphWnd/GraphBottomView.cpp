@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      GraphBottomView.cpp
  * @brief     Implementation file for CGraphBottomView class
  * @author    Raja N
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

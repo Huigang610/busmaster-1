@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      SigWatch_Datatypes.h
  * @brief     Definition file for signal watch data types.
  * @author    Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

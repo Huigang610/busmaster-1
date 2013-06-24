@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      WaitIndicator.cpp
  * @brief     This is the implementation file for CWaitIndicator class.
  * @author    Venkatanarayana Makam
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

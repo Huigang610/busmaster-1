@@ -14,10 +14,10 @@
  */
 
 /**
- * @file      TSExecutorHandler.h
  * @author    Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
+
 #pragma once
 #define def_STR_TESTSIUTEEXECUTORDLL  "TestSuiteExecutorGUI.dll"
 #include "TestSuiteExecutorGUI/TSExecutorGUI_Extern.h"

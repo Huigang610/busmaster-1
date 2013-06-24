@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      HashDefines.h
  * @brief     This header file contains the hash define
  * @authors   Amarnath Shastry, Amitesh Bharti, Krishnaswamy B.N
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
@@ -24,11 +23,8 @@
 
 #pragma once
 
-//#define defNO_OF_CHANNELS           2
 #define MAX_PROTOCOL               20
 #define AVAILABLE_PROTOCOLS         4
-
-
 
 #define defDRIVER_VERSION "CAN Driver Ver %d.%.2d.%c%x"
 

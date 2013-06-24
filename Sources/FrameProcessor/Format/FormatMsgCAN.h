@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      FormatMsgCAN.h
  * @brief     Definition of CFormatMsgCAN class.
  * @author    Anish Kumar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

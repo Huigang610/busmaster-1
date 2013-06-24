@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      WaveformTransmitter.h
  * @brief     Waveform data Transmitter Header file
  * @author    Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Utility.cpp
  * @brief     This file contains utility function definitions
  * @authors   Ratnadip Choudhury, Anish Kumar, Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
@@ -368,16 +367,11 @@ BOOL CopyTextToClipboard(LPCTSTR lpctstrText, HWND hWnd = NULL)
     return TRUE;
 }
 #endif
-/******************************************************************************
-FUNCTION:       nConvertStringToInt
-PARAMETERS:     CString omStrHexNo -- Hex number
-RETURN VALUE:   Equivalent decimal number
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-02.06.2003      Changed the int to __int64 Amitesh Bharti
-12.06.2003      review comment for CRH0005 incorporated. Amitesh Bharti
-*******************************************************************************/
+
+/**
+ * @param[in] omStrHexNo Hex number
+ * @return Equivalent decimal number
+ */
 __int64 nConvertStringToInt(LPCTSTR omStrHexNo)
 {
     __int64 n64RetVal = 0;

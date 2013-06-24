@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      BaseFrameProcessor_J1939.h
  * @brief     Definition file for CBaseFrameProcessor_CAN class which des-
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

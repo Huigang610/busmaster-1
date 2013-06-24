@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      CAN_ICS_neoVI/CAN_ICS_neoVI_Channel.h
  * @brief     Interface file for CChannel class
  * @author    Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Struct_CAN.h
  * @brief     This contains definitions of various CAN related structures.
  * @authors   Ratnadip Choudhury, Anish Kumar, Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

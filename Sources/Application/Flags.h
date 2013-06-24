@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Flags.h
  * @brief     Contains CFlags class definition
  * @authors   Amaranath Shastry, Amitesh Bharti, Amarnath Shastry, Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

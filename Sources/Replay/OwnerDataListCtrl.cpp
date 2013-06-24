@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      OwnerDataListCtrl.cpp
  * @brief     Implementation file for COwnerDataListCtrl class
  * @author    Raja N
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

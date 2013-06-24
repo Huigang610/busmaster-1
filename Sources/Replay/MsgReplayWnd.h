@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      MsgReplayWnd.h
  * @brief     This file contain the definition of CMsgReplayWnd class
  * @authors   Amitesh Bharti, Krishnaswamy B.N
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

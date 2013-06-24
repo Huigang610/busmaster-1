@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      SplFileDlg.h
  * @brief     This file contain the definition of SplFileDlg class. This class is
  * @author    Amitesh Bharti
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

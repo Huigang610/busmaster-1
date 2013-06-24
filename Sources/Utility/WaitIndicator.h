@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      WaitIndicator.h
  * @brief     The File contain the definition of WaitIndicator
  * @author    Venkatanarayana Makam
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

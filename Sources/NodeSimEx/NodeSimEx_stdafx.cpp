@@ -14,13 +14,11 @@
  */
 
 /**
- * @file      NodeSimEx_stdafx.cpp
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ *
+ * source file that includes just the standard includes
  */
-// NodeSimEx_stdafx.cpp : source file that includes just the standard includes
-// NodeSimEx_stdafx.pch will be the pre-compiled header
-// NodeSimEx_stdafx.obj will contain the pre-compiled type information
 
 #include "NodeSimEx_stdafx.h"
 

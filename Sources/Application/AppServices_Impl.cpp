@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      AppServices_Impl.cpp
  * @brief     Concrete class source for the application service layer
  * @authors   Ratnadip Choudhury, Anish Kumar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

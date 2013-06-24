@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      SigWatchAddDelDlg.cpp
  * @brief     Implementation file for CSigWatchAddDelDlg class
  * @author    Raja N.
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

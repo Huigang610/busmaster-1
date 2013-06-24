@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      WrapperErrorLogger.cpp
  * @brief     Concrete data type source for error logger wrapper.
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
@@ -25,14 +24,6 @@
 #include "StdAfx.h"
 #include "WrapperErrorLogger.h"
 
-
-WrapperErrorLogger::WrapperErrorLogger(void)
-{
-}
-
-WrapperErrorLogger::~WrapperErrorLogger(void)
-{
-}
 /* This function is thread safe */
 void WrapperErrorLogger::logMessage(char* /*File*/, int /*Line*/, std::string /*Msg*/)
 {

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Log_Datatypes.h
  * @brief     Definition file for log data types.
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

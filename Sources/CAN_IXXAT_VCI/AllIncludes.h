@@ -14,16 +14,12 @@
  */
 
 /**
- * @file
- *  AllIncludes.h
- *
- * @brief
- *  Includes all needed includes files.
+ * @brief Includes all needed includes files.
  */
 
 #pragma once
 
-
+/* Project includes */
 #include "include/basedefs.h"
 #include "DataTypes/Base_WrapperErrorLogger.h"
 #include "DataTypes/MsgBufAll_DataTypes.h"

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      FormatMsgCommon.h
  * @brief     Definition of CFormatMsgCommon class.
  * @author    Anish Kumar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

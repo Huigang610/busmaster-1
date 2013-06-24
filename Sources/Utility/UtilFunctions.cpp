@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      UtilFunctions.cpp
  * @brief     Implementation file for CUtilFunctions class
  * @author    Raja N
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      GraphSink.h
  * @brief     Implementation file for CGraphBottomView class
  * @author    Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

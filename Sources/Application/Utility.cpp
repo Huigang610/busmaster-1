@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Utility.cpp
  * @brief     This file contain all global utility function definition
  * @authors   Amitesh Bharti, Anish kumar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

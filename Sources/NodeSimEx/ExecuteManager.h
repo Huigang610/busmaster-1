@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ExecuteManager.h
  * @brief     This header file contain definition ofCExecuteManager class.
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

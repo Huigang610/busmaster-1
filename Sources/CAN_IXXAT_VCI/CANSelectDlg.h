@@ -15,9 +15,6 @@
 
 
 /**
- * @file
- *  CANSelectDlg.h
- *
  * @brief
  *  This class is not used! The files can be removed one day if
  *  it really will not needed for controller selection.

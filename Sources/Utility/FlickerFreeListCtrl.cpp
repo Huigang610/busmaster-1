@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      FlickerFreeListCtrl.cpp
  * @author    Ravi D
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */

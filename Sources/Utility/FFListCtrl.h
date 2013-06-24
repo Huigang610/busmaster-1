@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      FFListCtrl.h
  * @brief     This file contain the definition of CFFListCtrl class
  * @author    Raja N
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

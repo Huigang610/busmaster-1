@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      StdAfx.h
  * @brief     This header file contains the standard include header files
  * @authors   Amitesh Bharti, Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

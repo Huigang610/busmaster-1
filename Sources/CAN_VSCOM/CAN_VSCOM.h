@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      CAN_VSCOM.h
  * @brief     Exports API functions
  * @copyright Copyright (c) 2012, ETAS GmbH. All rights reserved.
  */

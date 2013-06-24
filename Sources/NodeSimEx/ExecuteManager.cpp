@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ExecuteManager.cpp
  * @brief     This is a singleton class which takes care of creating and destroying
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

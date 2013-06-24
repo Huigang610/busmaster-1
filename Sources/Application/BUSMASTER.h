@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      BUSMASTER.h
  * @brief     This header file for CCANMonitorApp class
  * @authors   Amitesh Bharti, Ratnadip Choudhury, Anish kumar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

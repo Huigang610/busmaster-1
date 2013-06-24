@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ChangeRegDefines.h
  * @brief     This header file contains the hash define and micro
  * @authors   Amitesh Bharti, Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

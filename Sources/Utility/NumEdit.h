@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      NumEdit.h
  * @brief     Definition file for CNumEdit
  * @author    Ravi D
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

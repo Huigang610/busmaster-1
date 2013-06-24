@@ -14,7 +14,6 @@
  */
 
 /**
- * @file   J1939_UtilityFuncs.h
  * @author Pradeep Kadoor
  * @copyricht Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
  */

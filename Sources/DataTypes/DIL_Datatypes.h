@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      DIL_Datatypes.h
  * @brief     Defines DIL related data types
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

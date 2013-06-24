@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      MsgContainer_J1939.h
  * @brief     Definition of J1939 message container class
  * @authors   Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

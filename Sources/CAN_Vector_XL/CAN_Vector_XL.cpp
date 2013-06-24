@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      CAN_Vector_XL.cpp
  * @brief     Source file for Vector XL DIL functions
  * @author    Tobias Lorenz, Arunkumar Karri
  * @copyright Copyright (c) 2011, ETAS GmbH. All rights reserved.

@@ -14,9 +14,8 @@
  */
 
 /**
- * @file      MessageDetailsDlg.h
  * @brief     Interface file for MessageDetailsDlg class
- * @author    RBIN/EMC2 - Amarnath Shastry
+ * @author    Amarnath Shastry
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Interface file for MessageDetailsDlg class

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      BUSMASTER.cpp
  * @brief     CCANMonitorApp class implementation file
  * @authors   Amitesh Bharti, Ratnadip Choudhury, Anish kumar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

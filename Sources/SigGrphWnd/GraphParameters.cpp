@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      GraphParameters.cpp
  * @brief     Implementation file for CGraphParameters class
  * @author    Raja N
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

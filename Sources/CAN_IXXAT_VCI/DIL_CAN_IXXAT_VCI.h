@@ -14,8 +14,6 @@
  */
 
 /**
- * @file  DIL_CAN_IXXAT_VCI.h
- *
  * @brief
  *      Implements the access to IXXAT VCI (Windows driver) based interfaces.
  * @remarks

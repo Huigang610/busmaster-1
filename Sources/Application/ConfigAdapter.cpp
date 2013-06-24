@@ -14,10 +14,10 @@
  */
 
 /**
- * @file      ConfigAdapter.cpp
  * @author    Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
+
 #include "stdafx.h"
 #include "Hashdefines.h"
 #include "Struct.h"

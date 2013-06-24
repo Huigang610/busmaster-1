@@ -14,8 +14,6 @@
  */
 
 /**
- * @file  ClientBuffer.cpp
- *
  * @brief
  *      Implements the client buffer class. This class includes a STL::vector
  *      which holds the pointers to the CBaseCANBufFSE* objects.

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      CAN_MHS_Extern.h
  * @brief     Exports API functions for MHS-Elektronik Tiny-CAN Hardware interface
  * @author    Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

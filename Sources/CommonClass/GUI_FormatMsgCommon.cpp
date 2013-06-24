@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      GUI_FormatMsgCommon.cpp
  * @brief     Implementation of CFormatMsgCommon class
  * @author    Anish kumar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

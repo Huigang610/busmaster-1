@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      projConfigManager.cpp
  * @brief     Contains project configuration manager class implementation.
  * @authors   Anish Kumar, Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

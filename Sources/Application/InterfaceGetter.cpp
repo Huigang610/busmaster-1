@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      InterfaceGetter.cpp
  * @brief     Source file for global getter functions for interfaces.
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

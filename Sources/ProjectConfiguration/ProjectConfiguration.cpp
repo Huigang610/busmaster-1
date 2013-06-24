@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ProjectConfiguration.cpp
  * @brief     This contains the dll entry point function and defines the entry point for the DLL application.
  * @authors   Anish Kumar, Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

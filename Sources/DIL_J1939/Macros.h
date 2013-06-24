@@ -14,7 +14,6 @@
  */
 
 /**
- * @file   Macros.h
  * @brief  All the macro definitions
  * @author Anish Kumar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.

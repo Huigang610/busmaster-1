@@ -14,12 +14,13 @@
  */
 
 /**
- * @file      ConfigMsgLogDlg.cpp
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
+ *
+ * implementation file
  */
-// ConfigMsgLogDlg.cpp : implementation file
 
+/* Project includes */
 #include "stdafx.h"
 #include "Resource.h"
 #include "FrameProcessor/BaseFrameProcessor_CAN.h"

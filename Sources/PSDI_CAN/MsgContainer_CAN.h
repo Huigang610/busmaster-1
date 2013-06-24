@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      MsgContainer_CAN.h
  * @brief     Definition of CAN message container class
  * @authors   Anish Kumar, Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

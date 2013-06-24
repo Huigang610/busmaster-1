@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      TxMsgListView.cpp
  * @brief     Implementation file for CTxMsgListView class
  * @author    Raja N
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

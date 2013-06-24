@@ -14,7 +14,6 @@
  */
 
 /**
- * @file   NetworkMgmt.h
  * @brief  Network management layer services
  * @author Anish Kumar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.

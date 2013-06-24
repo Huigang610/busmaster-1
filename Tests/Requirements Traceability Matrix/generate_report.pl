@@ -78,7 +78,7 @@ sub get_from_design_document()
 my %req_tags_5;
 sub get_from_source_code_documentation()
 {
-  foreach(bsd_glob("../../Documents/5 Source Code Documentation/out/*/html/req.html"))
+  foreach(bsd_glob("../../Documents/5 Source Code Documentation/out/html/req.html"))
   {
     my $filename = $_;
     print "$filename\n";

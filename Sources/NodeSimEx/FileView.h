@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      FileView.h
  * @brief     This header file contains the defintion of class ileView. All
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

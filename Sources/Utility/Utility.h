@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Utility.h
  * @brief     This file contains utility function declarations
  * @authors   Ratnadip Choudhury, Anish Kumar, Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

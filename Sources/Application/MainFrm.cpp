@@ -14,9 +14,8 @@
  */
 
 /**
- * @file      MainFrm.cpp
  * @brief     Implementation of the CMainFrame class
- * @authors   RBIN/EMC2 - Amarnath Shastry, Amitesh Bharti, Anish Kumar, Arunkumar Karri
+ * @authors   Amarnath Shastry, Amitesh Bharti, Anish Kumar, Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Implementation of the CMainFrame class
@@ -1118,25 +1117,10 @@ BOOL CMainFrame::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
     }
     return CMDIFrameWnd::OnNotify(wParam, lParam, pResult);
 }
-/******************************************************************************
-FUNCTION:           OnOpenDatabase
-DESCRIPTION:        Opens a database file for editing
-PARAMETERS:
-RETURN VALUE:
-AUTHOR:             RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002          Initial Version     Amarnath Shastry
-Modification Date:  01.04.2002
-Modified By:        Amarnath Shastry
-Modification        Amarnath Shastry, 17-12-2002
-                    Message box displayed if database file is not found
-Modification        Raja N
-                    10/03/2004 Modified Active/Passive database concept and the
-                    database editor will use inactive data structure always for
-                    editing purpose
-Modifications:      Pradeep Kadoor on 12.06.2009.
-                    Code added to enable menu item 'Save and Save & Import'
-*******************************************************************************/
+
+/**
+ * Opens a database file for editing
+ */
 void CMainFrame::OnOpenDatabase()
 {
     INT nReturn = IDYES;
@@ -1267,67 +1251,21 @@ void CMainFrame::OnOpenDatabase()
         }
     }
 }
-/******************************************************************************
-FUNCTION:       pomGetMsgSgWnd
-DESCRIPTION:    Opens a database file for editing
-PARAMETERS:
-RETURN VALUE:   Pointer to "CMsgSignalDBWnd" class
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-*******************************************************************************/
 
+/**
+ * @brief Opens a database file for editing
+ * @return Pointer to "CMsgSignalDBWnd" class
+ *
+ * Opens a database file for editing
+ */
 CMsgSignalDBWnd* CMainFrame::pomGetMsgSgWnd()
 {
     return ( m_podMsgSgWnd );
 }
 
-
-/******************************************************************************
-FUNCTION:       pomGetSimSysWnd
-DESCRIPTION:    Opens the simulated system window for editing
-PARAMETERS:
-RETURN VALUE:   Pointer to "CSimSysWnd" class
-AUTHOR:         Harika M
-HISTORY:
-
-*******************************************************************************/
-
-//CSimSysWnd* CMainFrame::pomGetSimSysWnd()
-//{
-//    return ( m_pomSimSysWnd );
-//}
-
-/******************************************************************************
-FUNCTION:       m_pomSimSysConfig
-DESCRIPTION:    Returns pointer to CSimSysConfigDetails class
-PARAMETERS:
-RETURN VALUE:   Pointer to "CSimSysWnd" class
-AUTHOR:         Harika M
-HISTORY:
-
-*******************************************************************************/
-//CSimSysConfigDetails* CMainFrame::pomGetSimSysConfig()
-//{
-//  return (m_pomSimSysConfig );
-//}
-
-
-/******************************************************************************
-FUNCTION:       OnCloseDatabase
-DESCRIPTION:    Closes a database file
-PARAMETERS:
-RETURN VALUE:
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-25.03.2002      Added flag closing  Amarnath Shastry
-                status
-Modification    Raja N
-                10/03/2004 Modified Active/Passive database concept and the
-                database editor will use inactive data structure always for
-                editing purpose
-*******************************************************************************/
+/**
+ * Closes a database file
+ */
 void CMainFrame::OnCloseDatabase()
 {
     if ( m_podMsgSgWnd != NULL )
@@ -1370,158 +1308,56 @@ void CMainFrame::OnCloseDatabase()
 
     }
 }
-/******************************************************************************
-FUNCTION:       podGetMsgSgDetView
-DESCRIPTION:    Returns pointer to CMsgSgDetView class
-PARAMETERS:
-RETURN VALUE:   Pointer to "CMsgSgDetView" class
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-*******************************************************************************/
+
+/**
+ * @brief Returns pointer to CMsgSgDetView class
+ * @return Pointer to "CMsgSgDetView" class
+ *
+ * Returns pointer to CMsgSgDetView class
+ */
 CMsgSgDetView* CMainFrame::podGetMsgSgDetView(ETYPE_BUS eBus)
 {
     return m_pomMsgSgDetViews[eBus];
 }
-/******************************************************************************
-FUNCTION:       podGetMsgSgTreeView
-DESCRIPTION:    Returns pointer to CMsgSgTreeView class
-PARAMETERS:
-RETURN VALUE:   Pointer to "CMsgSgTreeView" class
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-*******************************************************************************/
+
+/**
+ * @brief Returns pointer to CMsgSgTreeView class
+ * @return Pointer to "CMsgSgTreeView" class
+ *
+ * Returns pointer to CMsgSgTreeView class
+ */
 CMsgSgTreeView* CMainFrame::podGetMsgSgTreeView(ETYPE_BUS eBus)
 {
     return(m_pomMsgSgTreeViews[eBus]);
 }
-/******************************************************************************
-FUNCTION:       podSetMsgSgTreeView
-DESCRIPTION:    Sets pointer to CMsgSgTreeView class
-PARAMETERS:     Pointer to "CMsgSgTreeView" class
-RETURN VALUE:
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-*******************************************************************************/
+
+/**
+ * @brief Sets pointer to CMsgSgTreeView class
+ * @param[in] pTreeView Pointer to "CMsgSgTreeView" class
+ *
+ * Sets pointer to CMsgSgTreeView class
+ */
 void CMainFrame::podSetMsgSgTreeView(CMsgSgTreeView* pTreeView, ETYPE_BUS eBus)
 {
     m_pomMsgSgTreeViews[eBus] = pTreeView;
 }
-/******************************************************************************
-FUNCTION:       podSetMsgSgDetView
-DESCRIPTION:    Sets pointer to CMsgSgDetView class
-PARAMETERS:     Pointer to "CMsgSgDetView" class
-RETURN VALUE:
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-*******************************************************************************/
+
+/**
+ * @brief Sets pointer to CMsgSgDetView class
+ * @param[in] pDetView Pointer to "CMsgSgDetView" class
+ *
+ * Sets pointer to CMsgSgDetView class
+ */
 void CMainFrame::podSetMsgSgDetView(CMsgSgDetView* pDetView, ETYPE_BUS eBus)
 {
     m_pomMsgSgDetViews[eBus] = pDetView;
 }
 
-
-/******************************************************************************
-FUNCTION:       podGetSimSysDetView
-DESCRIPTION:    Returns pointer to CMsgSgDetView class
-PARAMETERS:
-RETURN VALUE:   Pointer to "CMsgSgDetView" class
-AUTHOR:         Harika M
-HISTORY:
-
-*******************************************************************************/
-//CSimSysDetView* CMainFrame::podGetSimSysDetView()
-//{
-//    return(m_pomSimSysDetView);
-//}
-/******************************************************************************
-FUNCTION:       podGetSimSysTreeView
-DESCRIPTION:    Returns pointer to CMsgSgTreeView class
-PARAMETERS:
-RETURN VALUE:   Pointer to "CMsgSgTreeView" class
-AUTHOR:         Harika M
-HISTORY:
-
-*******************************************************************************/
-//CSimSysTreeView* CMainFrame::podGetSimSysTreeView()
-//{
-//    return(m_pomSimSysTreeView);
-//}
-/******************************************************************************
-FUNCTION:       podSetSimSysTreeView
-DESCRIPTION:    Sets pointer to CMsgSgTreeView class
-PARAMETERS:     Pointer to "CSimSysTreeView" class
-RETURN VALUE:
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-*******************************************************************************/
-//void CMainFrame::podSetSimSysTreeView(CSimSysTreeView *pTreeView)
-//{
-//    m_pomSimSysTreeView = pTreeView;
-//}
-/******************************************************************************
-FUNCTION:       podSetSimSysDetView
-DESCRIPTION:    Sets pointer to CMsgSgDetView class
-PARAMETERS:     Pointer to "CSimSysDetView" class
-RETURN VALUE:
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-*******************************************************************************/
-//void CMainFrame::podSetSimSysDetView(CSimSysDetView *pDetView)
-//{
-//    m_pomSimSysDetView = pDetView;
-//}
-
-//void CMainFrame::pomSetSimSysConfig(CSimSysConfigDetails *pSimsysConfig)
-//{
-//  m_pomSimSysConfig = pSimsysConfig;
-//}
-
-/******************************************************************************
-FUNCTION:       OnImportDatabase
-DESCRIPTION:    Loads a database file selected by the user
-PARAMETERS:
-RETURN VALUE:
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-12-11-2002      Modifications       Gopi, Changed usage to configuration from
-                                    registry
-Modifications:  Raja N
-                10/03/2004 Included checks for clearing signal watch list and
-                to post warnning message if DLL is loaded
-Modifications:  Raja N
-                12/03/2004 Included checks to prevent import if signal watch
-                list has some elements. If the user still wants to import then
-                go ahead import and clear the list
-Modifications:  Raja N
-                05/04/2004 Modified to refer latest signal watch list. Add added
-                check to compare the importing database with active database. If
-                both are same Signal Watch list delete option will be given to
-                the user. If both are different signal watch list will be
-                cleared with out any option.
-Modifications:  Raja N
-                18.05.2004 Added check before popping the import warning for
-                Signal Watch
-Modifications:  Raja N
-                10.08.2004 Added code to delete Signal Watch list incase of
-                different database got imported
-Modifications:  Raja N
-                10.08.2004 Added code to delete graph list incase of different
-                database got imported
-Modifications:  Raja N
-                26.04.2005 Modified code to refer Tx Msg Window to send database
-                import notification.
-Modifications:  Anish
-                07.06.2006 Modified code to implement COM interface
-Modifications:  Anish
-                07.12.2006 Modified code to for Multiple database
-*******************************************************************************/
+/**
+ * @brief Loads a database file selected by the user
+ *
+ * Loads a database file selected by the user
+ */
 void CMainFrame::OnImportDatabase()
 {
     CStringArray strFilePathArray;
@@ -1788,17 +1624,14 @@ DWORD CMainFrame::dLoadDataBaseFile(CString omStrActiveDataBase,BOOL /*bFrmCom*/
     }
     return dReturn;
 }
-/******************************************************************************
-FUNCTION:       nConvertStringToInt
-DESCRIPTION:    Closes a database file
-PARAMETERS:     CString omStrHexNo -- Hex number
-RETURN VALUE:   Equivalent decimal number
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-02.06.2003      Changed the int to __int64 Amitesh Bharti
-12.06.2003      review comment for CRH0005 incorporated. Amitesh Bharti
-*******************************************************************************/
+
+/**
+ * @brief Closes a database file
+ * @param[in] omStrHexNo Hex number
+ * @return Equivalent decimal number
+ *
+ * Closes a database file
+ */
 __int64 CMainFrame::nConvertStringToInt(CString omStrHexNo)
 {
     __int64 n64RetVal = 0;
@@ -1978,22 +1811,12 @@ void CMainFrame::OnUpdateConfigChannelSelection(CCmdUI* pCmdUI)
     }
 }
 
-
-/******************************************************************************
-FUNCTION:       OnNewDatabase
-DESCRIPTION:    #Called by the framework when user selects new database
-                option from the menu
-                #Creates a new database file name and displays
-                database editior
-PARAMETERS:
-RETURN VALUE:
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-29.05.2002      Get the current working directory and add it
-                with file name      Amitesh Bharti
-10.03.2004      Removed Active database flag set call - Raja N
-*******************************************************************************/
+/**
+ * @brief On New Database
+ *
+ * Called by the framework when user selects new database option from the menu.
+ * Creates a new database file name and displays database editior.
+ */
 void CMainFrame::OnNewDatabase()
 {
     UINT unCount = 1;
@@ -2101,23 +1924,14 @@ void CMainFrame::OnNewDatabase()
         }
     }
 }
-/******************************************************************************
-FUNCTION:       OnConfigDatabaseSaveAs
-DESCRIPTION:    #Called by the framework when user selects SaveAs...
-                option from the menu for the database editor
-                #Dispalys Save file dialog
-                #Saves the datastructure contents into the selected file
-PARAMETERS:
-RETURN VALUE:
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-29.05.2002      Added code to change the font after saving the file -- Amitesh
-Modification    Raja N
-                10/03/2004 Modified Active/Passive database concept and the
-                database editor will use inactive data structure always for
-                editing purpose
-*******************************************************************************/
+
+/**
+ * @brief On Config Database Save As
+ *
+ * Called by the framework when user selects SaveAs... option from the menu for the database editor.
+ * Displays Save file dialog.
+ * Saves the datastructure contents into the selected file.
+ */
 void CMainFrame::OnConfigDatabaseSaveAs()
 {
     // Display a save file dialog
@@ -2242,21 +2056,12 @@ void CMainFrame::OnJ1939DBSaveAs()
     }
 }
 
-/******************************************************************************
-FUNCTION:       OnConfigDatabaseSave
-DESCRIPTION:    #Called by the framework when user selects Save...
-                option from the menu for the database editor
-                #Saves the datastructure contents into the selected file
-PARAMETERS:
-RETURN VALUE:
-AUTHOR:         RBIN/EMC2 - Amarnath Shastry
-HISTORY:
-20-02-2002      Initial Version     Amarnath Shastry
-Modification    Raja N
-                10/03/2004 Modified Active/Passive database concept and the
-                database editor will use inactive data structure always for
-                editing purpose
-*******************************************************************************/
+/**
+ * @brief On Config Database Save
+ *
+ * Called by the framework when user selects Save... option from the menu for the database editor.
+ * Saves the datastructure contents into the selected file.
+ */
 void CMainFrame::OnConfigDatabaseSave()
 {
 
@@ -2330,22 +2135,13 @@ void CMainFrame::OnConfigDatabaseSave()
         }
     }
 }
-/******************************************************************************
-FUNCTION:       OnConfigMessageDisplay
-DESCRIPTION:    #Called by the framework when user selects Configure Message...
-                option from the menu.
-                #Displays message attribute dialog
-PARAMETERS:
-RETURN VALUE:
-AUTHOR:         RBIN/EMC2 - Ratnadip Choudhury
-HISTORY:
-20-02-2002      Initial Version     Ratnadip Choudhury
-04-11-2003      Change to have property page for database and non database
-                messages.
-22.07.2004      Raja N, Added a new page for message buffer configuration
-31.07.2004      Raja N, Modified the name as per code review comments
-20.06.2005      Raja N, Modified to include Filter Page
-*******************************************************************************/
+
+/**
+ * @brief On Config Message Display
+ *
+ * Called by the framework when user selects Configure Message... option from the menu.
+ * Displays message attribute dialog.
+ */
 void CMainFrame::OnConfigMessageDisplay()
 {
     CPPageMessage odDBMsg(TRUE, CAN, theApp.m_pouMsgSignal), odNDBMsg(FALSE, CAN,  theApp.m_pouMsgSignal);
@@ -2398,24 +2194,18 @@ void CMainFrame::OnConfigMessageDisplay()
         }
     }
 }
-/******************************************************************************/
-/*  Function Name    :  OnReplaySingleSkip                                    */
-/*  Input(s)         :                                                        */
-/*  Output           :                                                        */
-/*  Functionality    :  Called by frame work when user select command skip    */
-/*                                                                            */
-/*  Member of        :  CMainFrame                                            */
-/*  Friend of        :      -                                                 */
-/*  Author(s)        :  Amitesh Bharti                                        */
-/*  Date Created     :  03.04.2002                                            */
-/*  Modifications    :  Raja N on 19.07.2005, Changed the implimentation to   */
-/*                      call replay manager                                   */
-/******************************************************************************/
+
+/**
+ * @brief On Replay Single Skip
+ *
+ * Called by frame work when user select command skip.
+ */
 void CMainFrame::OnReplaySingleSkip()
 {
     // Dispatch it to Replay Manager
     vREP_CmdSkip();
 }
+
 /******************************************************************************/
 /*  Function Name    :  OnReplaySingleStep                                    */
 /*  Input(s)         :                                                        */
@@ -4783,12 +4573,11 @@ void CMainFrame::OnHex_DecButon()
 }
 
 /**
-* \brief         Enabling or disabling Hex/Numeric mode
-* \param[in]     bHexEnabled is bool variable, if true Hex mode is enabled
-* \return        void
-* \authors       Prathiba P
-* \date          06.18.2013 Created
-*/
+ * @brief Enabling or disabling Hex/Numeric mode
+ * @param[in] bHexEnabled true if Hex mode is enabled
+ *
+ * Enabling or disabling Hex/Numeric mode
+ */
 void CMainFrame::bSetHexDecFlags(BOOL bHexEnabled)
 {
 	 if (m_podMsgWndThread != NULL)

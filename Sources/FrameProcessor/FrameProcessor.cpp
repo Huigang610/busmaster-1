@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      FrameProcessor.cpp
  * @brief     Source file for the exported function used to retrieve the
  * @authors   Ratnadip Choudhury, 1.12.2010
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

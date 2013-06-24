@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      SendEntity.cpp
  * @brief     This File Contains CSendEntity Class Definitions
  * @author    Venkatanarayana makam
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

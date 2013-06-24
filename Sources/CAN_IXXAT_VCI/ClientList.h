@@ -15,8 +15,6 @@
 
 
 /**
- * @file  ClientList.h
- *
  * @brief
  *      This is a class to handle the registered clients.
  *      In the original code of the busmaster DIL classes there

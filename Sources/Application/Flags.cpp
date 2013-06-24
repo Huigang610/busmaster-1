@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Flags.cpp
  * @brief     Contains implementaion of CFlags class
  * @authors   Amitesh Bharti, Amarnath Shastry, Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

@@ -14,13 +14,13 @@
  */
 
 /**
- * @file      SimSysDetView.cpp
  * @brief     This file contain definition of all function of
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * This file contain definition of all function of
  */
+
 #include "NodeSimEx_stdafx.h"   // Contains standard include header files.
 #include "SimSysDetView.h"      // Class defintion included here
 #include "SimSysManager.h"

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ComputeCheckSum.h
  * @brief     This file contains definition of CComputeCheckSum class
  * @author    Anish Kumar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

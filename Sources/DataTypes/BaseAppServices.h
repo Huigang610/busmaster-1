@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      BaseAppServices.h
  * @brief     Base class definition for the application service layer
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      Network_McNet.h
  * @brief     This contains definitions of some classes/ structures
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      EditItem.h
  * @brief     This header file contains the defintion of class EditItem.
  * @authors   Zafir Anjum
   *

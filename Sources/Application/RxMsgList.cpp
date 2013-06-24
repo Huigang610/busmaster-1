@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      RxMsgList.cpp
  * @brief     Implementation of CRxMsgList class, To customize the receive
  * @authors   Ravi. D, Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

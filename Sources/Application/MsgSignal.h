@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      MsgSignal.h
  * @brief     This header file contains the defintion of class
  * @authors   Amarnath Shastry, Rajesh Kumar 04.03.2003
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

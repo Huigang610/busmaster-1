@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      MessageInterpretation.cpp
  * @brief     Implementation file for CMessageInterpretation class
  * @authors   Ratnadip Choudhury, Amitesh Bharti
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

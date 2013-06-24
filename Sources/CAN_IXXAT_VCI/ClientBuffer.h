@@ -14,9 +14,6 @@
  */
 
 /**
- * @file
- *  ClientBuffer.h
- *
  * @brief
  *  Declares the client buffer class.
  */

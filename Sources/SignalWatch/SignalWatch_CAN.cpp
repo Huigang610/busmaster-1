@@ -14,10 +14,10 @@
  */
 
 /**
- * @file      SignalWatch_CAN.cpp
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  */
+
 #include "SignalWatch_stdafx.h"
 #include "Include/Utils_macro.h"
 #include "SignalWatch_CAN.h"

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file   TransferLayer.h
  * @author Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions.  All rights reserved.
  */

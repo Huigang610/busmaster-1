@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      HardwareListing.h
  * @brief     Interface file for CHardwareListing class
  * @author    RaTnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

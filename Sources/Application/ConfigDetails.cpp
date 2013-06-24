@@ -14,13 +14,13 @@
  */
 
 /**
- * @file      ConfigDetails.cpp
  * @brief     Contains the description of the class CConfigDetails
  * @author    Gopinath Mujumdar
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *
  * Contains the description of the class CConfigDetails
  */
+
 #include "stdafx.h" // standard includes present in this header
 #include "struct.h" // definitions of the structures used in this application
 #include "hashdefines.h" // contains hash defines used across classes

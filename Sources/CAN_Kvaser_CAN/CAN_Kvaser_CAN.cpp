@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      CAN_Kvaser_CAN.cpp
  * @brief     Source file for Kvaser CAN DIL functions
  * @author    Tobias Lorenz, Arunkumar Karri
  * @copyright Copyright (c) 2011, ETAS GmbH. All rights reserved.

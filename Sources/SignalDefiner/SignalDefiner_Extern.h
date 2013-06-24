@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      SignalDefiner_Extern.h
  * @brief     Exports API functions for Signal Definer interface
  * @author    Arunkumar Karri
  * @copyright Copyright (c) 2012, Robert Bosch Engineering and Business Solutions.  All rights reserved.

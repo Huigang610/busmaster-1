@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      HashDefines.h
  * @brief     This header file contains the hash define
  * @authors   Amarnath Shastry, Amitesh Bharti, Krishnaswamy B.N
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

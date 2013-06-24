@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ChangeRegisters_CAN_ETAS_BOA.cpp
  * @brief     This file contain definition of all function of
  * @author    Amitesh Bharti
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

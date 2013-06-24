@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      DIL_Interface/DIL_Interface_stdafx.cpp
  * @author    Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
  *

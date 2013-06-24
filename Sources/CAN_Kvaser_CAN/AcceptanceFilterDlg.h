@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      AcceptanceFilterDlg.h
  * @brief     This file contain the declaration of CAcceptanceFilterDlg class
  * @authors   Amitesh Bharti, Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

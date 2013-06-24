@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      TxMsgBlocksView.h
  * @brief     Interface file for CTxMsgBlocksView class
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

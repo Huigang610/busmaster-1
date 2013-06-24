@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      MessageList.cpp
  * @brief     Implementation file for CMessageList class
  * @author    Ratnadip Choudhury, Amitesh Bharti
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

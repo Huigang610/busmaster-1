@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      TxMsgDetailsView.h
  * @brief     Interface file for CTxMsgDetailsView class
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

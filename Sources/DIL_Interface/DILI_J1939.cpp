@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      DIL_Interface/DILI_J1939.cpp
  * @brief     Interface file for J1939 BUS
  * @author    Pradeep Kadoor, Arunkumar Karri
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

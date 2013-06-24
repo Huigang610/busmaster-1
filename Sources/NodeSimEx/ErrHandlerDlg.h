@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      ErrHandlerDlg.h
  * @brief     This file contain the definition of CErrHandlerDlg class
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      CAN_ETAS_BOA/CAN_ETAS_BOA.cpp
  * @brief     Source file for BOA DIL functions
  * @author    Pradeep Kadoor
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.

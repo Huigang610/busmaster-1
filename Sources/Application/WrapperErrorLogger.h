@@ -14,7 +14,6 @@
  */
 
 /**
- * @file      WrapperErrorLogger.h
  * @brief     Concrete data type definition file for error logger wrapper.
  * @author    Ratnadip Choudhury
  * @copyright Copyright (c) 2011, Robert Bosch Engineering and Business Solutions. All rights reserved.
@@ -33,8 +32,5 @@
 class WrapperErrorLogger : public Base_WrapperErrorLogger
 {
 public:
-    WrapperErrorLogger(void);
-    ~WrapperErrorLogger(void);
-
     void logMessage(char* File, int Line, std::string Msg);
 };
