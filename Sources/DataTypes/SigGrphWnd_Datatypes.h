@@ -31,30 +31,30 @@ struct sSigValue
 
 struct tagInterpretData
 {
-	/**
-	 * Message ID
-	 */
+    /**
+     * Message ID
+     */
     unsigned int unMsgID;
 
-	/**
-	 * Signal Name
-	 */
-	char m_acSigName[64];
+    /**
+     * Signal Name
+     */
+    char m_acSigName[64];
 
-	/**
-	 * Time Stamp
-	 */
-	LONGLONG m_nTimeStamp;
+    /**
+     * Time Stamp
+     */
+    LONGLONG m_nTimeStamp;
 
-	/**
-	 * Signal Value Type
-	 */
-	short m_shType;
+    /**
+     * Signal Value Type
+     */
+    short m_shType;
 
-	/**
-	 * Signal value as union.
-	 */
-	sSigValue m_unValue;
+    /**
+     * Signal value as union.
+     */
+    sSigValue m_unValue;
 };
 
 typedef tagInterpretData sInterpretDataList;

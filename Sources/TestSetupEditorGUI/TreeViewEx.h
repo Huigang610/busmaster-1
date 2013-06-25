@@ -67,14 +67,14 @@ protected:
     afx_msg void OnTvnEndlabeledit(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnTvnSelchanged(NMHDR* pNMHDR, LRESULT* pResult);
 
-	typedef enum eTYPE_DROPPING
+    typedef enum eTYPE_DROPPING
     {
         DROPPING_BELOW,
         DROPPING_ABOVE,
         NO_DROPPING
     };
 
-	CTreeViewEx();           // protected constructor used by dynamic creation
+    CTreeViewEx();           // protected constructor used by dynamic creation
 
     BOOL bIsItemChecked(HTREEITEM hItem);
     BOOL bAnscestor(HTREEITEM hItem, HTREEITEM hCheck);

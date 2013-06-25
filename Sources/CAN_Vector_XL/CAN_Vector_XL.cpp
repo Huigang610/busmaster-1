@@ -711,7 +711,7 @@ HRESULT CDIL_CAN_VectorXL::loadDriverLibrary(void)
             {
                 FreeLibrary(hxlDll);
                 sg_pIlog->logMessage(A2T(__FILE__),
-                                       __LINE__, _("Getting Process address of the APIs failed"));
+                                     __LINE__, _("Getting Process address of the APIs failed"));
                 hResult = ERR_LOAD_DRIVER;
             }
         }
@@ -843,9 +843,9 @@ HRESULT CDIL_CAN_VectorXL::listHardwareInterfaces(InterfaceHardwareList& asSelHw
             std::ostringstream oss1;
             oss1 << "Vector - " << sg_aodChannels[i].m_pXLChannelInfo->name << " SN - " <<serialNumber;
             oss1 << "Channel Index - " <<(int)sg_aodChannels[i].m_pXLChannelInfo->channelIndex;
-            sg_ControllerDetails[i].m_omHardwareDesc = oss1.str();
+            sg_ControllerDetails[i].hardwareDescription = oss1.str();
 
-            /*_stprintf(sg_ControllerDetails[i].m_omHardwareDesc, _("Vector - %s SN - %d Channel Index - %d"),
+            /*_stprintf(sg_ControllerDetails[i].hardwareDescription, _("Vector - %s SN - %d Channel Index - %d"),
                                         sg_aodChannels[i].m_pXLChannelInfo->name,
                                         serialNumber,
                                         sg_aodChannels[i].m_pXLChannelInfo->channelIndex);*/
@@ -1071,12 +1071,12 @@ HRESULT CDIL_CAN_VectorXL::displayConfigurationDialog(PSCONTROLLER_DETAILS InitD
     //First initialize with existing hw description
     for (INT i = 0; i < min(Length, (INT)sg_nNoOfChannels); i++)
     {
-        //pControllerDetails[i].m_omHardwareDesc  = sg_aodChannels[i].m_strName;
+        //pControllerDetails[i].hardwareDescription  = sg_aodChannels[i].m_strName;
         static char chName[MAX_PATH];
         _stprintf(chName , _("Vector XL - %s, Serial number - %d"),
                   sg_aodChannels[i].m_pXLChannelInfo->name,
                   sg_aodChannels[i].m_pXLChannelInfo->serialNumber);
-        pControllerDetails[i].m_omHardwareDesc = chName;
+        pControllerDetails[i].hardwareDescription = chName;
 
     }
     if (sg_ucNoOfHardware > 0)
@@ -1274,7 +1274,7 @@ HRESULT CDIL_CAN_VectorXL::setConfigurationData(PSCONTROLLER_DETAILS ConfigFile,
     /* Fill the hardware description details */
     for (UINT nCount = 0; nCount < sg_ucNoOfHardware; nCount++)
     {
-        ((PSCONTROLLER_DETAILS)ConfigFile)[nCount].m_omHardwareDesc = sg_ControllerDetails[nCount].m_omHardwareDesc;
+        ((PSCONTROLLER_DETAILS)ConfigFile)[nCount].hardwareDescription = sg_ControllerDetails[nCount].hardwareDescription;
     }
     for (UINT i = 0; i < defNO_OF_CHANNELS; i++)
     {

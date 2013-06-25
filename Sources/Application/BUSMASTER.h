@@ -58,7 +58,7 @@ public:
 
     //PSSIMSYSARRAY psReturnSimsysArrayPtr();
 
-	INT COM_nSaveConfiguration(CString omStrCfgFilename);
+    INT COM_nSaveConfiguration(CString omStrCfgFilename);
     bool bWriteIntoTraceWnd(const char* omText);
 
     //CExecutefunc
@@ -80,12 +80,12 @@ public:
     //CString m_omStrUnionPath;
     BOOL m_bFromAutomation;
 
-	virtual BOOL InitInstance();
+    virtual BOOL InitInstance();
     virtual void WinHelp(DWORD dwData, UINT nCmd = HELP_CONTEXT);
     virtual int ExitInstance();
     virtual CWnd* GetMainWnd();
 
-	afx_msg void OnAppAbout();
+    afx_msg void OnAppAbout();
     afx_msg void OnFileOpen();
     afx_msg void OnFileNew();
 

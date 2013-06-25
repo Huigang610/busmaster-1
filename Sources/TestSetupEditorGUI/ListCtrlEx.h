@@ -111,6 +111,6 @@ private:
     COLORREF m_colRow1;
     COLORREF m_colRow2;
 
-	// Private Functions
+    // Private Functions
     long lGetMapID(int nRow, int nCol);
 };

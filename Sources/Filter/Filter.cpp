@@ -166,9 +166,9 @@ USAGEMODE HRESULT Filter_ShowSelDlg(CWnd* pParent, SignalWatchListMainEntries* p
     /* What image to be loaded */
     sGuiParams.imageList = new CImageList;
     sGuiParams.imageList->Create(IDB_BMP_FILTER,
-                                      16,
-                                      1,
-                                      defCOLOR_WHITE);
+                                 16,
+                                 1,
+                                 defCOLOR_WHITE);
     //Icon index to unselected list
     sGuiParams.unselectedIconIndex = 2;
     //Icon index to selected list

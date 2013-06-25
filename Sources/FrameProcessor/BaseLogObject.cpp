@@ -611,7 +611,7 @@ void CBaseLogObject::vFormatHeader(CString& omHeader, ETYPE_BUS eBus)
         }
 
         strChannelNum.Format(BUS_LOG_CHANNEL, nChannelNum,
-                             controllerDetails[nChannelNum - 1].m_omHardwareDesc.c_str(),
+                             controllerDetails[nChannelNum - 1].hardwareDescription.c_str(),
                              controllerDetails[nChannelNum - 1].m_omStrBaudrate.c_str());
         omHeader += strChannelNum;
         omHeader += L'\n';

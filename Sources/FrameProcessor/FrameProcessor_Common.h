@@ -44,7 +44,7 @@ public:
 
     virtual BOOL InitInstance(void);
 
-	virtual int ExitInstance(void);
+    virtual int ExitInstance(void);
 
 public:
     BOOL                m_bIsThreadBlocked;
@@ -101,14 +101,14 @@ protected:
     CBaseLogObject* FindLoggingBlock(USHORT ushID);
     BOOL bIsEditingON(void);
 
-	/**
-	 * To create a new logging object
-	 */
+    /**
+     * To create a new logging object
+     */
     virtual CBaseLogObject* CreateNewLogObj(const CString& omStrVersion) = 0;
 
-	/**
-	 * To delete a logging object
-	 */
+    /**
+     * To delete a logging object
+     */
     virtual void DeleteLogObj(CBaseLogObject*& pouLogObj) = 0;
     virtual void CreateTimeModeMapping(SYSTEMTIME& currentSystemTime,
                                        UINT64& unAbsTime) = 0;

@@ -42,64 +42,64 @@ public:
     CMsgBufVFSE();
     ~CMsgBufVFSE();
 
-	/**
-	 * Read the oldest message from circular queue
-	 */
+    /**
+     * Read the oldest message from circular queue
+     */
     HRESULT readFromBuffer(SMSGBUFFER* psMsgBuffer);
 
-	/**
-	 * Reads msg with ID nSlotId into SMSGBUFFER structure
-	 */
+    /**
+     * Reads msg with ID nSlotId into SMSGBUFFER structure
+     */
     HRESULT readFromBuffer(SMSGBUFFER* psMsgBuffer, __int64 nSlotId);
 
-	/**
-	 * reads msg into SMSGBUFFER structure from the index nIndex
-	 */
+    /**
+     * reads msg into SMSGBUFFER structure from the index nIndex
+     */
     HRESULT readFromBuffer(SMSGBUFFER* psMsgBuffer, int nIndex);
 
-	/**
-	 * Write the message at the end of circular queue
-	 */
-	HRESULT writeIntoBuffer(SMSGBUFFER* psMsgBuffer);
+    /**
+     * Write the message at the end of circular queue
+     */
+    HRESULT writeIntoBuffer(SMSGBUFFER* psMsgBuffer);
 
-	/**
-	 * Writes msg with ID nSlotId from SMSGBUFFER structure into buffer return back the index
-	 */
-	HRESULT writeIntoBuffer(const SMSGBUFFER* psMsgBuffer, __int64 nSlotId, int& nIndex);
-    
-	/**
-	 * Get the msg count
-	 */
-	int getMessageCount(void) const;
+    /**
+     * Writes msg with ID nSlotId from SMSGBUFFER structure into buffer return back the index
+     */
+    HRESULT writeIntoBuffer(const SMSGBUFFER* psMsgBuffer, __int64 nSlotId, int& nIndex);
 
-	/**
-	 * Clears the data in the buffer
-	 */
+    /**
+     * Get the msg count
+     */
+    int getMessageCount(void) const;
+
+    /**
+     * Clears the data in the buffer
+     */
     void clearMessageBuffer(void);
 
-	/**
-	 * Gets the notifying event
-	 */
-	HANDLE getNotifyEvent(void) const;
+    /**
+     * Gets the notifying event
+     */
+    HANDLE getNotifyEvent(void) const;
 
-	/**
-	 * User can set the buffer size
-	 */
+    /**
+     * User can set the buffer size
+     */
     int setBufferSize(int nMsgDataSize);
-    
-	/**
-	 * Reorders the list according to the sorting key specified.
-	 *
-	 * @param[in] nField The field to be used as the sorting key.
-	 */
-	void vDoSortBuffer(int nField,bool bAscending);
-    
-	/**
-	 * Returns the Slot ID of the index specified in m_omIdIndexMap.
-	 *
-	 * @param[in] nIndex The Index at which the SlotID needs to be pickef from.
-	 */
-	void nGetMapIndexAtID(int nIndex,__int64& nMapIndex);
+
+    /**
+     * Reorders the list according to the sorting key specified.
+     *
+     * @param[in] nField The field to be used as the sorting key.
+     */
+    void vDoSortBuffer(int nField,bool bAscending);
+
+    /**
+     * Returns the Slot ID of the index specified in m_omIdIndexMap.
+     *
+     * @param[in] nIndex The Index at which the SlotID needs to be pickef from.
+     */
+    void nGetMapIndexAtID(int nIndex,__int64& nMapIndex);
 
 protected:
     SMSGBUFFER* m_pasMsgBuffer;
@@ -112,15 +112,15 @@ private:
     BYTE* m_pbyTempData;
     CSlotIndexMapType m_stlIdIndexMap;
 
-	/**
-	 * Helper function copies full data from one SMSGBUFFER structure into another structure
-	 */
-	void vCopyMsg(SMSGBUFFER* psDestMsg, const SMSGBUFFER* psSrcMsg);
+    /**
+     * Helper function copies full data from one SMSGBUFFER structure into another structure
+     */
+    void vCopyMsg(SMSGBUFFER* psDestMsg, const SMSGBUFFER* psSrcMsg);
 
-	/**
-	 * Reorders the Index Map Array according to the order specified.
-	 */
-	void vDoSortIndexMapArray();
+    /**
+     * Reorders the Index Map Array according to the order specified.
+     */
+    void vDoSortIndexMapArray();
 };
 
 template <typename SMSGBUFFER>

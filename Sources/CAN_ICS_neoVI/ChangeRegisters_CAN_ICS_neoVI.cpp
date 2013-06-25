@@ -1130,7 +1130,7 @@ void CChangeRegisters_CAN_ICS_neoVI::vFillControllerConfigDetails()
     CWnd* pWnd = GetDlgItem(IDC_EDIT_CHANNEL_DESC);
     if (pWnd != NULL)
     {
-        pWnd->SetWindowText(m_pControllerDetails[nIndex].m_omHardwareDesc.c_str());
+        pWnd->SetWindowText(m_pControllerDetails[nIndex].hardwareDescription.c_str());
     }
 
     m_omStrcombBaudRate     = m_pControllerDetails[ nIndex ].m_omStrBaudrate.c_str();

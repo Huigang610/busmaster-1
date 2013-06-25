@@ -72,7 +72,7 @@ public:
 protected:
     virtual void PreSubclassWindow();
 
-	// To initialise default values
+    // To initialise default values
     void vInitSpinCtrl();
     // To set the position of the scroll bar. Scrollbar will take only int value
     void vSetIntPos (double pos);

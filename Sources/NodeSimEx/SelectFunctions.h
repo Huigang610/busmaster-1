@@ -43,7 +43,7 @@ protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
     virtual BOOL OnInitDialog();
-	afx_msg void OnDblclkListFunctions();
+    afx_msg void OnDblclkListFunctions();
     afx_msg void OnSelect();
     afx_msg void OnCancel();
 

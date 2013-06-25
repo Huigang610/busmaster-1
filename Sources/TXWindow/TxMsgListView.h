@@ -41,7 +41,7 @@ public:
     CButton m_omButtonDeleteSelMsg;
     CButton m_omButtonSendMsg;
 
-	// To denote programmed modification of list item to avoid
+    // To denote programmed modification of list item to avoid
     // item change handler execution
     BOOL m_bInitDlg;
     // Selected Message Index
@@ -64,13 +64,13 @@ public:
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	virtual ~CTxMsgListView();
+    virtual ~CTxMsgListView();
 #ifdef _DEBUG
     virtual void AssertValid() const;
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	afx_msg void OnColumnclickLstcMsgDetails(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnColumnclickLstcMsgDetails(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnItemchangedLstcMsgDetails(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnSendSelectedMsg();
     afx_msg void OnDeleteSelectedMsg();

@@ -55,7 +55,7 @@ protected:
     afx_msg void OnClickedOk();
     afx_msg void OnCancel();
     virtual BOOL OnInitDialog();
-    
+
 private:
     SDBPARAMS m_sDbParams;
     CString m_omStrPrevSignalVal;

@@ -22,10 +22,10 @@
 
 class CSplashScreen : public CWnd
 {
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
-	CBitmap m_ouBitMapImage;
+    CBitmap m_ouBitMapImage;
 
     static void ActivateSplashScreen(BOOL bActivate = TRUE);
     static void DisplaySplashScreen(CWnd* pParentWnd = NULL, INT nShow = SW_SHOW);

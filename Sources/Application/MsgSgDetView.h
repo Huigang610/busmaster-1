@@ -47,7 +47,7 @@ public:
 
     static SDBPARAMS sm_sDbParams;
 
-	void vEnableButtons (BOOL bEnable );
+    void vEnableButtons (BOOL bEnable );
     BOOL bUpdateEditedMesageDetails();
     BOOL bGetControlStatus();
     void vHideControls(UINT unEnableHide);
@@ -61,7 +61,7 @@ public:
 protected:
     CMsgSgDetView();           // protected constructor used by dynamic creation
 
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     virtual void PostNcDestroy();
 
 #ifdef _DEBUG
@@ -102,7 +102,7 @@ private:
     SDBPARAMS m_sDbParams;
     int     m_nSelectedSignalIndex;   //stores the curent selection index in m_omListCtrlSignal AUC
 
-	void vEnableNewDescButton(CString );
+    void vEnableNewDescButton(CString );
     void vEnableControls(CString OmStr);
     void vDeleteRedundentSignalDesc(int nRow, sSIGNALS* pSg);
     void vAddItemToSignalList( int nRow, sMESSAGE* pMsg, sSIGNALS* pSg );

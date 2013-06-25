@@ -47,7 +47,7 @@ protected:
     void vSaveWinStatus();
     void vGetWinStatus( );
 
-	// Generated message map functions
+    // Generated message map functions
     afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 

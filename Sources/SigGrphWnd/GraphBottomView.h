@@ -49,12 +49,12 @@ public:
     double  m_dRangeFrom;
     double  m_dRangeTo;
 
-	// To Initialise graph control with view style parameters
+    // To Initialise graph control with view style parameters
     void vInitGraphControl();
     // To Handle Connection change event
     void vHandleConnectionStatusChange(BOOL bConnectStatus);
 
-	virtual void OnInitialUpdate();
+    virtual void OnInitialUpdate();
 
     void vUpdateCursordetails(double X, double Y, short shCursorID);
     void vUpdateSignalData();

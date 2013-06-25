@@ -62,7 +62,7 @@ public:
     void vDisplayInSigWatchWnd(STJ1939_MSG& sMsg);
     void vDeleteRemovedListEntries();
 
-	CMsgBufVSE m_ouMsgBufVSE_J;
+    CMsgBufVSE m_ouMsgBufVSE_J;
 
 private:
     BOOL bStartSigWatchReadThread(void);

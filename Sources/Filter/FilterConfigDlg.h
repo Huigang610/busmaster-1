@@ -57,7 +57,7 @@ public:
     CListCtrl   m_omLstcFilterDetails;
     CFlexListCtrl   m_omLstcFilterList;
 
-	SFILTERAPPLIED_CAN* m_psFilterApplied; // Reference to Filter List
+    SFILTERAPPLIED_CAN* m_psFilterApplied; // Reference to Filter List
 
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support

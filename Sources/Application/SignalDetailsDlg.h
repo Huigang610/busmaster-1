@@ -48,7 +48,7 @@ public:
     CSignalDetailsDlg( eMODES eMode, sSIGNALS* psSigInfo,
                        CWnd* pParent /*=NULL*/);
 
-	// Dialog Data
+    // Dialog Data
     enum { IDD = IDD_DLG_SIGNAL };
     CRadixEdit  m_odScale;
     CRadixEdit  m_odOffset;

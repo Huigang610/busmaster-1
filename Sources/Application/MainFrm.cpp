@@ -990,8 +990,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     Sleep(1500);
 
     // Setting Hex Mode by default
-	bSetHexDecFlags(TRUE);
-	//theApp.pouGetFlagsPtr()->vSetFlagStatus(HEX,TRUE);
+    bSetHexDecFlags(TRUE);
+    //theApp.pouGetFlagsPtr()->vSetFlagStatus(HEX,TRUE);
 
 
 
@@ -4580,7 +4580,7 @@ void CMainFrame::OnHex_DecButon()
  */
 void CMainFrame::bSetHexDecFlags(BOOL bHexEnabled)
 {
-	 if (m_podMsgWndThread != NULL)
+    if (m_podMsgWndThread != NULL)
     {
         HWND hWnd = m_podMsgWndThread->hGetHandleMsgWnd(CAN);
         BYTE byGetDispFlag = 0;
@@ -5082,8 +5082,8 @@ void CMainFrame::vSetToolbarButtonSize(CNVTCToolBar& objToolbar, CSize& objSize)
  * @param[in] objToolbar Toolbar object
  * @param[in] bytItemIndex Item Index
  * @param[in] bItemON item ON status
- * @param[in] nTBIDON Icon ON resource IDs 
- * @param[in] nTBIDOFF Icon OFF resource IDs 
+ * @param[in] nTBIDON Icon ON resource IDs
+ * @param[in] nTBIDOFF Icon OFF resource IDs
  *
  * Modifies the icon of a particular toolbar item
  */
@@ -7318,8 +7318,8 @@ void CMainFrame::OnNewConfigFile()
             vStartStopLogging( bLogON );
         }
 
-		// setting by default Hex mode on new configuration
-		bSetHexDecFlags(TRUE);
+        // setting by default Hex mode on new configuration
+        bSetHexDecFlags(TRUE);
         // On New Configuration Stop Logging if it is enabled for J1939
         vJ1939StartStopLogging();
 
@@ -10621,9 +10621,9 @@ HRESULT CMainFrame::IntializeDIL(UINT unDefaultChannelCnt)
             if ((hResult = g_pouDIL_CAN_Interface->listHardwareInterfaces(m_asInterfaceHardware, nCount)) == S_OK)
             {
                 DeselectJ1939Interfaces();
-				// On Deactivate, deactivating J1939 and hiding the message window
-				GetIJ1939NodeSim()->NS_SetJ1939ActivationStatus(false);
-				m_podMsgWndThread->PostThreadMessage(WM_MODIFY_VISIBILITY, SW_HIDE, (LONG)J1939);
+                // On Deactivate, deactivating J1939 and hiding the message window
+                GetIJ1939NodeSim()->NS_SetJ1939ActivationStatus(false);
+                m_podMsgWndThread->PostThreadMessage(WM_MODIFY_VISIBILITY, SW_HIDE, (LONG)J1939);
                 HRESULT hResult = g_pouDIL_CAN_Interface->selectHardwareInterfaces(m_asInterfaceHardware, nCount);
                 if ((hResult == HW_INTERFACE_ALREADY_SELECTED) || (hResult == S_OK))
                 {
@@ -12403,16 +12403,16 @@ void CMainFrame::vSetGlobalConfiguration(xmlNodePtr& pNodePtr)
                 CString strDisplayNumericON = ptext;
 
                 if(strDisplayNumericON == _("True"))
-                {	
-				    // Setting decimal mode				
-					bSetHexDecFlags(FALSE);             
-					m_sToolBarInfo.m_byDisplayHexON = FALSE;
+                {
+                    // Setting decimal mode
+                    bSetHexDecFlags(FALSE);
+                    m_sToolBarInfo.m_byDisplayHexON = FALSE;
                 }
                 else if(strDisplayNumericON == _("False"))
                 {
-					// Setting Hex mode					
-					bSetHexDecFlags(TRUE);
-					m_sToolBarInfo.m_byDisplayHexON = TRUE;
+                    // Setting Hex mode
+                    bSetHexDecFlags(TRUE);
+                    m_sToolBarInfo.m_byDisplayHexON = TRUE;
                 }
                 xmlFree(ptext);
             }
@@ -14120,8 +14120,8 @@ void CMainFrame::vSetCurrentSessionData(eSECTION_ID eSecId, BYTE* pbyConfigData,
             else
             {
                 theApp.pouGetFlagsPtr()->vInitializeFlags();
-				// Setting Hex mode
-				bSetHexDecFlags(TRUE);
+                // Setting Hex mode
+                bSetHexDecFlags(TRUE);
                 m_sNotificWndPlacement.length = 0;
                 m_sNotificWndPlacement.rcNormalPosition.top = -1;
                 if (m_podUIThread != NULL)
@@ -15342,15 +15342,15 @@ void CMainFrame::OnActionJ1939TxMessage()
         m_pouTxMsgWndJ1939->Create(IDD_DLG_TX);
     }
 
-	// Hide the J1939 Transmit window if it is visible
-	if(m_pouTxMsgWndJ1939->IsWindowVisible() == TRUE)
-	{
-		m_pouTxMsgWndJ1939->ShowWindow(SW_HIDE);
-	}
-	else // Show the J1939 Transmit window if it is hidden
-	{
-		m_pouTxMsgWndJ1939->ShowWindow(SW_SHOW);
-	}
+    // Hide the J1939 Transmit window if it is visible
+    if(m_pouTxMsgWndJ1939->IsWindowVisible() == TRUE)
+    {
+        m_pouTxMsgWndJ1939->ShowWindow(SW_HIDE);
+    }
+    else // Show the J1939 Transmit window if it is hidden
+    {
+        m_pouTxMsgWndJ1939->ShowWindow(SW_SHOW);
+    }
 }
 
 void CMainFrame::OnUpdateActionJ1939TxMessage(CCmdUI* pCmdUI)

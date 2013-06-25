@@ -153,12 +153,12 @@ protected:
     afx_msg void OnItemchangedListChannels(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnDblclkListChannels(NMHDR* pNMHDR, LRESULT* pResult);
 
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 private:
     sCOLUMNS m_asColListCtrl[defREG_VALUE_LIST_COUNT_MAX];
 
-	// Pointer to hold controller information
+    // Pointer to hold controller information
     PSCONTROLLER_DETAILS  m_pControllerDetails;
     int m_nLastSelection;
     CImageList m_omChannelImageList;

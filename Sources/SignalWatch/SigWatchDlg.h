@@ -46,7 +46,7 @@ struct sSIGENTRY
 typedef CList<sSIGENTRY, sSIGENTRY&> CSigEntryList;
 class CSigWatchDlg : public CDialog
 {
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
     void vInitSignalWatchList();
@@ -55,7 +55,7 @@ public:
     enum { IDD = IDD_DLG_SIGNAL_WATCH };
     CSignalWatchListBox m_omSignalList;
 
-	CSigWatchDlg(CWnd* pParent = NULL);   // standard constructor
+    CSigWatchDlg(CWnd* pParent = NULL);   // standard constructor
 
     void vAddMsgSigIntoList(const CString& omStrMsgName,
                             const CStringArray& omSASignals,
@@ -68,7 +68,7 @@ public:
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	afx_msg void OnTimer(UINT nIDEvent);
+    afx_msg void OnTimer(UINT nIDEvent);
     afx_msg void OnSize(UINT nType, int cx, int cy);
     afx_msg void OnCancel();
     afx_msg void OnOK();

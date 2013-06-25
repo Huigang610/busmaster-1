@@ -33,50 +33,50 @@ public:
     ~CMsgBufVSE();
 
     /**
-	 * Reads current message from the buffer.
+     * Reads current message from the buffer.
      * Caller has to allocate memory for the out parameter
-	 */
+     */
     HRESULT readFromBuffer(INT& nType, BYTE* psMsg, INT& nSize);
-    
-	/**
-	 * Writes message into the buffer. Caller needs to allocate memory for the
+
+    /**
+     * Writes message into the buffer. Caller needs to allocate memory for the
      * out parameter
-	 */
+     */
     int writeIntoBuffer(INT nType, BYTE* ps_Msg, INT nSize);
-    
-	/**
-	 * To get the buffer length
-	 */
+
+    /**
+     * To get the buffer length
+     */
     int getBufferLength(void) const;
-    
-	/**
-	 * Clears the buffer and resets read & write indices
-	 */
+
+    /**
+     * Clears the buffer and resets read & write indices
+     */
     void clearMessageBuffer(void);
-    
-	/**
-	 * Caller can set the buffer size
-	 */
+
+    /**
+     * Caller can set the buffer size
+     */
     int setBufferSize(int& nSize);
-    
-	/**
-	 * Current message will be skipped and advances to next msg
-	 */
+
+    /**
+     * Current message will be skipped and advances to next msg
+     */
     HRESULT AdvanceToNextMsg(void);
 
     /**
-	 * Gets the message count
-	 */
+     * Gets the message count
+     */
     int getMessageCount(void) const;
-    
-	/**
-	 * Gets the notifying event handler
-	 */
+
+    /**
+     * Gets the notifying event handler
+     */
     HANDLE getNotifyEvent(void) const;
-    
-	/**
-	 * Gets no of skipped msgs because of buffer overrun
-	 */
+
+    /**
+     * Gets no of skipped msgs because of buffer overrun
+     */
     int GetSkippedMsgCount(void) const;
 
 private:
@@ -84,34 +84,34 @@ private:
     CRITICAL_SECTION m_CritSectionForGB;
     int m_nBufferSize, m_nIndexRead, m_nIndexWrite, m_nMsgCount, m_nMsgSkipped;
     HANDLE m_hNotifyingEvent;
-    
-	/**
-	 * Helper function to advance the read index to next msg
-	 */
+
+    /**
+     * Helper function to advance the read index to next msg
+     */
     int nAdvanceReadIndex(void);
-    
-	/**
-	 * Helper function to read current msg from the circular buffer
-	 */
+
+    /**
+     * Helper function to read current msg from the circular buffer
+     */
     HRESULT ReadBuffer(INT& nType, BYTE* pbyMsg, INT& nSize);
-    
-	/**
-	 * Helper function to write msg into the circular buffer
-	 */
+
+    /**
+     * Helper function to write msg into the circular buffer
+     */
     int nWriteBuffer(INT nType, BYTE* pbyMsg, INT nSize);
-    
-	/**
-	 * Helper function construct header with TYPE and DATA LENGTH
-	 */
+
+    /**
+     * Helper function construct header with TYPE and DATA LENGTH
+     */
     int nConstructHeader(INT nType, INT nSize, BYTE* pbyHeader);
-    
-	/**
-	 * Helper function to get current message header
-	 */
+
+    /**
+     * Helper function to get current message header
+     */
     int nGetCurrMsgHeader(BYTE* pbyHeader);
-    
-	/**
-	 * Helper function to handle buffer overrun
-	 */
+
+    /**
+     * Helper function to handle buffer overrun
+     */
     int nHandleBufferOverrun(INT nSize);
 };

@@ -128,7 +128,7 @@ DWORD CDIL_CAN::getDriverList(DriverList* List)
 }
 
 HRESULT CDIL_CAN::selectDriver(DWORD dwDriverID, HWND hWndOwner,
-                                    Base_WrapperErrorLogger* pILog)
+                               Base_WrapperErrorLogger* pILog)
 {
     USES_CONVERSION;
 

@@ -24,42 +24,42 @@ struct GuiParameters
 {
     GuiParameters();
 
-	char       titleName[MAX_PATH];
+    char       titleName[MAX_PATH];
     char       mainListName[MAX_PATH];
     char       unselectedListName[MAX_PATH];
     char       selectedListName[MAX_PATH];
 
-	/**
-	 * Pointer to loaded imagelist
-	 */
+    /**
+     * Pointer to loaded imagelist
+     */
     CImageList* imageList;
 
-	/**
-	 * Icon will appear in left list control
-	 */
+    /**
+     * Icon will appear in left list control
+     */
     INT unselectedIconIndex;
 
-	/**
-	 * Icon will appear in right list control
-	 */
+    /**
+     * Icon will appear in right list control
+     */
     INT selectedIconIndex;
 
-	/**
-	 * Whether Main Entry should be combined with subentry name while displaying in the list
-	 */
+    /**
+     * Whether Main Entry should be combined with subentry name while displaying in the list
+     */
     BOOL combine;
 };
 
 typedef struct SignalWatchListSubEntry
 {
-	/**
-	 * ID
-	 */
+    /**
+     * ID
+     */
     unsigned int m_unSubEntryID;
 
-	/**
-	 * Name
-	 */
+    /**
+     * Name
+     */
     CString subEntryName;
 
     BOOL operator ==(const SignalWatchListSubEntry& RefObj) const;
@@ -72,24 +72,24 @@ typedef CList<SignalWatchListSubEntry, SignalWatchListSubEntry&> SignalWatchList
  */
 typedef struct SignalWatchListMainEntry
 {
-	/**
-	 * ID
-	 */
+    /**
+     * ID
+     */
     UINT m_unMainEntryID;
 
-	/**
-	 * Name
-	 */
+    /**
+     * Name
+     */
     CString mainEntryName;
 
-	/**
-	 * Sub entries which are not selected
-	 */
+    /**
+     * Sub entries which are not selected
+     */
     SignalWatchListSubEntries m_odUnSelEntryList;
 
-	/**
-	 * Sub entries which are selected
-	 */
+    /**
+     * Sub entries which are selected
+     */
     SignalWatchListSubEntries m_odSelEntryList;
 
     SignalWatchListMainEntry();

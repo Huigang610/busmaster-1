@@ -27,12 +27,12 @@
 #include <map>
 
 /* Project includes */
-#include "DataTypes/DIL_Datatypes.h"	// For DIL datatypes
+#include "DataTypes/DIL_Datatypes.h"    // For DIL datatypes
 #include "Include/CanUsbDefs.h"
 
 class CHardwareListing : public CDialog
 {
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
     // Array of channels
@@ -60,13 +60,13 @@ public:
     CEdit   m_omDriverID;
     CListCtrl   m_omHardwareList;
 
-	// Hardware CONTAINER
+    // Hardware CONTAINER
     typedef struct tagHardwareContainer
     {
         int     m_omDriverId;
         CString     m_omHardwareName;
         CString     m_omFirmware;
-        CString     m_omHardwareDesc;
+        CString     hardwareDescription;
 
     } HARDWARE_CONTAINER, *PHARDWARE_CONTAINER;
 

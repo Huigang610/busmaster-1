@@ -34,50 +34,50 @@ class CBaseMsgBufFSE
 {
 public:
     /**
-	 * To read an entry from the circular queue
-	 */
+     * To read an entry from the circular queue
+     */
     virtual HRESULT readFromBuffer(SMSGBUFFER* psMsgBuffer) = 0;
 
     /**
-	 * To read an entry from the circular queue
-	 */
+     * To read an entry from the circular queue
+     */
     virtual HRESULT readFromBuffer(SMSGBUFFER* psMsgBuffer, __int64 nSlotId)=  0;
 
     /**
-	 * To read an entry from the circular queue
-	 */
-	virtual HRESULT readFromBuffer(SMSGBUFFER* psMsgBuffer, int nIndex)=  0;
+     * To read an entry from the circular queue
+     */
+    virtual HRESULT readFromBuffer(SMSGBUFFER* psMsgBuffer, int nIndex)=  0;
 
     /**
-	 * To write an entry into the circular queue
-	 */
+     * To write an entry into the circular queue
+     */
     virtual HRESULT writeIntoBuffer(SMSGBUFFER* psMsgBuffer) = 0;
 
     /**
-	 * To write an entry into the circular queue
-	 */
+     * To write an entry into the circular queue
+     */
     virtual HRESULT writeIntoBuffer(const SMSGBUFFER* psMsgBuffer,
                                     __int64 nSlotId, int& nIndex)= 0;
 
     /**
-	 * To get the present queue length (number of entries)
-	 */
+     * To get the present queue length (number of entries)
+     */
     virtual int getMessageCount(void) const = 0;
 
     /**
-	 * To clear the queue. This doesn't remove the buffer, only clears it.
-	 */
+     * To clear the queue. This doesn't remove the buffer, only clears it.
+     */
     virtual void clearMessageBuffer(void) = 0;
 
     /**
-	 * To get handle of the notifying event that will be signalled when there
+     * To get handle of the notifying event that will be signalled when there
      * is at least one entry in the queue.
-	 */
+     */
     virtual HANDLE getNotifyEvent(void) const = 0;
 
     /**
-	 * To set the current queue length
-	 */
+     * To set the current queue length
+     */
     virtual int setBufferSize(int nMsgDataSize)= 0;
 };
 
@@ -93,33 +93,33 @@ class CBaseMsgBufVSE
 public:
     /**
      * To read an entry from the circular queue
-	 */
+     */
     virtual HRESULT readFromBuffer(INT& nType, BYTE* psMsg, INT& nSize) = 0;
 
     /**
-	 * To write an entry into the circular queue
-	 */
+     * To write an entry into the circular queue
+     */
     virtual int writeIntoBuffer(INT nType, BYTE* ps_Msg, INT nSize)= 0;
 
     /**
-	 * To get the present queue length (number of entries)
-	 */
+     * To get the present queue length (number of entries)
+     */
     virtual int getBufferLength(void) const = 0;
 
     /**
-	 * To clear the queue. This doesn't remove the buffer, only clears it.
-	 */
+     * To clear the queue. This doesn't remove the buffer, only clears it.
+     */
     virtual void clearMessageBuffer(void) = 0;
 
     /**
-	 * To get handle of the notifying event that will be signalled when there
+     * To get handle of the notifying event that will be signalled when there
      * is at least one entry in the queue.
-	 */
+     */
     virtual HANDLE getNotifyEvent(void) const = 0;
 
     /**
-	 * To set the current queue length
-	 */
+     * To set the current queue length
+     */
     virtual int setBufferSize(int& nSize) = 0;
 };
 
@@ -132,33 +132,33 @@ class CBaseMsgBufVVSE
 {
 public:
     /**
-	 * To write an entry into the circular queue
-	 */
+     * To write an entry into the circular queue
+     */
     virtual int writeIntoBuffer(INT nType, BYTE* ps_Msg, INT nSize)= 0;
 
     /**
-	 * To get the present queue length (number of entries)
-	 */
+     * To get the present queue length (number of entries)
+     */
     virtual int getMessageCount(void) const = 0;
 
     /**
-	 * To clear the queue. This doesn't remove the buffer, only clears it.
-	 */
+     * To clear the queue. This doesn't remove the buffer, only clears it.
+     */
     virtual void clearMessageBuffer(void) = 0;
 
     /**
-	 * To get handle of the notifying event that will be signalled when there
+     * To get handle of the notifying event that will be signalled when there
      * is at least one entry in the queue.
-	 */
+     */
     virtual HANDLE getNotifyEvent(void) const = 0;
 
     /**
-	 * To set the current queue length
-	 */
+     * To set the current queue length
+     */
     virtual int setBufferSize(int& nSize) = 0;
-    
-	/**
-	 * To read the nEntry'th element.
-	 */
+
+    /**
+     * To read the nEntry'th element.
+     */
     virtual HRESULT readEntry(int& nType, BYTE* pbyMsg, int& nSize, int nEntry, BOOL bSetNextIndexStartPos) = 0;
 };

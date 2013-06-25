@@ -31,12 +31,12 @@
 class CFormatMsgCAN : public CFormatMsgCommon
 {
 public:
-	void vFormatCANDataMsg(STCANDATA* pMsgCAN,
+    void vFormatCANDataMsg(STCANDATA* pMsgCAN,
                            SFORMATTEDDATA_CAN* CurrDataCAN,
                            BYTE bExprnFlag_Log);
 
 private:
     void vFormatTime(BYTE bExprnFlag, SFORMATTEDDATA_CAN* CurrDataCAN);
 
-	void vFormatDataAndId(BYTE bExprnFlag, SFORMATTEDDATA_CAN* CurrDataCAN);
+    void vFormatDataAndId(BYTE bExprnFlag, SFORMATTEDDATA_CAN* CurrDataCAN);
 };

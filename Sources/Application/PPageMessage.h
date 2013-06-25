@@ -30,7 +30,7 @@ public:
     CPPageMessage(BOOL bForDBMsg, ETYPE_BUS eBusType, CMsgSignal* pouMsgSigBUS);
     ~CPPageMessage();
 
-	// Dialog Data
+    // Dialog Data
     enum { IDD = IDD_PPAGE_MESSAGE };
     CMessageList    m_odMsgList;
     CButton m_ctrlRemove;

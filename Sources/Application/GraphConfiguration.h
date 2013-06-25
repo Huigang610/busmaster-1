@@ -28,14 +28,14 @@
 
 class CGraphConfiguration : public CDialog
 {
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
     // Local instance of View Style parameter
     CGraphParameters m_omGraphParams;
     eTYPE_BUS m_eBusType;
 
-	// standard constructor
+    // standard constructor
     CGraphConfiguration(CWnd* pParent = NULL);
 
     // Dialog Data

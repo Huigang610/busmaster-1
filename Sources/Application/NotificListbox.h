@@ -25,7 +25,7 @@
 
 class CNotificListbox : public CListBox
 {
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 protected:
     afx_msg void OnNotificwndSelectall();

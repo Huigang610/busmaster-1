@@ -24,24 +24,24 @@
 #pragma once
 
 /* Project includes */
-#include "Utility/FFListCtrl.h"	// For Flicker Free List Control Definiton
+#include "Utility/FFListCtrl.h" // For Flicker Free List Control Definiton
 
 class CSignalWatchListBox : public CFFListCtrl
 {
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
     CSignalWatchListBox();
 
-	void vUpdateParentWnd(HWND hParentWnd);
+    void vUpdateParentWnd(HWND hParentWnd);
 
     void OnChar(UINT nChar, UINT nRepeatCount, UINT nflags);
     void OnKeyDown(UINT nChar, UINT nRepeatCount, UINT nflags);
-	
+
 protected:
     afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
     afx_msg void OnSgWatchClear();
 
 private:
-	HWND m_hParentWnd;
+    HWND m_hParentWnd;
 };

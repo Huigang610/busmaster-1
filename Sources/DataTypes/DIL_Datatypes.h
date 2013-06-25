@@ -39,7 +39,8 @@ const UINT64 J1939_ECU_NAME     = 0x8000000000000001;
 const BYTE MSGBUF_ADD = 0x1;
 const BYTE MSGBUF_CLEAR = 0x0;
 
-enum ECONTR_STATUS : unsigned short
+enum ECONTR_STATUS :
+unsigned short
 {
     RESET_STATE = 0,    // reset
     INITIALISED,        // stopped / initialized
@@ -93,9 +94,9 @@ public:
     unsigned long  interfaceId;
     unsigned long  vendor;
     unsigned char  networkId;
-	std::string    interfaceName;
-	std::string    description;
-	std::string    deviceName;
+    std::string    interfaceName;
+    std::string    description;
+    std::string    deviceName;
 
     InterfaceHardware()
     {
@@ -134,7 +135,7 @@ typedef InterfaceHardware InterfaceHardwareList[defNO_OF_CHANNELS];
 class DriverInfo
 {
 public:
-	std::string    name;
+    std::string    name;
     unsigned long  driverId;
     unsigned int   resourceId;
 

@@ -34,8 +34,8 @@ public:
     // To extend the sign bit of a signal to get 64 bit euavelent value
     static void s_vExtendSignBit( __int64& n64Val, int nSize);
 
-	static void MakeRelativePath(const char* currentDirectory, char* absoluteFilename, std::string& omStrRelativeParh);
-	static INT nGetBaseFolder(const char* omConfigFileName, std::string& omStrConfigFolder);
+    static void MakeRelativePath(const char* currentDirectory, char* absoluteFilename, std::string& omStrRelativeParh);
+    static INT nGetBaseFolder(const char* omConfigFileName, std::string& omStrConfigFolder);
 protected:
 
     // Make constructor as private so that object can not be created for this class

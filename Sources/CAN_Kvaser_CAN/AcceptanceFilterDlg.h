@@ -35,7 +35,7 @@ public:
                          PSCONTROLLER_DETAILS psAccFilterInfo = NULL);
     virtual ~CAcceptanceFilterDlg();
 
-	// Dialog Data
+    // Dialog Data
     enum { IDD = IDD_DLG_ACCEPTANCE };
     CRadixEdit  m_omEditAccMaskByte4;
     CRadixEdit  m_omEditAccMaskByte3;

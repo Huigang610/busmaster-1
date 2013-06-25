@@ -87,7 +87,7 @@ protected:
     BOOL   m_bIsActive;
     HANDLE m_hTimer;
 
-	void vSendFrame(UCHAR ucFrameLen, BYTE* pFrameData, UINT unID, UINT unChannel);
+    void vSendFrame(UCHAR ucFrameLen, BYTE* pFrameData, UINT unID, UINT unChannel);
     virtual void vProcConRequestMsg(const STCAN_MSG& sCanMsg);
 
 private:
@@ -110,7 +110,7 @@ private:
     PCLBCK_FN_BC_LDATA_IND  m_pClBckBcLDataInd;
     PCLBCK_FN_NM_ACL        m_pClBckNM_ACL;
 
-	void vTransmitLongData(short sDataLength, BYTE* pbData, CConnectionDet* pConDet);
+    void vTransmitLongData(short sDataLength, BYTE* pbData, CConnectionDet* pConDet);
     INT nIsMsgSentSuccess(UINT32 unExtId, BYTE* pbyData, UINT unNoOfPackets,
                           UINT unLastFrameLen, CConnectionDet* pConDet, UINT unChannel);
     VOID vSendMsgWithoutAckReq(UCHAR ucFrameLen, BYTE* pFrameData,

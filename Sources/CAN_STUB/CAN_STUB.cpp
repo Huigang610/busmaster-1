@@ -130,7 +130,7 @@ public:
     HANDLE hClientHandle;
     HANDLE hPipeFileHandle;
     CBaseCANBufFSE* pClientBuf[MAX_BUFF_ALLOWED];
-	std::string pacClientName;
+    std::string pacClientName;
     UINT unBufCount;
     SCLIENTBUFMAP()
     {
@@ -782,7 +782,7 @@ HRESULT CDIL_CAN_STUB::setConfigurationData(PSCONTROLLER_DETAILS ConfigFile, int
     /* Fill the hardware description details */
     for (UINT nCount = 0; nCount < defNO_OF_CHANNELS; nCount++)
     {
-        ((PSCONTROLLER_DETAILS)ConfigFile)[nCount].m_omHardwareDesc =
+        ((PSCONTROLLER_DETAILS)ConfigFile)[nCount].hardwareDescription =
             "Simulation";
     }
 
@@ -1103,7 +1103,7 @@ HRESULT Worker_Connect(ISimENG* pISimENGLoc, Base_WrapperErrorLogger* pIlogLoc)
     else if (GetCurrState() != STATE_INITIALISED)
     {
         sg_pIlog->logMessage(__FILE__, __LINE__,
-                               (_("CAN_STUB_Connect called at improper state")));
+                             (_("CAN_STUB_Connect called at improper state")));
         return S_FALSE;
     }
 
@@ -1123,7 +1123,7 @@ HRESULT Worker_Connect(ISimENG* pISimENGLoc, Base_WrapperErrorLogger* pIlogLoc)
             sg_asClientToBufMap[i].hPipeFileHandle = NULL;
         }
         sg_pIlog->logMessage(__FILE__, __LINE__,
-                               (_("Unable to start the reading thread")));
+                             (_("Unable to start the reading thread")));
         return S_FALSE;
     }
 
@@ -1142,7 +1142,7 @@ HRESULT Worker_Disconnect(ISimENG* /*pISimENGLoc*/, Base_WrapperErrorLogger* pIl
     else if (GetCurrState() == STATE_RESET)
     {
         pIlogLoc->logMessage(__FILE__, __LINE__,
-                               (_("CAN_STUB_DeselectHwInterface called at improper state")));
+                             (_("CAN_STUB_DeselectHwInterface called at improper state")));
         return S_FALSE;
     }
 
@@ -1181,7 +1181,7 @@ HRESULT Worker_StopHardware(ISimENG* pISimENGLoc, Base_WrapperErrorLogger* pIlog
     {
         if ( pIlogLoc )
             pIlogLoc->logMessage(__FILE__, __LINE__,
-                                   (_("CAN_STUB_StopHardware called at improper state")));
+                                 (_("CAN_STUB_StopHardware called at improper state")));
     }
 
     return hResult;
@@ -1204,7 +1204,7 @@ HRESULT Worker_StartHardware(ISimENG* pISimENGLoc, Base_WrapperErrorLogger* pIlo
     else
     {
         pIlogLoc->logMessage(__FILE__, __LINE__,
-                               (_("CAN_STUB_StartHardware called at improper state")));
+                             (_("CAN_STUB_StartHardware called at improper state")));
     }
 
     return hResult;
@@ -1236,7 +1236,7 @@ HRESULT Worker_RegisterClient(ISimENG* pISimENG, Base_WrapperErrorLogger* pIlog)
     if (hResult != S_OK)
     {
         pIlog->logMessage(__FILE__, __LINE__,
-                            (_("Unable to register to the simulation engine")));
+                          (_("Unable to register to the simulation engine")));
         return S_FALSE;
     }
 
@@ -1260,7 +1260,7 @@ HRESULT Worker_RegisterClient(ISimENG* pISimENG, Base_WrapperErrorLogger* pIlog)
         // Unregister from the simulation engine
         pISimENG->UnregisterClient(ushClientID);
         pIlog->logMessage(__FILE__, __LINE__,
-                            (_("Can't convert from BSTR to ASCII string")));
+                          (_("Can't convert from BSTR to ASCII string")));
         return S_FALSE;
     }
 

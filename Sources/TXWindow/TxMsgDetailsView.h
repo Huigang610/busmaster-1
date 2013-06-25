@@ -61,7 +61,7 @@ public:
     int     m_nRBTNFrameFormat;
     int     m_nChannelID;
 
-	CMsgSignal* m_pouDBPtr;
+    CMsgSignal* m_pouDBPtr;
     void vSetMsgDBPtr(void* pMsgDB);
     // To set given CAN values in to GUI
     void vSetValues(STXCANMSGDETAILS* psTxMsg);
@@ -97,7 +97,7 @@ protected:
 
     afx_msg void vCallApplyChanges();
     afx_msg void vAutoUpdateModifyChanges();
-	afx_msg void OnEditchangeCombMsgIdName();
+    afx_msg void OnEditchangeCombMsgIdName();
     afx_msg void OnSelchangeCombMsgIdName();
     afx_msg void OnUpdateEditDLC();
     afx_msg void OnUpdateEditDataBytes();

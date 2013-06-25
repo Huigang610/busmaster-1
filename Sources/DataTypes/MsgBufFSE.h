@@ -41,116 +41,116 @@ public:
     CMsgBufFSE();
     ~CMsgBufFSE();
 
-	/**
-	 * @brief To read an entry from the circular queue
-	 * @param[out] psMsgBuffer The target message entry.
-	 * @return EMPTY_APP_BUFFER if buffer is empty; else CALL_SUCCESS.
-	 *
-	 * Reads a message entry and advances the read index. On
-	 * successful reading operation the present entry is
-	 * invalidated to make room for a new entry.
-	 */
+    /**
+     * @brief To read an entry from the circular queue
+     * @param[out] psMsgBuffer The target message entry.
+     * @return EMPTY_APP_BUFFER if buffer is empty; else CALL_SUCCESS.
+     *
+     * Reads a message entry and advances the read index. On
+     * successful reading operation the present entry is
+     * invalidated to make room for a new entry.
+     */
     HRESULT readFromBuffer(SMSGBUFFER* psMsgBuffer);
 
-	/**
-	 * @brief To read an entry from the circular queue
-	 * @param[out] psMsgBuffer The target message entry.
-	 * @return EMPTY_APP_BUFFER if buffer is empty; else CALL_SUCCESS.
-	 *
-	 * Reads a message entry and advances the read index. On
-	 * successful reading operation the present entry is
-	 * invalidated to make room for a new entry.
-	 */
-	HRESULT readFromBuffer(SMSGBUFFER* psMsgBuffer, __int64 nSlotId);
-
-	/**
-	 * @brief To read an entry from the circular queue
-	 * @param[out] psMsgBuffer The target message entry.
-	 * @return EMPTY_APP_BUFFER if buffer is empty; else CALL_SUCCESS.
-	 *
-	 * Reads a message entry and advances the read index. On
-	 * successful reading operation the present entry is
-	 * invalidated to make room for a new entry.
-	 */
-	HRESULT readFromBuffer(SMSGBUFFER* psMsgBuffer, int nIndex);
-
-	/**
-	 * @brief To write an entry into the circular queue
-	 * @param[in] psMsgBuffer The source message entry.
-	 * @return ERR_FULL_APP_BUFFER if buffer is full; else CALL_SUCCESS.
-     *
-	 * Writes a message entry and advances the write index.
-	 */
-	HRESULT writeIntoBuffer(SMSGBUFFER* psMsgBuffer);
-
-	/**
-	 * Writes a message entry and advances the write index.
-	 *
-	 * @param[in] psMsgBuffer The source message entry.
-	 * @return ERR_FULL_APP_BUFFER if buffer is full; else CALL_SUCCESS.
-	 */
-	HRESULT writeIntoBuffer(const SMSGBUFFER* psMsgBuffer, __int64 nSlotId, int& nIndex);
-
-	/**
-	 * Returns the number of unread entries in the queue.
-	 *
-	 * @return Number of message entries
-	 */
-    int getMessageCount(void) const;
-    
     /**
-	 * To set the current queue length
-	 */
-	int setBufferSize(int nMsgDataSize);
+     * @brief To read an entry from the circular queue
+     * @param[out] psMsgBuffer The target message entry.
+     * @return EMPTY_APP_BUFFER if buffer is empty; else CALL_SUCCESS.
+     *
+     * Reads a message entry and advances the read index. On
+     * successful reading operation the present entry is
+     * invalidated to make room for a new entry.
+     */
+    HRESULT readFromBuffer(SMSGBUFFER* psMsgBuffer, __int64 nSlotId);
 
-	/**
-	 * Clears the message buffer and resets the indices.
-	 */
+    /**
+     * @brief To read an entry from the circular queue
+     * @param[out] psMsgBuffer The target message entry.
+     * @return EMPTY_APP_BUFFER if buffer is empty; else CALL_SUCCESS.
+     *
+     * Reads a message entry and advances the read index. On
+     * successful reading operation the present entry is
+     * invalidated to make room for a new entry.
+     */
+    HRESULT readFromBuffer(SMSGBUFFER* psMsgBuffer, int nIndex);
+
+    /**
+     * @brief To write an entry into the circular queue
+     * @param[in] psMsgBuffer The source message entry.
+     * @return ERR_FULL_APP_BUFFER if buffer is full; else CALL_SUCCESS.
+     *
+     * Writes a message entry and advances the write index.
+     */
+    HRESULT writeIntoBuffer(SMSGBUFFER* psMsgBuffer);
+
+    /**
+     * Writes a message entry and advances the write index.
+     *
+     * @param[in] psMsgBuffer The source message entry.
+     * @return ERR_FULL_APP_BUFFER if buffer is full; else CALL_SUCCESS.
+     */
+    HRESULT writeIntoBuffer(const SMSGBUFFER* psMsgBuffer, __int64 nSlotId, int& nIndex);
+
+    /**
+     * Returns the number of unread entries in the queue.
+     *
+     * @return Number of message entries
+     */
+    int getMessageCount(void) const;
+
+    /**
+     * To set the current queue length
+     */
+    int setBufferSize(int nMsgDataSize);
+
+    /**
+     * Clears the message buffer and resets the indices.
+     */
     void clearMessageBuffer(void);
 
-	/**
-	 * Returns handle of the event that gets signalled when
-	 * a message entry is added.
-	 *
-	 * @return The notifying event handle
-	 */
-	HANDLE getNotifyEvent(void) const;
+    /**
+     * Returns handle of the event that gets signalled when
+     * a message entry is added.
+     *
+     * @return The notifying event handle
+     */
+    HANDLE getNotifyEvent(void) const;
 
 protected:
-	/**
-	 * The data buffer
-	 */
+    /**
+     * The data buffer
+     */
     SMSGBUFFER m_asMsgBuffer[SIZE_APP_BUFFER];
 
-	/**
-	 * To make it thread safe
-	 */
+    /**
+     * To make it thread safe
+     */
     CRITICAL_SECTION m_CritSectionForGB;
 
-	/**
-	 * Current read index
-	 */
+    /**
+     * Current read index
+     */
     int m_nIndexRead;
 
-	/**
-	 * Current write index
-	 */
+    /**
+     * Current write index
+     */
     int m_nIndexWrite;
 
-	/**
-	 * Number of message entries
-	 */
+    /**
+     * Number of message entries
+     */
     int m_nMsgCount;
 
-	/**
-	 * At the beginning we need to store size of a message entry.
-	 * This information will be used frequently.
-	 */
+    /**
+     * At the beginning we need to store size of a message entry.
+     * This information will be used frequently.
+     */
     int m_nMsgSize;
 
-	/**
-	 * Event to be signalled when there is at least one message
-	 */
+    /**
+     * Event to be signalled when there is at least one message
+     */
     HANDLE m_hNotifyingEvent;
 };
 

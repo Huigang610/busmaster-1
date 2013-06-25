@@ -46,7 +46,7 @@ public:
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	// Generated message map functions
+    // Generated message map functions
     virtual BOOL OnInitDialog();
     afx_msg void OnBtnConfigure();
 

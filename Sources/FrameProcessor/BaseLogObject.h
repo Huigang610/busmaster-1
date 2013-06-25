@@ -33,179 +33,179 @@ public:
     ~CBaseLogObject();
 
     /**
-	 * Equal operator. THERE SHOULDN'T BE ANY EQUAL OPERATOR OVERLOADING FOR
+     * Equal operator. THERE SHOULDN'T BE ANY EQUAL OPERATOR OVERLOADING FOR
      * THE DERIVED CLASSES
-	 */
+     */
     CBaseLogObject& operator=(const CBaseLogObject& RefObj);
 
     /**
-	 * To do actions before logging starts
-	 */
+     * To do actions before logging starts
+     */
     BOOL bStartLogging(ETYPE_BUS);
 
     void vCloseLogFile();
 
     /**
-	 * To do actions before logging stop
-	 */
+     * To do actions before logging stop
+     */
     BOOL bStopLogging(void);
 
     BOOL bStopOnlyLogging(void);
 
     /**
-	 * To log a string
-	 */
+     * To log a string
+     */
     BOOL bLogString(CString& omString);
 
     /**
-	 * Enable / disable filter
-	 */
+     * Enable / disable filter
+     */
     virtual void EnableFilter(BOOL bEnable) = 0;
 
-	/**
-	 * Enable / disable logging
-	 */
+    /**
+     * Enable / disable logging
+     */
     void EnableLogging(BOOL bEnable);
 
     /**
-	 * Query - if logging is enable
-	 */
+     * Query - if logging is enable
+     */
     BOOL IsLoggingEnable(void);
 
     /**
-	 * Get the log info structure
-	 */
+     * Get the log info structure
+     */
     void GetLogInfo(SLOGINFO& sLoginfo) const;
-    
-	/**
-	 * Set Log info structure
-	 */
+
+    /**
+     * Set Log info structure
+     */
     void SetLogInfo(const SLOGINFO& sLoginfo);
 
     /**
-	 * Set configuration data
-	 */
+     * Set configuration data
+     */
     BYTE* SetConfigData(BYTE* pvDataStream, BYTE bytLogVersion);
 
     /**
-	 * Set configuration data
-	 */
-	INT nSetConfigData(xmlNodePtr pNode);
-
-	/**
-	 * Get configuration data
-	 */
-    BYTE* GetConfigData(BYTE* pvDataStream) const;
-
-	/**
-	 * Get configuration data
-	 */
-	BOOL GetConfigData(xmlNodePtr pxmlNodePtr) const;
+     * Set configuration data
+     */
+    INT nSetConfigData(xmlNodePtr pNode);
 
     /**
-	 * To get the total buffer size
-	 */
+     * Get configuration data
+     */
+    BYTE* GetConfigData(BYTE* pvDataStream) const;
+
+    /**
+     * Get configuration data
+     */
+    BOOL GetConfigData(xmlNodePtr pxmlNodePtr) const;
+
+    /**
+     * To get the total buffer size
+     */
     UINT unGetBufSize(void) const;
 
     /**
-	 * To get the ID
-	 */
+     * To get the ID
+     */
     UINT GetID(void);
 
     /**
-	 * To get the list of associated database files
-	 */
+     * To get the list of associated database files
+     */
     virtual void Der_GetDatabaseFiles(CStringArray& omList) = 0;
 
-	/**
-	 * To set the list of database files associated
-	 */
+    /**
+     * To set the list of database files associated
+     */
     virtual void Der_SetDatabaseFiles(const CStringArray& omList) = 0;
 
     /**
-	 * To get the list of associated database files
-	 */
+     * To get the list of associated database files
+     */
     void GetDatabaseFiles(CStringArray& omList);
 
     /**
-	 * To set the list of database files associated
-	 */
+     * To set the list of database files associated
+     */
     void SetDatabaseFiles(const CStringArray& omList);
 
     /**
-	 * To update the channel baud rate info to logger
-	 */
+     * To update the channel baud rate info to logger
+     */
     virtual void Der_SetChannelBaudRateDetails(SCONTROLLER_DETAILS* controllerDetails,
             int nNumChannels) = 0;
 
-	/**
-	 * To update the channel baud rate info to logger
-	 */
+    /**
+     * To update the channel baud rate info to logger
+     */
     void SetChannelBaudRateDetails(SCONTROLLER_DETAILS* controllerDetails,
                                    int nNumChannels);
 
-	/**
-	 * To update the channel baud rate info to logger
-	 */
+    /**
+     * To update the channel baud rate info to logger
+     */
     virtual void Der_GetChannelBaudRateDetails(SCONTROLLER_DETAILS* controllerDetails,
             int& nNumChannels) = 0;
 
-	/**
-	 * To get the channel baud rate
-	 */
+    /**
+     * To get the channel baud rate
+     */
     void GetChannelBaudRateDetails(SCONTROLLER_DETAILS* controllerDetails,
                                    int& nNumChannels);
 
 protected:
     /**
-	 * All log info
-	 */
+     * All log info
+     */
     SLOGINFO m_sLogInfo;
 
     /**
-	 * File pointer
-	 */
+     * File pointer
+     */
     FILE* m_pLogFile;
 
     /**
-	 * Current trigger type
-	 */
+     * Current trigger type
+     */
     LogTriggerState m_CurrTriggerType;
 
     /**
-	 * To format the header
-	 */
+     * To format the header
+     */
     virtual void vFormatHeader(CString& omHeader, ETYPE_BUS);
 
     /**
-	 * To format the footer
-	 */
+     * To format the footer
+     */
     virtual void vFormatFooter(CString& omFooter);
 
     void vWriteTextToFile(CString& om_LogText, ETYPE_BUS);
 
     /**
-	 * To copy specific data pertaining to the conrete class.
-	 */
+     * To copy specific data pertaining to the conrete class.
+     */
     virtual void Der_CopySpecificData(const CBaseLogObject* pouLogObjSrc) = 0;
 
     /**
-	 * Set config. data - additional tasks to be done by the concrete class
-	 */
+     * Set config. data - additional tasks to be done by the concrete class
+     */
     virtual BYTE* Der_SetConfigData(BYTE* pvDataStream) = 0;
 
-	virtual void Der_GetConfigData(xmlNodePtr pNodePtr) const = 0;
-    
-	virtual int Der_SetConfigData(xmlNodePtr) = 0;
-    
-	/**
-	 * Get config. data - additional tasks to be done by the concrete class
-	 */
+    virtual void Der_GetConfigData(xmlNodePtr pNodePtr) const = 0;
+
+    virtual int Der_SetConfigData(xmlNodePtr) = 0;
+
+    /**
+     * Get config. data - additional tasks to be done by the concrete class
+     */
     virtual BYTE* Der_GetConfigData(BYTE* pvDataStream) const = 0;
-    
-	/**
-	 * Buffer size calculation - additional tasks to be done by the concrete class
-	 */
+
+    /**
+     * Buffer size calculation - additional tasks to be done by the concrete class
+     */
     virtual UINT Der_unGetBufSize(void) const = 0;
 
 private:
@@ -217,21 +217,21 @@ private:
     BOOL m_bNewSession;             /**< For file overwriting in new session */
 
     /**
-	 * Find the name and size of the file which will be used for logging.
+     * Find the name and size of the file which will be used for logging.
      * i.e., file name which contains max file count
-	 */
+     */
     void vGetNameAndSizeOfCurrentLogFile();
-    
-	DWORD dwGetFileSize(CString omFileName); // Get size of the file
-    
-	CString omAddGroupCountToFileName(int nCount, char FileName[]);
-    
-	CString omRemoveGroupCountFromFileName(CString FileName);
-    
-	void vSetNextFileName(void);
-    
-	/**
-	 * Reset certain data member values
-	 */
+
+    DWORD dwGetFileSize(CString omFileName); // Get size of the file
+
+    CString omAddGroupCountToFileName(int nCount, char FileName[]);
+
+    CString omRemoveGroupCountFromFileName(CString FileName);
+
+    void vSetNextFileName(void);
+
+    /**
+     * Reset certain data member values
+     */
     void vResetValues(void);
 };

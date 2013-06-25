@@ -30,7 +30,7 @@ class CGraphExportDlg : public CDialog
 public:
     CGraphExportDlg(CWnd* pParent = NULL);   // standard constructor
 
-	// Dialog Data
+    // Dialog Data
     enum { IDD = IDD_DLG_GRAPH_EXPORT };
     CString m_omStrCSVFileName;
     CString m_omStrHTMLFileName;

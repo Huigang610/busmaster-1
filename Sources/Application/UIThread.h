@@ -53,6 +53,6 @@ protected:
     // To update the window status from the configuration file
     afx_msg void vUpdateWinStatusFromCfg(UINT, LONG);
     afx_msg void vWriteTextToTrace(UINT, LONG);
-	// To process thread messages
+    // To process thread messages
     afx_msg void vProcessThreadMsg(UINT, LONG);
 };

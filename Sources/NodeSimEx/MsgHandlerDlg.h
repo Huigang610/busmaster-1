@@ -33,7 +33,7 @@
 
 class CMsgHandlerDlg : public CDialog
 {
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
     CString m_omStrSelectedItemText;
@@ -70,7 +70,7 @@ private:
     CString m_omStrMsgIDFrom;
     CString m_omStrMsgIDTo;
 
-	ETYPE_BUS m_eBus;
+    ETYPE_BUS m_eBus;
 
     BOOL bAddMessageNameInListBox(const CStringArray* pomStrArray,
                                   const CString& omStrMessageName);

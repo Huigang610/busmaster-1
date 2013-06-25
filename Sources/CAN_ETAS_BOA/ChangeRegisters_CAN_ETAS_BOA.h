@@ -38,11 +38,10 @@ class CChangeRegisters_CAN_ETAS_BOA : public CDialog
 
 public:
     CChangeRegisters_CAN_ETAS_BOA(CWnd* pParent = NULL, PSCONTROLLER_DETAILS psControllerDetails = NULL, UINT nHardwareCount = 0);
-    virtual ~CChangeRegisters_CAN_ETAS_BOA();
 
     /**
-	 * To Fill controller information taken from configuration module
-	 */
+     * To Fill controller information taken from configuration module
+     */
     BOOL   bFillControllerConfig();
     BOOL bSetBaudRateFromCom(int nChannel,BYTE bBTR0,BYTE bBTR1);
     BOOL bGetBaudRateFromCom(int nChannel,BYTE& bBTR0,BYTE& bBTR1);
@@ -74,7 +73,7 @@ protected:
     CComboBox m_omCtrlSJW;
     CImageList m_omChannelImageList;
 
-    /*CAN FD Parameters */
+    /* CAN FD Parameters */
     CString m_omstrDataBitRate;
     CString m_omstrDataSamplePoint;
     CString m_omstrDataBTL_Cycles;
@@ -104,8 +103,8 @@ private:
     virtual BOOL OnInitDialog();
 
     /**
-	 * Pointer to hold controller information
-	 */
+     * Pointer to hold controller information
+     */
     SCONTROLLER_DETAILS m_pControllerDetails[defNO_OF_CHANNELS];
     PSCONTROLLER_DETAILS psMainContrDets;
     int m_nLastSelection;

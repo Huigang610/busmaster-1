@@ -84,7 +84,7 @@ private:
     CImageList*  imageList;
     CString m_strVersionInfo;
 
-	VOID vInitialise(void);
+    VOID vInitialise(void);
     VOID vUpdateTreeView(void);
     BOOL bParseTestSetup(INT nIndex);
 };

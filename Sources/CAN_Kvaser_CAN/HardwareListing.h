@@ -27,8 +27,8 @@
 #include <map>
 
 /* Project includes */
-#include "CAN_Kvaser_CAN_resource.h"	// For resource symbols
-#include "DataTypes/DIL_Datatypes.h"	// For DIL datatypes
+#include "CAN_Kvaser_CAN_resource.h"    // For resource symbols
+#include "DataTypes/DIL_Datatypes.h"    // For DIL datatypes
 #include "Include/CanUsbDefs.h"
 
 class CHardwareListing : public CDialog
@@ -67,7 +67,7 @@ public:
         int                 m_omDriverId;
         CString             m_omHardwareName;
         CString             m_omFirmware;
-        CString             m_omHardwareDesc;
+        CString             hardwareDescription;
 
     } HARDWARE_CONTAINER, *PHARDWARE_CONTAINER;
 

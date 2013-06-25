@@ -28,9 +28,9 @@
 #endif
 
 
-#include "GraphElement.h"	// For Graph Element class
-#include "MessageList.h"	// For Color ListCtrl class definition
-#include "Utility/ColorSelector.h"	// For Color Pocker class definition
+#include "GraphElement.h"   // For Graph Element class
+#include "MessageList.h"    // For Color ListCtrl class definition
+#include "Utility/ColorSelector.h"  // For Color Pocker class definition
 
 class CGraphLeftView : public CFormView
 {
@@ -56,7 +56,7 @@ public:
     void vPopulateGraphControl();
     virtual void OnInitialUpdate();
 
-	int m_nLineDisplay;
+    int m_nLineDisplay;
     HRESULT GetCurrentElement(IDMGraphCtrl* pGraphCtrl, IDMGraphElement** ppGraphElement);
 
 protected:
@@ -65,7 +65,7 @@ protected:
 
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	virtual ~CGraphLeftView();
+    virtual ~CGraphLeftView();
 
 #ifdef _DEBUG
     virtual void AssertValid() const;

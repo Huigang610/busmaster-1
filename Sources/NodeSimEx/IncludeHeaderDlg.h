@@ -43,5 +43,5 @@ protected:
     afx_msg void OnCancel();
 
 private:
-	CFunctionEditorDoc* m_pDoc;
+    CFunctionEditorDoc* m_pDoc;
 };

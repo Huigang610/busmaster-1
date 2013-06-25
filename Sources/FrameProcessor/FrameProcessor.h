@@ -25,9 +25,9 @@
 
 class CFrameProcessorApp : public CWinApp
 {
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
     virtual BOOL InitInstance();
-	virtual int ExitInstance();
+    virtual int ExitInstance();
 };

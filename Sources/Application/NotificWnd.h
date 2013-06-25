@@ -42,7 +42,7 @@ class CNotificWnd : public CMDIChildBase
 public:
     CNotificWnd();           // public constructor used by dynamic creation
 
-	// Set the font of window
+    // Set the font of window
     BOOL bCreateNotificWindow(CMDIFrameWnd* pomParentWnd);
     // To display a string into trace window
     void vDisplayString(const CString& omStr);
@@ -51,7 +51,7 @@ public:
 protected:
     virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
 
-	// Generated message map functions
+    // Generated message map functions
     afx_msg void OnDestroy();
     afx_msg void OnTimer(UINT nIDEvent);
     afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);

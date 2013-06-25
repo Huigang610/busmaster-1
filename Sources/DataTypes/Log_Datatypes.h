@@ -46,14 +46,14 @@ typedef struct tagLogTrigger
 {
     LogTriggerState triggerType;
 
-	/**
-	 * Start Trigger ID
-	 */
+    /**
+     * Start Trigger ID
+     */
     UINT startId;
 
-	/**
-	 * Stop Trigger ID
-	 */
+    /**
+     * Stop Trigger ID
+     */
     UINT stopId;
 } SLOGTRIGGER, *PSLOGTRIGGER;
 
@@ -68,80 +68,80 @@ typedef struct tagLogInfo
 {
     tagLogInfo();
 
-	/**
-	 * Logging block identifier
-	 */
+    /**
+     * Logging block identifier
+     */
     USHORT m_ushID;
 
-	/**
-	 * To indicate if it needs updation
-	 */
+    /**
+     * To indicate if it needs updation
+     */
     BOOL m_bIsUpdated;
 
-	/**
-	 * To indicate if its enabled
-	 */
+    /**
+     * To indicate if its enabled
+     */
     BOOL m_bEnabled;
 
-	/**
-	 * The time mode - system / relative
-	 */
+    /**
+     * The time mode - system / relative
+     */
     eTimerMode m_eLogTimerMode;
 
-	/**
-	 * Numeric mode - hexadecimal / decimal
-	 */
+    /**
+     * Numeric mode - hexadecimal / decimal
+     */
     eFormat m_eNumFormat;
 
-	/**
-	 * Mode - overwrite / append
-	 */
+    /**
+     * Mode - overwrite / append
+     */
     eMode m_eFileMode;
 
-	/**
-	 * To indicate if Absolute Time Stamp is Reseted
-	 */
+    /**
+     * To indicate if Absolute Time Stamp is Reseted
+     */
     BOOL m_bResetAbsTimeStamp;
 
-	/**
-	 * The current channel
-	 */
+    /**
+     * The current channel
+     */
     TYPE_CHANNEL m_ChannelSelected;
 
-	/**
-	 * Log file name with absolute path
-	 */
+    /**
+     * Log file name with absolute path
+     */
     char m_sLogFileName[_MAX_PATH];
 
-	/**
-	 * The triggering condition
-	 */
+    /**
+     * The triggering condition
+     */
     SLOGTRIGGER m_sLogTrigger;
 
-	/**
-	 * To clear the logging information
-	 */
+    /**
+     * To clear the logging information
+     */
     void vClear(void);
 
-	/**
-	 * To get the size of the block in bytes
-	 */
+    /**
+     * To get the size of the block in bytes
+     */
     UINT unGetSize(void) const;
 
-	/**
-	 * To get configuration data
-	 */
+    /**
+     * To get configuration data
+     */
     BYTE* pbGetConfigData(BYTE* pbTarget) const;
 
-	/**
-	 * To get configuration data
-	 */
+    /**
+     * To get configuration data
+     */
     BOOL pbGetConfigData(xmlNodePtr pxmlNodePtr) const;
 
-	/**
-	 * To set configuration data
-	 */
+    /**
+     * To set configuration data
+     */
     BYTE* pbSetConfigData(BYTE* pbTarget, BYTE bytLogVersion);
 
-	INT nSetConfigData(xmlNodePtr pNode);
+    INT nSetConfigData(xmlNodePtr pNode);
 } SLOGINFO;

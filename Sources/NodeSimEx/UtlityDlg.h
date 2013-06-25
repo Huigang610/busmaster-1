@@ -43,7 +43,7 @@ public:
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	afx_msg void OnOk();
+    afx_msg void OnOk();
     afx_msg void OnCbnSelchangeCombFnReturnType();
     afx_msg void OnChangeEditFnPrototype();
     afx_msg void OnCancel();
@@ -52,6 +52,6 @@ protected:
 private:
     CFunctionEditorDoc* m_pDoc;
 
-	BOOL m_bChangeUtilFunc;
+    BOOL m_bChangeUtilFunc;
     CString m_omStrTempReturnType;
 };

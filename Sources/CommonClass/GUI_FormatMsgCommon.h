@@ -31,27 +31,27 @@ class CFormatMsgCommon: public CRefTimeKeeper
 public:
     CFormatMsgCommon(void);
 
-	/**
-	 * Format time details
-	 *
-	 * @param[in] bExprnFlag
-	 *   Details of time mode
-	 * @param[in] TimeStamp
-	 *   Msg time stamp, Rel time in case of Rel. mode
-	 * @param[in] acTime 
-	 *   Buffer to store formatted time
-	 */
-	void vCalculateAndFormatTM(BYTE bExprnFlag, UINT64 TimeStamp,char acTime[]);
+    /**
+     * Format time details
+     *
+     * @param[in] bExprnFlag
+     *   Details of time mode
+     * @param[in] TimeStamp
+     *   Msg time stamp, Rel time in case of Rel. mode
+     * @param[in] acTime
+     *   Buffer to store formatted time
+     */
+    void vCalculateAndFormatTM(BYTE bExprnFlag, UINT64 TimeStamp,char acTime[]);
 
-	void vCalAndFormatTM_Offline(BYTE bExprnFlag,  UINT64 TimeStamp, char acTime[]);
+    void vCalAndFormatTM_Offline(BYTE bExprnFlag,  UINT64 TimeStamp, char acTime[]);
 
 protected:
-	/**
-	 * @brief      Format Time Stamp
-	 * @param[in]  dwTimeStamp time stamp to be formatted
-	 * @param[out] acTime Buffer to store formatted time
-	 *
-	 * Format Time Stamp
-	 */
-	void vFormatTimeStamp(DWORD dwTimeStamp, char acTime[]);
+    /**
+     * @brief      Format Time Stamp
+     * @param[in]  dwTimeStamp time stamp to be formatted
+     * @param[out] acTime Buffer to store formatted time
+     *
+     * Format Time Stamp
+     */
+    void vFormatTimeStamp(DWORD dwTimeStamp, char acTime[]);
 };

@@ -501,7 +501,7 @@ LONG CNetworkMgmt::lCreateNodeConManager(char* pacNodeName,
             if ( _tcscmp(pacNodeName, J1939_MONITOR_NODE) == 0 )
             {
                 hResult = m_pIDIL_CAN->registerClient(TRUE, dwClientId,
-                          CAN_MONITOR_NODE);
+                                                      CAN_MONITOR_NODE);
                 m_dwCANMonitorNodeClientId = dwClientId;
                 if (hResult == ERR_CLIENT_EXISTS)
                 {
@@ -511,7 +511,7 @@ LONG CNetworkMgmt::lCreateNodeConManager(char* pacNodeName,
             else
             {
                 hResult = m_pIDIL_CAN->registerClient(TRUE, dwClientId,
-                          pacNodeName);
+                                                      pacNodeName);
             }
             //ASSERT(hResult == S_OK);
             if ((hResult == S_OK) || (hResult == ERR_CLIENT_EXISTS))

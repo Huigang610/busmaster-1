@@ -147,9 +147,9 @@ public:
         dispidUnRegisterClient        = 58L
     };
 
-	/**
-	 * Connect/disconnect the tool
-	 */
+    /**
+     * Connect/disconnect the tool
+     */
     HRESULT Connect(BOOL bConnect)
     {
         HRESULT hResult = E_POINTER;
@@ -177,8 +177,8 @@ public:
     }
 
     /**
-	 * Provide's the error count
-	 */
+     * Provide's the error count
+     */
     HRESULT GetErrorCounter(UCHAR* Tx, UCHAR* Rx, INT nChannel)
     {
         HRESULT hResult = E_POINTER;
@@ -204,10 +204,10 @@ public:
     }
 
     /**
-	 * sends the message to registered clients
-	 *
-	 * @param[in] sMsg message details
-	 */
+     * sends the message to registered clients
+     *
+     * @param[in] sMsg message details
+     */
     void vSendCANMsgToClients(CAN_MSGS sMsg)
     {
         const CPtrArray* pConnections = m_xAppEvents.GetConnections ();
@@ -228,10 +228,10 @@ public:
     }
 
     /**
-	 * sends the message
-	 *
-	 * @param[in] psMsg message details
-	 */
+     * sends the message
+     *
+     * @param[in] psMsg message details
+     */
     HRESULT SendCANMSg(CAN_MSGS* psMsg)
     {
         HRESULT hResult = E_POINTER;
@@ -254,18 +254,18 @@ public:
             }
             /* Client ID should be set to CAN_MONITOR_NODE ID */
             hResult = pDIL_CAN->sendMessage(pMainFrm->dwGetMonitorNodeClientID()
-                                             , sTempMsg);
+                                            , sTempMsg);
         }
 
         return hResult;
     }
 
     /**
-	 * Provides the Message structure
-	 *
-	 * @param[in] MsgName message name
-	 * @param[out] psMsgStruct message structure
-	 */
+     * Provides the Message structure
+     *
+     * @param[in] MsgName message name
+     * @param[out] psMsgStruct message structure
+     */
     HRESULT GetMsgInfo(BSTR MsgName, sMESSAGESTRUCT* psMsgStruct)
     {
         HRESULT hResult = E_POINTER;
@@ -293,11 +293,11 @@ public:
     }
 
     /**
-	 * Provides all the statistics
-	 *
-	 * @param[in] nChannel Channel no., statistic structure
-	 * @param[out] psStat Statistics of the channel
-	 */
+     * Provides all the statistics
+     *
+     * @param[in] nChannel Channel no., statistic structure
+     * @param[out] psStat Statistics of the channel
+     */
     HRESULT GetNetworkStatistics(int nChannel, sBUSSTATISTICS_USR* psStat)
     {
         HRESULT hResult = E_POINTER;
@@ -314,8 +314,8 @@ public:
     }
 
     /**
-	 * Post the message to CMainframe LoadAllDll
-	 */
+     * Post the message to CMainframe LoadAllDll
+     */
     HRESULT LoadAllDll()
     {
         HRESULT hResult = E_POINTER;
@@ -339,8 +339,8 @@ public:
     }
 
     /**
-	 * Post the message to CMainframe UnLoadAllDll
-	 */
+     * Post the message to CMainframe UnLoadAllDll
+     */
     HRESULT UnLoadAllDll()
     {
         HRESULT hResult = E_POINTER;
@@ -364,10 +364,10 @@ public:
     }
 
     /**
-	 * It post the key message to main frame
-	 *
-	 * @param[in] KeyVal Key's Ascii value
-	 */
+     * It post the key message to main frame
+     *
+     * @param[in] KeyVal Key's Ascii value
+     */
     HRESULT SendKeyValue(UCHAR KeyVal)
     {
         HRESULT hResult = E_POINTER;
@@ -383,11 +383,11 @@ public:
     }
 
     /**
-	 * enable/disable handlers
-	 *
-	 * @param[in] bEnable enable/disable
-	 * @param[in] eType handler type
-	 */
+     * enable/disable handlers
+     *
+     * @param[in] bEnable enable/disable
+     * @param[in] eType handler type
+     */
     HRESULT EnableDisableHandlers(BOOL bEnable, eHandlerType eType)
     {
         HRESULT hResult = E_POINTER;
@@ -464,8 +464,8 @@ public:
     }
 
     /**
-	 * Calls the mainframe class function to load the configuration
-	 */
+     * Calls the mainframe class function to load the configuration
+     */
     HRESULT LoadConfiguration(BSTR FileName)
     {
         HRESULT hResult = E_POINTER;
@@ -500,8 +500,8 @@ public:
     }
 
     /**
-	 * import the database file
-	 */
+     * import the database file
+     */
     HRESULT ImportDatabase(BSTR DBFilePath)
     {
         HRESULT hResult = E_POINTER;
@@ -519,8 +519,8 @@ public:
     }
 
     /**
-	 * Save the Configurations in file
-	 */
+     * Save the Configurations in file
+     */
     HRESULT SaveConfiguration()
     {
         HRESULT hResult = E_POINTER;
@@ -542,10 +542,10 @@ public:
     }
 
     /**
-	 * Save the configuration to new file
-	 *
-	 * @param[in] ConfigPath Config File path
-	 */
+     * Save the configuration to new file
+     *
+     * @param[in] ConfigPath Config File path
+     */
     HRESULT SaveConfigurationAs(BSTR ConfigPath)
     {
         char acStr[_MAX_PATH] = {'\0'};
@@ -561,9 +561,9 @@ public:
         return hResult;
     }
 
-	/**
-	 * Starts sending messages if tool is connected
-	 */
+    /**
+     * Starts sending messages if tool is connected
+     */
     HRESULT StartTxMsgBlock()
     {
         HRESULT hResult = E_POINTER;
@@ -579,18 +579,18 @@ public:
     }
 
     /**
-	 * Stops sending messages
-	 */
+     * Stops sending messages
+     */
     HRESULT StopTxMsgBlock()
     {
         return StartTxMsgBlock();
     }
 
     /**
-	 * Get Tx block count
-	 *
-	 * @param[out] Result No. of Tx blocks available
-	 */
+     * Get Tx block count
+     *
+     * @param[out] Result No. of Tx blocks available
+     */
     HRESULT GetTxBlockCount (USHORT* Result)
     {
         *Result = (USHORT) TX_unGetTxBlockCount();
@@ -598,24 +598,24 @@ public:
     }
 
     /**
-	 * Delete Tx Block
-	 */
+     * Delete Tx Block
+     */
     HRESULT DeleteTxBlock (USHORT /*BlockIndex*/)
     {
         return TX_vDeleteTxBlockMemory();
     }
 
     /**
-	 * Clear Tx Block List
-	 */
+     * Clear Tx Block List
+     */
     HRESULT ClearTxBlockList(void)
     {
         return TX_vDeleteTxBlockMemory();
     }
 
-	/**
+    /**
      * Enables / disables a filter scheme
-	 */
+     */
     HRESULT EnableFilterSch(EFILTERMODULE eModule, BOOL bEnable)
     {
         HRESULT hResult;
@@ -668,8 +668,8 @@ public:
     }
 
     /**
-	 * Start logging if it is stopped
-	 */
+     * Start logging if it is stopped
+     */
     HRESULT StartLogging()
     {
         HRESULT hResult = E_POINTER;
@@ -684,8 +684,8 @@ public:
     }
 
     /**
-	 * disable logging of messages
-	 */
+     * disable logging of messages
+     */
     HRESULT StopLogging()
     {
         HRESULT hResult = E_POINTER;
@@ -700,8 +700,8 @@ public:
     }
 
     /**
-	 * Writes a string to the log file specified
-	 */
+     * Writes a string to the log file specified
+     */
     HRESULT WriteToLogFile(USHORT /*BlockIndex*/, BSTR bstrStr)
     {
         HRESULT hResult = E_POINTER;
@@ -719,8 +719,8 @@ public:
     }
 
     /**
-	 * Registers a client for receiving Rx data through PIPE and event
-	 */
+     * Registers a client for receiving Rx data through PIPE and event
+     */
     HRESULT RegisterClientForRx(USHORT usUniqueID, BSTR* pEventName, BSTR* pPIPEName)
     {
         HRESULT hResult = S_OK;
@@ -749,8 +749,8 @@ public:
     }
 
     /**
-	 * Unregisters a client for receiving Rx data
-	 */
+     * Unregisters a client for receiving Rx data
+     */
     HRESULT UnRegisterClient(USHORT usUniqueID)
     {
         HRESULT hResult = S_OK;
@@ -786,8 +786,8 @@ public:
     }
 
     /**
-	 * Function to create PIPE handle for a client
-	 */
+     * Function to create PIPE handle for a client
+     */
     HRESULT  hCreatePipeAndEventForClient(USHORT usUniqueID, HANDLE& hndPipe, HANDLE& hndEvent, BSTR* pEventName, BSTR* pPIPEName)
     {
         char EventName[32] = {'\0'};
@@ -856,8 +856,8 @@ public:
     }
 
     /**
-	 * Returns total number of logging blocks defined
-	 */
+     * Returns total number of logging blocks defined
+     */
     HRESULT GetLoggingBlockCount(USHORT* BlockCount)
     {
         HRESULT hResult = E_POINTER;
@@ -873,8 +873,8 @@ public:
     }
 
     /**
-	 * Deletes a logging block
-	 */
+     * Deletes a logging block
+     */
     HRESULT RemoveLoggingBlock(USHORT BlockIndex)
     {
         HRESULT hResult = E_POINTER;
@@ -889,8 +889,8 @@ public:
     }
 
     /**
-	 * Clears the logging block list
-	 */
+     * Clears the logging block list
+     */
     HRESULT ClearLoggingBlockList(void)
     {
         HRESULT hResult = E_POINTER;
@@ -905,100 +905,100 @@ public:
     }
 
     /**
-	 * Reset software
-	 */
+     * Reset software
+     */
     HRESULT ResetSW()
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Display the windows in BUSMASTER
-	 */
+     * Display the windows in BUSMASTER
+     */
     HRESULT DisplayWindow(eWindow /*eWhichWindow*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Add a log file
-	 *
-	 * @param[in] psLoggingBlock Log file name, time mode, numeric mode, file mode for logging
-	 */
+     * Add a log file
+     *
+     * @param[in] psLoggingBlock Log file name, time mode, numeric mode, file mode for logging
+     */
     HRESULT AddLoggingBlock(SLOGGINGBLOCK_USR* /*psLoggingBlock*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Add transmission block
-	 *
-	 * @param[in] psTxBlock Tx block details
-	 */
+     * Add transmission block
+     *
+     * @param[in] psTxBlock Tx block details
+     */
     HRESULT AddTxBlock(STXBLOCK_USR* /*psTxBlock*/)
     {
         return E_NOTIMPL;
     }
 
-	/**
+    /**
      * Get Tx block details
-	 */
+     */
     HRESULT GetTxBlock (USHORT /*BlockIndex*/, STXBLOCK_USR* /*psTxBlock*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Add Msg To TxBlock
-	 */
+     * Add Msg To TxBlock
+     */
     HRESULT AddMsgToTxBlock(USHORT /*BlockIndex*/, CAN_MSGS* /*psMsg*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Get Msg Count of a TxBlock
-	 */
+     * Get Msg Count of a TxBlock
+     */
     HRESULT getMessageCount(USHORT /*BlockIndex*/, USHORT* /*Result*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Get Msg info From TxBlock
-	 */
+     * Get Msg info From TxBlock
+     */
     HRESULT GetMsgFromTxBlock(USHORT /*BlockIndex*/, USHORT /*MsgIndex*/, CAN_MSGS* /*psMsg*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Delete MsgFrom TxBlock
-	 */
+     * Delete MsgFrom TxBlock
+     */
     HRESULT DeleteMsgFromTxBlock(USHORT /*BlockIndex*/, USHORT /*FrameIndex*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Clears the Msg list in a Tx block given its index
-	 */
+     * Clears the Msg list in a Tx block given its index
+     */
     HRESULT ClearMsgList(USHORT /*BlockIndex*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Defines a filter scheme which is identified by its name.
-	 */
+     * Defines a filter scheme which is identified by its name.
+     */
     HRESULT AddFilterScheme (BSTR /*pcFilterName*/, VARIANT_BOOL /*FilterType*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Given filterscheme index provide filter scheme name and type
-	 */
+     * Given filterscheme index provide filter scheme name and type
+     */
     HRESULT GetFilterScheme(USHORT /*FilterSchINdex*/, BSTR /*pcFilterName*/,
                             VARIANT_BOOL* /*FilterType*/)
     {
@@ -1006,33 +1006,33 @@ public:
     }
 
     /**
-	 * Get Filter Scheme Count
-	 */
+     * Get Filter Scheme Count
+     */
     HRESULT GetFilterSchCount(USHORT* /*pTotal*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Adds / sets a filter in a filter scheme
-	 */
+     * Adds / sets a filter in a filter scheme
+     */
     HRESULT UpdateFilterSch(USHORT /*FilterSchIndex*/, SFILTER_USR* /*psFilter*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Get Filter Count In a filter Scheme
-	 */
+     * Get Filter Count In a filter Scheme
+     */
     HRESULT GetFilterCountInSch(USHORT /*FilterSchIndex*/, USHORT* /*pTotal*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Getter for a filter, given index of the filter scheme
-	 * and index of the filter in the filter scheme
-	 */
+     * Getter for a filter, given index of the filter scheme
+     * and index of the filter in the filter scheme
+     */
     HRESULT GetFilterInFilterSch(USHORT /*FilterSchIndex*/, USHORT /*FilterIndex*/,
                                  SFILTER_USR* /*psFilter*/)
     {
@@ -1040,48 +1040,48 @@ public:
     }
 
     /**
-	 * Deletes a filter from a filter scheme
-	 */
+     * Deletes a filter from a filter scheme
+     */
     HRESULT DeleteFilterInSch(USHORT /*FilterSchIndex*/, USHORT /*FilterIndex*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Renders a logging block based on its index in the list
-	 */
+     * Renders a logging block based on its index in the list
+     */
     HRESULT GetLoggingBlock(USHORT /*BlockIndex*/, void* /*psLoggingBlock*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Add Simulated System in the configuration
-	 */
+     * Add Simulated System in the configuration
+     */
     HRESULT AddSimulatedSystem(BSTR /*pcSimPath*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Get Simulated System Count
-	 */
+     * Get Simulated System Count
+     */
     HRESULT GetSimulatedSystemCount(USHORT* /*pSimTotal*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Get the Simulated System Name
-	 */
+     * Get the Simulated System Name
+     */
     HRESULT GetSimulatedSystemName(USHORT /*SimSysIndex*/, BSTR* /*pcSimPath*/)
     {
         return E_NOTIMPL;
     }
 
     /**
-	 * Delete the given Simulated System
-	 */
+     * Delete the given Simulated System
+     */
     HRESULT DeleteSimulatedSystem(USHORT /*SimSysIndex*/)
     {
         return E_NOTIMPL;

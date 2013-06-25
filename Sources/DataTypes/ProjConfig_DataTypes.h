@@ -27,13 +27,15 @@
 #include <list>
 #include <string>
 
-typedef enum DataStorageOperationMode {
+typedef enum DataStorageOperationMode
+{
     OPEN = 0x1,
     SAVE = 0x2,
     CLOSE = 0x4
 } DataStorageOperationMode;
 
-typedef enum DataStorageMode {
+typedef enum DataStorageMode
+{
     FILEMODE = 0,
     DATABASEMODE
 } DataStorageMode;

@@ -41,89 +41,89 @@ public:
     ~CLogObjectJ1939();
 
     /**
-	 * Log a J1939 data object
-	 */
+     * Log a J1939 data object
+     */
     BOOL bLogData(const SFORMATTEDATA_J1939&);
 
     /**
-	 * Enable / disable filter
-	 */
+     * Enable / disable filter
+     */
     void EnableFilter(BOOL bEnable);
 
     /**
-	 * Get the filter info structure
-	 */
+     * Get the filter info structure
+     */
     void GetFilterInfo(SFILTERAPPLIED_J1939& sFilterInfo) const;
-    
-	/**
-	 * Set the filter info structure
-	 */
+
+    /**
+     * Set the filter info structure
+     */
     void SetFilterInfo(const SFILTERAPPLIED_J1939& sFilterInfo);
 
     /**
-	 * Get the list of database files associated
-	 */
+     * Get the list of database files associated
+     */
     void Der_GetDatabaseFiles(CStringArray& omList);
-    
-	/**
-	 * Set the list of database files associated
-	 */
+
+    /**
+     * Set the list of database files associated
+     */
     void Der_SetDatabaseFiles(const CStringArray& omList);
-    
-	int Der_SetConfigData(xmlNodePtr)
+
+    int Der_SetConfigData(xmlNodePtr)
     {
         return S_OK;
     }
-    
-	/**
-	 * Set the baud rate details for each channel
-	 */
+
+    /**
+     * Set the baud rate details for each channel
+     */
     void Der_SetChannelBaudRateDetails(SCONTROLLER_DETAILS* controllerDetails,
                                        int nNumChannels);
-    
-	/**
-	 * To get the channel baud rate info for each channel
-	 */
+
+    /**
+     * To get the channel baud rate info for each channel
+     */
     void Der_GetChannelBaudRateDetails(SCONTROLLER_DETAILS* controllerDetails,
                                        int& nNumChannels);
 
 protected:
     /**
-	 * To copy specific data pertaining to the conrete class.
-	 */
+     * To copy specific data pertaining to the conrete class.
+     */
     void Der_CopySpecificData(const CBaseLogObject* pouLogObjRef);
 
-	/**
-	 * Set configuration data - concrete class specific logics
-	 */
+    /**
+     * Set configuration data - concrete class specific logics
+     */
     BYTE* Der_SetConfigData(BYTE* pvDataStream);
-    
-	/**
-	 * Get configuration data - concrete class specific logics
-	 */
+
+    /**
+     * Get configuration data - concrete class specific logics
+     */
     BYTE* Der_GetConfigData(BYTE* pvDataStream) const;
-    
-	void Der_GetConfigData(xmlNodePtr pNodePtr) const;
-    
-	/**
-	 * To get the total buffer size - concrete class specific logics
-	 */
+
+    void Der_GetConfigData(xmlNodePtr pNodePtr) const;
+
+    /**
+     * To get the total buffer size - concrete class specific logics
+     */
     UINT Der_unGetBufSize(void) const;
 
 private:
     /**
-	 * The filter object
-	 */
+     * The filter object
+     */
     SFILTERAPPLIED_J1939 m_sFilterApplied;
 
     /**
-	 * To format the header
-	 */
+     * To format the header
+     */
     void vFormatHeader(CString& omHeader, ETYPE_BUS eBus = J1939);
 
     /**
-	 * To format the footer
-	 */
+     * To format the footer
+     */
     void vFormatFooter(CString& omFooter);
 
     BOOL bToBeLogged(SFRAMEINFO_BASIC_J1939& J1939Info_Basic);

@@ -29,14 +29,14 @@ class CFormatMsgJ1939: public CFormatMsgCommon
 public:
     void vInit();
 
-	void vFormatJ1939DataMsg(STJ1939_MSG* pMsgMcANet,
+    void vFormatJ1939DataMsg(STJ1939_MSG* pMsgMcANet,
                              SFORMATTEDATA_J1939* CurrDataJ1939,
                              BYTE bExprnFlag_Log);
 
 private:
     void vFormatTime(BYTE bExprnFlag, PSTJ1939_MSG psJ1939BData,
                      PSFORMATTEDATA_J1939 psJ1939FData);
-    
-	void vFormatDataAndId(BYTE bExprnFlag, PSTJ1939_MSG psJ1939BData,
+
+    void vFormatDataAndId(BYTE bExprnFlag, PSTJ1939_MSG psJ1939BData,
                           PSFORMATTEDATA_J1939 psJ1939FData);
 };

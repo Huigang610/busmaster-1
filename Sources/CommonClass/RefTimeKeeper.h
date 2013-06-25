@@ -26,8 +26,8 @@
 class CRefTimeKeeper
 {
 public:
-	static void setTimeParameters(SYSTEMTIME& currentSystemTime, UINT64 connectTime);
-	static void getTimeParameters(UINT64& referenceSystemTime_, UINT64& absoluteBaseTime_);
+    static void setTimeParameters(SYSTEMTIME& currentSystemTime, UINT64 connectTime);
+    static void getTimeParameters(UINT64& referenceSystemTime_, UINT64& absoluteBaseTime_);
 
 protected:
     static UINT64 referenceSystemTime;

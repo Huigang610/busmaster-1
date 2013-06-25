@@ -37,8 +37,6 @@
 #include "DataTypes/DIL_Datatypes.h"
 #include "Include/BaseDefs.h"
 #include "Include/DIL_CommonDefs.h"
-#include "EXTERNAL/Include/OCI/ocican.h"
-#include "EXTERNAL/Include/CSI/csisfs.h"
 #include "Include/Can_Error_Defs.h"
 #include "DIL_Interface/BaseDIL_CAN_Controller.h"
 #include "HardwareListing.h"
@@ -47,9 +45,20 @@
 #include "Utility/MultiLanguageSupport.h"
 #define USAGE_EXPORT
 #include "CAN_ETAS_BOA_Extern.h"
-/* Including CANFD header only if BOA_VERSION_1_5_FD is defined */
+
+/* ETAS BOA includes */
+#if BOA_VERSION == BOA_VERSION_1_4
+#include "EXTERNAL/BOA 1.4/Include/OCI/ocican.h"
+#include "EXTERNAL/BOA 1.4/Include/CSI/csisfs.h"
+#elif BOA_VERSION == BOA_VERSION_1_5
+#include "EXTERNAL/BOA 1.5/Include/OCI/ocican.h"
+#include "EXTERNAL/BOA 1.5/Include/CSI/csisfs.h"
 #ifdef BOA_VERSION_1_5_FD
-#include "EXTERNAL_INCLUDE/OCI/ocicanfd.h"
+#include "EXTERNAL/BOA 1.5/OCI/ocicanfd.h"
+#endif
+#elif BOA_VERSION == BOA_VERSION_1_6
+#include "EXTERNAL/BOA 1.6/Include/OCI/ocican.h"
+#include "EXTERNAL/BOA 1.6/Include/CSI/csisfs.h"
 #endif
 
 /**
@@ -102,54 +111,101 @@ const BYTE QUEUE_DESTROY = 0x02;
  */
 typedef struct tagCHANNEL
 {
-    OCI_URIName m_acURI; /*< URI of the Controller */
-    OCI_ControllerHandle m_OCI_HwHandle; /*< Controller handle */
-    OCI_CANConfiguration m_OCI_CANConfig; /*< Controller configuration */
-    // Creating OCI_CANFD_Configuration only if BOA_VERSION_1_5_FD is defined
+    /** URI of the Controller */
+    OCI_URIName uri;
+
+    /** Controller handle */
+    OCI_ControllerHandle controllerHandle;
+
+    /** Controller configuration */
+    OCI_CANConfiguration canConfiguration;
+
+    /* Creating OCI_CANFD_Configuration only if BOA_VERSION_1_5_FD is defined */
 #ifdef BOA_VERSION_1_5_FD
-    OCI_CANFD_Configuration m_OCI_CANFDConfig; /*< CAN FD Controller configuration */
+    /** CAN FD Controller configuration */
+    OCI_CANFD_Configuration canFdConfiguration;
 #endif
-    OCI_CANControllerProperties m_OCI_CntrlProp; /*< Controller properties */
-    OCI_QueueHandle m_OCI_RxQueueHandle; /*< Controller receive queue handle */
-    OCI_CANRxQueueConfiguration m_OCI_RxQueueCfg; /*< Controller receive queue configuration */
-    OCI_QueueHandle m_OCI_TxQueueHandle; /*< Controller transmit queue handle */
-    OCI_CANTxQueueConfiguration m_OCI_TxQueueCfg; /*< Controller transmit queue configuration */
-    OCI_CANRxFilter m_OCI_FrameFilter; /*< Controller frame filter */
-    OCI_CANEventFilter m_OCI_EventFilter; /*< Controller event filter */
-    OCI_CANErrorFrameFilter m_OCI_ErrorFilter; /*< Controller error filter */
-    OCI_InternalErrorEventFilter m_OCI_InternalErrorFilter;
-    UCHAR m_ucControllerState; /*< Controller state */
-    UCHAR m_ucTxErrorCounter; /*< Controller Tx error counter */
-    UCHAR m_ucRxErrorCounter; /*< Controller Rx error counter */
-    UCHAR m_ucPeakRxErrorCounter; /*< Controller peak Rx error counter */
-    UCHAR m_ucPeakTxErrorCounter; /*< Controller peak Tx error counter */
-    OCI_TimerCapabilities m_OCI_TimerCapabilities;
-    FLOAT m_fResolution;
+
+    /** can controller properties */
+    OCI_CANControllerProperties canControllerProperties;
+
+    /** can receive queue handle */
+    OCI_QueueHandle canRxQueueHandle;
+
+    /** can receive queue configuration */
+    OCI_CANRxQueueConfiguration canRxQueueConfiguration;
+
+    /** can transmit queue handle */
+    OCI_QueueHandle canTxQueueHandle;
+
+    /** can transmit queue configuration */
+    OCI_CANTxQueueConfiguration canTxQueueConfiguration;
+
+    /** can receive filter */
+    OCI_CANRxFilter canRxFilter;
+
+    /** can event filter */
+    OCI_CANEventFilter canEventFilter;
+
+    /** error frame filter */
+    OCI_CANErrorFrameFilter canErrorFrameFilter;
+
+    /** internal error event filter */
+    OCI_InternalErrorEventFilter internalErrorEventFilter;
+
+    /** timer capabilities */
+    OCI_TimerCapabilities timerCapabilities;
+
+    /** Controller state */
+    UCHAR controllerState;
+
+    /** Controller Tx error counter */
+    UCHAR txErrorCounter;
+
+    /** Controller Rx error counter */
+    UCHAR rxErrorCounter;
+
+    /** Controller peak Rx error counter */
+    UCHAR peakRxErrorCounter;
+
+    /** Controller peak Tx error counter */
+    UCHAR peakTxErrorCounter;
+
+    /** resolution */
+    FLOAT resolution;
 } SCHANNEL;
 
-/**
- * Client and Client Buffer map
- */
 #define MAX_BUFF_ALLOWED 16
 #define MAX_CLIENT_ALLOWED 16
-static UINT sg_unClientCnt = 0;
+static UINT clientCount = 0;
 
+/**
+ * Client Buffer map
+ */
 class SCLIENTBUFMAP
 {
 public:
-    DWORD m_dwClientID;
-    CBaseCANBufFSE* m_pClientBuf[MAX_BUFF_ALLOWED];
-    std::string m_acClientName;
-    UINT m_unBufCount;
+    /** client ID */
+    DWORD clientId;
+
+    /** client buffer */
+    CBaseCANBufFSE* clientBuffer[MAX_BUFF_ALLOWED];
+
+    /** client name */
+    std::string clientName;
+
+    /** buffer count */
+    UINT bufferCount;
+
     SCLIENTBUFMAP() :
-        m_acClientName("")
+        clientName("")
     {
-        m_dwClientID = 0;
-        m_unBufCount = 0;
+        clientId = 0;
+        bufferCount = 0;
 
         for (INT i = 0; i < MAX_BUFF_ALLOWED; i++)
         {
-            m_pClientBuf[i] = NULL;
+            clientBuffer[i] = NULL;
         }
     }
 };
@@ -163,19 +219,19 @@ const INT MAX_MAP_SIZE = 3000;
 
 typedef struct tagAckMap
 {
-    UINT m_MsgID;
-    UINT m_ClientID;
-    UINT m_Channel;
+    UINT messageId;
+    UINT clientId;
+    UINT channel;
 
     BOOL operator == (const tagAckMap& RefObj)
     {
-        return ((m_MsgID == RefObj.m_MsgID) && (m_Channel == RefObj.m_Channel));
+        return ((messageId == RefObj.messageId) && (channel == RefObj.channel));
     }
 } SACK_MAP;
 
 typedef std::list<SACK_MAP> CACK_MAP_LIST;
 static CACK_MAP_LIST sg_asAckMapBuf;
-static  CRITICAL_SECTION sg_CritSectForAckBuf;       // To make it thread safe
+static CRITICAL_SECTION sg_CritSectForAckBuf;       // To make it thread safe
 
 /**
  * Channel instances
@@ -206,39 +262,31 @@ static CRITICAL_SECTION sg_DIL_CriticalSection;
 
 static INT sg_anSelectedItems[CHANNEL_ALLOWED];
 
-/**
- * Timer variables
- */
-static SYSTEMTIME sg_CurrSysTime;
-static UINT64 sg_TimeStamp = 0;
-static LARGE_INTEGER sg_QueryTickCount;
-static LARGE_INTEGER sg_lnFrequency;
+/* Timer variables */
+static SYSTEMTIME currentSystemTime;
+static UINT64 timeStamp = 0;
+static LARGE_INTEGER queryTickCount;
+static LARGE_INTEGER frequency;
 
-/**
- * Required libraries
- */
+/* Required libraries */
 static HMODULE sg_hLibCSI = NULL;
 static HMODULE sg_hLibOCI = NULL;
 
-/**
- * Declarations of CSI API pointers
- */
+/* Declarations of CSI API pointers */
 typedef CSI_DECLSPEC OCI_ErrorCode (*PROC1)(const char* uriName, CSI_NodeRange range, CSI_Tree* *tree);
 typedef CSI_DECLSPEC OCI_ErrorCode (*PROC2)(CSI_Tree* tree);
 typedef CSI_DECLSPEC OCI_ErrorCode (*PROC3)(CSI_Tree* tree, const BOA_UuidVersion* uuid, OCI_URIName uriName[], int size, int* count);
 
-/**
- * Macro definitions
- */
-#if BOA_VERSION == 0x0104
+/* Macro definitions */
+#if BOA_VERSION == BOA_VERSION_1_4
 #define BOA_REGISTRY_LOCATION "SOFTWARE\\ETAS\\BOA\\1.4"
 #define LIB_CSL_NAME    "dll-csiBind_1_4.dll"
 #define LIB_OCI_NAME    "dll-ocdProxy_1_4.dll"
-#elif BOA_VERSION == 0x0105
+#elif BOA_VERSION == BOA_VERSION_1_5
 #define BOA_REGISTRY_LOCATION "SOFTWARE\\ETAS\\BOA\\1.5"
 #define LIB_CSL_NAME    "dll-csiBind_1_5.dll"
 #define LIB_OCI_NAME    "dll-ocdProxy_1_5.dll"
-#elif BOA_VERSION == 0x0106
+#elif BOA_VERSION == BOA_VERSION_1_6
 #define BOA_REGISTRY_LOCATION "SOFTWARE\\ETAS\\BOA\\1.6"
 #define LIB_CSL_NAME    "dll-csiBind_1_6.dll"
 #define LIB_OCI_NAME    "dll-ocdProxy_1_6.dll"
@@ -252,7 +300,6 @@ typedef struct tagCSI_VTABLE
     PROC1 createProtocolTree;
     PROC2 destroyProtocolTree;
     PROC3 getUriForUuid;
-
 } CSI_VTABLE;
 
 /**
@@ -279,7 +326,9 @@ enum
 
 BYTE sg_bCurrState = STATE_DRIVER_SELECTED;
 
-/* CDIL_CAN_ETAS_BOA class definition */
+/**
+ * CDIL_CAN_ETAS_BOA class definition
+ */
 class CDIL_CAN_ETAS_BOA : public CBaseDIL_CAN_Controller
 {
 public:
@@ -357,12 +406,12 @@ INT nCallBackStrCompareFn( const void* str1, const void* str2)
 static BOOL bIsBufferExists(const SCLIENTBUFMAP& sClientObj, const CBaseCANBufFSE* pBuf)
 {
     BOOL bExist = FALSE;
-    for (UINT i = 0; i < sClientObj.m_unBufCount; i++)
+    for (UINT i = 0; i < sClientObj.bufferCount; i++)
     {
-        if (pBuf == sClientObj.m_pClientBuf[i])
+        if (pBuf == sClientObj.clientBuffer[i])
         {
             bExist = TRUE;
-            i = sClientObj.m_unBufCount; //break the loop
+            i = sClientObj.bufferCount; //break the loop
         }
     }
     return bExist;
@@ -395,7 +444,7 @@ BOOL bGetBOAInstallationPath(std::string& pcPath)
     BOOL bResult = FALSE;
     LONG lError = 0;
     HKEY sKey;
-    // Get the installation path for BOA 1.4
+    // Get the installation path for BOA
     lError = RegOpenKeyEx( HKEY_LOCAL_MACHINE, BOA_REGISTRY_LOCATION, 0, KEY_READ, &sKey);
     // If the registry key open successfully, get the value in "path"
     // sub key
@@ -639,12 +688,13 @@ BOA_ResultCode OCI_FindCANController(OCI_URIName uriName[], INT nSize, INT* nFou
 
     /* Search for all connected hardware and latch the result for further processing */
     ec = (*(sBOA_PTRS.m_sCSI.createProtocolTree))("", nodeRange, &sfsTree);
-    if (ec == OCI_SUCCESS)
+    if (BOA_SUCCEEDED(ec))
     {
         /* Find the URIs for all nodes which implement v1.1.0.0 of OCI_CAN. */
         ec = (*(sBOA_PTRS.m_sCSI.getUriForUuid))(sfsTree, &ociCanUuid, uriName, nSize, nFound);
-        if (ec == OCI_SUCCESS)
+        if (BOA_SUCCEEDED(ec))
         {
+            /* Clean up the protocol tree. */
             ec = (*(sBOA_PTRS.m_sCSI.destroyProtocolTree))(sfsTree);
         }
     }
@@ -663,10 +713,10 @@ static BOOL bGetClientObj(DWORD dwClientID, UINT& unClientIndex)
 
     for (UINT i = 0; i < sg_asClientToBufMap.size(); i++)
     {
-        if (sg_asClientToBufMap[i].m_dwClientID == dwClientID)
+        if (sg_asClientToBufMap[i].clientId == dwClientID)
         {
             unClientIndex = i;
-            i = sg_unClientCnt; //break the loop
+            i = clientCount; //break the loop
             bResult = TRUE;
             break;
         }
@@ -683,7 +733,7 @@ static BOOL bClientExist(std::string pcClientName, INT& Index)
 {
     for (UINT i = 0; i < sg_asClientToBufMap.size(); i++)
     {
-        if (pcClientName == sg_asClientToBufMap[i].m_acClientName)
+        if (pcClientName == sg_asClientToBufMap[i].clientName)
         {
             Index = i;
             return TRUE;
@@ -700,24 +750,24 @@ static BOOL bClientExist(std::string pcClientName, INT& Index)
 static BOOL bRemoveClient(DWORD dwClientId)
 {
     BOOL bResult = FALSE;
-    if (sg_unClientCnt > 0)
+    if (clientCount > 0)
     {
         UINT unClientIndex = 0;
         if (bGetClientObj(dwClientId, unClientIndex))
         {
-            sg_asClientToBufMap[unClientIndex].m_dwClientID = 0;
-            sg_asClientToBufMap[unClientIndex].m_acClientName = "";
+            sg_asClientToBufMap[unClientIndex].clientId = 0;
+            sg_asClientToBufMap[unClientIndex].clientName = "";
 
             for (INT i = 0; i < MAX_BUFF_ALLOWED; i++)
             {
-                sg_asClientToBufMap[unClientIndex].m_pClientBuf[i] = NULL;
+                sg_asClientToBufMap[unClientIndex].clientBuffer[i] = NULL;
             }
-            sg_asClientToBufMap[unClientIndex].m_unBufCount = 0;
-            if ((unClientIndex + 1) < sg_unClientCnt)
+            sg_asClientToBufMap[unClientIndex].bufferCount = 0;
+            if ((unClientIndex + 1) < clientCount)
             {
-                sg_asClientToBufMap[unClientIndex] = sg_asClientToBufMap[sg_unClientCnt - 1];
+                sg_asClientToBufMap[unClientIndex] = sg_asClientToBufMap[clientCount - 1];
             }
-            sg_unClientCnt--;
+            clientCount--;
             bResult = TRUE;
         }
     }
@@ -735,10 +785,10 @@ static BOOL bClientIdExist(const DWORD& dwClientId)
 
     for (UINT i = 0; i < sg_asClientToBufMap.size(); i++)
     {
-        if (sg_asClientToBufMap[i].m_dwClientID == dwClientId)
+        if (sg_asClientToBufMap[i].clientId == dwClientId)
         {
             bReturn = TRUE;
-            i = sg_unClientCnt; // break the loop
+            i = clientCount; // break the loop
         }
     }
     return bReturn;
@@ -781,11 +831,11 @@ BOOL bRemoveMapEntry(const SACK_MAP& RefObj, UINT& ClientID)
     CACK_MAP_LIST::iterator  iResult =
         find( sg_asAckMapBuf.begin(), sg_asAckMapBuf.end(), RefObj );
 
-    //if ((*iResult).m_ClientID > 0)
+    //if ((*iResult).clientId > 0)
     if (iResult != sg_asAckMapBuf.end())
     {
         bResult = TRUE;
-        ClientID = (*iResult).m_ClientID;
+        ClientID = (*iResult).clientId;
         sg_asAckMapBuf.erase(iResult);
     }
     LeaveCriticalSection(&sg_CritSectForAckBuf); // Unlock the buffer
@@ -799,38 +849,38 @@ BOOL bRemoveMapEntry(const SACK_MAP& RefObj, UINT& ClientID)
  */
 void vInitializeControllerConfig(UINT nChannel)
 {
-    sg_asChannel[nChannel].m_OCI_CANConfig.baudrate = 500000;
-    sg_asChannel[nChannel].m_OCI_CANConfig.samplePoint = 70;
-    sg_asChannel[nChannel].m_OCI_CANConfig.samplesPerBit = OCI_CAN_THREE_SAMPLES_PER_BIT;
-    sg_asChannel[nChannel].m_OCI_CANConfig.BTL_Cycles = 10;
-    sg_asChannel[nChannel].m_OCI_CANConfig.SJW = 4;
-    sg_asChannel[nChannel].m_OCI_CANConfig.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
-    sg_asChannel[nChannel].m_OCI_CANConfig.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
-    sg_asChannel[nChannel].m_OCI_CANConfig.selfReceptionMode = OCI_SELF_RECEPTION_ON;
+    sg_asChannel[nChannel].canConfiguration.baudrate = 500000;
+    sg_asChannel[nChannel].canConfiguration.samplePoint = 70;
+    sg_asChannel[nChannel].canConfiguration.samplesPerBit = OCI_CAN_THREE_SAMPLES_PER_BIT;
+    sg_asChannel[nChannel].canConfiguration.BTL_Cycles = 10;
+    sg_asChannel[nChannel].canConfiguration.SJW = 4;
+    sg_asChannel[nChannel].canConfiguration.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
+    sg_asChannel[nChannel].canConfiguration.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
+    sg_asChannel[nChannel].canConfiguration.selfReceptionMode = OCI_SELF_RECEPTION_ON;
     //Set controller property to SUSPENDED
-    sg_asChannel[nChannel].m_OCI_CntrlProp.mode = OCI_CONTROLLER_MODE_SUSPENDED;
+    sg_asChannel[nChannel].canControllerProperties.mode = OCI_CONTROLLER_MODE_SUSPENDED;
 
 #ifdef BOA_VERSION_1_5_FD
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.baudrate = 500000;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.samplePoint = 70;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.samplesPerBit = OCI_CAN_THREE_SAMPLES_PER_BIT;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.BTL_Cycles = 10;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.SJW = 4;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.can.selfReceptionMode = OCI_SELF_RECEPTION_ON;
+    sg_asChannel[nChannel].canFdConfiguration.can.baudrate = 500000;
+    sg_asChannel[nChannel].canFdConfiguration.can.samplePoint = 70;
+    sg_asChannel[nChannel].canFdConfiguration.can.samplesPerBit = OCI_CAN_THREE_SAMPLES_PER_BIT;
+    sg_asChannel[nChannel].canFdConfiguration.can.BTL_Cycles = 10;
+    sg_asChannel[nChannel].canFdConfiguration.can.SJW = 4;
+    sg_asChannel[nChannel].canFdConfiguration.can.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
+    sg_asChannel[nChannel].canFdConfiguration.can.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
+    sg_asChannel[nChannel].canFdConfiguration.can.selfReceptionMode = OCI_SELF_RECEPTION_ON;
     //Set controller property to SUSPENDED
-    sg_asChannel[nChannel].m_OCI_CntrlProp.mode = OCI_CONTROLLER_MODE_SUSPENDED;
+    sg_asChannel[nChannel].canControllerProperties.mode = OCI_CONTROLLER_MODE_SUSPENDED;
 
     /* Set CAN FD default values */
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.dataBitRate                = 2000000;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.dataSamplePoint            = 70;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.dataBTL_Cycles             = 10;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.dataSJW                    = 04;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.txDelayCompensationControl = OCI_CANFD_TX_DELAY_COMPENSATION_OFF;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.txDelayCompensationQuanta  = 0;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.rxCompatibility            = OCI_CANFD_RX_USE_RXFD_MESSAGE_PADDING;
-    sg_asChannel[nChannel].m_OCI_CANFDConfig.txCompatibility            = OCI_CANFD_TX_USE_DBR;
+    sg_asChannel[nChannel].canFdConfiguration.dataBitRate                = 2000000;
+    sg_asChannel[nChannel].canFdConfiguration.dataSamplePoint            = 70;
+    sg_asChannel[nChannel].canFdConfiguration.dataBTL_Cycles             = 10;
+    sg_asChannel[nChannel].canFdConfiguration.dataSJW                    = 04;
+    sg_asChannel[nChannel].canFdConfiguration.txDelayCompensationControl = OCI_CANFD_TX_DELAY_COMPENSATION_OFF;
+    sg_asChannel[nChannel].canFdConfiguration.txDelayCompensationQuanta  = 0;
+    sg_asChannel[nChannel].canFdConfiguration.rxCompatibility            = OCI_CANFD_RX_USE_RXFD_MESSAGE_PADDING;
+    sg_asChannel[nChannel].canFdConfiguration.txCompatibility            = OCI_CANFD_TX_USE_DBR;
 #endif
 }
 
@@ -842,11 +892,12 @@ void vInitializeControllerConfig(UINT nChannel)
 void vInitializeQueueConfig(UINT nChannel)
 {
     /* configure Rx Queue*/
-    sg_asChannel[nChannel].m_OCI_RxQueueCfg.onFrame.function = ProcessCanData;
-    sg_asChannel[nChannel].m_OCI_RxQueueCfg.onEvent.function = ProcessEvents;
-    sg_asChannel[nChannel].m_OCI_RxQueueCfg.selfReceptionMode = OCI_SELF_RECEPTION_ON;
-    /* configure Tx Queue*/
-    sg_asChannel[nChannel].m_OCI_TxQueueCfg.reserved = 0;
+    sg_asChannel[nChannel].canRxQueueConfiguration.onFrame.function = ProcessCanData;
+    sg_asChannel[nChannel].canRxQueueConfiguration.onEvent.function = ProcessEvents;
+    sg_asChannel[nChannel].canRxQueueConfiguration.selfReceptionMode = OCI_SELF_RECEPTION_ON;
+
+	/* configure Tx Queue*/
+    sg_asChannel[nChannel].canTxQueueConfiguration.reserved = 0;
 }
 
 /**
@@ -857,20 +908,37 @@ void vInitializeQueueConfig(UINT nChannel)
 void vInitializeFilterConfig(UINT nChannel)
 {
     /* configure frame filter*/
-    sg_asChannel[nChannel].m_OCI_FrameFilter.frameIDMask = 0;
-    sg_asChannel[nChannel].m_OCI_FrameFilter.frameIDValue = 0;
-    sg_asChannel[nChannel].m_OCI_FrameFilter.tag = 0;
-    /* configure frame filter*/
-    sg_asChannel[nChannel].m_OCI_EventFilter.destination = 0;
-    sg_asChannel[nChannel].m_OCI_EventFilter.eventCode = 0;
-    sg_asChannel[nChannel].m_OCI_EventFilter.tag = 0;
-    /* configure Error filter */
-    sg_asChannel[nChannel].m_OCI_ErrorFilter.destination = 0;
-    sg_asChannel[nChannel].m_OCI_ErrorFilter.errorFrame = 0;
-    sg_asChannel[nChannel].m_OCI_ErrorFilter.tag = 0;
+    sg_asChannel[nChannel].canRxFilter.frameIDMask = 0;
+    sg_asChannel[nChannel].canRxFilter.frameIDValue = 0;
+    sg_asChannel[nChannel].canRxFilter.tag = 0;
+
+    /* configure event filter*/
+    sg_asChannel[nChannel].canEventFilter.destination = OCI_EVENT_DESTINATION_CALLBACK;
+    sg_asChannel[nChannel].canEventFilter.eventCode =
+        OCI_CAN_BUS_EVENT_STATE_ACTIVE |
+        OCI_CAN_BUS_EVENT_STATE_PASSIVE |
+        OCI_CAN_BUS_EVENT_STATE_ERRLIMIT |
+        OCI_CAN_BUS_EVENT_STATE_BUSOFF |
+        OCI_CAN_BUS_EVENT_FAULT_TOLERANT_SINGLE_WIRE ;
+    sg_asChannel[nChannel].canEventFilter.tag = 0;
+
+    /* configure error filter */
+    sg_asChannel[nChannel].canErrorFrameFilter.destination = OCI_EVENT_DESTINATION_CALLBACK;
+    sg_asChannel[nChannel].canErrorFrameFilter.errorFrame =
+        OCI_CAN_ERR_TYPE_BITSTUFF |
+        OCI_CAN_ERR_TYPE_FORMAT |
+        OCI_CAN_ERR_TYPE_ACK |
+        OCI_CAN_ERR_TYPE_BIT |
+        OCI_CAN_ERR_TYPE_BIT_RECSV_BUT_DOMINANT |
+        OCI_CAN_ERR_TYPE_BIT_DOMINANT_BUT_RECSV |
+        OCI_CAN_ERR_TYPE_CRC |
+        OCI_CAN_ERR_TYPE_OVERLOAD |
+        OCI_CAN_ERR_TYPE_OTHER;
+    sg_asChannel[nChannel].canErrorFrameFilter.tag = 0;
+
     /* configure internal error filter */
-    sg_asChannel[nChannel].m_OCI_InternalErrorFilter.eventCode = OCI_INTERNAL_GENERAL_ERROR;
-    sg_asChannel[nChannel].m_OCI_InternalErrorFilter.tag = 0;
+    sg_asChannel[nChannel].internalErrorEventFilter.eventCode = OCI_INTERNAL_GENERAL_ERROR;
+    sg_asChannel[nChannel].internalErrorEventFilter.tag = 0;
 }
 
 /**
@@ -886,9 +954,9 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
     {
         // Add Frame filter
         ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.addCANFrameFilter))
-                  (sg_asChannel[nChannel].m_OCI_RxQueueHandle,
-                   &(sg_asChannel[nChannel].m_OCI_FrameFilter), 1);
-        if (ErrCode == OCI_SUCCESS)
+                  (sg_asChannel[nChannel].canRxQueueHandle,
+                   &(sg_asChannel[nChannel].canRxFilter), 1);
+        if (BOA_SUCCEEDED(ErrCode))
         {
             hResult = S_OK;
         }
@@ -902,10 +970,10 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
         if (hResult == S_OK)
         {
             ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.addCANBusEventFilter))
-                      (sg_asChannel[nChannel].m_OCI_RxQueueHandle,
-                       &(sg_asChannel[nChannel].m_OCI_EventFilter), 1);
+                      (sg_asChannel[nChannel].canRxQueueHandle,
+                       &(sg_asChannel[nChannel].canEventFilter), 1);
 
-            if (ErrCode != OCI_SUCCESS)
+            if (BOA_FAILED(ErrCode))
             {
                 hResult = S_FALSE;
                 sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not add event filter"));
@@ -916,9 +984,9 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
         if (hResult == S_OK)
         {
             ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.addCANErrorFrameFilter))
-                      (sg_asChannel[nChannel].m_OCI_RxQueueHandle,
-                       &(sg_asChannel[nChannel].m_OCI_ErrorFilter), 1);
-            if (ErrCode != OCI_SUCCESS)
+                      (sg_asChannel[nChannel].canRxQueueHandle,
+                       &(sg_asChannel[nChannel].canErrorFrameFilter), 1);
+            if (BOA_FAILED(ErrCode))
             {
                 hResult = S_FALSE;
                 sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not add error filter"));
@@ -928,9 +996,9 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
         if (hResult == S_OK)
         {
             ErrCode = (*(sBOA_PTRS.m_sOCI.errorVTable.addInternalErrorEventFilter))
-                      (sg_asChannel[nChannel].m_OCI_RxQueueHandle,
-                       &(sg_asChannel[nChannel].m_OCI_InternalErrorFilter), 1);
-            if (ErrCode != OCI_SUCCESS)
+                      (sg_asChannel[nChannel].canRxQueueHandle,
+                       &(sg_asChannel[nChannel].internalErrorEventFilter), 1);
+            if (BOA_FAILED(ErrCode))
             {
                 hResult = S_FALSE;
                 sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not add error filter"));
@@ -942,9 +1010,9 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
     {
         // Remove Frame filter
         ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.removeCANFrameFilter))
-                  (sg_asChannel[nChannel].m_OCI_RxQueueHandle,
-                   &(sg_asChannel[nChannel].m_OCI_FrameFilter), 1);
-        if (ErrCode == OCI_SUCCESS)
+                  (sg_asChannel[nChannel].canRxQueueHandle,
+                   &(sg_asChannel[nChannel].canRxFilter), 1);
+        if (BOA_SUCCEEDED(ErrCode))
         {
             hResult = S_OK;
         }
@@ -958,9 +1026,9 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
         if (hResult == S_OK)
         {
             ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.removeCANBusEventFilter))
-                      (sg_asChannel[nChannel].m_OCI_RxQueueHandle,
-                       &(sg_asChannel[nChannel].m_OCI_EventFilter), 1);
-            if (ErrCode != OCI_SUCCESS)
+                      (sg_asChannel[nChannel].canRxQueueHandle,
+                       &(sg_asChannel[nChannel].canEventFilter), 1);
+            if (BOA_FAILED(ErrCode))
             {
                 hResult = S_FALSE;
                 sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not remove event filter"));
@@ -971,9 +1039,9 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
         if (hResult == S_OK)
         {
             ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.removeCANErrorFrameFilter))
-                      (sg_asChannel[nChannel].m_OCI_RxQueueHandle,
-                       &(sg_asChannel[nChannel].m_OCI_ErrorFilter), 1);
-            if (ErrCode != OCI_SUCCESS)
+                      (sg_asChannel[nChannel].canRxQueueHandle,
+                       &(sg_asChannel[nChannel].canErrorFrameFilter), 1);
+            if (BOA_FAILED(ErrCode))
             {
                 hResult = S_FALSE;
                 sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not remove error filter"));
@@ -982,9 +1050,9 @@ HRESULT ManageFilters(BYTE byCode, UINT nChannel)
         if (hResult == S_OK)
         {
             ErrCode = (*(sBOA_PTRS.m_sOCI.errorVTable.removeInternalErrorEventFilter))
-                      (sg_asChannel[nChannel].m_OCI_RxQueueHandle,
-                       &(sg_asChannel[nChannel].m_OCI_InternalErrorFilter), 1);
-            if (ErrCode != OCI_SUCCESS)
+                      (sg_asChannel[nChannel].canRxQueueHandle,
+                       &(sg_asChannel[nChannel].internalErrorEventFilter), 1);
+            if (BOA_FAILED(ErrCode))
             {
                 hResult = S_FALSE;
                 sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not add error filter"));
@@ -1007,10 +1075,10 @@ HRESULT ManageQueue(BYTE byCode, UINT nChannel)
     {
         //Create CAN Rx queue
         Err = (*(sBOA_PTRS.m_sOCI.canioVTable.createCANRxQueue))
-              (sg_asChannel[nChannel].m_OCI_HwHandle,
-               &(sg_asChannel[nChannel].m_OCI_RxQueueCfg),
-               &(sg_asChannel[nChannel].m_OCI_RxQueueHandle));
-        if (Err == OCI_SUCCESS)
+              (sg_asChannel[nChannel].controllerHandle,
+               &(sg_asChannel[nChannel].canRxQueueConfiguration),
+               &(sg_asChannel[nChannel].canRxQueueHandle));
+        if (BOA_SUCCEEDED(Err))
         {
             hResult = S_OK;
         }
@@ -1023,10 +1091,10 @@ HRESULT ManageQueue(BYTE byCode, UINT nChannel)
         if (hResult == S_OK)
         {
             Err = (*(sBOA_PTRS.m_sOCI.canioVTable.createCANTxQueue))
-                  (sg_asChannel[nChannel].m_OCI_HwHandle,
-                   &(sg_asChannel[nChannel].m_OCI_TxQueueCfg),
-                   &(sg_asChannel[nChannel].m_OCI_TxQueueHandle));
-            if (Err != OCI_SUCCESS)
+                  (sg_asChannel[nChannel].controllerHandle,
+                   &(sg_asChannel[nChannel].canTxQueueConfiguration),
+                   &(sg_asChannel[nChannel].canTxQueueHandle));
+            if (BOA_FAILED(Err))
             {
                 hResult = S_FALSE;
                 sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not create tx queue"));
@@ -1036,8 +1104,8 @@ HRESULT ManageQueue(BYTE byCode, UINT nChannel)
     else if (byCode == QUEUE_DESTROY)
     {
         //Destroy CAN Rx queue
-        Err = (*(sBOA_PTRS.m_sOCI.canioVTable.destroyCANRxQueue))(sg_asChannel[nChannel].m_OCI_RxQueueHandle);
-        if (Err == OCI_SUCCESS)
+        Err = (*(sBOA_PTRS.m_sOCI.canioVTable.destroyCANRxQueue))(sg_asChannel[nChannel].canRxQueueHandle);
+        if (BOA_SUCCEEDED(Err))
         {
             hResult = S_OK;
         }
@@ -1049,8 +1117,8 @@ HRESULT ManageQueue(BYTE byCode, UINT nChannel)
         //Create CAN Tx queue
         if (hResult == S_OK)
         {
-            Err = (*(sBOA_PTRS.m_sOCI.canioVTable.destroyCANTxQueue))(sg_asChannel[nChannel].m_OCI_TxQueueHandle);
-            if (Err != OCI_SUCCESS)
+            Err = (*(sBOA_PTRS.m_sOCI.canioVTable.destroyCANTxQueue))(sg_asChannel[nChannel].canTxQueueHandle);
+            if (BOA_FAILED(Err))
             {
                 hResult = S_FALSE;
                 sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not create tx queue"));
@@ -1078,7 +1146,7 @@ void vCopyOCI_CAN_RX_2_DATA(const OCI_CANRxMessage* SrcMsg, STCANDATA* DestMsg)
         Channel = 1;//Take appropriate action
     }
 
-    DestMsg->m_lTickCount.QuadPart = (LONGLONG)(SrcMsg->timeStamp * sg_asChannel[Channel - 1].m_fResolution);
+    DestMsg->m_lTickCount.QuadPart = (LONGLONG)(SrcMsg->timeStamp * sg_asChannel[Channel - 1].resolution);
     memcpy(DestMsg->m_uDataInfo.m_sCANMsg.m_ucData, SrcMsg->data, sizeof(DestMsg->m_uDataInfo.m_sCANMsg.m_ucData));
 }
 
@@ -1102,7 +1170,7 @@ void vCopyOCI_CAN_FD_RX_2_DATA(const OCI_CANFD_RxMessage* SrcMsg, STCANDATA* Des
     {
         Channel = 1;//Take appropriate action
     }
-    DestMsg->m_lTickCount.QuadPart = (LONGLONG)(SrcMsg->timeStamp * sg_asChannel[Channel - 1].m_fResolution);
+    DestMsg->m_lTickCount.QuadPart = (LONGLONG)(SrcMsg->timeStamp * sg_asChannel[Channel - 1].resolution);
     memcpy(DestMsg->m_uDataInfo.m_sCANMsg.m_ucData, SrcMsg->data, SrcMsg->size);
 }
 #endif
@@ -1117,7 +1185,7 @@ UINT nGetChannel(const OCI_ControllerHandle hHandle)
     UINT i;
     for (i = 0; i < sg_nNoOfChannels; i++)
     {
-        if (sg_asChannel[i].m_OCI_HwHandle == hHandle)
+        if (sg_asChannel[i].controllerHandle == hHandle)
         {
             break;
         }
@@ -1131,9 +1199,9 @@ UINT nGetChannel(const OCI_ControllerHandle hHandle)
 void vCreateTimeModeMapping(HANDLE hEvent)
 {
     WaitForSingleObject(hEvent, INFINITE);
-    GetLocalTime(&sg_CurrSysTime);
+    GetLocalTime(&currentSystemTime);
     //Query Tick Count
-    QueryPerformanceCounter(&sg_QueryTickCount);
+    QueryPerformanceCounter(&queryTickCount);
 }
 
 /**
@@ -1147,31 +1215,31 @@ static void vWriteIntoClientsBuffer(STCANDATA& sCanData)
         static SACK_MAP sAckMap;
         UINT ClientId = 0;
         static UINT Index = (UINT)-1;
-        sAckMap.m_Channel = sCanData.m_uDataInfo.m_sCANMsg.m_ucChannel;
-        sAckMap.m_MsgID = sCanData.m_uDataInfo.m_sCANMsg.m_unMsgID;
+        sAckMap.channel = sCanData.m_uDataInfo.m_sCANMsg.m_ucChannel;
+        sAckMap.messageId = sCanData.m_uDataInfo.m_sCANMsg.m_unMsgID;
 
         if (bRemoveMapEntry(sAckMap, ClientId))
         {
             BOOL bClientExists = bGetClientObj(ClientId, Index);
-            for (UINT i = 0; i < sg_unClientCnt; i++)
+            for (UINT i = 0; i < clientCount; i++)
             {
                 //Tx for monitor nodes and sender node
                 if (/*(i == CAN_MONITOR_NODE_INDEX)  ||*/(bClientExists && (i == Index)))
                 {
-                    for (UINT j = 0; j < sg_asClientToBufMap[i].m_unBufCount; j++)
+                    for (UINT j = 0; j < sg_asClientToBufMap[i].bufferCount; j++)
                     {
-                        sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&sCanData);
+                        sg_asClientToBufMap[i].clientBuffer[j]->writeIntoBuffer(&sCanData);
                     }
                 }
                 else
                 {
                     //Send the other nodes as Rx.
-                    for (UINT j = 0; j < sg_asClientToBufMap[i].m_unBufCount; j++)
+                    for (UINT j = 0; j < sg_asClientToBufMap[i].bufferCount; j++)
                     {
                         static STCANDATA sTempCanData;
                         sTempCanData = sCanData;
                         sTempCanData.m_ucDataType = RX_FLAG;
-                        sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&sTempCanData);
+                        sg_asClientToBufMap[i].clientBuffer[j]->writeIntoBuffer(&sTempCanData);
                     }
                 }
             }
@@ -1179,11 +1247,11 @@ static void vWriteIntoClientsBuffer(STCANDATA& sCanData)
     }
     else // provide it to everybody
     {
-        for (UINT i = 0; i < sg_unClientCnt; i++)
+        for (UINT i = 0; i < clientCount; i++)
         {
-            for (UINT j = 0; j < sg_asClientToBufMap[i].m_unBufCount; j++)
+            for (UINT j = 0; j < sg_asClientToBufMap[i].bufferCount; j++)
             {
-                sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&sCanData);
+                sg_asClientToBufMap[i].clientBuffer[j]->writeIntoBuffer(&sCanData);
             }
         }
     }
@@ -1221,7 +1289,7 @@ void vProcessRxMsg(void* userData, struct OCI_CANMessage* msg)
 
     if (sg_byCurrState == CREATE_MAP_TIMESTAMP)
     {
-        //sg_TimeStamp = sCanData.m_lTickCount.QuadPart;
+        //timeStamp = sCanData.m_lTickCount.QuadPart;
         SetEvent(sg_hEvent);
         vCreateTimeModeMapping(sg_hEvent);
         sg_byCurrState = CALC_TIMESTAMP_READY;
@@ -1230,15 +1298,15 @@ void vProcessRxMsg(void* userData, struct OCI_CANMessage* msg)
         LARGE_INTEGER g_QueryTickCount;
         QueryPerformanceCounter(&g_QueryTickCount);
         UINT64 unConnectionTime;
-        unConnectionTime = ((g_QueryTickCount.QuadPart * 10000) / sg_lnFrequency.QuadPart) - sg_TimeStamp;
+        unConnectionTime = ((g_QueryTickCount.QuadPart * 10000) / frequency.QuadPart) - timeStamp;
         //Time difference should be +ve value
         if(sCanData.m_lTickCount.QuadPart >= unConnectionTime)
         {
-            sg_TimeStamp  = (LONGLONG)(sCanData.m_lTickCount.QuadPart - unConnectionTime);
+            timeStamp  = (LONGLONG)(sCanData.m_lTickCount.QuadPart - unConnectionTime);
         }
         else
         {
-            sg_TimeStamp  = (LONGLONG)(unConnectionTime - sCanData.m_lTickCount.QuadPart);
+            timeStamp  = (LONGLONG)(unConnectionTime - sCanData.m_lTickCount.QuadPart);
         }
     }
 
@@ -1355,18 +1423,18 @@ void vCopyOCI_CAN_ERR_2_DATA(const OCI_CANErrorFrameMessage* SrcMsg, STCANDATA* 
 void vUpdateErrorCounter(UCHAR ucTxError, UCHAR ucRxError, UINT nChannel)
 {
     // Update Tx Error counter and peak Tx Error Counter
-    sg_asChannel[nChannel].m_ucTxErrorCounter = sg_asChannel[nChannel].m_ucTxErrorCounter + ucTxError;
+    sg_asChannel[nChannel].txErrorCounter = sg_asChannel[nChannel].txErrorCounter + ucTxError;
     // Update Peak Value
-    if( ucTxError > sg_asChannel[nChannel].m_ucPeakTxErrorCounter )
+    if( ucTxError > sg_asChannel[nChannel].peakTxErrorCounter )
     {
-        sg_asChannel[nChannel].m_ucPeakTxErrorCounter = ucTxError;
+        sg_asChannel[nChannel].peakTxErrorCounter = ucTxError;
     }
     // Update Rx Error counter and peak Rx Error Counter
-    sg_asChannel[nChannel].m_ucRxErrorCounter = sg_asChannel[nChannel].m_ucRxErrorCounter + ucRxError;
+    sg_asChannel[nChannel].rxErrorCounter = sg_asChannel[nChannel].rxErrorCounter + ucRxError;
     // Update Peak Value
-    if( ucRxError > sg_asChannel[nChannel].m_ucPeakRxErrorCounter )
+    if( ucRxError > sg_asChannel[nChannel].peakRxErrorCounter )
     {
-        sg_asChannel[nChannel].m_ucPeakRxErrorCounter = ucRxError;
+        sg_asChannel[nChannel].peakRxErrorCounter = ucRxError;
     }
 }
 
@@ -1385,11 +1453,11 @@ void vProcessErrMsg(void* userData, struct OCI_CANMessage* msg)
                         sCanData.m_uDataInfo.m_sErrInfo.m_ucRxErrCount,
                         sCanData.m_uDataInfo.m_sErrInfo.m_ucChannel);
     //Write the msg into registered client's buffer
-    for (UINT i = 0; i < sg_unClientCnt; i++)
+    for (UINT i = 0; i < clientCount; i++)
     {
-        for (UINT j = 0; j < sg_asClientToBufMap[i].m_unBufCount; j++)
+        for (UINT j = 0; j < sg_asClientToBufMap[i].bufferCount; j++)
         {
-            sg_asClientToBufMap[i].m_pClientBuf[j]->writeIntoBuffer(&sCanData);
+            sg_asClientToBufMap[i].clientBuffer[j]->writeIntoBuffer(&sCanData);
         }
     }
 }
@@ -1538,11 +1606,11 @@ HRESULT CDIL_CAN_ETAS_BOA::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBa
                 //Add msg buffer
                 if (pBufObj != NULL)
                 {
-                    if (sClientObj.m_unBufCount < MAX_BUFF_ALLOWED)
+                    if (sClientObj.bufferCount < MAX_BUFF_ALLOWED)
                     {
                         if (bIsBufferExists(sClientObj, pBufObj) == FALSE)
                         {
-                            sClientObj.m_pClientBuf[sClientObj.m_unBufCount++] = pBufObj;
+                            sClientObj.clientBuffer[sClientObj.bufferCount++] = pBufObj;
                             hResult = S_OK;
                         }
                         else
@@ -1558,15 +1626,15 @@ HRESULT CDIL_CAN_ETAS_BOA::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBa
                 //clear msg buffer
                 if (pBufObj != NULL) //REmove only buffer mentioned
                 {
-                    bRemoveClientBuffer(sClientObj.m_pClientBuf, sClientObj.m_unBufCount, pBufObj);
+                    bRemoveClientBuffer(sClientObj.clientBuffer, sClientObj.bufferCount, pBufObj);
                 }
                 else //Remove all
                 {
-                    for (UINT i = 0; i < sClientObj.m_unBufCount; i++)
+                    for (UINT i = 0; i < sClientObj.bufferCount; i++)
                     {
-                        sClientObj.m_pClientBuf[i] = NULL;
+                        sClientObj.clientBuffer[i] = NULL;
                     }
-                    sClientObj.m_unBufCount = 0;
+                    sClientObj.bufferCount = 0;
                 }
                 hResult = S_OK;
             }
@@ -1585,9 +1653,9 @@ HRESULT CDIL_CAN_ETAS_BOA::manageMessageBuffer(BYTE bAction, DWORD ClientID, CBa
         if (bAction == MSGBUF_CLEAR)
         {
             //clear msg buffer
-            for (UINT i = 0; i < sg_unClientCnt; i++)
+            for (UINT i = 0; i < clientCount; i++)
             {
-                manageMessageBuffer(MSGBUF_CLEAR, sg_asClientToBufMap[i].m_dwClientID, NULL);
+                manageMessageBuffer(MSGBUF_CLEAR, sg_asClientToBufMap[i].clientId, NULL);
             }
             hResult = S_OK;
         }
@@ -1607,7 +1675,7 @@ HRESULT CDIL_CAN_ETAS_BOA::registerClient(BOOL bRegister, DWORD& ClientID, char*
     HRESULT hResult = S_FALSE;
     if (bRegister)
     {
-        if (sg_unClientCnt < MAX_CLIENT_ALLOWED)
+        if (clientCount < MAX_CLIENT_ALLOWED)
         {
             INT Index = 0;
             if (!bClientExist(pacClientName, Index))
@@ -1617,32 +1685,31 @@ HRESULT CDIL_CAN_ETAS_BOA::registerClient(BOOL bRegister, DWORD& ClientID, char*
                 {
                     //First slot is reserved to monitor node
                     ClientID = 1;
-                    sg_asClientToBufMap[0].m_acClientName = pacClientName;
-                    sg_asClientToBufMap[0].m_dwClientID = ClientID;
-                    sg_asClientToBufMap[0].m_unBufCount = 0;
+                    sg_asClientToBufMap[0].clientName = pacClientName;
+                    sg_asClientToBufMap[0].clientId = ClientID;
+                    sg_asClientToBufMap[0].bufferCount = 0;
                 }
                 else
                 {
                     if (!bClientExist(CAN_MONITOR_NODE, Index))
                     {
-                        Index = sg_unClientCnt + 1;
+                        Index = clientCount + 1;
                     }
                     else
                     {
-                        Index = sg_unClientCnt;
+                        Index = clientCount;
                     }
                     ClientID = dwGetAvailableClientSlot();
-                    sg_asClientToBufMap[Index].m_acClientName = pacClientName;
-
-                    sg_asClientToBufMap[Index].m_dwClientID = ClientID;
-                    sg_asClientToBufMap[Index].m_unBufCount = 0;
+                    sg_asClientToBufMap[Index].clientName = pacClientName;
+                    sg_asClientToBufMap[Index].clientId = ClientID;
+                    sg_asClientToBufMap[Index].bufferCount = 0;
                 }
-                sg_unClientCnt++;
+                clientCount++;
                 hResult = S_OK;
             }
             else
             {
-                ClientID = sg_asClientToBufMap[Index].m_dwClientID;
+                ClientID = sg_asClientToBufMap[Index].clientId;
                 hResult = ERR_CLIENT_EXISTS;
             }
         }
@@ -1794,57 +1861,57 @@ static BOOL bLoadDataFromContr(PSCONTROLLER_DETAILS pControllerDetails)
         for( INT i = 0; i < defNO_OF_CHANNELS; i++ )
         {
 #ifndef BOA_VERSION_1_5_FD
-            sg_asChannel[i].m_OCI_CANConfig.baudrate =
-            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrBaudrate.c_str(),
-            &pcStopStr, 10));
+            sg_asChannel[i].canConfiguration.baudrate =
+                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrBaudrate.c_str(),
+                                            &pcStopStr, 10));
             //code commented to resolve the BOA message transmission issue (#389)
-            //sg_asChannel[i].m_OCI_CANConfig.baudrate
-            //= (sg_asChannel[i].m_OCI_CANConfig.baudrate * 1000);
-            sg_asChannel[i].m_OCI_CANConfig.samplesPerBit =
-            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSampling.c_str(),
-            &pcStopStr, 10));
-            sg_asChannel[i].m_OCI_CANConfig.samplePoint =
-            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSamplePercentage.c_str(),
-            &pcStopStr, 10));
-            sg_asChannel[i].m_OCI_CANConfig.SJW =
-            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSjw.c_str(),
-            &pcStopStr, 10));
-            sg_asChannel[i].m_OCI_CANConfig.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
-            sg_asChannel[i].m_OCI_CANConfig.selfReceptionMode = OCI_SELF_RECEPTION_ON;
-            sg_asChannel[i].m_OCI_CANConfig.BTL_Cycles = 10;
-            sg_asChannel[i].m_OCI_CANConfig.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
+            //sg_asChannel[i].canConfiguration.baudrate
+            //= (sg_asChannel[i].canConfiguration.baudrate * 1000);
+            sg_asChannel[i].canConfiguration.samplesPerBit =
+                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSampling.c_str(),
+                                            &pcStopStr, 10));
+            sg_asChannel[i].canConfiguration.samplePoint =
+                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSamplePercentage.c_str(),
+                                            &pcStopStr, 10));
+            sg_asChannel[i].canConfiguration.SJW =
+                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSjw.c_str(),
+                                            &pcStopStr, 10));
+            sg_asChannel[i].canConfiguration.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
+            sg_asChannel[i].canConfiguration.selfReceptionMode = OCI_SELF_RECEPTION_ON;
+            sg_asChannel[i].canConfiguration.BTL_Cycles = 10;
+            sg_asChannel[i].canConfiguration.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
 #else
-            sg_asChannel[i].m_OCI_CANFDConfig.can.baudrate =
-            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrBaudrate.c_str(),
-            &pcStopStr, 10));
-            sg_asChannel[i].m_OCI_CANFDConfig.can.baudrate
-            = (sg_asChannel[i].m_OCI_CANFDConfig.can.baudrate * 1000);
-            sg_asChannel[i].m_OCI_CANFDConfig.can.samplesPerBit =
-            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSampling.c_str(),
-            &pcStopStr, 10));
-            sg_asChannel[i].m_OCI_CANFDConfig.can.samplePoint =
-            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSamplePercentage.c_str(),
-            &pcStopStr, 10));
-            sg_asChannel[i].m_OCI_CANFDConfig.can.SJW =
-            static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSjw.c_str(),
-            &pcStopStr, 10));
-            sg_asChannel[i].m_OCI_CANFDConfig.can.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
-            sg_asChannel[i].m_OCI_CANFDConfig.can.selfReceptionMode = OCI_SELF_RECEPTION_ON;
-            sg_asChannel[i].m_OCI_CANFDConfig.can.BTL_Cycles = 10;
-            sg_asChannel[i].m_OCI_CANFDConfig.can.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
+            sg_asChannel[i].canFdConfiguration.can.baudrate =
+                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrBaudrate.c_str(),
+                                            &pcStopStr, 10));
+            sg_asChannel[i].canFdConfiguration.can.baudrate
+                = (sg_asChannel[i].canFdConfiguration.can.baudrate * 1000);
+            sg_asChannel[i].canFdConfiguration.can.samplesPerBit =
+                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSampling.c_str(),
+                                            &pcStopStr, 10));
+            sg_asChannel[i].canFdConfiguration.can.samplePoint =
+                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSamplePercentage.c_str(),
+                                            &pcStopStr, 10));
+            sg_asChannel[i].canFdConfiguration.can.SJW =
+                static_cast <UINT>(_tcstol( pControllerDetails[ i ].m_omStrSjw.c_str(),
+                                            &pcStopStr, 10));
+            sg_asChannel[i].canFdConfiguration.can.syncEdge = OCI_CAN_SINGLE_SYNC_EDGE;
+            sg_asChannel[i].canFdConfiguration.can.selfReceptionMode = OCI_SELF_RECEPTION_ON;
+            sg_asChannel[i].canFdConfiguration.can.BTL_Cycles = 10;
+            sg_asChannel[i].canFdConfiguration.can.physicalMedia = OCI_CAN_MEDIA_HIGH_SPEED;
 
             /* Set CAN FD parameters */
-            sg_asChannel[i].m_OCI_CANFDConfig.dataBitRate                   = pControllerDetails[i].m_unDataBitRate;
-            sg_asChannel[i].m_OCI_CANFDConfig.dataSamplePoint               = pControllerDetails[i].m_unDataSamplePoint;
-            sg_asChannel[i].m_OCI_CANFDConfig.dataBTL_Cycles                = pControllerDetails[i].m_unDataBTL_Cycles;
-            sg_asChannel[i].m_OCI_CANFDConfig.dataSJW                       = pControllerDetails[i].m_unDataSJW;
-            sg_asChannel[i].m_OCI_CANFDConfig.txDelayCompensationControl    = (OCI_CANFD_TxDelayCompensation)
-            pControllerDetails[i].m_bTxDelayCompensationON;
-            sg_asChannel[i].m_OCI_CANFDConfig.txDelayCompensationQuanta     = pControllerDetails[i].m_unTxDelayCompensationQuanta;
-            sg_asChannel[i].m_OCI_CANFDConfig.rxCompatibility               = (OCI_CANFD_RxConfig)
-            pControllerDetails[i].m_bytRxCompatibility;
-            sg_asChannel[i].m_OCI_CANFDConfig.txCompatibility               = (OCI_CANFD_TxConfig)
-            pControllerDetails[i].m_bytTxCompatibility;
+            sg_asChannel[i].canFdConfiguration.dataBitRate                   = pControllerDetails[i].m_unDataBitRate;
+            sg_asChannel[i].canFdConfiguration.dataSamplePoint               = pControllerDetails[i].m_unDataSamplePoint;
+            sg_asChannel[i].canFdConfiguration.dataBTL_Cycles                = pControllerDetails[i].m_unDataBTL_Cycles;
+            sg_asChannel[i].canFdConfiguration.dataSJW                       = pControllerDetails[i].m_unDataSJW;
+            sg_asChannel[i].canFdConfiguration.txDelayCompensationControl    = (OCI_CANFD_TxDelayCompensation)
+                    pControllerDetails[i].m_bTxDelayCompensationON;
+            sg_asChannel[i].canFdConfiguration.txDelayCompensationQuanta     = pControllerDetails[i].m_unTxDelayCompensationQuanta;
+            sg_asChannel[i].canFdConfiguration.rxCompatibility               = (OCI_CANFD_RxConfig)
+                    pControllerDetails[i].m_bytRxCompatibility;
+            sg_asChannel[i].canFdConfiguration.txCompatibility               = (OCI_CANFD_TxConfig)
+                    pControllerDetails[i].m_bytTxCompatibility;
 #endif
         }
         bReturn = TRUE;
@@ -1904,9 +1971,9 @@ HRESULT CDIL_CAN_ETAS_BOA::performClosureOperations(void)
 
     /* Remove all the existing clients */
     UINT ClientIndex = 0;
-    while (sg_unClientCnt > 0)
+    while (clientCount > 0)
     {
-        bRemoveClient(sg_asClientToBufMap[ClientIndex].m_dwClientID);
+        bRemoveClient(sg_asClientToBufMap[ClientIndex].clientId);
     }
 
     /* Delete the critical section */
@@ -1927,11 +1994,11 @@ HRESULT CDIL_CAN_ETAS_BOA::performClosureOperations(void)
  */
 HRESULT CDIL_CAN_ETAS_BOA::getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& TimeStamp, LARGE_INTEGER* QueryTickCount)
 {
-    CurrSysTime = sg_CurrSysTime;
-    TimeStamp   = sg_TimeStamp;
+    CurrSysTime = currentSystemTime;
+    TimeStamp   = timeStamp;
     if(QueryTickCount != NULL)
     {
-        *QueryTickCount = sg_QueryTickCount;
+        *QueryTickCount = queryTickCount;
     }
     return S_OK;
 }
@@ -1979,7 +2046,7 @@ HRESULT CDIL_CAN_ETAS_BOA::listHardwareInterfaces(InterfaceHardwareList& asSelHw
 
     UINT unDefaultChannelCnt = nCount;
 
-    if (OCI_FindCANController(acURI, defNO_OF_CHANNELS, &nFound) == OCI_SUCCESS)
+    if (BOA_SUCCEEDED(OCI_FindCANController(acURI, defNO_OF_CHANNELS, &nFound)))
     {
         nCount = nFound;
         qsort((void*)acURI, nCount, sizeof(OCI_URIName), nCallBackStrCompareFn);
@@ -2047,48 +2114,49 @@ HRESULT CDIL_CAN_ETAS_BOA::selectHardwareInterface(const InterfaceHardwareList& 
 
     USES_CONVERSION;
     HRESULT hResult = S_OK;
+
     //First select only supported number of HW interfaces
     for (UINT i = 0; i < sg_nNoOfChannels; i++)
     {
-        strcpy_s(sg_asChannel[i].m_acURI, asSelHwInterface[i].interfaceName.c_str());
+        strcpy_s(sg_asChannel[i].uri, asSelHwInterface[i].interfaceName.c_str());
     }
+
     // Create the controller instance.
     for (UINT i = 0; i < sg_nNoOfChannels; i++)
     {
-        BOA_ResultCode err =  (*(sBOA_PTRS.m_sOCI.createCANController))(sg_asChannel[i].m_acURI,
-                              &(sg_asChannel[i].m_OCI_HwHandle));
-        if (err == OCI_SUCCESS)
+        BOA_ResultCode err =  (*(sBOA_PTRS.m_sOCI.createCANController))(sg_asChannel[i].uri,
+                              &(sg_asChannel[i].controllerHandle));
+        if (BOA_SUCCEEDED(err))
         {
             /* Assign to userdata of QueueCfg. This will be useful to differentiate
             between the controller */
-
-            sg_asChannel[i].m_OCI_RxQueueCfg.onFrame.userData = (void*)sg_asChannel[i].m_OCI_HwHandle;
-            sg_asChannel[i].m_OCI_RxQueueCfg.onEvent.userData = (void*)sg_asChannel[i].m_OCI_HwHandle;
+            sg_asChannel[i].canRxQueueConfiguration.onFrame.userData = (void*)sg_asChannel[i].controllerHandle;
+            sg_asChannel[i].canRxQueueConfiguration.onEvent.userData = (void*)sg_asChannel[i].controllerHandle;
             BOA_ResultCode ErrorCode = OCI_FAILURE;
 
 #ifndef BOA_VERSION_1_5_FD
             //configure the controller first
-            ErrorCode = (*(sBOA_PTRS.m_sOCI.openCANController))(sg_asChannel[i].m_OCI_HwHandle,
-                        &(sg_asChannel[i].m_OCI_CANConfig),
-                        &(sg_asChannel[i].m_OCI_CntrlProp));
+            ErrorCode = (*(sBOA_PTRS.m_sOCI.openCANController))(sg_asChannel[i].controllerHandle,
+                        &(sg_asChannel[i].canConfiguration),
+                        &(sg_asChannel[i].canControllerProperties));
 #else
             //configure the controller first
-            ErrorCode = (*(sBOA_PTRS.m_sOCI.openCANFDController))(sg_asChannel[i].m_OCI_HwHandle,
-                        &(sg_asChannel[i].m_OCI_CANFDConfig),
-                        &(sg_asChannel[i].m_OCI_CntrlProp));
+            ErrorCode = (*(sBOA_PTRS.m_sOCI.openCANFDController))(sg_asChannel[i].controllerHandle,
+                        &(sg_asChannel[i].canFdConfiguration),
+                        &(sg_asChannel[i].canControllerProperties));
 #endif
-            if (ErrorCode == OCI_SUCCESS)
+            if (BOA_SUCCEEDED(ErrorCode))
             {
                 if (ManageQueue(QUEUE_ADD, i) == S_OK)
                 {
                     if (ManageFilters(FILTER_ADD, i) == S_OK)
                     {
-                        hResult = (*(sBOA_PTRS.m_sOCI.timeVTable.getTimerCapabilities))(sg_asChannel[i].m_OCI_HwHandle,
-                                  &(sg_asChannel[i].m_OCI_TimerCapabilities));
+                        hResult = (*(sBOA_PTRS.m_sOCI.timeVTable.getTimerCapabilities))(sg_asChannel[i].controllerHandle,
+                                  &(sg_asChannel[i].timerCapabilities));
                         if (hResult == S_OK)
                         {
-                            sg_asChannel[i].m_fResolution = (float)10000 /
-                                                            (float)(sg_asChannel[i].m_OCI_TimerCapabilities.tickFrequency);
+                            sg_asChannel[i].resolution = (float)10000 /
+                                                         (float)(sg_asChannel[i].timerCapabilities.tickFrequency);
                         }
                         else
                         {
@@ -2121,6 +2189,7 @@ HRESULT CDIL_CAN_ETAS_BOA::selectHardwareInterface(const InterfaceHardwareList& 
             sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not create controller"));
         }
     }
+
     //Check for the success
     if (hResult == S_OK)
     {
@@ -2145,9 +2214,9 @@ HRESULT CDIL_CAN_ETAS_BOA::deselectHardwareInterface(void)
         {
             if ((hResult = ManageQueue(QUEUE_DESTROY, i)) == S_OK)
             {
-                if ((*(sBOA_PTRS.m_sOCI.closeCANController))(sg_asChannel[i].m_OCI_HwHandle) == OCI_SUCCESS)
+                if (BOA_SUCCEEDED((*(sBOA_PTRS.m_sOCI.closeCANController))(sg_asChannel[i].controllerHandle)))
                 {
-                    if ((*(sBOA_PTRS.m_sOCI.destroyCANController))(sg_asChannel[i].m_OCI_HwHandle) == OCI_SUCCESS)
+                    if (BOA_SUCCEEDED((*(sBOA_PTRS.m_sOCI.destroyCANController))(sg_asChannel[i].controllerHandle)))
                     {
                         hResult |= S_OK;
                     }
@@ -2231,7 +2300,7 @@ HRESULT CDIL_CAN_ETAS_BOA::displayConfigurationDialog(PSCONTROLLER_DETAILS InitD
     //First initialize with existing hw description
     for (INT i = 0; i < min(Length, (INT)sg_nNoOfChannels); i++)
     {
-        psContrlDets[i].m_omHardwareDesc = sg_asChannel[i].m_acURI;
+        psContrlDets[i].hardwareDescription = sg_asChannel[i].uri;
     }
     if (sg_nNoOfChannels > 0)
     {
@@ -2294,23 +2363,23 @@ HRESULT CDIL_CAN_ETAS_BOA::setConfigurationData(PSCONTROLLER_DETAILS pInitData, 
         //First remove all the Rx Tx queues
         ManageQueue(QUEUE_DESTROY, i);
         // if controller is open, close the controller. Do not bother about return value
-        ErrCode = (*sBOA_PTRS.m_sOCI.closeCANController)(sg_asChannel[i].m_OCI_HwHandle);
+        ErrCode = (*sBOA_PTRS.m_sOCI.closeCANController)(sg_asChannel[i].controllerHandle);
 #ifndef BOA_VERSION_1_5_FD
         //Now load the controller config and open the controller
-        ErrCode = (*sBOA_PTRS.m_sOCI.openCANController)(sg_asChannel[i].m_OCI_HwHandle,
-                    &(sg_asChannel[i].m_OCI_CANConfig),
-                    &(sg_asChannel[i].m_OCI_CntrlProp));
+        ErrCode = (*sBOA_PTRS.m_sOCI.openCANController)(sg_asChannel[i].controllerHandle,
+                  &(sg_asChannel[i].canConfiguration),
+                  &(sg_asChannel[i].canControllerProperties));
 #else
         //Now load the controller config and open the controller
-        ErrCode = (*sBOA_PTRS.m_sOCI.openCANFDController)(sg_asChannel[i].m_OCI_HwHandle,
-                    &(sg_asChannel[i].m_OCI_CANFDConfig),
-                    &(sg_asChannel[i].m_OCI_CntrlProp));
+        ErrCode = (*sBOA_PTRS.m_sOCI.openCANFDController)(sg_asChannel[i].controllerHandle,
+                  &(sg_asChannel[i].canFdConfiguration),
+                  &(sg_asChannel[i].canControllerProperties));
 #endif
         /* Fill the hardware description details */
-        ((PSCONTROLLER_DETAILS)pInitData)[i].m_omHardwareDesc =
-            sg_asChannel[i].m_acURI;
+        ((PSCONTROLLER_DETAILS)pInitData)[i].hardwareDescription =
+            sg_asChannel[i].uri;
 
-        if (ErrCode == OCI_SUCCESS)
+        if (BOA_SUCCEEDED(ErrCode))
         {
             // Rx Tx queue
             if (ManageQueue(QUEUE_ADD, i) == S_OK)
@@ -2342,17 +2411,15 @@ HRESULT CDIL_CAN_ETAS_BOA::startHardware(void)
     HRESULT hResult = S_OK;
     for (UINT i = 0; i < sg_nNoOfChannels; i++)
     {
-        if ((*(sBOA_PTRS.m_sOCI.getCANControllerProperties))(sg_asChannel[i].m_OCI_HwHandle,
-                &(sg_asChannel[i].m_OCI_CntrlProp))
-                == OCI_SUCCESS)
+        if (BOA_SUCCEEDED((*(sBOA_PTRS.m_sOCI.getCANControllerProperties))(sg_asChannel[i].controllerHandle,
+                &(sg_asChannel[i].canControllerProperties))))
         {
-            if ((sg_asChannel[i].m_OCI_CntrlProp.mode == OCI_CONTROLLER_MODE_SUSPENDED)
-                    || (sg_asChannel[i].m_OCI_CntrlProp.mode == OCI_CONTROLLER_MODE_RUNNING))
+            if ((sg_asChannel[i].canControllerProperties.mode == OCI_CONTROLLER_MODE_SUSPENDED)
+                    || (sg_asChannel[i].canControllerProperties.mode == OCI_CONTROLLER_MODE_RUNNING))
             {
-                sg_asChannel[i].m_OCI_CntrlProp.mode = OCI_CONTROLLER_MODE_RUNNING;
-                if ((*(sBOA_PTRS.m_sOCI.setCANControllerProperties))(sg_asChannel[i].m_OCI_HwHandle,
-                        &(sg_asChannel[i].m_OCI_CntrlProp))
-                        == OCI_SUCCESS)
+                sg_asChannel[i].canControllerProperties.mode = OCI_CONTROLLER_MODE_RUNNING;
+                if (BOA_SUCCEEDED((*(sBOA_PTRS.m_sOCI.setCANControllerProperties))(sg_asChannel[i].controllerHandle,
+                        &(sg_asChannel[i].canControllerProperties))))
                 {
                     hResult |= S_OK;
                 }
@@ -2379,17 +2446,17 @@ HRESULT CDIL_CAN_ETAS_BOA::startHardware(void)
         InitializeCriticalSection(&sg_CritSectForAckBuf);
 
 
-        QueryPerformanceCounter(&sg_QueryTickCount);
+        QueryPerformanceCounter(&queryTickCount);
         // Get frequency of the performance counter
-        QueryPerformanceFrequency(&sg_lnFrequency);
+        QueryPerformanceFrequency(&frequency);
         // Convert it to time stamp with the granularity of hundreds of microsecond
-        if ((sg_QueryTickCount.QuadPart * 10000) > sg_lnFrequency.QuadPart)
+        if ((queryTickCount.QuadPart * 10000) > frequency.QuadPart)
         {
-            sg_TimeStamp = (sg_QueryTickCount.QuadPart * 10000) / sg_lnFrequency.QuadPart;
+            timeStamp = (queryTickCount.QuadPart * 10000) / frequency.QuadPart;
         }
         else
         {
-            sg_TimeStamp = (sg_QueryTickCount.QuadPart / sg_lnFrequency.QuadPart) * 10000;
+            timeStamp = (queryTickCount.QuadPart / frequency.QuadPart) * 10000;
         }
     }
 
@@ -2408,16 +2475,14 @@ HRESULT CDIL_CAN_ETAS_BOA::stopHardware(void)
     HRESULT hResult = S_OK;
     for (UINT i = 0; i < sg_nNoOfChannels; i++)
     {
-        if ((*(sBOA_PTRS.m_sOCI.getCANControllerProperties))(sg_asChannel[i].m_OCI_HwHandle,
-                &(sg_asChannel[i].m_OCI_CntrlProp))
-                == OCI_SUCCESS)
+        if (BOA_SUCCEEDED((*(sBOA_PTRS.m_sOCI.getCANControllerProperties))(sg_asChannel[i].controllerHandle,
+                &(sg_asChannel[i].canControllerProperties))))
         {
-            if (sg_asChannel[i].m_OCI_CntrlProp.mode == OCI_CONTROLLER_MODE_RUNNING)
+            if (sg_asChannel[i].canControllerProperties.mode == OCI_CONTROLLER_MODE_RUNNING)
             {
-                sg_asChannel[i].m_OCI_CntrlProp.mode = OCI_CONTROLLER_MODE_SUSPENDED;
-                if ((*(sBOA_PTRS.m_sOCI.setCANControllerProperties))(sg_asChannel[i].m_OCI_HwHandle,
-                        &(sg_asChannel[i].m_OCI_CntrlProp))
-                        == OCI_SUCCESS)
+                sg_asChannel[i].canControllerProperties.mode = OCI_CONTROLLER_MODE_SUSPENDED;
+                if (BOA_SUCCEEDED((*(sBOA_PTRS.m_sOCI.setCANControllerProperties))(sg_asChannel[i].controllerHandle,
+                        &(sg_asChannel[i].canControllerProperties))))
                 {
                     hResult |= S_OK;
                 }
@@ -2427,7 +2492,7 @@ HRESULT CDIL_CAN_ETAS_BOA::stopHardware(void)
                     sg_pIlog->logMessage(A2T(__FILE__), __LINE__, _("could not stop the controller in suspended mode"));
                 }
             }
-            else if (sg_asChannel[i].m_OCI_CntrlProp.mode == OCI_CONTROLLER_MODE_SUSPENDED)
+            else if (sg_asChannel[i].canControllerProperties.mode == OCI_CONTROLLER_MODE_SUSPENDED)
             {
                 hResult |= S_OK;
             }
@@ -2480,16 +2545,16 @@ HRESULT CDIL_CAN_ETAS_BOA::sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTx
             sOciCanMsg.reserved = 0;
             uint32 nRemaining = 0;
             memcpy(&(sOciCanMsg.data.txMessage), &(sOciTxCanMsg), sizeof(OCI_CANTxMessage));
-            sAckMap.m_ClientID = dwClientID;
-            sAckMap.m_Channel  = sCanTxMsg.m_ucChannel;
-            sAckMap.m_MsgID    = sOciCanMsg.data.txMessage.frameID;
+            sAckMap.clientId = dwClientID;
+            sAckMap.channel  = sCanTxMsg.m_ucChannel;
+            sAckMap.messageId    = sOciCanMsg.data.txMessage.frameID;
             vMarkEntryIntoMap(sAckMap);
             BOA_ResultCode ErrCode;
 #ifdef BOA_VERSION_1_5_FD
             if(sCanTxMsg.m_bCANFD == false)
             {
                 ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.writeCANData))
-                          (sg_asChannel[sCanTxMsg.m_ucChannel - 1].m_OCI_TxQueueHandle, OCI_NO_TIME, &sOciCanMsg, 1, &nRemaining);
+                          (sg_asChannel[sCanTxMsg.m_ucChannel - 1].canTxQueueHandle, OCI_NO_TIME, &sOciCanMsg, 1, &nRemaining);
             }
             else
             {
@@ -2501,13 +2566,13 @@ HRESULT CDIL_CAN_ETAS_BOA::sendMessage(DWORD dwClientID, const STCAN_MSG& sCanTx
                 sOciCanMsg.type = OCI_CANFD_TX_MESSAGE;
                 memcpy(&(sOciCanMsg.data.txMessage), &(sOciTxCanMsg), sizeof(OCI_CANFD_TxMessage));
                 BOA_ResultCode ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.writeCANData))
-                                         (sg_asChannel[sCanTxMsg.m_ucChannel - 1].m_OCI_TxQueueHandle, OCI_NO_TIME, &sOciCanMsg, 1, &nRemaining);
+                                         (sg_asChannel[sCanTxMsg.m_ucChannel - 1].canTxQueueHandle, OCI_NO_TIME, &sOciCanMsg, 1, &nRemaining);
             }
 #else
             ErrCode = (*(sBOA_PTRS.m_sOCI.canioVTable.writeCANData))
-                      (sg_asChannel[sCanTxMsg.m_ucChannel - 1].m_OCI_TxQueueHandle, OCI_NO_TIME, &sOciCanMsg, 1, &nRemaining);
+                      (sg_asChannel[sCanTxMsg.m_ucChannel - 1].canTxQueueHandle, OCI_NO_TIME, &sOciCanMsg, 1, &nRemaining);
 #endif
-            if (ErrCode == OCI_SUCCESS)
+            if (BOA_SUCCEEDED(ErrCode))
             {
                 hResult = S_OK;
             }
@@ -2602,7 +2667,7 @@ HRESULT CDIL_CAN_ETAS_BOA::setControllerParameters(int nValue, ECONTR_PARAM eCon
                     {
                         OCI_CANControllerProperties val;
                         val.mode = OCI_CONTROLLER_MODE_RUNNING;
-                        (*(sBOA_PTRS.m_sOCI.setCANControllerProperties))(sg_asChannel[i].m_OCI_HwHandle,
+                        (*(sBOA_PTRS.m_sOCI.setCANControllerProperties))(sg_asChannel[i].controllerHandle,
                                 &val);
                         i++;
 
@@ -2615,7 +2680,7 @@ HRESULT CDIL_CAN_ETAS_BOA::setControllerParameters(int nValue, ECONTR_PARAM eCon
                     {
                         OCI_CANControllerProperties val;
                         val.mode  = OCI_CONTROLLER_MODE_SUSPENDED;
-                        (*(sBOA_PTRS.m_sOCI.setCANControllerProperties))(sg_asChannel[i].m_OCI_HwHandle,
+                        (*(sBOA_PTRS.m_sOCI.setCANControllerProperties))(sg_asChannel[i].controllerHandle,
                                 &val);
                         i++;
 
@@ -2640,13 +2705,13 @@ HRESULT CDIL_CAN_ETAS_BOA::getErrorCount(SERROR_CNT& sErrorCnt, UINT nChannel, E
         {
             if (eContrParam == ERR_CNT)
             {
-                sErrorCnt.m_ucTxErrCount = sg_asChannel[nChannel].m_ucTxErrorCounter;
-                sErrorCnt.m_ucRxErrCount = sg_asChannel[nChannel].m_ucRxErrorCounter;
+                sErrorCnt.m_ucTxErrCount = sg_asChannel[nChannel].txErrorCounter;
+                sErrorCnt.m_ucRxErrCount = sg_asChannel[nChannel].rxErrorCounter;
             }
             else if (eContrParam == PEAK_ERR_CNT)
             {
-                sErrorCnt.m_ucTxErrCount = sg_asChannel[nChannel].m_ucPeakTxErrorCounter;
-                sErrorCnt.m_ucRxErrCount = sg_asChannel[nChannel].m_ucPeakRxErrorCounter;
+                sErrorCnt.m_ucTxErrCount = sg_asChannel[nChannel].peakTxErrorCounter;
+                sErrorCnt.m_ucRxErrCount = sg_asChannel[nChannel].peakRxErrorCounter;
             }
         }
         else

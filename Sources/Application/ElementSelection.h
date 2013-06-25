@@ -37,7 +37,7 @@ public:
 
     CElementSelection(UINT nHardware = defNO_OF_CHANNELS, CWnd* pParent = NULL);
 
-	enum { IDD = IDD_DLG_MSG_LIST };
+    enum { IDD = IDD_DLG_MSG_LIST };
     CListCtrl   m_omElementList;
     CTreeCtrl   m_omTreeEntries;
 
@@ -46,7 +46,7 @@ protected:
 
     virtual void OnOK();
     virtual BOOL OnInitDialog();
-	afx_msg void OnBnClickedOk();
+    afx_msg void OnBnClickedOk();
     afx_msg void OnDblclkTreeSignal(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnBtnAdd();
     afx_msg void OnBtnDelete();

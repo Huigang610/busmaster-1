@@ -770,7 +770,7 @@ static void vPopulateMainSubList(SignalWatchListMainEntries& DestList, const SFI
         {
             SignalWatchListSubEntry sSubEntry;
             sSubEntry.subEntryName.Format("%s",
-                                              psFilterConfigured->m_psFilters[i].m_sFilterName.filterName);
+                                          psFilterConfigured->m_psFilters[i].m_sFilterName.filterName);
             sMainEntry.m_odUnSelEntryList.AddTail(sSubEntry);
         }
     }
@@ -781,7 +781,7 @@ static void vPopulateMainSubList(SignalWatchListMainEntries& DestList, const SFI
         {
             SignalWatchListSubEntry sSubEntry;
             sSubEntry.subEntryName.Format("%s",
-                                              psFilterConfigured->m_psFilters[i].m_sFilterName.filterName);
+                                          psFilterConfigured->m_psFilters[i].m_sFilterName.filterName);
             if (SFILTERSET::psGetFilterSetPointer(psFilterApplied->m_psFilters,
                                                   psFilterApplied->m_ushTotal,
                                                   sSubEntry.subEntryName.GetBuffer(MAX_PATH)) != NULL)

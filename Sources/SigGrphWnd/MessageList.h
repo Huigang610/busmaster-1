@@ -24,7 +24,7 @@
 #pragma once
 
 /* Project includes */
-#include "Utility/FFListCtrl.h"	// Definition of Flicker Free List Control
+#include "Utility/FFListCtrl.h" // Definition of Flicker Free List Control
 
 class CMessageList : public CFFListCtrl
 {

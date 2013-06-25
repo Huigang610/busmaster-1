@@ -42,7 +42,7 @@ public:
 protected:
     virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
 
-	virtual ~COutWnd();
+    virtual ~COutWnd();
 
     afx_msg void OnDestroy();
     afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);

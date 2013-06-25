@@ -56,21 +56,21 @@ HRESULT CDILI_J1939::uninitialize(void)
 }
 
 HRESULT CDILI_J1939::registerClient(BOOL bRegister, char* pacNodeName,
-        UINT64 un64ECUName, BYTE byPrefAdres,
-        DWORD& dwClientId)
+                                    UINT64 un64ECUName, BYTE byPrefAdres,
+                                    DWORD& dwClientId)
 {
     return DILJ_RegisterClient(bRegister, pacNodeName, un64ECUName,
                                byPrefAdres, dwClientId);
 }
 
 HRESULT CDILI_J1939::manageMessageBuffer(BYTE bAction, DWORD dwClientID,
-                                        CBaseMsgBufVSE* pBufObj)
+        CBaseMsgBufVSE* pBufObj)
 {
     return DILJ_ManageMsgBuf(bAction, dwClientID, pBufObj);
 }
 
 HRESULT CDILI_J1939::sendJ1939Message (DWORD dwClientId, UINT unChannel, EJ1939_MSG_TYPE eMsgType, UINT32 unPGN,
-        BYTE* pbyData, UINT unDLC, BYTE byPriority, BYTE bySrc, BYTE byDestAdres)
+                                       BYTE* pbyData, UINT unDLC, BYTE byPriority, BYTE bySrc, BYTE byDestAdres)
 {
     return DILJ_SendJ1939Msg (dwClientId, unChannel, eMsgType, unPGN, pbyData,
                               unDLC, byPriority, bySrc, byDestAdres);
@@ -88,7 +88,7 @@ HRESULT CDILI_J1939::getNodeAddress(BYTE& byAddress, DWORD dwClient)
 }
 
 HRESULT CDILI_J1939::requestAddress(DWORD dwClient, UINT unChannel, BYTE byPriority,
-        BYTE bySrc, BYTE byDestAddress)
+                                    BYTE bySrc, BYTE byDestAddress)
 {
     return DILJ_NM_RequestAddress(dwClient, unChannel, byPriority, bySrc, byDestAddress);
 }
@@ -104,14 +104,14 @@ HRESULT CDILI_J1939::claimAddress(DWORD dwClientId, UINT unChannel, BYTE byAddre
 }
 
 HRESULT CDILI_J1939::commandAddress(DWORD dwClient, UINT unChannel, UINT64 unECU_NAME,
-        BYTE byNewAddress, BYTE byPriority, BYTE bySrc, BYTE byDestAddress)
+                                    BYTE byNewAddress, BYTE byPriority, BYTE bySrc, BYTE byDestAddress)
 {
     return DILJ_NM_CommandAddress(dwClient, unChannel, unECU_NAME, byNewAddress,
                                   byPriority, bySrc, byDestAddress);
 }
 
 HRESULT CDILI_J1939::requestPgn(DWORD dwClient, UINT unChannel, UINT32 unPGN,
-                                      BYTE byPriority, BYTE bySrc, BYTE byDestAddress)
+                                BYTE byPriority, BYTE bySrc, BYTE byDestAddress)
 {
     return DILJ_RequestPGN(dwClient, unChannel, unPGN, byPriority, bySrc, byDestAddress);
 }
@@ -142,7 +142,7 @@ HRESULT CDILI_J1939::configureTimeout(ETYPE_TIMEOUT eTimeOutType, UINT unMiliSec
 }
 
 HRESULT CDILI_J1939::getTimeModeMapping(SYSTEMTIME& CurrSysTime,
-        UINT64& unAbsTime)
+                                        UINT64& unAbsTime)
 {
     return DILJ_GetTimeModeMapping(CurrSysTime, unAbsTime);
 }

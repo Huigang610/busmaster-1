@@ -62,7 +62,7 @@ protected:
     afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
     afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
     afx_msg void OnClose();
-	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+    afx_msg BOOL OnEraseBkgnd(CDC* pDC);
     afx_msg void OnDestroy();
     afx_msg LRESULT vUserCommand(WPARAM wParam, LPARAM lParam);
 

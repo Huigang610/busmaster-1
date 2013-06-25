@@ -120,7 +120,7 @@ private:
      * Selected item index
      */
     int m_nSelectedItem;
-    
+
     /**
      * Pointer to selected List
      */
@@ -132,7 +132,7 @@ private:
         int         m_omDriverId;
         std::string m_omHardwareName;
         std::string m_omFirmware;
-        std::string m_omHardwareDesc;
+        std::string hardwareDescription;
     } HARDWARE_CONTAINER, *PHARDWARE_CONTAINER;
 
     typedef std::pair<int, PHARDWARE_CONTAINER> Int_Pair;

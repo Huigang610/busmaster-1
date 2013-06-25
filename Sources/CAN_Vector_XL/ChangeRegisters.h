@@ -111,7 +111,7 @@ private:
         USHORT usSJW;
     } ;
 
-	// structure defination of all five columns in the list control
+    // structure defination of all five columns in the list control
     struct sCOLUMNS
     {
         uBTR1                uBTRReg1;

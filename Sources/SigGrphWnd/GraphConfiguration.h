@@ -24,12 +24,12 @@
 #pragma once
 
 /* Project includes */
-#include "GraphParameters.h"	// For Graph Parameter Class definition
+#include "GraphParameters.h"    // For Graph Parameter Class definition
 #include "GraphList.h"
 
 class CGraphConfiguration : public CDialog
 {
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
     // Local instance of View Style parameter

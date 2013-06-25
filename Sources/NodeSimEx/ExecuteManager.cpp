@@ -586,12 +586,12 @@ void CExecuteManager::vEnableAllErrorHandler(BOOL bState)
     vUpdateHandlerDetailsInDetView();
 }
 
- /**
- * @brief Enable all event handlers
- * @param[in] bState indicate enable/disable state
- *
- * Enable/Disable all event handlers of all the nodes.
- */
+/**
+* @brief Enable all event handlers
+* @param[in] bState indicate enable/disable state
+*
+* Enable/Disable all event handlers of all the nodes.
+*/
 void CExecuteManager::vEnableAllEventHandler(BOOL bState)
 {
     CWaitCursor omWait;

@@ -30,7 +30,7 @@ UINT64 CRefTimeKeeper::absoluteBaseTime = 0;
 void CRefTimeKeeper::setTimeParameters(SYSTEMTIME& currentSystemTime, UINT64 connectTime)
 {
     referenceSystemTime = (currentSystemTime.wHour * 3600 + currentSystemTime.wMinute * 60 +
-                      + currentSystemTime.wSecond) * 10000 + currentSystemTime.wMilliseconds * 10;
+                           + currentSystemTime.wSecond) * 10000 + currentSystemTime.wMilliseconds * 10;
     absoluteBaseTime = connectTime;
 }
 

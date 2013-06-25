@@ -27,7 +27,7 @@
 #include "MsgReplayWnd.h"
 #include <locale.h>
 #include "Utility/MultiLanguageSupport.h"
-#include "ReplayManager.h"	// For replay manager class declaration
+#include "ReplayManager.h"  // For replay manager class declaration
 
 extern BOOL bGetMsgInfoFromMsgStr(CONST CString& omSendMsgLine,
                                   PSTCANDATA psCANData,

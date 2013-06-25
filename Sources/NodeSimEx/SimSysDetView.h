@@ -41,7 +41,7 @@ public:
     CString m_omStrNodeName;
     CString m_omStrCFile;
 
-	void vEnableButtons (BOOL bEnable );
+    void vEnableButtons (BOOL bEnable );
     BOOL bGetControlStatus();
     void vHideControls(UINT unEnableHide);
     void vChangeLUButtonText(BOOL bIsLoaded);
@@ -55,7 +55,7 @@ public:
     void vSetNodeAddress(BYTE byAddress);
     void vUpdateHandlerEnableDisableStatus(int nItem, BOOL bEnableHandler);
 
-	static ETYPE_BUS CSimSysDetView::sm_eBus;
+    static ETYPE_BUS CSimSysDetView::sm_eBus;
     CRadixEdit m_omPrefAdres;
     CRadixEdit m_omECU_NAME;
 

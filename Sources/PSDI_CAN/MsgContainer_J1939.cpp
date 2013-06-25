@@ -76,7 +76,7 @@ CMsgContainerJ1939::~CMsgContainerJ1939(void)
     DeleteCriticalSection(&m_sCritSecDataSync);
     DeleteCriticalSection(&m_omCritSecFilter);
 
-	DELETE_ARRAY(m_pbyJ1939Data);
+    DELETE_ARRAY(m_pbyJ1939Data);
     DELETE_ARRAY(m_sJ1939Data.m_pbyData);
     DELETE_ARRAY(m_sOutFormattedData.m_pcDataDec);
     DELETE_ARRAY(m_sOutFormattedData.m_pcDataHex);
@@ -254,7 +254,7 @@ BOOL CMsgContainerJ1939:: bStopReadThread()
     if (NULL != m_pouDIL_J1939)
     {
         m_pouDIL_J1939->manageMessageBuffer(MSGBUF_CLEAR,
-                                           m_dwClientId, &m_ouVSEBufJ1939);
+                                            m_dwClientId, &m_ouVSEBufJ1939);
     }
 
     return bReturn;

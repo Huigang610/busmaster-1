@@ -27,7 +27,7 @@ class CRadixEdit;   // forward declaration
 
 class CMsgIDAttr : public CDialog
 {
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
     bool m_bForEdit;

@@ -30,12 +30,12 @@
 
 class CFlexListCtrl : public CFFListCtrl
 {
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
     CFlexListCtrl();
 
-	// This is used to map the Row X Column 2d data into
+    // This is used to map the Row X Column 2d data into
     // one dimentional map key. This value should be greater then the maximum
     // Expected list column count
     void vSetMapColumnCount(int nColumn);

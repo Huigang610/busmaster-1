@@ -71,7 +71,7 @@ private:
 
     CString m_omCurrDbName;
 
-	void vAddEditMessage(BOOL bMode);
+    void vAddEditMessage(BOOL bMode);
     //  CToolTipCtrl* m_pomToolTip;
     CPoint m_omRightClickPoint;
     CPoint m_omLeftCLickPoint;

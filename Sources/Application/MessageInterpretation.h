@@ -41,7 +41,7 @@ typedef struct tagSMESSAGE_ENTRY_INFO
 
 class CMessageInterpretation : public CDialog
 {
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
     void vCreateMsgIntrprtnDlg(CWnd* pomParent, BOOL bShow);
@@ -92,7 +92,7 @@ private:
     // Get the status from the config
     void vGetWinStatus();
 
-	HBRUSH m_hBrushStatic;
+    HBRUSH m_hBrushStatic;
     HWND m_hWndParent;
 
     void vResizeControls(void);

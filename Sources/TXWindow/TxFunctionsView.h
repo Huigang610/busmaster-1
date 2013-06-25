@@ -38,10 +38,10 @@ class CTxFunctionsView : public CFormView
 public:
     CTxFunctionsView();
 
-	enum { IDD = IDD_DLG_TX_FUNCTIONS };
+    enum { IDD = IDD_DLG_TX_FUNCTIONS };
     CButton m_omButtonApply;
 
-	void vAccessButtonApply();
+    void vAccessButtonApply();
     CButton m_CheckBoxAutoUpdate;
 
     virtual void OnInitialUpdate();

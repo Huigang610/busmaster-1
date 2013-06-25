@@ -141,7 +141,7 @@ private:
 
             m_enmHWFilterType[i] = objRef.m_enmHWFilterType[i];
         }
-        m_omHardwareDesc    = objRef.m_omHardwareDesc;
+        hardwareDescription    = objRef.hardwareDescription;
         m_bAccFilterMode    = objRef.m_bAccFilterMode;
         m_ucControllerMode  = objRef.m_ucControllerMode;
         m_bSelfReception    = objRef.m_bSelfReception;
@@ -185,7 +185,7 @@ public:
     std::string  m_omStrAccMaskByte2[CAN_MSG_IDS];    // acceptance mask byte2 information
     std::string  m_omStrAccMaskByte3[CAN_MSG_IDS];    // acceptance mask byte3 information
     std::string  m_omStrAccMaskByte4[CAN_MSG_IDS];    // acceptance mask byte4 information
-    std::string  m_omHardwareDesc;                    // Hw description which user can
+    std::string  hardwareDescription;                    // Hw description which user can
     // differentiate between the channels
     int     m_bAccFilterMode;                    // acceptance filter mode(0: single, 1: Dual)
     int     m_ucControllerMode;                  // Controller mode (1: Active, 2: Passive)
@@ -258,7 +258,7 @@ public:
 
         if ( bUpdateHWDesc )
         {
-            m_omHardwareDesc = "";
+            hardwareDescription = "";
         }
         m_bAccFilterMode = FALSE;
         m_ucControllerMode = 0x1;
@@ -442,7 +442,7 @@ public:
         COPY_DATA_2(&nSize, pbyTemp, sizeof(INT));
         COPY_DATA_2(chTemp, pbyTemp, sizeof(char)*nSize);
         chTemp[nSize] = '\0';
-        m_omHardwareDesc = chTemp;
+        hardwareDescription = chTemp;
     }
 
     void GetControllerConfigSize(size_t& nSize)
@@ -477,13 +477,13 @@ public:
         nSize += m_omStrAccMaskByte3[1].length();
         nSize += m_omStrAccMaskByte4[0].length();
         nSize += m_omStrAccMaskByte4[1].length();
-        nSize += m_omHardwareDesc.length();
+        nSize += hardwareDescription.length();
     }
 
     void SaveConfigDataToXML(xmlNodePtr pNodePtr)
     {
         double fBaudRate = atof(m_omStrBaudrate.c_str());
-        // if( m_omHardwareDesc.find("Vector") == -1)      //if its not VECTOR then convert to Kbps
+        // if( hardwareDescription.find("Vector") == -1)      //if its not VECTOR then convert to Kbps
         {
             fBaudRate = fBaudRate/1000;    //convert to Kbps before saving to XML
         }
@@ -575,7 +575,7 @@ public:
         strVar = m_omStrAccMaskByte4[1].c_str();
         xmlNewChild(pNodePtr, NULL, BAD_CAST "AccMaskByte4_1", BAD_CAST strVar);
 
-        strVar = m_omHardwareDesc.c_str();
+        strVar = hardwareDescription.c_str();
         xmlNewChild(pNodePtr, NULL, BAD_CAST "HardwareDesc", BAD_CAST strVar);
 
         std::stringstream stream;
@@ -835,10 +835,10 @@ public:
         COPY_DATA(pbyTemp, m_omStrAccMaskByte4[1].c_str(),  sizeof(char)*nStrSize);
         nSize += nStrSize;
 
-        nStrSize = m_omHardwareDesc.length();
+        nStrSize = hardwareDescription.length();
         COPY_DATA(pbyTemp, &nStrSize,  sizeof(INT));
         nSize += nIntSize;
-        COPY_DATA(pbyTemp, m_omHardwareDesc.c_str(),  sizeof(char)*nStrSize);
+        COPY_DATA(pbyTemp, hardwareDescription.c_str(),  sizeof(char)*nStrSize);
         nSize += nStrSize;
 
         nStrSize = m_omStrLocation.length();

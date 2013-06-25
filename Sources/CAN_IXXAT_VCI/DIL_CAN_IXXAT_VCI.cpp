@@ -456,7 +456,7 @@ HRESULT CDIL_CAN_IXXAT_VCI::setConfigurationData(PSCONTROLLER_DETAILS pInitData,
     {
         // this can be done in one line, but better readable when we use two lines
         SCONTROLLER_DETAILS* pCtrlDetails = (SCONTROLLER_DETAILS*) &pCtrlArray[iCount];
-        pCtrlDetails->m_omHardwareDesc = "VCI CAN Interface";
+        pCtrlDetails->hardwareDescription = "VCI CAN Interface";
 
         // now set the controller parameter
         m_arrIxxatCanChannels[iCount].SetControllerParameter(&pCtrlArray[iCount]);

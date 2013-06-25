@@ -28,24 +28,24 @@
  */
 struct tagSignalWatchList
 {
-	/**
-	 * Message ID
-	 */
+    /**
+     * Message ID
+     */
     unsigned int unMsgID;
 
-	/**
-	 * Signals List
-	 */
+    /**
+     * Signals List
+     */
     CStringArray omCSASignals;
 
-	/**
-	 * Pointer to the next node
-	 */
+    /**
+     * Pointer to the next node
+     */
     tagSignalWatchList* psNextMessageNode;
 
     /**
-	 * Init Necessery Values
-	 */
+     * Init Necessery Values
+     */
     tagSignalWatchList()
     {
         unMsgID = 0;

@@ -618,11 +618,11 @@ HRESULT CDIL_CAN_MHS::displayConfigurationDialog(PSCONTROLLER_DETAILS InitData, 
         cfg.CanBtrValue = _tcstol(cntrl[0].m_omStrBTR0.c_str(), &str, 0);
         cfg.m_bBitRateSelected = FALSE;
     }
-    strcpy_s(cfg.CanSnrStr, sizeof(cfg.CanSnrStr), cntrl[0].m_omHardwareDesc.c_str());
+    strcpy_s(cfg.CanSnrStr, sizeof(cfg.CanSnrStr), cntrl[0].hardwareDescription.c_str());
     if (ShowCanSetup(sg_hOwnerWnd, &cfg))
     {
         char chTemp[255];
-        cntrl[0].m_omHardwareDesc = cfg.CanSnrStr;
+        cntrl[0].hardwareDescription = cfg.CanSnrStr;
         if (cfg.CanBtrValue)
         {
             cntrl[0].m_omStrBaudrate = "";
@@ -672,7 +672,7 @@ HRESULT CDIL_CAN_MHS::setConfigurationData(PSCONTROLLER_DETAILS ConfigFile, int 
         sg_MhsCanCfg.CanSpeed = 0;
         sg_MhsCanCfg.CanBtrValue = _tcstol(cntrl[0].m_omStrBTR0.c_str(), &str, 0);
     }
-    strcpy_s(sg_MhsCanCfg.CanSnrStr, sizeof(sg_MhsCanCfg.CanSnrStr), cntrl[0].m_omHardwareDesc.c_str());
+    strcpy_s(sg_MhsCanCfg.CanSnrStr, sizeof(sg_MhsCanCfg.CanSnrStr), cntrl[0].hardwareDescription.c_str());
 
     // **** Übertragungsgeschwindigkeit einstellen
     if (sg_MhsCanCfg.CanSpeed)

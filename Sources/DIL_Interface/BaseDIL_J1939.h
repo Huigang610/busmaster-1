@@ -72,8 +72,8 @@ public:
      *   ERR_CLIENT_ EXISTS, ERR_NO_CLIENT_EXIST, ERR_NO_ MORE_CLIENT_ALLOWED, or S_OK
      */
     virtual HRESULT registerClient(BOOL bRegister, char* pacNodeName,
-                                         UINT64 un64ECUName, BYTE byPrefAdres,
-                                         DWORD& dwClientId) = 0;
+                                   UINT64 un64ECUName, BYTE byPrefAdres,
+                                   DWORD& dwClientId) = 0;
 
     /**
      * Manages the target client buffer list. Call this function to open a
@@ -90,7 +90,7 @@ public:
      *   S_OK for success or S_FALSE for failure.
      */
     virtual HRESULT manageMessageBuffer(BYTE bAction, DWORD ClientID,
-                                       CBaseMsgBufVSE* pBufObj) = 0;
+                                        CBaseMsgBufVSE* pBufObj) = 0;
 
     /**
      * Sends a J1939 message.
@@ -107,11 +107,11 @@ public:
      * @return S_OK for success or S_FALSE for failure.
      */
     virtual HRESULT sendJ1939Message(DWORD dwClient, UINT unChannel,
-                                        EJ1939_MSG_TYPE eMsgType, UINT32 unPGN,
-                                        BYTE* pbyData, UINT unDLC,
-                                        BYTE byPriority = DEFAULT_PRIORITY,
-                                        BYTE bySrc = ADDRESS_NULL,
-                                        BYTE byDestAdress = ADDRESS_ALL) = 0;
+                                     EJ1939_MSG_TYPE eMsgType, UINT32 unPGN,
+                                     BYTE* pbyData, UINT unDLC,
+                                     BYTE byPriority = DEFAULT_PRIORITY,
+                                     BYTE bySrc = ADDRESS_NULL,
+                                     BYTE byDestAdress = ADDRESS_ALL) = 0;
 
     /**
      * Sends Positive/Negative acknowledgement msg.
@@ -124,9 +124,9 @@ public:
      * @return S_OK for success or S_FALSE for failure.
      */
     virtual HRESULT sendAcknowledgementMessage(DWORD dwClient, UINT unChannel,
-                                     ETYPE_ACK eAckType, UINT32 unPGN,
-                                     BYTE bySrc,
-                                     BYTE byAddresAck) = 0;
+            ETYPE_ACK eAckType, UINT32 unPGN,
+            BYTE bySrc,
+            BYTE byAddresAck) = 0;
 
     /**
      * Requests a PGN from the node.
@@ -138,9 +138,9 @@ public:
      * @return S_OK for success or S_FALSE for failure.
      */
     virtual HRESULT requestPgn(DWORD dwClient, UINT unChannel,
-                                     UINT32 unPGN, BYTE byPriority = DEFAULT_PRIORITY,
-                                     BYTE bySrc = ADDRESS_NULL,
-                                     BYTE byDestAddress = ADDRESS_ALL) = 0;
+                               UINT32 unPGN, BYTE byPriority = DEFAULT_PRIORITY,
+                               BYTE bySrc = ADDRESS_NULL,
+                               BYTE byDestAddress = ADDRESS_ALL) = 0;
 
     /**
      * Starts J1939 network. All nodes start sending according to the configuration.
@@ -176,7 +176,7 @@ public:
 
     /**
      * Returns whether the address is already claimed by another node.
-     * 
+     *
      * @return TRUE for already claimed or FALSE for not claimed.
      */
     virtual BOOL isAddressClaimed(BYTE byAddress) = 0;
@@ -190,8 +190,8 @@ public:
      * @return S_OK for success or S_FALSE for failure.
      */
     virtual HRESULT claimAddress(DWORD dwClientId, UINT unChannel,
-                                          BYTE byAddress,
-                                          BYTE byPriority = DEFAULT_PRIORITY) = 0;
+                                 BYTE byAddress,
+                                 BYTE byPriority = DEFAULT_PRIORITY) = 0;
 
     /**
      * Requests address from the node.
@@ -209,9 +209,9 @@ public:
      *   S_OK for success or S_FALSE for failure.
      */
     virtual HRESULT requestAddress(DWORD dwClient, UINT unChannel,
-                                            BYTE byPriority = DEFAULT_PRIORITY,
-                                            BYTE bySrc = ADDRESS_NULL,
-                                            BYTE byDestAddress = ADDRESS_ALL) = 0;
+                                   BYTE byPriority = DEFAULT_PRIORITY,
+                                   BYTE bySrc = ADDRESS_NULL,
+                                   BYTE byDestAddress = ADDRESS_ALL) = 0;
 
     /**
      * Commands a node to assume a address.
@@ -225,11 +225,11 @@ public:
      * @return S_OK for success or S_FALSE for failure.
      */
     virtual HRESULT commandAddress(DWORD dwClient, UINT unChannel,
-                                            UINT64 unECU_NAME,
-                                            BYTE byNewAddress,
-                                            BYTE byPriority = DEFAULT_PRIORITY,
-                                            BYTE bySrc = ADDRESS_NULL,
-                                            BYTE byDestAddress = ADDRESS_ALL) = 0;
+                                   UINT64 unECU_NAME,
+                                   BYTE byNewAddress,
+                                   BYTE byPriority = DEFAULT_PRIORITY,
+                                   BYTE bySrc = ADDRESS_NULL,
+                                   BYTE byDestAddress = ADDRESS_ALL) = 0;
 
     /**
      * Get J1939 timeouts.
@@ -290,10 +290,10 @@ public:
      *   (Long data & broadcast data indication & type)
      * @param pvClBckFn[in]
      *   Call back function pointer
-     * 
+     *
      * @return
      *   S_OK for success or S_FALSE for failure
      */
     virtual HRESULT setCallbackFunction(DWORD dwClientId, ETYPE_CLBCK_FN eClBckFnType,
-                                            void* pvClBckFn) = 0;
+                                        void* pvClBckFn) = 0;
 };

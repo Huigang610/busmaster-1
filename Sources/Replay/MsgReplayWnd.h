@@ -24,9 +24,9 @@
 #pragma once
 
 /* Project includes */
-#include "ReplayFile.h"	// For Replay File Definition
+#include "ReplayFile.h" // For Replay File Definition
 #include "OwnerDataListCtrl.h"
-#include "ReplayProcess.h"	// For replay process class
+#include "ReplayProcess.h"  // For replay process class
 
 class CMsgReplayWnd : public CMDIChildWnd
 {

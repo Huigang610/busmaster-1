@@ -26,34 +26,34 @@
 class CFormatMsgCommon
 {
 public:
-	void vCalculateAndFormatTM(BYTE bExprnFlag, UINT64 TimeStamp,char acTime[]);
-    
-	void vCalAndFormatTM_Offline(BYTE bExprnFlag,  UINT64 TimeStamp, char acTime[]);
-    
-	void vSetRelBaseTime(INT64 qwRelBaseTime); //Called to sart afresh for append mode
-   
-	BOOL m_bResetMsgAbsTime;
-    
-	SYSTEMTIME m_LogSysTime;
-    
-	/**
-	 * for log-msg difference
-	 */
-	DWORD m_qwLogDelayTime; 
+    void vCalculateAndFormatTM(BYTE bExprnFlag, UINT64 TimeStamp,char acTime[]);
+
+    void vCalAndFormatTM_Offline(BYTE bExprnFlag,  UINT64 TimeStamp, char acTime[]);
+
+    void vSetRelBaseTime(INT64 qwRelBaseTime); //Called to sart afresh for append mode
+
+    BOOL m_bResetMsgAbsTime;
+
+    SYSTEMTIME m_LogSysTime;
+
+    /**
+     * for log-msg difference
+     */
+    DWORD m_qwLogDelayTime;
 
 protected:
     CFormatMsgCommon(void);
 
-	//The relative base time will be diff. for each read thread so it is made member
+    //The relative base time will be diff. for each read thread so it is made member
     //Variable. Thus for each read thread an object of class derived from this class
     //should be present
 
-	/**
-	 * for reset log time
-	 */
+    /**
+     * for reset log time
+     */
     UINT64 m_qwResTime;
 
-	UINT64 m_qwRelBaseTime;
-    
-	void vFormatTimeStamp(DWORD dwTimeStamp, char acTime[]);
+    UINT64 m_qwRelBaseTime;
+
+    void vFormatTimeStamp(DWORD dwTimeStamp, char acTime[]);
 };

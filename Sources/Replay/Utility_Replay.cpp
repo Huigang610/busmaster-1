@@ -298,8 +298,8 @@ void vConvStrtoByteArray(CByteArray* pomByteArrayBufTx,
 /*  Date Created     :  19.08.2003                                            */
 /******************************************************************************/
 BOOL bIsModeMismatch(std::ifstream& omInReplayFile,
-                      BOOL bReplayHexON,
-                      WORD wLogReplayTimeMode)
+                     BOOL bReplayHexON,
+                     WORD wLogReplayTimeMode)
 {
     BOOL bFlag = FALSE;
     BOOL bLine = TRUE;

@@ -22,10 +22,10 @@
  */
 
 /* Project includes */
-#include "stdafx.h"	// For all standard header file include
-#include "resource.h"	// Definition of App class
-#include "NotificListbox.h"	// Definition of CNotificListbox
-#include "Utility/Utility.h"	// Utility functions
+#include "stdafx.h" // For all standard header file include
+#include "resource.h"   // Definition of App class
+#include "NotificListbox.h" // Definition of CNotificListbox
+#include "Utility/Utility.h"    // Utility functions
 
 BEGIN_MESSAGE_MAP(CNotificListbox, CListBox)
     ON_WM_RBUTTONDOWN()

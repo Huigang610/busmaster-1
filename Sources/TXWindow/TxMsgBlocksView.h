@@ -64,7 +64,7 @@ public:
     BOOL    m_bListItemChange;
     //BOOL    m_bTXAllFrame;
 
-	// To denote modifications after connect
+    // To denote modifications after connect
     BOOL m_bModified;
     // To store selected message block index
     int m_nSelectedMsgBlockIndex;
@@ -76,7 +76,7 @@ public:
     // To keep track of message block count
     UINT m_unMsgBlockCount;
 
-	// To get message block pointer denoted by the index from the given
+    // To get message block pointer denoted by the index from the given
     // list of blocks
     SMSGBLOCKLIST* psGetMsgBlockPointer(INT nIndexCurBlock,
                                         SMSGBLOCKLIST* psMsgBlockList);
@@ -107,7 +107,7 @@ protected:
 
     virtual void OnInitialUpdate();
 
-	afx_msg void OnBnClickedRadiomonoshot();
+    afx_msg void OnBnClickedRadiomonoshot();
     afx_msg void OnBnClickedRadiocyclic();
     afx_msg void OnCbnSelchangeComboMsgs();
     afx_msg void OnBnClickedCheckMsgBlockDelay();

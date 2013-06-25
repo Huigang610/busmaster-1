@@ -42,7 +42,7 @@ public:
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	afx_msg void OnDestroy();
+    afx_msg void OnDestroy();
     afx_msg void OnSelChangeMessageName();
     afx_msg void OnBtnAddSubEntries();
     afx_msg void OnBtnAddAllSubEntries();

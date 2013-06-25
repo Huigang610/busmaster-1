@@ -155,7 +155,7 @@ public:
 
     int             m_nNumChannels;
 
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
 
     void vGettextBusmaster();
     HICON m_hLogIcon1, m_hLogIcon2, m_hLogOffIcon;
@@ -294,7 +294,7 @@ public:
     BOOL bParseSignalWatchXMLconfig(ETYPE_BUS eBus, SignalWatchListMainEntries& odMainEntryList);
     void OnHex_DecButon();
 
-	void bSetHexDecFlags(BOOL bHexOn);
+    void bSetHexDecFlags(BOOL bHexOn);
 
     /* API to modify icon for a particular item in toolbar */
     void vModifyToolbarIcon(CNVTCToolBar& objToolbar, BYTE bytItemIndex, BOOL bItemON, UINT nTBIDON, UINT nTBIDOFF);
@@ -318,7 +318,7 @@ public:
     void vUpdateHWStatusInfo(void);
     BOOL bFillDbStructure(CMsgNameMsgCodeListDataBase& odMsgNameMsgCodeListDB);
 
-	    void vPopulateJ1939PGNList();
+    void vPopulateJ1939PGNList();
     INT ReadGraphDataBuffer(BOOL bCalcTime);
     INT nLoadConfigFile(CString omConfigFileName);
     int  COM_ConnectTool();
@@ -361,7 +361,7 @@ protected:
     virtual void WinHelp(DWORD dwData, UINT nCmd = HELP_CONTEXT);
     void ApplyMessagewindowOverwrite();
 
-	afx_msg void OnUpdateSelectDriver(CCmdUI* pCmdUI);
+    afx_msg void OnUpdateSelectDriver(CCmdUI* pCmdUI);
     afx_msg void OnSelectDriver(UINT nID);
     afx_msg BOOL OnHelpInfo(HELPINFO* pHelpInfo);
     afx_msg void OnDissociateDatabase();

@@ -41,7 +41,7 @@ public:
     virtual void OnInitialUpdate();
 
 protected:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
     virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
 
 #ifdef _DEBUG

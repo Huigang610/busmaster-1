@@ -67,5 +67,5 @@ private:
     // character width information
     int     m_nCharWidth;
 
-	ETYPE_BUS m_eBus;
+    ETYPE_BUS m_eBus;
 };

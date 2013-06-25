@@ -67,7 +67,7 @@ public:
     virtual BOOL PreTranslateMessage(MSG* pMsg);
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     virtual BOOL OnInitDialog();
     virtual void OnCancel();
     virtual void OnOK();

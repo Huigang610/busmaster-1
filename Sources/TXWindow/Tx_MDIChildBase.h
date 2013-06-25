@@ -47,7 +47,7 @@ protected:
     void vSaveWinStatus();
     void vGetWinStatus( );
 
-	afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
+    afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 
     // Window placement Attribute

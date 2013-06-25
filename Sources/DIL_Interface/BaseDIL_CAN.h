@@ -51,7 +51,7 @@ public:
      * @req RS_23_02 Selecting a driver from the DIL list
      */
     virtual HRESULT selectDriver(DWORD dwDriverID, HWND hWndParent,
-                                      Base_WrapperErrorLogger* pILog) = 0;
+                                 Base_WrapperErrorLogger* pILog) = 0;
 
     /**
      * registerClient registers/unregisters the client.

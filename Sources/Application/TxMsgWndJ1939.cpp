@@ -408,7 +408,7 @@ void CTxMsgWndJ1939::OnBnClickedSend()
             for (UINT i = 0; i < unChannel; i++)
             {
                 GetIJ1939DIL()->claimAddress(m_sClientParams.m_dwClientId,
-                                                      i + 1, byAddress);
+                                             i + 1, byAddress);
             }
         }
         pButton = (CButton*)GetDlgItem(IDC_RQST_ADDRESS);
@@ -426,9 +426,9 @@ void CTxMsgWndJ1939::OnBnClickedSend()
             for (UINT i = 0; i < unChannel; i++)
             {
                 GetIJ1939DIL()->commandAddress(m_sClientParams.m_dwClientId,
-                                                        i + 1, unECUNAME, byAddress,
-                                                        DEFAULT_PRIORITY, byAddress,
-                                                        ADDRESS_ALL);
+                                               i + 1, unECUNAME, byAddress,
+                                               DEFAULT_PRIORITY, byAddress,
+                                               ADDRESS_ALL);
             }
         }
     }
@@ -549,11 +549,11 @@ HRESULT CTxMsgWndJ1939::SendSavedMessage(void)
     if (m_sMsgToBeSent.m_eMsgType == MSG_TYPE_REQUEST)
     {
         hResult = GetIJ1939DIL()->requestPgn(m_sClientParams.m_dwClientId,
-                  m_sMsgToBeSent.m_unChannel,
-                  m_sMsgToBeSent.m_unPGN,
-                  m_sMsgToBeSent.m_byPriority,
-                  m_sMsgToBeSent.m_bySrc,
-                  m_sMsgToBeSent.m_byDest);
+                                             m_sMsgToBeSent.m_unChannel,
+                                             m_sMsgToBeSent.m_unPGN,
+                                             m_sMsgToBeSent.m_byPriority,
+                                             m_sMsgToBeSent.m_bySrc,
+                                             m_sMsgToBeSent.m_byDest);
     }
     return hResult;
 }

@@ -69,7 +69,7 @@ protected:
     DOUBLE  m_dEditBaudRate;
     UINT    m_unCombClock;
 
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
     // Generated message map functions
     virtual void OnCancel();
     virtual void OnOK();
@@ -131,7 +131,7 @@ private:
         USHORT usSJW;
     } ;
 
-	// structure defination of all five columns in the list control
+    // structure defination of all five columns in the list control
     struct sCOLUMNS
     {
         uBTR1                uBTRReg1;

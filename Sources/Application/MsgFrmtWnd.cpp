@@ -983,13 +983,13 @@ void CMsgFrmtWnd::OnSendSelectedMessageEntry()
             {
                 //HRESULT hRet =
                 (*m_ppouIJ1939DIL)->sendJ1939Message(m_dwClientID,
-                                                       sJ1939Msg.m_sMsgProperties.m_byChannel,
-                                                       sJ1939Msg.m_sMsgProperties.m_eType,
-                                                       sJ1939Msg.m_sMsgProperties.m_uExtendedID.m_s29BitId.unGetPGN(),
-                                                       sJ1939Msg.m_pbyData, sJ1939Msg.m_unDLC,
-                                                       sJ1939Msg.m_sMsgProperties.m_uExtendedID.m_s29BitId.m_uPGN.m_sPGN.m_byPriority,
-                                                       sJ1939Msg.m_sMsgProperties.m_uExtendedID.m_s29BitId.m_bySrcAddress,
-                                                       sJ1939Msg.m_sMsgProperties.m_uExtendedID.m_s29BitId.m_uPGN.m_sPGN.m_byPDU_Specific);
+                                                     sJ1939Msg.m_sMsgProperties.m_byChannel,
+                                                     sJ1939Msg.m_sMsgProperties.m_eType,
+                                                     sJ1939Msg.m_sMsgProperties.m_uExtendedID.m_s29BitId.unGetPGN(),
+                                                     sJ1939Msg.m_pbyData, sJ1939Msg.m_unDLC,
+                                                     sJ1939Msg.m_sMsgProperties.m_uExtendedID.m_s29BitId.m_uPGN.m_sPGN.m_byPriority,
+                                                     sJ1939Msg.m_sMsgProperties.m_uExtendedID.m_s29BitId.m_bySrcAddress,
+                                                     sJ1939Msg.m_sMsgProperties.m_uExtendedID.m_s29BitId.m_uPGN.m_sPGN.m_byPDU_Specific);
 
             }
         }
@@ -3672,8 +3672,8 @@ HRESULT CMsgFrmtWnd::SetConfigDataJ1939(xmlDocPtr pDocPtr)
 
             //COPY_DATA_2(&bHexDec, pByteSrc, sizeof(bool));
 
-			// commented as IsHex is conflicting with global 
-			// DisplayNumericMode
+            // commented as IsHex is conflicting with global
+            // DisplayNumericMode
             //CLEAR_EXPR_NUM_BITS(m_bExprnFlag_Disp);
             ////m_bExprnFlag_Disp |= (wArguments & BITS_NUM);
             //if(bHexDec)
@@ -4153,8 +4153,8 @@ HRESULT CMsgFrmtWnd::SetConfigData(xmlDocPtr pDocPtr)
 
             //COPY_DATA_2(&bHexDec, pByteSrc, sizeof(bool));
 
-			// commented as IsHex is conflicting with global 
-			// DisplayNumericMode
+            // commented as IsHex is conflicting with global
+            // DisplayNumericMode
             //CLEAR_EXPR_NUM_BITS(m_bExprnFlag_Disp);
             ////m_bExprnFlag_Disp |= (wArguments & BITS_NUM);
             //if(bHexDec)
@@ -4843,8 +4843,8 @@ HRESULT CMsgFrmtWnd::SetConfigData(xmlNodePtr pNode)
             }
         }
 
-		// commented as IsHex is conflicting with global 
-		// DisplayNumericMode
+        // commented as IsHex is conflicting with global
+        // DisplayNumericMode
         /*if (xmlUtils::GetDataFrmNode(pChildNode,DEF_MWND_HEX,strVar))
         {
             if(strVar == "TRUE")

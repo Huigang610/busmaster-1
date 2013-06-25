@@ -43,7 +43,7 @@ typedef void (*MSG_RX_CALL_BK)(void* pParam, ETYPE_BUS eBusType);
 
 typedef struct stCanDataSpl : public STCANDATA
 {
-    __int64      m_nDeltime;	/**< To save delta time in case of append mode */
+    __int64      m_nDeltime;    /**< To save delta time in case of append mode */
 
     stCanDataSpl()
     {
@@ -59,96 +59,96 @@ public:
     CMsgContainerCAN(void);
     ~CMsgContainerCAN(void);
 
-	/**
-	 * Initialize the reference time
-	 */
-	void InitTimeParams(void);
-    
-	/**
-	 * Read data from DIL buffer
-	 */
-	void vRetrieveDataFromBuffer();
+    /**
+     * Initialize the reference time
+     */
+    void InitTimeParams(void);
 
-	/**
-	 * Get Dil interface pointer
-	 */
+    /**
+     * Read data from DIL buffer
+     */
+    void vRetrieveDataFromBuffer();
+
+    /**
+     * Get Dil interface pointer
+     */
     BOOL bGetDilInterFace();
-    
-	/**
-	 * Clear all the storage for UI
-	 */
-	void vEditClearAll();
-    
-	int nGetAppendBufferCount();
-    
-	int nGetOWBufferCount();
-    
-	/**
-	 * Start the read thread
-	 */
-	BOOL bStartReadThread();
-    
-	/**
-	 * Stop the read thread
-	 */
-	BOOL bStopReadThread();
 
-	/**
-	 * Provide format data structure pointers to the user
-	 */
+    /**
+     * Clear all the storage for UI
+     */
+    void vEditClearAll();
+
+    int nGetAppendBufferCount();
+
+    int nGetOWBufferCount();
+
+    /**
+     * Start the read thread
+     */
+    BOOL bStartReadThread();
+
+    /**
+     * Stop the read thread
+     */
+    BOOL bStopReadThread();
+
+    /**
+     * Provide format data structure pointers to the user
+     */
     void vGetUpdatedCurrDataPtrArray(SMSGWNDHDRCOL& sHdrColStruct,
                                      char* pomDataPtrArr[MAX_MSG_WND_COL_CNT],
                                      BYTE bExprnFlag_Disp);
-    
-	HRESULT hReadFromOWBuffer(void* psMsg, __int64 nMapIndex);
-    
-	HRESULT hReadFromAppendBuffer(void* psMsg, int nMsgIndex);
-    
-	/**
-	 * Format the requested Msg and save it in Format data
+
+    HRESULT hReadFromOWBuffer(void* psMsg, __int64 nMapIndex);
+
+    HRESULT hReadFromAppendBuffer(void* psMsg, int nMsgIndex);
+
+    /**
+     * Format the requested Msg and save it in Format data
      * structure which is accessible from the User module
-	 */
-	HRESULT hUpdateFormattedMsgStruct(int nListIndex, int& nMsgCode,
-                                      BYTE bExprnFlag_Disp, __int64 nTimeOffset = 0);
-    
-	/**
-	 * Current msg name from DB
-	 */
-	void vSetCurrMsgName(CString strMsgNameOrCode);
-    
-	void vSetMsgLength(CString strMsgLength);
-    
-	/**
-	 * Clear format data structure pointers
-	 */
-	void vClearFormattedMsgStruct();
-    
-	/**
-	 * Save to OW buffer and provide the details requested
-	 * by receive child/ dll user class
      */
-	void vSaveOWandGetDetails(void* pMsg, __int64& dwMapIndex,
+    HRESULT hUpdateFormattedMsgStruct(int nListIndex, int& nMsgCode,
+                                      BYTE bExprnFlag_Disp, __int64 nTimeOffset = 0);
+
+    /**
+     * Current msg name from DB
+     */
+    void vSetCurrMsgName(CString strMsgNameOrCode);
+
+    void vSetMsgLength(CString strMsgLength);
+
+    /**
+     * Clear format data structure pointers
+     */
+    void vClearFormattedMsgStruct();
+
+    /**
+     * Save to OW buffer and provide the details requested
+     * by receive child/ dll user class
+     */
+    void vSaveOWandGetDetails(void* pMsg, __int64& dwMapIndex,
                               __int64& dwTimeStamp, UINT& nMsgCode, int& nBufferIndex );
 
 
     void SetClientID(DWORD dwClientID);
-    
-	void DoSortBuffer(int nField,bool bAscending);
-    
-	void GetMapIndexAtID(int nIndex,__int64& nMapIndex);
-    
-	HRESULT hToggleDILBufferRead(BOOL bRead);
-    
-	HRESULT ApplyFilterScheme(void* pvFilterApplied);
-    
-	HRESULT GetFilterScheme(void* pvFilterApplied);
-    
-	HRESULT EnableFilterApplied(BOOL bEnable);
 
-	/**
-	 * Creates a key for SmsgDispEntry map
-	 */
-	__int64 nCreateMapIndexKey( LPVOID pMsgData );
+    void DoSortBuffer(int nField,bool bAscending);
+
+    void GetMapIndexAtID(int nIndex,__int64& nMapIndex);
+
+    HRESULT hToggleDILBufferRead(BOOL bRead);
+
+    HRESULT ApplyFilterScheme(void* pvFilterApplied);
+
+    HRESULT GetFilterScheme(void* pvFilterApplied);
+
+    HRESULT EnableFilterApplied(BOOL bEnable);
+
+    /**
+     * Creates a key for SmsgDispEntry map
+     */
+    __int64 nCreateMapIndexKey( LPVOID pMsgData );
 
 private:
     CCANBufFSE              m_ouMCCanBufFSE;
@@ -164,21 +164,21 @@ private:
     SFILTERAPPLIED_CAN m_sFilterCAN;
     eERROR_STATE m_eCurrErrorState[ defNO_OF_CHANNELS ];
 
-	/**
-	 * Process a new Rx/Tx msg
-	 */
+    /**
+     * Process a new Rx/Tx msg
+     */
     void vProcessNewData(STCANDATA& sCanData);
 
-	BOOL bIsTransitionInState( UINT unChannel,
+    BOOL bIsTransitionInState( UINT unChannel,
                                BYTE byRxError,
                                BYTE byTxError );
-    
-	BOOL bTobeBlocked(STCANDATA& sCanData);
-    
-	/**
-	 * Processes the current Error entry and returns the Error code.
-	 *
-	 * @return Error ID
-	 */
-	USHORT usProcessCurrErrorEntry(SERROR_INFO& sErrInfo);
+
+    BOOL bTobeBlocked(STCANDATA& sCanData);
+
+    /**
+     * Processes the current Error entry and returns the Error code.
+     *
+     * @return Error ID
+     */
+    USHORT usProcessCurrErrorEntry(SERROR_INFO& sErrInfo);
 };

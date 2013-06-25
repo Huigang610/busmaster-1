@@ -72,9 +72,9 @@ public:
     void SetConnectionStatus(bool bConnected);
 
 protected:
-	virtual void PreSubclassWindow();
+    virtual void PreSubclassWindow();
 
-	struct ColumnState
+    struct ColumnState
     {
         ColumnState()
             :m_Visible(false)

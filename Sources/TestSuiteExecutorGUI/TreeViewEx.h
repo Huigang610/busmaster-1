@@ -58,7 +58,7 @@ public:
     virtual BOOL CreateEx(DWORD dwExStyle, LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, LPVOID lpParam = NULL);
 
 protected:
-	//Message Handlers
+    //Message Handlers
     afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
     afx_msg void OnTvnBegindrag(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
@@ -74,14 +74,14 @@ protected:
     afx_msg void onUpdateExecute(CCmdUI* pCmdUI);
     afx_msg void OnTvnKeyPress(NMHDR* pNMHDR, LRESULT* pResult);
 
-	typedef enum eTYPE_DROPPING
+    typedef enum eTYPE_DROPPING
     {
         DROPPING_BELOW,
         DROPPING_ABOVE,
         NO_DROPPING
     };
 
-	CTreeViewEx();           // protected constructor used by dynamic creation
+    CTreeViewEx();           // protected constructor used by dynamic creation
 
     BOOL bAnscestor(HTREEITEM hItem, HTREEITEM hCheck);
     BOOL bSuccessor(HTREEITEM hItem, HTREEITEM hCheck);

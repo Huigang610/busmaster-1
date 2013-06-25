@@ -26,20 +26,20 @@
 class CParamLoggerBUS
 {
 public:
-	/**
-	 * Version info of the application suite
-	 */
+    /**
+     * Version info of the application suite
+     */
     char version[MAX_PATH];
-    
-	/**
-	 * Error logger module
-	 */
-	Base_WrapperErrorLogger* m_pILog;
-    
-	/**
-	 * Client identifier
-	 */
-	DWORD dwClientID;
+
+    /**
+     * Error logger module
+     */
+    Base_WrapperErrorLogger* m_pILog;
+
+    /**
+     * Client identifier
+     */
+    DWORD dwClientID;
 
     CParamLoggerBUS()
     {

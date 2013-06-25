@@ -36,5 +36,5 @@ UINT unTimeDiffBetweenMsg( CString& omStrNextMsg,
                            CString& omStrCurMsg,
                            WORD wLogReplyTimeMode);
 BOOL bIsModeMismatch(std::ifstream& omInReplayFile,
-                      BOOL bReplayHexON,
-                      WORD wLogReplayTimeMode);
+                     BOOL bReplayHexON,
+                     WORD wLogReplayTimeMode);

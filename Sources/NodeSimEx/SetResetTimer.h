@@ -47,7 +47,7 @@ typedef struct tagSCALCEXECTIMETHREAD
 
 class CSetResetTimer : public CDialog
 {
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
     CSetResetTimer(ETYPE_BUS eBus, CWnd* pParent = NULL); // standard constructor
@@ -63,12 +63,12 @@ public:
     void vRestoreTimerStatus(CString omNodeName,
                              PSTIMERHANDLERLIST psTimerListPtr);
 
-	enum { IDD = IDD_DLG_SET_RESET_TIMER };
+    enum { IDD = IDD_DLG_SET_RESET_TIMER };
     CComboBox   m_omComboNodeName;
     CListCtrl   m_omTimerList;
     CString m_omStrNodeName;
 
-	static ETYPE_BUS sm_eBus;
+    static ETYPE_BUS sm_eBus;
 
     virtual BOOL DestroyWindow();
 

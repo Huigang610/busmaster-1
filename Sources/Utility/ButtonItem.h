@@ -33,7 +33,7 @@ public:
     CBrowseEditItem(int nItem, int nSubItem, CString& sContent, CButtonItem* pomButtonItem);
     ~CBrowseEditItem();
 
-	CButtonItem* m_pomButton;
+    CButtonItem* m_pomButton;
     BOOL m_bIsButtonValid;
     BOOL m_bKillFocus;
 

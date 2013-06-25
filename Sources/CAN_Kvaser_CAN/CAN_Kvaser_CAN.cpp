@@ -873,7 +873,7 @@ HRESULT CDIL_CAN_Kvaser::displayConfigurationDialog(PSCONTROLLER_DETAILS InitDat
     //First initialize with existing hw description
     for (INT i = 0; i < min(Length, (INT)sg_nNoOfChannels); i++)
     {
-        pControllerDetails[i].m_omHardwareDesc  = sg_aodChannels[i].m_strName;
+        pControllerDetails[i].hardwareDescription  = sg_aodChannels[i].m_strName;
     }
     if (sg_ucNoOfHardware > 0)
     {
@@ -1104,7 +1104,7 @@ HRESULT CDIL_CAN_Kvaser::setConfigurationData(PSCONTROLLER_DETAILS ConfigFile, i
     /* Fill the hardware description details */
     for (UINT nCount = 0; nCount < sg_ucNoOfHardware; nCount++)
     {
-        ((PSCONTROLLER_DETAILS)ConfigFile)[nCount].m_omHardwareDesc = sg_aodChannels[nCount].m_strName;
+        ((PSCONTROLLER_DETAILS)ConfigFile)[nCount].hardwareDescription = sg_aodChannels[nCount].m_strName;
     }
 
     for ( int i =0; i < Length; i++)

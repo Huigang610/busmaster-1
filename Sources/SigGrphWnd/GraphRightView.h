@@ -50,9 +50,9 @@ protected:
     // protected constructor used by dynamic creation
     CGraphRightView();
 
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	virtual ~CGraphRightView();
+    virtual ~CGraphRightView();
 
 #ifdef _DEBUG
     virtual void AssertValid() const;
@@ -60,7 +60,7 @@ protected:
 #endif
 
     // Generated message map functions
-	afx_msg void OnDestroy();
+    afx_msg void OnDestroy();
     afx_msg void OnSize(UINT nType, int cx, int cy);
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 

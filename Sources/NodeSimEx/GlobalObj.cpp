@@ -467,11 +467,11 @@ HRESULT CGlobalObj::RegisterNodeToDIL(BOOL bRegister, PSNODEINFO pNodeInfo)
                           pNodeInfo->m_dwClientId, &(pNodeInfo->m_ouMsgBufVSE));
 
                 GetIJ1939DIL()->setCallbackFunction(pNodeInfo->m_dwClientId,
-                                                        CLBCK_FN_LDATA_CONF, (PCLBCK_FN_LDATA_CONF)sg_vDataConfEventFnJ1939);
+                                                    CLBCK_FN_LDATA_CONF, (PCLBCK_FN_LDATA_CONF)sg_vDataConfEventFnJ1939);
                 GetIJ1939DIL()->setCallbackFunction(pNodeInfo->m_dwClientId,
-                                                        CLBCK_FN_BC_LDATA_CONF, (PCLBCK_FN_BC_LDATA_CONF)sg_vDataConfEventFnJ1939);
+                                                    CLBCK_FN_BC_LDATA_CONF, (PCLBCK_FN_BC_LDATA_CONF)sg_vDataConfEventFnJ1939);
                 GetIJ1939DIL()->setCallbackFunction(pNodeInfo->m_dwClientId,
-                                                        CLBCK_FN_NM_ACL, (PCLBCK_FN_NM_ACL)sg_vAddressClaimEventFnJ1939);
+                                                    CLBCK_FN_NM_ACL, (PCLBCK_FN_NM_ACL)sg_vAddressClaimEventFnJ1939);
             }
         }
         break;

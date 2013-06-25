@@ -22,7 +22,7 @@
 /* Project includes */
 #include "Utility/ColorSelector.h"
 #include "messagelist.h"
-#include "MainFrm.h"	// For Main Frame Definition
+#include "MainFrm.h"    // For Main Frame Definition
 
 class CSigGrphConfigDlg : public CDialog
 {
@@ -32,7 +32,7 @@ class CSigGrphConfigDlg : public CDialog
 public:
     CSigGrphConfigDlg(UINT nHardware = defNO_OF_CHANNELS,CWnd* pParent = NULL);   // standard constructor
 
-	// Pointer to Main Frame
+    // Pointer to Main Frame
     CMainFrame* m_pMainFrame;
 
     // Dialog Data

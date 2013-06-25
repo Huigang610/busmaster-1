@@ -34,7 +34,7 @@ public:
                 const CString& omStrText,      // Selected text
                 BOOL bIsEditable);      // Editable list or not
 
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
+    virtual BOOL PreTranslateMessage(MSG* pMsg);
 
 protected:
     CStringArray m_sList;

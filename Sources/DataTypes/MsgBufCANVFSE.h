@@ -41,116 +41,116 @@ public:
     CMsgBufCANVFSE();
     ~CMsgBufCANVFSE();
 
-	/**
-	 * Reads a message entry and advances the read index. On
-	 * successful reading operation the present entry is
-	 * invalidated to make room for a new entry.
-	 *
-	 * @param[out] psMsgBuffer The target message entry.
-	 * @return EMPTY_APP_BUFFER if buffer is empty; else CALL_SUCCESS.
-	 */
+    /**
+     * Reads a message entry and advances the read index. On
+     * successful reading operation the present entry is
+     * invalidated to make room for a new entry.
+     *
+     * @param[out] psMsgBuffer The target message entry.
+     * @return EMPTY_APP_BUFFER if buffer is empty; else CALL_SUCCESS.
+     */
     int readFromBuffer(SMSGBUFFER* psMsgBuffer,__int64 nSlotId);
 
-	/**
-	 * Reads a message entry and advances the read index. On
-	 * successful reading operation the present entry is
-	 * invalidated to make room for a new entry.
-	 *
-	 * @param[out] psMsgBuffer The target message entry.
-	 * @return EMPTY_APP_BUFFER if buffer is empty; else CALL_SUCCESS.
-	 */
-	int readFromBuffer(SMSGBUFFER* psMsgBuffer,int nIndex);
+    /**
+     * Reads a message entry and advances the read index. On
+     * successful reading operation the present entry is
+     * invalidated to make room for a new entry.
+     *
+     * @param[out] psMsgBuffer The target message entry.
+     * @return EMPTY_APP_BUFFER if buffer is empty; else CALL_SUCCESS.
+     */
+    int readFromBuffer(SMSGBUFFER* psMsgBuffer,int nIndex);
 
-	/**
-	 * Writes a message entry and advances the write index.
-	 *
-	 * @param[in] psMsg The source message entry.
-	 * @return ERR_FULL_APP_BUFFER if buffer is full; else CALL_SUCCESS.
-	 */
-	int writeIntoBuffer(const SMSGBUFFER* psMsg, __int64 nSlotId, int& nIndex);
+    /**
+     * Writes a message entry and advances the write index.
+     *
+     * @param[in] psMsg The source message entry.
+     * @return ERR_FULL_APP_BUFFER if buffer is full; else CALL_SUCCESS.
+     */
+    int writeIntoBuffer(const SMSGBUFFER* psMsg, __int64 nSlotId, int& nIndex);
 
-	/**
-	 * Writes a message entry and advances the write index.
-	 *
-	 * @param[in] psMsg The source message entry.
-	 * @return ERR_FULL_APP_BUFFER if buffer is full; else CALL_SUCCESS.
-	 */
-	int writeIntoBuffer(const SMSGBUFFER* psMsg);
+    /**
+     * Writes a message entry and advances the write index.
+     *
+     * @param[in] psMsg The source message entry.
+     * @return ERR_FULL_APP_BUFFER if buffer is full; else CALL_SUCCESS.
+     */
+    int writeIntoBuffer(const SMSGBUFFER* psMsg);
 
-	/**
-	 * Returns the number of unread entries in the queue.
-	 *
-	 * @return Number of message entries
-	 */
-	int getBufferLength(void) const;
+    /**
+     * Returns the number of unread entries in the queue.
+     *
+     * @return Number of message entries
+     */
+    int getBufferLength(void) const;
 
-	/**
-	 * Clears the message buffer and resets the indices.
-	 */
+    /**
+     * Clears the message buffer and resets the indices.
+     */
     void clearMessageBuffer(void);
 
-	/**
-	 * Returns handle of the event that gets signalled when
-	 * a message entry is added.
-	 *
-	 * @return The notifying event handle
-	 */
+    /**
+     * Returns handle of the event that gets signalled when
+     * a message entry is added.
+     *
+     * @return The notifying event handle
+     */
     HANDLE getNotifyEvent(void) const;
 
-	/**
-	 * Reorders the list according to the sorting key specified.
-	 *
-	 * @param[in] nField The field to be used as the sorting key.
-	 */
-	void vDoSortBuffer(int nField,bool bAscending);
-    
-	/**
-	 * Reorders the Index Map Array according to the order specified.
-	 */
-	void vDoSortIndexMapArray();
-    
-	/**
-	 * Returns the Slot ID of the index specified in m_omIdIndexMap.
-	 *
-	 * @param[in] nIndex The Index at which the SlotID needs to be pickef from.
-	 */
-	void nGetMapIndexAtID(int nIndex,__int64& nMapIndex);
+    /**
+     * Reorders the list according to the sorting key specified.
+     *
+     * @param[in] nField The field to be used as the sorting key.
+     */
+    void vDoSortBuffer(int nField,bool bAscending);
+
+    /**
+     * Reorders the Index Map Array according to the order specified.
+     */
+    void vDoSortIndexMapArray();
+
+    /**
+     * Returns the Slot ID of the index specified in m_omIdIndexMap.
+     *
+     * @param[in] nIndex The Index at which the SlotID needs to be pickef from.
+     */
+    void nGetMapIndexAtID(int nIndex,__int64& nMapIndex);
 
 protected:
-	/**
-	 * The data buffer
-	 */
+    /**
+     * The data buffer
+     */
     SMSGBUFFER m_asMsgBuffer[SIZE_APP_CAN_BUFFER];
 
-	/**
-	 * To make it thread safe
-	 */
+    /**
+     * To make it thread safe
+     */
     CRITICAL_SECTION m_CritSectionForGB;
 
-	/**
-	 * Current read index
-	 */
+    /**
+     * Current read index
+     */
     int m_nIndexRead;
 
-	/**
-	 * Current write index
-	 */
+    /**
+     * Current write index
+     */
     int m_nIndexWrite;
 
-	/**
-	 * Number of message entries
-	 */
+    /**
+     * Number of message entries
+     */
     int m_nMsgCount;
 
-	/**
-	 * At the beginning we need to store size of a message entry.
-	 * This information will be used frequently
-	 */
+    /**
+     * At the beginning we need to store size of a message entry.
+     * This information will be used frequently
+     */
     int m_nMsgSize;
 
-	 /**
-	  * Event to be signalled when there is at least one message
-	  */
+    /**
+     * Event to be signalled when there is at least one message
+     */
     HANDLE m_hNotifyingEvent;
 
 private:

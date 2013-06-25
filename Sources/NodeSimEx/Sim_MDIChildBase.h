@@ -31,7 +31,7 @@
 class CMDIChildBase : public CMDIChildWnd
 {
     DECLARE_DYNCREATE(CMDIChildBase)
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 
 public:
     // Constructor with Window Identity

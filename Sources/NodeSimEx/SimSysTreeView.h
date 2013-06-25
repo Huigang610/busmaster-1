@@ -56,7 +56,7 @@ public:
 
     virtual void OnInitialUpdate();
 
-	static ETYPE_BUS CSimSysTreeView::sm_eBus;
+    static ETYPE_BUS CSimSysTreeView::sm_eBus;
     void vAddSimDetFromFile(CString oCfgFilename);
     void vDisplayRootMenu();
     void vDisplaySimSysMenu();

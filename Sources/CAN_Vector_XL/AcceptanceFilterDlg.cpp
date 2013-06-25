@@ -85,7 +85,7 @@ CAcceptanceFilterDlg::CAcceptanceFilterDlg(CWnd* pParent /*=NULL*/,
         m_omStrLocalAccMaskByte4[i] = "";
     }
 
-	// Set the Filter mode to Single
+    // Set the Filter mode to Single
     m_bAccFilterMode = 0;
     // Copy controller information pointer
     m_psControllerInfo = psControllerInfo;

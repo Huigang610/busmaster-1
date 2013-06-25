@@ -2306,7 +2306,7 @@ HRESULT CDIL_CAN_ICSNeoVI::setConfigurationData(PSCONTROLLER_DETAILS ConfigFile,
     else
     {
         sg_pIlog->logMessage(A2T(__FILE__), __LINE__,
-                               "Controller configuration failed");
+                             "Controller configuration failed");
     }
     return hResult;
 }
@@ -2528,7 +2528,7 @@ HRESULT hFillHardwareDesc(PSCONTROLLER_DETAILS pControllerDetails)
                           "Unknown, Serial Number %d", serialNumber);
                 break;
         };
-        pControllerDetails[i].m_omHardwareDesc = chTemp;
+        pControllerDetails[i].hardwareDescription = chTemp;
     }
     return S_OK;
 }
@@ -3065,7 +3065,7 @@ HRESULT CDIL_CAN_ICSNeoVI::loadDriverLibrary(void)
                 // Log list of the function pointers non-retrievable
                 // TO DO: specific information on failure in getting function pointer
                 sg_pIlog->logMessage(A2T(__FILE__),
-                                       __LINE__, "Getting Process address of the APIs failed");
+                                     __LINE__, "Getting Process address of the APIs failed");
                 hResult = ERR_LOAD_DRIVER;
             }
         }
@@ -3191,7 +3191,7 @@ HRESULT CDIL_CAN_ICSNeoVI::getControllerParameters(LONG& lParam, UINT nChannel, 
                 }
             }
             break;
-            
+
             case CNTR_STATUS:
             {
                 char pGetFireParms[] = "can1/Mode";
@@ -3208,7 +3208,7 @@ HRESULT CDIL_CAN_ICSNeoVI::getControllerParameters(LONG& lParam, UINT nChannel, 
                     lParam = defMODE_ACTIVE;
                 }
             }
-            
+
             default:
             {
                 hResult = S_FALSE;

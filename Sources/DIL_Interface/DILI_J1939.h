@@ -40,24 +40,24 @@ public:
     HRESULT initialize(Base_WrapperErrorLogger* pILog, CBaseDIL_CAN* pouIDIL_CAN);
     HRESULT uninitialize(void);
     HRESULT registerClient(BOOL bRegister, char* pacNodeName,
-                                 UINT64 un64ECUName, BYTE byPrefAdres, DWORD& dwClientId);
+                           UINT64 un64ECUName, BYTE byPrefAdres, DWORD& dwClientId);
     HRESULT manageMessageBuffer(BYTE bAction, DWORD ClientID,
-                               CBaseMsgBufVSE* pBufObj);
+                                CBaseMsgBufVSE* pBufObj);
     HRESULT sendJ1939Message (DWORD dwClient, UINT unChannel,
-                                EJ1939_MSG_TYPE eMsgType, UINT32 unPGN,
-                                BYTE* pbyData, UINT unDLC,
-                                BYTE byPriority = DEFAULT_PRIORITY,
-                                BYTE bySrc = ADDRESS_NULL,
-                                BYTE byDestAdress = ADDRESS_ALL);
+                              EJ1939_MSG_TYPE eMsgType, UINT32 unPGN,
+                              BYTE* pbyData, UINT unDLC,
+                              BYTE byPriority = DEFAULT_PRIORITY,
+                              BYTE bySrc = ADDRESS_NULL,
+                              BYTE byDestAdress = ADDRESS_ALL);
     HRESULT sendAcknowledgementMessage(DWORD dwClient, UINT unChannel,
-                             ETYPE_ACK eAckType, UINT32 unPGN,
-                             BYTE bySrc,
-                             BYTE byAddresAck);
+                                       ETYPE_ACK eAckType, UINT32 unPGN,
+                                       BYTE bySrc,
+                                       BYTE byAddresAck);
     HRESULT requestPgn(DWORD dwClient,
-                             UINT unChannel, UINT32 unPGN,
-                             BYTE byPriority = DEFAULT_PRIORITY,
-                             BYTE bySrc = ADDRESS_NULL,
-                             BYTE byDestAddress = ADDRESS_ALL);
+                       UINT unChannel, UINT32 unPGN,
+                       BYTE byPriority = DEFAULT_PRIORITY,
+                       BYTE bySrc = ADDRESS_NULL,
+                       BYTE byDestAddress = ADDRESS_ALL);
     HRESULT goOnline();
     HRESULT goOffline();
     HRESULT getNodeName(BYTE byAddress, char* acNodeName);
@@ -65,19 +65,19 @@ public:
     BOOL isAddressClaimed(BYTE byAddress);
     HRESULT claimAddress(DWORD dwClientId, UINT unChannel, BYTE byAddress, BYTE byPriority = DEFAULT_PRIORITY);
     HRESULT requestAddress(DWORD dwClient, UINT unChannel,
-                                    BYTE byPriority = DEFAULT_PRIORITY,
-                                    BYTE bySrc = ADDRESS_NULL,
-                                    BYTE byDestAddress = ADDRESS_ALL);
+                           BYTE byPriority = DEFAULT_PRIORITY,
+                           BYTE bySrc = ADDRESS_NULL,
+                           BYTE byDestAddress = ADDRESS_ALL);
     HRESULT commandAddress(DWORD dwClient, UINT unChannel,
-                                    UINT64 unECU_NAME,
-                                    BYTE byNewAddress,
-                                    BYTE byPriority = DEFAULT_PRIORITY,
-                                    BYTE bySrc = ADDRESS_NULL,
-                                    BYTE byDestAddress = ADDRESS_ALL);
+                           UINT64 unECU_NAME,
+                           BYTE byNewAddress,
+                           BYTE byPriority = DEFAULT_PRIORITY,
+                           BYTE bySrc = ADDRESS_NULL,
+                           BYTE byDestAddress = ADDRESS_ALL);
     HRESULT getTimeout(ETYPE_TIMEOUT eTimeOutType, UINT& unMiliSeconds);
     HRESULT configureTimeout(ETYPE_TIMEOUT eTimeOutType, UINT unMiliSeconds);
     HRESULT getTimeModeMapping(SYSTEMTIME& CurrSysTime, UINT64& unAbsTime);
     BOOL isOnline(void);
     HRESULT setCallbackFunction(DWORD dwClientId, ETYPE_CLBCK_FN eClBckFnType,
-                                    void* pvClBckFn);
+                                void* pvClBckFn);
 };

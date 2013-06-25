@@ -67,7 +67,7 @@ public:
         int             m_omDriverId;
         CString             m_omHardwareName;
         CString             m_omFirmware;
-        CString             m_omHardwareDesc;
+        CString             hardwareDescription;
 
     } HARDWARE_CONTAINER, *PHARDWARE_CONTAINER;
 

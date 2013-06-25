@@ -29,7 +29,7 @@ class CMsgWndThread : public CWinThread
     DECLARE_MESSAGE_MAP()
 
 public:
-	CMsgWndThread();           // protected constructor used by dynamic creation
+    CMsgWndThread();           // protected constructor used by dynamic creation
     virtual ~CMsgWndThread();
     virtual BOOL InitInstance();
     virtual int ExitInstance();

@@ -276,7 +276,7 @@ int CSignal::Format(char* pcLine)
     char szSep;
     GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_SDECIMAL, &szSep, 1);
 
-	while(*pcToken && *pcToken != ',')
+    while(*pcToken && *pcToken != ',')
     {
         *pcTemp++ = *pcToken++;
     }
@@ -284,8 +284,8 @@ int CSignal::Format(char* pcLine)
     *pcTemp='\0';
     pcToken++; // skip ','
 
-	/* Make sure we use default decimal symbol for floating values */
-	vReplaceChar(acTemp, '.', szSep);
+    /* Make sure we use default decimal symbol for floating values */
+    vReplaceChar(acTemp, '.', szSep);
 
     sscanf_s(acTemp, "%f", &m_fScaleFactor);
     // Get offset
@@ -298,8 +298,8 @@ int CSignal::Format(char* pcLine)
 
     *pcTemp='\0';
 
-   	/* Make sure we use default decimal symbol for floating values */
-	vReplaceChar(acTemp, '.', szSep);
+    /* Make sure we use default decimal symbol for floating values */
+    vReplaceChar(acTemp, '.', szSep);
 
     sscanf_s(acTemp, "%f", &m_fOffset);
     // next token [MIN|MAX]

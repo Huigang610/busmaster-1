@@ -51,7 +51,7 @@ private:
     CString m_strTitle;
     CFont* m_TitleFont;
 
-	//To Move the Window to the center of Parent Window
+    //To Move the Window to the center of Parent Window
     void MoveToCenter(void);
     //To Register the custom window name
     BOOL RegisterWindowClass(void);

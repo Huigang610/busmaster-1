@@ -42,7 +42,7 @@ public:
     virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	CListCtrlEx m_omPropertyList;
+    CListCtrlEx m_omPropertyList;
 
 protected:
     virtual void OnInitialUpdate();
@@ -52,7 +52,7 @@ protected:
     afx_msg void OnLvnItemchanged(NMHDR* pNMHDR, LRESULT* pResult);
     HRESULT onMsg(LPARAM,WPARAM);
 
-	CPropertyView();           // protected constructor used by dynamic creation
+    CPropertyView();           // protected constructor used by dynamic creation
     virtual ~CPropertyView();
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 

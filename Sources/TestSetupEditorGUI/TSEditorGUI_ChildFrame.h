@@ -115,7 +115,7 @@ private:
     CMenu* m_pMainMenu;
     WINDOWPLACEMENT m_sTSDefPlacement;
 
-	INT nPromptForSaveFile();
+    INT nPromptForSaveFile();
     void vSetCurrentFile(CString& omNewFilePath);
     INT nUpdateTreeView();
     INT nDisplayEntity(DWORD dwEntityID);

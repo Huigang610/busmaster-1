@@ -27,8 +27,8 @@
 #include <map>
 
 /* Project includes */
-#include "CAN_Vector_XL_Resource.h"	// For resource symbols
-#include "DataTypes/DIL_Datatypes.h"	// For DIL datatypes
+#include "CAN_Vector_XL_Resource.h" // For resource symbols
+#include "DataTypes/DIL_Datatypes.h"    // For DIL datatypes
 #include "Include/CanUsbDefs.h"
 
 class CHardwareListing : public CDialog
@@ -68,7 +68,7 @@ public:
         int     m_omDriverId;
         CString     m_omHardwareName;
         CString     m_omFirmware;
-        CString     m_omHardwareDesc;
+        CString     hardwareDescription;
 
     } HARDWARE_CONTAINER, *PHARDWARE_CONTAINER;
 
@@ -88,7 +88,7 @@ protected:
     afx_msg void OnButtonSelect();
     afx_msg void OnButtonRemove();
     afx_msg void OnItemchangedLstcSelectedHwList(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnNMClickLstcHwList(NMHDR* pNMHDR, LRESULT* pResult);
+    afx_msg void OnNMClickLstcHwList(NMHDR* pNMHDR, LRESULT* pResult);
     afx_msg void OnNMClickLstcSelectedHwList(NMHDR* pNMHDR, LRESULT* pResult);
     virtual BOOL OnInitDialog();
     virtual void OnOK();
