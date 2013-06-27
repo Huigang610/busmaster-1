@@ -5,7 +5,7 @@
 #define IDC_BUT_REMOVE                  3
 #define IDC_BUT_SELECT                  5
 #define IDD_DIALOG1                     101
-#define IDD_DLG_HW_LISTING              130
+#define IDD_DLG_CHANNEL_SELECTION              130
 #define IDD_DLG_ACCEPTANCE              197
 #define IDR_BMP_NET                     204
 #define IDD_DLG_CHANGE_REGISTERS        228
@@ -53,7 +53,6 @@
 #define IDC_EDIT_ACC_MASK               1219
 #define IDC_LSTC_SELECTED_HW_LIST       1226
 #define IDC_LIST_CHANNELS               1246
-#define IDD_LIST_HW_INTRS               3002
 #define IDC_LIST1                       3004
 #define IDC_NAME                        3005
 #define IDC_VENDOR                      3006

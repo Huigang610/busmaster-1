@@ -49,7 +49,7 @@ public:
 
 protected:
     // Dialog Data
-    enum { IDD = IDD_DLG_CHANGE_REGISTERS };
+    enum { IDD = IDD_DLG_CHANNEL_CONFIGURATION };
     CListCtrl   m_omChannelList;
     CRadixEdit  m_omEditWarningLimit;
     CComboBox   m_omCombSampling;

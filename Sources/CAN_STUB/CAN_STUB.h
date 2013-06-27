@@ -20,7 +20,7 @@
 
 #pragma once
 
-/*Definitions*/
+/* Definitions */
 const int ERR_INVALID_PROCDIL       = -1;
 const int ERR_INVALID_PARENTHANDLE  = -2;
 const int INFO_RETAINED_CONFDATA    = 0;

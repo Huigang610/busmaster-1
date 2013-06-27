@@ -32,7 +32,6 @@
 #include "resource.h"
 
 #include "CANControllerConfigDlg.h"
-#include "CANSelectDlg.h"
 #include "HardwareListing.h"
 
 

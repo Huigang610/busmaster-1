@@ -24,9 +24,6 @@
     <ClCompile Include="CANControllerConfigDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CANSelectDlg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ClientBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -69,9 +66,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CANControllerConfigDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CANSelectDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ClientBuffer.h">

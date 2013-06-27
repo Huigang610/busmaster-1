@@ -54,7 +54,7 @@ public:
 
     // Dialog Data
     //{{AFX_DATA(CHardwareListing)
-    enum { IDD = IDD_DLG_HW_LISTING };
+    enum { IDD = IDD_DLG_CHANNEL_SELECTION };
     CListCtrl   m_omSelectedHwList;
     CEdit   m_omNetName;
     CEdit   m_omFirmware;

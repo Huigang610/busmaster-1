@@ -61,7 +61,7 @@ public:
     virtual ~CCANControllerConfigDlg();
 
     // Dialog Data
-    enum { IDD = IDD_IXXAT_CAN_CONFIG_DLG };
+    enum { IDD = IDD_DLG_CHANNEL_CONFIGURATION };
 
     CComboBox m_comboBoxCiABaudSelection;
 

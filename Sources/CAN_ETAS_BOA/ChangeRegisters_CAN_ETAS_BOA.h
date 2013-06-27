@@ -51,7 +51,7 @@ public:
     INT nGetInitStatus();
 
 protected:
-    enum { IDD = IDD_DLG_CHANGE_REGISTERS_CAN_ETAS_BOA };
+    enum { IDD = IDD_DLG_CHANNEL_CONFIGURATION };
     CListCtrl   m_omChannelList;
     CRadixEdit  m_omEditWarningLimit;
     CComboBox   m_omCombSampling;

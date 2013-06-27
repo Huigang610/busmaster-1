@@ -202,7 +202,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='busmaster_debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="CANControllerConfigDlg.cpp" />
-    <ClCompile Include="CANSelectDlg.cpp" />
     <ClCompile Include="ClientBuffer.cpp" />
     <ClCompile Include="ClientList.cpp" />
     <ClCompile Include="DIL_CAN_IXXAT_VCI.cpp" />
@@ -221,7 +220,6 @@
     <ClInclude Include="CAN_IXXAT_VCI_Extern.h" />
     <ClInclude Include="CAN_IXXAT_VCI_stdafx.h" />
     <ClInclude Include="CANControllerConfigDlg.h" />
-    <ClInclude Include="CANSelectDlg.h" />
     <ClInclude Include="ClientBuffer.h" />
     <ClInclude Include="ClientList.h" />
     <ClInclude Include="DIL_CAN_IXXAT_VCI.h" />

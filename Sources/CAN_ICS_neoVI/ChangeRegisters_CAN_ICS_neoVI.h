@@ -115,7 +115,7 @@ public:
     CComboBox m_omCtrlClock;
 
 protected:
-    enum { IDD = IDD_DLG_CHANGE_REGISTERS_CAN_ICS_NEOVI };
+    enum { IDD = IDD_DLG_CHANNEL_CONFIGURATION };
     CListCtrl   m_omChannelList;
     CRadixEdit  m_omEditWarningLimit;
     CComboBox   m_omCombSampling;

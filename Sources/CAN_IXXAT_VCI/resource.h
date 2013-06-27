@@ -4,9 +4,9 @@
 //
 #define IDC_BUT_REMOVE                  3
 #define IDC_BUT_SELECT                  5
-#define IDD_IXXAT_CAN_CONFIG_DLG        101
+#define IDD_DLG_CHANNEL_CONFIGURATION        101
 #define IDD_IXXAT_CAN_SELECTION_DLG     102
-#define IDD_DLG_HW_LISTING              130
+#define IDD_DLG_CHANNEL_SELECTION              130
 #define IDR_BMP_NET                     204
 #define IDC_BUTTON_CANCFG_OK            1001
 #define IDC_COMBO_CIA_BAUD_SELECTION    1002

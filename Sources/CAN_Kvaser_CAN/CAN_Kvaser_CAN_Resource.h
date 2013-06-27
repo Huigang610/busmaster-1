@@ -22,11 +22,10 @@
 
 #define IDC_BUT_REMOVE                  3
 #define IDC_BUT_SELECT                  5
-#define IDD_PPAGE_CONTROLLER            107
-#define IDD_DLG_HW_LISTING              130
+#define IDD_DLG_CHANNEL_SELECTION              130
 #define IDD_DLG_ACCEPTANCE              197
 #define IDR_BMP_NET                     204
-#define IDD_DLG_CHANGE_REGISTERS        228
+#define IDD_DLG_CHANNEL_CONFIGURATION        228
 #define IDC_EDIT_BAUD_RATE              1000
 #define IDC_EDIT_BTR0                   1001
 #define IDC_EDIT_BTR1                   1002
@@ -73,19 +72,15 @@
 #define IDC_STAT_FILTER_TYPES           1216
 #define IDC_LSTC_SELECTED_HW_LIST       1226
 #define IDC_LIST_CHANNELS               1246
-#define IDD_CONFIG_STUB                 3000
 #define IDC_EDIT_INITFILE               3001
 #define IDS_ERROR_PATH_TOO_LONG         3001
 #define IDC_BUTTON1                     3002
 #define IDD_DIALOG1                     3002
-#define IDD_LIST_HW_INTRS               3002
 #define IDS_PPAGE_CHANGE_REGISTER       3002
 #define IDC_BUTTON_APPLY                3003
 #define IDS_PPAGE_ACCEPTANCE_FILTER     3003
-#define IDD_DLG_CHANGE_REGISTERS1       3003
-#define IDD_DLG_CHANGE_REGISTERS_CAN_ICS_NEOVI  3003
+#define IDD_DLG_CHANNEL_CONFIGURATION1       3003
 #define IDC_LIST1                       3004
-#define IDD_DLG_CHANGE_REGISTERS_CAN_ETAS_BOA 3004
 #define IDC_NAME                        3005
 #define IDC_VENDOR                      3006
 #define IDC_DESC                        3007

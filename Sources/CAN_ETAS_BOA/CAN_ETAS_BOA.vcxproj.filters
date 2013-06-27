@@ -61,4 +61,9 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="CAN_ETAS_BOA_Resource.hm">
+      <Filter>Header Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
