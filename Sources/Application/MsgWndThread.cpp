@@ -64,7 +64,7 @@ BEGIN_MESSAGE_MAP(CMsgWndThread, CWinThread)
     ON_THREAD_MESSAGE(WM_MODIFY_VISIBILITY, vModifyVisibilityStatus)
 END_MESSAGE_MAP()
 
-BOOL CMsgWndThread::CreateMsgWnd(HWND hFrameWnd, eTYPE_BUS eBusType, DWORD dwClientID, void* pParam)
+BOOL CMsgWndThread::CreateMsgWnd(HWND hFrameWnd, BusType eBusType, DWORD dwClientID, void* pParam)
 {
     CString strWndText;
     strWndText.LoadString(IDR_MESSAGE_WINDOW_TEXT);
@@ -89,7 +89,7 @@ BOOL CMsgWndThread::CreateMsgWnd(HWND hFrameWnd, eTYPE_BUS eBusType, DWORD dwCli
     return TRUE;
 }
 
-void CMsgWndThread::vUpdateClientID(eTYPE_BUS eBusType, DWORD dwClientID)
+void CMsgWndThread::vUpdateClientID(BusType eBusType, DWORD dwClientID)
 {
     if(m_pMsgWnd[eBusType])
     {
@@ -101,7 +101,7 @@ void CMsgWndThread::vUpdateClientID(eTYPE_BUS eBusType, DWORD dwClientID)
 
 void CMsgWndThread::vModifyVisibilityStatus(UINT unParam, LONG lParam)
 {
-    eTYPE_BUS eBusType = (eTYPE_BUS) lParam;
+    BusType eBusType = (BusType) lParam;
     if(unParam == SW_SHOW)
     {
         if (m_pMsgWnd[eBusType] != NULL)
@@ -119,7 +119,7 @@ void CMsgWndThread::vModifyVisibilityStatus(UINT unParam, LONG lParam)
     }
 }
 
-HWND CMsgWndThread::hGetHandleMsgWnd(eTYPE_BUS eBusType)
+HWND CMsgWndThread::hGetHandleMsgWnd(BusType eBusType)
 {
     if(m_pMsgWnd[eBusType])
     {
@@ -131,7 +131,7 @@ HWND CMsgWndThread::hGetHandleMsgWnd(eTYPE_BUS eBusType)
     }
 }
 
-void CMsgWndThread::vSetDILInterfacePointer(eTYPE_BUS eBusType, void** ppvJ1939DIL)
+void CMsgWndThread::vSetDILInterfacePointer(BusType eBusType, void** ppvJ1939DIL)
 {
     if(m_pMsgWnd[eBusType])
     {

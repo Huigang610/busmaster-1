@@ -224,9 +224,9 @@ public:
     CString bWriteDBHeader(CString omStrActiveDataBase);
 
     static BOOL bCalcBitMaskForSig(BYTE* pbyMaskByte, UINT unArrayLen,
-                                   UINT nByteNum, UINT nBitNum, UINT nLength, EFORMAT_DATA bDataFormat);
+                                   UINT nByteNum, UINT nBitNum, UINT nLength, DataFormat bDataFormat);
     static BOOL bValidateSignal(UINT nDLC, UINT nByteNum, UINT nBitNum,
-                                UINT nLength, EFORMAT_DATA bDataFormat);
+                                UINT nLength, DataFormat bDataFormat);
 
 
 

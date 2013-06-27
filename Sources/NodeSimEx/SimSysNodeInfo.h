@@ -59,8 +59,8 @@ struct sNODEINFO
     CStringArray m_omStrArrayDLLHandlers;
     CStringArray m_omStrArrayMsgRange;
     CStringArray m_omStrArrayMsgIDandName;
-    ETYPE_BUS m_eBus;
-    sNODEINFO(ETYPE_BUS eBus);
+    BusType m_eBus;
+    sNODEINFO(BusType eBus);
     ~sNODEINFO();
     BOOL bStartThreadProc();
     BOOL bTerminateThreadProc();
@@ -70,9 +70,9 @@ typedef sNODEINFO* PSNODEINFO;
 struct sNODELIST
 {
     sNODEINFO m_sNodeInfo;
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
     sNODELIST* m_psNextNode;
-    sNODELIST(ETYPE_BUS eBus) : m_sNodeInfo(eBus)
+    sNODELIST(BusType eBus) : m_sNodeInfo(eBus)
     {
         m_eBus = eBus;
         m_sNodeInfo.m_eBus = m_eBus;
@@ -130,7 +130,7 @@ typedef sSIMSYSINFO* PSSIMSYSINFO;
 class CSimSysNodeInfo
 {
 public:
-    CSimSysNodeInfo(ETYPE_BUS eBus);
+    CSimSysNodeInfo(BusType eBus);
     virtual ~CSimSysNodeInfo();
 
     // Delete simulated system
@@ -237,5 +237,5 @@ public:
 private:
     //This data member will contain pointer to sSIMSYSINFO structure that holds active simulated system information.
     PSSIMSYSINFO m_psSimSysInfo;
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
 };

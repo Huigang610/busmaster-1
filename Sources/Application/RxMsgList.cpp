@@ -1092,7 +1092,7 @@ void CRxMsgList::PreSubclassWindow()
   Date Created   : 20-05-2010
   Modifications  :
 *******************************************************************************/
-void CRxMsgList::vSetSortableMsgColumns(SMSGWNDHDRCOL& sHdrColStruct, ETYPE_BUS eBusType)
+void CRxMsgList::vSetSortableMsgColumns(SMSGWNDHDRCOL& sHdrColStruct, BusType eBusType)
 {
     int nColCount = GetHeaderCtrl()->GetItemCount();
     nColCount--;    //Reduce the size by 1 for the Blank column.

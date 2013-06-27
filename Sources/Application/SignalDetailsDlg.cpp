@@ -1308,7 +1308,7 @@ void CSignalDetailsDlg::OnOK()
                 }
                 if(!(CMsgSignal::bValidateSignal(m_nMsgLength, m_shByteIndex+1,
                                                  m_byStartBit, m_unSgLen,
-                                                 (EFORMAT_DATA) m_nDataFormat)) &&
+                                                 (DataFormat) m_nDataFormat)) &&
                         (bReturnFlag == TRUE))
                 {
                     AfxMessageBox( _(defSTR_SIGNAL_END_BIT_INVALID),
@@ -1338,7 +1338,7 @@ void CSignalDetailsDlg::OnOK()
 
                     if ( pSg != NULL )
                     {
-                        pSg->m_eFormat = (EFORMAT_DATA) m_nDataFormat;
+                        pSg->m_eFormat = (DataFormat) m_nDataFormat;
                         CString omStrSgType = STR_EMPTY;
                         m_omComboSgType.GetLBText(
                             m_omComboSgType.GetCurSel(), omStrSgType );

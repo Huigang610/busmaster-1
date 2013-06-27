@@ -38,7 +38,7 @@ static char THIS_FILE[] = __FILE__;
 CEvent omMainTimerEvent;
 //Timer callback for timer handlers
 //Bus Type
-ETYPE_BUS CSetResetTimer::sm_eBus = CAN;
+BusType CSetResetTimer::sm_eBus = CAN;
 void CALLBACK TimerProc(UINT uTimerID, UINT uMsg, DWORD* dwUser,
                         DWORD* dw1, DWORD* dw2);
 
@@ -59,7 +59,7 @@ UINT CalcTimersExecTime(LPVOID pParam);
 /*  Modification By  :  Amitesh Bharti                                        */
 /*  Modification on  :  08.03.2002                                            */
 /******************************************************************************/
-CSetResetTimer::CSetResetTimer(ETYPE_BUS eBus, CWnd* pParent /*=NULL*/)
+CSetResetTimer::CSetResetTimer(BusType eBus, CWnd* pParent /*=NULL*/)
     : CDialog(CSetResetTimer::IDD, pParent),
       m_bDialogGettingInit(TRUE),
       m_bApplyButtonPressed(FALSE),

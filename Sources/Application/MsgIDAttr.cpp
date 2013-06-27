@@ -44,7 +44,7 @@
  Author(s)      :   Ratnadip Choudhury
  Date Created   :   18-03-2002
 ******************************************************************************/
-CMsgIDAttr::CMsgIDAttr(ETYPE_BUS eBusType, CWnd* pParent /*=NULL*/)
+CMsgIDAttr::CMsgIDAttr(BusType eBusType, CWnd* pParent /*=NULL*/)
     : CDialog(CMsgIDAttr::IDD, pParent)
 {
     m_omStrMsg = "";

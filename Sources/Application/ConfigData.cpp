@@ -44,7 +44,7 @@ CConfigData& CConfigData::ouGetConfigDetailsObject()
 void CConfigData::vReadConfigFile()
 {
     UCHAR pCheckSum,fChecksum;
-    if (bGetCheckSum(m_omStrCurrFileName ,& pCheckSum, &fChecksum))
+    if (getCheckSum(m_omStrCurrFileName ,& pCheckSum, &fChecksum))
     {
         if (pCheckSum == fChecksum)
         {
@@ -78,7 +78,7 @@ void CConfigData::vSaveConfigFile()
 {
     UCHAR pCheckSum;
     doDataStorageOperation(SAVE);
-    bSetCheckSum(m_omStrCurrFileName , &pCheckSum);
+    setCheckSum(m_omStrCurrFileName , &pCheckSum);
 }
 
 void CConfigData::vCloseConfigFile()

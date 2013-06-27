@@ -27,11 +27,6 @@ class CDILApp : public CWinApp
 {
 public:
     /**
-     * Init Instance
-     */
-    virtual BOOL InitInstance();
-
-    /**
      * Exit Instance
      */
     virtual int ExitInstance();

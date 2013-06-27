@@ -33,7 +33,7 @@ class CElementSelection : public CDialog
 public:
     // Pointer to Main Frame
     CMainFrame* m_pMainFrame;
-    eTYPE_BUS m_eBusType;
+    BusType m_eBusType;
 
     CElementSelection(UINT nHardware = defNO_OF_CHANNELS, CWnd* pParent = NULL);
 

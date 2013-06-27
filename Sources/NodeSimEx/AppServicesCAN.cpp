@@ -117,16 +117,16 @@ DWORD gdGetFirstCANdbName(char* cBuffer, DWORD size)
     strcpy(cBuffer,"");
     //cBuffer = NULL;
 
-    if (CExecuteManager::bIsExist((ETYPE_BUS)0) == TRUE)
+    if (CExecuteManager::bIsExist((BusType)0) == TRUE)
     {
         POSITION        MainPos = NULL;
         //CAPL_DB_NAME_CHANGE
         //loop through the DB list to search in all the DB whether the message is present.
 
-        MainPos =  CGlobalObj::ouGetObj((ETYPE_BUS)0).m_odMsgNameMsgCodeListDb.GetTailPosition();// get only CAN db
+        MainPos =  CGlobalObj::ouGetObj((BusType)0).m_odMsgNameMsgCodeListDb.GetTailPosition();// get only CAN db
         if(MainPos != NULL)         //if present stop searching
         {
-            SDB_NAME_MSG&  sDbNameMsg = CGlobalObj::ouGetObj((ETYPE_BUS)0).
+            SDB_NAME_MSG&  sDbNameMsg = CGlobalObj::ouGetObj((BusType)0).
                                         m_odMsgNameMsgCodeListDb.GetAt(MainPos);
             strcpy(cBuffer, (LPCSTR)sDbNameMsg.m_omDbName);
             //cBuffer = sDbNameMsg.m_omDbName.GetBuffer(sDbNameMsg.m_omDbName.GetLength());

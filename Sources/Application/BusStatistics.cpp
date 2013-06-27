@@ -23,7 +23,7 @@
 
 static CBusStatisticCAN* sg_pouBS_CAN = NULL;
 
-HRESULT getInterface(ETYPE_BUS eBus, void** ppvInterface)
+HRESULT getInterface(BusType eBus, void** ppvInterface)
 {
     HRESULT hResult = S_OK;
 

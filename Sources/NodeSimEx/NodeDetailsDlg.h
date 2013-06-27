@@ -32,7 +32,7 @@ class CNodeDetailsDlg : public CDialog
     DECLARE_MESSAGE_MAP()
 
 public:
-    CNodeDetailsDlg(ETYPE_BUS eBus, PSNODEINFO pNode = NULL,CWnd* pParent = NULL);
+    CNodeDetailsDlg(BusType eBus, PSNODEINFO pNode = NULL,CWnd* pParent = NULL);
     BOOL m_bIsNodeModified;  //Track the change
 
     enum { IDD = IDD_NODE_DEATILS };
@@ -54,7 +54,7 @@ protected:
     afx_msg void OnClear();
 
 private:
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
     PSNODEINFO m_psNodeStuctPtr;
     void vEnableClearButton(BOOL bEnable);
 };

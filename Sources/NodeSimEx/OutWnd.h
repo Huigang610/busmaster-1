@@ -31,7 +31,7 @@ class COutWnd : public CMDIChildBase
     DECLARE_MESSAGE_MAP()
 
 public:
-    COutWnd(ETYPE_BUS eBus = CAN);           // public constructor used by dynamic creation
+    COutWnd(BusType eBus = CAN);           // public constructor used by dynamic creation
     BOOL bCreateOutputWindow();
     // Add string items to the list box of output window
     BOOL bAddString(CStringArray& omStrArray);
@@ -50,7 +50,7 @@ protected:
     afx_msg void OnDbClick();
 
 private:
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
     void vGetWinStatus(WINDOWPLACEMENT& sWinCurrStatus);
     void vSaveWinStatus(WINDOWPLACEMENT sWinCurrStatus);
     CSize m_omSizeMaxTxtExtent;

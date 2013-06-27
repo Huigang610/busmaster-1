@@ -73,5 +73,5 @@ private:
     //CModuleFilterArray m_sFilter; // Filter List
     BOOL    m_bEnabled, m_bEnabledTmp;         // To indicate replay is enabled or not
     BOOL    m_bInteractive, m_bInteractiveTmp;     // 0 - Non Interactive, 1 - interactive
-    eDirection m_ouReplayMsgType;
+    Direction m_ouReplayMsgType;
 };

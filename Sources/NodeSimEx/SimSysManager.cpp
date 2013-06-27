@@ -36,7 +36,7 @@
 //INstantiation of singleton class
 CSimSysManager* CSimSysManager::sm_pouSimSysManager[BUS_TOTAL] = {NULL};
 
-CSimSysManager::CSimSysManager(ETYPE_BUS eBus) : m_ouSimSysNodeInfo(eBus),
+CSimSysManager::CSimSysManager(BusType eBus) : m_ouSimSysNodeInfo(eBus),
     m_omSimSysConfig(eBus)
 {
     m_pomSimSysDetView = NULL;
@@ -89,7 +89,7 @@ void CSimSysManager::vSaveSimSys(CString omStrSimSysName)
     }
 }
 
-CSimSysManager& CSimSysManager::ouGetSimSysManager(ETYPE_BUS eBus)
+CSimSysManager& CSimSysManager::ouGetSimSysManager(BusType eBus)
 {
     if (sm_pouSimSysManager[eBus] == NULL)
     {
@@ -98,7 +98,7 @@ CSimSysManager& CSimSysManager::ouGetSimSysManager(ETYPE_BUS eBus)
     return *(sm_pouSimSysManager[eBus]);
 }
 
-void CSimSysManager::vClearObj(ETYPE_BUS eBus)
+void CSimSysManager::vClearObj(BusType eBus)
 {
     if (sm_pouSimSysManager[eBus] != NULL)
     {
@@ -314,7 +314,7 @@ void CSimSysManager::SaveSIMDataIntoBuffer(BYTE* DesBuffer)
 
 }
 
-void CSimSysManager::vLoadSimSysWndConfig(xmlDocPtr pDoc, ETYPE_BUS eBus)
+void CSimSysManager::vLoadSimSysWndConfig(xmlDocPtr pDoc, BusType eBus)
 {
     //First initialize all data
     vInitailizeSimSysInfo();
@@ -355,7 +355,7 @@ void CSimSysManager::vLoadSimSysWndConfig(xmlDocPtr pDoc, ETYPE_BUS eBus)
         }
     }
 }
-void CSimSysManager::CopySIMDataFromBuffer(xmlNodePtr pDoc, ETYPE_BUS eBus)
+void CSimSysManager::CopySIMDataFromBuffer(xmlNodePtr pDoc, BusType eBus)
 {
     /*xmlChar* pXpath = NULL;
     xmlXPathObjectPtr pObjectPath = NULL;
@@ -450,7 +450,7 @@ void CSimSysManager::CopySIMDataFromBuffer(xmlNodePtr pDoc, ETYPE_BUS eBus)
     }*/
 }
 
-void CSimSysManager::CopySIMDataFromBuffer(xmlDocPtr pDoc, ETYPE_BUS eBus)
+void CSimSysManager::CopySIMDataFromBuffer(xmlDocPtr pDoc, BusType eBus)
 {
     xmlChar* pXpath = NULL;
     xmlXPathObjectPtr pObjectPath = NULL;

@@ -78,7 +78,7 @@ public:
      * Returns the total number of valid messages transmitted to or
      * received from the bus.
      */
-    HRESULT getTotalMessageCount(UINT unChannelIndex, eDirection eDir, BYTE byIdType,
+    HRESULT getTotalMessageCount(UINT unChannelIndex, Direction eDir, BYTE byIdType,
                                  BYTE byMsgType, UINT& nMsgCount);
 
     /**
@@ -93,7 +93,7 @@ public:
      * Returns the total number of error messages occurred while
      * receiving or transmitting
      */
-    HRESULT getTotalErrorCount(UINT unChannelIndex, eDirection eDir, UINT& nErrCount);
+    HRESULT getTotalErrorCount(UINT unChannelIndex, Direction eDir, UINT& nErrCount);
 
     /**
      * @brief Get average number of msgs per second(Msg/s)
@@ -107,7 +107,7 @@ public:
      *
      * Returns average number of msgs per second (Msg/s)
      */
-    HRESULT getAverageMessageCountPerSecond(UINT unChannelIndex, eDirection eDir,
+    HRESULT getAverageMessageCountPerSecond(UINT unChannelIndex, Direction eDir,
                                             BYTE byIdType, double& dMsgCount);
 
     /**
@@ -121,7 +121,7 @@ public:
      *
      * Returns average number of errors per second (Err/s)
      */
-    HRESULT getAverageErrorCountPerSecond(UINT unChannelIndex, eDirection eDir, double& dErrCount);
+    HRESULT getAverageErrorCountPerSecond(UINT unChannelIndex, Direction eDir, double& dErrCount);
 
     /**
      * @brief Get the bus load
@@ -153,7 +153,7 @@ public:
      *
      * Note: eLoad can have only CURRENT, PEAK.
      */
-    HRESULT getErrorCounter(UINT unChannelIndex, eDirection eDir, eLOAD eLoad, UCHAR& ucErrCounter);
+    HRESULT getErrorCounter(UINT unChannelIndex, Direction eDir, eLOAD eLoad, UCHAR& ucErrCounter);
 
     /**
      * @brief To Set the Baud Rate

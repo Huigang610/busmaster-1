@@ -50,7 +50,7 @@ static char THIS_FILE[]=__FILE__;
 /*  Date Created     : 22.12.2005                                             */
 /*  Modifications    :
 /******************************************************************************/
-CSimSysConfigDetails::CSimSysConfigDetails(ETYPE_BUS eBus)
+CSimSysConfigDetails::CSimSysConfigDetails(BusType eBus)
 
 {
     m_eBus = eBus;
@@ -209,7 +209,7 @@ INT  CSimSysConfigDetails::nSaveConfiguration(CString omStrCfgFilename,
                 COPYFILE(strTempFile, omStrCfgFilename);
                 ::DeleteFile(strTempFile);
                 UCHAR ucCheckSum;
-                bSetCheckSum(omStrCfgFilename,&ucCheckSum);
+                setCheckSum(omStrCfgFilename,&ucCheckSum);
             }
             else
             {
@@ -226,7 +226,7 @@ INT  CSimSysConfigDetails::nSaveConfiguration(CString omStrCfgFilename,
                 //If the file was existng then copy the temp file data in the
                 //original file and delete temp file
                 UCHAR ucCheckSum;
-                bSetCheckSum(omStrCfgFilename,&ucCheckSum);
+                setCheckSum(omStrCfgFilename,&ucCheckSum);
             }
             else
             {
@@ -588,7 +588,7 @@ INT  CSimSysConfigDetails::nLoadConfiguration(CString& omStrFilename,
     UCHAR ucCheckSumInFile  = 0;
     BOOL bRet = FALSE;
     // Compute the checksum value in file
-    bRet = CComputeCheckSum::bGetCheckSum(omStrFilename, &ucCheckSum,&ucCheckSumInFile);
+    bRet = CComputeCheckSum::getCheckSum(omStrFilename, &ucCheckSum,&ucCheckSumInFile);
     // first check if the file exists
     UINT unErrorCode = nIsCfgFileFound(omStrFilename);
     if(unErrorCode == defCONFIG_FILE_SUCCESS)

@@ -73,7 +73,7 @@ class CConfigMsgLogDlg : public CDialog
     DECLARE_MESSAGE_MAP()
 
 public:
-    CConfigMsgLogDlg(ETYPE_BUS eCurrBus, void* pouBaseLogger, BOOL& bLogOnConnect,
+    CConfigMsgLogDlg(BusType eCurrBus, void* pouBaseLogger, BOOL& bLogOnConnect,
                      CWnd* pParent = NULL, const void* psFilter = NULL);
     virtual ~CConfigMsgLogDlg();
     enum { IDD = IDD_DLG_CONFIG_MSG_LOG };
@@ -122,7 +122,7 @@ private:
     BOOL m_bLogON;
     UINT m_unDispUpdateTimerId;
     CString m_strCurrWndText;
-    ETYPE_BUS m_eCurrBus;
+    BusType m_eCurrBus;
     BOOL& m_bLogOnConnect;
     UINT m_unChannelCount;
 
@@ -131,7 +131,7 @@ private:
     void vCreateFileList(void);
     void vEnableDisableControl(int nControlID, ECONTROLTYPE eCtrlType, BOOL Enable);
     void vUpdateControl(int nControlID, ECONTROLTYPE eCtrlType, BYTE bAction);
-    void SetGUIFromTimeMode(ETIMERMODE eTimeMode);
+    void SetGUIFromTimeMode(TimerMode eTimeMode);
     void SetGUIFromChannel(TYPE_CHANNEL CurrChannel);
     CString GetUniqueLogFilePath(void);
     void vUpdate_GUI_From_Datastore(USHORT usIndex);

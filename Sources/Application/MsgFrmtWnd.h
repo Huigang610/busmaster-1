@@ -63,7 +63,7 @@ class CMsgFrmtWnd : public CMDIChildWnd
     DECLARE_MESSAGE_MAP()
 
 public:
-    CMsgFrmtWnd(ETYPE_BUS eBusType);
+    CMsgFrmtWnd(BusType eBusType);
     virtual ~CMsgFrmtWnd();
     BOOL Create(LPCTSTR szTitle, LONG style, const RECT& rect, CMDIFrameWnd* parent);
     void vSetDefaultHeaders();
@@ -71,7 +71,7 @@ public:
     void vSetColTitles(CString omArrColTitle[], int nColCount);
     void vCreateCols();
     int nGetListCtrlTextExtent(CString omColTitle);
-    static void vRxMsgCallBk(void* pMsg, ETYPE_BUS eBusType);
+    static void vRxMsgCallBk(void* pMsg, BusType eBusType);
     void vOnRxMsg(void* pMsg);
     BOOL bStartReadThread();
     BOOL bStopReadThread();
@@ -111,7 +111,7 @@ protected:
     STCAN_MSG& m_sCurrEntry;
     SERROR_INFO m_sErrorInfo;
     CRxMsgList m_lstMsg;
-    ETYPE_BUS m_eBusType;
+    BusType m_eBusType;
     UINT m_nColCount;
     CStringArray m_omArrColTitle;
     //CHeaderCtrlEx m_wndHeader;

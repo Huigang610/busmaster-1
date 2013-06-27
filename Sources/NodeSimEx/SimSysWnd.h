@@ -33,7 +33,7 @@ class CSimSysWnd : public CMDIChildBase
 
 public:
     // Default constructor
-    CSimSysWnd(ETYPE_BUS eBus = CAN);
+    CSimSysWnd(BusType eBus = CAN);
     // To update window size and splitter after loading a conf file
     void vUpdateWinStatus();
     // To save window size and splitter postion before unloading a conf file
@@ -49,7 +49,7 @@ protected:
     afx_msg void OnClose();
 
 private:
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
     BOOL m_bSplitWndCreated;
     CSplitterWnd m_omSplitterWnd;
     // To calculate the splitter position when the window is resized.

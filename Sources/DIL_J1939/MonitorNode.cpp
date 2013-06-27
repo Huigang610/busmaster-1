@@ -171,7 +171,7 @@ void CMonitorNode::vTransmitMessage(STJ1939_MSG* psMsg)
                     m_pConDet->m_unPGN = unPGN;
                     if (SendLongMsg(psMsg, m_pConDet, hResult) == DATA_EOM)
                     {
-                        psMsg->m_sMsgProperties.m_eDirection = DIR_TX;
+                        psMsg->m_sMsgProperties.m_Direction = DIR_TX;
                         EXECUTE_CLBCK_FN(CLBCK_FN_LDATA_CONF,
                                          unPGN, byGetNodeAddress(),
                                          byDestAddress, TRUE);

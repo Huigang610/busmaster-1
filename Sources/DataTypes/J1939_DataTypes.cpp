@@ -228,7 +228,7 @@ __int64 tagSTJ1939_MSG::GetSlotID(STJ1939_MSG& pouJ1939Msg)
     // Form message to get message index in the CMap
     UINT nMsgID = MAKE_RX_TX_MESSAGE(
                       pouJ1939Msg.m_sMsgProperties.m_uExtendedID.m_s29BitId.unGetPGN(),
-                      IS_RX_MESSAGE(pouJ1939Msg.m_sMsgProperties.m_eDirection));
+                      IS_RX_MESSAGE(pouJ1939Msg.m_sMsgProperties.m_Direction));
 
     // For extended message
     nMsgID = MAKE_EXTENDED_MESSAGE_TYPE(nMsgID);

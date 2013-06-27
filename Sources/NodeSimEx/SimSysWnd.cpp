@@ -32,8 +32,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-ETYPE_BUS CSimSysDetView::sm_eBus = CAN;
-ETYPE_BUS CSimSysTreeView::sm_eBus = CAN;
+BusType CSimSysDetView::sm_eBus = CAN;
+BusType CSimSysTreeView::sm_eBus = CAN;
 
 IMPLEMENT_DYNCREATE(CSimSysWnd, CMDIChildBase)
 /******************************************************************************/
@@ -49,7 +49,7 @@ IMPLEMENT_DYNCREATE(CSimSysWnd, CMDIChildBase)
 /*  Date Created     :  15.12.2005                                            */
 /*  Modifications    :
 /******************************************************************************/
-CSimSysWnd::CSimSysWnd(ETYPE_BUS eBus) : CMDIChildBase( SIMSYS_WND_PLACEMENT )
+CSimSysWnd::CSimSysWnd(BusType eBus) : CMDIChildBase( SIMSYS_WND_PLACEMENT )
 {
     m_bSplitWndCreated = FALSE; // Splitter not created yet!
     m_eBus  = eBus;

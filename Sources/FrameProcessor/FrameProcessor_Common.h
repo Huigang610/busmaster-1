@@ -50,7 +50,7 @@ public:
     BOOL                m_bIsThreadBlocked;
 
     HRESULT EnableLoggingBlock(USHORT ushBlk, BOOL bEnable);
-    HRESULT EnableLogging(BOOL bEnable, ETYPE_BUS);
+    HRESULT EnableLogging(BOOL bEnable, BusType);
     HRESULT EnableFilter(USHORT ushBlk, BOOL bEnable);
     BOOL IsClientBufferON(void);
     BOOL IsLoggingON(void);
@@ -71,7 +71,7 @@ public:
     HRESULT SetLoggingBlock(USHORT ushBlk, const SLOGINFO& sLogObject);
     HRESULT GetConfigData(BYTE** ppvConfigData, UINT& unLength);
     HRESULT SetConfigData(BYTE* pvDataStream, const CString& omStrVersion);
-    HRESULT SetConfigData( xmlDocPtr pDoc, ETYPE_BUS eBus);
+    HRESULT SetConfigData( xmlDocPtr pDoc, BusType eBus);
     void vAddLogFile( CLogObjArray& omLogListTmp, CBaseLogObject*& pouBaseLogObj);
     HRESULT GetConfigData(xmlNodePtr pxmlNodePtr);
     HRESULT Reset(void);

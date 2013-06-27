@@ -85,8 +85,6 @@ HRESULT CDIL_CAN_DUMMY::getCurrentStatus(s_STATUSMSG& /*StatusData*/)
     return WARN_DUMMY_API;
 }
 
-
-
 HRESULT CDIL_CAN_DUMMY::sendMessage(DWORD /*dwClientID*/, const STCAN_MSG& /*sCanTxMsg*/)
 {
     return WARN_DUMMY_API;

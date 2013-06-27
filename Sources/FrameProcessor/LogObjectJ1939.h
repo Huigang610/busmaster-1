@@ -119,7 +119,7 @@ private:
     /**
      * To format the header
      */
-    void vFormatHeader(CString& omHeader, ETYPE_BUS eBus = J1939);
+    void vFormatHeader(CString& omHeader, BusType eBus = J1939);
 
     /**
      * To format the footer

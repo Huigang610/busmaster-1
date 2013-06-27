@@ -35,7 +35,7 @@ public:
     UINT m_nID;
     UINT m_nPreviousID;
     COLORREF m_sColour;
-    CMsgIDAttr(ETYPE_BUS eBusType, CWnd* pParent = NULL);   // standard constructor
+    CMsgIDAttr(BusType eBusType, CWnd* pParent = NULL);   // standard constructor
 
     // Dialog Data
     enum { IDD = IDD_DLG_MSGID_ATTRIB };
@@ -57,5 +57,5 @@ protected:
 
 private:
     HBRUSH m_hClrBtn;
-    ETYPE_BUS m_eBusType;
+    BusType m_eBusType;
 };

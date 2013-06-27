@@ -96,7 +96,7 @@ CTSExecutorLIB::~CTSExecutorLIB(void)
 
 /******************************************************************************
 Function Name  :  SelectBus
-Input(s)       :  eTYPE_BUS eCurrBus
+Input(s)       :  BusType eCurrBus
 Output         :  HRESULT
 Functionality  :  Selects The Bus Type
 Member of      :  CTSExecutorLIB
@@ -106,7 +106,7 @@ Date Created   :  07/04/2011
 Modifications  :
 Code Tag       :
 ******************************************************************************/
-HRESULT CTSExecutorLIB::SelectBus(eTYPE_BUS eCurrBus)
+HRESULT CTSExecutorLIB::SelectBus(BusType eCurrBus)
 {
     m_eBusType = eCurrBus;
     return S_OK;

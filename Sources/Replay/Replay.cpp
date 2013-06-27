@@ -101,7 +101,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
     return 1;   // ok
 }
 
-USAGEMODE void vREP_DisplayReplayConfigDlg(ETYPE_BUS eType, const void* pvFilterConfigured)
+USAGEMODE void vREP_DisplayReplayConfigDlg(BusType eType, const void* pvFilterConfigured)
 {
     //Place this code at the beginning of the export function.
     //Save previous resource handle and switch to current one.

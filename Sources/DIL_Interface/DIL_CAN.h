@@ -44,11 +44,6 @@ public:
     BOOL InitInstance(void);
 
     /**
-     * Exit Instance
-     */
-    int ExitInstance(void);
-
-    /**
      * Variable to maintain currently selected Driver ID
      */
     DWORD driverId;
@@ -56,27 +51,27 @@ public:
     /**
      * Variable to store previously selected Driver ID
      */
-    DWORD m_dwOldDriverID;
+    DWORD oldDriverId;
 
     /**
      * member variable to hold the pointer of currently selected controller interface
      */
-    CBaseDIL_CAN_Controller* m_pBaseDILCAN_Controller;
+    CBaseDIL_CAN_Controller* driver;
 
     /**
      * member variable to hold the previously selected controller interface
      */
-    CBaseDIL_CAN_Controller* m_pOldBaseDILCAN_Controller;
+    CBaseDIL_CAN_Controller* oldDriver;
 
     /**
      * Variable to hold handle to currently selected controller DIL
      */
-    HMODULE m_hDll;
+    HMODULE dllHandle;
 
     /**
      * Variable to hold handle to previously selected controller DIL
      */
-    HMODULE m_hOldDll;
+    HMODULE oldDllHandle;
 
     /* Overloaded functions */
     DWORD getDriverList(DriverList* List);
@@ -103,7 +98,7 @@ private:
     /**
      * Helper Function for Dummy Interface
      */
-    void vSelectInterface_Dummy(void);
+    void selectDummyInterface(void);
 
     /* Function pointers */
     HRESULT (*m_pfPerformInitOperations)(void);

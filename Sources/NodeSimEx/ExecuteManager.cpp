@@ -55,7 +55,7 @@ CExecuteManager* CExecuteManager::sm_pouManager[BUS_TOTAL]= {NULL};
     Author(s)        :  Anish kumar
     Date Created     :  19.12.05
 ************************************************************************/
-CExecuteManager::CExecuteManager(ETYPE_BUS eBus):
+CExecuteManager::CExecuteManager(BusType eBus):
     m_psFirstNodeObject(NULL),
     m_psLastNodeObject(NULL),
     m_odSetResetTimer(eBus)
@@ -152,7 +152,7 @@ const HMODULE CExecuteManager::hReturnDllHandle(const CString omStrNodeName)
     Author(s)        :  Anish kumar
     Date Created     :  19.12.05
 **************************************************************************/
-CExecuteManager& CExecuteManager::ouGetExecuteManager(ETYPE_BUS eBus)
+CExecuteManager& CExecuteManager::ouGetExecuteManager(BusType eBus)
 {
     if (sm_pouManager[eBus] == NULL)
     {
@@ -160,7 +160,7 @@ CExecuteManager& CExecuteManager::ouGetExecuteManager(ETYPE_BUS eBus)
     }
     return *(sm_pouManager[eBus]);
 }
-void CExecuteManager::vClearObj(ETYPE_BUS eBus)
+void CExecuteManager::vClearObj(BusType eBus)
 {
     if (sm_pouManager[eBus] != NULL)
     {
@@ -2160,7 +2160,7 @@ void CExecuteManager::vUpdateHandlerDetailsInDetView()
         pSimSysDetView->vUpdateHandlerList();
     }
 }
-BOOL CExecuteManager::bIsExist(ETYPE_BUS eBus)
+BOOL CExecuteManager::bIsExist(BusType eBus)
 {
     return (sm_pouManager[eBus] != NULL);
 }

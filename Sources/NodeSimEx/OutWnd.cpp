@@ -55,7 +55,7 @@ IMPLEMENT_DYNCREATE(COutWnd, CMDIChildBase)
 /*  Modifications    :  Raja N on 26.04.2005                                  */
 /*                      Added code to init base class with window identity    */
 /******************************************************************************/
-COutWnd::COutWnd(ETYPE_BUS eBus): CMDIChildBase ( /*MSG_WND_PLACEMENT*/ OUT_WND_PLACEMENT),
+COutWnd::COutWnd(BusType eBus): CMDIChildBase ( /*MSG_WND_PLACEMENT*/ OUT_WND_PLACEMENT),
     m_omSizeMaxTxtExtent(0,0)
 {
     m_eBus = eBus;

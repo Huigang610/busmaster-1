@@ -26,8 +26,8 @@ typedef HRESULT (*TSEXECUTORWINDOWSHOWN)();
 typedef HRESULT (*TSEXECUTORGETCONFIGDATA)(xmlNodePtr* pxmlNodePtr);
 typedef HRESULT (*TSEXECUTORSETCONFIGDATA)(BYTE* pSrcBuffer, UINT nBuffSize);
 typedef HRESULT (*TSEXECUTORSETXMLCONFIGDATA)(xmlDocPtr);
-typedef HRESULT (*PFTSSTARTSTOPREADTHREAD)(ETYPE_BUS eBus, BOOL bStart);
-typedef HRESULT (*PTSDOINITIALIZATION)(ETYPE_BUS eBus);
+typedef HRESULT (*PFTSSTARTSTOPREADTHREAD)(BusType eBus, BOOL bStart);
+typedef HRESULT (*PTSDOINITIALIZATION)(BusType eBus);
 typedef HRESULT (*PTSBUSCONNECTED)(BOOL bConnected);
 typedef HRESULT (*PTSSETVERSIONINFO)(BYTE bytMajor, BYTE bytMinor, BYTE bytBuild);
 
@@ -126,14 +126,14 @@ void TSExecutorHandler::vSetConfigurationData(xmlDocPtr pDoc)
         pfTSExecutorSetXMLConfigdata(pDoc);
     }
 }
-void TSExecutorHandler::vStartStopReadThread(ETYPE_BUS eBus, BOOL bStart)
+void TSExecutorHandler::vStartStopReadThread(BusType eBus, BOOL bStart)
 {
     if(pfShowTSExecutorwindow != NULL)
     {
         pfTSStartStopReadThread(eBus, bStart);
     }
 }
-void TSExecutorHandler::vDoInitailization(ETYPE_BUS eBus)
+void TSExecutorHandler::vDoInitailization(BusType eBus)
 {
     if(pfTSDoInitialization != NULL)
     {

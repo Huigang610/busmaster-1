@@ -115,7 +115,7 @@ private:
     /**
      * To format the header
      */
-    void vFormatHeader(CString& omHeader, ETYPE_BUS eBus = CAN);
+    void vFormatHeader(CString& omHeader, BusType eBus = CAN);
 
     /**
      * To format the footer

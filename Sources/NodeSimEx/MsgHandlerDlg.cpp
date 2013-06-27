@@ -46,7 +46,7 @@ static char THIS_FILE[] = __FILE__;
 /*  Modification By  :  Amitesh Bharti                                        */
 /*  Modifications on :  07.04.2003, review comment incorporated               */
 /******************************************************************************/
-CMsgHandlerDlg::CMsgHandlerDlg(ETYPE_BUS eBus, CWnd* pParent /*=NULL*/)
+CMsgHandlerDlg::CMsgHandlerDlg(BusType eBus, CWnd* pParent /*=NULL*/)
     : CDialog(CMsgHandlerDlg::IDD, pParent),
       m_omStrMsgID(""),
       m_omStrMsgIDFrom(""),

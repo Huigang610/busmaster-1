@@ -61,7 +61,7 @@ public:
     // Initialise all structure
     BOOL bInitStruct(CStringArray& omErrorArray);
     // constructor
-    CExecuteFunc(ETYPE_BUS eBus, CONST CString& omStrDllFileName);
+    CExecuteFunc(BusType eBus, CONST CString& omStrDllFileName);
     virtual ~CExecuteFunc();
     //ani1
     void vSetNodeInfo(PSNODEINFO ps_TempNodeInfo);
@@ -114,7 +114,7 @@ public:
 
 
 private:
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
     PFKEY_HANDLER m_pFGenericKeyHandler;
     PFMSG_HANDLER_CAN pFSearchMsgIdRangeHandlerCAN(UINT unMsgID);
     PFMSG_HANDLER pFSearchMsgIdRangeHandler(UINT unMsgId);
@@ -170,7 +170,7 @@ private:
     PSERRORHANDLER m_psOnErrorHandlers;
     CString m_omStrDllFileName;
 
-    HMODULE m_hDllModule;
+    HMODULE dllHandleModule;
     CString m_omStrGenericHandlerName;
     CStringArray m_omStrArrayMsgRange;
     CStringArray m_omStrArrayMsgIDandName;

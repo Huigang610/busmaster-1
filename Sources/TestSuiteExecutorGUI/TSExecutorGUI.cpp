@@ -260,7 +260,7 @@ USAGEMODE HRESULT TS_hSetXMLConfigurationData(xmlDocPtr pDoc)
 
     return S_OK;
 }
-USAGEMODE HRESULT TS_DoInitialization(ETYPE_BUS /*eBus*/)
+USAGEMODE HRESULT TS_DoInitialization(BusType /*eBus*/)
 {
     //Place this code at the beginning of the export function.
     //Save previous resource handle and switch to current one.
@@ -276,7 +276,7 @@ USAGEMODE HRESULT TS_DoInitialization(ETYPE_BUS /*eBus*/)
     AfxSetResourceHandle(hInst);
     return g_podTSExecutor->TSX_DoInitialization();
 }
-USAGEMODE HRESULT TS_StartStopReadThread(ETYPE_BUS /*eBus*/, BOOL bStart)
+USAGEMODE HRESULT TS_StartStopReadThread(BusType /*eBus*/, BOOL bStart)
 {
     if(g_podTSExecutor != NULL)
     {

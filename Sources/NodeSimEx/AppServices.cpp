@@ -28,7 +28,7 @@
 #include "Utility/Utility.h"
 
 #include <afxdllx.h>
-extern "C" HRESULT NS_GetInterface(ETYPE_BUS eBus,void** ppvInterface);
+extern "C" HRESULT NS_GetInterface(BusType eBus,void** ppvInterface);
 
 BOOL gbEnableDisableLog(BOOL bEnable)
 {
@@ -71,7 +71,7 @@ BOOL gbActivateDeactivateHandlers(BOOL bActivate, HMODULE hModule)
 
     for (UINT i = 0; i < BUS_TOTAL; i++)
     {
-        if (CExecuteManager::bIsExist((ETYPE_BUS)i) == TRUE)
+        if (CExecuteManager::bIsExist((BusType)i) == TRUE)
         {
             //for removing C4800 WARNING
             bool bActuiveTemp = false;
@@ -80,10 +80,10 @@ BOOL gbActivateDeactivateHandlers(BOOL bActivate, HMODULE hModule)
                 bActuiveTemp = true;
             }
 
-            if (CExecuteManager::ouGetExecuteManager((ETYPE_BUS)i).bActivateDeactivateHandlers(
+            if (CExecuteManager::ouGetExecuteManager((BusType)i).bActivateDeactivateHandlers(
                         bActuiveTemp, hModule) == TRUE)
             {
-                CExecuteManager::ouGetExecuteManager((ETYPE_BUS)i).vUpdateHandlerDetailsInDetView();
+                CExecuteManager::ouGetExecuteManager((BusType)i).vUpdateHandlerDetailsInDetView();
                 Result = TRUE;
                 i = BUS_TOTAL;
             }
@@ -113,15 +113,15 @@ BOOL gbSetResetTimer(CHAR* pcTimerFunctionName, int type, BOOL bStart,
     BOOL Result = FALSE;
     for (UINT i = 0; i < BUS_TOTAL; i++)
     {
-        if (CExecuteManager::bIsExist((ETYPE_BUS)i) == TRUE)
+        if (CExecuteManager::bIsExist((BusType)i) == TRUE)
         {
             CExecuteFunc* pmCEexecuteFunc =
-                CExecuteManager::ouGetExecuteManager((ETYPE_BUS)i).pmGetNodeObject(hModule);
+                CExecuteManager::ouGetExecuteManager((BusType)i).pmGetNodeObject(hModule);
 
             //If handler is found
             if (pmCEexecuteFunc != NULL)
             {
-                CExecuteManager::ouGetExecuteManager((ETYPE_BUS)i).vManageTimerThreads();
+                CExecuteManager::ouGetExecuteManager((BusType)i).vManageTimerThreads();
                 Result = pmCEexecuteFunc->bResetTimer(pcTimerFunctionName, !type, bStart);
                 i = BUS_TOTAL;
             }
@@ -150,10 +150,10 @@ BOOL gbSetTimerVal(CHAR* pcTimerFunctionName, UINT unTimeVal,HMODULE hModule)
     {
         for (UINT i = 0; i < BUS_TOTAL; i++)
         {
-            if (CExecuteManager::bIsExist((ETYPE_BUS)i) == TRUE)
+            if (CExecuteManager::bIsExist((BusType)i) == TRUE)
             {
                 CExecuteFunc* pmCEexecuteFunc =
-                    CExecuteManager::ouGetExecuteManager((ETYPE_BUS)i).pmGetNodeObject(hModule);
+                    CExecuteManager::ouGetExecuteManager((BusType)i).pmGetNodeObject(hModule);
 
                 //If handler is found
                 if (pmCEexecuteFunc != NULL)
@@ -184,16 +184,16 @@ BOOL gbEnableDisableMsgHandlers(BOOL bEnable, HMODULE hModule)
     BOOL Result = FALSE;
     for (UINT i = 0; i < BUS_TOTAL; i++)
     {
-        if (CExecuteManager::bIsExist((ETYPE_BUS)i) == TRUE)
+        if (CExecuteManager::bIsExist((BusType)i) == TRUE)
         {
             CExecuteFunc* pmCEexecuteFunc=
-                CExecuteManager::ouGetExecuteManager((ETYPE_BUS)i).pmGetNodeObject(hModule);
+                CExecuteManager::ouGetExecuteManager((BusType)i).pmGetNodeObject(hModule);
 
             //If handler is found
             if(pmCEexecuteFunc!=NULL)
             {
                 Result = pmCEexecuteFunc->bEnableDisableMsgHandlers(bEnable);
-                CExecuteManager::ouGetExecuteManager((ETYPE_BUS)i).vUpdateHandlerDetailsInDetView();
+                CExecuteManager::ouGetExecuteManager((BusType)i).vUpdateHandlerDetailsInDetView();
                 i = BUS_TOTAL;
             }
         }
@@ -219,16 +219,16 @@ BOOL gbEnableDisableKeyHandlers(BOOL bEnable, HMODULE hModule)
     BOOL Result = FALSE;
     for (UINT i = 0; i < BUS_TOTAL; i++)
     {
-        if (CExecuteManager::bIsExist((ETYPE_BUS)i) == TRUE)
+        if (CExecuteManager::bIsExist((BusType)i) == TRUE)
         {
             CExecuteFunc* pmCEexecuteFunc =
-                CExecuteManager::ouGetExecuteManager((ETYPE_BUS)i).pmGetNodeObject(hModule);
+                CExecuteManager::ouGetExecuteManager((BusType)i).pmGetNodeObject(hModule);
 
             //If handler is found
             if (pmCEexecuteFunc != NULL)
             {
                 Result = pmCEexecuteFunc->bEnableDisableKeyHandlers(bEnable);
-                CExecuteManager::ouGetExecuteManager((ETYPE_BUS)i).vUpdateHandlerDetailsInDetView();
+                CExecuteManager::ouGetExecuteManager((BusType)i).vUpdateHandlerDetailsInDetView();
                 i = BUS_TOTAL; //break the loop
             }
         }
@@ -253,16 +253,16 @@ BOOL gbEnableDisableErrorHandlers(BOOL bEnable, HMODULE hModule)
     BOOL Result = FALSE;
     for (UINT i = 0; i < BUS_TOTAL; i++)
     {
-        if (CExecuteManager::bIsExist((ETYPE_BUS)i) == TRUE)
+        if (CExecuteManager::bIsExist((BusType)i) == TRUE)
         {
             CExecuteFunc* pmCEexecuteFunc =
-                CExecuteManager::ouGetExecuteManager((ETYPE_BUS)i).pmGetNodeObject(hModule);
+                CExecuteManager::ouGetExecuteManager((BusType)i).pmGetNodeObject(hModule);
 
             //If handler is found
             if (pmCEexecuteFunc != NULL)
             {
                 Result = pmCEexecuteFunc->bEnableDisableErrorHandlers(bEnable);
-                CExecuteManager::ouGetExecuteManager((ETYPE_BUS)i).vUpdateHandlerDetailsInDetView();
+                CExecuteManager::ouGetExecuteManager((BusType)i).vUpdateHandlerDetailsInDetView();
                 i = BUS_TOTAL;
             }
         }
@@ -288,10 +288,10 @@ BOOL gbMsgTransmissionOnOff(BOOL bOnOff, HMODULE hModule)
     BOOL Result = FALSE;
     for (UINT i = 0; i < BUS_TOTAL; i++)
     {
-        if (CExecuteManager::bIsExist((ETYPE_BUS)i) == TRUE)
+        if (CExecuteManager::bIsExist((BusType)i) == TRUE)
         {
             CExecuteFunc* pmCEexecuteFunc =
-                CExecuteManager::ouGetExecuteManager((ETYPE_BUS)i).pmGetNodeObject(hModule);
+                CExecuteManager::ouGetExecuteManager((BusType)i).pmGetNodeObject(hModule);
 
             //If handler is found
             if (pmCEexecuteFunc != NULL)
@@ -325,9 +325,9 @@ HMODULE ghGetNodeDllHandler(char* pcNodeName)
     CString omNode(pcNodeName);
     for (UINT i = 0; i < BUS_TOTAL; i++)
     {
-        if (CExecuteManager::bIsExist((ETYPE_BUS)i) == TRUE)
+        if (CExecuteManager::bIsExist((BusType)i) == TRUE)
         {
-            hModule = CExecuteManager::ouGetExecuteManager((ETYPE_BUS)i).hReturnDllHandle(omNode);
+            hModule = CExecuteManager::ouGetExecuteManager((BusType)i).hReturnDllHandle(omNode);
             if (hModule != NULL)
             {
                 i = BUS_TOTAL;
@@ -622,7 +622,7 @@ int sg_GetMessageName(DWORD dID, DWORD dContext, char* pBuffer,DWORD dSize)
 {
     //CAPL_NEW_ADDITIONS
     strcpy(pBuffer, "");
-    ETYPE_BUS m_eBus = (ETYPE_BUS)dContext;     //set the network name
+    BusType m_eBus = (BusType)dContext;     //set the network name
     if(!((m_eBus == CAN)||(m_eBus == J1939)))
     {
         //CString    omErrorStr("Invalid channel");

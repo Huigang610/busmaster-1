@@ -55,7 +55,7 @@ public:
     void vSetNodeAddress(BYTE byAddress);
     void vUpdateHandlerEnableDisableStatus(int nItem, BOOL bEnableHandler);
 
-    static ETYPE_BUS CSimSysDetView::sm_eBus;
+    static BusType CSimSysDetView::sm_eBus;
     CRadixEdit m_omPrefAdres;
     CRadixEdit m_omECU_NAME;
 
@@ -81,7 +81,7 @@ protected:
     afx_msg void OnItemchangedLstcHandlerDetails(NMHDR* pNMHDR, LRESULT* pResult);
 
 private:
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
     CStringList m_omSourceCodeTextList;
     CStringArray m_omIncludeFileArray ;
     DWORD m_dwSourceCodeLineNo;

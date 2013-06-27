@@ -38,7 +38,7 @@ class CMsgHandlerDlg : public CDialog
 public:
     CString m_omStrSelectedItemText;
     CString m_omStrFunctionAdded;
-    CMsgHandlerDlg(ETYPE_BUS eBus, CWnd* pParent = NULL);   // standard constructor
+    CMsgHandlerDlg(BusType eBus, CWnd* pParent = NULL);   // standard constructor
 
 protected:
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
@@ -70,7 +70,7 @@ private:
     CString m_omStrMsgIDFrom;
     CString m_omStrMsgIDTo;
 
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
 
     BOOL bAddMessageNameInListBox(const CStringArray* pomStrArray,
                                   const CString& omStrMessageName);

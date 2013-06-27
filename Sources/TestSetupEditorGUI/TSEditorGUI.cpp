@@ -47,7 +47,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
     if (dwReason == DLL_PROCESS_ATTACH)
     {
         TRACE0("TestSetupEditor.DLL Initializing!\n");
-        m_hDllInstance = hInstance;
+        dllHandleInstance = hInstance;
         // Extension DLL one-time initialization
         if (!AfxInitExtensionModule(TestSetupEditor, hInstance))
         {

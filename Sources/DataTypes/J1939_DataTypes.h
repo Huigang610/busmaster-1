@@ -168,9 +168,8 @@ typedef struct tagSTJ1939_MSG_PROPERTIES
     UINT64          m_un64TimeStamp; // Timestamp.
     BYTE            m_byChannel;     // Channel number.
     EJ1939_MSG_TYPE m_eType;
-    EDIRECTION      m_eDirection;    // DIR_TX, DIR_RX
+    Direction       m_Direction;    // DIR_TX, DIR_RX
     UNION_29_BIT_ID m_uExtendedID;   // 29 bit extended ID
-
 } STJ1939_MSG_PROPERTIES;
 
 /* J1939 message structure */

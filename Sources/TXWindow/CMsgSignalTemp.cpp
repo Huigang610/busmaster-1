@@ -72,7 +72,7 @@ UINT static nGetNoOfBytesToRead(UINT nBitNum, UINT nSigLen)
 /* End of helper function nGetNoOfBytesToRead */
 /* Helper function to calculate the bit mask of a signal */
 BOOL CMsgSignal::bValidateSignal(UINT nDLC, UINT nByteNum, UINT nBitNum,
-                                 UINT nLength, EFORMAT_DATA bDataFormat)
+                                 UINT nLength, DataFormat bDataFormat)
 {
     BOOL bValid = TRUE;
     UINT nBytesToRead = nGetNoOfBytesToRead(nBitNum, nLength);
@@ -83,7 +83,7 @@ BOOL CMsgSignal::bValidateSignal(UINT nDLC, UINT nByteNum, UINT nBitNum,
 }
 BOOL CMsgSignal::bCalcBitMaskForSig(BYTE* pbyMaskByte, UINT unArrayLen,
                                     UINT nByteNum, UINT nBitNum, UINT nLength,
-                                    EFORMAT_DATA bDataFormat)
+                                    DataFormat bDataFormat)
 {
     BOOL bValid = TRUE;
     //Reset the Byte array

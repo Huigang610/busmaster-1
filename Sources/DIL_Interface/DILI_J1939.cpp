@@ -28,16 +28,6 @@
 #include "DIL_J1939/DIL_J1939_Extern.h"
 #include "DILI_J1939.h"
 
-BOOL CDILI_J1939::InitInstance(void)
-{
-    return TRUE;
-}
-
-int CDILI_J1939::ExitInstance(void)
-{
-    return 0;
-}
-
 HRESULT CDILI_J1939::initialize(Base_WrapperErrorLogger* pILog, CBaseDIL_CAN* pIDIL_CAN)
 {
     if (pIDIL_CAN != NULL)

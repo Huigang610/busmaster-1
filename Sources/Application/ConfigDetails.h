@@ -230,13 +230,13 @@ private:
 
 
     /*    // compute the check for a buffer pass as parameter
-    BOOL bComputeCheckSum(UCHAR *pcBuff,DWORD dwSize, UCHAR* pucCheckSum);
+    BOOL computeCheckSum(UCHAR *pcBuff,DWORD dwSize, UCHAR* pucCheckSum);
     // Get the computed checksum of file whose name is passed as parameter
     // Also the computed checksum and stored checksum is returned.
-    BOOL bGetCheckSum(CString &omStrConfigFileName,
+    BOOL getCheckSum(CString &omStrConfigFileName,
     UCHAR* pucCheckSum, UCHAR* pucCheckSumInFile);
     // Sets the checksum at last byte location after computing it.
-    BOOL bSetCheckSum(CString& omStrConfigFileName,UCHAR* pucCheckSum);
+    BOOL setCheckSum(CString& omStrConfigFileName,UCHAR* pucCheckSum);
     // method to search and open/create the configuration file. */
 
 

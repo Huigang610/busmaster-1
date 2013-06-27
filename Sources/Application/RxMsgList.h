@@ -67,7 +67,7 @@ public:
     void vDoInitialization();
     void vSetMsgColor(COLORREF color);
     void vShowHideBlankcolumn(BOOL bInterpretON);
-    void vSetSortableMsgColumns(SMSGWNDHDRCOL& sHdrColStruct, ETYPE_BUS eBusType);
+    void vSetSortableMsgColumns(SMSGWNDHDRCOL& sHdrColStruct, BusType eBusType);
 
     void SetConnectionStatus(bool bConnected);
 

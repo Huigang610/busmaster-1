@@ -210,7 +210,7 @@ HRESULT CBusStatisticCAN::resetBusStatistics(void)
     return 0L;
 }
 
-HRESULT CBusStatisticCAN::getTotalMessageCount(UINT unChannelIndex, eDirection eDir,
+HRESULT CBusStatisticCAN::getTotalMessageCount(UINT unChannelIndex, Direction eDir,
         BYTE byIdType, BYTE byMsgType, UINT& nMsgCount)
 {
     /*-----------------------------------------------------------------------------
@@ -461,7 +461,7 @@ HRESULT CBusStatisticCAN::getTotalMessageCount(UINT unChannelIndex, eDirection e
     return 0;
 }
 
-HRESULT CBusStatisticCAN::getTotalErrorCount(UINT unChannelIndex, eDirection eDir,
+HRESULT CBusStatisticCAN::getTotalErrorCount(UINT unChannelIndex, Direction eDir,
         UINT& nErrCount)
 {
     EnterCriticalSection(&m_omCritSecBS);
@@ -486,7 +486,7 @@ HRESULT CBusStatisticCAN::getTotalErrorCount(UINT unChannelIndex, eDirection eDi
 }
 
 HRESULT CBusStatisticCAN::getAverageMessageCountPerSecond(UINT unChannelIndex,
-        eDirection eDir, BYTE byIdType, double& dMsgRate)
+        Direction eDir, BYTE byIdType, double& dMsgRate)
 {
 
     /*-----------------------------------------------------------------------------
@@ -566,7 +566,7 @@ HRESULT CBusStatisticCAN::getAverageMessageCountPerSecond(UINT unChannelIndex,
 }
 
 HRESULT CBusStatisticCAN::getAverageErrorCountPerSecond(UINT unChannelIndex,
-        eDirection eDir, double& dErrCount)
+        Direction eDir, double& dErrCount)
 {
     EnterCriticalSection(&m_omCritSecBS);
 
@@ -612,7 +612,7 @@ HRESULT CBusStatisticCAN::getBusLoad(UINT unChannelIndex, eLOAD eLoad, double& d
     return 0L;
 }
 
-HRESULT CBusStatisticCAN::getErrorCounter(UINT unChannelIndex, eDirection eDir,
+HRESULT CBusStatisticCAN::getErrorCounter(UINT unChannelIndex, Direction eDir,
         eLOAD eLoad, UCHAR& ucErrCounter)
 {
     EnterCriticalSection(&m_omCritSecBS);

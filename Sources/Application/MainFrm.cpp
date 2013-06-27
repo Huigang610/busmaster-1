@@ -1315,7 +1315,7 @@ void CMainFrame::OnCloseDatabase()
  *
  * Returns pointer to CMsgSgDetView class
  */
-CMsgSgDetView* CMainFrame::podGetMsgSgDetView(ETYPE_BUS eBus)
+CMsgSgDetView* CMainFrame::podGetMsgSgDetView(BusType eBus)
 {
     return m_pomMsgSgDetViews[eBus];
 }
@@ -1326,7 +1326,7 @@ CMsgSgDetView* CMainFrame::podGetMsgSgDetView(ETYPE_BUS eBus)
  *
  * Returns pointer to CMsgSgTreeView class
  */
-CMsgSgTreeView* CMainFrame::podGetMsgSgTreeView(ETYPE_BUS eBus)
+CMsgSgTreeView* CMainFrame::podGetMsgSgTreeView(BusType eBus)
 {
     return(m_pomMsgSgTreeViews[eBus]);
 }
@@ -1337,7 +1337,7 @@ CMsgSgTreeView* CMainFrame::podGetMsgSgTreeView(ETYPE_BUS eBus)
  *
  * Sets pointer to CMsgSgTreeView class
  */
-void CMainFrame::podSetMsgSgTreeView(CMsgSgTreeView* pTreeView, ETYPE_BUS eBus)
+void CMainFrame::podSetMsgSgTreeView(CMsgSgTreeView* pTreeView, BusType eBus)
 {
     m_pomMsgSgTreeViews[eBus] = pTreeView;
 }
@@ -1348,7 +1348,7 @@ void CMainFrame::podSetMsgSgTreeView(CMsgSgTreeView* pTreeView, ETYPE_BUS eBus)
  *
  * Sets pointer to CMsgSgDetView class
  */
-void CMainFrame::podSetMsgSgDetView(CMsgSgDetView* pDetView, ETYPE_BUS eBus)
+void CMainFrame::podSetMsgSgDetView(CMsgSgDetView* pDetView, BusType eBus)
 {
     m_pomMsgSgDetViews[eBus] = pDetView;
 }
@@ -2979,7 +2979,7 @@ void CMainFrame::OnMessageInterpretation()
         }
         for(short shBusID = CAN; shBusID < AVAILABLE_PROTOCOLS; shBusID++)
         {
-            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)shBusID);
+            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((BusType)shBusID);
             //Update Message Window
             if(hWnd)
             {
@@ -4546,7 +4546,7 @@ void CMainFrame::OnHex_DecButon()
         }
         for(short shBusID = CAN; shBusID < AVAILABLE_PROTOCOLS; shBusID++)
         {
-            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)shBusID);
+            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((BusType)shBusID);
             //Update Message Window
             if(hWnd)
             {
@@ -4599,7 +4599,7 @@ void CMainFrame::bSetHexDecFlags(BOOL bHexEnabled)
         }
         for(short shBusID = CAN; shBusID < AVAILABLE_PROTOCOLS; shBusID++)
         {
-            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)shBusID);
+            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((BusType)shBusID);
             //Update Message Window
             if(hWnd)
             {
@@ -4670,7 +4670,7 @@ void CMainFrame::ApplyMessagewindowOverwrite()
         }
         for(short shBusID = CAN; shBusID < AVAILABLE_PROTOCOLS; shBusID++)
         {
-            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)shBusID);
+            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((BusType)shBusID);
             //Update Message Window
             if(hWnd)
             {
@@ -4724,7 +4724,7 @@ void CMainFrame::OnDisplayMessagewindowOverwrite()
         }
         for(short shBusID = CAN; shBusID < AVAILABLE_PROTOCOLS; shBusID++)
         {
-            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)shBusID);
+            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((BusType)shBusID);
             //Update Message Window
             if(hWnd)
             {
@@ -5273,7 +5273,7 @@ void CMainFrame::OnClearMsgWindow()
     for(short shBusID = CAN; shBusID < AVAILABLE_PROTOCOLS; shBusID++)
     {
         HWND hWnd;
-        hWnd = m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)shBusID);
+        hWnd = m_podMsgWndThread->hGetHandleMsgWnd((BusType)shBusID);
         if(hWnd)
         {
             ::SendMessage(hWnd, IDM_CLEAR_MSG_WINDOW, NULL, NULL);
@@ -6767,7 +6767,7 @@ void CMainFrame::OnFileConnect()
             HWND hWnd = NULL;
             for(short shBusID = CAN; shBusID < AVAILABLE_PROTOCOLS; shBusID++)
             {
-                hWnd = m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)shBusID);
+                hWnd = m_podMsgWndThread->hGetHandleMsgWnd((BusType)shBusID);
                 //Update Message Window
                 if(hWnd)
                 {
@@ -6794,7 +6794,7 @@ void CMainFrame::OnFileConnect()
                 for(short shBusID = CAN; shBusID < AVAILABLE_PROTOCOLS; shBusID++)
                 {
                     HWND hWnd;
-                    hWnd = m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)shBusID);
+                    hWnd = m_podMsgWndThread->hGetHandleMsgWnd((BusType)shBusID);
                     if(hWnd)
                     {
                         ::SendMessage(hWnd, IDM_CLEAR_MSG_WINDOW, NULL, NULL);
@@ -9064,7 +9064,7 @@ void CMainFrame::OnDisplayAbsoluteTime()
         SET_TM_ABS(byGetDispFlag);
         for(short shBusID = CAN; shBusID < AVAILABLE_PROTOCOLS; shBusID++)
         {
-            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)shBusID);
+            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((BusType)shBusID);
             if(hWnd)
             {
                 BYTE bModes = TIME_MODE;
@@ -9131,7 +9131,7 @@ void CMainFrame::OnDisplayRelativetime()
         SET_TM_REL(byGetDispFlag);
         for(short shBusID = CAN; shBusID < AVAILABLE_PROTOCOLS; shBusID++)
         {
-            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)shBusID);
+            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((BusType)shBusID);
             if(hWnd)
             {
                 BYTE bModes = TIME_MODE;
@@ -9198,7 +9198,7 @@ void CMainFrame::OnDisplaySystemTime()
         SET_TM_SYS(byGetDispFlag);
         for(short shBusID = CAN; shBusID < AVAILABLE_PROTOCOLS; shBusID++)
         {
-            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)shBusID);
+            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((BusType)shBusID);
             if(hWnd)
             {
                 BYTE bModes = TIME_MODE;
@@ -9272,7 +9272,7 @@ void CMainFrame::OnEnableTimeStampButton()
  Modifications  :   Raja N on 26.04.2005, Modified code refer new Tx window
                     pointer to post database import message
 ******************************************************************************/
-VOID CMainFrame::vPostMsgToSendMsgDlg(ETYPE_BUS eBus)
+VOID CMainFrame::vPostMsgToSendMsgDlg(BusType eBus)
 {
 
     // Send a message to Tx Window to update the database messages.
@@ -9720,7 +9720,7 @@ void CMainFrame::vClearOnConfLoad()
         for(short shBusID = CAN; shBusID < AVAILABLE_PROTOCOLS; shBusID++)
         {
             HWND hWnd;
-            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)shBusID);
+            hWnd = m_podMsgWndThread->hGetHandleMsgWnd((BusType)shBusID);
             if(hWnd)
             {
                 ::SendMessage(hWnd, IDM_CLEAR_MSG_WINDOW, NULL, NULL);
@@ -10073,7 +10073,7 @@ void CMainFrame::vStartStopLogging(BOOL bStart)
   Date Created   : 22.03.2012
   Modifications  :
 *******************************************************************************/
-void CMainFrame::vSetAssociatedDatabaseFiles(ETYPE_BUS eBus)
+void CMainFrame::vSetAssociatedDatabaseFiles(BusType eBus)
 {
     // Get the list of files associated to the application
     CStringArray aomDataBaseFiles;
@@ -10109,7 +10109,7 @@ void CMainFrame::vSetAssociatedDatabaseFiles(ETYPE_BUS eBus)
   Date Created   : 22.03.2012
   Modifications  :
 *******************************************************************************/
-void CMainFrame::vSetBaudRateInfo(ETYPE_BUS eBus)
+void CMainFrame::vSetBaudRateInfo(BusType eBus)
 {
     if (CAN == eBus)
     {
@@ -10335,7 +10335,7 @@ void CMainFrame::vUpdateAllMsgWndInterpretStatus(BOOL /*bAssociate*/)
     //Update MsgWnds
     for(register int nBusID = CAN; nBusID < AVAILABLE_PROTOCOLS; nBusID++)
     {
-        hWnd = m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)nBusID);
+        hWnd = m_podMsgWndThread->hGetHandleMsgWnd((BusType)nBusID);
         if(hWnd)
         {
             ::SendMessage(hWnd, WM_DATABASE_CHANGE, (WPARAM)FALSE, NULL);
@@ -13892,7 +13892,7 @@ INT CMainFrame::SaveConfiguration(void)
 
 
 
-void CMainFrame::vClearDbInfo(ETYPE_BUS eBus)
+void CMainFrame::vClearDbInfo(BusType eBus)
 {
     switch (eBus)
     {
@@ -15575,7 +15575,7 @@ HRESULT CMainFrame::DeselectJ1939Interfaces(void)
     return Result;
 }
 
-void CMainFrame::vConfigureLogFile(ETYPE_BUS eCurrBus)
+void CMainFrame::vConfigureLogFile(BusType eCurrBus)
 {
     if (J1939 == eCurrBus)
     {
@@ -16528,7 +16528,7 @@ void CMainFrame::vProcessKeyPress(MSG* pMsg)
         }
     }
 }
-BOOL CMainFrame::bParseSignalWatchXMLconfig(ETYPE_BUS eBus, SignalWatchListMainEntries& odMainEntryList)
+BOOL CMainFrame::bParseSignalWatchXMLconfig(BusType eBus, SignalWatchListMainEntries& odMainEntryList)
 {
     BOOL bProper = TRUE;
     if (m_xmlConfigFiledoc != NULL)

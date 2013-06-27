@@ -34,10 +34,10 @@ public:
     virtual BOOL InitInstance();
     virtual int ExitInstance();
 
-    BOOL CreateMsgWnd(HWND hFrameWnd, eTYPE_BUS eBusType, DWORD dwClientID, void* pParam);
-    void vUpdateClientID(eTYPE_BUS eBusType, DWORD dwClientID);
-    HWND hGetHandleMsgWnd(eTYPE_BUS eBusType);
-    void vSetDILInterfacePointer(eTYPE_BUS eBusType, void** ppvJ1939DIL);
+    BOOL CreateMsgWnd(HWND hFrameWnd, BusType eBusType, DWORD dwClientID, void* pParam);
+    void vUpdateClientID(BusType eBusType, DWORD dwClientID);
+    HWND hGetHandleMsgWnd(BusType eBusType);
+    void vSetDILInterfacePointer(BusType eBusType, void** ppvJ1939DIL);
 
 protected:
     CMsgFrmtWnd* m_pMsgWnd[MAX_PROTOCOL];

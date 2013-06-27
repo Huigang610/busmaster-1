@@ -265,7 +265,7 @@ static void vCreateTempJ1939Msg(STJ1939_MSG& sMsg, const STCANDATA& sCanData,
     const STCAN_MSG& sCanMsg = sCanData.m_uDataInfo.m_sCANMsg;
     sMsg.vClear();
     sMsg.m_sMsgProperties.m_uExtendedID.m_unExtID = sCanMsg.m_unMsgID;
-    sMsg.m_sMsgProperties.m_eDirection = (sCanData.m_ucDataType == RX_FLAG)?
+    sMsg.m_sMsgProperties.m_Direction = (sCanData.m_ucDataType == RX_FLAG)?
                                          DIR_RX : DIR_TX;
     sMsg.m_sMsgProperties.m_eType = eType;
     sMsg.m_sMsgProperties.m_byChannel = sCanMsg.m_ucChannel;

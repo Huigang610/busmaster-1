@@ -39,7 +39,7 @@ typedef struct tagSFRAMEINFO_BASIC_FLEXRAY
 {
     DWORD        frameId;
     TYPE_CHANNEL channel;
-    EDIRECTION   direction;
+    Direction   direction;
 } SFRAMEINFO_BASIC_FLEXRAY;
 
 /**
@@ -49,7 +49,7 @@ typedef struct tagSFRAMEINFO_BASIC_CAN
 {
     DWORD        frameId;
     TYPE_CHANNEL channel;
-    EDIRECTION   direction;
+    Direction   direction;
     BYTE         idType;
     BYTE         messageType;
 } SFRAMEINFO_BASIC_CAN;
@@ -69,7 +69,7 @@ typedef struct tagSFRAMEINFO_BASIC_J1939
 {
     DWORD pgn;
     TYPE_CHANNEL channel;
-    EDIRECTION   direction;
+    Direction   direction;
 } SFRAMEINFO_BASIC_J1939;
 
 const int LENGTH_FILTERNAME = 128;
@@ -114,7 +114,7 @@ typedef struct tagSFILTER
     DWORD m_dwMsgIDFrom;    // From Message ID in case of range.
     // Msg ID in case of Single ID
     DWORD m_dwMsgIDTo;      // To Message ID incase of range.
-    EDIRECTION direction;    // Values are: DIR_RX, DIR_TX and DIR_ALL
+    Direction direction;    // Values are: DIR_RX, DIR_TX and DIR_ALL
 
     tagSFILTER();           // Standard constructor
 
@@ -140,7 +140,7 @@ typedef struct tagSFILTER
     virtual BYTE* pbSetConfigData(BYTE* pbTarget);
 
     INT nSetXMLConfigData(xmlNodePtr pNodePtr);
-    eDirection eGetMsgDirection(std::string strDirection);
+    Direction eGetMsgDirection(std::string strDirection);
 } SFILTER, *PSFILTER;
 
 struct SFILTER_CAN : public SFILTER
@@ -282,7 +282,7 @@ typedef struct tagFilterSet
 {
     FilterName m_sFilterName;  // Filter name and type
     BOOL        m_bEnabled;     // Enable status of the filter set
-    ETYPE_BUS   m_eCurrBus;     // The type of bus
+    BusType   m_eCurrBus;     // The type of bus
     USHORT      m_ushFilters;   // Number of filters
     PSFILTER    m_psFilterInfo; // Filter informations
 
@@ -307,7 +307,7 @@ typedef struct tagFilterSet
     // Called to retrieve a filter block set's data from a byte stream and
     // initialise the current filter object with the retrieved data.
     BYTE* pbSetConfigData(BYTE* pbTarget, bool& Result);
-    int nSetXMLConfigData( ETYPE_BUS eBus, xmlNodePtr pFilter);
+    int nSetXMLConfigData( BusType eBus, xmlNodePtr pFilter);
 
     static tagFilterSet* psGetFilterSetPointer(tagFilterSet* psSet, UINT Count, char* acFilterName);
 

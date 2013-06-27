@@ -38,7 +38,7 @@ public:
     virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
     virtual void ActivateFrame(int nCmdShow);
 
-    static ETYPE_BUS sm_eBus;
+    static BusType sm_eBus;
 
 protected:
     virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
@@ -52,7 +52,7 @@ protected:
 #endif
 
 private:
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
 
     // Horizontal splitter
     CSplitterWnd m_omSplitterWndTwo;

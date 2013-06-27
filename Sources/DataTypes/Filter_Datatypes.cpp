@@ -426,9 +426,9 @@ BYTE* tagSFILTER::pbSetConfigData(BYTE* pbTarget)
 
     return pbTStream;
 }
-eDirection tagSFILTER::eGetMsgDirection(std::string strDirection)
+Direction tagSFILTER::eGetMsgDirection(std::string strDirection)
 {
-    eDirection eDir = DIR_ALL;
+    Direction eDir = DIR_ALL;
     if(strDirection == "Tx")
     {
         eDir = DIR_TX;
@@ -2141,7 +2141,7 @@ BYTE* tagFilterSet::pbSetConfigData(BYTE* pbTarget, bool& Result)
     return pbTStream;
 }
 
-int tagFilterSet::nSetXMLConfigData( ETYPE_BUS eBus, xmlNodePtr pFilter)
+int tagFilterSet::nSetXMLConfigData( BusType eBus, xmlNodePtr pFilter)
 {
     vClear(); // First clear everything
 

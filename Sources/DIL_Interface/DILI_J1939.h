@@ -26,16 +26,6 @@
 class CDILI_J1939 : public CBaseDILI_J1939
 {
 public:
-    /**
-     * Init Instance
-     */
-    BOOL InitInstance(void);
-
-    /**
-     * Exit Instance
-     */
-    int ExitInstance(void);
-
     /* Overloaded functions */
     HRESULT initialize(Base_WrapperErrorLogger* pILog, CBaseDIL_CAN* pouIDIL_CAN);
     HRESULT uninitialize(void);

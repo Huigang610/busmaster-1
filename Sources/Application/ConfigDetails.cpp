@@ -1371,7 +1371,7 @@ nLoadConfiguration(CString& omStrFilename/*= defDEFAULTCFGFILE*/)
     {
         // file exists
         // Compute the checksum value in file
-        bRet = CComputeCheckSum::bGetCheckSum(omStrFilename, &ucCheckSum,&ucCheckSumInFile);
+        bRet = CComputeCheckSum::getCheckSum(omStrFilename, &ucCheckSum,&ucCheckSumInFile);
         // first check if the file exists
         unErrorCode = nIsCfgFileFound(omStrFilename, TRUE);
     }
@@ -1514,7 +1514,7 @@ INT  CConfigDetails::nSaveConfiguration(CString& omStrCfgFilename)
                 m_bIsConfigurationModified = FALSE;
                 CString strError;
                 // Set the checksum as computed.
-                if (CComputeCheckSum::COM_bSetCheckSum(omStrCfgFilename,&m_ucCheckSum, strError) == FALSE)
+                if (CComputeCheckSum::setCheckSumViaCom(omStrCfgFilename,&m_ucCheckSum, strError) == FALSE)
                 {
                     if (m_omstrTempFilename.IsEmpty() == FALSE)
                     {
@@ -4190,7 +4190,7 @@ void CConfigDetails::vSetConfigurationModified(BOOL bModified /* = TRUE */)
     m_bIsConfigurationModified = bModified;
 }
 /******************************************************************************/
-/*  Function Name    :  bGetCheckSum                                          */
+/*  Function Name    :  getCheckSum                                          */
 /*  Input(s)         :  omStrConfigFileName : reference to File name          */
 /*                      pucCheckSum : Returns computed check sum              */
 /*                      pucCheckSumInFile : Returns the chechsum in file      */
@@ -4209,7 +4209,7 @@ void CConfigDetails::vSetConfigurationModified(BOOL bModified /* = TRUE */)
 /*  Modifications on :  02.01.2003, Get the check sum stored in file in third */
 /*                                  parameter.                                */
 /******************************************************************************/
-/*BOOL CConfigDetails::bGetCheckSum(CString &omStrConfigFileName,
+/*BOOL CConfigDetails::getCheckSum(CString &omStrConfigFileName,
 UCHAR* pucCheckSum, UCHAR* pucCheckSumInFile)
 {
 CStdioFile omStdiofile;
@@ -4239,7 +4239,7 @@ TCHAR  acErrorMsg[defSIZE_OF_ERROR_BUFFER];
   // Read the whole file and put the content to pucBuff;
   dwRead = omStdiofile.Read(pucBuff,dwSize);
   // Compute the checksum
-  bReturn = bComputeCheckSum(pucBuff,dwSize - 1,
+  bReturn = computeCheckSum(pucBuff,dwSize - 1,
   pucCheckSum);
   // Get the check sum stored in file ( Last byte)
   *pucCheckSumInFile  = pucBuff[dwSize-1];
@@ -4276,7 +4276,7 @@ TCHAR  acErrorMsg[defSIZE_OF_ERROR_BUFFER];
         return bReturn;
 }*/
 /******************************************************************************/
-/*  Function Name    :  bSetCheckSum                                          */
+/*  Function Name    :  setCheckSum                                          */
 /*  Input(s)         :  omStrConfigFileName : reference to File name          */
 /*                      pucCheckSum : Returns computed check sum              */
 /*  Output           :  BOOL                                                  */
@@ -4293,7 +4293,7 @@ TCHAR  acErrorMsg[defSIZE_OF_ERROR_BUFFER];
 /*  Date Created     :  16.12.2002                                            */
 /*  Modifications on :  16.12.2002, review comment incorporated               */
 /******************************************************************************/
-/*BOOL CConfigDetails::bSetCheckSum(CString &omStrConfigFileName,
+/*BOOL CConfigDetails::setCheckSum(CString &omStrConfigFileName,
 UCHAR* pucCheckSum)
 {
 CStdioFile omStdiofile;
@@ -4323,7 +4323,7 @@ TCHAR  acErrorMsg[defSIZE_OF_ERROR_BUFFER];
   // Read the whole file and put the content to pucBuff;
   dwRead = omStdiofile.Read(pucBuff,dwSize);
   // compute the checksum
-  bReturn = bComputeCheckSum(pucBuff,dwSize-1, &ucCheckSum);
+  bReturn = computeCheckSum(pucBuff,dwSize-1, &ucCheckSum);
   if (bReturn == TRUE)
   {
   // Seek to the last byte to store checksum
@@ -4371,7 +4371,7 @@ TCHAR  acErrorMsg[defSIZE_OF_ERROR_BUFFER];
         return bReturn;
 }*/
 /******************************************************************************/
-/*  Function Name    :  bComputeCheckSum                                      */
+/*  Function Name    :  computeCheckSum                                      */
 /*  Input(s)         :  pucBuff : pointer to buffer,                          */
 /*                      pucCheckSum :pointer to checksum byte                 */
 /*                      dwSize : number of bytes for which checksum to be     */
@@ -4388,7 +4388,7 @@ TCHAR  acErrorMsg[defSIZE_OF_ERROR_BUFFER];
 /*  Date Created     :  16.12.2002                                            */
 /*  Modifications on :                                                        */
 /******************************************************************************/
-/*BOOL CConfigDetails::bComputeCheckSum(UCHAR* pucBuff,
+/*BOOL CConfigDetails::computeCheckSum(UCHAR* pucBuff,
 DWORD dwSize,
 UCHAR* pucCheckSum)
 {
@@ -5449,7 +5449,7 @@ INT  CConfigDetails::COM_nSaveConfiguration(CString& omStrCfgFilename)
                 m_bIsDirty = FALSE;
                 m_bIsConfigurationModified = FALSE;
                 // Set the checksum as computed.
-                if (CComputeCheckSum::bSetCheckSum(omStrCfgFilename,&m_ucCheckSum) == FALSE)
+                if (CComputeCheckSum::setCheckSum(omStrCfgFilename,&m_ucCheckSum) == FALSE)
                 {
                     if (m_omstrTempFilename.IsEmpty() == FALSE)
                     {

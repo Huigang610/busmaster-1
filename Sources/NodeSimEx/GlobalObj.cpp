@@ -55,7 +55,7 @@ static void sg_vAddressClaimEventFnJ1939(DWORD dwClient, BYTE byAddress)
     CExecuteManager::ouGetExecuteManager(J1939).vManageOnAddressClaimHandlerJ1939(dwClient, byAddress);
 }
 
-CGlobalObj::CGlobalObj(ETYPE_BUS eBus)
+CGlobalObj::CGlobalObj(BusType eBus)
 {
     bJ1939Activated = false;
     m_eBus = eBus;
@@ -356,12 +356,12 @@ BOOL CGlobalObj::bGetDefaultValue(eCONFIGDETAILS eParam, WINDOWPLACEMENT& sPosit
     return bSizeFound;
 }
 
-BOOL CGlobalObj::bIsExist(ETYPE_BUS eBus)
+BOOL CGlobalObj::bIsExist(BusType eBus)
 {
     return (sm_pThis[eBus] != NULL);
 }
 
-CGlobalObj& CGlobalObj::ouGetObj(ETYPE_BUS eBus)
+CGlobalObj& CGlobalObj::ouGetObj(BusType eBus)
 {
     if (sm_pThis[eBus] == NULL)
     {
@@ -379,7 +379,7 @@ void CGlobalObj::vClearAll(void)
         }
     }
 }
-CString CGlobalObj::omGetBusName(ETYPE_BUS eBus)
+CString CGlobalObj::omGetBusName(BusType eBus)
 {
     CString omBusName;
     switch (eBus)
@@ -398,7 +398,7 @@ CString CGlobalObj::omGetBusName(ETYPE_BUS eBus)
     return omBusName;
 }
 
-CString CGlobalObj::omGetBusSpecMsgHndlrName(ETYPE_BUS eBus)
+CString CGlobalObj::omGetBusSpecMsgHndlrName(BusType eBus)
 {
     CString omName;
     switch (eBus)
@@ -416,7 +416,7 @@ CString CGlobalObj::omGetBusSpecMsgHndlrName(ETYPE_BUS eBus)
     }
     return omName;
 }
-CString CGlobalObj::omGetBusSpecMsgFieldName(ETYPE_BUS eBus)
+CString CGlobalObj::omGetBusSpecMsgFieldName(BusType eBus)
 {
     CString omName;
     switch (eBus)

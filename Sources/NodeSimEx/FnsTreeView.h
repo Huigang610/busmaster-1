@@ -35,7 +35,7 @@ class CFnsTreeView : public CTreeView
 
 public:
     CFnsTreeView();           // protected constructor used by dynamic creation
-    static ETYPE_BUS sm_eBus;
+    static BusType sm_eBus;
     void vSetItemName( CString );
 
     virtual void OnInitialUpdate();
@@ -62,7 +62,7 @@ protected:
     afx_msg void OnEditFunctionHeader();
 
 private:
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
     // Add new header
     void vOnNewIncludeHeader();
     // Edit selceted header

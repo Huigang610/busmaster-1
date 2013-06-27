@@ -32,7 +32,7 @@ public:
     // Build the DLL from the source file and call function to display the output
     BOOL bBuildProgram(PSNODEINFO psNodeInfo,BOOL bLoadDLL);
     // Default contructor
-    CBuildProgram(ETYPE_BUS eBus, HMODULE hModuleHandle =NULL);
+    CBuildProgram(BusType eBus, HMODULE hModuleHandle =NULL);
     // Default destructor
     virtual ~CBuildProgram();
     // Pointer to output window
@@ -43,7 +43,7 @@ public:
     BOOL bAddString(CStringArray& omStrArray );
 
 private:
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
     DWORD dwConvertShortPathName(CONST CString& omStrToConvert,
                                  char* pcStrShortPath);
     // Create output window

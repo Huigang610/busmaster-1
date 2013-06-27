@@ -111,7 +111,7 @@ INT CSignalWatchApp::ExitInstance()
 }
 
 
-USAGEMODE HRESULT SW_GetInterface(ETYPE_BUS eBus,
+USAGEMODE HRESULT SW_GetInterface(BusType eBus,
                                   void** ppvInterface)
 {
     HRESULT hResult = S_OK;

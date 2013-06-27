@@ -39,7 +39,7 @@
 #include "DIL_Interface/DIL_Interface_extern.h"
 
 typedef CMsgBufCANVFSE<STCANDATA> CCANBufVFSE;
-typedef void (*MSG_RX_CALL_BK)(void* pParam, ETYPE_BUS eBusType);
+typedef void (*MSG_RX_CALL_BK)(void* pParam, BusType eBusType);
 
 typedef struct stCanDataSpl : public STCANDATA
 {

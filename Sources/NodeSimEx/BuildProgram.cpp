@@ -47,7 +47,7 @@ static char THIS_FILE[]=__FILE__;
 /*  Modification By  :  Amitesh Bharti                                        */
 /*  Modified On      :  20.03.2002                                            */
 /******************************************************************************/
-CBuildProgram::CBuildProgram(ETYPE_BUS eBus, HMODULE hModuleHandle /* NULL*/):
+CBuildProgram::CBuildProgram(BusType eBus, HMODULE hModuleHandle /* NULL*/):
     m_hModuleHandle(hModuleHandle),m_podOutWnd(NULL)
 {
     m_eBus = eBus;

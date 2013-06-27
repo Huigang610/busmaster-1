@@ -77,7 +77,7 @@ public:
     // To get associated colour of a particular message ID
     COLORREF GetCanIDColour(unsigned int unCanID);
     // To get hold of instance of the singleton class
-    static CMessageAttrib& ouGetHandle(ETYPE_BUS eBus);
+    static CMessageAttrib& ouGetHandle(BusType eBus);
     //To modify the format of the display depending on the mode
     void vChangeNumericalMode(BOOL bHexON);
     // Destructor

@@ -34,7 +34,7 @@ class CFileView : public CScrollView
 public:
     CFileView();
 
-    static ETYPE_BUS sm_eBus;
+    static BusType sm_eBus;
     virtual void OnDraw(CDC* pDC);  // overridden to draw this view
     virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
 
@@ -67,5 +67,5 @@ private:
     // character width information
     int     m_nCharWidth;
 
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
 };

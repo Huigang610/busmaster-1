@@ -320,7 +320,7 @@ void CFrameProcessor_Common::vCloseLogFile()
 
 /* Start of alias functions in CFrameProcessor_Common */
 
-HRESULT CFrameProcessor_Common::EnableLogging(BOOL bEnable, ETYPE_BUS eBus)
+HRESULT CFrameProcessor_Common::EnableLogging(BOOL bEnable, BusType eBus)
 {
     HRESULT hResult = S_FALSE;
 
@@ -574,7 +574,7 @@ HRESULT CFrameProcessor_Common::SetConfigData(BYTE* pvDataStream, const CString&
     return S_OK;
 }
 
-HRESULT CFrameProcessor_Common::SetConfigData( xmlDocPtr pDoc, ETYPE_BUS eBus)
+HRESULT CFrameProcessor_Common::SetConfigData( xmlDocPtr pDoc, BusType eBus)
 {
     if (FALSE == bIsEditingON())
     {

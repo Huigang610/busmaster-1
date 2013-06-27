@@ -33,7 +33,7 @@ class CGraphConfiguration : public CDialog
 public:
     // Local instance of View Style parameter
     CGraphParameters m_omGraphParams;
-    eTYPE_BUS m_eBusType;
+    BusType m_eBusType;
 
     // standard constructor
     CGraphConfiguration(CWnd* pParent = NULL);

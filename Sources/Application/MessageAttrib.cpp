@@ -82,7 +82,7 @@ CMessageAttrib::~CMessageAttrib()
  Author(s)      :   Ratnadip Choudhury
  Date Created   :   21-03-2002
 ******************************************************************************/
-CMessageAttrib& CMessageAttrib::ouGetHandle(ETYPE_BUS eBus)
+CMessageAttrib& CMessageAttrib::ouGetHandle(BusType eBus)
 {
     return sm_ouMsgAttrib[eBus];
 }

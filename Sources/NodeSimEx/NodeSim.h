@@ -24,7 +24,7 @@
 class CNodeSim : public CBaseNodeSim
 {
 public:
-    CNodeSim(ETYPE_BUS eBus);
+    CNodeSim(BusType eBus);
     ~CNodeSim();
     BOOL InitInstance(void);
     int ExitInstance(void);
@@ -68,5 +68,5 @@ public:
     void NS_SetJ1939ActivationStatus(bool bActivated);
     //INTERFACE FUNCTIONS ENDS
 private:
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
 };

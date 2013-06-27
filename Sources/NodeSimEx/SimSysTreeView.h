@@ -56,7 +56,7 @@ public:
 
     virtual void OnInitialUpdate();
 
-    static ETYPE_BUS CSimSysTreeView::sm_eBus;
+    static BusType CSimSysTreeView::sm_eBus;
     void vAddSimDetFromFile(CString oCfgFilename);
     void vDisplayRootMenu();
     void vDisplaySimSysMenu();
@@ -108,7 +108,7 @@ protected:
     afx_msg void OnSimsysAllDllHandlers();
 
 private:
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
     CMenu* pomContextMenu;
     CMenu* m_pomSubMenu;
 

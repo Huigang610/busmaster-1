@@ -23,16 +23,13 @@
 
 #pragma once
 
+/* Project includes */
 #include "Struct_CAN.h"
 
-
-/*Maximum possible length of a CAN*/
+/* Maximum possible length */
 #define MAX_DATA_LEN_CAN 8
-/*Maximum possible length of a CAN FD*/
 #define MAX_DATA_LEN_CAN_FD 64
-/*Maximum possible length of a J1939*/
 #define MAX_DATA_LEN_J1939 1785
-/*Maximum possible length of a MCNET*/
 #define MAX_DATA_LEN_MCNET 0x7FFF
 
 typedef enum eBUSEVEHANDLER
@@ -40,7 +37,6 @@ typedef enum eBUSEVEHANDLER
     BUS_CONNECT = 0,
     BUS_DISCONNECT
 };
-
 
 #define defLINETYPE_SOLID "SOLID"
 #define defLINETYPE_DASH "DASH"
@@ -52,6 +48,7 @@ typedef enum eBUSEVEHANDLER
 #define defLINETYPE_YXSTEP "YXSTEP"
 #define defLINETYPE_BARS "BARS"
 #define defLINETYPE_STICK "STICK"
+
 typedef enum eProtocol
 {
     PROTOCOL_CAN    = 0,
@@ -59,7 +56,7 @@ typedef enum eProtocol
     PROTOCOL_UNKNOWN
 };
 
-typedef enum eTYPE_BUS
+typedef enum BusType
 {
     CAN     = 0,
     MCNET,
@@ -69,20 +66,20 @@ typedef enum eTYPE_BUS
     MOST,
     BUS_TOTAL,
     BUS_INVALID
-} ETYPE_BUS;
+} BusType;
 
-typedef enum eDirection
+typedef enum Direction
 {
     DIR_RX = 'R',
     DIR_TX = 'T',
     DIR_ALL
-} EDIRECTION;
+} Direction;
 
-typedef enum eFORMAT_DATA
+typedef enum DataFormat
 {
     DATA_FORMAT_MOTOROLA = 0,
     DATA_FORMAT_INTEL
-} EFORMAT_DATA;
+} DataFormat;
 
 typedef enum eMSG_INTERPRETATION_PROPERTY
 {
@@ -99,12 +96,12 @@ typedef enum eMSG_WND_PROPERTY
     DISPLAY_MODE = 0x4
 };
 
-typedef enum eTimerMode
+typedef enum TimerMode
 {
     TIME_MODE_RELATIVE = 0,
     TIME_MODE_SYSTEM,
     TIME_MODE_ABSOLUTE
-} ETIMERMODE;
+} TimerMode;
 
 typedef enum eFormat
 {
@@ -125,11 +122,11 @@ enum eScroll
     FREEZE
 };
 
-enum eTreeItemStates { TREESTATE_TOGGLE,
-                       TREESTATE_EXPAND,
-                       TREESTATE_COLLAPSE
-                     };
-
+enum eTreeItemStates {
+    TREESTATE_TOGGLE,
+    TREESTATE_EXPAND,
+    TREESTATE_COLLAPSE
+};
 
 typedef UINT TYPE_CHANNEL;
 
@@ -163,12 +160,11 @@ const BYTE TYPE_MSG_CAN_ALL         = 0x7;
 #define LENGTH_STR_DIRECTION_CAN        4
 #define LENGTH_STR_TYPE_CAN             8
 
-
 typedef struct tagFormattedData_CAN
 {
     UINT64          m_u64TimeStamp;                 // Time stamp
     DWORD           m_dwMsgID;                      // Message identifier
-    EDIRECTION      m_eDirection;                   // Direction (Rx / Tx)
+    Direction      m_Direction;                   // Direction (Rx / Tx)
     TYPE_CHANNEL    channel;                     // Channel
     BYTE            m_byDataLength;                 // Data length count
     BYTE            m_abData[MAX_DATA_LEN_CAN_FD];  // Message data

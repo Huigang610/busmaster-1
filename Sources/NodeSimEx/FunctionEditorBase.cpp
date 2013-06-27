@@ -32,7 +32,7 @@ CFunctionEditorBase::~CFunctionEditorBase()
 }
 
 /* Initializes Function editor with bus specific information */
-BOOL CFunctionEditorBase::bInitBusInfo(SBUS_SPECIFIC_INFO& sInfo, eTYPE_BUS eBus)
+BOOL CFunctionEditorBase::bInitBusInfo(SBUS_SPECIFIC_INFO& sInfo, BusType eBus)
 {
     BOOL bReturn = TRUE;
     switch (eBus)
@@ -56,7 +56,7 @@ BOOL CFunctionEditorBase::bInitBusInfo(SBUS_SPECIFIC_INFO& sInfo, eTYPE_BUS eBus
 
 }
 
-CFunctionEditorDoc* CFunctionEditorBase::pCreateNewDocument(eTYPE_BUS eBus)
+CFunctionEditorDoc* CFunctionEditorBase::pCreateNewDocument(BusType eBus)
 {
     CMultiDocTemplate* pTemplate = CGlobalObj::ouGetObj(eBus).m_pEditorDocTemplate;
     if (NULL == pTemplate)

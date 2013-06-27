@@ -192,7 +192,7 @@ CMsgFrmtWnd::CMsgFrmtWnd(): m_sCurrEntry(sDummy0002), m_ouMsgAttr(CMessageAttrib
 {
 }
 
-CMsgFrmtWnd::CMsgFrmtWnd(ETYPE_BUS eBusType): m_sCurrEntry(sDummy0002), m_ouMsgAttr(CMessageAttrib::ouGetHandle(eBusType))
+CMsgFrmtWnd::CMsgFrmtWnd(BusType eBusType): m_sCurrEntry(sDummy0002), m_ouMsgAttr(CMessageAttrib::ouGetHandle(eBusType))
 {
     //changes done for CCP checker AUC
     m_ppouIJ1939DIL  = NULL;
@@ -475,7 +475,7 @@ void CMsgFrmtWnd::vFitListCtrlToWindow()
 
 LRESULT CMsgFrmtWnd::GetFilterDetails(WPARAM wParam, LPARAM /*lParam*/)
 {
-    //  ETYPE_BUS eBus = (ETYPE_BUS)lParam;
+    //  BusType eBus = (BusType)lParam;
     PSDI_GetInterface(m_eBusType, (void**)&m_pouMsgContainerIntrf);
     switch (m_eBusType)
     {
@@ -507,7 +507,7 @@ LRESULT CMsgFrmtWnd::GetFilterDetails(WPARAM wParam, LPARAM /*lParam*/)
 
 LRESULT CMsgFrmtWnd::SetFilterDetails(WPARAM wParam, LPARAM /*lParam*/)
 {
-    //    ETYPE_BUS eBus = (ETYPE_BUS)lParam;
+    //    BusType eBus = (BusType)lParam;
     PSDI_GetInterface(m_eBusType, (void**)&m_pouMsgContainerIntrf);
     switch (m_eBusType)
     {
@@ -540,7 +540,7 @@ LRESULT CMsgFrmtWnd::SetFilterDetails(WPARAM wParam, LPARAM /*lParam*/)
 
 LRESULT CMsgFrmtWnd::EnableFilterApplied(WPARAM wParam, LPARAM /*lParam*/)
 {
-    //    ETYPE_BUS eBus = (ETYPE_BUS)lParam;
+    //    BusType eBus = (BusType)lParam;
     PSDI_GetInterface(m_eBusType, (void**)&m_pouMsgContainerIntrf);
     switch (m_eBusType)
     {
@@ -2055,7 +2055,7 @@ int CMsgFrmtWnd::nGetListCtrlTextExtent(CString omColTitle)
   Date Created   : 12-05-2010
   Modifications  :
 *******************************************************************************/
-void CMsgFrmtWnd::vRxMsgCallBk(void* pMsg, ETYPE_BUS eBusType)
+void CMsgFrmtWnd::vRxMsgCallBk(void* pMsg, BusType eBusType)
 {
     if (NULL != pThisPtr[eBusType])
     {
@@ -4881,7 +4881,7 @@ HRESULT CMsgFrmtWnd::SetConfigData(xmlNodePtr pNode)
         {
             CLEAR_EXPR_TM_BITS(m_bExprnFlag_Disp);
 
-            eTimerMode eTimer = xmlUtils::eGetTimerMode(strVar);
+            TimerMode eTimer = xmlUtils::eGetTimerMode(strVar);
             if(eTimer == TIME_MODE_ABSOLUTE)
             {
                 SET_TM_ABS(m_bExprnFlag_Disp);

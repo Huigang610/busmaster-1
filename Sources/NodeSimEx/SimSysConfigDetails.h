@@ -29,7 +29,7 @@
 class CSimSysConfigDetails : public CComputeCheckSum
 {
 public:
-    CSimSysConfigDetails(ETYPE_BUS eBus);
+    CSimSysConfigDetails(BusType eBus);
     virtual ~CSimSysConfigDetails();
     // loads a configuration info from a file that is already present..
     INT     nLoadConfiguration(CString& omStrFilename,PSSIMSYSINFO& psSimSys);
@@ -38,7 +38,7 @@ public:
 
 
 private:
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
     // version information
     float m_fSimSysVersion;
     CString m_omstrProtocolName;

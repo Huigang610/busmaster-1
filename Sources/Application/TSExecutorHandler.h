@@ -37,8 +37,8 @@ public:
     void vGetConfigurationData(xmlNodePtr& pxmlNodePtr);
     void vSetConfigurationData(BYTE*& pSrcBuffer, UINT& nBuffSize);
     void vSetConfigurationData(xmlDocPtr pDoc);
-    void vStartStopReadThread(ETYPE_BUS eBus, BOOL bStart);
-    void vDoInitailization(ETYPE_BUS eBus);
+    void vStartStopReadThread(BusType eBus, BOOL bStart);
+    void vDoInitailization(BusType eBus);
     void vBusConnected(BOOL bConnected);
     void vSetTSEVersionInfo(BYTE bytMajor, BYTE bytMinor, BYTE bytBuild);
 };

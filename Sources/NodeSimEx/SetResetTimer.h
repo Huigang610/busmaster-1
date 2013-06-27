@@ -33,7 +33,7 @@ typedef struct tagSCALCEXECTIMETHREAD
     CWinThread*     m_pomThreadPtr;
     CEvent          m_omExitThreadEvent;
     CTransmitMsg*   m_pTransmitMsg;
-    ETYPE_BUS       m_eBus; //Added for issue #356
+    BusType       m_eBus; //Added for issue #356
 
     tagSCALCEXECTIMETHREAD()
     {
@@ -50,7 +50,7 @@ class CSetResetTimer : public CDialog
     DECLARE_MESSAGE_MAP()
 
 public:
-    CSetResetTimer(ETYPE_BUS eBus, CWnd* pParent = NULL); // standard constructor
+    CSetResetTimer(BusType eBus, CWnd* pParent = NULL); // standard constructor
     void vSetResetAllTimers(CString om_StrNode,BOOL bEnable);
     void vTimerStatusChanged();
     PSTIMERHANDLER GetPointerOfHandler(PSTIMERHANDLERLIST psTimerHandl,
@@ -68,7 +68,7 @@ public:
     CListCtrl   m_omTimerList;
     CString m_omStrNodeName;
 
-    static ETYPE_BUS sm_eBus;
+    static BusType sm_eBus;
 
     virtual BOOL DestroyWindow();
 
@@ -91,7 +91,7 @@ private:
                                  int nSelectedItem);
     void vDeleteTimerListOfNode(PSTIMERHANDLERLIST psListOfTimer);
 
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
     PSNODETIMERLIST m_psFirstNodeTimerList;
     PSNODETIMERLIST m_psLastNodeTimerList;
     BOOL m_bApplyButtonPressed;

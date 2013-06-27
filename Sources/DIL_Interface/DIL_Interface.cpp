@@ -38,24 +38,18 @@ static CDILI_J1939* sg_pouDILI_J1939 = NULL;
  */
 CDILApp theApp;
 
-BOOL CDILApp::InitInstance()
-{
-    return TRUE;
-}
-
 int CDILApp::ExitInstance()
 {
     INT nResult = -1;
     if (NULL != sg_pouDIL_CAN)
     {
-        nResult = sg_pouDIL_CAN->ExitInstance();
         delete sg_pouDIL_CAN;
         sg_pouDIL_CAN = NULL;
     }
     return nResult;
 }
 
-USAGEMODE HRESULT DIL_GetInterface(ETYPE_BUS eBusType, void** ppvInterface)
+USAGEMODE HRESULT DIL_GetInterface(BusType eBusType, void** ppvInterface)
 {
     HRESULT hResult = S_OK;
 
@@ -76,8 +70,7 @@ USAGEMODE HRESULT DIL_GetInterface(ETYPE_BUS eBusType, void** ppvInterface)
                 }
             }
             // Else the object has been existing already
-            *ppvInterface = (void*) sg_pouDIL_CAN; /* Doesn't matter even
-if sg_pouFP_CAN is null */
+            *ppvInterface = (void*) sg_pouDIL_CAN; /* Doesn't matter even if sg_pouFP_CAN is null */
         }
         break;
         case MCNET:
@@ -91,14 +84,9 @@ if sg_pouFP_CAN is null */
                     ASSERT(FALSE);
                     hResult = S_FALSE;
                 }
-                else
-                {
-                    sg_pouDILI_J1939->InitInstance();
-                }
             }
             // Else the object has been existing already
-            *ppvInterface = (void*) sg_pouDILI_J1939; /* Doesn't matter even
-if sg_pouFP_CAN is null */
+            *ppvInterface = (void*) sg_pouDILI_J1939; /* Doesn't matter even if sg_pouFP_CAN is null */
         }
         break;
         default:

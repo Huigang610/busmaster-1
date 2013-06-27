@@ -41,7 +41,7 @@ public:
     /**
      * To do actions before logging starts
      */
-    BOOL bStartLogging(ETYPE_BUS);
+    BOOL bStartLogging(BusType);
 
     void vCloseLogFile();
 
@@ -175,14 +175,14 @@ protected:
     /**
      * To format the header
      */
-    virtual void vFormatHeader(CString& omHeader, ETYPE_BUS);
+    virtual void vFormatHeader(CString& omHeader, BusType);
 
     /**
      * To format the footer
      */
     virtual void vFormatFooter(CString& omFooter);
 
-    void vWriteTextToFile(CString& om_LogText, ETYPE_BUS);
+    void vWriteTextToFile(CString& om_LogText, BusType);
 
     /**
      * To copy specific data pertaining to the conrete class.

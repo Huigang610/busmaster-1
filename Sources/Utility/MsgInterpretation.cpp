@@ -178,7 +178,7 @@ __int64 static n64GetSignalValueInBits(register CByteArray* pMsgArray,
                                        UINT byteNumber,
                                        UINT unBitNum,
                                        UINT unLength,
-                                       EFORMAT_DATA bByteOrder)
+                                       DataFormat bByteOrder)
 {
     __int64 nSigValueInBits = 0;
 
@@ -249,7 +249,7 @@ __int64 CMsgInterpretation::n64GetSignalValue(register CByteArray* pMsgArray,
         UINT unBitNum,
         UINT unLength,
         BYTE bySigType,
-        EFORMAT_DATA bSigDataFormat)
+        DataFormat bSigDataFormat)
 {
     __int64 n64SigVal = 0;
 
@@ -1363,7 +1363,7 @@ __int64 CMsgInterpretationJ1939::n64GetSignalValue(register CByteArray* pMsgArra
         UINT unBitNum,
         UINT unLength,
         BYTE bySigType,
-        EFORMAT_DATA bSigDataFormat)
+        DataFormat bSigDataFormat)
 {
     __int64 n64SigVal = 0;
 

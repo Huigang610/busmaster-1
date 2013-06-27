@@ -553,9 +553,9 @@ public:
         }
         return bRetValue;
     }
-    static eDirection bGetDirection(char* pchBoolValue)
+    static Direction bGetDirection(char* pchBoolValue)
     {
-        eDirection bRetValue = DIR_ALL;
+        Direction bRetValue = DIR_ALL;
         if ( NULL != pchBoolValue )
         {
             std::string strTemp = pchBoolValue;
@@ -570,9 +570,9 @@ public:
         }
         return bRetValue;
     }
-    static eTimerMode eGetTimerMode(std::string strName)
+    static TimerMode eGetTimerMode(std::string strName)
     {
-        eTimerMode eMode = TIME_MODE_SYSTEM;
+        TimerMode eMode = TIME_MODE_SYSTEM;
         if(strName == "RELATIVE")
         {
             eMode = TIME_MODE_RELATIVE;

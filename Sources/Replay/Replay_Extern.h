@@ -36,7 +36,7 @@
 extern "C" {  // only need to export C interface if used by C++ source code
 #endif
 
-    USAGEMODE void vREP_DisplayReplayConfigDlg(ETYPE_BUS eType, const void* pvFilterConfigured);
+    USAGEMODE void vREP_DisplayReplayConfigDlg(BusType eType, const void* pvFilterConfigured);
     USAGEMODE void vREP_CmdGo();
     USAGEMODE void vREP_CmdStop();
     USAGEMODE void vREP_CmdStep();

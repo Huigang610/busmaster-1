@@ -31,8 +31,8 @@
 class CSimSysManager
 {
 private:
-    ETYPE_BUS m_eBus;
-    CSimSysManager(ETYPE_BUS eBus);
+    BusType m_eBus;
+    CSimSysManager(BusType eBus);
     static CSimSysManager* sm_pouSimSysManager[BUS_TOTAL];
     //This is only CSimSysNodeInfo object created to keep track of
     //Current selected node's properties
@@ -51,8 +51,8 @@ private:
     void vLoadSimInfoFromConfiguration(CString omFileName);
 public:
     ~CSimSysManager(void);
-    static CSimSysManager& ouGetSimSysManager(ETYPE_BUS eBus);
-    static void vClearObj(ETYPE_BUS eBus);
+    static CSimSysManager& ouGetSimSysManager(BusType eBus);
+    static void vClearObj(BusType eBus);
     //This function is returning pointer to the only created CSimSysNodeInfo
     //object which is private variable so it can be changed later
     CSimSysNodeInfo* pomGetSimSysNodeInfo();
@@ -83,9 +83,9 @@ public:
     bool bGetConfigData(xmlNodePtr pNodePtr);
     void vLoadSimSysWndConfig();
     void CopySIMDataFromBuffer(BYTE* SrcBuffer);
-    void vLoadSimSysWndConfig(xmlDocPtr, ETYPE_BUS eBus);
-    void CopySIMDataFromBuffer(xmlDocPtr, ETYPE_BUS eBus);
-    void CopySIMDataFromBuffer(xmlNodePtr, ETYPE_BUS eBus);
+    void vLoadSimSysWndConfig(xmlDocPtr, BusType eBus);
+    void CopySIMDataFromBuffer(xmlDocPtr, BusType eBus);
+    void CopySIMDataFromBuffer(xmlNodePtr, BusType eBus);
     void vSetConfigData(xmlNodePtr pNode);
     xmlNodePtr m_CopyJ1939SimNode;
     BOOL bIsConfigChanged();

@@ -691,7 +691,7 @@ void CNodeConManager::WriteIntoClientsBuffer(STJ1939_MSG& sJ1939Msg)
           sJ1939Msg.m_sMsgProperties.m_uExtendedID.m_unExtID,
           sJ1939Msg.m_sMsgProperties.m_uExtendedID.m_s29BitId.m_bySrcAddress,
           sJ1939Msg.m_sMsgProperties.m_uExtendedID.m_s29BitId.m_uPGN.m_sPGN.m_byPDU_Specific,
-          sJ1939Msg.m_sMsgProperties.m_eDirection,
+          sJ1939Msg.m_sMsgProperties.m_Direction,
           m_byNodeAddress);
 
     static BYTE abyData[MAX_MSG_LEN_J1939] = {0xFF};
@@ -1240,7 +1240,7 @@ void CNodeConManager::vTransmitMessage(STJ1939_MSG* psMsg)
                 m_pConDet->m_eTxConMode = CM_BROADCAST;
                 vSendBAM(psMsg->m_unDLC, unPGN, byDestAddress, byPriority, psMsg->m_sMsgProperties.m_byChannel);
                 vSendBroadCastData(psMsg->m_pbyData, psMsg->m_unDLC, byDestAddress, byPriority, psMsg->m_sMsgProperties.m_byChannel);
-                psMsg->m_sMsgProperties.m_eDirection = DIR_TX;
+                psMsg->m_sMsgProperties.m_Direction = DIR_TX;
                 psMsg->m_sMsgProperties.m_un64TimeStamp = m_pConDet->m_BCTimeStamp;
                 WriteIntoClientsBuffer(*psMsg);
                 EXECUTE_CLBCK_FN(CLBCK_FN_BC_LDATA_CONF,
@@ -1276,7 +1276,7 @@ void CNodeConManager::vTransmitMessage(STJ1939_MSG* psMsg)
                     m_pConDet->m_unPGN = unPGN;
                     if (SendLongMsg(psMsg, m_pConDet, hResult) == DATA_EOM)
                     {
-                        psMsg->m_sMsgProperties.m_eDirection = DIR_TX;
+                        psMsg->m_sMsgProperties.m_Direction = DIR_TX;
                         psMsg->m_sMsgProperties.m_un64TimeStamp = m_pConDet->m_unTimeStamp;
                         WriteIntoClientsBuffer(*psMsg);
                         EXECUTE_CLBCK_FN(CLBCK_FN_LDATA_CONF,

@@ -38,7 +38,7 @@
 #include "DIL_Interface/DIL_Interface_extern.h"
 #include "DataTypes/MsgBufVVSE.h"
 
-typedef void (*MSG_RX_CALL_BK)(void* pParam, ETYPE_BUS eBusType);
+typedef void (*MSG_RX_CALL_BK)(void* pParam, BusType eBusType);
 
 typedef struct stJ1939MsgSpl: public STJ1939_MSG
 {

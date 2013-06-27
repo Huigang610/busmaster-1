@@ -47,13 +47,13 @@ class CTSExecutorLIB
 {
     CTestSetupEntiyList m_ouTestSetupEntityList;
     CString m_omstrTestSuiteName;
-    eTYPE_BUS m_eBusType;
+    BusType m_eBusType;
     CResultGenerator m_ouResult;
     CListCtrl* m_ompResultDisplayWnd;
 public:
     BOOL m_bTestSuiteStatus;
     CTSExecutorLIB(void);
-    HRESULT SelectBus(eTYPE_BUS eCurrBus);
+    HRESULT SelectBus(BusType eCurrBus);
     HRESULT SetTestsuiteName(CString& omName);
     HRESULT GetTestsuiteName(CString& omName);
     HRESULT AddTestSetup(CString omFilePath, DWORD& dwID);

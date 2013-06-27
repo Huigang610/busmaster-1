@@ -35,8 +35,8 @@ class BaseAppServices;
 class CGlobalObj
 {
 private:
-    ETYPE_BUS m_eBus;
-    CGlobalObj(ETYPE_BUS eBus);
+    BusType m_eBus;
+    CGlobalObj(BusType eBus);
     static CGlobalObj* sm_pThis[BUS_TOTAL];
     static CBaseDIL_CAN* sm_pouDilCanInterface;
 public:
@@ -86,10 +86,10 @@ public:
     static HWND sm_hWndMDIParentFrame;
 
     //Static functions
-    static BOOL bIsExist(ETYPE_BUS eBus);
-    static CGlobalObj& ouGetObj(ETYPE_BUS eBus);
+    static BOOL bIsExist(BusType eBus);
+    static CGlobalObj& ouGetObj(BusType eBus);
     static void vClearAll(void);
-    static CString omGetBusSpecMsgHndlrName(ETYPE_BUS eBus);
-    static CString omGetBusSpecMsgFieldName(ETYPE_BUS eBus);
-    static CString omGetBusName(ETYPE_BUS eBus);
+    static CString omGetBusSpecMsgHndlrName(BusType eBus);
+    static CString omGetBusSpecMsgFieldName(BusType eBus);
+    static CString omGetBusName(BusType eBus);
 };

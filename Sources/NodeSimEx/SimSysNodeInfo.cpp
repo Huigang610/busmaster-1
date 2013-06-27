@@ -335,7 +335,7 @@ DWORD WINAPI NodeDataReadThreadProc(LPVOID pVoid)
 }
 //SNODEINFO STARTS
 
-sNODEINFO::sNODEINFO(ETYPE_BUS eBus)
+sNODEINFO::sNODEINFO(BusType eBus)
 {
     m_eBus = eBus;
     m_byPrefAddress = ADDRESS_NULL;
@@ -402,7 +402,7 @@ Function Name    :  CSimSysNodeInfo
     Date Created     :  03.01.06
     Modifications    :
 ******************************************************************************/
-CSimSysNodeInfo::CSimSysNodeInfo(ETYPE_BUS eBus)
+CSimSysNodeInfo::CSimSysNodeInfo(BusType eBus)
 {
     m_eBus          = eBus;
     m_psSimSysInfo  = NULL;

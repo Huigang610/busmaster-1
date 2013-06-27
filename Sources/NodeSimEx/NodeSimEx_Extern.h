@@ -38,7 +38,7 @@ extern "C" {  // only need to export C interface if used by C++ source code
 #endif
 
     /*  Exported function list */
-    USAGEMODE HRESULT NS_GetInterface(ETYPE_BUS eBus, void** ppvInterface);
+    USAGEMODE HRESULT NS_GetInterface(BusType eBus, void** ppvInterface);
 
 #ifdef __cplusplus
 }

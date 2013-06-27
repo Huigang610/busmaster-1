@@ -23,6 +23,9 @@
 
 #pragma once
 
+/* Project includes */
+#include "Include/BaseDefs.h"
+
 #if defined USAGEMODE
 #undef USAGEMODE
 #endif
@@ -39,7 +42,7 @@ extern "C" {  // only need to export C interface if used by C++ source code
 #endif
 
     /*  Exported function list */
-    USAGEMODE HRESULT DIL_GetInterface(ETYPE_BUS eBusType, void** ppvInterface);
+    USAGEMODE HRESULT DIL_GetInterface(BusType busType, void** ppvInterface);
 
 #ifdef __cplusplus
 }

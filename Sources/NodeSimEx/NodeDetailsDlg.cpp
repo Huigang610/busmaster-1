@@ -44,7 +44,7 @@ Friend of        :      -
 Author(s)        :  Harika M
 Date Created     :  27-12-2005
 *****************************************************************************/
-CNodeDetailsDlg::CNodeDetailsDlg(ETYPE_BUS eBus, PSNODEINFO pNode /*=NULL*/,
+CNodeDetailsDlg::CNodeDetailsDlg(BusType eBus, PSNODEINFO pNode /*=NULL*/,
                                  CWnd* pParent /*=NULL*/)
     : CDialog(CNodeDetailsDlg::IDD, pParent)
 

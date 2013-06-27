@@ -33,7 +33,7 @@ public:
 
     virtual void OnInitialUpdate();
 
-    static ETYPE_BUS sm_eBus;
+    static BusType sm_eBus;
     // Implementation
     //Sets the function in edit mode in the window
     //Function to be edited is passes in as omStrFunction
@@ -73,5 +73,5 @@ private:
     // Variables to remember starting line of procedure and current line in the
     // rich edit view. These will be used to select correct line in the FileView
     int m_nStartingLine, m_nCurrentLine;
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
 };

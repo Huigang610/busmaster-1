@@ -27,7 +27,7 @@ class CPPageMessage : public CPropertyPage
 
 public:
     CPPageMessage();
-    CPPageMessage(BOOL bForDBMsg, ETYPE_BUS eBusType, CMsgSignal* pouMsgSigBUS);
+    CPPageMessage(BOOL bForDBMsg, BusType eBusType, CMsgSignal* pouMsgSigBUS);
     ~CPPageMessage();
 
     // Dialog Data
@@ -55,7 +55,7 @@ protected:
     SCanIDList m_sNewItem;
     char m_acMsgEntry[128];
     COLORREF* m_pRGBColors;
-    ETYPE_BUS m_eBusType;
+    BusType m_eBusType;
     CMsgSignal* m_pouMsgSigBus;
 
     int nInitialiseMsgLCtrl(UINT unTotalDBMsgs, UINT* punDBMsgIDs);

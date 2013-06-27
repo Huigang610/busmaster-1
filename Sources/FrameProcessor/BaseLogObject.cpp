@@ -270,7 +270,7 @@ BOOL CBaseLogObject::bLogString(CString& omStr)
     return TRUE;
 }
 
-void CBaseLogObject::vWriteTextToFile(CString& om_LogText, ETYPE_BUS eBus)
+void CBaseLogObject::vWriteTextToFile(CString& om_LogText, BusType eBus)
 {
     DWORD dwBytes2Write = om_LogText.GetLength()* SIZE_CHAR; //no of bytes
 
@@ -375,7 +375,7 @@ void CBaseLogObject::vCloseLogFile()
  *
  * To do actions before logging starts.
  */
-BOOL CBaseLogObject::bStartLogging(ETYPE_BUS eBus)
+BOOL CBaseLogObject::bStartLogging(BusType eBus)
 {
     BOOL bResult = FALSE;
     if ((m_pLogFile == NULL) && (m_sLogInfo.m_bEnabled))
@@ -539,7 +539,7 @@ DWORD CBaseLogObject::dwGetFileSize(CString omFileName)
     return dwFileSize;
 }
 
-void CBaseLogObject::vFormatHeader(CString& omHeader, ETYPE_BUS eBus)
+void CBaseLogObject::vFormatHeader(CString& omHeader, BusType eBus)
 {
     omHeader = "***BUSMASTER ";
 

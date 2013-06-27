@@ -107,7 +107,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 }
 
 USAGEMODE HRESULT Filter_ShowConfigDlg(void* pExistingFilter, const SMSGENTRY* psMsgEntry,
-                                       ETYPE_BUS eType, UINT nHardware, CWnd* pParent)
+                                       BusType eType, UINT nHardware, CWnd* pParent)
 {
     //Place this code at the beginning of the export function.
     //Save previous resource handle and switch to current one.
@@ -226,7 +226,7 @@ static void vReUpdateAppliedFilterCAN(SFILTERAPPLIED_CAN& DestFilter,
 }
 
 USAGEMODE HRESULT Filter_ReUpdateAppliedFilter(void* pvFilterApplied,
-        const void* pvFilterConfigured, ETYPE_BUS eType)
+        const void* pvFilterConfigured, BusType eType)
 {
     HRESULT hResult = S_OK;
     if ((pvFilterApplied != NULL) && (pvFilterConfigured != NULL))

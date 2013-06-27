@@ -32,7 +32,7 @@ typedef CList<sFuncProtoType, sFuncProtoType&> CFuncPrototypeList;
 
 struct tagBusSpecificInfo
 {
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
     CString m_omBusName;
     CString m_omWrapperObjName;
     CString m_omHeaderFileName;

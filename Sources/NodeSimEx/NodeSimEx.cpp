@@ -126,7 +126,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
     //CGlobalObj::m_pEditorDocTemplate = NULL;
     return 1;   // ok
 }
-USAGEMODE HRESULT NS_GetInterface(ETYPE_BUS eBus,
+USAGEMODE HRESULT NS_GetInterface(BusType eBus,
                                   void** ppvInterface)
 {
     HRESULT hResult = S_OK;

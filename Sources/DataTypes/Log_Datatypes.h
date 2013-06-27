@@ -86,7 +86,7 @@ typedef struct tagLogInfo
     /**
      * The time mode - system / relative
      */
-    eTimerMode m_eLogTimerMode;
+    TimerMode m_eLogTimerMode;
 
     /**
      * Numeric mode - hexadecimal / decimal

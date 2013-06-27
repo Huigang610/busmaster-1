@@ -49,7 +49,7 @@ CPPageMessage::CPPageMessage() : CPropertyPage(CPPageMessage::IDD)
 {
 }
 
-CPPageMessage::CPPageMessage(BOOL bForDBMsg, ETYPE_BUS eBusType, CMsgSignal* pouMsgSigBUS) :
+CPPageMessage::CPPageMessage(BOOL bForDBMsg, BusType eBusType, CMsgSignal* pouMsgSigBUS) :
     CPropertyPage(CPPageMessage::IDD,
                   bForDBMsg ? IDS_PPAGE_TITLE_DBMSG : IDS_PPAGE_TITLE_NDBMSG)
 {
@@ -351,7 +351,7 @@ void CPPageMessage::OnOK()
     for(short shBusID = CAN; shBusID < AVAILABLE_PROTOCOLS; shBusID++)
     {
         HWND hWnd;
-        hWnd = (static_cast<CMainFrame*> (AfxGetMainWnd()))->m_podMsgWndThread->hGetHandleMsgWnd((eTYPE_BUS)shBusID);
+        hWnd = (static_cast<CMainFrame*> (AfxGetMainWnd()))->m_podMsgWndThread->hGetHandleMsgWnd((BusType)shBusID);
 
         if(hWnd)
         {

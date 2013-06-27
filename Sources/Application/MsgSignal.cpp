@@ -64,7 +64,7 @@ UINT static nGetNoOfBytesToRead(UINT nBitNum, UINT nSigLen)
 }
 /* checks whether signal cross array boundary or not */
 BOOL CMsgSignal::bValidateSignal(UINT nDLC, UINT nByteNum, UINT nBitNum,
-                                 UINT nLength, EFORMAT_DATA bDataFormat)
+                                 UINT nLength, DataFormat bDataFormat)
 {
     BOOL bValid = TRUE;
     UINT nBytesToRead = nGetNoOfBytesToRead(nBitNum, nLength);
@@ -76,7 +76,7 @@ BOOL CMsgSignal::bValidateSignal(UINT nDLC, UINT nByteNum, UINT nBitNum,
 /* Helper function to calculate the bit mask of a signal */
 BOOL CMsgSignal::bCalcBitMaskForSig(BYTE* pbyMaskByte, UINT unArrayLen,
                                     UINT nByteNum, UINT nBitNum, UINT nLength,
-                                    EFORMAT_DATA bDataFormat)
+                                    DataFormat bDataFormat)
 {
     BOOL bValid = TRUE;
     //Reset the Byte array
@@ -2958,7 +2958,7 @@ BOOL CMsgSignal::bIsDuplicateSignalStartBitValue(CString omStrMsgName,
     if ( pMsg != NULL )
     {
         BYTE abyMaskByte[DATA_LENGTH_MAX] = {0x0};
-        bCalcBitMaskForSig(abyMaskByte, DATA_LENGTH_MAX, unByteNum, unStartBitValue, unSignalLength, (EFORMAT_DATA) bDataFormat);
+        bCalcBitMaskForSig(abyMaskByte, DATA_LENGTH_MAX, unByteNum, unStartBitValue, unSignalLength, (DataFormat) bDataFormat);
         for (UINT i = 0; i < DATA_LENGTH_MAX; i++)
         {
             if ((abyMaskByte[i] & pMsg->m_bySignalMatrix[i]) != 0)

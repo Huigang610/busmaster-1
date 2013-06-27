@@ -71,7 +71,7 @@ BOOL CLogObjectCAN::bLogData(const SFORMATTEDDATA_CAN& sDataCAN)
 
     SFRAMEINFO_BASIC_CAN CANInfo_Basic =
     {
-        sDataCAN.m_dwMsgID, sDataCAN.channel, sDataCAN.m_eDirection,
+        sDataCAN.m_dwMsgID, sDataCAN.channel, sDataCAN.m_Direction,
         sDataCAN.idType, sDataCAN.messageType
     };
 
@@ -153,7 +153,7 @@ BOOL CLogObjectCAN::bLogData(const SFORMATTEDDATA_CAN& sDataCAN)
 }
 
 // To format the header
-void CLogObjectCAN::vFormatHeader(CString& omHeader, ETYPE_BUS eBus)
+void CLogObjectCAN::vFormatHeader(CString& omHeader, BusType eBus)
 {
     CBaseLogObject::vFormatHeader(omHeader, CAN);
     omHeader += CAN_LOG_COLUMNS;

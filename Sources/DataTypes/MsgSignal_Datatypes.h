@@ -31,7 +31,7 @@
  */
 typedef struct _tagDBPARAMS
 {
-    ETYPE_BUS   m_eBus;
+    BusType   m_eBus;
     CString     m_omBusName;
     CString     m_omDBPath;
     CString     m_omIdFieldName;
@@ -210,7 +210,7 @@ struct sSIGNALS
     /**
      * Signal endianness.
      */
-    EFORMAT_DATA m_eFormat;
+    DataFormat m_eFormat;
 
     /**
      * Signal Type ID and value List

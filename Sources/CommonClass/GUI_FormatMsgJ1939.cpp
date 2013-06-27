@@ -239,11 +239,11 @@ void CFormatMsgJ1939::vFormatJ1939DataMsg(PSTJ1939_MSG psJ1939BData, __int64 nDe
 
     sprintf_s(psJ1939FData->m_acPriority, FORMAT_STR_DATA_DEC, psJ1939BData->m_sMsgProperties.m_uExtendedID.m_s29BitId.m_uPGN.m_sPGN.m_byPriority);
 
-    if (DIR_RX == psJ1939BData->m_sMsgProperties.m_eDirection)
+    if (DIR_RX == psJ1939BData->m_sMsgProperties.m_Direction)
     {
         psJ1939FData->m_acMsgDir[0] = L'R';
     }
-    else if (DIR_TX == psJ1939BData->m_sMsgProperties.m_eDirection)
+    else if (DIR_TX == psJ1939BData->m_sMsgProperties.m_Direction)
     {
         psJ1939FData->m_acMsgDir[0] = L'T';
     }

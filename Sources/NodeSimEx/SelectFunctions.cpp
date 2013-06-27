@@ -45,7 +45,7 @@ static char THIS_FILE[] = __FILE__;
 /*  Modifications    :
 /******************************************************************************/
 
-CSelectFunctions::CSelectFunctions(ETYPE_BUS eBus, CWnd* pParent /*=NULL*/)
+CSelectFunctions::CSelectFunctions(BusType eBus, CWnd* pParent /*=NULL*/)
     : CDialog(CSelectFunctions::IDD, pParent)
 {
     m_omSelectedFunctionPrototype = STR_EMPTY;

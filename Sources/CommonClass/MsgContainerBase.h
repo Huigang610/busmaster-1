@@ -27,7 +27,7 @@
 #include "Utility/Utility_Thread.h"
 #include "include/BaseDefs.h"
 
-typedef void (*MSG_RX_CALL_BK)(void* pParam, ETYPE_BUS eBusType);
+typedef void (*MSG_RX_CALL_BK)(void* pParam, BusType eBusType);
 
 class CMsgContainerBase
 {

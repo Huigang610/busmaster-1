@@ -26,7 +26,7 @@ class CTestSetupHeader
 {
 public:
     //Bus Type
-    eTYPE_BUS m_eBus;
+    BusType m_eBus;
     //Database file path
     CString m_omDatabasePath;
     //Name of the engineer

@@ -33,6 +33,6 @@
  * @return gives the function return status.
  *
  * This function will return the valid busstatistics class
- * pointer according to the ETYPE_BUS.
+ * pointer according to the BusType.
  */
-HRESULT getInterface(ETYPE_BUS eBus, void** ppvInterface);
+HRESULT getInterface(BusType eBus, void** ppvInterface);

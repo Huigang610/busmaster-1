@@ -236,12 +236,12 @@ void CFormatMsgCAN::vFormatCANDataMsg(STCANDATA* pMsgCAN,
 {
     if (RX_FLAG == pMsgCAN->m_ucDataType)
     {
-        CurrDataCAN->m_eDirection = DIR_RX;
+        CurrDataCAN->m_Direction = DIR_RX;
         CurrDataCAN->m_acMsgDir[0] = 'R';
     }
     else if (TX_FLAG == pMsgCAN->m_ucDataType)
     {
-        CurrDataCAN->m_eDirection = DIR_TX;
+        CurrDataCAN->m_Direction = DIR_TX;
         CurrDataCAN->m_acMsgDir[0] = 'T';
     }
     CurrDataCAN->m_acMsgDir[1] = 'x';

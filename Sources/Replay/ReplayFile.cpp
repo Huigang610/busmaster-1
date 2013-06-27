@@ -157,7 +157,7 @@ UINT CReplayFile::unGetConfigSizeOfCommonMembers()
     unSize += sizeof(m_bEnabled);
     unSize += sizeof(m_bInteractive);
     unSize += (sizeof(char) * MAX_PATH); // To store the path
-    unSize += sizeof(eDirection);           //To store Replay Message Direction
+    unSize += sizeof(Direction);           //To store Replay Message Direction
     return unSize;
 }
 
@@ -198,7 +198,7 @@ BYTE* CReplayFile::pbySaveConfig(BYTE* pDesBuffer)
     memcpy(pDesBuffer, acName, sizeof(char) * MAX_PATH);
     pDesBuffer += sizeof(char) * MAX_PATH;
     //Message Direction
-    memcpy(pDesBuffer, &m_ouReplayMsgType, sizeof(eDirection));
+    memcpy(pDesBuffer, &m_ouReplayMsgType, sizeof(Direction));
     pDesBuffer += sizeof(m_ouReplayMsgType);
     //To store filters
     //This function will copy into the destination bufffer and increment the pointer

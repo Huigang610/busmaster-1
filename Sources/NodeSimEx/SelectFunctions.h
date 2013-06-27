@@ -34,7 +34,7 @@ class CSelectFunctions : public CDialog
 public:
     CString m_omSelectedFunctionPrototype;
     CString m_omStrSelectedText;
-    CSelectFunctions(ETYPE_BUS eBus, CWnd* pParent = NULL);   // standard constructor
+    CSelectFunctions(BusType eBus, CWnd* pParent = NULL);   // standard constructor
 
     enum { IDD = IDD_DLG_SELECT_FNS };
     CListBox    m_omFnListBox;
@@ -48,6 +48,6 @@ protected:
     afx_msg void OnCancel();
 
 private:
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
     BOOL bFormatFunctionPrototype(CString& omStrFunctionPrototype);
 };

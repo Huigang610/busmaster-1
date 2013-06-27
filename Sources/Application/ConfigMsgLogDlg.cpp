@@ -66,7 +66,7 @@ enum
 IMPLEMENT_DYNAMIC(CConfigMsgLogDlg, CDialog)
 
 
-CConfigMsgLogDlg::CConfigMsgLogDlg(ETYPE_BUS eCurrBus,void* pouBaseLogger, BOOL& bLogOnConnect,
+CConfigMsgLogDlg::CConfigMsgLogDlg(BusType eCurrBus,void* pouBaseLogger, BOOL& bLogOnConnect,
                                    CWnd* pParent, const void* psFilter)
     : CDialog(CConfigMsgLogDlg::IDD, pParent), m_eCurrBus(eCurrBus)
     , m_omControlParam("")
@@ -152,7 +152,7 @@ void CConfigMsgLogDlg::vCreateFileList(void)
     m_omListLogFiles.SetColumnWidth(0, nWidth);
 }
 
-void CConfigMsgLogDlg::SetGUIFromTimeMode(ETIMERMODE eTimeMode)
+void CConfigMsgLogDlg::SetGUIFromTimeMode(TimerMode eTimeMode)
 {
     switch (eTimeMode)
     {

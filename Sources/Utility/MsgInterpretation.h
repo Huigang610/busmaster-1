@@ -37,7 +37,7 @@ public:
     CMsgInterpretationJ1939();
     ~CMsgInterpretationJ1939();
     // Get signal value
-    __int64 n64GetSignalValue(CByteArray*, UINT, UINT, UINT, BYTE, EFORMAT_DATA);
+    __int64 n64GetSignalValue(CByteArray*, UINT, UINT, UINT, BYTE, DataFormat);
 
     /* To set the message list root. J1939 database needs to be set before calling the above
     function */
@@ -62,7 +62,7 @@ private:
 
 public:
     // Get signal value
-    __int64 n64GetSignalValue(CByteArray*, UINT, UINT, UINT, BYTE, EFORMAT_DATA);
+    __int64 n64GetSignalValue(CByteArray*, UINT, UINT, UINT, BYTE, DataFormat);
 
     // To set the message list root
     void vSetMessageList(SMSGENTRY* psCurrMsgEntry);

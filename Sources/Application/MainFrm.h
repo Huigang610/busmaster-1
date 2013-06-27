@@ -192,7 +192,7 @@ public:
     BOOL bAllocateMemoryForGlobalTxList();
     VOID vAssignMsgBlockList();
     VOID vDeleteGlobalTxMemory();
-    VOID vPostMsgToSendMsgDlg(ETYPE_BUS eBus);
+    VOID vPostMsgToSendMsgDlg(BusType eBus);
     void vCreateMRU_Menus();
     // Delete memory allocated by signal watch
     void vFreeSignalWatchMemorySpace();
@@ -231,13 +231,13 @@ public:
     // Convert string in hex to integer
     __int64 nConvertStringToInt( CString omStrHexNo);
     // Set pointer to CMsgSgDetView class
-    void podSetMsgSgDetView(CMsgSgDetView* pDetView, ETYPE_BUS eBus);
+    void podSetMsgSgDetView(CMsgSgDetView* pDetView, BusType eBus);
     // Set pointer to CMsgSgTreeView class
-    void podSetMsgSgTreeView(CMsgSgTreeView* pTreeView, ETYPE_BUS eBus);
+    void podSetMsgSgTreeView(CMsgSgTreeView* pTreeView, BusType eBus);
     // Get pointer to CMsgSgTreeView class
-    CMsgSgTreeView* podGetMsgSgTreeView(ETYPE_BUS eBus);
+    CMsgSgTreeView* podGetMsgSgTreeView(BusType eBus);
     // Get pointer to CMsgSgDetView class
-    CMsgSgDetView* podGetMsgSgDetView(ETYPE_BUS eBus);
+    CMsgSgDetView* podGetMsgSgDetView(BusType eBus);
 
     // Get pointer to CMsgSignalDBWnd class
     CMsgSignalDBWnd* pomGetMsgSgWnd();
@@ -276,9 +276,9 @@ public:
     // To stop or start logging during configuration change
     inline void vJ1939StartStopLogging();
     // To set the associated database file names for logging
-    void vSetAssociatedDatabaseFiles(ETYPE_BUS eBus);
+    void vSetAssociatedDatabaseFiles(BusType eBus);
     // To set the baudrate for the selected channels
-    void vSetBaudRateInfo(ETYPE_BUS eBus);
+    void vSetBaudRateInfo(BusType eBus);
     //Wrapper function around the inline function,to be called from com function
     void vComStartStopLog(BOOL bStart);
 
@@ -291,7 +291,7 @@ public:
     CWnd* IsWindowCreated();
     void vCloseFormatconverters();
     void vProcessKeyPress(MSG* pMsg);
-    BOOL bParseSignalWatchXMLconfig(ETYPE_BUS eBus, SignalWatchListMainEntries& odMainEntryList);
+    BOOL bParseSignalWatchXMLconfig(BusType eBus, SignalWatchListMainEntries& odMainEntryList);
     void OnHex_DecButon();
 
     void bSetHexDecFlags(BOOL bHexOn);
@@ -684,7 +684,7 @@ private:
     // To deselect J1939 interfaces
     HRESULT DeselectJ1939Interfaces(void);
     // To configure logging for a bus
-    void vConfigureLogFile(ETYPE_BUS eCurrBus);
+    void vConfigureLogFile(BusType eCurrBus);
     // The bus statistics modeless dialog box
     CBusStatisticsDlg* m_podBusStatistics;
     BOOL m_bIsStatWndCreated;
@@ -744,7 +744,7 @@ private:
     BOOL bStartGraphReadThread();
     BOOL bStopGraphReadThread();
     void vUpdateGraphData(const STCANDATA& sCanData);
-    void vClearDbInfo(ETYPE_BUS eBus);
+    void vClearDbInfo(BusType eBus);
     CPARAM_THREADPROC m_ouGraphReadThread;
     CCANBufFSE m_ouCanBuf;
     CMsgBufVSE* m_pouMsgInterpretBuffer;

@@ -259,7 +259,7 @@ void CSigGrphConfigDlg::OnBnClickedBtnConfigure()
 {
     CElementSelection omConfig(m_nHardware);
     omConfig.m_pMainFrame = m_pMainFrame;
-    omConfig.m_eBusType = (eTYPE_BUS)m_omCmbBusType.GetCurSel();
+    omConfig.m_eBusType = (BusType)m_omCmbBusType.GetCurSel();
 
     //int nElemCount =
     m_pMainFrame->m_odGraphList[omConfig.m_eBusType].m_omElementList.GetSize();
@@ -575,7 +575,7 @@ void CSigGrphConfigDlg::OnBnClickedButtonGrpDispConfig()
 {
     // Create configuration dialog and show it
     CGraphConfiguration omGraphConf;
-    omGraphConf.m_eBusType = (eTYPE_BUS)m_omCmbBusType.GetCurSel();
+    omGraphConf.m_eBusType = (BusType)m_omCmbBusType.GetCurSel();
 
     //Store previous Line display type
     eDISPLAY_TYPE ePrevDisplay =

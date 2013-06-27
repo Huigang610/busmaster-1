@@ -46,22 +46,22 @@ public:
     virtual HRESULT resetBusStatistics(void) = 0;
     /* Get the total number of valid messages transmitted to or
        received from the bus */
-    virtual HRESULT getTotalMessageCount(UINT unChannelIndex, eDirection eDir, BYTE byIdType,
+    virtual HRESULT getTotalMessageCount(UINT unChannelIndex, Direction eDir, BYTE byIdType,
                                          BYTE byMsgType, UINT& nMsgCount) = 0;
     /* Get the total number of error messages occurred while receiving or
        transmitting */
-    virtual HRESULT getTotalErrorCount(UINT unChannelIndex, eDirection eDir, UINT& nErrCount) = 0;
+    virtual HRESULT getTotalErrorCount(UINT unChannelIndex, Direction eDir, UINT& nErrCount) = 0;
 
     /* Get average number of msgs per second(Msg/s)*/
-    virtual HRESULT getAverageMessageCountPerSecond(UINT unChannelIndex, eDirection eDir,
+    virtual HRESULT getAverageMessageCountPerSecond(UINT unChannelIndex, Direction eDir,
             BYTE byIdType, double& dMsgCount) = 0;
     /* Get average number of errors per second(Err/s)*/
-    virtual HRESULT getAverageErrorCountPerSecond(UINT unChannelIndex, eDirection eDir, double& dErrCount) = 0;
+    virtual HRESULT getAverageErrorCountPerSecond(UINT unChannelIndex, Direction eDir, double& dErrCount) = 0;
     /* Get the bus load */
     virtual HRESULT getBusLoad(UINT unChannelIndex, eLOAD eLoad, double& dBusLoad) = 0;
     /* Get controller status */
     /* Note: eLoad can have only CURRENT, PEAK.*/
-    virtual HRESULT getErrorCounter(UINT unChannelIndex, eDirection eDir, eLOAD eLoad, UCHAR& ucErrCounter) = 0;
+    virtual HRESULT getErrorCounter(UINT unChannelIndex, Direction eDir, eLOAD eLoad, UCHAR& ucErrCounter) = 0;
     //Setting BaudRate
     virtual HRESULT setBaudRate(UINT unChannelIndex, double dBaudRate) = 0;
     //Start updating BusStatistics data

@@ -33,10 +33,10 @@
 
 #define defSTR_SIMSYS_WINDOW_TITLE              "Configure Simulated Systems"
 
-ETYPE_BUS CEditFrameWnd::sm_eBus = CAN;
-ETYPE_BUS CFileView::sm_eBus = CAN;
+BusType CEditFrameWnd::sm_eBus = CAN;
+BusType CFileView::sm_eBus = CAN;
 
-CNodeSim::CNodeSim(ETYPE_BUS eBus)
+CNodeSim::CNodeSim(BusType eBus)
 {
     m_eBus = eBus;
 }

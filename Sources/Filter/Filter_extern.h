@@ -38,12 +38,12 @@ extern "C" {  // only need to export C interface if used by C++ source code
 #endif
 
     USAGEMODE HRESULT Filter_ShowConfigDlg(void* pvExistingFilter,
-                                           const SMSGENTRY* psMsgEntry, ETYPE_BUS eType, UINT nHardware, CWnd* pParent);
+                                           const SMSGENTRY* psMsgEntry, BusType eType, UINT nHardware, CWnd* pParent);
     USAGEMODE HRESULT Filter_ShowSelDlg(CWnd* pParent, SignalWatchListMainEntries* podMainSubList);
     USAGEMODE HRESULT Filter_DoFiltering(const void* pvFilterApplied,
-                                         const void* pvFrame, ETYPE_BUS eType);
+                                         const void* pvFrame, BusType eType);
     USAGEMODE HRESULT Filter_ReUpdateAppliedFilter(void* pvFilterApplied,
-            const void* pvFilterConfigured, ETYPE_BUS eType);
+            const void* pvFilterConfigured, BusType eType);
 
 #ifdef __cplusplus
 }

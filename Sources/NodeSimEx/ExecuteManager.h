@@ -34,9 +34,9 @@ class CExecuteManager
 public:
     CBuildProgram* m_pouBuildProgram;
     virtual ~CExecuteManager();
-    static CExecuteManager& ouGetExecuteManager(ETYPE_BUS eBus);
-    static BOOL bIsExist(ETYPE_BUS eBus);
-    static void vClearObj(ETYPE_BUS eBus);
+    static CExecuteManager& ouGetExecuteManager(BusType eBus);
+    static BOOL bIsExist(BusType eBus);
+    static void vClearObj(BusType eBus);
     void vAddNode (const PSNODEINFO psNodeInfo,CExecuteFunc* pExecuteFunc);
     BOOL vDeleteNode(const CString omStrNodeName);
     //void vDeleteAllNode(void);
@@ -108,9 +108,9 @@ public:
     void vUpdateHandlerDetailsInDetView();
     CExecuteFunc* pouGetExecuteFunc(DWORD dwClient);
     CEvent m_omDllMsgEvent;
-    ETYPE_BUS m_eBus;
+    BusType m_eBus;
 private:
-    CExecuteManager(ETYPE_BUS eBus);
+    CExecuteManager(BusType eBus);
     static CExecuteManager* sm_pouManager[BUS_TOTAL];
     PSNODEOBJECT m_psFirstNodeObject;
     PSNODEOBJECT m_psLastNodeObject;

@@ -35,8 +35,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-ETYPE_BUS CFunctionView::sm_eBus = CAN;
-ETYPE_BUS CFnsTreeView::sm_eBus  = CAN;
+BusType CFunctionView::sm_eBus = CAN;
+BusType CFnsTreeView::sm_eBus  = CAN;
 
 IMPLEMENT_DYNCREATE(CEditFrameWnd, CMDIChildWnd)
 

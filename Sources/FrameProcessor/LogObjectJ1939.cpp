@@ -55,7 +55,7 @@ BOOL CLogObjectJ1939::bLogData(const SFORMATTEDATA_J1939& sDataJ1939)
     // Multiple return statements are used to keep the code precise.
 
     /* Get Direction */
-    EDIRECTION eDirMsg;
+    Direction eDirMsg;
     if ( strcmp(sDataJ1939.m_acMsgDir, "Tx") == 0 )
     {
         eDirMsg = DIR_TX;
@@ -170,7 +170,7 @@ BOOL CLogObjectJ1939::bLogData(const SFORMATTEDATA_J1939& sDataJ1939)
 }
 
 // To format the header
-void CLogObjectJ1939::vFormatHeader(CString& omHeader, ETYPE_BUS eBus)
+void CLogObjectJ1939::vFormatHeader(CString& omHeader, BusType eBus)
 {
     CBaseLogObject::vFormatHeader(omHeader, J1939);
     omHeader += J1939_LOG_COLUMNS;

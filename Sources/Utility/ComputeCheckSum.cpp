@@ -26,51 +26,8 @@
 
 #define defSIZE_OF_ERROR_BUFFER 1024
 #define defPROJECT_NAME         "BUSMASTER"
-/*******************************************************************************
-  Function Name  : CMDIChildBase
-  Description    : Standard default constructor
-  Member of      : CComputeCheckSum
-  Functionality  :  -
-  Author(s)      :
-  Date Created   :
-  Modifications  :
-*******************************************************************************/
 
-CComputeCheckSum::CComputeCheckSum()
-{
-
-}
-
-/*******************************************************************************
-  Function Name  : ~CComputeCheckSum
-  Description    : Standard Destructor
-  Member of      : CComputeCheckSum
-  Functionality  : -
-  Author(s)      :
-  Date Created   :
-  Modifications  :
-*******************************************************************************/
-
-CComputeCheckSum::~CComputeCheckSum()
-{
-
-}
-/******************************************************************************/
-/*  Function Name    :  bComputeCheckSum                                      */
-/*  Input(s)         :  pucBuff : pointer to buffer,                          */
-/*                      pucCheckSum :pointer to checksum byte                 */
-/*                      dwSize : number of bytes for which checksum to be     */
-/*                               be computed                                  */
-/*  Output           :  BOOL                                                  */
-/*  Functionality    :  This method computes the checksum for a give bytes    */
-/*                      of data passed as pointer pucBuff. It return TRUE on  */
-/*                      success. The paramter pucCheckSum contains computed   */
-/*                      chechsum value.                                       */
-/*  Member of        :  CComputeCheckSum                                      */
-/*  Friend of        :      -                                                 */
-/*                                                                            */
-/******************************************************************************/
-BOOL CComputeCheckSum::bComputeCheckSum(UCHAR* pucBuff,
+BOOL CComputeCheckSum::computeCheckSum(UCHAR* pucBuff,
                                         DWORD dwSize,
                                         UCHAR* pucCheckSum)
 {
@@ -97,22 +54,7 @@ BOOL CComputeCheckSum::bComputeCheckSum(UCHAR* pucBuff,
     return bReturn;
 }
 
-/******************************************************************************/
-/*  Function Name    :  bGetCheckSum                                          */
-/*  Input(s)         :  omStrConfigFileName : reference to File name          */
-/*                      pucCheckSum : Returns computed check sum              */
-/*                      pucCheckSumInFile : Returns the chechsum in file      */
-/*  Output           :  BOOL                                                  */
-/*  Functionality    :  This method computes the checksum for a given bytes   */
-/*                      in a file. The file is opened and checksum is computed*/
-/*                      for all bytes except the last byte. Returns TRUE for  */
-/*                      sucess and FALSE for failure.                         */
-/*                      chechsum value.                                       */
-/*  Member of        :  CComputeCheckSum                                      */
-/*  Friend of        :      -                                                 */
-/*                                                                            */
-/******************************************************************************/
-BOOL CComputeCheckSum::bGetCheckSum(CString& omStrConfigFileName,
+BOOL CComputeCheckSum::getCheckSum(CString& omStrConfigFileName,
                                     UCHAR* pucCheckSum, UCHAR* pucCheckSumInFile)
 {
     CStdioFile omStdiofile;
@@ -141,7 +83,7 @@ BOOL CComputeCheckSum::bGetCheckSum(CString& omStrConfigFileName,
                     // Read the whole file and put the content to pucBuff;
                     dwRead = omStdiofile.Read(pucBuff,dwSize);
                     // Compute the checksum
-                    bReturn = bComputeCheckSum(pucBuff,dwSize - 1,
+                    bReturn = computeCheckSum(pucBuff,dwSize - 1,
                     pucCheckSum);
                     // Get the check sum stored in file ( Last byte )
                     *pucCheckSumInFile  = pucBuff[dwSize-1];
@@ -182,21 +124,7 @@ BOOL CComputeCheckSum::bGetCheckSum(CString& omStrConfigFileName,
     return bReturn;
 }
 
-/******************************************************************************/
-/*  Function Name    :  bSetCheckSum                                          */
-/*  Input(s)         :  omStrConfigFileName : reference to File name          */
-/*                      pucCheckSum : Returns computed check sum              */
-/*  Output           :  BOOL                                                  */
-/*  Functionality    :  This method computes the checksum for a given bytes   */
-/*                      in a file. The file is opened and checksum is computed*/
-/*                      for all bytes except the last byte. Returns TRUE for  */
-/*                      sucess and FALSE for failure. The same checksum is    */
-/*                      overwritten at the last byte in file.                 */
-/*                      chechsum value.                                       */
-/*  Member of        :  CComputeCheckSum                                      */
-/*  Friend of        :      -                                                 */
-/******************************************************************************/
-BOOL CComputeCheckSum::bSetCheckSum(CString& omStrConfigFileName,
+BOOL CComputeCheckSum::setCheckSum(CString& omStrConfigFileName,
                                     UCHAR* pucCheckSum)
 {
     CStdioFile omStdiofile;
@@ -225,7 +153,7 @@ BOOL CComputeCheckSum::bSetCheckSum(CString& omStrConfigFileName,
                 // Read the whole file and put the content to pucBuff;
                 dwRead = omStdiofile.Read(pucBuff,dwSize);
                 // compute the checksum
-                bReturn = bComputeCheckSum(pucBuff,dwSize, &ucCheckSum);
+                bReturn = computeCheckSum(pucBuff,dwSize, &ucCheckSum);
                 if(bReturn == TRUE)
                 {
                     // Seek to the last byte to store checksum
@@ -277,23 +205,7 @@ BOOL CComputeCheckSum::bSetCheckSum(CString& omStrConfigFileName,
     return bReturn;
 }
 
-/*****************************************************************************
-  Function Name    :  COM_bSetCheckSum
-  Input(s)         :  omStrConfigFileName : reference to File name
-                      pucCheckSum : Returns computed check sum
-  Output           :  BOOL
-  Functionality    :  This method computes the checksum for a given bytes
-                      in a file. The file is opened and checksum is computed
-                      for all bytes except the last byte. Returns TRUE for
-                      sucess and FALSE for failure. The same checksum is
-                      overwritten at the last byte in file. For COM Support
-  Member of        :  CComputeCheckSum
-  Friend of        :      -
-  Author           : Anish kr
-  Creation Date    : 6/05/10
-  Modifications    :
-******************************************************************************/
-BOOL CComputeCheckSum::COM_bSetCheckSum(CString& omStrConfigFileName,
+BOOL CComputeCheckSum::setCheckSumViaCom(CString& omStrConfigFileName,
                                         UCHAR* pucCheckSum, CString& strError)
 {
     CStdioFile omStdiofile;
@@ -322,7 +234,7 @@ BOOL CComputeCheckSum::COM_bSetCheckSum(CString& omStrConfigFileName,
                 // Read the whole file and put the content to pucBuff;
                 dwRead = omStdiofile.Read(pucBuff,dwSize);
                 // compute the checksum
-                bReturn = bComputeCheckSum(pucBuff,dwSize, &ucCheckSum);
+                bReturn = computeCheckSum(pucBuff,dwSize, &ucCheckSum);
                 if(bReturn == TRUE)
                 {
                     // Seek to the last byte to store checksum

@@ -32,7 +32,7 @@
 static CMsgContainerCAN* sg_pouMsgContainer_CAN = NULL;
 static CMsgContainerJ1939* sg_pouMsgContainer_J1939 = NULL;
 
-USAGEMODE HRESULT PSDI_GetInterface(ETYPE_BUS eBus, void** ppvInterface)
+USAGEMODE HRESULT PSDI_GetInterface(BusType eBus, void** ppvInterface)
 {
     HRESULT hResult = S_OK;
 
